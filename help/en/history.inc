@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.1 (2004)
+0.7.1 (December 12, 2004)
 [text]
 <ul>
  <li>On adding a new/editing an existing entry you now can get the basic values

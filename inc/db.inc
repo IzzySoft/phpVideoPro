@@ -1,6 +1,6 @@
 <?php
  /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
  * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
  * http://www.qumran.org/homes/izzy/                                         *
  * --------------------------------------------------------------------------*
@@ -12,16 +12,35 @@
 
  /* $Id$ */
 
+ /** Common SQL helper funcs used for most database accesses
+  *  (extends DB_Sql fom PHPLIB)
+  * @package Api
+  * @class sql
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  */
+ /** SQL substring to limit result sets to a certain number
+  * @class sql
+  * @attribute string limit
+  */
  class sql extends DB_Sql {
    VAR $limit;
 
+   /** Constructor: initialize base class, initialize limit property depending on database type
+    * @constructor sql
+    */
    function sql() { // init
      $this->DB_Sql; // constructor of base class needs explicit call
      $this->limit();
    }
 
    ############################################################################
-   # setup sql clause to limit result set
+   /** setup sql clause to limit result set (depending on database type)
+    * @class sql
+    * @method limit
+    * @param optional integer start
+    * @return string limit SQL limit clause for the configured database type
+    */
    function limit($start=0) {
      GLOBAL $pvp;
      switch($pvp->config->db->type) {
@@ -52,7 +71,13 @@
    } // end clean_query()
 
    ############################################################################
-   # query db and provide debug output
+   /** Query db and provide debug output
+    * @class sql
+    * @method dbquery
+    * *variable array colors
+    * @param string query SQL statement to execute
+    * @return boolean success
+    */
    function dbquery($query) {
      GLOBAL $colors;
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
@@ -62,9 +87,15 @@
    }
 
    ############################################################################
-   # query db using the LIMIT clause. returns count of TOTAL datasets found
-   # (i.e. UNLIMITED query result count). $query must NOT contain any limit
-   # clause!!!
+   /** Query db using the LIMIT clause. returns count of TOTAL datasets found
+    *  (i.e. UNLIMITED query result count). $query must NOT contain any limit
+    *  clause!!!
+    * @class sql
+    * @method lim_query
+    * @param string query SQL statement to execute
+    * @param optional integer start
+    * @return integer totals (result set count)
+    */
    function lim_query($query,$start=0) {
      if ( $this->dbquery($query) ) {
        $totals = $this->num_rows();
@@ -77,13 +108,25 @@
    }
 
    ############################################################################
-   # delete a complete row from a table
+   /** Delete a complete row from a table
+    * @class sql
+    * @method delete_row
+    * @param string table table name
+    * @param string id row id(s) to delete (multiple IDs must be separated by
+    *  commata; row id is the value of the id column)
+    * @return boolean success
+    */
    function delete_row($table,$id) {
      return $this->dbquery("DELETE FROM $table WHERE id IN ($id)"); 
    }
 
    ############################################################################
-   # get all media types and return them as array
+   /** Get all media types and return them as array
+    * @class sql
+    * @method get_mtypes
+    * @param optional string restrict WHERE clause
+    * @return array array of media types
+    */
    function get_mtypes($restrict="") {
      if ( strlen($restrict) ) {
        $where = " WHERE $restrict";
@@ -102,7 +145,11 @@
    }
 
    ############################################################################
-   # get installed languages
+   /** Get installed languages (both available and unavailable)
+    * @class sql
+    * @method get_installedlang
+    * @return array language names (lang)
+    */
    function get_installedlang() {
      $this->dbquery("SELECT distinct lang FROM lang");
      while ( $this->next_record() ) {
@@ -112,7 +159,12 @@
    }
 
    ############################################################################
-   # get (un)available|all languages
+   /** Get (un)available|all languages
+    * @class sql
+    * @method get_languages
+    * @param optional integer avail available (1) or unavailable(0); default: both
+    * @return array languages (id,name)
+    */
    function get_languages($avail="") {
      switch ($avail) {
        case "0" : $where = "WHERE available='no'"; break;
@@ -129,20 +181,34 @@
    }
 
    ############################################################################
-   # make a language (un)available
+   /** Make a language (un)available
+    * @class sql
+    * @method lang_available
+    * @param string lang language id
+    * @param optional integer avail defaults to "1"
+    */
    function lang_available($lang,$avail=1) {
      if ($avail) $this->dbquery("UPDATE languages SET available='yes' WHERE lang_id='$lang'");
      else $this->dbquery("UPDATE languages SET available='no' WHERE lang_id='$lang'");
    }
 
    ############################################################################
-   # delete translations for a specific language
+   /** delete translations for a specific language
+    * @class sql
+    * @method delete_translations
+    * @param string lang language id
+    */
    function delete_translations($lang) {
      $this->dbquery("DELETE FROM lang WHERE lang='$lang'");
    }
 
    ############################################################################
-   # get all translations and return them as array
+   /** Get all translations and return them as array
+    * @class sql
+    * @method get_translations
+    * @param string pref_lang language id of preferred language
+    * @return array translations (msg_id:=trans(msg_id))
+    */
    function get_translations($pref_lang) {
      $def_lang = "en";
      $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$def_lang'");
@@ -159,7 +225,14 @@
    }
 
    ############################################################################
-   # get preferences
+   /** Get preferences from DB (used by class preferences; use that class to
+    *  obtain preference settings!)
+    * @class sql
+    * @method get_preferences
+    * @param string name preference name
+    * @return mixed setting of requested preference
+    * @see preferences::filter
+    */
    function get_preferences($name) {
      $this->query("SELECT value FROM preferences WHERE name='$name'");
      if ( $this->next_record() ) {
@@ -170,7 +243,14 @@
    }
 
    ############################################################################
-   # set preferences
+   /** Set preferences in DB (if exist: update, otherwise insert)
+    *  Used by class preferences: use that class to modify settings!
+    * @class sql
+    * @method set_preferences
+    * @param string name
+    * @param mixed value
+    * @see preferences::filter
+    */
    function set_preferences($name,$value) {
      $this->dbquery("SELECT value FROM preferences WHERE name='$name'");
      if ( $this->next_record() ) {
@@ -181,13 +261,24 @@
    }
 
    ############################################################################
-   # remove preferences
+   /** Remove preferences from DB
+    *  Used by class preferences: use that class to modify settings!
+    * @class sql
+    * @method unset_preferences
+    * @param string name
+    * @see preferences::filter
+    */
    function unset_preferences($name) {
      $this->dbquery("DELETE FROM preferences WHERE name='filter'");
    }
 
    ############################################################################
-   # format a name's array
+   /** Format a name's array (private! just an internal helper func)
+    * @class sql
+    * @method format_name
+    * @param array name
+    * return array name
+    */
    function format_name($name) {
      $name[name] = $name[reverse] = trim($name[name]);
      $name[firstname] = $name[fullname] = trim($name[firstname]);
@@ -205,7 +296,13 @@
    }
 
    ############################################################################
-   # get all data for a person and return it as array
+   /** Get all data for a person and return it as array (privat! internal helper)
+    * @class sql
+    * @method get_person
+    * @param integer id person id
+    * @param string table tablename (actors, directors, etc)
+    * @return array person data (formatted by sql::format_name)
+    */
    function get_person($id,$table) {
      if ($id) {
        $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
@@ -232,25 +329,46 @@
    }
 
    ############################################################################
-   # get all data for an actor and return it as array
+   /** Get all data for an actor and return it as array (wrapper to get_person)
+    * @class sql
+    * @method get_actor
+    * @param integer id actor id
+    * @return array actor data (formatted by format_name)
+    */
    function get_actor($id) {
      return $this->get_person($id,"actors");
    }
 
    ############################################################################
-   # get all data for a director and return it as array
+   /** Get all data for a director and return it as array (wrapper to get_person)
+    * @class sql
+    * @method get_director
+    * @param integer id director id
+    * @return array director data (formatted by format_name)
+    */
    function get_director($id) {
      return $this->get_person($id,"directors");
    }
 
    ############################################################################
-   # get all data for a componist and return it as array
+   /** Get all data for a componist and return it as array (wrapper to get_person)
+    * @class sql
+    * @method get_music
+    * @param integer id componist's id
+    * @return array componist's data (formatted by format_name)
+    */
    function get_music($id) {
      return $this->get_person($id,"music");
    }
 
    ############################################################################
-   # get a category's data
+   /** Get a category's data
+    * @class sql
+    * @method get_category
+    * @param integer id category id
+    * @param optional string order subclause for ORDER BY
+    * @return array category (id:name)
+    */
    function get_category($id,$order="") {
      if ($id) {
        $this->query("SELECT name FROM cat WHERE id=$id");
@@ -276,7 +394,13 @@
    }
 
    ############################################################################
-   # get audio/video data and return it as array
+   /** Get audio/video data and return it as array (privat! internal helper)
+    * @class sql
+    * @method get_av
+    * @param integer id ID of required data set
+    * @param string table table name
+    * @return array av (name,sname if id!="", i:id,i:name,i:sname otherwise)
+    */
    function get_av($id,$table) {
      if ($id=="") {
        $this->query("SELECT id,name,sname FROM $table");
@@ -300,25 +424,45 @@
    }
 
    ############################################################################
-   # get all pict data and return it as array
+   /** Get all pict data and return it as array (wrapper to get_av)
+    * @class sql
+    * @method get_pict
+    * @param optional integer id
+    * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
+    */
    function get_pict($id="") {
      return $this->get_av($id,"pict");
    }
 
    ############################################################################
-   # get all color data and return it as array
+   /** Get all color data and return it as array (wrapper to get_av)
+    * @class sql
+    * @method get_color
+    * @param optional integer id
+    * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
+    */
    function get_color($id="") {
      return $this->get_av($id,"colors");
    }
 
    ############################################################################
-   # get all tone data and return it as array
+   /** Get all tone data and return it as array (wrapper to get_av)
+    * @class sql
+    * @method get_tone
+    * @param optional integer id
+    * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
+    */
    function get_tone($id="") {
      return $this->get_av($id,"tone");
    }
 
    ############################################################################
-   # get data for commercials
+   /** get data for commercials
+    * @class sql
+    * @method get_commercials
+    * @param optional integer id
+    * @return mixed (name if id!="", array of i:id,i:name otherwise)
+    */
    function get_commercials($id="") {
      if ($id=="") {
        $this->query("SELECT id,name FROM commercials");
@@ -341,7 +485,14 @@
    }
 
    ############################################################################
-   # get movie ids
+   /** Get movie ids
+    * @class sql
+    * @method get_movieid
+    * @param integer mtype_id media type id
+    * @param integer cass_id media number
+    * @param optional integer part movie number on medium
+    * @return mixed either id (integer) or array of IDs
+    */
    function get_movieid($mtype_id,$cass_id,$part="") {
      $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
      if ($part=="") {
@@ -358,7 +509,24 @@
    }
 
    ############################################################################
-   # get all data for a movie entry and return it as array
+   /** Get all data for a movie entry and return it as array
+    * @class sql
+    * @method get_movie
+    * @param integer id movie id
+    * @return array array with detailled movie information
+    * @version array description:<pre>
+    *  Media data: mtype, cass_id, part
+    *  Tech  data: color, tone, pict, pict_id, commercials, commercials_id,
+    *              mtype, mtype_id, lp
+    *  Movie data: title, length, country, year, counter1, counter2, aq_date
+    *              source, fsk, comment, catX (1..3)
+    *  Staff data: director_list, music_list, actorX_list (where X is 1..5);
+    *              director_id, music_id, actorX_id (where X is 1..5);
+    *              director, music and actorX as fullname (see format_name);
+    *              director_,music_ and actorX_ as array (see format_name);
+    *              with _rev as reverse name (name, firstname);
+    *              actors, actors12, actors35 as list of actorX</pre>
+    */
    function get_movie($id) {
      if (!$id) return "";
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
@@ -461,7 +629,16 @@
    }
 
    ############################################################################
-   # get movie list as array of movies (see get_movie)
+   /** Get movie list as array of movies (see get_movie)
+    * @class sql
+    * @method get_movielist
+    * @param optional string order column to order the list by
+    *  (title, lenght, year, date or cat)
+    * @param optional string restrict definition of WHERE clause (without WHERE)
+    * @param optional integer start (for use with LIMIT)
+    * @return array array of movies
+    * @see sql::get_movie()
+    */
    function get_movielist($order="",$restrict="",$start="") {
      $filter = get_filters();
      switch ($order) {
@@ -497,13 +674,28 @@
    }
 
    ############################################################################
-   # get movie list for cat1 as array of movies (see get_movie)
+   /** Get movie list for cat1 as array of movies (see get_movie)
+    *  (wrapper to get_movielist)
+    * @class sql
+    * @method get_moviecatlist
+    * @param integer cat_id ID of category to get movies for
+    * @return array array of movies
+    * @see sql::get_movielist(), sql::get_movie()
+    */
    function get_moviecatlist($cat) {
      return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
    }
 
    ############################################################################
-   # get movie list by staff member as array of movies (see get_movie)
+   /** Get movie list by staff member as array of movies (see get_movie)
+    * @class sql
+    * @method get_movienamelist
+    * @param string table table name for staff member
+    * @param array name name as formatted by sql::format_name()
+    * @param optional string filter filter restriction
+    * @return array list of movies
+    * @see sql::get_movie(), sql::get_movielist()
+    */
    function get_movienamelist($table,$name,$filter="") {
      switch ($table) {
        case "directors" : $restrict = "v.director_id=$name[id] AND v.director_list=1";
@@ -549,7 +741,12 @@
    }
 
    ############################################################################
-   # get last movie numbers for each media type
+   /** Get last movie numbers for each media type
+    * @class sql
+    * @method get_lastmovienum
+    * @return array lastnum (i:mtype, i:mtype_id, i:cass_id, i:part, i:entry;
+    *  where i:entry = "mtype cass_id-part")
+    */
    function get_lastmovienum() {
      $mtypes = $this->get_mtypes();
      for ($i=0;$i<count($mtypes);$i++) {
@@ -571,7 +768,12 @@
    }
 
    ############################################################################
-   # get freetime of a given medium
+   /** Get freetime of a given medium
+    * @class sql
+    * @method get_mediumfreetime
+    * @param integer id media id
+    * @return mixed either freetime (integer) or empty string
+    */
    function get_mediumfreetime($id) {
      $this->query("SELECT free FROM cass WHERE id=$id");
      if ( $this->next_record() ) return $this->f('free');
@@ -579,7 +781,13 @@
    }
 
    ############################################################################
-   # get space on a medium
+   /** Get space on a medium
+    * @class sql
+    * @method get_mediaspace
+    * @param integer id media id
+    * @param optional string field fieldname ("type" or "free", defaults to type)
+    * @return mixed either freetime (integer) or empty string
+    */
    function get_mediaspace($id,$field="type") {
      $this->dbquery("SELECT $field FROM cass WHERE id=$id");
      if ( $this->next_record() ) return $this->f("$field");
@@ -587,14 +795,26 @@
    }
 
    ############################################################################
-   # update freetime on a medium
+   /** Update freetime on a medium
+    * @class sql
+    * @method update_freetime
+    * @param integer id media id
+    * @param integer free free time
+    */
    function update_freetime($id,$free) {
      return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id");
    }
 
    ############################################################################
-   # get list of free space on media. If $start is set, the result set is
-   # limited based on $pvp->preferences->limit
+   /** Get list of free space on media. If $start is set, the result set is
+    *  limited based on $pvp->preferences->limit
+    * @class sql
+    * @method get_freelist
+    * @param integer minfree min amount of freetime to display
+    * @param optional string filter filter restriction to apply
+    * @param optional integer start (for use of LIMIT)
+    * @return array freelist (i:id, i:free where i:id is the media ID)
+    */
    function get_freelist($minfree,$filter="",$start="") {
      $restrict = "free>=$minfree";
      if ( strlen($filter) ) {
@@ -620,8 +840,16 @@
    }
 
    ############################################################################
-   # get list of "visible" staff members If $start is set, the result set is
-   # limited based on $pvp->preferences->limit
+   /** Get list of "visible" staff members If $start is set, the result set is
+    *  limited based on $pvp->preferences->limit
+    * @class sql
+    * @method get_visstafflist
+    * @param string stafftype wether it is music, directors or actors
+    * @param optional string filter filter restrictions
+    * @param optional integer start (for use with LIMIT)
+    * @return array stafflist (i:id (staff member ID), i:name
+    *  (array formatted by sql::format_name())
+    */
    function get_visstafflist($stafftype,$filter="",$start="") {
      if (strlen($filter)) $restrict = "AND $filter";
      switch ($stafftype) {
@@ -659,8 +887,17 @@
    }
 
    ############################################################################
-   # check wether a given person exists in the db and aquire his/her id. If not
-   # found in db, insert him/her first
+   /** Check wether a given person exists in the db and aquire his/her id. If not
+    *  found in db, insert him/her first (privat! internal helper func)
+    * @class sql
+    * @method insert_person
+    * @param string person stafftype
+    * @param string query SQL query for SELECT statement
+    * @param string sub_query SQL query for INSERT statement
+    * @param optional string name family name of person
+    * @param optional string fname first name of person
+    * @return integer id (person_id)
+    */
    function insert_person($person,$query,$sub_query,$name="",$fname="") {
      GLOBAL $db,$dmsg,$colors;
      if ( strlen( trim($name . $fname) ) < 1) {
@@ -701,7 +938,17 @@
    } // end insert_person()
 
    ############################################################################
-   # execute the statements in the passed $array one-by-one
+   /** Execute the statements in the passed $array one-by-one, ignore comments
+    * @class sql
+    * @method get_sql
+    * @param array sql_array each line containing SQL code
+    * @return boolean success
+    * @version right now only lines starting with a hash mark ("#") are
+    *  recognized as comments (plus everything following the semi-colon at
+    *  the end of an SQL statement)
+    * @todo recognize other SQL comments like "--"
+    * @todo handle multi-line commands
+    */
    function get_sql($array) {
      $sql   = ""; $ok = 1;
      for ($i=0;$i<count($array);$i++) {
@@ -720,7 +967,14 @@
    } // end get_sql()
 
    ############################################################################
-   # interface to get_sql(): reads a file into an array and passes it to get_sql()
+   /** Interface to get_sql(): reads a file into an array and passes it to
+    *  get_sql()
+    * @class sql
+    * @method queryf
+    * @param string file name of file containing the SQL code to execute
+    * @param string comment description of the actions done by execute
+    * @param optional boolean silent wether to (not) output advance information
+    */
    function queryf($file,$comment,$silent=0) {
      GLOBAL $colors;
      if ( !file_exists($file) ) {
@@ -745,16 +999,44 @@
  $db = new sql;
 
  ##############################################################################
- # placeholder(s) for backward compatibility
+ /** Execute a query and provide debug output
+  * @package Api
+  * @function dbquery
+  * @param string query SQL statement
+  * @return boolean success
+  * @deprecated this is only a placeholder for backward compatibility.
+  *  use sql::dbquery() directly instead.
+  */
  function dbquery($query) {
    GLOBAL $db;
    return $db->dbquery($query);
  }
+ /** Insert a person into DB
+  * @package Api
+  * @function insert_person
+  * @param string person stafftype
+  * @param string query SQL query for SELECT statement
+  * @param string sub_query SQL query for INSERT statement
+  * @param optional string name family name of person
+  * @param optional string fname first name of person
+  * @return integer id (person_id)
+  * @deprecated this is only a placeholder for backward compatibility.
+  *  use sql::insert_person() directly instead.
+  */
  function insert_person($person,$query,$sub_query,$name="",$fname="") {
    // only called from inc/sql_set_persons.inc
    GLOBAL $db;
    return $db->insert_person($person,$query,$sub_query,$name,$fname);
  }
+ /** Read a file into an array and passes it to sql::get_sql()
+  * @package Api
+  * @function queryf
+  * @param string file name of file containing the SQL code to execute
+  * @param string comment description of the actions done by execute
+  * @param optional boolean silent wether to (not) output advance information
+  * @deprecated this is only a placeholder for backward compatibility.
+  *  use sql::queryf() directly instead.
+  */
  function queryf($file,$comment,$silent=0) { // only used in setup/*
    GLOBAL $db;
    $db->queryf($file,$comment,$silent);

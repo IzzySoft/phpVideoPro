@@ -45,13 +45,13 @@
     $visible = "vis_actor" . $num;
     $output  = "";
     if ($edit) {
-      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"vis_actor" . $num . "\" VALUE=\"1\" class=\"checkbox\"";
+      $output .= "<INPUT TYPE='checkbox' NAME='vis_actor" . $num . "' VALUE='1' class='checkbox'";
       if (${$visible}) $output .= " CHECKED";
       $output .= ">";
     } else {
-      $output .= "<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" class=\"yesnobutton\" VALUE=\"";
-      if (${$visible}) { $output .= lang("yes") ."\">"; } else { $output .= lang("no") . "\">"; }
-      $output .= "<INPUT TYPE=\"hidden\" NAME=\"" . ${$visible} ."\" VALUE=\"${$visible}\">";
+      $output .= "<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='";
+      if (${$visible}) { $output .= lang("yes") ."'>"; } else { $output .= lang("no") . "'>"; }
+      $output .= "<INPUT TYPE='hidden' NAME='" . ${$visible} ."' VALUE='${$visible}'>";
     }
     return $output;
   }
@@ -60,13 +60,13 @@
     GLOBAL $edit;
     $output  = "";
     if ($edit) {
-      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"$name\" VALUE=\"1\" class=\"checkbox\"";
+      $output .= "<INPUT TYPE='checkbox' NAME='$name' VALUE='1' class='checkbox'";
       if ($list) $output .= " CHECKED";
       $output .= ">";
     } else {
-      $output .= "<INPUT TYPE=\"button\" NAME=\"$name\" class=\"yesnobutton\" VALUE=\"";
-      if ($list) { $output .= lang("yes") . "\">"; } else { $output .= lang("no") . "\">"; }
-      $output .= "<INPUT TYPE=\"hidden\" NAME=\"$name\" VALUE=\"$list\">";
+      $output .= "<INPUT TYPE='button' NAME='$name' class='yesnobutton' VALUE='";
+      if ($list) { $output .= lang("yes") . "'>"; } else { $output .= lang("no") . "'>"; }
+      $output .= "<INPUT TYPE='hidden' NAME='$name' VALUE='$list'>";
     }
     return $output;
   }
@@ -84,7 +84,7 @@
   }
 
   if ($edit) {
-    $input = "INPUT SIZE=\"30\"";
+    $input = "INPUT SIZE='30'";
     $dinput = "INPUT";
     $mtypes = $db->get_mtypes();
     $ttypes = $db->get_tone();
@@ -101,7 +101,7 @@
       $comm_id[$i] = $commercials[$i][id];
     }
   } else {
-    $input = $dinput = "INPUT TYPE=\"button\"";
+    $input = $dinput = "INPUT TYPE='button'";
     // $input .= " readonly"; // HTML 4.0 - not supported by Netscape 4.x
   }
 
@@ -111,12 +111,12 @@
       $type = " " . trim($addons) . " ";
     } else {
       if ( strlen(trim($value)) < 1 ) {
-        $type = " TYPE=\"hidden\" ";
+        $type = " TYPE='hidden' ";
       } else {
-        $type = " TYPE=\"button\" ";
+        $type = " TYPE='button' ";
       }
     }
-    $field = "<INPUT" . $type . "NAME=\"$name\" VALUE=\"$value\" $addons>";
+    $field = "<INPUT" . $type . "NAME='$name' VALUE='$value' $addons>";
     return $field;
   }
   
@@ -213,7 +213,7 @@
       $formAddon = $form["addon_name"];
       $t->set_var("actor",form_input($name,"&nbsp;",$formAddon));
       $t->set_var("actor_f",form_input($fname,"&nbsp;",$formAddon));
-      $t->set_var("actor_list","<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
+      $t->set_var("actor_list","<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='&nbsp;'");
     }
     $t->parse("actorlist","actorblock",TRUE);
   }
@@ -261,12 +261,12 @@ EndHiddenFields;
   } else {
     $formAddon = $form["addon_title"];
   }
-  $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $formAddon . ">");
+  $t->set_var("title","<$input NAME='title' VALUE='$title' " . $formAddon . ">");
   #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));
   if ($mdisktype[0]->rc) {
     $t->set_var("rc_name",lang("region_code"));
-    if ($agent->name=="konqueror") $t->set_var("konq_fix"," STYLE='margin-right:-10'");
+    if ($agent->name=="konqueror") $t->set_var("konq_fix"," STYLE='padding-right:10'");
     if ($new_entry && !$disktype) { // editable only for new DVDs
       for ($i=0;$i<7;++$i) {
         $rcname .= "<INPUT TYPE='checkbox' NAME='rc[]' VALUE='$i' CLASS='checkbox'";
@@ -303,7 +303,7 @@ EndHiddenFields;
     $field .= "&nbsp;&nbsp;&nbsp;" . lang("last_entry") . ":&nbsp;";
     $field .= "<INPUT TYPE='button' NAME='lastnum' VALUE='$last_part' CLASS='yesnobutton'>";
   } else {
-    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id") ."'\"><INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
+    $field = "<INPUT TYPE='button' NAME='nr' VALUE='$nr' onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id") ."'\"><INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   }
   $t->set_var("medianr",$field);
   $t->set_var("year_name",lang("year"));
@@ -312,14 +312,14 @@ EndHiddenFields;
   $t->set_var("length",form_input("length",$length,$form["addon_filmlen"]) . " " . lang("min"));
   if ($disktype[0]->lp || !$dtcount) {
     $t->set_var("longplay_name",lang("longplay"));
-    $field = "<INPUT NAME=\"lp\"";
+    $field = "<INPUT NAME='lp'";
     if ($edit) { 
-      $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
+      $field .= "TYPE='checkbox' VALUE='1' class='checkbox'";
       if ($lp) $field .= " CHECKED";
       $field .= ">";
     } else {
-      $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
-      if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+      $field .= "TYPE='button' class='yesnobutton' VALUE='";
+      if ($lp) { $field .= lang("yes") . "'>"; } else { $field .= lang("no") . "'>"; }
     }
   } else {
     $t->set_var("longplay_name","");
@@ -359,14 +359,14 @@ EndHiddenFields;
   # Label
   if ($new_entry) $label = $pvp->preferences->get("default_movie_onlabel");
   $t->set_var("label_name",lang("label"));
-  $field = "<INPUT NAME=\"label\"";
+  $field = "<INPUT NAME='label'";
   if ($edit) { 
-    $field .= " TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
+    $field .= " TYPE='checkbox' VALUE='1' class='checkbox'";
     if ($label) $field .= " CHECKED";
     $field .= ">";
   } else {
-    $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
-    if ($label) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+    $field .= " TYPE='button' class='yesnobutton' VALUE='";
+    if ($label) { $field .= lang("yes") . "'>"; } else { $field .= lang("no") . "'>"; }
   }
   $t->set_var("label",$field);
   # Categories
@@ -374,18 +374,18 @@ EndHiddenFields;
   $field = "";
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
-    $field .= "<SELECT NAME=\"cat" . $i . "_id\" class=\"catinput\">";
-    if ($i > 1) $field .= "<OPTION VALUE=\"-1\">- None -</OPTION>";
+    $field .= "<SELECT NAME='cat" . $i . "_id' class='catinput'>";
+    if ($i > 1) $field .= "<OPTION VALUE='-1'>- None -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
-      $field .= "<OPTION VALUE=\"" . $cats[$k][id] . "\"";
+      $field .= "<OPTION VALUE='" . $cats[$k][id] . "'";
       if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
       $field .= ">" . $cats[$k][name] . " </OPTION>";
     }
     $field .= "</SELECT>";
    } else {
-    $field .= "<$input NAME=\"cat" . $i . "\" class=\"catinput\" VALUE=\"";
+    $field .= "<$input NAME='cat" . $i . "' class='catinput' VALUE='";
     if ( trim($cat[$i])=="" ) { $field .= "- None -"; } else { $field .= $cat[$i]; }
-    $field .= "\">";
+    $field .= "'>";
    }
    if ( $i<$max["categories"] ) $field .= "<BR>";
   }
@@ -393,21 +393,21 @@ EndHiddenFields;
   # Commercials
   $t->set_var("commercial_name",lang("commercials"));
   if ($edit) {
-    $field = "<SELECT NAME=\"commercials_id\" class=\"techinput\">";
+    $field = "<SELECT NAME='commercials_id' class='techinput'>";
     for ($k=0;$k<count($comm);$k++) {
-      $field .= "<OPTION VALUE=\"$comm_id[$k]\"";
+      $field .= "<OPTION VALUE='$comm_id[$k]'";
       if ($commercials==$comm[$k]) $field .= " SELECTED";
       $field .= ">" . $comm[$k] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
-    $field  = "<$input NAME=\"commercials\" class=\"techinput\" VALUE=\"$commercials\">";
+    $field  = "<$input NAME='commercials' class='techinput' VALUE='$commercials'>";
   }
   $t->set_var("commercial",$field);
   # Remaining free time
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
-    $t->set_var("mlength_free","<INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev"));
+    $t->set_var("mlength_free","<INPUT NAME='mlength' VALUE='240' " . $form["addon_filmlen"] . "> " . lang("minute_abbrev"));
   } else { // hide free time for non-editable media
     if ($pvp->common->medium_is_rw($mtype_id)) {
       $t->set_var("mlength_free_name",lang("free"));
@@ -419,53 +419,53 @@ EndHiddenFields;
   }
   $t->set_var("date_name",lang("date_rec"));
   if ($recdate == lang("unknown")) {
-    $tdate .= "<$dinput NAME=\"recdate\" VALUE=\"$recdate\"" . $form["addon_tech"] . ">";
+    $tdate .= "<$dinput NAME='recdate' VALUE='$recdate'" . $form["addon_tech"] . ">";
   } else {
     $recdate_arr = $pvp->common->makeRecDateArr($recdate);
-    $tdate .= "<$dinput NAME=\"recday\" VALUE=\"" . $recdate_arr[mday] . "\" " . $form["addon_day"] . ">.";
-    $tdate .= "<$dinput NAME=\"recmon\" VALUE=\"" . $recdate_arr[mon] . "\" " . $form["addon_month"] . ">.";
-    $tdate .= "<$dinput NAME=\"recyear\" VALUE=\"" . $recdate_arr[year] . "\" " . $form["addon_year"] . ">";
+    $tdate .= "<$dinput NAME='recday' VALUE='" . $recdate_arr[mday] . "' " . $form["addon_day"] . ">.";
+    $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr[mon] . "' " . $form["addon_month"] . ">.";
+    $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr[year] . "' " . $form["addon_year"] . ">";
   }
 
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
   if ($new_entry) $tone_id = $pvp->preferences->get("default_movie_toneid");
   if ($edit) {
-    $field = "<SELECT NAME=\"tone_id\"" . $form["addon_tech"] . ">";
+    $field = "<SELECT NAME='tone_id'" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($ttypes);$i++) {
-      $field .= "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
+      $field .= "<OPTION VALUE='" . $ttypes[$i][id] . "'";
       if ($ttypes[$i][id]==$tone_id) $field .=  "SELECTED";
       $field .= ">" . $ttypes[$i][name] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"tone\" VALUE=\"$tone\"" . $form["addon_tech"] . ">";
+    $field = "<$input NAME='tone' VALUE='$tone'" . $form["addon_tech"] . ">";
   }
   $t->set_var("tone",$field);
   $t->set_var("picture_name",lang("picture"));
   if ($edit) {
-    $field = "<SELECT NAME=\"color_id\"" . $form["addon_tech"] . ">";
+    $field = "<SELECT NAME='color_id'" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($scolors);$i++) {
-      $field .= "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
+      $field .= "<OPTION VALUE='" . $scolors[$i][id] . "'";
       if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][id]==$defaults["scolor"]) ) $field .= " SELECTED";
       $field .= ">" . $scolors[$i][name] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"color\" VALUE=\"$color\"" . $form["addon_tech"] . ">";
+    $field = "<$input NAME='color' VALUE='$color'" . $form["addon_tech"] . ">";
   }
   $t->set_var("picture",$field);
   $t->set_var("screen_name",lang("screen"));
   if ($edit) {
-    $field = "<SELECT NAME=\"pict_id\"" . $form["addon_tech"] . "><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
+    $field = "<SELECT NAME='pict_id'" . $form["addon_tech"] . "><OPTION VALUE='-1'>" . lang("unknown") . "</OPTION>";
     for ($i=0;$i<count($picts);$i++) {
-      $field .= "<OPTION VALUE=\"" . $picts[$i][id] . "\"";
+      $field .= "<OPTION VALUE='" . $picts[$i][id] . "'";
       if ($picts[$i][name]==$pict_format) $field .=  "SELECTED";
       $field .= ">" . $picts[$i][name] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\"" . $form["addon_tech"] . ">";
+    $field = "<$input NAME='pict_format' VALUE='" . lang($pict_format) . "'" . $form["addon_tech"] . ">";
   }
   $t->set_var("screen",$field);
   $t->set_var("source_name",lang("source"));
@@ -492,7 +492,7 @@ EndHiddenFields;
     $formAddon = $form["addon_name"];
     $t->set_var("director",form_input("director_name","&nbsp;",$formAddon));
     $t->set_var("director_f",form_input("director_fname","&nbsp;",$formAddon));
-    $t->set_var("director_list","<INPUT TYPE=\"button\" NAME=\"director_list\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
+    $t->set_var("director_list","<INPUT TYPE='button' NAME='director_list' class='yesnobutton' VALUE='&nbsp;'");
   }
   $t->set_var("composer_name",lang("composer"));
   if ($page_id == "view_entry") {
@@ -506,36 +506,36 @@ EndHiddenFields;
     $formAddon = $form["addon_name"];
     $t->set_var("composer",form_input("composer_name","&nbsp;",$formAddon));
     $t->set_var("composer_f",form_input("composer_fname","&nbsp;",$formAddon));
-    $t->set_var("composer_list","<INPUT TYPE=\"button\" NAME=\"music_list\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
+    $t->set_var("composer_list","<INPUT TYPE='button' NAME='music_list' class='yesnobutton' VALUE='&nbsp;'");
   }
   // actors are set up on top, in the "actors block"
   $t->set_var("comments_name",lang("comments"));
   if ($edit) {
-    $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></DIV>");
+    $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS='5' COLS='120' NAME='comment'>$comment</TEXTAREA></DIV>");
   } else {
     $t->set_var("comments",nl2br($pvp->common->make_clickable($comment)));
   }
-  $hiddenfields .= "<INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+  $hiddenfields .= "<INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
   $t->set_var("hiddenfields",$hiddenfields);
   if ($new_entry) {
-    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
-    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"create\" VALUE=\"" . lang("create") . "\">");
+    $t->set_var("button_li","<INPUT TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
+    $t->set_var("button_re","<INPUT TYPE='submit' NAME='create' VALUE='" . lang("create") . "'>");
     $t->set_var("print_label","&nbsp;");
   } elseif ($edit) {
-    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
-    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
+    $t->set_var("button_li","<INPUT TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
+    $t->set_var("button_re","<INPUT TYPE='submit' NAME='update' VALUE='" . lang("update") . "'>");
     $t->set_var("print_label","&nbsp;");
   } else {
     $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
-    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"mklabel(this.options[this.selectedIndex].value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
+    $labellist = "<SELECT NAME='labelconf' onChange='mklabel(this.options[this.selectedIndex].value)'><OPTION VALUE='-'>" . lang("print_label") . "</OPTION>";
     for ($i=0;$i<count($labels);$i++) {
       $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
-      $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
+      $labellist .= "<OPTION VALUE='$confname'>" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
     }
     $labellist .= "</SELECT>";
-    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"edit\" VALUE=\""   . lang("edit")   . "\">");
-    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"delete\" VALUE=\"" . lang("delete") . "\">");
+    $t->set_var("button_li","<INPUT TYPE='submit' NAME='edit' VALUE='"   . lang("edit")   . "'>");
+    $t->set_var("button_re","<INPUT TYPE='submit' NAME='delete' VALUE='" . lang("delete") . "'>");
     $t->set_var("print_label","$labellist");
   }
   $t->pparse("out","edit");

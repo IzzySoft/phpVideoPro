@@ -113,6 +113,17 @@
    }
 
    ############################################################################
+   # get preferences
+   function get_preferences($name) {
+     $this->query("SELECT value FROM preferences WHERE name='$name'");
+     if ( $this->next_record() ) {
+       return $this->f('value');
+     } else {
+       return "";
+     }
+   }
+
+   ############################################################################
    # get all data for a person and return it as array
    function get_person($id,$table) {
      if ($id) {

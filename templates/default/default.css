@@ -10,6 +10,7 @@
   .navtable { background-color: #6699ff; }
   TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color: #ffff99; text-align: center; }
   TH A { color:blue; }
+  TH.help { background-color: #e5e5e5; text-align: center; }
   INPUT { font-family: Verdana,Arial,Helvetica,sans-serif; text-decoration: none; height: 20px; }
   SELECT { font-family: Verdana,Arial,Helvetica,sans-serif; text-decoration: none; height: 20px; }
   .nameinput { width: 120; }

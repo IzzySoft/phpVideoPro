@@ -3,7 +3,6 @@
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
-$pvp->tpl_dir = $base_path . "templates/default";
 
 // retrieve browser information
 include($base_path . "inc/browser.inc");
@@ -67,6 +66,9 @@ if ($pre) $version .= $pre;
 $db->query("SELECT value FROM preferences WHERE name='charset'");
 $db->next_record();
 $charset  = $db->f('value');
+$db->query("SELECT value FROM preferences WHERE name='template'");
+$db->next_record();
+$pvp->tpl_dir = $base_path . "templates/" . $db->f('value');
 
 #--------------------------------------------------[ debug settings ]---
 // which actions to log. Empty string turns off debug feature. Otherwise each letter

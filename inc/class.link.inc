@@ -16,7 +16,7 @@
   * @package Api
   * @class link
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
  /** Base URL of the IMDB
   * @class link
@@ -101,7 +101,7 @@
   function formImdbPerson($fname,$name,$occupation) {
     $imdb = $this->ImdbPerson($fname,$name,$occupation);
     if (strlen($imdb)) {
-      return " onClick=window.open(\"$imdb\",\"imdb\")";
+      return " onClick='window.open(\"$imdb\",\"imdb\")'";
     } else { return ""; }
   } // end function formImdbPerson
 
@@ -128,7 +128,7 @@
   function formImdbTitle($title) {
     $imdb = $this->ImdbTitle($title);
     if (strlen($imdb)) {
-      return " onClick=window.open(\"$imdb\",\"imdb\")";
+      return " onClick='window.open(\"$imdb\",\"imdb\")'";
     } else { return ""; }
   } // end function formImdbTitle
 

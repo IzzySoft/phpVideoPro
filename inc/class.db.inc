@@ -253,6 +253,8 @@
     * @see preferences::filter
     */
    function set_preferences($name,$value) {
+     GLOBAL $pvp;
+     $value = $pvp->common->safeinput($value);
      $this->dbquery("SELECT value FROM preferences WHERE name='$name'");
      if ( $this->next_record() ) {
        $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
@@ -296,6 +298,8 @@
     * @param string name config var's name
     */
    function set_config($name,$value) {
+     GLOBAL $pvp;
+     $value = $pvp->common->safeinput($value);
      $this->dbquery("SELECT value FROM pvp_config WHERE name='$name'");
      if ( $this->next_record() ) {
        $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
@@ -416,9 +420,12 @@
     * @return boolean success
     */
    function set_user($user) {
-     $query = "UPDATE pvp_users SET login='".$user->login."',admin=".$user->admin
+     GLOBAL $pvp;
+     $login   = $pvp->common->safeinput($user->login);
+     $comment = $pvp->common->safeinput($user->comment);
+     $query = "UPDATE pvp_users SET login='$login',admin=".$user->admin
             . ",browse=".$user->browse.",ins=".$user->add.",upd=".$user->upd
-	    . ",del=".$user->del.",comment='".$user->comment."'";
+	    . ",del=".$user->del.",comment='$comment'";
      if (isset($user->pwd)) $query .= ",pwd='".md5($user->pwd)."'";
      $query .= " WHERE id=".$user->id;
      $this->dbquery($query);
@@ -433,10 +440,13 @@
     * @return boolean success
     */
    function add_user($user) {
+     GLOBAL $pvp;
+     $login   = $pvp->common->safeinput($user->login);
+     $comment = $pvp->common->safeinput($user->comment);
      $query = "INSERT INTO pvp_users (login,admin,browse,ins,upd,del,comment";
      if (isset($user->pwd)) $query .= ",pwd";
-     $query .= ") VALUES ('".$user->login."',".$user->admin.",".$user->browse.","
-	      .$user->add.",".$user->upd.",".$user->del.",'".$user->comment."'";
+     $query .= ") VALUES ('$login',".$user->admin.",".$user->browse.","
+	      .$user->add.",".$user->upd.",".$user->del.",'$comment'";
      if (isset($user->pwd)) $query .= ",'".md5($user->pwd)."'";
      $query .= ")";;
      $this->dbquery($query);
@@ -686,6 +696,8 @@
     * @return boolean success
     */
    function update_category($id,$name) {
+     GLOBAL $pvp;
+     $name = $pvp->common->safeinput($name);
      $this->dbquery("UPDATE cat SET name='$name' WHERE id=$id");
      if ( $this->affected_rows() < 0 ) return FALSE;
      return TRUE;
@@ -698,6 +710,8 @@
     * @return boolean success
     */
    function add_category($name) {
+     GLOBAL $pvp;
+     $name = $pvp->common->safeinput($name);
      $this->dbquery("INSERT INTO cat (name) VALUES ('$name')");
      return $this->affected_rows();
    }
@@ -1193,7 +1207,13 @@
    function add_movie($movie) {
      GLOBAL $pvp;
      foreach ($movie as $key => $value) {
-       ${$key} = $value;
+       if ($key=="comment") {
+         $comment = $pvp->common->safetextarea($value);
+       } elseif ( is_string($value) ) {
+         ${$key} = $pvp->common->safeinput($value);
+       } else {
+         ${$key} = $value;
+       }
      }
      if ( $this->get_movieid($mtype_id,$cass_id,$part) ) {
        display_error( lang("dupe_id_entered") );
@@ -1233,7 +1253,8 @@
     * @return boolean success
     */
    function move_movie($id,$mtype_id,$cass_id,$part) {
-     GLOBAL $pvp;
+     GLOBAL $pvp,$valid;
+     if ( !$valid->num($cass_id) || !$valid->num($part) ) return FALSE;
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $movie = $this->get_movie($id);
        $space = $this->get_mediaspace($movie[cass_id],$movie[mtype_id]);
@@ -1391,6 +1412,8 @@
     * @return mixed either freetime (integer) or empty string
     */
    function set_mediaspace($id,$mtype_id,$space,$field="type") {
+     GLOBAL $valid;
+     if ( !$valid->num($space) ) return FALSE;
      if ( $this->get_mediaspace($id,$mtype_id) ) {
        $query = "UPDATE cass SET $field=$space WHERE id=$id AND mtype_id=$mtype_id";
      } else {
@@ -1408,8 +1431,10 @@
     * @param integer id media id
     * @param optional integer mtype_id media type id (defaults to 1)
     * @param optional integer free free time
+    * @return boolean success
     */
    function update_freetime($id,$mtype_id="1",$free="") {
+     GLOBAL $valid;
      if ($free=="") {
        $free  = $this->get_mediaspace($id,$mtype_id);
        $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
@@ -1421,6 +1446,8 @@
 	 if ( $this->f('lp') ) $length /= 2;
 	 $free -= $length;
        }
+     } else {
+       if ( !$valid->num($free) ) return FALSE;
      }
      return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id AND mtype_id=$mtype_id");
    }
@@ -1519,11 +1546,13 @@
     * @return integer id (person_id)
     */
    function insert_person($person,$query,$sub_query,$name="",$fname="") {
-     GLOBAL $dmsg,$colors;
+     GLOBAL $dmsg,$colors,$pvp;
      if ( strlen( trim($name . $fname) ) < 1) {
        $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
        return 0;
      } else {
+       $name  = $pvp->common->safeinput($name);
+       $fname = $pvp->common->safeinput($fname);
        if (empty($fname)) {
          $query .= " WHERE name='$name'";
 	 $sub_query .= " (name) VALUES ('$name')";
@@ -1672,7 +1701,8 @@
     *  recognized as comments (plus everything following the semi-colon at
     *  the end of an SQL statement)
     * @todo recognize other SQL comments like "--"
-    * @todo handle multi-line commands
+    * @todo handle ";" within field content correctly (and do not assume end
+    *  of command here)
     */
    function get_sql($array) {
      $sql   = ""; $ok = 1;

@@ -38,6 +38,7 @@
  }
 
  $t->set_file(array("template"=>"login.tpl"));
+ $t->set_var("formtarget",$PHP_SELF);
  $t->set_var("login_hint",$login_hint);
  $t->set_var("welcome",lang("welcome"));
  $t->set_var("head_login",lang("login"));

@@ -110,7 +110,7 @@
    if ($delete) {
      $ref = $db->check_movietechref($type,$delete);
      if ($ref) {
-       echo "<SCRIPT LANGUAGE='JavaScript'>alert('"
+       echo "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>alert('"
             .lang("movies_left_reference",$ref)."');</SCRIPT>";
        $success = FALSE;
      } else {
@@ -205,7 +205,7 @@
    $t->set_var("admin_avlang",$pvp->link->linkurl("avlang.php",lang("admin_avlang")));
    $t->parse("mlink","mlinkblock");
 ?>
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
   check = confirm("<?=lang("confirm_delete")?>");
   if (check == true) window.location.href=url;

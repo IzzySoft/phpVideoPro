@@ -43,7 +43,7 @@
 
  #=====================================[ get sessions and setup variables ]===
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
- $trash_img = $tpl_dir . "/images/trash.png";
+ $trash_img = $tpl_dir . "/images/trash.gif";
  $query = "\$db->get_sessions($start)";
  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
 
@@ -53,7 +53,7 @@
 
  include("../inc/header.inc");
 ?>
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
   check = confirm("<?=lang("confirm_delete")?>");
   if (check == true) window.location.href=url;

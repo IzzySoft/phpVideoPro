@@ -141,6 +141,7 @@
        else $t->parse("disks","diskblock");
    }
  }
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("mtype",make_mtselect("new_mtype",""));
  $input = make_input("new_id","?","button","yesnobutton");
  $t->set_var("disk_id",$input);
@@ -157,7 +158,7 @@
       
  include( dirname(__FILE__) . "/../inc/header.inc");
 ?>
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
   check = confirm("<?=lang("confirm_delete")?>");
   if (check == true) window.location.href=url;

@@ -126,7 +126,7 @@
       
  include( dirname(__FILE__) . "/../inc/header.inc");
 ?>
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
   check = confirm("<?=lang("confirm_delete")?>");
   if (check == true) window.location.href=url;

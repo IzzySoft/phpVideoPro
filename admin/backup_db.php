@@ -45,7 +45,14 @@
    if ($_POST["btype"]=="movieint") {
      $xfer = new xfer("export");
      if ($_POST["compress"]) $xfer->compressionOn();
-     $xfer->fileExport();
+     $xfer->fileExport("Movie");
+     exit;
+   }
+ #----------------------------------------------[ Sys Config (PVP format) ]---
+   if ($_POST["btype"]=="sysconf") {
+     $xfer = new xfer("export");
+     if ($_POST["compress"]) $xfer->compressionOn();
+     $xfer->fileExport("SysConf");
      exit;
    }
  #--------------------------------------[ Complete DB backup (SQL format) ]---
@@ -98,10 +105,11 @@
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CLASS='checkbox'>".lang("backup_db_complete")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='sysconf' CLASS='checkbox'>".lang("backup_db_sysconf")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");
-   $radio = "<INPUT TYPE='radio' NAME='rtype' VALUE='removieint' CLASS='checkbox' CHECKED>".lang("restore_db_movie_internal");
+   $radio = "<INPUT TYPE='radio' NAME='rtype' VALUE='removieint' CLASS='checkbox' CHECKED>".lang("restore_db_internal");
    if(is_dir($pvp->backup_dir)) {
      $filelist = $pvp->common->get_filenames($pvp->backup_dir,".pvp");
      if ( $fcount   = count($filelist) ) {

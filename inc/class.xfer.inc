@@ -167,7 +167,7 @@
     if ($this->mode!="import") {
       $this->report .= "<li>".lang("xfer_wrong_mode","import",$this->mode);
       $this->errors = $this->items;
-      return $this->items;
+      return FALSE;
     }
     GLOBAL $db;
     for ($i=0;$i<$this->items;++$i) {
@@ -245,15 +245,67 @@
     }
   }
 
+  /** Update system config and default preferences from backup file
+   * @method private configPut
+   * @return boolean success
+   * @version At the moment always returns TRUE since the methods used
+   *  for the DB update (db::set_config and db::set_preferences) do not
+   *  return a result
+   */
+  function configPut() {
+    GLOBAL $db;
+    if ($this->mode!="import") {
+      $this->report .= "<li>".lang("xfer_wrong_mode","import",$this->mode);
+      $this->errors = $this->items;
+      return FALSE;
+    }
+    for ($i=0;$i<$this->items;++$i) {
+      $item = unserialize(urldecode($this->data[$i]));
+      switch ($item->type) {
+        case "config"  :
+          unset($item->data["version"]);
+          foreach ($item->data as $var=>$val) {
+            $db->set_config($var,$val);
+          }
+          break;
+        case "syspref" :
+          foreach ($item->data as $var=>$val) {
+            $db->set_preferences($var,$val);
+          }
+          break;
+        default        : continue; // skip unknown type
+      }
+    }
+    return TRUE;
+  }
+
+  /** Retrieve Config from DB and store it into xfer::list
+   * @method private configGet
+   */
+  function configGet() {
+    GLOBAL $db;
+    $conf = $db->get_config_all();
+    $list->type = "config";
+    $list->data = $conf;
+    $this->list = urlencode(serialize($list))."\n";
+    ++$this->items;
+    $conf = $db->get_preferences_all("default");
+    $list->type = "syspref";
+    $list->data = $conf;
+    $this->list .= urlencode(serialize($list))."\n";
+    ++$this->items;
+  }
+
   /** Send the (encoded) data from xfer::list for download to the browser and
    *  reset the list
    * @method private fileSend
    * @param string filename filename to offer for d/l
+   * @param string type DataType ("Movie","SysConf")
    */
-  function fileSend($filename) {
+  function fileSend($filename,$type) {
     header("content-type: application/octet-stream");
     header("Content-Disposition: attachment; filename=$filename");
-    $this->list = "PVP Movie Backup: [".$this->items."] records\n".$this->list;
+    $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
     if ($this->compress) echo gzencode($this->list);
       else echo $this->list;
     $this->list  = "";
@@ -299,7 +351,15 @@
     }
     if ( !$this->fileRead($file) ) return $this->readErr;
     switch ($this->fileType) {
-      case "Movie"  :
+      case "SysConf" :
+        if ($this->configPut()) return $this->okMsg( lang("imp_success",$this->items) );
+          else {
+          $msg = lang("imp_errors",$this->errors,$this->items);
+          if ( debugLevel("R") ) $msg .= "<UL>".$this->report."</UL>";
+          return $this->errorMsg($msg);
+        }
+        break;
+      case "Movie"   :
         if ($this->moviePut($append)) {
           return $this->okMsg( lang("imp_success",$this->items) );
         } else {
@@ -308,7 +368,7 @@
           return $this->errorMsg($msg);
         }
         break;
-      default       : return $this->errorMsg( lang("xfer_unknown_file_type") );
+      default       : return $this->errorMsg( lang("xfer_unknown_filetype") );
     }
   }
 
@@ -317,13 +377,13 @@
    * @param string mode What to export: "Movie"[, "Config", "Prefs"]
    * @param optional integer id movie id (if not given, export all)
    */
-  function fileExport($mode="Movie",$id="") {
+  function fileExport($mode,$id="") {
     GLOBAL $db;
     $stamp = date('ymd');
     switch ($mode) {
+      case "SysConf": $this->configGet(); $name="sysconf"; break;
       case "Movie"  :
       default       :
-        $file = "movies_".$stamp.".pvp";
         if ($id) { $this->movieGet($id);
         } else {
           $mlist  = $db->get_movieids_all();
@@ -332,8 +392,11 @@
             $this->movieGet($mlist[$i]);
           }
         }
+        $name = "movies";
+        break;
     }
-    $this->fileSend($file);
+    $file = $name."_".$stamp.".pvp";
+    $this->fileSend($file,$mode);
   }
 
  } // end class

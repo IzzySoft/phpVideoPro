@@ -89,10 +89,10 @@ here by chosing "*unknown#".
 
 [text]
 The date field is split in day, month and year fields. As for now, the order
-is hardcoded to be day-month-year. Of course this may change in one of the
-following versions of phpVideoPro, to use the order configured with the date
-format setting in the setup menue, to take country specific settings (or
-special user preferences :) into account.
+is hardcoded to be day-month-year. Of course this may change with some future
+version of phpVideoPro, to use the order configured with the date format
+setting in the setup menue, to take country specific settings (or special user
+preferences :) into account.
 
 [title]
 *categories#
@@ -112,12 +112,13 @@ always for the family name, the second for the first name. Names of staff
 members are not stored together with the movie data, but in a separate table.
 With the movie data, there's only a reference stored - so if you later go to
 list some entries for a specific person, you may run into trouble: on the
-<A HREF="http://www.qumran.org/homes/izzy/">demo site</A>, I already saw
-entries keeping both name parts in one field, just to store two persons into
-one entry. Of course you <i>can</i> do so - but it's not the way it is intended.
-You will e.g. encounter problems in this case, when setting filters: you won't
-be able to filter for one of the two persons entered, but just for both of them
-at the same time in the same combination. Just to mention one example.
+<A HREF="http://www.qumran.org/homes/izzy/software/videopro-demo" TARGET="_blank">demo site</A>,
+I already saw entries keeping both name parts in one field, just to store two
+persons into one entry. Of course you <i>can</i> do so - but it's not the way
+it is intended. You will e.g. encounter problems in this case, when setting
+filters: you won't be able to filter for one of the two persons entered, but
+just for both of them at the same time in the same combination. Just to mention
+one example.
 
 [text]
 Additionally, there's a checkbox attached to each name, titled "In List". This,

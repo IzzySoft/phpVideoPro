@@ -423,26 +423,29 @@
    }
 
    ############################################################################
-   # get movie list for director as array of movies (see get_movie)
+   # get movie list by staff member as array of movies (see get_movie)
    function get_movienamelist($table,$name,$filter="") {
      switch ($table) {
        case "directors" : $restrict = "v.director_id=$name[id] AND v.director_list=1";
-			  $type = "director_rev";
+			  $revname = "director_rev"; $fullname = "director";
+			  $firstname = "director_first"; $lastname = "director_last";
 			  break;
        case "music"     : $restrict = "v.music_id=$name[id] AND v.music_list=1";
-			  $type = "music_rev";
+			  $revname = "music_rev"; $fullname = "music";
+			  $firstname = "music_first"; $lastname = "music_last";
 			  break;
        case "actors"    : $restrict = "((v.actor1_id=$name[id] AND v.actor1_list=1)"
                                     . " OR  (v.actor2_id=$name[id] AND v.actor2_list=1)"
                                     . " OR  (v.actor3_id=$name[id] AND v.actor3_list=1)"
                                     . " OR  (v.actor4_id=$name[id] AND v.actor4_list=1)"
                                     . " OR  (v.actor5_id=$name[id] AND v.actor5_list=1))";
-			  $type = "actor_rev";
+			  $revname = "actor_rev"; $fullname = "actor";
+			  $firstname = "actor_first", $lastname = "actor_last";
 			  break;
        default:
      }
      if (strlen($filter)) $restrict .= " AND ($filter)";
-     $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,"
+     $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,v.year,v.aq_date,"
 	    . "mt.name as mtname,mt.sname as mtsname,"
 	    . "cat1.name as cat1name "
 	    . "FROM video v, mtypes mt, cat cat1 "
@@ -450,10 +453,13 @@
 	    . "AND $restrict";
      $this->query($query);
      while ( $this->next_record() ) {
-       $movie[$type] = $name[reverse];
+       $movie[$revname]   = $name[reverse];
+       $movie[$fullname]  = $name[fullname];
+       $movie[$lastname]  = $name[name];
+       $movie[$firstname] = $name[firstname];
        $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
        $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
-       $moviedetails = array("title","length","cass_id","part","lp");
+       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }

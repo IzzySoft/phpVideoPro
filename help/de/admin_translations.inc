@@ -58,6 +58,12 @@ auf die nächste Seite (mittels der bereits von anderen Listen, wie z.B. der
 "*medialist#", bekannten Steuerelemente) sollte nicht vergessen werden, etwaige
 Änderungen mittels des "*update#" Buttons zu speichern.
 
+[text]
+Noch eine Kleinigkeit: es ist <b><i>nicht</i></b> nötig eine Übersetzung
+einzufügen, die mit dem Text in der Spalte "*orig_trans#" 100% übereinstimmt:
+wird keine Übersetzung in der "Primärsprache" gefunden, wird dieser Wert
+ohnehin verwendet.
+
 [title]
 Fertig?
 

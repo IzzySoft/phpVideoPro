@@ -287,6 +287,21 @@ class common {
     }
     return $newText;
   }
+
+   #============================================[ file system functions ]===
+  // get a list of files from within a given directory optionally using a mask
+  // (where $mask is the file's extension)
+  function get_filenames($dir,$mask="") {
+    $thisdir = dir($dir);
+    while($entry=$thisdir->read()) {
+      if(($entry!='.')&&($entry!='..')) {
+        if ($mask==substr($entry,strlen($entry)-strlen($mask))) {
+          $result[] = $entry;
+        }
+      }
+    }
+    return $result;
+   } // end function get_filenames()
  } // end class common
  
  $pvp->common = new common;

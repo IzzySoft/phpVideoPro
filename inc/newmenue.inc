@@ -293,8 +293,8 @@ function getPageOffsetTop(el) {
 </div>
 
 <div id="printMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>label.php"><? echo lang("label") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>listgen.php"><? echo lang("medialist") ?></a>
+<a class="menuItem" href="<? echo $base_url ?>label.php"><? echo lang("labels") ?></a>
+<a class="menuItem" href="<? echo $base_url ?>listgen.php"><? echo lang("lists") ?></a>
 </div>
 
 <div id="helpMenu" class="menu">

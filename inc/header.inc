@@ -25,7 +25,9 @@
     case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
     case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
-    case "edit"          : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
+    case "edit"          : $mt = $db->get_mtypes("id=$mtype_id");
+                           $pagename .= " [ " . lang("edit_entry",$mt[0][sname]." ".$nr) . " ]";
+			   unset($mt); break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
@@ -33,7 +35,7 @@
     case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
     case "view_entry"    : $mt = $db->get_mtypes("id=$mtype_id");
                            $pagename .= " [ " . lang("view_entry",$mt[0][sname]." ".$nr) . " ]";
-			   break;
+			   unset($mt); break;
     default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
   }
 if (!$silent) {

@@ -49,7 +49,7 @@
      switch($pvp->config->db->type) {
        case "mysql" : $this->limit = " LIMIT $start," . $pvp->preferences->get("display_limit");
                       break;
-       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->get("display_limit") . ",$start";
+       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->get("display_limit") . "OFFSET $start";
                       break;
        default      : $this->limit = ""; break;
      }
@@ -1943,7 +1943,11 @@
        if ($i) { $ar = array_merge($ar,$id[$i]); }
          else { $ar = $id[$i]; }
      }
-     $list  = implode (",",$ar); // idlist of visible staff members
+     if (is_array($ar)) {
+       $list  = implode (",",$ar); // idlist of visible staff members
+     } else {
+       $list = FALSE;
+     }
      if ($list) {
        $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
        if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }

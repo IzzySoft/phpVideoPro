@@ -1,14 +1,23 @@
 <? /* page header */
+  include("inc/config.inc");
   function check_empty(&$field) {
     if ($field == "") $field = "&nbsp";
+  }
+  function check_empty_name(&$field) {
+    if (trim($field) == ",") $field = "";
   }
   include("inc/db_mysql.inc");
   $db = new DB_Sql;
   $db->Host     = "localhost";
-  $db->Database = "video";
+  $db->Database = "videopro";
   $db->User     = "root";
   $db->Password = "achat";
-//  $db->Debug = 1;
+  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug = 1;
+  function debug($level,$msg) {
+    GLOBAL $debug;
+    if ( strpos(strtoupper($debug["log"]),strtoupper($level))===false ) return;
+    echo $msg;
+  }
 ?>
 <HTML><HEAD>
 <Title>phpVideoPro</Title>

@@ -9,6 +9,10 @@
  $ddump .= "</ul></TD><TD>\n";
  debug("V",$ddump);
 
+ ##############################################################################
+ # check wether the specified date is valid
+ check_date($recdate);
+
  include("inc/sql_set_persons.inc");
 
  if ($cat2_id < 0) $cat2_id="";

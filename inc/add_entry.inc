@@ -13,9 +13,9 @@
  ##############################################################################
  # check wether a valid media number can be constructed from user input
  if ( $mtype_id<1 || trim($cass_id)=="" || trim($part)=="" || !((int)$cass_id) || !((int)$part) ) {
-   echo $colors["err"] . "<H2 ALIGN=CENTER>WARNING</H2></Font>\n";
-   echo "<P ALIGN=JUSTIFY>The MediaNr you specified is either incomplete or invalid. "
-        . "You must specify a <b>number</b> in <b>both</b> MediaNr fields.</P>\n";
+   $error = "The MediaNr you specified is either incomplete or invalid. "
+         . "You must specify a <b>number</b> in <b>both</b> MediaNr fields.</P>\n";
+   display_error($error);
    exit;
  }
 
@@ -25,17 +25,21 @@
         . " WHERE mtype_id='$mtype_id' AND cass_id='$cass_id' AND part='$part'";
  dbquery($query);
  if ( $db->next_record() ) {
-   echo $colors["err"] . "<H2 ALIGN=CENTER>WARNING</H2></Font>\n";
-   echo "<P ALIGN=JUSTIFY>There is already an entry in the database for the "
-        . "entered media ID. Please hit the \"Back\" button of your browser "
-        . "and correct your input. Hint: There is a Select-Box next to the "
-        . "input box you specified the media number in. This select box tells "
-        . "you the highest existing movie id. Normally it is a good choice for "
-        . "a new media to increase the first (four-digit) number by one, or for "
-        . "a new movie on the same media, increase the second (two-digit) number "
-        . "by one.</P>\n";
+   $error = "There is already an entry in the database for the "
+          . "entered media ID. Please hit the \"Back\" button of your browser "
+          . "and correct your input. Hint: There is a Select-Box next to the "
+          . "input box you specified the media number in. This select box tells "
+          . "you the highest existing movie id. Normally it is a good choice for "
+          . "a new media to increase the first (four-digit) number by one, or for "
+          . "a new movie on the same media, increase the second (two-digit) number "
+          . "by one.";
+   display_error($error);
    exit;
  }
+
+ ##############################################################################
+ # check wether the specified date is valid
+ check_date($recdate);
 
  include("inc/sql_set_persons.inc");
 

@@ -150,7 +150,6 @@
   dbquery("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
   $db->next_record();
   $mediatype = $db->f('sname'); $media_tname = $db->f('name');
-  if ($create) $nr = $mediatype . " " . $cass_id . "-" . $part;
   dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');
@@ -197,6 +196,18 @@
      $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
    }
  } // end if (!$new_entry)
+  ##########################################################################
+  # set some useful defaults
+  if ( trim($recdate)=="" ) $recdate = date("Y-m-d");
+  switch ( strtolower($page_id) ) {
+    case "view"      : if ( trim($recdate)=="0000-00-00" ) $recdate = "unknown"; break;
+  }
+  if ($create) {
+    while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
+    while ( strlen($part)<2)     { $part    = "0" . $part;    }
+    $nr = $mediatype . " " . $cass_id . "-" . $part;
+  }
+
 ################################################################
 # Form Start
 ?>
@@ -261,9 +272,9 @@
   <TD ColSpan=2>
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0><?
     if ($new_entry) {
-      echo "<TR><TD>MediaLength</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> min</TD></TD>";
+      echo "<TR><TD>MediaLength</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> min</TD></TD>\n";
     } else {
-      echo "<TR><TD>Free</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min</TD></TD>";
+      echo "<TR><TD>Free</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min</TD></TD>\n";
     } ?>
     <TR><TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
     <TR><TD ColSpan="2"><HR></TD></TR>

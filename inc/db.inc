@@ -137,19 +137,19 @@
    ############################################################################
    # format a name's array
    function format_name($name) {
-     $newname[name] = $newname[reverse] = trim($name[name]);
-     $newname[firstname] = $newname[fullname] = trim($name[firstname]);
-     if (strlen($newname[fullname])) {
-       if (strlen($newname[firstname])) $newname[fullname] .= " " . $newname[name];
+     $name[name] = $name[reverse] = trim($name[name]);
+     $name[firstname] = $name[fullname] = trim($name[firstname]);
+     if (strlen($name[fullname])) {
+       if (strlen($name[firstname])) $name[fullname] .= " " . $name[name];
      } else {
-       $newname[fullname] = $newname[name];
+       $name[fullname] = $name[name];
      }
-     if (strlen($newname[reverse])) {
-       if (strlen($newname[firstname])) $newname[reverse] .= ", " . $newname[firstname];
+     if (strlen($name[reverse])) {
+       if (strlen($name[firstname])) $name[reverse] .= ", " . $name[firstname];
      } else {
-       $newname[reverse] = $newname[firstname];
+       $name[reverse] = $name[firstname];
      }
-     return $newname;
+     return $name;
    }
 
    ############################################################################
@@ -169,7 +169,7 @@
        $this->dbquery("SELECT id,firstname,name FROM $table");
        $i=0;
        while ( $this->next_record() ) {
-         $person[$i][id]   = trim($this->f('id'));
+         $person[$i][id]   = $this->f('id');
          $person[$i][name] = $this->f('name');
          $person[$i][firstname] = $this->f('firstname');
 	 $person[$i] = $this->format_name($person[$i]);
@@ -277,9 +277,15 @@
 	    . "color_id,pict_id,commercials_id,lp,fsk,comment,mtype_id,"
 	    . "d.name as dname,d.firstname as dfname,"
 	    . "m.name as mname,m.firstname as mfname,"
+	    . "a1.name as a1name,a1.firstname as a1fname,"
+	    . "a2.name as a2name,a2.firstname as a2fname,"
+	    . "a3.name as a3name,a3.firstname as a3fname,"
+	    . "a4.name as a4name,a4.firstname as a4fname,"
+	    . "a5.name as a5name,a5.firstname as a5fname,"
 	    . "mt.name as mtname,mt.sname as mtsname,"
 	    . "c.name as cname,c.sname as csname,"
 	    . "t.name as tname,t.sname as tsname,"
+	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
 	    . "cass_id,part "
 	    . "FROM video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
@@ -287,6 +293,14 @@
 	    . "LEFT JOIN mtypes mt ON mtype_id=mt.id "
 	    . "LEFT JOIN colors c ON color_id=c.id "
 	    . "LEFT JOIN tone t ON tone_id=t.id "
+	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
+	    . "LEFT JOIN cat cat2 ON cat2_id=cat2.id "
+	    . "LEFT JOIN cat cat3 ON cat3_id=cat3.id "
+	    . "LEFT JOIN actors a1 ON actor1_id=a1.id "
+	    . "LEFT JOIN actors a2 ON actor2_id=a2.id "
+	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
+	    . "LEFT JOIN actors a4 ON actor4_id=a4.id "
+	    . "LEFT JOIN actors a5 ON actor5_id=a5.id "
 	    . "WHERE video.id=$id";
      $this->query($query);
      $this->next_record();
@@ -298,28 +312,28 @@
        $movie[$value] = $this->f("$value");
      }
      $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
-     $movie[director] = $name[fullname];
+     $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
      $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
-     $movie[music] = $name[fullname];
+     $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
+     $name = $this->format_name( array(name=>$this->f('a1name'),firstname=>$this->f('a1fname')) );
+     $movie[actor1] = $name[fullname]; $movie[actor1_rev] = $name[reverse];
+     $name = $this->format_name( array(name=>$this->f('a2name'),firstname=>$this->f('a2fname')) );
+     $movie[actor2] = $name[fullname]; $movie[actor2_rev] = $name[reverse];
+     $name = $this->format_name( array(name=>$this->f('a3name'),firstname=>$this->f('a3fname')) );
+     $movie[actor3] = $name[fullname]; $movie[actor3_rev] = $name[reverse];
+     $name = $this->format_name( array(name=>$this->f('a4name'),firstname=>$this->f('a4fname')) );
+     $movie[actor4] = $name[fullname]; $movie[actor4_rev] = $name[reverse];
+     $name = $this->format_name( array(name=>$this->f('a5name'),firstname=>$this->f('a5fname')) );
+     $movie[actor5] = $name[fullname]; $movie[actor5_rev] = $name[reverse];
      $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
      $movie[color] = $this->f('cname'); $movie[color_short] = $this->f('csname');
      $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
+     $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
 
      $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",
 		     "cat3_id","pict_id","commercials_id","lp");
      foreach($moviedetails as $value) {
-       $$value = $this->f("$value");
-     }
-     $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id","actor5_id");
-     foreach($moviedetails as $value) {
-       $name = substr($value,0,6);
-       if (${$value}) {
-	 $actor = $this->get_actor(${$value});
-	 $movie[$name] = $actor[fullname];
-       } else {
-         $movie[$name] = "";
-       }
        $$value = $this->f("$value");
      }
      $movie[actors12] = $movie[actor1];
@@ -339,16 +353,6 @@
      if ( strlen($movie[$actors35]) ) {
        if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
        $movie[actors] .= $movie[actors35];
-     }
-     $moviedetails = array("cat1_id","cat2_id","cat3_id");
-     foreach($moviedetails as $value) {
-       $name = substr($value,0,4);
-       if (${$value}) {
-         $movie[$name] = $this->get_category(${$value});
-       } else {
-         $movie[$name] = "";
-       }
-       $$value = $this->f("$value");
      }
      if ($pict_id) {
        $pict = $this->get_pict($pict_id);
@@ -399,6 +403,40 @@
    # get movie list for cat1 as array of movies (see get_movie)
    function get_moviecatlist($cat) {
      return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
+   }
+
+   ############################################################################
+   # get movie list for director as array of movies (see get_movie)
+   function get_movienamelist($table,$name_id) {
+     switch ($table) {
+       case "directors" : $join   = "LEFT JOIN directors d ON director_id=d.id";
+                          $fields = "d.name as dname,d.firstname as dfname";
+			  $restrict = "director_id=$name_id AND director_list=1";
+			  break;
+       default:
+     }
+     $query = "SELECT title,length,cass_id,part,lp,"
+	    . "mt.name as mtname,mt.sname as mtsname,"
+	    . "$fields,"
+	    . "cat1.name as cat1name "
+	    . "FROM video "
+	    . "LEFT JOIN mtypes mt ON mtype_id=mt.id "
+	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
+	    . "$join "
+	    . "WHERE $restrict";
+     $this->query($query);
+     while ( $this->next_record() ) {
+       $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
+       $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
+       $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
+       $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
+       $moviedetails = array("title","length","cass_id","part","lp");
+       foreach($moviedetails as $value) {
+         $movie[$value] = $this->f("$value");
+       }
+       $list[] = $movie;
+     }
+     return $list;
    }
 
    ############################################################################

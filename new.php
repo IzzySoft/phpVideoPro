@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- if (!isset($cass_id)) $new_entry=TRUE;
+ if (!isset($part)) $new_entry=TRUE;
  include("edit.php");
 
 ?>

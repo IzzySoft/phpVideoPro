@@ -79,7 +79,8 @@
   if (!$nr) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
     while ( strlen($part)<2)     { $part    = "0" . $part;    }
-    $nr = $mediatype . " " . $cass_id . "-" . $part;
+    $nr = $cass_id . "-" . $part;
+#    $nr = $mediatype . " " . $cass_id . "-" . $part;
   }
 
   if ($edit) {
@@ -149,9 +150,6 @@
   $director_fname = $movie[director_][firstname];
   $composer_name  = $movie[music_][name];
   $composer_fname = $movie[music_][firstname];
-
-  $mtypes = $db->get_mtypes("id=$mtype_id");
-  $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
   $pict_format = $movie[pict];
 
   for ($i=1;$i<4;$i++) {
@@ -163,6 +161,9 @@
  } else {
    $lastnum = $db->get_lastmovienum();
  } // end if (!$new_entry)
+
+  $mtypes = $db->get_mtypes("id=$mtype_id");
+  $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
   ##########################################################################
   # set some useful defaults
   if ( trim($recdate)=="" ) $recdate = $pvp->common->getRecDate("string");
@@ -237,12 +238,12 @@
     }
     $t->set_var("next",$next); unset($next);
   }
-  if (!$new_entry) {
     $hiddenfields = <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
-<INPUT TYPE="hidden" NAME="part" VALUE="$part">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
 EndHiddenFields;
+  if (!$new_entry) {
+    $hiddenfields .= "\n<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";
   }
   if ($page_id == "view_entry") { // set imdb info url for title
     $formAddon = $form["addon_title"] . $pvp->link->formImdbTitle($title);
@@ -252,13 +253,15 @@ EndHiddenFields;
   $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $formAddon . ">");
   $t->set_var("mtype_name",lang("mediatype"));
   if ($new_entry) {
-    $field = "<SELECT NAME=\"mtype_id\">";
-    for ($i=0;$i<count($mtypes);$i++) {
-      $field .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\"";
-      if ($mtypes[$i][name]==$media_tname) $field .= " SELECTED";
-      $field .= ">" . $mtypes[$i][name] . "</OPTION>";
+    $field  = "<INPUT TYPE='button' NAME='media_tname' VALUE='$media_tname' CLASS='catinput'>";
+    $field .= "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>";
+    $next_part = 1; $last_part = 0;
+    for ($i=0;$i<count($lastnum);$i++) {
+      if ($lastnum[$i][cass_id]==$cass_id) {
+        $next_part = $lastnum[$i][$part] +1;
+        $last_part = $lastnum[$i][$part];
+      }
     }
-    $field .= "</SELECT>";
   } else {
     $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id"). "'\">";
     $field .= "<INPUT TYPE='hidden' NAME='media_tname' VALUE='$media_tname'>";
@@ -268,12 +271,9 @@ EndHiddenFields;
   $t->set_var("country",form_input("country",$country,$form["addon_country"]));
   $t->set_var("medianr_name",lang("medianr"));
   if ($new_entry) {
-    $field  = "<INPUT NAME=\"cass_id\" " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME=\"part\" " . $form["addon_part"] . ">";
-    $field .= "&nbsp;&nbsp;&nbsp;" . lang("highest_db_entries") . ":&nbsp;<SELECT>";
-    for ($i=0;$i<count($lastnum);$i++) {
-      $field .= "<OPTION NAME=\"lastnum\" VALUE=\"\">" . $lastnum[$i][entry] . "</OPTION>";
-    }
-    $field .= "</SELECT>";
+    $field  = "<INPUT TYPE='button' NAME='cass_id' VALUE='$cass_id' " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME='part' VALUE='$next_part' " . $form["addon_part"] . ">";
+    $field .= "&nbsp;&nbsp;&nbsp;" . lang("last_entry") . ":&nbsp;";
+    $field .= "<INPUT TYPE='button' NAME='lastnum' VALUE='$last_part' CLASS='yesnobutton'>";
   } else {
     $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id") ."'\"><INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   }

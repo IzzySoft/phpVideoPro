@@ -23,14 +23,18 @@ if (!$silent) {
  <Title><?echo $pagename ?></Title>
 <? if ( $page_id != "login" ) { ?>
  <script language="JavaScript">
-
   function open_help(topic) {
    if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }
    url = '<? echo $base_url ?>help/index.php' + help_topic;
    var pos = (screen.width/2)-400;
    campus=eval("window.open(url,'<? echo lang("help") ?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
   }
-
+  function get_movienum(mtype,last_nr,url) {
+   nr = last_nr + 1;
+   new_nr = prompt("<?=lang("enter_new_medianr")?> " + last_nr,nr);
+   window.location.href = url + "&cass_id=" + new_nr;
+//   window.location.href = url;
+  }
  </script>
 <?
  include($nav_script);

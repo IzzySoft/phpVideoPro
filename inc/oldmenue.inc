@@ -29,9 +29,13 @@
 
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
-  <? if ($pvp->auth->add) { ?>
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$pvp->link->slink($base_url.'new.php')?>"));
-  <? } ?>
+  <? if ($pvp->auth->add) {
+  $lastnum = $db->get_lastmovienum();
+  for ($i=0;$i<count($lastnum);++$i) {
+    echo "    dhtmlMenu.addItem(new NavBarMenuItem(".lang("new_movie_on",$lastnum[$i][mtype]).", "<A HREF=\"JavaScript:get_movienum('".$lastnum[$i][mtype]."',".$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\">"));
+  }
+//  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$pvp->link->slink($base_url.'new.php')?>"));
+  } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("search_movie")?>", "<?=$pvp->link->slink($base_url.'search.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$pvp->link->slink($base_url.'configure.php')?>"));

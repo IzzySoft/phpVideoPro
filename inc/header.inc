@@ -36,6 +36,7 @@
     case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
     case "label"         : $pagename .= " [ " . lang("label") . " ]"; break;
     case "listgen"       : $pagename .= " [ " . lang("listgen") . " ]"; break;
+    case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
     default              : break;
   }
 if (!$silent) {

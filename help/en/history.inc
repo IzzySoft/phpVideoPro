@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.6.12 (2004)
+[text]
+<ul>
+ <li>fixed some more "PHP notices" (add/delete/move entries)
+ <li>now using the FAQ class (from iFAQMaker) to parse the help files
+</ul>
+
+[title]
 0.6.11 (November 21, 2004)
 [text]
 <ul>

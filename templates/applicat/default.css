@@ -121,7 +121,7 @@
   .partinput { width: 20; height: 18; }
   .yesnoinput { width: 40; height: 18; }
   .titlebutton { font-weight: bold; background-color: #dadada; }
-  .namebutton, .techbutton, .catbutton, .mediabutton, .yesnobutton {
+  .namebutton, .techbutton, .catbutton, .medianrbutton, .yesnobutton {
     height: 18; background-color: #dadada;
   }
   .namebutton, .techbutton { width: 120; }

@@ -2,19 +2,16 @@
 # /*  $Id$ */
 
 [title]
-0.4.7 (2003)
+0.4.7 (April 2003)
 [text]
 <ul>
  <li>Made editing for translations easy by a new form in admin menu. If you've
      added/updated some entries, you may save them to a file and then send them
      to me for inclusion with future versions!<br>
-     Found some problems with that on charsets other than iso-8859-1*. Not sure
-     yet where to look for the problem due to lack of different machine setups.
-     As far as I can tell now, to use this new editor your machine must be set
-     up with all locale settings for the target language, especially for the
-     character set. Any experiences you make with this, please share with me.
-     Most important if you managed to use it with a charset other than
-     iso-8859-1 or iso-8859-15 - I must have to now how :-)
+     To use this new editor your machine must be set to use the same charset
+     as is used by the language you want to edit (or at least it must have the
+     target language's charset as subset, as e.g. US-ASCII is a subset of
+     ISO-8859-1).
  <li>Matzah was cleaned up with the leaven: almost no tags where allowed in the
      comment field of a movie. Fixed: Now Bold, Underline, Italics and Center
      work again.

@@ -22,7 +22,7 @@
  $agent->version = $browser->getVer();
 
  #======================================[ setup menu depending on browser ]===
- if ($agent->name == "netscape") {
+ if ($agent->name == "mozilla") {
   if ($agent->version < 5) {
    $oldmenue = TRUE;
   }

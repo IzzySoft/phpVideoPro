@@ -32,10 +32,18 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
   <? if ($pvp->auth->add) {
   $lastnum = $db->get_lastmovienum();
-  for ($i=0;$i<count($lastnum);++$i) {
-    echo "    dhtmlMenu.addItem(new NavBarMenuItem(".lang("new_movie_on",$lastnum[$i][mtype]).", "<A HREF=\"JavaScript:get_movienum('".lang("enter_new_medianr",$lastnum[$i][mtype])."',".(int)$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\">"));
-  }
-//  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$pvp->link->slink($base_url.'new.php')?>"));
+   for ($i=0;$i<count($lastnum);++$i) {
+    $itemname = lang("new_movie_on",$lastnum[$i][mtype]);
+    $param1   = lang("enter_new_medianr",$lastnum[$i][mtype]);
+    $param2   = (int)$lastnum[$i][cass_id];
+    $param3   = $pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id]);
+    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', '$param3&cass_id=$param2'));\n";
+#    echo "  js1 = '<A HREF=\"JavaScript:get_movienum('; js2 = \"'$param1',$param2,'$param3')\"; js3 = '\">';\n";
+#    echo "jsx = js1 + js2 + js3;\n";
+#    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', jsx));\n";
+#    echo "jsx = js1 + '\\\n' + js2 + '\\\n' + js3; alert(jsx);\n";
+#    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', \"<A HREF=\\\"JavaScript:get_movienum('$param1',$param2,'$param3')\\\">\"));\n";
+   }
   } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("search_movie")?>", "<?=$pvp->link->slink($base_url.'search.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
@@ -52,7 +60,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("view")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("start_page")?>", "<?=$pvp->link->slink($base_url.'index.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$pvp->link->slink($base_url?>medialist.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$pvp->link->slink($base_url.'medialist.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("actors")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=actors')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("directors")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=directors')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("composer")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=music')?>"));
@@ -64,15 +72,15 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$pvp->link->slink($base_url.'stats.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(62, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  myNavBar1.addMenu(dhtmlMenu);
-
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("print")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?>", "<?=$pvp->link->slink($base_url.'label.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?> (PS)", "<?=$pvp->link->slink($base_url.'pslabel.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("lists")?>", "<?=$pvp->link->slink($base_url.'listgen.php')?>"));
+  myNavBar1.addMenu(dhtmlMenu);
+
+  dhtmlMenu = new NavBarMenu(62, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);
@@ -97,15 +105,11 @@ if ($page_id) { ?>
   var fullWidth;
 
   function init() {
-
     // Get width of window, need to account for scrollbar width in Netscape.
-
     fullWidth = getWindowWidth()
       - (isMinNS4 && getWindowHeight() < getPageHeight() ? 16 : 0);
 
-//    myNavBar1.moveTo(10,36);
     myNavBar1.moveTo(10,0);
-//    myNavBar1.resize(500 /*fullWidth*/);
     myNavBar1.resize(fullWidth);
     myNavBar1.setSizes(0,1,1);
     myNavBar1.create();
@@ -113,3 +117,4 @@ if ($page_id) { ?>
   }
 
 </script>
+      

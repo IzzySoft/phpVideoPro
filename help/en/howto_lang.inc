@@ -28,7 +28,8 @@ It is not that difficult as you might think, and requires only a few steps:
      with the SQL statement to INSERT - don't touch this ;) The only thing you
      have to edit is the last statement in the brackets (there are 3 statements
      in each bracket, each one enclosed by single quotes): translate this to
-     your language.
+     your language. Of course, the language code has to be changed as well,
+     so in our example 'en' has to be replaced by 'fi'.
  <LI>Once you are done with this, you can go and tell phpVideoPro that there's
      a new sheriff in town: start your web browser and open phpVideoPro, then
      go to the configuration menue ("*edit# -&gt; *configuration#"), check the

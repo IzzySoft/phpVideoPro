@@ -29,7 +29,8 @@ Dies ist leichter, als mancher denken mag - es sind nur wenige Schritte nötig:
      werden. Wieder am Beispiel:
      <code>INSERT INTO lang VALUES('year','de','Jahr');</code> - hier ist es
      der Begriff "Jahr", der in's Finnische übersetzt werden muß - alles
-     andere in dieser Zeile sollte unberührt bleiben.
+     andere in dieser Zeile sollte unberührt bleiben (abgesehen natürlich
+     vom Sprachcode: 'en' sollte in unserem Beispiel durch 'fi' ersetzt werden).
  <LI>Sobald der vorige Schritt für alle Werte abgeschlossen ist, sollte
      die Sprachdatei phpVideoPro bekannt gemacht werden. Dies geschieht
      wiederum im Menü "*edit# -&gt; *configuration#": hier ist die CheckBox

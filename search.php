@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                               (c) 200-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -82,8 +82,8 @@
  $t->set_var("comment_name",lang("comments"));
  $t->set_var("comment_field","<INPUT NAME='comment' ".$form["addon_name"].">");
  $t->set_var("length_name",lang("length"));
- $t->set_var("length_min","<INPUT NAME='minlen' ".$form["addon_fsk"].">");
- $t->set_var("length_max","<INPUT NAME='maxlen' ".$form["addon_fsk"].">");
+ $t->set_var("length_min","<INPUT NAME='minlen' ".$form["addon_year"].">");
+ $t->set_var("length_max","<INPUT NAME='maxlen' ".$form["addon_year"].">");
  $t->set_var("min",lang("minute_abbrev"));
  $t->set_var("fsk_name",lang("fsk"));
  $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"].">");

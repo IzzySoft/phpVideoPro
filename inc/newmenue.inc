@@ -5,7 +5,8 @@
 <!-- Tags for the menu bar. -->
 <div class="fixme">
 <div id="menuBar">
-<img src="<?=$base_url?>images/menu_arrow.gif" border="0" alt="&gt;" align="left" style="margin-left:2px">
+<img src="<?=$base_url?>images/pvp.gif" border="0" alt="PVP" align="left" style="margin-left:2px;margin-right:0px">
+<img src="<?=$base_url?>images/menu_arrow.gif" border="0" alt="&gt;" align="left" style="margin-left:0px">
 <? if ($pvp->auth->admin) { ?>
  <a class="menuButton"
     href=""

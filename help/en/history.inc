@@ -11,6 +11,10 @@
      content on imported files, since db:get_sql assumed end-of-sql-command then
  <li>in database backup, semi-colons are no longer replaced by colons now since
      import of those is fixed by v0.4.5
+ <li>enhanced backup function (see admin menu): alternatively to a complete
+     database backup, there are two more options now: backup movie relevant
+     data only, and the same plus having the old data purged before execution
+     on a restore
 </ul>
 
 [title]

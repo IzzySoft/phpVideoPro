@@ -14,6 +14,12 @@
      get overwritten by them from time to time ;).<br>
      However: if you decide to use cookies in your config, but the user refuses
      to accept them: (S)he won't be able to log in, and it's not your fault.
+ <li>though about the "register_globals=On" issue: this limit will remain since
+     I won't have the time to go over it all in the near future. But to help
+     you living with it (if the problem affects you), I recommend visiting
+     <A HREF="http://www.php.net/manual/en/security.registerglobals.php"
+     TARGET="_blank">this page</A> (part of the PHP online documentation) to
+     find a solution suitable to you.
 </ul>
 
 [title]

@@ -12,7 +12,8 @@ INSERT INTO colors VALUES ( '3', '3D', '3d');
 
 INSERT INTO mtypes VALUES ( '1', 'Recorded Video Tape', 'RVT');
 INSERT INTO mtypes VALUES ( '2', 'Original Video Tape', 'OVT');
-INSERT INTO mtypes VALUES ( '3', 'Digital Versatile Disk', 'DVD');
+INSERT INTO mtypes VALUES ( '3', 'VideoCD', 'VCD');
+INSERT INTO mtypes VALUES ( '4', 'Digital Versatile Disk', 'DVD');
 
 #
 # Data for table 'pict'

@@ -12,6 +12,21 @@ Menü verfügbar, da es sich um Eigenschaften handelt, die nur der Administrator
 bearbeiten sollte. Andere hingegen sind eher als benutzerabhängige Präferenzen
 zu betrachten und daher auch über das Standard-Menü zu erreichen.
 
+[text]
+Seit Version 0.3.8 kann phpVideoPro Cookies zur Verwaltung der Preferences
+(persönlichen Einstellungen, wie Filter, Template-Set, Datensätze pro Seite bei
+Listen etc.) verwenden. Um diese Funktion zu nutzen, muss die Schaltfläche
+*enable_cookies# aktiviert sein. Über das *Admin# Menü wird unter *configuration#
+die Konfiguration verwaltet, und es werden die Default-Einstellungen für die
+Preferences hier vorgenommen. Diese werden bei "neuen" Benutzern sodann aus der
+Datenbank geladen. Änderungen, die der Benutzer sodann unter *edit# -&gt;
+*preferences# vornimmt, werden in Cookies gespeichert und auch, sofern
+gespeicherte Cookies vorhanden sind, aus diesen geladen. Die Standard Filter
+Einstellungen werden über *admin# -&gt; *admin_filter# vorgenommen. Es ist eine
+gute Idee, das admin/ Verzeichnis sodann durch eine ".htaccess" Datei zu
+schützen, um nur authorisierten Benutzern den Zugriff auf Konfiguration und
+Default-Einstellungen zu geben.
+
 [title]
 *language_settings#
 
@@ -75,7 +90,7 @@ auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
 [title]
-*general#
+*config_media#
 
 [text]
 <b>*rw_media#:</b> Für Medien wie z.B. Original-Videokassetten oder DVDs macht
@@ -127,6 +142,30 @@ auch solche geben, die überwiegend Filme aus den Zwanziger Jahren sammeln,
 welche freilich in schwarz/weiß sind. In diesem Fall wäre es natürlich
 wünschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
 geschehen.
+
+[title]
+*cookies#
+
+[text]
+<b>*enable_cookies#:</b> Ist diese Schaltfläche nicht aktiviert, werden keine
+Cookies verwendet. Das heißt dann allerdings auch, das Änderungen, die ein
+Benutzer im Menü *edit# -&gt; *preferences# vornimmt, ebenfalls in die
+Datenbank geschrieben werden, und somit die Voreinstellungen überschreiben.
+Gleiches gilt auch für die Filtereinstellungen. Mit anderen Worten: phpVideoPro
+verhält sich damit wie in den vorangegangenen Versionen, und es kann zu
+Problemen führen, sollten mehrere Benutzer dieselbe Installation simultan
+verwenden. Für eine Einzelplatz-Installation kann jedoch genau dieses Verhalten
+erwünscht sein.
+
+[text]
+<b>*expire_cookies#:</b> Hiermit wird definiert, nach welchem Zeitraum erstellte
+Cookies auf dem System des Benutzers wieder gelöscht werden. Wird hier *session#
+gewählt, verbleiben die Cookies nur solange auf dem System, bis der Benutzer
+seinen Browser wieder schließt. In den anderen Fällen bleiben sie für den
+jeweils angegebenen Zeitraum aktiv.
+
+[title]
+*general#
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie

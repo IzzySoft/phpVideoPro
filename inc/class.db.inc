@@ -944,6 +944,8 @@
     * @return array stats
     */
    function get_stats() {
+     GLOBAL $pvp;
+     // ===[ counts ]===
      $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM video"),
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
@@ -959,6 +961,17 @@
      }
      $this->dbquery("SELECT DISTINCT country FROM video");
      $stats[countries] = $this->num_rows();
+     for ($i=1;$i<4;++$i) {
+       $cat = "cat" . $i . "_id";
+       $this->dbquery("SELECT DISTINCT $cat FROM video");
+       while ( $this->next_record() ) {
+         ${$cat}[] = "a_" . $this->f("$cat"); // "a_" needed for array_merge to turn the integer into a string
+       }
+       ${$cat} = array_flip(${$cat});
+     }
+     $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
+     $stats[cats_used] = count($cats);
+     // ===[ ranks ]===
      $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
 		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
 		       array("name"=>"composer","sql"=>"SELECT count(id) AS rank, music_id AS item FROM video WHERE music_id>0 GROUP BY music_id ORDER BY rank DESC"),
@@ -992,16 +1005,28 @@
 	 }
        }
      }
-     for ($i=1;$i<4;++$i) {
-       $cat = "cat" . $i . "_id";
-       $this->dbquery("SELECT DISTINCT $cat FROM video");
+     // actors is a bit complicated - we have to consider 5 fields...
+     for ($i=1;$i<6;++$i) {
+       $id = "actor" . $i . "_id";
+       $this->dbquery("SELECT COUNT($id) AS count,$id FROM video WHERE $id<>0 GROUP BY $id");
        while ( $this->next_record() ) {
-         ${$cat}[] = "a_" . $this->f("$cat"); // "a_" needed for array_merge to turn the integer into a string
+         $actor_id         = $this->f("$id");
+         ${$id}[$actor_id] = $this->f("count");
        }
-       ${$cat} = array_flip(${$cat});
      }
-     $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
-     $stats[cats_used] = count($cats);
+     $actors = $pvp->common->array_combine_sums($actor1_id,$actor2_id);
+     $actors = $pvp->common->array_combine_sums($actors,$actor3_id);
+     $actors = $pvp->common->array_combine_sums($actors,$actor4_id);
+     $actors = $pvp->common->array_combine_sums($actors,$actor5_id);
+     arsort($actors);
+     $i = 1;
+     foreach ($actors as $key=>$value) {
+       $name = $this->get_actor($key);
+       $act  = "rank_actor_" . $i;
+       $stats[$act] = $name[fullname] . " ($value)";
+       ++$i;
+       if ($i>3) break;
+     }
      return $stats;
    }
 

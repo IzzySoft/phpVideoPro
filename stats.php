@@ -60,6 +60,10 @@
   $rank = "$stats[rank_composer_1]<BR>$stats[rank_composer_2]<BR>$stats[rank_composer_3]";
   $t->set_var("item_input","$rank");
   $t->parse("item","itemblock",TRUE);
+  $t->set_var("item_name",lang("actor_persons"));
+  $rank = "$stats[rank_actor_1]<BR>$stats[rank_actor_2]<BR>$stats[rank_actor_3]";
+  $t->set_var("item_input","$rank");
+  $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name",lang("categories"));
   $rank = "$stats[rank_category_1]<BR>$stats[rank_category_2]<BR>$stats[rank_category_3]";
   $t->set_var("item_input","$rank");

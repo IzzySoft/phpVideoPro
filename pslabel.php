@@ -156,6 +156,7 @@ closepath clip \n",$eps_llx, $eps_lly, $eps_urx, $eps_ury);
     $t->set_var("_cass_id_", $medianr);
     $t->set_var("_side_lines_",$lmoviecount);
     $t->set_var("_top_lines_",$lmoviecount);
+    $t->set_var("_max_fontsize_",$maxfontsize);
     $t->pparse("out","label");
 #
      } // if medianr
@@ -219,6 +220,9 @@ echo "showpage\n";
    $t->set_var("form_target",$PHP_SELF);
    $t->set_var("ltype",$ltype_id);
    $t->set_var("create",lang("create"));
+   $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12'" .$form["addon_fsk"]. ">";
+   $t->set_var("max_fontsize",$ifontsize);
+   $t->set_var("max_fontsize_desc",lang("max_fontsize"));
    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    $t->pparse("out","list");
  

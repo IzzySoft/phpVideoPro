@@ -17,12 +17,19 @@
   *                          each char represents one debug level. If you     *
   *                          ommit this parameter, default setting is "E" for *
   *                          "errors". Suggestion: "W" for "warnings", "D"    *
-  *                          for "database"...                                *
+  *                          for "database"... All given debuglevels will use *
+  *                          color type "err" as output color - you can change*
+  *                          this by calling scrmsg->debugcolor for each      *
+  *                          affected debug level.                            *
   * scrmsg->debuglevel([$level]) : Read or set the debug levels supported. If *
   *                          you ommit the optional parameter, the function   *
   *                          returns the string of supported debug levels. If *
   *                          you pass it a string ($level), the list of debug *
   *                          levels are set to it (see constructor above).    *
+  *                          As the constructor does, this method sets the    *
+  *                          output color of newly added debug levels to color*
+  *                          type err. Debug color values that already existed*
+  *                          before calling this function are not overwritten.*
   * scrmsg->color($type[,$color]) : reads or sets a color. Per default, there *
   *                          are following colors set ($type=$color):         *
   *                          err=#FF0000 (red), default=#0000FF (blue). You   *
@@ -32,9 +39,9 @@
   *                          function. $type must equal the debug level it is *
   *                          assigned to - so debugcolor("e","#00FF00") would *
   *                          cause all messages for debuglevel "e" to be put  *
-  *                          on screen in light green color. Pre-defined      *
-  *                          debug colors: e,s,w with color("err"), v with    *
-  *                          default color.                                   *
+  *                          on screen in light green color. By default, the  *
+  *                          color for each debug level is set to             *
+  *                          scrmsg->color("err").                            *
   * scrmsg->output($msg[,$color]) : outputs (echoes) string $msg using above  *
   *                          discussed default color or, if optional argument *
   *                          $color specified, by the color $color previously *
@@ -62,17 +69,27 @@
       if ( $debuglevel ) { $this->debuglevel = $debuglevel; } else { $this->debuglevel = "E"; }
       $this->color("err","#FF0000");
       $this->color("default","#0000FF");
-      $this->debugcolor("e",$this->colors->err);
-      $this->debugcolor("s",$this->colors->err);
-      $this->debugcolor("w",$this->colors->err);
-      $this->debugcolor("v",$this->colors->default);
+      $this->init_debuglevels($debuglevel);
+    }
+    
+    ###########################################################################
+    # init colors for debuglevels
+    function init_debuglevels($debuglevel) {
+      for ($i=0;$i<strlen($debuglevel);$i++) {
+        $level = substr($debuglevel,$i,1);
+        if ( strlen($this->debugcolor($level)) ) continue; // do not overwrite "manually" set colors
+        $this->debugcolor($level,$this->colors->err);
+      }
     }
 
     ###########################################################################
     # debuglevel - read or set the debug level
     function debuglevel($level="") {
       if ( $level=="" ) { return $this->debuglevel;
-      } else { $this->debuglevel = $level; }
+      } else {
+        $this->debuglevel = $level;
+        $this->init_debuglevels($level);
+      }
     }
 
     ###########################################################################

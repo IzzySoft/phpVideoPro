@@ -51,6 +51,21 @@ and care for de-compression in that case. As for now, you will have to chose
 the "*clean_restore#" checkbox (if your database isn't already empty), since
 otherwise the restore would result in conflicts due to duplicate MediaNumbers.
 
+[text]
+The restore process will also detect new categories automatically. This means,
+if you import a movie backup from a different installation, where new categories
+may have been added, phpVideoPro takes care for this fact, too. Whether a
+category is already available with your installation will be decided based on
+the <i>*cat_internal_name#</i> (see <i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>),
+so make sure to not change this name for any existing category. If a new category
+is detected, it will be added to the categories table with a new id and the
+provided <i>*cat_internal_name#</i>. The translation provided with this
+category will always be added to the <i><b>English</b></i> language - this is
+not a bug but a feature: we always need an English translation for fallback,
+so that users have a term available regardless of their prefered language setting.
+You may edit the translation later using the translation editor (see
+<i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>).
+
 [title]
 Restore (full)
 

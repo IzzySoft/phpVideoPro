@@ -338,6 +338,23 @@
      if ($i) { return $users; } else { return FALSE; }
    }
 
+   /** Get login data
+    * @class sql
+    * @method get_logindata
+    * @param string login user login
+    * @return object user (properties: id,passwd)
+    */
+   function get_logindata($login) {
+     $this->dbquery("SELECT id,pwd FROM pvp_users WHERE login='$login'");
+     if ( $this->next_record() ) {
+       $user->id     = $this->f('id');
+       $user->passwd = $this->f('pwd');
+       return $user;
+     } else {
+       return FALSE;
+     }
+   }
+
    /** Update user
     * @class sql
     * @method set_user

@@ -19,6 +19,8 @@
      via the configuration screen any more)
  <li>fresh installation was broken (fixed)
  <li>splitted date field into day-month-year
+ <li>remaining free space on tape was updated incorrectly when adding
+     a new entry to an existing tape (fixed)
 </ul>
 
 [title]

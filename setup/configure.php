@@ -27,10 +27,11 @@ if ($menue) {
 #
   if ( isset($update) ) {
     $url = $PHP_SELF;
-    $colors["page_background"] = $page_background;
-    $colors["th_background"]   = $th_background;
-    $colors["ok"]              = $color_ok;
-    $colors["err"]             = $color_err;
+    $colors["page_background"]  = $page_background;
+    $colors["table_background"] = $table_background;
+    $colors["th_background"]    = $th_background;
+    $colors["ok"]               = $color_ok;
+    $colors["err"]              = $color_err;
     dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
     dbquery("UPDATE preferences SET value='$charset' WHERE name='charset'");
     dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
@@ -186,15 +187,17 @@ if ($menue) {
     <TD><INPUT SIZE=10 NAME="charset" VALUE="<? echo $charset ?>"></TD></TR>
 </TABLE></TD></TR>
 <TR><TH>Colors:</TH></TR><TR><TD><TABLE WIDTH=100%>
- <TR><TD WIDTH=70%>&nbsp;&nbsp;<b>Page Background:</b></TD>
+ <TR><TD WIDTH=70%><b>Page Background:</b></TD>
     <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="page_background" VALUE="<? echo $colors["page_background"] ?>"></TD></TR>
- <TR><TD>&nbsp;&nbsp;<b>Table Headers Background:</b></TD>
+ <TR><TD WIDTH=70%><b>Table Background:</b></TD>
+    <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="table_background" VALUE="<? echo $colors["table_background"] ?>"></TD></TR>
+ <TR><TD><b>Table Headers Background:</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="th_background" VALUE="<? echo $colors["th_background"] ?>"></TD></TR>
- <TR><TD>&nbsp;&nbsp;<b>Feedback "OK":</b></TD>
+ <TR><TD><b>Feedback "OK":</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_ok" VALUE="<? echo $colors["ok"] ?>"></TD></TR>
- <TR><TD>&nbsp;&nbsp;<b>Feedback "Failure":</b></TD>
+ <TR><TD><b>Feedback "Failure":</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_err" VALUE="<? echo $colors["err"] ?>"></TD></TR>
- <TR><TD>&nbsp;&nbsp;<b>Template Set:</b></TD>
+ <TR><TD><b>Template Set:</b></TD>
     <TD><SELECT NAME="template_set"><?
  for ($i=0;$i<count($tpldir);$i++) {
    echo "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
@@ -202,7 +205,7 @@ if ($menue) {
    echo ">" . ucfirst($tpldir[$i]) . "</OPTION>";
  } ?></SELECT></TD></TR>
 </TABLE></TD></TR>
-<TR><TD ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></TD></TR>
+<TR><TD><DIV ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></DIV></TD></TR>
 </FORM>
 <?
 

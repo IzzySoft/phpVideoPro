@@ -57,7 +57,7 @@ include($base_path . "templates/default/default.css");
 echo "</HEAD><BODY>\n";
 
 if ($topic) { // display specific help page
-  echo "<TABLE WIDTH=100%><TR><TD COLSPAN=2>&nbsp;</TD></TR>"
+  echo "<TABLE WIDTH=100% class=navtable><TR><TD COLSPAN=2>&nbsp;</TD></TR>"
      . "<TD><A HREF=\"JavaScript:history.back()\">" . lang("back")
      . "</A></TD><TD ALIGN=RIGHT><A HREF=\"$PHP_SELF\">" . lang("index") . "</A></TD></TR></TABLE>\n";
   $help = helppage($topic);

@@ -1,11 +1,13 @@
 <style type="text/css">
 <!--
+  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
   a { text-decoration:none; }
   A:link{ text-decoration:none }
   A:visted{ text-decoration:none }
   A:active{ text-decoration:none }
-  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
   .tablink { color: #000000; }
+  TABLE { background-color: <? echo $colors["table_background"] ?>; }
+  .navtable { background-color: <? echo $colors["page_background"] ?>; }
   TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color:<? echo $colors["th_background"] ?>; text-align: center; }
   TH A { color:blue; }
 //-->

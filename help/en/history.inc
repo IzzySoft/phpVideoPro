@@ -8,6 +8,12 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
+  <LI><b>0.2.0 (August 2001)</b><br>
+      <ul>
+       <li>updated help files
+       <li>enhanced stylesheet: added table background color (adjustable
+           via the configuration screen)
+      </ul>
   <LI><b>0.1.5 (August 5, 2001)</b><br>
       alpha-release "camouflage":
       <ul>

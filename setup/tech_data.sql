@@ -47,7 +47,7 @@ INSERT INTO pvp_config (name,value) VALUES ('version','0.1.4');
 
 INSERT INTO preferences (name,value) VALUES ('lang','en');
 INSERT INTO preferences (name,value) VALUES ('charset','iso-8859-1');
-INSERT INTO preferences (name,value) VALUES ('colors','a%3A4%3A%7Bs%3A15%3A%22page_background%22%3Bs%3A7%3A%22%23ffffff%22%3Bs%3A13%3A%22th_background%22%3Bs%3A7%3A%22%23eeeeee%22%3Bs%3A2%3A%22ok%22%3Bs%3A7%3A%22%230000ff%22%3Bs%3A3%3A%22err%22%3Bs%3A7%3A%22%23ff0000%22%3B%7D');
+INSERT INTO preferences (name,value) VALUES ('colors','a%3A5%3A%7Bs%3A15%3A%22page_background%22%3Bs%3A7%3A%22%236699ff%22%3Bs%3A13%3A%22th_background%22%3Bs%3A7%3A%22%23ffff99%22%3Bs%3A2%3A%22ok%22%3Bs%3A7%3A%22%230000ff%22%3Bs%3A3%3A%22err%22%3Bs%3A7%3A%22%23ff0000%22%3Bs%3A16%3A%22table_background%22%3Bs%3A7%3A%22%23ffffff%22%3B%7D');
 INSERT INTO preferences (name,value) VALUES ('template','default');
 
 #

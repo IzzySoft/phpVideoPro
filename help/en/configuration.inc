@@ -9,6 +9,13 @@
   <P Align=Justify>On this screen you set up global defaults for phpVideoPro,
    such as language specific settings, colors to use etc.</P>
   <H3>Language specific stuff</H3>
+  <P Align=Justify><b>Scan for new language files:</b> To manage the languages
+   installed as well as additional available, phpVideoPro uses its database.
+   So if you add a new language file, you have to tell it to update those
+   tables in order to let you install this new language (see "Language to
+   install" below, as well as "<A HREF="<? echo "$PHP_SELF?topic=howto_lang\">"
+   . lang("howto_lang") ?></A>" for details). This is done by setting this
+   checkbox (and submitting the form, of course :).</P>
   <P Align=Justify><b>Language to install:</b> Of course, you only can install
    available languages - phpVideoPro does not belong to the category of AI and
    can't create new languages on the fly :) Which languages are available, is
@@ -46,17 +53,20 @@
    is the switch for you to get them displayed. Since I never had the need for
    it, I'ld be interested in the results.</P>
   <H3>Colors</H3>
-  <P Align=Justify><b>Page Background / Table Headers Background:</b> These
-   settings are rendered into the (default) stylesheet, and the names are
-   self explaining.</P>
+  <P Align=Justify><b>Page Background / Table Background / Table Headers
+   Background:</b> These settings are rendered into the (default) stylesheet,
+   and the names are self explaining.</P>
   <P Align=Justify><b>Feedback "OK" / Feedback "Failure":</b> These settings
    are not rendered into any stylesheet. They are used for system responses
    on user request, i.e. statements like "entry created successfully" when
    creating a new entry in the database, or "Error &lt;some description&gt;"
    when something went wrong, to emphasize these messages in context to the
    regular form data they are displayed with.</P>
-  <P Align=Justify>
-</P>
+  <P Align=Justify><b>Template Set:</b> starting with v0.1.5, phpVideoPro
+   is based on templates. I (the author) just provided an initial template
+   set; but as soon as there are additional template sets available (which
+   will only happen when <b>YOU</b> write them - I'm not a good designer),
+   this is the place to make your choice.</P>
   <P Align=Justify>
 </P>
  </TD></TR>

@@ -216,7 +216,7 @@ class Template {
   }
   
   /** Parse a template (final parse)
-   *  calls parse() and then returns FALSE
+   *  calls parse(), prints the result and then returns FALSE
    * @package Api
    * @class Template
    * @method pparse
@@ -310,13 +310,23 @@ class Template {
     return $str;
   }
 
-  /* public: p(string $varname)
-   * varname: name of variable to print.
+  /** Print a Variable (first call finnish() on it and then print the result)
+   * @package Api
+   * @class Template
+   * @method p
+   * @param string varname name of variable to print
    */
   function p($varname) {
     print $this->finish($this->get_var($varname));
   }
 
+  /** Retrieve a Variable (first call finnish() on it and return print the result)
+   * @package Api
+   * @class Template
+   * @method get
+   * @param string varname variable to retrieve
+   * @return string finnished content
+   */
   function get($varname) {
     return $this->finish($this->get_var($varname));
   }

@@ -766,9 +766,10 @@
     * @method get_category
     * @param optional integer id category id
     * @param optional string order subclause for ORDER BY
-    * @return mixed string(catname) or array of categories (id,name,internal name)
+    * @param optional integer in_use check if used (1) or not (0), default: no check
+    * @return mixed string(catname) or array of categories (id,name,internal name, enabled used)
     */
-   function get_category($id="",$order="") {
+   function get_category($id="",$order="",$inUse=0) {
      if ($id) {
        $this->query("SELECT name FROM cat WHERE id=$id");
        if ( $this->next_record() ) {
@@ -778,16 +779,26 @@
        }
      } else {
        if ($order=="") {
-         $this->query("SELECT id,name FROM cat");
+         $this->query("SELECT id,name,enabled FROM cat");
        } else {
-         $this->query("SELECT id,name FROM cat ORDER BY $order");
+         $this->query("SELECT id,name,enabled FROM cat ORDER BY $order");
        }
        $i=0;
        while ( $this->next_record() ) {
          $cat[$i][id]   = $this->f('id');
          $cat[$i][name] = lang($this->f('name'));
 	 $cat[$i][internal] = $this->f('name');
+	 $cat[$i][enabled] = $this->f('enabled');
 	 ++$i;
+       }
+       if ($inUse) {
+         $catcount = count($cat);
+	 for ($i=0;$i<$catcount;++$i) {
+	   $catID = $cat[$i][id];
+	   $this->dbquery("SELECT COUNT(*) AS used FROM video WHERE cat1_id='$catID' OR cat2_id='$catID' OR cat3_id='$catID'");
+	   $this->next_record();
+	   $cat[$i][used] = $this->f('used');
+	 }
        }
        return $cat;
      }
@@ -814,12 +825,16 @@
     * @method update_category
     * @param integer id category's id
     * @param string name category's name
+    * @param optional integer enabled active (1) or not (0)
     * @return boolean success
     */
-   function update_category($id,$name) {
+   function update_category($id,$name,$enabled=9) {
      GLOBAL $pvp;
      $name = $pvp->common->safeinput($name);
-     $this->dbquery("UPDATE cat SET name='$name' WHERE id=$id");
+     $query = "UPDATE cat SET name='$name' ";
+     if ($enabled!=9) $query .= ",enabled=$enabled ";
+     $query .= "WHERE id=$id";
+     $this->dbquery($query);
      if ( $this->affected_rows() < 0 ) return FALSE;
      return TRUE;
    }

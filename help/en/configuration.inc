@@ -6,7 +6,10 @@ Introduction
 
 [text]
 On this screen you set up global defaults for phpVideoPro, such as language
-specific settings, colors to use etc.
+specific settings, colors to use etc. Not all options described here are always
+available - some of them are only reachable via the admin menue's
+"*configuration#" menue since they should only be touched by an administrator -
+while others are somehow "preferences" that should be based on an user's wishes.
 
 [title]
 *language_settings#
@@ -50,10 +53,6 @@ and where the error occured.
 *colors#
 
 [text]
-<b>*page_bg# / *table_bg# / *th_bg#:</b> These settings are rendered into the
-(default) stylesheet, and the names are self explaining.
-
-[text]
 <b>*feedback_ok# / *feedback_err#:</b> These settings are not rendered into
 any stylesheet. They are used for system responses on user request, i.e.
 statements like "entry created successfully" when creating a new entry in the
@@ -69,6 +68,37 @@ write them - I'm not a good designer), this is the place to make your choice.
 
 [title]
 *general#
+
+[text]
+<b>*rw_media#:</b> For some media types, such as original video tapes or DVDs,
+it makes no sense to display/edit the remaining free time - since there will
+never be any. For others, such as self-recorded video tapes, it's essential.
+Some people may have video cds on rewritables, while other's don't. And finally,
+who knows: the one or other may already have rewritable DVDs. So this is the
+place to tell phpVideoPro about your equipment concerning this: just mark the
+media you want to manage remaining free time for as rewritable, and phpVideoPro
+cares for it.
+
+[text]
+<b>*remove_empty_media#:</b> One wishes to keep empty media within the managment
+of remaining free space, since there is free space on. The other, by deleting
+the last entry from a medium, means to have given/thrown away that medium, so
+there is <b><i>not</i></b> any remaining free time - so (s)he wishes to remove
+it from the management. If you e.g. don't delete movies from your recordables,
+but just overwrite them with new movies, this belongs to the second catagory,
+too. So decide here what is to happen when you <b><i>delete</i></b> the last
+item from a movie: check the box, and the medium will be removed from the
+"freespace table", i.e. it won't be available for free-space search. Leave it
+unchecked, and the medium's complete capacity will be considered as free and
+thus available space.
+
+[text]
+<b>*movie_color_default#:</b> Today, most movies come in colored mode. So when
+creating a new entry, you may feel fine to see this is already checked for you.
+Nevertheless, there may be some fans of "oldies" out there who mostly record
+movies from the 1920's which, of course, ship in black-and-white mode. Those
+of you may want to change this behaviour and like to initiate the color mode
+for new movies with "*s/w#". Do this here.
 
 [text]
 <b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with
@@ -103,6 +133,14 @@ this value (there will hopefully be none of these with v0.3.0 and above - if
 you find any missings then, please report them to me!). It shall be used
 throughout the entire program for listings, forms and anything that contains
 a date field.
+
+[text]
+<b>*site_info#:</b> Starting with v0.3.5, there's a user configurable additional
+part of the browser's title bar. Up to v0.3.4, it always displayed
+"phpVideoPro v&lt;version&gt; [ &lt;job&gt; ]". Now, in the place between the
+version and the job, there's an "@ &lt;*site_info#&gt;" added. That's the part
+you may configure here - it helps you to distinguish two different installations
+you may have in open browser windows simultaneously.
 
 [eof]
 

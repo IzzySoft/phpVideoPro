@@ -6,7 +6,11 @@ Einleitung
 
 [text]
 In diesem Formular lassen sich generelle Einstellungen für phpVideoPro
-vornehmen, wie z.B. Sprach- und Farbeinstellungen.
+vornehmen, wie z.B. Sprach- und Farbeinstellungen. Einige der hier beschriebenen
+Optionen sind nur über den Aufruf des Konfigurations-Formulars über das "Admin"
+Menü verfügbar, da es sich um Eigenschaften handelt, die nur der Administrator
+bearbeiten sollte. Andere hingegen sind eher als benutzerabhängige Präferenzen
+zu betrachten und daher auch über das Standard-Menü zu erreichen.
 
 [title]
 *language_settings#
@@ -53,10 +57,6 @@ Fehler beheben kann!
 *colors#
 
 [text]
-<b>*page_bg# / *table_bg# / *th_bg#:</b> Diese Einstellungen werden in das
-StyleSheet mit eingepflegt - die Namen sprechen ja für sich.
-
-[text]
 <b>*feedback_ok# / *feedback_err#:</b> Im Unterschied zum vorigen Punkt werden
 diese Einstellungen in kein StyleSheet eingepaßt. Sie dienen Rückmeldungen vom
 System, z.B. bei Aktualisierungen der Datenbank, um den jeweiligen Status
@@ -76,6 +76,42 @@ XMMS bzw. WinAmp bekannt sein dürften).
 
 [title]
 *general#
+
+[text]
+<b>*rw_media#:</b> Für Medien wie z.B. Original-Videokassetten oder DVDs macht
+es wenig Sinn, "Bandreste" zu verwalten - weil es einfach keine gibt. Bei
+anderen Medien wiederum, wie z.B. selbst bespielten Videokassetten, gehört die
+Verwaltung verbleibender freier Zeit zu den elementaren Funktionen, die von
+einer Software wie phpVideoPro (mit Recht) erwartet werden. Manch einer erstellt
+sich seine VideoCDs selbst, ein anderer kauft sie ausschließlich. In einigen
+seltenen Fällen erstellen Anwender mittlerweile gar ihre DVDs selbst, und
+benötigen daher auch für diese die Restzeit-Verwaltung. Um jedem gerecht zu
+werden, ist daher seit v0.3.4 dieser Punkt konfigurierbar geworden. Es sind
+hier also die Medien zu markieren, für die Restzeiten verwaltet (und angezeigt)
+werden sollen.
+
+[text]
+<b>*remove_empty_media#:</b> Auch hier soll unterschiedlichen Vorgehensweisen
+Rechnung getragen werden: Manch einer löscht keine Aufnahmen, sondern überspielt
+sie allenfalls gelegentlich. Wenn dieser Mensch also Einträge aus der Datenbank
+löscht, heißt das für ihn: das Medium existiert nicht mehr (verschenkt oder
+weggeworfen). Ein anderer löscht hingegen die Einträge aus der Datenbank, damit
+er bei nächster Gelegenheit die ungewünschte Aufnahme überspielen kann (weil
+ihm die Restzeit-Anzeige sodann dieses Medium vorschlagen wird). Je nach
+gewünschter Vorgehensweise kann hier also angegeben werden, was passieren soll,
+wenn der letzte Eintrag für ein Medium entfernt wird: ist die Box markiert,
+wird sodann auch das Medium aus der Restzeit-Tabelle entfernt (steht also für
+die Restzeit-Suche nicht mehr zur Verfügung) - andernfalls wird für die
+Restzeit-Suche die gesamte Kapazität des Mediums berücksichtigt.
+
+[text]
+<b>*movie_color_default#:</b> Heutzutage werden die meisten Filme in Farbe
+ausgestrahlt - daher ist es natürlich auch sinnvoll, wenn dies die
+Voreinstellung für neue Einträge ist. Andernfalls mag es unter den Anwendern
+auch solche geben, die überwiegend Filme aus den Zwanziger Jahren sammeln,
+welche freilich in schwarz/weiß sind. In diesem Fall wäre es natürlich
+wünschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
+geschehen.
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
@@ -110,6 +146,14 @@ jedoch alle Menüs, Formulare und Listen entsprechen angepasst sein. Sollte
 dennoch ein Punkt vergessen worden sein, bitte ich um einen kurzen Hinweis
 (ich würde an dieser Stelle ja ein kostenloses Update als Preis anbieten - aber
 angesichts der Lizenz dieses Produktes nähme das eh niemand ernst :)
+
+[text]
+<b>*site_info#:</b> Bis einschließlich v0.3.4 folgte die Titelzeile des
+Web-Browsers für phpVideoPro dem Muster "phpVideoPro v&lt;Version&gt; [
+&lt;Job&gt; ]". Seit v0.3.5 gibt es einen neuen, konfigurierbaren Teil dieser
+Titelzeile, welcher zwischen der Version und dem Job eingefügt wird:
+"@ site_info". Dies ist z.B. hilfreich, wenn man verschiedene Installationen
+zur selben Zeit in verschiedenen Browser-Fenstern geöffnet hat.
 
 
 [eof]

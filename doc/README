@@ -97,35 +97,24 @@ Contents:
     Simple advice: use "tar xzf <tarfile>" to unpack it into the current
     directory. Probably you have already done this - since you are reading
     this file :)
- 2. edit inc/config.inc to reflect your structures. Essential settings you
-    *must* make sure to reflect your structures are:
-    - $backup_path: this is where phpVideoPro looks for the backup files to
-      restore from (see online help on the admin->backup screen). You may use
-      an absolute path, of course - even if it leads to a location outside
-      your web tree. If you use a relative path (i.e. one that does not start
-      with a slash), this will be relative to the directory you installed
-      phpVideoPro to.
-    - $database : settings for the database (host running the db server,
-      database name, user and password to access the database).
+ 2. optionally edit inc/config.inc to reflect your structures. Alternatively,
+    this can be done with the configuration wizzard as well: in that case you
+    only need to copy the new created config to its place lateron.
     The other settings (Hu? Ah, other files ;) you should leave unchanged. If
     you need more customization, you can do so later via the web interface.
- 3. create the database with the name you specified in inc/config.inc as
-    $database["database"] on the host you configured there. Make sure the
-    configured user has at least following privileges for this database:
-    Select, Insert, Update, Delete, Create. For future versions (updates),
-    the privileges Alter, Drop and References may also be needed.
-    Example for MySQL:
-    user@kiste> mysql -u root -p
-    Enter password:
-    mysql> create database videopro;
-    Query OK, 1 row affected (0.03 sec)
-    mysql> grant all on videopro.* to video@localhost identified by "password";
-    mysql> flush privileges;
-    mysql> quit;
- 4. now, point your browser to <phpvideopro>/setup/index.php, read almost
-    the same advices again to make sure everything is prepared (*grin*),
-    and then click on the "create" link on the bottom of that page. More
-    explanations follow there.
+ 3. now, point your browser to <phpvideopro>/setup/install/index.php, which
+    starts the installation wizzard. This wizzard will create your database
+    (and, if necessary, also the user) and install the "skeleton" (all the
+    technical data needed to run phpVideoPro). If you are going to restore from
+    a previously created backup, this is also done here. The wizzard will
+    guide you through the whole process.
+ 4. After the wizzard has successfully finished the installation, you should
+    protect the setup/install/ directory against unprivileged use. Either
+    * remove the directory
+    * move it somewhere outside your web tree
+    * protect it via the web server (e.g. with .htaccess file when using Apache)
+    * change its permissions with "chmod 0700 install" if the web server
+      user is not its owner
  5. If you are concerned about disk space, you may want to remove the
     language support files for languages you won't ever use. By this, you
     will save about 100..250kB per language (with phpVideoPro v0.6.0 - may be

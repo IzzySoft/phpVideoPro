@@ -34,6 +34,7 @@
  $t->set_var("listtitle",lang($page_id));
  $t->set_var("formtarget",$PHP_SELF ."\" enctype=\"multipart/form-data");
 
+ $t->set_var("listtitle",lang("admin_avlang"));
  $t->set_var("head_lang_id","ID");
  $t->set_var("head_lang_charset",lang("charset"));
  $t->set_var("head_lang_name",lang("name"));

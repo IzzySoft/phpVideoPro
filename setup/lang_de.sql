@@ -34,6 +34,7 @@ INSERT INTO lang VALUES ('backup_db_movies','de','Nur Film-relevante Daten siche
 INSERT INTO lang VALUES ('backup_db_movie_internal','de','Alle Film-relevanten Daten im phpVideoPro internen Format sichern','');
 INSERT INTO lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erstellt werden?','');
 INSERT INTO lang VALUES ('backup_file_corrupt','de','Die ausgewählte Backup-Datei ist defekt!','');
+INSERT INTO lang VALUES ('backup_file_unreadable','de','Kann die Sicherungsdatei nicht lesen - sind die Zugriffsrechte korrekt gesetzt?','');
 INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
 INSERT INTO lang VALUES ('categories','de','Kategorien','');
 INSERT INTO lang VALUES ('category','de','Kategorie','');

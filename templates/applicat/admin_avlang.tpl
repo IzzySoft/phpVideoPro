@@ -17,6 +17,7 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD>
 
+<CENTER>
 <!-- BEGIN listblock -->
 <TABLE BORDER="0" WIDTH="100%">
   <TR><TD>{first}{left}</TD><TD><DIV STYLE="margin:3;text-align:center">{save_result}</DIV></TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
@@ -60,6 +61,7 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 {hidden}
 </FORM>
+</CENTER>
 
 </TABLE>
 </DIV>

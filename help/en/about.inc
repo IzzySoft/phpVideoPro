@@ -43,8 +43,9 @@ phpVideoPro is widely configurable. Making use of templates in a lot of places,
 it allows you to adjust its look and feel without any PHP knowledge (some HTML
 knowledge is needed for this, however), or to create your own label design.
 You can even have phpVideoPro talking to you in your own language (if it not
-already does) by making a special language file (don't forget to send it to the
-author afterwards to have it included with future versions of phpVideoPro).
+already does) by creating a special language file using the built-in translation
+editor (don't forget to send it to the author afterwards to have it included
+with future versions of phpVideoPro - and to be mentioned in the "Hall of Fame").
 [text]
 The program does distinguish between DVDs, VideoCDs, original videotapes, plus
 the tapes you recorded yourself - new media types can be added easily via the

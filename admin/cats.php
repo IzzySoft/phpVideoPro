@@ -18,10 +18,10 @@
  #=================================================[ Register global vars ]===
  $postit = array ("new_name","new_trans","lines");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
  }
  unset($postit);
- $delete = $_GET["delete"];
+ if (isset($_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
 
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();
@@ -36,14 +36,15 @@
    } else {
      $del = $db->delete_category($delete);
    }
- } elseif ($_POST["submit"]) {
+ } elseif (isset($_POST["submit"])) {
    for ($i=0;$i<$lines;++$i) {
      $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans"; $cat_enabled = "cat".$i."_dis";
      if ( !strlen(trim($_POST[$cat_name])) ) {
        die ( display_error(lang("cat_handle_empty",$_POST[$cat_id])) );
      } else {
        $db->set_translation($_POST[$cat_name],"",$pvp->preferences->get("lang"));
-       if ( !$db->update_category($_POST[$cat_id],$_POST[$cat_name],$_POST[$cat_enabled]) ) $cat .= "$i,";
+       if (isset($_POST[$cat_enabled])) $catXenabled = $_POST[$cat_enabled]; else $catXenabled = 9;
+       if ( !$db->update_category($_POST[$cat_id],$_POST[$cat_name],$catXenabled) ) $cat .= "$i,";
        if ( !$db->set_translation($_POST[$cat_name],$_POST[$cat_trans],$pvp->preferences->get("lang")) ) $trans .= "$i,";
      }
    }
@@ -51,15 +52,15 @@
      if ( !$db->add_category($new_name) ) $cat .= "?,";
      if ( !$db->set_translation($new_name,$new_trans,$pvp->preferences->get("lang")) ) $trans .= "$i,";
    }
-   if ($cat) {
+   if (isset($cat)) {
      $cat = substr($cat,0,strlen($cat)-1);
      $save_result = "<SPAN CLASS='error'>".lang("cat_update_failed",$cat)."</SPAN><BR>";
    }
-   if ($trans) {
+   if (isset($trans)) {
      $trans = substr($trans,0,strlen($trans)-1);
      $save_result .= "<SPAN CLASS='error'>" .lang("cat_trans_update_failed",$trans) . "</SPAN><BR>";
    }
-   if ( !($cat || $trans) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
+   if ( !(isset($cat) || isset($trans)) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
    $translations = $db->get_translations( $pvp->preferences->get("lang") );
  }
 
@@ -90,15 +91,15 @@
  $catcount = count($cats);
  for ($i=0;$i<$catcount;++$i) {
    $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans";
-   $t->set_var("cat_id",make_input($cat_id,$cats[$i][id],"button").make_input($cat_id,$cats[$i][id],"hidden"));
-   $t->set_var("cat_name",make_input($cat_name,$cats[$i][internal]));
-   $t->set_var("cat_trans",make_input($cat_trans,$cats[$i][name]));
-   $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$cats[$i][id]);
+   $t->set_var("cat_id",make_input($cat_id,$cats[$i]['id'],"button").make_input($cat_id,$cats[$i]['id'],"hidden"));
+   $t->set_var("cat_name",make_input($cat_name,$cats[$i]['internal']));
+   $t->set_var("cat_trans",make_input($cat_trans,$cats[$i]['name']));
+   $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$cats[$i]['id']);
    $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
    $t->set_var("cat_del",$trash);
-   if ($cats[$i][used] == 0) {
+   if ($cats[$i]['used'] == 0) {
      $checkbox = "<INPUT TYPE='checkbox' NAME='cat".$i."_dis' VALUE='1'";
-     if ($cats[$i][enabled] == 1) {
+     if ($cats[$i]['enabled'] == 1) {
        $checkbox .= " CHECKED>";
      } else { $checkbox .= ">"; }
      $t->set_var("cat_dis",$checkbox);
@@ -106,13 +107,15 @@
      $checkbox = make_input("cat".$i."_dis","9","hidden");
      $t->set_var("cat_dis","&nbsp;".$checkbox);
    }
-   $t->parse("cats","catblock",TRUE);
+   if ($i) $t->parse("cats","catblock",TRUE);
+     else $t->parse("cats","catblock");
  }
  $t->set_var("cat_dis","&nbsp;");
  $t->set_var("cat_id",make_input("new_id","?","button").make_input("new_id","?","hidden"));
  $t->set_var("cat_name",make_input("new_name",""));
  $t->set_var("cat_trans",make_input("new_trans",""));
  $t->parse("cats","catblock",TRUE);
+ if (!isset($save_result)) $save_result = "";
  $t->set_var("save_result",$save_result);
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$catcount'>";

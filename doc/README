@@ -73,8 +73,9 @@ Contents:
  4. point your browser the setup/index.php page via http (so that this page is
     parsed by PHP). At this time, only Netscape is tested to work with
     phpVideoPro (probably M$ Internet Exploder will work as well). Konqueror is
-    known as *NOT* working (version 1.9.8 - higher versions may work but are
-    not tested yet) - though it works for the setup program
+    known as *NOT* working because of the JavaScript used for the menue right
+    now (version 1.9.8, version 2.1 - higher versions may work but are not
+    tested yet) - though it works for the setup program
 
 ===============================================================================
 

@@ -381,6 +381,25 @@
      }
    }
 
+   /** Get ALL preferences from DB (for backup)
+    * @method get_preferences_all
+    * @param string type "default" or "user"
+    * @return array preferences (name=&gt;value) or empty array for unknown type
+    */
+   function get_preferences_all($type) {
+     switch ($type) {
+       case "default" : $preftab = "preferences"; break;
+       case "user"    : $preftab = "pvp_userprefs"; break;
+       default        : return array(); break;
+     }
+     $this->query("SELECT name,value FROM $preftab");
+     while ( $this->next_record() ) {
+       $name = $this->f('name');
+       $pref[$name] = $this->f('value');
+     }
+     return $pref;
+   }
+
    /** Set preferences in DB (if exist: update, otherwise insert)
     *  Used by class preferences: use that class to modify settings!
     * @class sql

@@ -39,14 +39,35 @@ a.s.o.. This program is not intended for managing some video store or
 commercial video tape library, but for private collections only :)
 
 [title]
-Aquiration date
+*date_rec#
 
 [text]
-As for now, the date fields follow this format: four digit year, minus-sign,
-two digit month, minus sign and two digit day (resulting in the scheme
-YYYY-MM-DD). For a new entry, this field is pre-set with the recent date. I
-leave the scheme in this state for now, since it is sufficient to me - and as
-long as no one asks me for a change, I'll not be changing it :)
+The date field is split in day, month and year fields. As for now, the order
+is hardcoded to be day-month-year. Of course this will change in one of the
+following versions of phpVideoPro, and this format will be adjustable via the
+confirguration menue as well to take country specific settings (or special user
+preferences :) into account.
+
+[title]
+*counter_start_stop#
+
+[text]
+These fields are mostly of interest for those of you having video recorders
+without an index function: you can enter the counters from the beginning
+respective ending of your recording here. Since the only format restriction
+is a length of 10 characters, it doesn't matter if you enter plain numeric
+counter values, or even time codes here - depending on how your recorder
+displays the time.
+
+[title]
+*commercials#
+
+[text]
+Even if this field should be self explaining, some words on the values to
+chose: you mark here wether the recording is interrupted by "commercial blocks"
+("*yes#") or not ("*no#"), or if you cut those blocks off manually ("*cut_off#").
+If you can't remember, you have even the possibility to state your unsureness
+here by chosing "*unknown#".
 
 [title]
 Categories

@@ -49,11 +49,32 @@ Daten - das Feld wird vom Aktualisierungs- bzw. Speicherprozeß ignoriert.
 *date_rec#
 
 [text]
-Derzeit muß die Eingabe in diesem Feld dem Format JJJJ-MM-DD folgen, wobei
-JJJJ für eine vierstellige Jahresangabe, und MM sowie DD für eine zweistellige
-Monats- bzw. Tagesangabe stehen. Irgendwann passe ich das sicher auch nochmal
-an - aber bislang hat sich noch niemand darüber beschwert (&lt;- Aufforderung
-zum Feedback :)
+Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch
+auf Tag-Monat-Jahr festgelegt ist. In einer der nächsten Versionen wird auch
+dies im Konfigurationsmenü einstellbar sein, um den verschiedenen
+Länderpräferenzen Rechnung zu tragen.
+
+[title]
+*counter_start_stop#
+
+[text]
+Dieser Punkt ist in erster Linie für Besitzer älterer Videorekorder interessant,
+welche noch nicht über eine Indexfunktion verfügen: diese können hier die
+jeweiligen Zählerstände bei Beginn bzw. Ende der Aufzeichnung eintragen. Da das
+Format der Eintragungen in diesen Feldern jedoch nicht festgelegt ist (mit
+Ausnahme der Einschränkung auf maximal 10 Zeichen), kann es auch anderweitig
+benutzt werden (z.B. können auch die jeweiligen Zeiten von Rekordern mit
+Echtzeitzählwerk eingetragen werden).
+
+[title]
+*commercials#
+
+[text]
+Dieses Feld ist ja eigentlich selbsterklärend: es dient der Angabe, ob die
+Aufzeichnung von Werbeblöcken unterbrochen wird ("*yes#"), ob dies nicht der
+Fall ist ("*no#"), oder ob sie während der Aufnahme von Hand entfernt wurden
+("*cut_off#"). Für den Fall allgemeiner Unsicherheit gibt es auch noch die
+Möglichkeit, "*unknown#" auszuwählen.
 
 [title]
 Kategorien

@@ -12,6 +12,12 @@
  <li>added support for region codes (DVDs only)
  <li>added administration page for disk types
  <li>updated help pages concerning these changes
+ <li>hopefully worked around the register_globals problem (not tested, so please
+     report to me if you use register_globals=off with phpVideoPro, which is the
+     default since PHP v4.2)
+ <li>applied some fix-ups for Netscape 4.x -- still not satisfying. Support
+     for this old browser will stay limited with phpVideoPro; I encourage you
+     to use some newer browser like Mozilla or what ever...
 </ul>
 
 [title]

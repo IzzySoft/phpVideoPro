@@ -5,7 +5,7 @@
 # internals - don't edit below this unless you exactly know what you are doing!
 
 // retrieve browser information
-include($base_path . "inc/browser.inc");
+include($base_path . "inc/class.browser.inc");
 $browser = new browser;
 $agent->name    = strtolower($browser->getbrowser());
 $agent->major   = $browser->getMajor();

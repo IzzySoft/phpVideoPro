@@ -1664,8 +1664,7 @@
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
-		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat"),
-		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass")
+		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat")
 		     );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);
@@ -1673,6 +1672,8 @@
        $item = $value["name"];
        $stats[$item] = $this->f("$item");
      }
+     $this->dbquery("SELECT DISTINCT mtype_id,cass_id FROM video");
+     $stats[media] = $this->num_rows();
      $this->dbquery("SELECT DISTINCT country FROM video");
      $stats[countries] = $this->num_rows();
      for ($i=1;$i<4;++$i) {

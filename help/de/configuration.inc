@@ -168,14 +168,8 @@ sind hiervon nicht betroffen: er/sie wird lediglich vom System abgemeldet, und
 verfügt somit (bis zu einer erneuten Anmeldung) lediglich noch über die Rechte
 des Gast-Kontos.
 
-[title]
-*general#
-
-[text]
-<b>*template_set#:</b> Das Design betreffend basiert phpVideoPro auf Templates.
-Hier lässt sich das gewünschte Template-Set auswählen, und phpVideoPro erhält
-auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
-XMMS bzw. WinAmp bekannt sein dürften).
+[title|1|imdb]
+IMDB
 
 [text]
 <b>*imdb_url#:</b> Die Internet Movie DataBase bietet umfangreiche Daten für
@@ -192,6 +186,36 @@ stimmt - für Deutschland wäre dies die deutsche IMDB Site.
 Leider gibt es noch nicht für alle Sprachen eine eigene IMDB Site. Die mir
 bekannten Sites sind bereits als Optionen verfügbar - wenn jemand weitere Sites
 kennt, bitte ich um eine kurze Notiz, damit ich sie ebenfalls einpflegen kann!
+
+[text]
+<b>*imdb_url2#:</b> So schön die Tatsache ist, dass es "lokalisierte" IMDB Sites
+u.a. auch für den deutschsprachigen Raum gibt, haben diese doch neben dem
+großen Vorteil, dass hier auch nach dem landessprachlichen Filmtitel gesucht
+werden kann, einen großen Haken: Das einzige, was hier "übersetzt" wurde, ist
+(bislang) die Oberfläche. Der Inhalt ist ansonsten überall identisch. Wollten
+wir jetzt also alle lokalisierten Sites unterstützen, müssten wir beim Parsen
+der Seiten sämtliche verfügbaren Sprachen berücksichtigen - ohne dass wir für
+diesen Aufwand auch mit landessprachlichen Informationen belohnt würden. Daher
+wechselt phpVideoPro, sobald der Film eindeutig identifiziert ist, zu einer der
+Englischen Instanzen der IMDB, um die Details von dort zu beziehen.
+[text]
+Es ist also zwingend notwendig, an dieser Stelle eine <b><i>Englische</i></b>
+Site auszuwählen.
+
+[text]
+<b>*imdb_tx#:</b> Dies ist lediglich eine Voreinstellung für die Checkboxen
+auf der <A HREF="{PHP_SELF}?topic=imdbsearch">IMDB Suchseite</A>. Natürlich
+können später bei Bedarf gezielt andere Werte verwendet werden, ohne dies erst
+hier wieder anzupassen.
+
+[title]
+*general#
+
+[text]
+<b>*template_set#:</b> Das Design betreffend basiert phpVideoPro auf Templates.
+Hier lässt sich das gewünschte Template-Set auswählen, und phpVideoPro erhält
+auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
+XMMS bzw. WinAmp bekannt sein dürften).
 
 
 [text]

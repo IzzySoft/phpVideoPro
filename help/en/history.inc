@@ -12,6 +12,9 @@
      so you can safeguard both, this and the <code>setup/install</code>
      directory with e.g. a <code>.htaccess</code> file against unauthorized
      access
+ <li>Now the user can select which data to transfer from the IMDB to the local
+     database. Presets can be defined via admin-configure (global) and
+     edit-preferences (user-specific).
 </ul>
 
 [title]

@@ -851,6 +851,7 @@
     if ($this->page["Title"] == "") $this->openpage ("");
     $mpaa_s = 0;
     $mpaa_e = 0;
+    $this->main_mpaa = array();
     while (strpos ($this->page["Title"], "/List?certificates", $mpaa_e) > $mpaa_s) {
 	$mpaa_s = strpos ($this->page["Title"], "/List?certificates", $mpaa_s);
 	$mpaa_s = strpos ($this->page["Title"], ">", $mpaa_s);

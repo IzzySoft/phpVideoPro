@@ -7,6 +7,7 @@ DELETE FROM lang WHERE lang='en';
 
 # Selectable options for the new IMDB features
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_country');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_pg');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_length');
@@ -18,6 +19,7 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 # New preferences for IMDB handling
 INSERT INTO preferences (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_title','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_country','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_year','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_pg','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_length','1');

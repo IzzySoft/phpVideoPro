@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                             (c) 2001, 2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class label
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2002-2004 by Itzchak Rehberg and IzzySoft
   */
  class label {
 
@@ -29,10 +29,11 @@
     * @param string config base name of config file to use (without path and
     *  extension)
     */
-   function label($config) {
+   function label($config="default") {
      GLOBAL $base_path;
      $config = $base_path . "labels/$config";
      include ($config . ".config");
+     if (!isset($maxlines)) $maxlines = 4;
      $this->colors();
      $this->mm_conv = 3.42;
      $this->maxlines = $maxlines;
@@ -46,7 +47,7 @@
      $this->symb_coord = $this->convert_coord($symb_coord);
      $this->textcolor = $this->color[$textcolor];
      $this->font   = 5;
-     if ($fontsize) $this->fontsize = $fontsize;
+     if (isset($fontsize)) $this->fontsize = $fontsize;
      $template = $config . ".png";
      if (file_exists($template)) {
        $this->copy_tpl($template);
@@ -66,6 +67,7 @@
    ###########################################################################
    # create blank label from template image
    function copy_tpl($template) {
+     GLOBAL $uglybg;
      $im_info = getimagesize("$template"); // label size
      $this->width  = $im_info[0];
      $this->height = $im_info[1];
@@ -87,8 +89,8 @@
    # create blank label without template image
    function create_new() {
      $im  = imageCreate($this->width,$this->height); // create img in desired size
-     $bgcolor = explode(",", $this->color[white]);
-     $fgcolor = explode(",", $this->color[blue]);
+     $bgcolor = explode(",", $this->color['white']);
+     $fgcolor = explode(",", $this->color['blue']);
      $bg  = ImageColorAllocate($im, $bgcolor[0], $bgcolor[1], $bgcolor[2]);
      $fg  = ImageColorAllocate($im, $fgcolor[0], $fgcolor[1], $fgcolor[2]);
      ImageRectangle($im,0,0,$this->width - 1,$this->height - 1,$fg);
@@ -101,6 +103,7 @@
    ###########################################################################
    # provide image transparency
    function make_transparent(&$img) {
+     GLOBAL $uglybg;
      $uglybg = ImageColorAllocate($img,0xf4,0xb2,0xe5); // transparent bg
      ImageColorTransparent($img,$uglybg);
    }
@@ -108,9 +111,9 @@
    ###########################################################################
    # define some colors to use
    function colors() {
-     $this->color[white] = "255,255,255";
-     $this->color[black] = "0,0,0";
-     $this->color[blue]  = "0,11,255";
+     $this->color['white'] = "255,255,255";
+     $this->color['black'] = "0,0,0";
+     $this->color['blue']  = "0,11,255";
    }
 
    ###########################################################################
@@ -133,9 +136,11 @@
      GLOBAL $pvp;
      $font = $this->font;
      $text = $pvp->common->recode($text);
-     for ($i=0;$i<count($text),$font>0;$i++) { // find longest line
+     $tc = count($text);
+     $tk = 0;
+     for ($i=0;$i<$tc && $font>0;++$i) { // find longest line
        $tfont = $font;
-       $x[$i] = $this->get_textpos($text[$i],$field,&$tfont);
+       if (isset($text[$i])) $x[$i] = $this->get_textpos($text[$i],$field,&$tfont);
        if ($tfont < $font) $font = $tfont;
      }
      ++$font;
@@ -144,7 +149,7 @@
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
      $movielines = count($this->entry);
-     if ( isset($this->titleline) && $movielines < 3 && font < 5) { // at least half of the lines use fontsize +1
+     if ( isset($this->titleline) && $movielines < 3 && $font < 5) { // at least half of the lines use fontsize +1
        $y = $vmidth - (imagefontheight($font +1) * $lines / 2) + $field[1];
      } else {
        $y = $vmidth - (imagefontheight($font) * $lines / 2) + $field[1];
@@ -158,7 +163,7 @@
              if ( ($usefont + $this->fontsize)<6 ) {
                $usefont += $fontsize; } else { $usefont = 5; }
            $x[$i] = $this->get_textpos($text[$i],$field,$usefont);
-	 }
+	 } else $usefont = $font;
        } else {
          $usefont = $font;
          $x[$i] = $this->get_textpos($text[$i],$field,$font);
@@ -196,7 +201,7 @@
      $moviecount = count($movies);
      for ($i=0;$i<$moviecount;$i++) {
        $movie = $db->get_movie($movies[$i]);
-       if (!$movie[label]) continue;
+       if (!$movie['label']) continue;
        for ($lines=0;$lines<count($this->entry);$lines++) {
          if ( substr($this->entry[$lines],0,1) == "*" ) {
 	   $this->entry[$lines] = substr($this->entry[$lines],1);
@@ -237,7 +242,7 @@
     * @method destroy
     */
    function destroy() {
-     ImageDestroy( $this->label() );
+     ImageDestroy( $this->label );
    }
 
  /** Label width

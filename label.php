@@ -26,7 +26,7 @@
  include("inc/class.label.inc");
 
  #========================[ create exactly one label and send it as image ]===
- if ($cass_id) { // we directly go to create one label
+ if (isset($cass_id)) { // we directly go to create one label
    if (!$labelconf) $labelconf = "default";
    $id = $db->get_movieid($mtype_id,$cass_id);
    $label  = new label($labelconf);
@@ -47,7 +47,8 @@
        $ltpl     = "label_$i";
        $label = "<IMG SRC=\"" . $_SERVER["PHP_SELF"] . "?cass_id=$cass_id&mtype_id=" . ${$mtype_id} . "&labelconf=" . ${$ltpl} . "\">";
        $t->set_var("image",$label);
-       $t->parse("definitionlist","definitionblock",TRUE);
+       if ($i) $t->parse("definitionlist","definitionblock",TRUE);
+         else $t->parse("definitionlist","definitionblock");
      }
    }
    include("inc/header.inc");
@@ -58,10 +59,12 @@
    $t->set_file(array("list"=>"label_init.tpl"));
    $t->set_block("list","definitionblock","definitionlist");
    $mtypes = $db->get_mtypes();
+   $mtypelist = "";
    for ($i=0;$i<count($mtypes);$i++) {
-     $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\">" . $mtypes[$i][sname] . "</OPTION>";
+     $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
    }
-   $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
+   $labels = $pvp->common->get_filenames($base_path . "labels",".config");
+   $labellist = "";
    for ($i=0;$i<count($labels);$i++) {
      $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
      $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
@@ -73,7 +76,8 @@
      $t->set_var("mtype",$mtype);
      $t->set_var("medianr",$medianr);
      $t->set_var("label",$label);
-     $t->parse("definitionlist","definitionblock",TRUE);
+     if ($i) $t->parse("definitionlist","definitionblock",TRUE);
+       else $t->parse("definitionlist","definitionblock");
    }
    include("inc/header.inc");
    $t->set_var("mtype",lang("mediatype"));

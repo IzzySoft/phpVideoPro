@@ -14,16 +14,21 @@
 
  class label {
 
-   VAR $width, $height, $vmidth, $textcolor, $font, $color, $maxlines, $label;
+   VAR $width, $height, $vmidth, $textcolor, $font, $color, $maxlines, $label,
+       $nr_coord, $main_coord, $symb_coord, $mm_conv;
 
    function label($config) {
      GLOBAL $base_path;
      $config = $base_path . "labels/$config";
      include ($config . ".config");
      $this->colors();
+     $this->mm_conv = 3.42;
      $this->maxlines = 4;
-     $this->width  = $width * 3.41;
-     $this->height = $height * 3.41;
+     $this->width  = $width * $this->mm_conv;
+     $this->height = $height * $this->mm_conv;
+     $this->nr_coord   = $this->convert_coord($nr_coord);
+     $this->main_coord = $this->convert_coord($main_coord);
+     $this->symb_coord = $this->convert_coord($symb_coord);
      $this->textcolor = $this->color[$textcolor];
      $this->font   = 5;
      $template = $config . ".png";
@@ -34,6 +39,14 @@
      }
      $this->vmidth = ceil($this->height / 2);
    } // end function label()
+
+   function convert_coord($coord) {
+     $arr = explode(",", $coord);
+     for ($i=0;$i<count($arr);$i++) {
+       $arr[$i] = $arr[$i] * $this->mm_conv;
+     }
+     return $arr;
+   }
 
    function copy_tpl($template) { // create blank label from template image
      $im_info = getimagesize("$template.png"); // label size
@@ -60,6 +73,9 @@
      $bg  = ImageColorAllocate($im, $bgcolor[0], $bgcolor[1], $bgcolor[2]);
      $fg  = ImageColorAllocate($im, $fgcolor[0], $fgcolor[1], $fgcolor[2]);
      ImageRectangle($im,0,0,$this->width - 1,$this->height - 1,$fg);
+     ImageRectangle($im,$this->nr_coord[0],$this->nr_coord[1],$this->nr_coord[2] - 1,$this->nr_coord[3] - 1,$fg);
+     ImageRectangle($im,$this->main_coord[0],$this->main_coord[1],$this->main_coord[2] - 1,$this->main_coord[3] - 1,$fg);
+     ImageRectangle($im,$this->symb_coord[0],$this->symb_coord[1],$this->symb_coord[2] - 1,$this->symb_coord[3] - 1,$fg);
      $this->label = $im;
    }
 
@@ -74,15 +90,22 @@
      $this->color[blue]  = "0,11,255";
    }
 
-   function write_text($text) {
+   # calculate position of the text on the label field
+   function get_textpos($text,$field,&$font) {
+     $length = strlen($text);
+     $fieldwidth = $field[2] - $field[0];
+     do { // calculate position of the text on the label
+       $textwidth = $length * imagefontwidth($font);
+       $x = ($fieldwidth - $textwidth) / 2; $x = ceil($x) + $field[0];
+       --$font;
+     } while (($x < 0) && ($font > 0));
+     return $x;
+   }
+
+   function write_text($text,$field) {
      for ($i=0;$i<count($text);$i++) { // find longest line
-       $length = strlen($text[$i]);
        $font[$i] = $this->font;
-       do { // calculate position of the text on the label
-         $textwidth = $length * imagefontwidth($font[$i]);
-         $x[$i] = ($this->width - $textwidth) / 2; $x[$i] = ceil($x[$i]);
-         --$font[$i];
-       } while (($x[$i] < 0) && ($font[$i] > 0));
+       $x[$i]    = $this->get_textpos($text[$i],$field,$font[$i]);
        ++$font[$i];
      }
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
@@ -93,6 +116,15 @@
        imagestring($this->label, $font[$i], $x[$i], $y, "$text[$i]", $color);
        $y += imagefontheight($this->font);
      }
+   }
+
+   function write($nr,$text) {
+     while ( substr($nr,0,1)=="0" ) {
+       $nr = substr($nr,1);
+     }
+     $nr = explode(",",$nr);
+     $this->write_text($nr,$this->nr_coord);
+     $this->write_text($text,$this->main_coord);
    }
 
    function prn() {

@@ -61,6 +61,8 @@ if ( isset($update) ) {
         if (isset($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
       }
     }
+    if (!isset($_POST["cache_enable"])) $_POST["cache_enable"] = 0;
+    $db->set_config("cache_enable",$_POST["cache_enable"]);
     $db->set_config("rw_media",$rw_media);
     if (!$_POST["remove_media"]) $remove_media = "0"; else $remove_media = "1";
     $db->set_config("remove_empty_media",$remove_media);
@@ -137,6 +139,7 @@ $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
 $session_purgetime = $db->get_config("session_purgetime");
+$cache_enabled  = $db->get_config("cache_enable");
 $cprinter_id     = $pvp->preferences->get("printer_id");
 $site_info      = $db->get_config("site");
 
@@ -473,8 +476,19 @@ $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
 
+if ($admin) {
+#--[ cache ]--
+  $t->set_var("item_name",lang("cache_enable"));
+  $t->set_var("item_comment",lang("cache_enable_comment"));
+  $input = "<INPUT TYPE='radio' NAME='cache_enable' VALUE='0'";
+  if (!$cache_enabled) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='cache_enable' VALUE='1'";
+  if ($cache_enabled) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+} else {
 #--[ skip the intro? ]--
-if (!$admin) {
   $t->set_var("item_name",lang("skip_intro"));
   $t->set_var("item_comment",lang("skip_intro_comment"));
   if ($pvp->preferences->get("skip_intro")) {

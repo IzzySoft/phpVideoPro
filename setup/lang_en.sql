@@ -579,4 +579,6 @@ INSERT INTO lang VALUES ('imdb_tx_director','en','Director','Option name on conf
 INSERT INTO lang VALUES ('imdb_tx_actor','en','Actors','Option name on configuration/preferences page for items to transfer from IMDB');
 INSERT INTO lang VALUES ('imdb_tx_comments','en','Comment','Option name on configuration/preferences page for items to transfer from IMDB');
 INSERT INTO lang VALUES ('imdb_tx_country','en','Country','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('cache_enable','en','Enable browser/proxy caching?','Option on the configuration screen');
+INSERT INTO lang VALUES ('cache_enable_comment','en','Since phpVideoPro is a dynamic application, generating pages based upon database information on each request, you may want to disable caching the generated pages. Sometimes, this is very helpful for MSIE users...','Option on the configuration screen');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

@@ -38,6 +38,8 @@ INSERT INTO lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erste
 INSERT INTO lang VALUES ('backup_db_sysconf','de','Systemkonfiguration und Default-Einstellungen sichern','');
 INSERT INTO lang VALUES ('backup_file_corrupt','de','Die ausgewählte Backup-Datei ist defekt!','');
 INSERT INTO lang VALUES ('backup_file_unreadable','de','Kann die Sicherungsdatei nicht lesen - sind die Zugriffsrechte korrekt gesetzt?','');
+INSERT INTO lang VALUES ('cache_enable','de','Browser/Proxy caching erlauben?','');
+INSERT INTO lang VALUES ('cache_enable_comment','de','Da phpVideoPro Webseiten bei jedem Aufruf dynamisch generiert, macht es durchaus Sinn, sowohl den Browsern als auch den Proxies das Cachen dieser Seiten zu verbieten. Was oftmals auch sehr hilfreich für Benutzer des MSIE ist...','');
 INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
 INSERT INTO lang VALUES ('categories','de','Kategorien','');
 INSERT INTO lang VALUES ('category','de','Kategorie','');

@@ -31,12 +31,12 @@ Units
 There are different measurement units to be found in the "*units#" column, you
 may not be familiar with each of them: so here's a short explanation plus
 comparision for all of them:
-<TABLE ALIGN="center" BORDER="1" WIDTH="90%">
+<TABLE ALIGN="center" BORDER="1" WIDTH="95%" STYLE="margin:5">
   <TR><TH CLASS="help">Unit</TH><TH CLASS="help">Comparision</TH><TH CLASS="help">Description</TH></TR>
   <TR><TD>pt</TD><TD>&nbsp;</TD><TD>"Point" is the smallest unit for PostScript</TD></TR>
   <TR><TD>inch</TD><TD>72 pt</TD><TD>Old Imperial measuring unit</TD></TR>
-  <TR><TD>mm</TD><TD>28.3465 pt</TD><TD>Millimeter is the smalles metric unit used here (smaller ones make no sense in our context)</TD></TR>
-  <TR><TD>cm</TD><TD>2.8346 pt</TD><TD>The same as 10 mm. Ask Michael whether PostScript only supports 4 digits after the comma (or better use mm for more accuracy ;)</TD></TR>
+  <TR><TD>mm</TD><TD>2.83465 pt</TD><TD>Millimeter is the smalles metric unit used here (smaller ones make no sense in our context)</TD></TR>
+  <TR><TD>cm</TD><TD>28.346 pt</TD><TD>The same as 10 mm. Ask Michael whether PostScript only supports 4 digits after the comma (or better use mm for more accuracy ;)</TD></TR>
 </TABLE>
 
 [title]

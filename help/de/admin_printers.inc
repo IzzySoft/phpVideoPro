@@ -36,7 +36,7 @@ Einheiten
 [text]
 In der Spalte "*units#" finden sich verschiedene Maﬂeinheiten, die vielleicht
 nicht alle gel‰ufig sind. Daher hier eine kurze Auflistung:
-<TABLE ALIGN="center" BORDER="1" WIDTH="90%">
+<TABLE ALIGN="center" BORDER="1" WIDTH="95%" STYLE="margin:5">
   <TR><TH CLASS="help">Einheit</TH><TH CLASS="help">Vergleich</TH><TH CLASS="help">Beschreibung</TH></TR>
   <TR><TD>pt</TD><TD>&nbsp;</TD><TD>Der "Punkt" ist die kleinste Einheit bei PostScript</TD></TR>
   <TR><TD>inch</TD><TD>72 pt</TD><TD>Alte britische Maﬂeinheit, der wohl auch unser "Zollstock" seinen Namen verdankt</TD></TR>

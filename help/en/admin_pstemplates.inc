@@ -39,17 +39,25 @@ provided in the table header (which means you are adding a new one).
 [text]
 The items to edit should be quite self-explaining: The "<b>*pstpl_name#</b>" has
 no technical relevance at all, you can name an entry as you like. Important are
-the other items:<BR>
-<b>*pstpl_type#:</b> defines in which list the label appears and what kind of
-label sheets it fits on<BR>
-<b>*graphic_file#:</b> what image file is used as background for this label<BR>
-<b>*template_file#:</b> what PS template file describes the structure of this
-template (e.g. if and where the media number is printed, and what other details
-appear on this label)<BR>
-<b>*lower_left_corner#:</b> the coordinates of the lower left corner on this
-templates. Usually it starts at the very beginning, i.e. x=0 and y=0<BR>
-<b>*upper_right_corner#:</b> coordinates of the upper right corner, i.e. the
-distance from the lower left corner in points.
+the other items:
+[text]
+<table align="center" style="border:1px solid #000000;margin:5" width="95%">
+ <tr><td><b>*pstpl_type#:</b></td>
+     <td>defines in which list the label appears and what kind of label sheets
+         it fits on</td></tr>
+ <tr><td><b>*graphic_file#:</b></td>
+     <td>what image file is used as background for this label</td></tr>
+ <tr><td><b>*template_file#:</b></td>
+     <td>what PS template file describes the structure of this template (e.g.
+         if and where the media number is printed, and what other details
+	 appear on this label)</td></tr>
+ <tr><td><b>*lower_left_corner#:</b></td>
+     <td>the coordinates of the lower left corner on this templates. Usually it
+         starts at the very beginning, i.e. x=0 and y=0</td></tr>
+ <tr><td><b>*upper_right_corner#:</b></td>
+     <td>coordinates of the upper right corner, i.e. the distance from the
+         lower left corner in points.</td></tr>
+</table>
 
 [text]
 If you wonder about these measures: PostScript starts the pages bottom-up, so

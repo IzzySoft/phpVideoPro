@@ -95,7 +95,7 @@
  $mtypes = $db->get_mtypes();
  $mtype_field = "<SELECT NAME='mtype_id[]' SIZE='7' MULTIPLE CLASS='multiselect'>";
  for ($i=0;$i<count($mtypes);++$i) {
-   $mtype_field .= "<OPTION VALUE='".$mtypes[$i][id]."'>".$mtypes[$i][sname]." (".$mtypes[$i][name].")</OPTION>";
+   $mtype_field .= "<OPTION VALUE='".$mtypes[$i]['id']."'>".$mtypes[$i]['sname']." (".$mtypes[$i]['name'].")</OPTION>";
  }
  $mtype_field .= "</SELECT>";
  $t->set_var("mtype_field",$mtype_field);
@@ -104,8 +104,8 @@
  $cats = $db->get_category(); $ccount = count($cats);
  $cat_field = "<SELECT NAME='cat_id[]' SIZE='7' MULTIPLE CLASS='multiselect'>";
  for ($i=0;$i<$ccount;++$i) {
-   if ($cats[$i][enabled])
-     $cat_field .= "<OPTION VALUE='".$cats[$i][id]."'>".lang($cats[$i][internal])."</OPTION>";
+   if ($cats[$i]['enabled'])
+     $cat_field .= "<OPTION VALUE='".$cats[$i]['id']."'>".lang($cats[$i]['internal'])."</OPTION>";
  }
  $cat_field .= "</SELECT>";
  $t->set_var("cat_field",$cat_field);

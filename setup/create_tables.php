@@ -65,6 +65,11 @@ $query_count = 4;
      </UL></TD></TR>
  <TR><TD><DIV ALIGN="justify">Congratulations - if there are <?=$query_count?>
       lines stating "success", you've done it - the basic installation is
-      complete! You can then proceed to the <A HREF="../admin/configure.php">configuration</A>
-      page.</DIV></TD></TR>
+      complete! You can then proceed to the <A HREF="../login.php">login</A>
+      page. Use the "admin" account on your first login, the needed password is
+      "video". I strongly recommend you to go to the user management page
+      (you'll find it within the admin menue) and change the admin password,
+      plus optionally setup new accounts or modify the guest account, so you
+      don't need to login the next time ;) More information on this you'll find
+      within the online help system. Enjoy!</DIV></TD></TR>
 </TABLE></BODY></HTML>

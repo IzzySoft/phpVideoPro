@@ -422,7 +422,7 @@
 
      $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",
-		     "cat3_id","pict_id","commercials_id","lp");
+		     "cat3_id","pict_id","commercials_id","lp","mtype_id");
      foreach($moviedetails as $value) {
        $$value = $this->f("$value");
        $movie[$value] = $$value;

@@ -19,12 +19,16 @@
    $nr      .= "-";
    if (strlen($part)<2) {
      $nr .= "0" . $part;
-   } else { $nr .= $part; } ?>
+   } else { $nr .= $part; }
+?>
 <HTML><HEAD>
-  <meta http-equiv="refresh" content="0; URL=<? echo $base_url . "edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr" ?>">
-</HEAD></HTML><?
+  <meta http-equiv="refresh" content="0; URL=<?="edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr"?>">
+</HEAD></HTML>
+<?
    exit;
-  }
+ }
+
+ include("inc/header.inc");
   
  #=================================================[ build the input form ]===
  $t = new Template($pvp->tpl_dir);

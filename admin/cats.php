@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -28,12 +28,12 @@
     }
   } elseif ($submit) {
     for ($i=0;$i<$lines;++$i) {
-      $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans";
+      $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans"; $cat_enabled = "cat".$i."_dis";
       if ( !strlen(trim(${$cat_name})) ) {
         die ( display_error(lang("cat_handle_empty",${$cat_id})) );
       } else {
         $db->set_translation(${$cat_name},"",$pvp->preferences->get("lang"));
-        if ( !$db->update_category(${$cat_id},${$cat_name}) ) $cat .= "$i,";
+        if ( !$db->update_category(${$cat_id},${$cat_name},${$cat_enabled}) ) $cat .= "$i,";
         if ( !$db->set_translation(${$cat_name},${$cat_trans},$pvp->preferences->get("lang")) ) $trans .= "$i,";
       }
     }
@@ -70,14 +70,14 @@
   function make_input($name,$value,$type="text") {
     GLOBAL $form;
     switch($type) {
-      case "hidden" : $input = '<INPUT TYPE="hidden" NAME="'.$name.'"VALUE="'.$value.'">'; break;
-      case "button" : $input = '<INPUT TYPE="button" NAME="'.$name.'"VALUE="'.$value.'" CLASS="yesnobutton">'; break;
-      default       : $input = '<INPUT NAME="$name" VALUE="'.$value.'"'.$form['addon_tech'].'>'; break;
+      case "hidden" : $input = '<INPUT TYPE="hidden" NAME="'.$name.'" VALUE="'.$value.'">'; break;
+      case "button" : $input = '<INPUT TYPE="button" NAME="'.$name.'" VALUE="'.$value.'" CLASS="yesnobutton">'; break;
+      default       : $input = '<INPUT NAME="'.$name.'" VALUE="'.$value.'" '.$form['addon_tech'].'>'; break;
     }
     return $input;
   }
 
-  $cats = $db->get_category();
+  $cats = $db->get_category("","",1);
   $catcount = count($cats);
   for ($i=0;$i<$catcount;++$i) {
     $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans";
@@ -87,6 +87,16 @@
     $url = $pvp->link->slink("$PHP_SELF?delete=".$cats[$i][id]);
     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
     $t->set_var("cat_del",$trash);
+    if ($cats[$i][used] == 0) {
+      $checkbox = "<INPUT TYPE='checkbox' NAME='cat".$i."_dis' VALUE='1'";
+      if ($cats[$i][enabled] == 1) {
+        $checkbox .= " CHECKED>";
+      } else { $checkbox .= ">"; }
+      $t->set_var("cat_dis",$checkbox);
+    } else {
+      $checkbox = make_input("cat".$i."_dis","9","hidden");
+      $t->set_var("cat_dis","&nbsp;".$checkbox);
+    }
     $t->parse("cats","catblock",TRUE);
   }
   $t->set_var("cat_id",make_input("new_id","?","button").make_input("new_id","?","hidden"));

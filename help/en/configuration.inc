@@ -1,6 +1,7 @@
 # /* configure */
 # /* $Id$ */
 
+#==================================================================[ Intro ]===
 [title]
 Introduction
 
@@ -20,7 +21,8 @@ to use the "*edit#" -&gt; "*preferences#" menue to set their preferences
 directory are protected by the session managment, i.e. users without the admin
 privilege cannot access them via their browsers.
 
-[title]
+#======================================================[ Language Settings ]===
+[title|1|lang]
 *language_settings#
 
 [text]
@@ -69,7 +71,8 @@ If this should happen, and you are sure it's not your fault (e.g. since you
 removed the English phrases from the db manually ;) - please drop me a note,
 quoting the missing phrase and where the error occured.
 
-[title]
+#====================================================[ Media Configuration ]===
+[title|1|media]
 *config_media#
 
 [text]
@@ -118,7 +121,8 @@ movies from the 1920's which, of course, ship in black-and-white mode. Those
 of you may want to change this behaviour and like to initiate the color mode
 for new movies accordingly. Do this here.
 
-[title]
+#================================================================[ Cookies ]===
+[title|1|cookies]
 *cookies#
 
 [text]
@@ -145,6 +149,7 @@ sessions after a specified interval of user inactivity. This only affects the
 logged-in session, not the personal configuration the user stored within his/her
 cookies. After the timeout, the session falls back into guest mode.
 
+#==========================================================[ IMDB Settings ]===
 [title|1|imdb]
 IMDB
 
@@ -191,7 +196,8 @@ user pushed the transfer button and thus transfered the wanted data to the edit
 form, that window is no longer needed, and hence could be closed. Whether it is
 closed automatically after a successful transfer or not, you can define here.
 
-[title]
+#=======================================================[ General Settings ]===
+[title|1|general]
 *general#
 
 [text]

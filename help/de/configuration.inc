@@ -1,6 +1,7 @@
 # /* configure */
 # /* $Id$ */
 
+#==================================================================[ Intro ]===
 [title]
 Einleitung
 
@@ -30,7 +31,8 @@ Auch wenn das Administrationsmenü ohne diese Berechtigung überhaupt nicht
 angezeigt wird, wird selbige auf den jeweiligen Seiten nochmals überprüft: sie
 lässt sich also nicht einfach durch die direkte Angabe der URL umgehen.
 
-[title]
+#======================================================[ Language Settings ]===
+[title|1|lang]
 *language_settings#
 
 [text]
@@ -84,7 +86,8 @@ Programmierers auf - sollte dies nicht auf einen Benutzerfehler (wie etwa eine
 gelöschte Englische Sprache) zurückzuführen sein, erbitte ich eine
 Nachricht an mich, damit ich den Fehler beheben kann!
 
-[title]
+#====================================================[ Media Configuration ]===
+[title|1|media]
 *config_media#
 
 [text]
@@ -137,7 +140,8 @@ welche freilich in schwarz/weiß sind. In diesem Fall wäre es natürlich
 wünschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
 geschehen.
 
-[title]
+#================================================================[ Cookies ]===
+[title|1|cookies]
 *cookies#
 
 [text]
@@ -168,6 +172,7 @@ sind hiervon nicht betroffen: er/sie wird lediglich vom System abgemeldet, und
 verfügt somit (bis zu einer erneuten Anmeldung) lediglich noch über die Rechte
 des Gast-Kontos.
 
+#==========================================================[ IMDB Settings ]===
 [title|1|imdb]
 IMDB
 
@@ -218,7 +223,8 @@ betätigt, wird dieses Fenster nicht länger benötigt, und kann daher geschloss
 werden. Mit diesem Punkt in der Konfiguration läßt sich festlegen, ob dies
 geschehen soll.
 
-[title]
+#=======================================================[ General Settings ]===
+[title|1|general]
 *general#
 
 [text]

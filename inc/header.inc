@@ -12,6 +12,8 @@
 
  /* $Id$ */
 
+$tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
+
 if (!$silent) {
 ?>
 <HTML><HEAD>
@@ -23,7 +25,7 @@ if (!$silent) {
  <script language="JavaScript" src="<?=$base_url?>inc/common.js"></script>
 <?
  include($nav_script);
- include($base_path . "templates/default/default.css");
+ include($pvp->tpl_dir ."/default.css");
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
  if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 ?>
@@ -35,7 +37,7 @@ if (!$silent) {
 </table>
 <?
 } else {
- include($base_path . "templates/default/default.css");
+ include($pvp->tpl_dir ."/default.css");
  echo "</HEAD><BODY>\n";
 } // !login
 } // not silent ?>

@@ -1,13 +1,13 @@
 /* $Id$ */
 
 ------------------------------------------------------------------------------
-This ToDo-List in general has no fixed order: I just add new ideas on the
-bottom, pick the next item by using some brain-based random() function <grin>,
-and remove completed tasks from this list. So *any* of the items listed below
+This ToDo-List in general has no fixed order: I just add new ideas somewhere,
+pick the next item by using some brain-based random() function <grin>, and
+remove completed tasks from this list. So *any* of the items listed below
 could be the next to be implemented - or stay in this list for, huh, eternity
 (except some items on top that are somehow scheduled). If you think there's
 something missing in this list, feel free to add an item on the feature request
-list on my project page on sourceforge - or just write a mail to my "develoment
+list on my project page on sourceforge - or just write a mail to my "development
 account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
@@ -28,5 +28,7 @@ coming *next*:
   (mtype) as well - and maybe we rename the table :)
 
 coming *sometimes*:
+- configurable format of counter display: as is in db / in minutes / in hh:mm
+  (same for length field)
 - making out-sourcing of security relevant files (inc/*) possible
   (to e.g. put those files outside the web tree)

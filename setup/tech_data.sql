@@ -42,10 +42,11 @@ INSERT INTO tone VALUES ( '9', 'Dolby 6.1', '6.1');
 INSERT INTO pvp_config (name,value) VALUES ('version','0.1.2');
 
 #
-# default language setting in preferences
+# set default preferences
 #
 
 INSERT INTO preferences (name,value) VALUES ('lang','en');
+INSERT INTO preferences (name,value) VALUES ('charset','iso-8859-1');
 
 #
 # list of languages and their keys
@@ -72,10 +73,10 @@ INSERT INTO languages VALUES ('co','Corsican','No');
 INSERT INTO languages VALUES ('cs','Czech','No');
 INSERT INTO languages VALUES ('cy','Welsh','No');
 INSERT INTO languages VALUES ('da','Danish','No');
-INSERT INTO languages VALUES ('de','German','No');
+INSERT INTO languages VALUES ('de','German','Yes');
 INSERT INTO languages VALUES ('dz','Bhutani','No');
 INSERT INTO languages VALUES ('el','Greek','No');
-INSERT INTO languages VALUES ('en','English / American','No');
+INSERT INTO languages VALUES ('en','English / American','Yes');
 INSERT INTO languages VALUES ('eo','Esperanto','No');
 INSERT INTO languages VALUES ('es','Spanish','No');
 INSERT INTO languages VALUES ('et','Estonian','No');

@@ -30,6 +30,8 @@
            using the translation code (and adding required translations
            to lang_en.sql and lang_de.sql). (Hopefully) finnished for
            most pages (tell me if I forgot something :).
+       <li>setup now autodetects version of already installed database
+           when updating
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

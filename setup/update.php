@@ -71,6 +71,7 @@
  <b>do</b> the real update...</p>
 <?
   } else {
+    $final = "";
     echo "<UL>\n";
 
     ##################################################################
@@ -80,9 +81,10 @@
       case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
                         queryf("lang_en.sql","Activation of English language support");
                         break;
-      default         : echo "Hey - you're already running the latest db version, there's nothing I could update for you!";
+      default         : $final = "Hey - you're already running the latest db version, there's nothing I could update for you!";
     }
     echo "</UL>\n";
+    if ($final) echo "$final<br>\n";
   }
 
 ##################################################################

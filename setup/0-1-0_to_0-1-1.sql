@@ -10,6 +10,6 @@
 CREATE TABLE preferences (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   value varchar(30),
+   value text,
    PRIMARY KEY (id)
 );

@@ -68,10 +68,10 @@ INSERT INTO languages VALUES ('co','Corsican','No');
 INSERT INTO languages VALUES ('cs','Czech','No');
 INSERT INTO languages VALUES ('cy','Welsh','No');
 INSERT INTO languages VALUES ('da','Danish','No');
-INSERT INTO languages VALUES ('de','German','No');
+INSERT INTO languages VALUES ('de','German','Yes');
 INSERT INTO languages VALUES ('dz','Bhutani','No');
 INSERT INTO languages VALUES ('el','Greek','No');
-INSERT INTO languages VALUES ('en','English / American','No');
+INSERT INTO languages VALUES ('en','English / American','Yes');
 INSERT INTO languages VALUES ('eo','Esperanto','No');
 INSERT INTO languages VALUES ('es','Spanish','No');
 INSERT INTO languages VALUES ('et','Estonian','No');
@@ -183,3 +183,10 @@ INSERT INTO languages VALUES ('xh','Xhosa','No');
 INSERT INTO languages VALUES ('yo','Yoruba','No');
 INSERT INTO languages VALUES ('zh','Chinese','No');
 INSERT INTO languages VALUES ('zu','Zulu','No');
+
+# --------------------------------------------------------
+#
+# Set default preferences
+#
+INSERT INTO preferences (name,value) VALUES ('charset','iso-8859-1');
+INSERT INTO preferences (name,value) VALUES ('colors','a%3A4%3A%7Bs%3A15%3A%22page_background%22%3Bs%3A7%3A%22%23ffffff%22%3Bs%3A13%3A%22th_background%22%3Bs%3A7%3A%22%23eeeeee%22%3Bs%3A2%3A%22ok%22%3Bs%3A7%3A%22%230000ff%22%3Bs%3A3%3A%22err%22%3Bs%3A7%3A%22%23ff0000%22%3B%7D');

@@ -87,7 +87,3 @@ INSERT INTO lang VALUES('finnished','en','Finnished');
 INSERT INTO lang VALUES('time_left','en','%1 minutes left');
 
 
-
-
-# when finished, activate language
-UPDATE languages SET available='Yes' WHERE lang_id='en';

@@ -23,7 +23,7 @@
  if ( (isset($sel_entry) && $sel_entry) && (isset($mtype_id) && $mtype_id) ) {
    if ($cass_id) {
      if (!$part) {
-       header("Location: ".$pvp->link->slink($baseurl ."medium.php?mtype_id=$mtype_id&cass_id=$cass_id"));
+       header("Location: ".$pvp->link->slink($base_url ."medium.php?mtype_id=$mtype_id&cass_id=$cass_id"));
      } else {
        $nr       = $cass_id;
        while (strlen($nr)<4) { $nr = "0" . $nr; }

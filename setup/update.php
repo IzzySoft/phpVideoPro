@@ -123,19 +123,25 @@ $pvp->preferences->admin();
     case "0.4.0"    : queryf("0-4-0_to_0-4-1.".$database["type"],"Update from v0.4.0 to v0.4.1");
     case "0.4.1"    : queryf("0-4-1_to_0-4-2.sql","Update from v0.4.1 to v0.4.2");
                       queryf("pslabel.".$database["type"],"Set up of PSLabel tables");
-                      queryf("lang_en.sql","Refresh of English language support");
     case "0.4.2"    :
-    case "0.4.3"    : queryf("0-4-2_to_0-4-4.sql","Update from v0.4.2/3 to v0.4.4");
+    case "0.4.3"    :
+    case "0.4.4"    : queryf("0-4-2_to_0-4-5.sql","Update from v0.4.2/3/4 to v0.4.5");
+                      queryf("lang_en.sql","Refresh of English language support");
+                      $commenturl = 1;
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
   echo "</UL><DIV ALIGN='center'>\n";
   if ($final) echo "$final<br>\n";
+  if ($commenturl)
+    echo "<P>If you want to automatically update your movie comments with the "
+       . "[url] tags introduced by v0.4.5 (see history for details), please "
+       . "follow <A HREF='commenturl.php'>this link</A>.</P>\n";
   echo "<P>If everything went right, you can now proceed to the\n"
       ." <a href=\"../admin/configure.php\">configuration</a> page. In case you"
       ." are upgrading from a version prior to v0.4.1, the previous link will"
       ." lead you to the login screen instead. Use the &quot;admin&quot; user"
-      ." (password is &quot;video&quot;) to login, and first go to the user administration"
+      ." (password is &quot;video&quot;) to login, go to the user administration"
       ." page (to be found in the &quot;admin&quot; menue) and change this"
       ." password first. You'll find more information about this new feature"
       ." within the online help,</p></DIV>\n";

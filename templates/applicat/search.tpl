@@ -30,7 +30,7 @@
  <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center">{fsk_name}</DIV></TD><TD><DIV ALIGN="center">{fsk_min} - {fsk_max}</DIV></TD></TR>
 </TABLE>
 <!-- resultblock = medialist.tpl -->
-
+{hidden}
 </TD></TR>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>

@@ -18,7 +18,18 @@
 
   #-------------------------------------------------------[ process input ]---
   if ($delete) {
-    $db->delete_disktype($delete);
+    $media = $db->get_mediaForDisktype($delete);
+    if ( $mcount = count($media) ) {
+      $save_result = $colors["err"].lang("disktype_contains_media")."<BR>";
+      for ($i=0;$i<$mcount;++$i) {
+        $mt = $db->get_mtypes("id=".$media[$i]->mtype_id);
+        $sname = $mt[0][sname];
+        $save_result .= " '".$pvp->link->linkurl("/change_disktype.php?mtype_id=".$media[$i]->mtype_id."&cass_id=".$media[$i]->cass_id,"$sname ".$media[$i]->cass_id)."'";
+      }
+      $save_result .= "</FONT><BR>";
+    } else {
+      $db->delete_disktype($delete);
+    }
   } elseif ($submit) {
     for ($i=1;$i<=$lines;++$i) {
       $disk_id = "id_$i"; $mtype = "mtype_$i"; $name = "name_$i"; $size = "size_$i"; $lp = "lp_$i"; $rc = "rc_$i";

@@ -384,8 +384,7 @@ switch ($_POST["step"]) {
    $db->next_record();
    $ver = $db->f('value');
    if ( $ver == "0.6.2" ) {
-#     echo "DB version: '$ver'<br>\n";
-#     $db->query("UPDATE pvp_config SET value='0.6.3' WHERE name='version'");
+     $db->query("UPDATE pvp_config SET value='0.6.3' WHERE name='version'");
      header("Location: update.php?oldversion=0.6.3");
    } else {
      header("Location: $base_url");

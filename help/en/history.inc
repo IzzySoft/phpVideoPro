@@ -2,14 +2,14 @@
 # /*  $Id$ */
 
 [title]
-0.6.3 (2004)
+0.6.3 (August 24, 2004)
 [text]
 <ul>
  <li>search function crashed if searched for a non-existing staff member - fixed.
  <li>non-latin charsets (e.g. UTF-8) completely messed up the browsers display - fixed.
  <li>updated Russian translations (please correct my mistakes if any ;)
- <li>converted all (DB) content to UTF-8 - hopefully this way we finally got
-     rid of all those stupid charset problems!
+ <li>converted all (DB/help files/language files) content to UTF-8 - hopefully
+     this way we finally got rid of all those stupid charset problems!
 </ul>
 
 [title]

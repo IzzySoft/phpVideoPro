@@ -143,6 +143,7 @@ $pvp->preferences->admin();
     case "0.6.0"    : queryf("0-6-0_to_0-6-1.".$database["type"],"Update from v0.5.x to v0.6.1");
                       queryf("lang_en.sql","Refresh of English language support");
     case "0.6.1"    : queryf("0-6-1_to_0-6-2.".$database["type"],"Update from v0.6.1 to v0.6.2");
+    case "0.6.2"    : $db2utf8 = TRUE;
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
@@ -152,7 +153,14 @@ $pvp->preferences->admin();
     echo "<P>If you want to automatically update your movie comments with the "
        . "[url] tags introduced by v0.4.5 (see history for details), please "
        . "follow <A HREF='commenturl.php'>this link</A>.</P>\n";
-  echo "<P>If everything went right, you can now proceed to the\n"
+  if ($db2utf8) {
+   echo "<P ALIGN='justify'>At this stage we need to convert all database content to the "
+       ."UTF-8 character set. Please follow <a href='db2utf8.php'>this link</a> "
+       ."now for this process. You only need to do this once, and you will be "
+       ."guided through that process. More details (also about the background) "
+       ."you will find on the page the link points to.</P>";
+  } else {
+   echo "<P>If everything went right, you can now proceed to the\n"
       ." <a href=\"../admin/configure.php\">configuration</a> page. In case you"
       ." are upgrading from a version prior to v0.4.1, the previous link will"
       ." lead you to the login screen instead. Use the &quot;admin&quot; user"
@@ -160,6 +168,7 @@ $pvp->preferences->admin();
       ." page (to be found in the &quot;admin&quot; menue) and change this"
       ." password first. You'll find more information about this new feature"
       ." within the online help,</p></DIV>\n";
+  } // end db2utf8
 }
 
 #=========================================================[ Closing page ]===

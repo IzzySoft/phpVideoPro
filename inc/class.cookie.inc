@@ -36,7 +36,8 @@
     * @return boolean success
     */
    function set($name,$value) {
-   $expire = time() + $this->expire;
+     if (!$this->expire) { $expire = 0; }
+       else { $expire = time() + $this->expire; }
      return setcookie($name,$value,$expire);
    }
 

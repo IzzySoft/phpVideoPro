@@ -2,15 +2,15 @@
 # /*  $Id$ */
 
 [title]
-0.4.6 (2003)
+0.4.6 (April 2003)
 [text]
 <ul>
  <li>media statistics just reported count of r/w media instead of all media -
      fixed
  <li>hopefully fixed the stupid issue that no semi-colon could be used in field
-     content on imported files, since db:get_sql assumed end-of-sql-command then
+     content on imported files, since db::get_sql assumed end-of-sql-command then
  <li>in database backup, semi-colons are no longer replaced by colons now since
-     import of those is fixed by v0.4.5
+     import of those is fixed by now
  <li>enhanced backup function (see admin menu): alternatively to a complete
      database backup, there are two more options now: backup movie relevant
      data only, and the same plus having the old data purged before execution
@@ -21,13 +21,15 @@
      file by clicking on the flag when you feel there's something missing in
      your language's file. If you are right, feel free to update your language's
      file and send it to me :-)
+ <li>nesting of [url][img]picture[/img][/url] tags now possible in the way
+     displayed here (not vice-versa ;)
 </ul>
 
 [title]
 0.4.5 (April 11, 2003)
 [text]
 This is the "Passover" version for this year: now we clean up with the "Chametz"
-possibly entered by some users (see first and secon item below):
+possibly entered by some users (see first and second item below):
 <ul>
  <li>Added support for several special tags within the comment field: You now
      may easily add thumbnails by using the [img] and [imgr] tags (the first

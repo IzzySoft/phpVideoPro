@@ -26,6 +26,14 @@ INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (6,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (7,2,'bible_side','bibelfilm_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (8,1,'bible_top','bibelfilm_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (9,2,'comedy_side','comedy_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (10,1,'comedy_top','comedy_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (11,2,'docu_side','docu_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (12,1,'docu_top','docu_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (13,2,'drama_side','drama_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (14,1,'drama_top','drama_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (15,2,'trick_side','trick_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (16,1,'trick_top','trick_top.eps','common_top.ps',0,0,273,160);
 
 #
 # Table structure and data for 'label form definition'

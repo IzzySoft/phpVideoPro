@@ -13,6 +13,18 @@
 
   /* $Id$ */
 
+ #=======================================================[ debug settings ]===
+ # which actions to log. Empty string turns off debug feature. Otherwise each
+ # letter represents an action to debug:
+ # D - Database actions (this enables Debug for the database class only and may cause
+ #     duplicate error messages if used together with "S")
+ # E - Errors
+ # S - SQL statements
+ # V - Variables set
+ # W - Warnings
+ $debug["log"]  = "EW";
+ if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
+
  #=========================================[ retrieve browser information ]===
  include($base_path . "inc/class.browser.inc");
  $browser = new browser;
@@ -56,17 +68,16 @@
  $form["addon_tech"]    = "class='techinput'";
 
  #=============================================[ read preferences from DB ]===
+ $pvp->config->db->type = strtolower($database["type"]);
  $pvp->db_include = dirname(__FILE__) . "/class.db_" . $database["type"] . ".inc";
  include ($pvp->db_include);
  include (dirname(__FILE__) . "/class.db.inc");
- $pvp->config->db->type = strtolower($database["type"]);
  $db->Host     = $pvp->config->db->host     = $database["host"];
  $db->Database = $pvp->config->db->database = $database["database"];
  $db->User     = $pvp->config->db->user     = $database["user"];
  $db->Password = $pvp->config->db->password = $database["password"];
- if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
- if (!$pvpinstall) {
+ if (!is_set($pvpinstall)) {
   $pvp->config->enable_cookies = $db->get_config("enable_cookies");
   $pvp->config->expire_cookies = $db->get_config("expire_cookies");
   $pvp->config->session_purgetime = $db->get_config("session_purgetime");
@@ -77,32 +88,12 @@
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");
   if ($pre) $version .= $pre;
-  if ($runupdate) {
-   $charset = 'iso-8859-15';
-  } else {
-   $plang  = $pvp->preferences->get("lang");
-   $db->query("SELECT charset FROM languages WHERE lang_id='$plang'");
-   $db->next_record();
-   $charset  = $db->f('charset');
-   if (!strlen($charset)) $charset = 'iso-8859-15';
-   unset ($plang);
-  }
+  $charset = 'utf-8';
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
   $pvp->pstpl_dir = $base_path . "pslabels";
   $pvp->backup_dir = $backup_path;
   $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");
   $defaults["scolor"] = $pvp->preferences->get("default_movie_colorid");
  }
-
- #=======================================================[ debug settings ]===
- # which actions to log. Empty string turns off debug feature. Otherwise each
- # letter represents an action to debug:
- # D - Database actions (this enables Debug for the database class only and may cause
- #     duplicate error messages if used together with "S")
- # E - Errors
- # S - SQL statements
- # V - Variables set
- # W - Warnings
- $debug["log"]  = "EW";
 
 ?>

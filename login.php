@@ -15,11 +15,11 @@
  $page_id = "login";
  include("inc/includes.inc");
  if ($sess_id &!$pvp->session->verify($sess_id)) $login_hint = "session_expired";
- if ($redir) {
+ if (is_set($redir)) {
    $url = $redir;
  }
  if (!strlen($url))  $url = $base_url . "/index.php";
- if ($login_hint) $login_hint = lang("$login_hint");
+ if (is_set($login_hint)) $login_hint = lang("$login_hint");
  if ($sess_id && $logout) {
    $pvp->session->end($sess_id);
    if ($pvp->config->enable_cookies) $pvp->cookie->delete("sess_id");
@@ -42,7 +42,7 @@
 
  $t->set_file(array("template"=>"login.tpl"));
  $t->set_var("formtarget",$PHP_SELF);
- $t->set_var("login_hint",$login_hint);
+ if ( is_set($login_hint)) $t->set_var("login_hint",$login_hint);
  $t->set_var("welcome",lang("welcome"));
  $t->set_var("head_login",lang("login")."<INPUT TYPE='hidden' NAME='url' VALUE='$url'>");
  $t->set_var("head_passwd",lang("password"));

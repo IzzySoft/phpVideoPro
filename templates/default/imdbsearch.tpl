@@ -1,3 +1,4 @@
+<H2 Align=Center>{listtitle}</H2>
 <!-- BEGIN resultblock -->
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
  <!-- BEGIN resitemblock -->

@@ -26,7 +26,7 @@
   $indent = "&nbsp;&nbsp;";
 
   #-=[ Sums ]=-
-  $t->set_var("listtitle",lang("db_stats") . "</b>");
+  $t->set_var("listtitle",lang("db_stats"));
   $t->set_var("list_head",lang("stat_counts"));
   $t->set_var("item_name","<b>" . lang("movies") . "</b>");
   $t->set_var("item_input",$stats['movies']);

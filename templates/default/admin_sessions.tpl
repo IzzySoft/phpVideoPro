@@ -1,8 +1,8 @@
 <H2 ALIGN="center">{listtitle}</H2>
 <TABLE ALIGN="center" BORDER="1">
-   <TR><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">
+   <TR><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">{hidden}
        <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{old_sess} <INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TD>
-       </FORM><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">
+       </FORM><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">{hidden}
        <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{ended_sess} <INPUT TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></TD></FORM></TR>
 </TABLE>
 <BR>

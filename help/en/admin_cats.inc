@@ -7,7 +7,8 @@ Administration of categories
 
 [text]
 Here you can edit the categories. If you don't like the translation, just
-enter a different one into the "*category#" column.
+enter a different one into the "*category#" column. If you want to add a new
+category, just fill in your data into the last (empty) line of the table.
 
 [text]
 One remaining risk is, that with the next update of phpVideoPro you might get

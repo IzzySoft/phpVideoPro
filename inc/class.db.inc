@@ -1128,7 +1128,8 @@
        $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
        $movie[color] = lang($this->f('cname')); $movie[color_short] = $this->f('csname');
        $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
-       $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
+       $movie[cat1int] = $this->f('cat1name'); $movie[cat2int] = $this->f('cat2name'); $movie[cat3int] = $this->f('cat3name');
+       $movie[cat1] = lang($movie[cat1int]); $movie[cat2] = lang($movie[cat2int]); $movie[cat3] = lang($movie[cat3int]);
 
        $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",

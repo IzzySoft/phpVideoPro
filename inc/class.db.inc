@@ -609,7 +609,7 @@
        }
      }
      $movie[actors] = $movie[actors12];
-     if ( strlen($movie[$actors35]) ) {
+     if ( strlen($movie[actors35]) ) {
        if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
        $movie[actors] .= $movie[actors35];
      }

@@ -90,7 +90,7 @@
    }
 
    # calculate position of the text on the label field
-   function get_textpos($text,$field,&$font) {
+   function get_textpos($text,$field,$font) {
      $length = strlen($text);
      $fieldwidth = $field[2] - $field[0];
      do { // calculate position of the text on the label
@@ -102,19 +102,24 @@
    }
 
    function write_text($text,$field) {
+     $font = $this->font;
      for ($i=0;$i<count($text);$i++) { // find longest line
-       $font[$i] = $this->font;
-       $x[$i]    = $this->get_textpos($text[$i],$field,$font[$i]);
-       ++$font[$i];
+       $tfont = $font;
+       $x[$i] = $this->get_textpos($text[$i],$field,&$tfont);
+       if ($tfont < $font) $font = $tfont;
+     }
+     ++$font;
+     for ($i=0;$i<count($text);$i++) { // now position the text
+       $x[$i] = $this->get_textpos($text[$i],$field,$font);
      }
      $vmidth = ceil($field[3] - $field[1]) / 2;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
-     $y = $vmidth - (imagefontheight($this->font) * $lines / 2);
+     $y = $vmidth - (imagefontheight($font) * $lines / 2);
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
      for ($i=0;$i<count($text),$i<4;$i++) {
-       imagestring($this->label, $font[$i], $x[$i], $y, "$text[$i]", $color);
-       $y += imagefontheight($this->font);
+       imagestring($this->label, $font, $x[$i], $y, "$text[$i]", $color);
+       $y += imagefontheight($font);
      }
    }
 

@@ -8,6 +8,10 @@
  <li>on a new installation, the pvp_options table (introduced with v0.6.1) was
      not created
  <li>unused categories can now be disabled (hidden)
+ <li>user-based preferences are now stored into (and read from) a special table
+     if no cookies are used (either disabled in the setup or not supported from
+     the browser/user). This way system defaults should in no case be overwritten
+     any more.
 </ul>
 
 [title]

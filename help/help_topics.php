@@ -31,6 +31,7 @@
     li("taperest_filtered",2);
    li("print");
     li("label",2);
+    li("listgen",2);
   headline("other_pages");
    li("view_entry");
   headline("howto");

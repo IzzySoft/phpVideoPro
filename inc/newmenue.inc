@@ -5,6 +5,11 @@ body {
   margin: 0px;
 }
 
+.fixme {
+  position: fixed;
+  width: 100%;
+}
+
 #menuBar {
   background-color: #c0c0c0;
   border-style: solid;
@@ -23,7 +28,6 @@ body {
   text-align: left;
   width: 100%;
   z-index: 100;
-  position: fixed;
 }
 
 a.menuButton, a.menuButtonActive {
@@ -239,6 +243,7 @@ function getPageOffsetTop(el) {
 
 <!-- Tags for the menu bar. -->
 
+<div class="fixme">
 <div id="menuBar">
 <? if ($pvp->auth->admin) { ?>
  <a class="menuButton"
@@ -356,3 +361,4 @@ function getPageOffsetTop(el) {
 
 <!-- div id="demoBox" style="margin:24px;position:relative;top:48px;">
 </div -->
+</div>

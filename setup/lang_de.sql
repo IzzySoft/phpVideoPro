@@ -403,6 +403,8 @@ INSERT INTO lang VALUES ('source','de','Quelle','');
 INSERT INTO lang VALUES ('staff','de','Besetzung','');
 INSERT INTO lang VALUES ('start_page','de','Startseite','');
 INSERT INTO lang VALUES ('start_pvp','de','phpVideoPro starten','');
+INSERT INTO lang VALUES ('state_active','de','aktiviert','');
+INSERT INTO lang VALUES ('state_inactive','de','deaktiviert','');
 INSERT INTO lang VALUES ('stats','de','Statistiken','');
 INSERT INTO lang VALUES ('stat_categories','de','Kategorien (benutzt/alle)','');
 INSERT INTO lang VALUES ('stat_counts','de','Summen','');

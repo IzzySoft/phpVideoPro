@@ -523,3 +523,5 @@ INSERT INTO lang VALUES ('lang_zu','en','Zulu','language name');
 INSERT INTO lang VALUES ('backup_file_unreadable','en','Cannot read the backup file - make sure the file permissions are set correctly!','Error message on backup screen during restore');
 INSERT INTO lang VALUES ('locale','en','Locale','Name of the Locale language (for translations of menus etc.)');
 INSERT INTO lang VALUES ('admin_avlang','en','Edit availabilty of languages for audio and subtitle','Link to admin screen');
+INSERT INTO lang VALUES ('state_active','en','active','status e.g. of a language availability for audio/subtitle');
+INSERT INTO lang VALUES ('state_inactive','en','inactive','status e.g. of a language availability for audio/subtitle');

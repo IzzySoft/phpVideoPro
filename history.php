@@ -11,7 +11,7 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.1.2 (July 2001)</b><br>
+  <LI><b>0.1.2 (July 17, 2001)</b><br>
       alpha release "freedom":
       <ul>
        <li>taperest list showed up wrong media names (and movie titles):
@@ -35,6 +35,7 @@
            as well
        <li>moved main part of inc/config.inc into db for easier maintenance
            by new configuration page
+       <li>some minor bugfixes/cosmetical changes
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

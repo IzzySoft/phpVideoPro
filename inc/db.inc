@@ -395,21 +395,13 @@
      $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
      $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
      $movie[music_] = $name;
-     $name = $this->format_name( array(name=>$this->f('a1name'),firstname=>$this->f('a1fname')) );
-     $movie[actor1] = $name[fullname]; $movie[actor1_rev] = $name[reverse];
-     $movie[actor_1] = $name;
-     $name = $this->format_name( array(name=>$this->f('a2name'),firstname=>$this->f('a2fname')) );
-     $movie[actor2] = $name[fullname]; $movie[actor2_rev] = $name[reverse];
-     $movie[actor_2] = $name;
-     $name = $this->format_name( array(name=>$this->f('a3name'),firstname=>$this->f('a3fname')) );
-     $movie[actor3] = $name[fullname]; $movie[actor3_rev] = $name[reverse];
-     $movie[actor_3] = $name;
-     $name = $this->format_name( array(name=>$this->f('a4name'),firstname=>$this->f('a4fname')) );
-     $movie[actor4] = $name[fullname]; $movie[actor4_rev] = $name[reverse];
-     $movie[actor_4] = $name;
-     $name = $this->format_name( array(name=>$this->f('a5name'),firstname=>$this->f('a5fname')) );
-     $movie[actor5] = $name[fullname]; $movie[actor5_rev] = $name[reverse];
-     $movie[actor_5] = $name;
+     for ($i=1;$i<6;$i++) { // actor 1..5: [actor1],[actor1_rev],[actor_1]...
+       $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
+       $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
+       $name = $this->format_name( array(name=>$this->f("$dbname"),firstname=>$this->f("$dbfname")) );
+       $movie[$vname] = $name[fullname]; $movie[$vrev] = $name[reverse];
+       $movie[$aname] = $name;
+     }
      $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
      $movie[color] = $this->f('cname'); $movie[color_short] = $this->f('csname');
      $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
@@ -534,6 +526,28 @@
        $list[] = $movie;
      }
      return $list;
+   }
+
+   ############################################################################
+   # get last movie numbers for each media type
+   function get_lastmovienum() {
+     $mtypes = $this->get_mtypes();
+     for ($i=0;$i<count($mtypes);$i++) {
+       $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+       $this->next_record();
+       $lastnum[$i][mtype]   = $mtypes[$i][sname];
+       $lastnum[$i][mtype_id]= $mtypes[$i][id];
+       $lastnum[$i][cass_id] = $this->f('max_id');
+       while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
+     }
+     for ($i=0;$i<count($lastnum);$i++) {
+       $this->dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
+       $this->next_record();
+       $lastnum[$i][part]    = $this->f('max_part');
+       while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }
+       $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
+     }
+     return $lastnum;
    }
 
    ############################################################################

@@ -20,7 +20,7 @@
   $t->set_block("list","notfoundblock","notfoundlist");
   $filter = get_filters();
   if (!$start) $start = 0;
-  include("inc/nextmatch.inc");
+  include("inc/class.nextmatch.inc");
 
   // retrieve all staff members
   $query = "\$db->get_visstafflist($stafftype,\"$filter\",$start)";

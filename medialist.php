@@ -17,7 +17,7 @@
   $t = new Template($pvp->tpl_dir);
   $filter = get_filters();
   if (!$start) $start = 0;
-  include("inc/nextmatch.inc");
+  include("inc/class.nextmatch.inc");
 
   $t->set_file(array("list"=>"medialist.tpl"));
   $t->set_block("list","mdatablock","mdatalist");

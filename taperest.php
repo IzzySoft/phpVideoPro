@@ -17,7 +17,7 @@
   $t = new Template($pvp->tpl_dir);
   if ($usefilter) $filter = $pvp->preferences->filter; else $filter = "";
   if (!$start) $start = 0;
-  include("inc/nextmatch.inc");
+  include("inc/class.nextmatch.inc");
 
   if (!$minfree) {
     $t->set_file(array("taperest_init"=>"taperest_init.tpl"));

@@ -12,12 +12,13 @@ available - some of them are only reachable via the admin menue's
 while others are somehow "preferences" that should be based on an user's wishes.
 
 [text]
-Starting with v0.3.8, phpVideoPro optionally can use cookies for the preferences
-management. In this case, you set up defaults via the "*admin#" -&gt;
+phpVideoPro optionally can use cookies for the preferences management - which is
+strongly recommended. For this, you set up defaults via the "*admin#" -&gt;
 "*configuration#" menue (make sure to enable cookies here), and advice the users
 to use the "*edit#" -&gt; "*preferences#" menue to set their preferences
-(cookies then are used for filter settings as well). You may then protect your
-admin/ directory by an ".htaccess" file to give access to authorized users only.
+(cookies then are used for filter settings as well). The files in the <code>admin/</code>
+directory are protected by the session managment, i.e. users without the admin
+privilege cannot access them via their browsers.
 
 [title]
 *language_settings#
@@ -25,9 +26,9 @@ admin/ directory by an ".htaccess" file to give access to authorized users only.
 [text]
 <b>*scan_new_lang_files#:</b> To manage the languages installed as well
 as additional available, phpVideoPro uses its database. So to add a new
-language, one has to update this. This is done using SQL files which I for
-simplicity will call "language files" from now on. A new language file has to
-be introduced to the system, which is done done by setting this checkbox (and
+language, one has to import the corresponding language file (a plain text file
+containing the required SQL statements). Therefore a new language file has to be
+introduced to the system, which is done done by setting this checkbox (and
 submitting the form, of course :). See "*select_add_lang#" below, as well as
 "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>" for details).
 
@@ -65,9 +66,8 @@ a "fall-back" to the English phrase. If the English phrase is missing as well
 (which should not happen, unless the import of the English lang file failed),
 there's some "debug phrase" displayed from which you can guess the content.
 If this should happen, and you are sure it's not your fault (e.g. since you
-removed the English phrases from the db manually ;) - please drop
-<A HREF="mailto:izzysoft@qumran.org">me</A> a note, quoting the missing phrase
-and where the error occured.
+removed the English phrases from the db manually ;) - please drop me a note,
+quoting the missing phrase and where the error occured.
 
 [title]
 *config_media#
@@ -148,10 +148,9 @@ cookies. After the timeout, the session falls back into guest mode.
 *general#
 
 [text]
-<b>*template_set#:</b> Starting with v0.1.5, phpVideoPro is based on templates.
-I (the author) just provided an initial template set; but as soon as there are
-additional template sets available (which will only happen when <b>YOU</b>
-write them - I'm not a good designer), this is the place to make your choice.
+<b>*template_set#:</b> phpVideoPros look-and-feel is based on templates. This
+offers you some feature you may know as "skins" from XMMS or WinAmp. Here you
+can decide which skin to use.
 
 [text]
 <b>*imdb_url#:</b> You can lookup additional data for a selected movie (or staff
@@ -172,29 +171,22 @@ just drop me a note and I will add them asap!
 sheets, we need to know the accurate offset of the printer to use. If your
 printer is not in the list, you may first try one of the provided printers:
 many of them are compatible according to this issue (and there are not so many
-possibilities). When you've found one of them working, please report this to
-<A HREF="mailto:izzysoft@qumran.org">me</A>: future versions of phpVideoPro
-may have a compatibility list included then.<BR>
-If, however, you find no compatible printer here, we have to create a new one.
-At the moment, this is only possible by manipulating the database directly (I
-may provide an interface for this in the future, but I don't promise). Practised
-users go for the table "printers", copy one of the existing entries, and play
-with the values of the columns "top_offset" and "left_offset". Once you've got
-it working, don't forget to send me this data together with the printers name.
-<b><i>ATTENTION:</i></b> changes made to this table may get lost with one of
-the next updates! So make sure to send those to <A HREF="mailto:izzysoft@qumran.org>me</A>
-that I may include them!
+possibilities). When you've found one of them working, please report this to me:
+future versions of phpVideoPro may have a compatibility list included then.<BR>
+If, however, you find no compatible printer here, you have to create a new one.
+For this issue, there are forms available at the <i>*admin_printers#</i> item
+in the admin menu (see <i><A HREF="{PHP_SELF}?topic=admin_printers">here</A></i>
+for more details).
 
 [text]
-<b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with
-the "*medialist#" menue item, always in full length, i.e. with all records found
-in the database. Having a large collection, this not only lead to long loading
-times for the page, but the long list could also be confusing for one or the
-other person :-) Thus starting with version 0.2.3, phpVideoPro supplies the
-possibility to show those lists in pieces whose size you can specify here:
-How many lines do you wish to be displayed in those lists. Navigation is
-provided by four buttons that bring you to the first/last resp. previous/next
-page of the complete list.
+<b>*display_limit#:</b> The very first versions of phpVideoPro displayed lists,
+e.g. with the "*medialist#" menue item, always in full length, i.e. with all
+records found in the database. Having a large collection, this not only lead to
+long loading times for the page, but the long list could also be confusing for
+one or the other person :-) Thus phpVideoPro now supplies the possibility to
+show those lists in pieces whose size you can specify here: How many lines do
+you wish to be displayed in those lists. Navigation is provided by four buttons
+that bring you to the first/last resp. previous/next page of the complete list.
 
 [text]
 I have to admit that with the staff lists, this feature may seem to work in a
@@ -212,11 +204,9 @@ number of lines, a form feed is inserted to start a new page. You can override
 this default on the "*listgen#" form.
 
 [text]
-<b>*date_format#:</b> Specifies the format the date should be presented in. This
-is new with v0.2.6 of phpVideoPro, but meanwhile there should be no more
-columns/fields ignoring this value (if you find any missings, please report them
-to me!). It shall be used throughout the entire program for listings, forms and
-anything that contains a date field.
+<b>*date_format#:</b> Specifies the format the date should be presented in.
+There may still be some forms/pages remaining that do not honour this. If you
+find one, please report to me for correction.
 
 [text]
 <b>*site_info#:</b> Starting with v0.3.5, there's a user configurable additional

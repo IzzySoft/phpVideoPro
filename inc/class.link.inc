@@ -51,6 +51,21 @@
     return $target;
   }
 
+  /** Create a complete HREF for an URL and description
+   * @class link
+   * @method linkurl
+   * @param string target url
+   * @param string desc url-desc
+   * @param string opt options for the HREF tag
+   * @return string target complete href tag
+   */
+  function linkurl($target,$desc,$opt="") {
+    $url = "<A HREF='" .$this->slink($target). "'";
+    if ($opt) $url .= " $opt";
+    $url .= ">$desc</A>";
+    return $url;
+  }
+
   ############################################################################
   # IMDB link creation
   /** Create url string to a persons entry in imdb (privat - called by formImdbPerson only)

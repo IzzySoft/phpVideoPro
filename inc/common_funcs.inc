@@ -211,4 +211,40 @@
    }
    return $trans;
  }
+
+class common {
+
+   var $date;
+
+   function common() {
+     $this->initDate();
+   }
+
+   function initDate($date=0) {
+     switch (strtolower(gettype($date))) {
+       case "string"  : $date[year] = substr($date,0,4);
+                        $date[mon]  = substr($date,4,2);
+                        $date[mday] = substr($date,6,2);
+       case "array"   : $this->date = getdate( mktime(0,0,0,$date[mon],$date[mday],$date[year]) ); break;
+       default        : $this->date = getdate(); break;
+     }
+     if (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
+     if (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
+     $this->date[string] = $this->date[year] . $this->date[mon] . $this->date[mday];
+   }
+
+   function setRecDate($date) {
+     $this->initDate($date);
+   }
+
+   function getRecDate($format) {
+     switch($format) {
+       case "string" : return $this->date[string]; break;
+       default       : return $this->date; break;
+     }
+   }
+
+ } // end class common
+ 
+ $pvp->common = new common;
 ?>

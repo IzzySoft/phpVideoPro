@@ -55,7 +55,11 @@
     $mid_count = count($movie_id);
     for ($k=0;$k<$mid_count;$k++) {
       $movie = $db->get_movie($movie_id[$k]);
-      $mlist[$i][$k]    = $movie[title] . " (" . $movie[cat1] . ")";
+      $cass_id = $movie[cass_id];
+      while ( strlen($cass_id) < 4 ) { $cass_id = "0".$cass_id; }
+      $part = $movie[part];
+      if ( strlen($part) < 2 ) $part = "0".$part;
+      $mlist[$i][$k]    = "<A HREF='edit.php?mtype_id=".$movie[mtype_id]."&cass_id=".$movie[cass_id]."&part=".$movie[part]."&nr=$cass_id"."-".$part."'>".$movie[mtype_short] . " $cass_id" . "-" . $part . "</A>: " . $movie[title] . " (" . $movie[cat1] . ")";
       $mlist[$i][mtype] = $movie[mtype_short];
       debug("V","<TR><TD colspan=4>Title: '". $mlist[$i][$k] . "', Type: '" . $mlist[$i]["mtype"] . "'</TD></TR>\n");
       $t->set_var("movies",$mlist[$i][$k]);

@@ -10,7 +10,7 @@ ALTER TABLE cass CHANGE id id INT (4) NOT NULL;
 ALTER TABLE cass ADD PRIMARY KEY (id,mtype_id);
 
 # version update
-#UPDATE pvp_config SET value='0.3.4' WHERE name='version';
+UPDATE pvp_config SET value='0.3.4' WHERE name='version';
 
 # prepare default language update
 DELETE FROM lang WHERE lang='en';

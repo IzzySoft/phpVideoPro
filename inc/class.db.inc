@@ -307,15 +307,18 @@
    ############################################################################
    # User managment
    ############################################################################
-   /** Get all users
+   /** Get users
     * @class sql
-    * @method get_userlist
+    * @method get_users
+    * @param optional integer user_id
     * @return mixed array users (array of objects;
     *  properties: id,login,pwd (md5 hash), admin,browse,ins,upd,del, comment)
     *  or FALSE if no users in DB
     */
-   function get_userlist() {
-     $this->query("SELECT id,login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users");
+   function get_users($user_id=0) {
+     $query = "SELECT id,login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users";
+     if ($user_id) $query .= " WHERE id=$user_id";
+     $this->query($query);
      $i=0;
      while ( $this->next_record() ) {
        $users[$i]->id     = $this->f('id');
@@ -328,6 +331,9 @@
        $users[$i]->del    = $this->f('del');
        $users[$i]->comment= $this->f('comment');
        ++$i;
+     }
+     if ($user_id && $i) {
+       return $users[0];
      }
      if ($i) { return $users; } else { return FALSE; }
    }

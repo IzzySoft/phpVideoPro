@@ -48,6 +48,7 @@
    li("tplset_applicat");
    li("start_page");
    li("view_entry");
+   li("imdbsearch");
    li("media_change");
    li("change_rc");
    li("disktype_change");

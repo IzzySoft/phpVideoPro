@@ -19,7 +19,8 @@ coming *around* 0.2.0 (not yet sure if before or after):
 - fields for counter settings (start/end of movie for old tape recorders
   (feature request by user via sourceforge))
 - splitting date field into day-month-year
-- translating the genres!
+- translating categories/color format
+- check FSK input (must be INT, not VARCHAR)
 
 coming *after* 0.2.0:
 - limit list display to user-definable amount of data sets
@@ -27,3 +28,4 @@ coming *after* 0.2.0:
 - label creating and printing function
 - search function
 - new database field: "lent to" (to find out where your media *really* are :)
+- menue items for "change MediaNr" and "change MediaType"

@@ -7,6 +7,7 @@
 <ul>
  <li>brought help files up-to-date
  <li>fixed a minor bug concerning label's content
+ <li>some minor fixes for PostgreSQL and the installation pages
 </ul>
 
 [title]

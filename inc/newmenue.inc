@@ -275,6 +275,7 @@ function getPageOffsetTop(el) {
 
 <div id="adminMenu" class="menu">
 <a class="menuItem" href="<?=$base_url ?>admin/cats.php"><?=lang("admin_cats") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/filters.php"><?=lang("admin_filter") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/orphans.php"><?=lang("admin_orphans") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/backup_db.php"><?=lang("backup_db") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/configure.php"><?=lang("configuration") ?></a>
@@ -289,7 +290,7 @@ function getPageOffsetTop(el) {
 </div>
 
 <div id="filterMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("set_filter") ?></a>
+<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("filter") ?></a>
 <a class="menuItem" href="<?=$base_url ?>setfilter.php?reset=1"><?=lang("unset_filter") ?></a>
 </div>
 

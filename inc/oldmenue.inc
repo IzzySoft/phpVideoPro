@@ -9,6 +9,7 @@
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$base_url?>admin/cats.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_filter")?>", "<?=$base_url?>admin/filters.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$base_url?>admin/orphans.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$base_url?>admin/backup_db.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$base_url?>admin/configure.php"));

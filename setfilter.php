@@ -14,7 +14,9 @@
 
  #========================================================[ initial setup ]===
  $page_id = "filter";
- include("inc/includes.inc");
+ if ($admin) $root = "../";
+ include($root . "inc/includes.inc");
+ if ($admin) $pvp->preferences->admin();
 
  function sort_ar($a1,$a2) {
    if($a1[name]<$a2[name]) return -1;
@@ -95,7 +97,7 @@
 </HEAD></HTML><? */
  }
 
- $filter = $pvp->preferences->get("filter");
+ $filter = $pvp->preferences->retrieve_filter();
  if ( $filter ) { // there are already filters defined
    $filter = unserialize ( rawurldecode( $filter ) );
  }
@@ -281,7 +283,7 @@
  $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
  #=========================================================[ build target ]===
- include("inc/header.inc");
+ include($root . "inc/header.inc");
  $t->set_var("form_target",$PHP_SELF);
  $t->set_var("listtitle",lang("filter_setup"));
  $t->set_var("mtype_name",lang("mediatype"));
@@ -299,5 +301,5 @@
  $t->set_var("composer_name",lang("composer"));
  $t->pparse("out","t_list");
 
- include("inc/footer.inc");
+ include($root . "inc/footer.inc");
 ?>

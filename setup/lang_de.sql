@@ -260,3 +260,4 @@ INSERT INTO lang VALUES('day','de','Tag');
 INSERT INTO lang VALUES('week','de','Woche');
 INSERT INTO lang VALUES('month','de','Monat');
 INSERT INTO lang VALUES('preferences','de','Einstellungen');
+INSERT INTO lang VALUES('admin_filter','de','Default Filtereinstellung');

@@ -30,5 +30,20 @@ with some simple text editor (or save it to disk), and just print it from
 there - it does not look that fine as the above result may look, but it's
 at least somehow formatted plus you get your data on paper in a fast way.
 
+[title]
+Form fields
+
+[text]
+<b>*list#:</b> The list you want to generate (self explainig)<br>
+<b>*format#:</b> ASCII is a formatted list (spartanic style) and intended to
+be printed directly (either after storing to disk or opening with some text
+editor). CSV is a plain-text file with all fields separated by tabs. This is
+intended to import into your favorite word processor or spreadsheet for
+formatting and printing.<br>
+<b>*line_count#</b>: How many lines of (plain) text fit on one page. The
+default value is taken from the preferences (see
+<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>). The content of
+this field is ignored for CSV lists.
+
 [eof]
 

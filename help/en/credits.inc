@@ -22,11 +22,11 @@ Development Crew
  <LI>all the language support files generators: Tsvetanka Stoyanova for
      Bulgarian, Didier Clerc &lt;didier-clerc AT isuisse DOT com&gt; for French,
      Alessandro Danti and Jason Reaper for Italian, Knut Fjellheim for Norwegian,
-     Leszek Boroch and Jacek Wolski for Polish, Tom Albers for Dutch, Tony
-     Granberg for Swedish, Pablo Sanchez and Jaime Valdés-Pagés for Spanish,
-     Denis Shvidkiy for Russian, Shalom Pollack for Hebrew (he deserves a very
-     special credit for his hard work and patience - took us some special
-     lessons with this special and holy tongue!)</LI>
+     Leszek Boroch and Jacek Wolski for Polish, Tom Albers and Ron Dekker for
+     Dutch, Tony Granberg for Swedish, Pablo Sanchez and Jaime Valdés-Pagés for
+     Spanish, Denis Shvidkiy for Russian, Shalom Pollack for Hebrew (he
+     deserves a very special credit for his hard work and patience - took us
+     some special lessons with this special and holy tongue!)</LI>
  <LI>SourceForge and Freshmeat for hosting the project (well, and some other
      sites promoting it)</LI>
 </UL>

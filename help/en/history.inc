@@ -14,6 +14,7 @@
      redirection to the originally requested page did still not work with
      register_globals=off - fixed.
  <li>added backup/restore for categories
+ <li>updated Dutch translations (Thanx to Ron Dekker)
 </ul>
 
 [title]

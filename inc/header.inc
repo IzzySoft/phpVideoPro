@@ -2,10 +2,11 @@
 
 /* $Id$ */
 
-  include("inc/config.inc");
-  include("inc/config_internal.inc");
-  include("inc/common_funcs.inc");
-  include("inc/sql_helpers.inc");
+  $inc_path = dirname(__FILE__);
+  include($inc_path . "/config.inc");
+  include($inc_path . "/config_internal.inc");
+  include($inc_path . "/common_funcs.inc");
+  include($inc_path . "/sql_helpers.inc");
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
     case "about"     : $pagename .= " [ " . lang("about") . " ]"; break;
@@ -76,7 +77,7 @@
 
   dhtmlMenu = new NavBarMenu(62, 80);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "<? echo $base_url ?>help.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "<? echo $base_url ?>help/index.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "<? echo $base_url ?>about.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "<? echo $base_url ?>history.php"));
   myNavBar1.addMenu(dhtmlMenu);

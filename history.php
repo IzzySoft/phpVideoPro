@@ -11,6 +11,10 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
+  <li><b>0.1.3 (2001)</b><br>
+      <ul>
+       <li>started implementing help system
+      </ul>
   <LI><b>0.1.2 (July 17, 2001)</b><br>
       alpha release "freedom":
       <ul>

@@ -169,17 +169,21 @@
    }
    return translate("$key",$vars);
  }
- function translate($key,$vars=FALSE) {
+ function get_lang() {
    GLOBAL $db;
-   $trans = $key;
-   if (!$vars) $vars=array();
    dbquery("SELECT value FROM preferences WHERE name='lang'");
    if ( $db->next_record() ){
      $lang = $db->f('value');
    } else {
      $lang = "en";
    }
-   $lang = strtolower($lang);
+   return $lang;
+ }
+ function translate($key,$vars=FALSE) {
+   GLOBAL $db;
+   $trans = $key;
+   if (!$vars) $vars=array();
+   $lang = strtolower(get_lang());
    dbquery("SELECT message_id,lang,content FROM lang WHERE lang='$lang' OR lang='en'");
    while ( $db->next_record() ) {
      $msg_id = $db->f('message_id');

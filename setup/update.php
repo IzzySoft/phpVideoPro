@@ -163,14 +163,13 @@ $pvp->preferences->admin();
        ."guided through that process. More details (also about the background) "
        ."you will find on the page the link points to.</P>";
   } else {
-   echo "<P>If everything went right, you can now proceed to the\n"
-      ." <a href=\"../admin/configure.php\">configuration</a> page. In case you"
-      ." are upgrading from a version prior to v0.4.1, the previous link will"
-      ." lead you to the login screen instead. Use the &quot;admin&quot; user"
-      ." (password is &quot;video&quot;) to login, go to the user administration"
-      ." page (to be found in the &quot;admin&quot; menue) and change this"
-      ." password first. You'll find more information about this new feature"
-      ." within the online help,</p></DIV>\n";
+   echo "<HR><P>If everything went right, you can now go to the\n"
+      ." <a href='../login.php'>Login</a> page - or, if you are already"
+      ." logged in, just <a href='../index.php'>continue</a> working with"
+      ." phpVideoPro. To find out what has changed since your last update,"
+      ." you can see the \"History\" link in the help menu. In case you want"
+      ." to check your settings again, just follow"
+      ." <a href='../admin/configure.php'>this link</a>.</p></DIV>\n";
   } // end db2utf8
 }
 

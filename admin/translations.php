@@ -35,7 +35,9 @@
    $langs    = $db->get_languages();
    $lcount   = count($langs);
    for ($i=0;$i<$lcount;++$i) {
-     $sel_lang .= "<OPTION VALUE='".$langs[$i]["id"]."'>".$langs[$i]["name"]."</OPTION>";
+     $langname = $langs[$i]["name"];
+     if ($langs[$i]["charset"]) $langname .= " (".$langs[$i]["charset"].")";
+     $sel_lang .= "<OPTION VALUE='".$langs[$i]["id"]."'>$langname</OPTION>";
    }
    $sel_lang .= "</SELECT>";
    $t->set_var("sel_lang_title",lang("sel_target_lang"));

@@ -272,29 +272,29 @@
       } 
       $prev = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$lm[$i]["mtype_id"]
             . "&cass_id=".(int) $lm[$i]["cass_id"]."&part=".(int) $lm[$i]["part"])
-            . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0'></A>";
+            . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0' ALT='&lt;&lt;'></A>";
       $prev .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie['previous']->mtype_id
             . "&cass_id=".$movie['previous']->media_nr."&part=".$movie['previous']->part)
-	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0'></A>";
+	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0' ALT='&lt;'></A>";
     } else {
-      $prev = "<IMG SRC='".$tpl_dir."/images/first-grey.gif'>"
-            . "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
+      $prev = "<IMG SRC='".$tpl_dir."/images/first-grey.gif' ALT=''>"
+            . "<IMG SRC='".$tpl_dir."/images/left-grey.gif' ALT=''>";
     }
     $t->set_var("previous",$prev); unset($prev);
     if ($movie['next']) {
       $next = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie['next']->mtype_id
             . "&cass_id=".$movie['next']->media_nr."&part=".$movie['next']->part)
-            . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
+            . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0' ALT='&gt;'></A>";
       $lm = $db->get_lastmovienum(); $lmc = count($lm);
       do {
         --$lmc;
       } while ( ($lm[$lmc]["cass_id"]==0) && ($lmc != 0) );
       $next .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$lm[$lmc]["mtype_id"]
             . "&cass_id=".(int) $lm[$lmc]["cass_id"]."&part=".(int) $lm[$lmc]["part"])
-            . "'><IMG SRC='".$tpl_dir."/images/last.gif' BORDER='0'></A>";
+            . "'><IMG SRC='".$tpl_dir."/images/last.gif' BORDER='0' ALT='&gt;&gt;'></A>";
     } else {
-      $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif'>"
-            . "<IMG SRC='".$tpl_dir."/images/last-grey.gif'>";
+      $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif' ALT=''>"
+            . "<IMG SRC='".$tpl_dir."/images/last-grey.gif' ALT=''>";
     }
     $t->set_var("next",$next); unset($next,$lm,$lmc);
   }

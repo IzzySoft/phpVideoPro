@@ -10,6 +10,7 @@
     <TD WIDTH=30%>{item_input}</TD></TR>
   <!-- END itemblock -->
   </TABLE></TD></TR>
+  {sess_id}
 <!-- END listblock -->
  <TR><TD><DIV ALIGN=CENTER>{update}</DIV></TD></TR>
 </FORM>

@@ -12,13 +12,14 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- print lists function taking into account a user-definable page length
+- statistics page
+- translation for categories missing
+- menue items for "change MediaNr" and "change MediaType"
 
 coming *next*:
-- menue items for "change MediaNr" and "change MediaType"
-- translation for categories missing
 - search function
 - overview "per tape" (should look equivalent to taperest)
+- find duplicate movies
 
 coming *sometimes* (maybe):
 - new database field: "lent to" (to find out where your media *really* are :)

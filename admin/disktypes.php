@@ -128,7 +128,7 @@
      if ($dt[$k]->rc) $input .= " CHECKED";
      $input .= ">";
      $t->set_var("rc",$input);
-     $url = $pvp->link->slink("$PHP_SELF?delete=".$dt[$k]->id);
+     $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$dt[$k]->id);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("trash",$trash);
      $t->parse("disks","diskblock",TRUE);

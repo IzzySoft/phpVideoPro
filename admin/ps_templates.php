@@ -41,7 +41,7 @@
  $t->set_block("listblock","itemblock","item");
  $t->set_block("template","editblock","edps");
  $t->set_var("listtitle",lang($page_id));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
  #===================================================[ process user input ]===
  if ($submit) {
@@ -129,18 +129,18 @@
    $edit_img  = $tpl_dir . "/images/edit.png";
    $trash_img = $tpl_dir . "/images/trash.png";
    $query = "\$db->get_pstemplates(\"\",$start)";
-   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF,$start);
+   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
    $list = $nextmatch->list;
    for ($i=0;$i<$nextmatch->listcount;$i++) {
      $t->set_var("id",$list[$i]->id);
      $t->set_var("desc",$list[$i]->desc);
      $t->set_var("type",$list[$i]->type_desc);
-     $t->set_var("edit",$pvp->link->linkurl($PHP_SELF."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
-     $url = $pvp->link->slink($PHP_SELF."?remove=".$list[$i]->id);
+     $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
+     $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?remove=".$list[$i]->id);
      $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
      $t->parse("item","itemblock",TRUE);
    }
-   $t->set_var("add",$pvp->link->linkurl($PHP_SELF."?add=1",lang("add_entry")));
+   $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=1",lang("add_entry")));
    $t->set_var("head_desc",lang("pstpl_name"));
    $t->set_var("head_type",lang("pstpl_type"));
    $t->set_var("first",$nextmatch->first);

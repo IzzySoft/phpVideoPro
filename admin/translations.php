@@ -36,7 +36,7 @@
  $t->set_block("list","mdatablock","mdatalist");
  $t->set_block("list","emptyblock","emptylist");
  $t->set_var("listtitle",lang($page_id));
- $t->set_var("formtarget",$PHP_SELF ."\" enctype=\"multipart/form-data");
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"] ."\" enctype=\"multipart/form-data");
 
  #======================================================[ init target lang ]==
  if (!$targetlang) {
@@ -92,7 +92,7 @@
 
  #=================================[ get translations and setup variables ]===
  $query = "\$db->get_singletrans(\"en\",$start)";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?targetlang=$targetlang",$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?targetlang=$targetlang",$start);
 
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount -2;$i++) {
@@ -120,7 +120,7 @@
  $t->set_var("sample",lang("comments"));
  $t->set_var("submit_name","update");
  $t->set_var("submit",lang("update"));
- $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
+ $t->set_var("save","<A HREF='".$_SERVER["PHP_SELF"]."?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
  $t->set_var("hidden",$hidden);
  $t->set_var("first",$nextmatch->first);
  $t->set_var("left",$nextmatch->left);

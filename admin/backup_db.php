@@ -29,6 +29,14 @@
    else { echo $str; }
  }
 
+ function mkavlang($avl) {
+   $lc = count($avl);
+   for ($i=0;$i<$lc;++$i) {
+     $lang[] = $avl[$i]->id;
+   }
+   return $lang;
+ }
+
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));
@@ -101,15 +109,22 @@
      if (!empty($rfile)) {
        if (file_exists($pvp->backup_dir."/$rfile")) {
          $imp->errors  = 0;
-         $data = file_get_contents($pvp->backup_dir."/$rfile");
-         if (substr($data,0,3)!="PVP") {
-           if ( !$data = @gzinflate(substr($data,10)) ) {
-             $save_result = "<SPAN CLASS='error'>".lang("backup_file_corrupt")."</SPAN>";
-             ++$imp->errors;
+         if (!is_readable($pvp->backup_dir."/$rfile")) {
+           $save_result = "<SPAN CLASS='error'>".lang("backup_file_unreadable")."</SPAN>";
+           ++$imp->errors;
+         } else {
+           $data = @file_get_contents($pvp->backup_dir."/$rfile");
+           if (substr($data,0,3)!="PVP") {
+             if ( !$data = @gzinflate(substr($data,10)) ) {
+               $save_result = "<SPAN CLASS='error'>".lang("backup_file_corrupt")."</SPAN>";
+               ++$imp->errors;
+             }
            }
          }
          if (!$imp->errors) {
            if ($cleandb) $db->drop_all_movies();
+           $avl = mkavlang($db->get_avlang("audio"));
+           $sub = mkavlang($db->get_avlang("subtitle"));
 	   $tcatlist = $db->get_category();
 	   $catcount = count($tcatlist);
 	   for ($i=0;$i<$catcount;++$i) {
@@ -135,6 +150,18 @@
 		 $report .= "<li>added category '".$movie[$tcat]."' (".$movie["cat$k"].")";
 	       }
 	     }
+             for ($k=0;$k<count($movie[audio]);++$k) { // check audio_ts
+               if ( ($movie[audio][$k]) && !in_array($movie[audio][$k],$avl) ) {
+                 $db->set_avlang($movie[audio][$k],1,"audio");
+                 $avl[] = $movie[audio][$k];
+               }
+             }
+             for ($k=0;$k<count($movie[subtitle]);++$k) { // check subtitles
+               if ( ($movie[subtitle][$k]) && !in_array($movie[subtitle][$k],$sub) ) {
+                 $db->set_avlang($movie[subtitle][$k],1,"subtitle");
+                 $sub[] = $movie[subtitle][$k];
+               }
+             }
 	     # if (!$cleandb) insert check for the MediaNr HERE *!*
              if (!$db->add_movie($movie)) ++$imp->errors;
            }

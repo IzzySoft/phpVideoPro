@@ -15,6 +15,7 @@ coming *soon*:
 
 coming *next*:
 - manage preferences via cookies, taking defaults from DB
+- checkbox "on label" (analogue to "in list", but per movie title)
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - search function
 

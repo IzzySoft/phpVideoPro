@@ -16,11 +16,7 @@ v0.4.6), and requires only a few steps:
      "*update#" button on each page when you changed anything or added some new
      translation.</LI>
  <LI>When you're finally done with the last page, you may want to save your
-     results to disk. Look at the first SQL statement in that file (starting
-     with "UPDATE") and compare the mentioned character set if it matches the
-     one you have set on your system. If not, correct it here, go to the
-     "*admin# -&gt; *configuration#" page and reload your language file in
-     order to sync the charset with the database.</LI>
+     results to disk.</LI>
 </OL>
 
 [text]

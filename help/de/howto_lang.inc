@@ -16,12 +16,8 @@ des neuen Editors für Übersetzungen) - es sind nur wenige Schritte nötig:
      dann direkt zur Bearbeitung der Übersetzungen.</LI>
  <LI>Sofern auf einer Seite Änderungen erfolgt sind, müssen diese (pro Seite)
      mittels des "*update#" Buttons gespeichert werden.</LI>
- <LI>Alles fertig? Dann gilt es, die Übersetzungen in eine Datei zu sichern.
-     In dieser ist nochmals zu prüfen, ob der eingetragene Zeichensatz mit dem
-     verwendeten übereinstimmt. Dies läßt sich anhand des ersten SQL Kommandos
-     ("UPDATE...") ermitteln. Sollte dies nicht der Fall sein, muss es noch
-     in der Datei angepasst und diese sodann über die "*admin# -&gt; *configuration#"
-     Seite neu eingeladen werden, um die Datenbank entsprechend zu synchronisieren.</LI>
+ <LI>Alles fertig? Dann gilt es nur noch, die Übersetzungen in eine Datei zu
+     sichern.</LI>
 </OL>
 
 [text]

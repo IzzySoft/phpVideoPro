@@ -11,6 +11,17 @@ data you entered yourself (if you didn't, you may want to have a look at the
 help page for "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>"), but...
 
 [title]
+Move or copy a movie to another place
+
+[text]
+Sometimes you may want to move or copy a movie to another place. Situations for
+this are e.g. entering multiple parts of series, where the description just has
+minimal differences - or having the same movie twice, once as a tape and once
+as a DVD. You can efford this by clicking on the "*mediatype#" or "*medianr#"
+buttons. To learn more about the feature itself, see the documentation about
+"<A HREF="{PHP_SELF}?topic=media_change">*media_change#</A>".
+
+[title]
 IMDB information
 
 [text]

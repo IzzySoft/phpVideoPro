@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -24,9 +24,9 @@
     * @constructor auth
     */
    function auth() {
-     GLOBAL $pvp,$db,$sess_id;
+     GLOBAL $pvp,$db;
      if ($pvp->config->enable_cookies) $sess_id = $pvp->cookie->get("sess_id");
-     $user_id = $pvp->session->verify($sess_id);
+     $user_id = $pvp->session->verify();
      if (!$user_id) { // guest account requested
        $user = $db->get_logindata("guest");
        $user_id = $user->id;

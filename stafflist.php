@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,6 +13,8 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
+ $stafftype = $_GET["stafftype"];
+ $start     = $_GET["start"];
  $page_id = $stafftype;
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
@@ -26,7 +28,7 @@
 
  #===========================================[ retrieve all staff members ]===
  $query = "\$db->get_visstafflist($stafftype,\"$filter\",$start)";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?stafftype=$stafftype",$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?stafftype=$stafftype",$start);
  $staff = $nextmatch->list;
 
  #==============================================[ now get & draw the list ]===

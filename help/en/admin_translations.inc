@@ -13,7 +13,7 @@ moreover to be part of the team by sending the resulting language file back to
 me, the author of phpVideoPro, having it included with future releases.
 
 [title]
-*sel_target_lang*
+*sel_target_lang#
 
 [text]
 The first step is to select the language we want to edit. If there are already

@@ -60,7 +60,7 @@ echo "<H2 ALIGN=CENTER>$title</H2>\n";
 echo "<TABLE ALIGN='center' WIDTH='90%'>\n";
 
 #=====================================================[ Output user info ]===
-if ( !isset($oldversion) ) {
+if ( !isset($_REQUEST["oldversion"]) ) {
   $oldversion = get_version();
 ?>
 <TR><TH>Preamble</TH></TR>
@@ -76,7 +76,7 @@ if ( !isset($oldversion) ) {
  your machine appears to be <b>v<? echo $oldversion ?></b>. If this is <b>not</b>
  what you've expected, please <b><font color="#ff0000">PANIC</font></b> now!
  Otherwise (which <b>I</b> expect to be the case), follow this nice little
- <a href="<? echo "$PHP_SELF?oldversion=$oldversion" ?>">link</a> to finally
+ <a href="<? echo $_SERVER["PHP_SELF"]."?oldversion=$oldversion" ?>">link</a> to finally
  <b>do</b> the real update...</p>
 <?
 #========================================================[ Do the update ]===
@@ -87,7 +87,7 @@ if ( !isset($oldversion) ) {
 
 $pvp->preferences->admin();
 #-----------------[ Get SQL statements from their files and execute them ]---
-  switch ($oldversion) {
+  switch ($_REQUEST["oldversion"]) {
     case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
     case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
     case "0.1.2"    :

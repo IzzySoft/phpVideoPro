@@ -19,7 +19,7 @@ include ("../inc/class.template.inc");
 ##############################################################################
 # Get the topic description - if possible with link to helpfile (if exist)
 function helppage ($topic) {
-  GLOBAL $pvp;
+  GLOBAL $pvp,$PHP_SELF;
   $desc = lang($topic);
   $lang = $pvp->preferences->lang;
   $name = $topic . ".inc";

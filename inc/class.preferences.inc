@@ -35,14 +35,6 @@
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }
-    $colors = $db->get_preferences('colors');
-    if ($colors) {
-      $colors = unserialize( rawurldecode($colors) );
-      $this->colors = $colors;
-      $colors["ok"] = "<FONT COLOR=\"" . $colors["ok"] . "\">";
-      $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
-      $GLOBALS['colors'] = $colors;
-    }
     $this->filter = $this->get_filters();
   }
 

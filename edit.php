@@ -71,6 +71,12 @@
       else if ($c1[name]>$c2[name]) return 1;
   }
 
+  if (!$nr) {
+    while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
+    while ( strlen($part)<2)     { $part    = "0" . $part;    }
+    $nr = $mediatype . " " . $cass_id . "-" . $part;
+  }
+
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
     $dinput = "INPUT";
@@ -205,6 +211,25 @@
   }
 
   // main block
+  if ($page_id == "view_entry") {
+    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+    if ($movie[previous]) {
+      $prev = "<A HREF='$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
+            . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part
+	    . "'><IMG SRC='".$tpl_dir."/images/left.gif'></A>";
+    } else {
+      $prev = "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
+    }
+    $t->set_var("previous",$prev); unset($prev);
+    if ($movie[next]) {
+      $next = "<A HREF='$PHP_SELF?mtype_id=".$movie[next]->mtype_id
+            . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part
+            . "'><IMG SRC='".$tpl_dir."/images/right.gif'></A>";
+    } else {
+      $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif'>";
+    }
+    $t->set_var("next",$next); unset($next);
+  }
   if (!$new_entry) {
     $hiddenfields = <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">

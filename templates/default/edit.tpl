@@ -11,7 +11,11 @@
   <COL WIDTH="50%">
   <COL WIDTH="50%">
  </COLGROUP>
- <TR><TH ColSpan="2">{title}</TH></TR>
+ <TR><TH ColSpan="2">
+   <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
+     <TR><TH WIDTH="10%" VALIGN="top">{previous}</TH><TH WIDTH="80%"> {title}</TH>
+         <TH WIDTH="10%" ALIGN="right" VALIGN="top">{next}</TH></TR>
+   </TABLE>
  <TR>
   <TD>
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">

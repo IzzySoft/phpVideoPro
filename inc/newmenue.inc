@@ -290,7 +290,7 @@ function getPageOffsetTop(el) {
 </div>
 
 <div id="filterMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("filter") ?></a>
+<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("set_filter") ?></a>
 <a class="menuItem" href="<?=$base_url ?>setfilter.php?reset=1"><?=lang("unset_filter") ?></a>
 </div>
 

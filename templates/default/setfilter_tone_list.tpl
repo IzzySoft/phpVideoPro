@@ -1,0 +1,1 @@
+<TABLE WIDTH="100%" BORDER="0">{list}</TABLE>

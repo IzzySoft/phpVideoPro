@@ -4,8 +4,15 @@
 
   $page_id = "filter";
   include("inc/header.inc");
+  // init templates
+  $t = new Template($pvp->tpl_dir);
+  $t->set_file(array("t_list"=>"setfilter_list.tpl",
+                     "t_item"=>"setfilter_item.tpl",
+                     "tone_item"=>"setfilter_tone_item.tpl",
+                     "tone_input"=>"setfilter_tone_item_input.tpl",
+                     "tone_list"=>"setfilter_tone_list.tpl",
+		     "t_input"=>"setfilter_item_input.tpl"));
 
-  echo "<H2 Align=Center>" . lang("filter_setup") . "</H2>\n\n";
 
   ##############################################################################
   # create a dump of posted data for debugging purposes and send them to the
@@ -80,54 +87,66 @@
   ########################################################################################
   # Create the Form Fields
   // ------------------------------------------------------------------[ left side ]------
-  function mtype() {
-    GLOBAL $filter, $db;
+  # mtype
     dbquery("SELECT id,sname FROM mtypes");
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
+    $i=0;
     while ( $db->next_record() ) {
-      $id   = $db->f('id');
-      $name = $db->f('sname');
-      echo "<TD><INPUT TYPE=\"checkbox\" NAME=\"mtype_$id\"";
-      if ($filter->mtype->$id) echo " CHECKED";
-      echo ">&nbsp;$name</TD>";
+      $id[$i]   = $db->f('id');
+      $name[$i] = $db->f('sname');
+      if ($filter->mtype->$id) { $checked = " CHECKED"; } else { $checked = ""; }
+      $i++;
     }
-    echo "</TD></TABLE>";
-  }
-  function length() {
-    GLOBAL $filter, $db, $form;
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"length_min\"";
-    if ( isset($filter->length_min) ) echo " VALUE=\"" . $filter->length_min . "\"";
-    echo $form["addon_filmlen"] . "></TD><TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"length_max\"";
-    if ( isset($filter->length_max) ) echo " VALUE=\"" . $filter->length_max . "\"";
-    echo $form["addon_filmlen"] . "></TD></TR></TABLE>";
-  }
-  function aquired() {
-    GLOBAL $filter, $db;
+    $t->set_var("item","");
+    for ($k=0;$k<count($id);$k++) {
+      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "$checked\">&nbsp;$name[$k]</TD>");
+      $t->parse("item","t_input",TRUE);
+    }
+    $t->parse("mtype","t_item");
+
+    # length
+    $input = lang("min") . ":&nbsp;<INPUT NAME=\"length_min\"";
+    if ( isset($filter->length_min) ) $input .= " VALUE=\"" . $filter->length_min . "\"";
+    $input .= $form["addon_filmlen"] . ">";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input");
+    $input = lang("max") . ":&nbsp;<INPUT NAME=\"length_max\"";
+    if ( isset($filter->length_max) ) $input .= " VALUE=\"" . $filter->length_max . "\"";
+    $input .= $form["addon_filmlen"] . ">";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input",TRUE);
+    $t->parse("length","t_item");
+
+    # date
     $addon = "SIZE=\"10\" MAXLENGTH=\"10\"";
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"aquired_min\"";
-    if ( isset($filter->aquired_min) ) echo " VALUE=\"" . $filter->aquired_min . "\"";
-    echo "$addon></TD><TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"aquired_max\"";
-    if ( isset($filter->aquired_max) ) echo " VALUE=\"" . $filter->aquired_max . "\"";
-    echo "$addon></TD></TR></TABLE>";
-  }
-  function screen() {
-    GLOBAL $filter, $db;
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
+    $input = lang("min") . ":&nbsp;<INPUT NAME=\"aquired_min\"";
+    if ( isset($filter->aquired_min) ) $input .= " VALUE=\"" . $filter->aquired_min . "\"";
+    $input .= "$addon>";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input");
+    $input = lang("max") . ":&nbsp;<INPUT NAME=\"aquired_max\"";
+    if ( isset($filter->aquired_max) ) $input .= " VALUE=\"" . $filter->aquired_max . "\"";
+    $input .= "$addon>";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input",TRUE);
+    $t->parse("date","t_item");
+
+    # screen
     dbquery("SELECT id,name FROM pict");
+    $i=0;
     while ( $db->next_record() ) {
-      $id   = $db->f('id');
-      $name = $db->f('name');
-      echo "<TD><INPUT TYPE=\"checkbox\" NAME=\"pict_$id\"";
-      if ($filter->pict->$id) echo " CHECKED";
-      echo ">&nbsp;$name</TD>";
+      $id[$i]   = $db->f('id');
+      $name[$i] = $db->f('name');
+      $i++;
     }
-    echo "</TR></TABLE>";
-  }
-  function picture() {
-    GLOBAL $filter, $db;
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
+    $t->set_var("item","");
+    for ($k=0;$k<count($id);$k++) {
+      if ($filter->pict->$id) { $checked = " CHECKED"; } else { $checked = ""; }
+      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"pict_" . $id[$k] . "\"$checked>&nbsp;$name[$k]");
+      $t->parse("item","t_input",TRUE);
+    }
+    $t->parse("screen","t_item");
+
+    # picture
     dbquery("SELECT id,name FROM colors");
     $i=0;
     while ( $db->next_record() ) {
@@ -135,144 +154,133 @@
       $name[$i] = $db->f('name');
       $i++;
     }
+    $t->set_var("item","");
     for ($k=0;$k<$i;$k++) {
-      echo "<TD><INPUT TYPE=\"checkbox\" NAME=\"color_$id\"";
-      if ($filter->color->$id[$k]) echo " CHECKED";
-      echo ">&nbsp;" . lang("$name[$k]") . "</TD>";
+      $input = "<INPUT TYPE=\"checkbox\" NAME=\"color_$id[$k]\"";
+      if ($filter->color->$id[$k]) $input .= " CHECKED";
+      $input .= ">&nbsp;" . lang("$name[$k]");
+      $t->set_var("input",$input);
+      $t->parse("item","t_input",TRUE);
     }
-    echo "</TR></TABLE>";
-  }
-  function tone() {
-    GLOBAL $filter, $db;
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
+    $t->parse("picture","t_item");
+
+    # tone
     dbquery("SELECT id,name FROM tone");
     $i=0;
     while ( $db->next_record() ) {
       $id[$i]   = $db->f('id');
       $name[$i] = $db->f('name');
-      echo "<TD ALIGN=\"center\">" . $name[$i] . "</TD>";
       $i++;
     }
-    echo "</TR><TR>";
+    $t->set_var("item","");
     for ($i=0;$i<count($name);$i++) {
-      echo "<TD ALIGN=\"center\"><INPUT TYPE=\"checkbox\" NAME=\"tone_" . $id[$i] . "\"";
-      if ($filter->tone->$id[$i]) echo " CHECKED";
-      echo "></TD>";
+      $t->set_var("input",$name[$i]);
+      $t->parse("item","tone_input",TRUE);
     }
-    echo "</TR></TABLE>";
-  }
-  function longplay() {
-    GLOBAL $filter, $db;
-    echo "<INPUT TYPE=\"checkbox\" NAME=\"lp\"";
-    if ($filter->lp) echo " CHECKED";
-    echo ">";
-  }
-  function fsk() {
-    GLOBAL $filter, $db, $form;
-    echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"fsk_min\"";
-    if ( isset($filter->fsk_min) ) echo " VALUE=\"" . $filter->fsk_min . "\"";
-    echo $form["addon_fsk"] . "></TD>";
-    echo "<TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"fsk_max\"";
-    if ( isset($filter->fsk_max) ) echo " VALUE=\"" . $filter->fsk_max . "\"";
-    echo $form["addon_fsk"] . "></TD>";
-    echo "</TR></TABLE>";
-  }
+    $t->parse("list","tone_item");
+    $t->set_var("item","");
+    for ($i=0;$i<count($name);$i++) {
+      $input = "<INPUT TYPE=\"checkbox\" NAME=\"tone_" . $id[$i] . "\"";
+      if ($filter->tone->$id[$i]) $input .= " CHECKED";
+      $input .= ">";
+      $t->set_var("input",$input);
+      $t->parse("item","tone_input",TRUE);
+    }
+    $t->parse("list","tone_item",TRUE);
+    $t->parse("tone","tone_list");
+
+    # longplay
+    if ($filter->lp) { $checked = " CHECKED"; } else { $checked = ""; }
+    $t->set_var("longplay","<INPUT TYPE=\"checkbox\" NAME=\"lp\"$checked>");
+
+    # fsk
+    $input = lang("min") . ":&nbsp;<INPUT NAME=\"fsk_min\"";
+    if ( isset($filter->fsk_min) ) $input .= " VALUE=\"" . $filter->fsk_min . "\"";
+    $input .= $form["addon_fsk"] . ">";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input");
+    $input = lang("max") . ":&nbsp;<INPUT NAME=\"fsk_max\"";
+    if ( isset($filter->fsk_max) ) $input .= " VALUE=\"" . $filter->fsk_max . "\"";
+    $input .= $form["addon_fsk"] . ">";
+    $t->set_var("input",$input);
+    $t->parse("item","t_input",TRUE);
+    $t->parse("fsk","t_item");
+
   // -----------------------------------------------------------------[ right side ]------
-  function title() {
-    GLOBAL $filter, $db, $form;
-    echo "<INPUT NAME=\"title\"";
-    if ( isset($filter->title) ) echo " VALUE=\"" . $filter->title . "\"";
-    echo $form["addon_title"] . ">";
-  }
-  function category() {
-    GLOBAL $filter, $db;
-    echo "<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE>";
+    # title
+    $input = "<INPUT NAME=\"title\"";
+    if ( isset($filter->title) ) $input .= " VALUE=\"" . $filter->title . "\"";
+    $input .= $form["addon_title"] . ">";
+    $t->set_var("title",$input);
+
+    # category
     dbquery("SELECT id,name FROM cat ORDER BY name");
+    $option = "";
     while ( $db->next_record() ) {
       $id        = $db->f('id');
       $name      = $db->f('name');
-      echo "<OPTION VALUE=\"$id\"";
-      if ($filter->cat->$id) echo " SELECTED";
-      echo ">$name</OPTION>";
+      $option .= "<OPTION VALUE=\"$id\"";
+      if ($filter->cat->$id) $option .= " SELECTED";
+      $option .= ">$name</OPTION>";
     }
-    echo "</SELECT>";
-  }
-  function actor() {
-    GLOBAL $filter, $db;
-    echo "<SELECT NAME=\"act_id[]\" SIZE=\"7\" MULTIPLE>";
+    $t->set_var("category","<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+
+    # actor
     dbquery("SELECT id,name,firstname FROM actors ORDER BY name");
+    $option = "";
     while ( $db->next_record() ) {
       $id        = $db->f('id');
       $name      = $db->f('name');
       $firstname = $db->f('firstname');
-      echo "<OPTION VALUE=\"$id\"";
-      if ($filter->actor->$id) echo " SELECTED";
-      echo ">$name, $firstname</OPTION>";
+      $option .= "<OPTION VALUE=\"$id\"";
+      if ($filter->actor->$id) $option .= " SELECTED";
+      $option .= ">$name, $firstname</OPTION>";
     }
-    echo "</SELECT>";
-  }
-  function director() {
-    GLOBAL $filter, $db;
-    echo "<SELECT NAME=\"dir_id[]\" SIZE=\"7\" MULTIPLE>";
+    $t->set_var("actor","<SELECT NAME=\"act_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+
+    # director
     dbquery("SELECT id,name,firstname FROM directors ORDER BY name");
+    $option = "";
     while ( $db->next_record() ) {
       $id        = $db->f('id');
       $name      = $db->f('name');
       $firstname = $db->f('firstname');
-      echo "<OPTION VALUE=\"$id\"";
-      if ($filter->director->$id) echo " SELECTED";
-      echo ">$name, $firstname</OPTION>";
+      $option .= "<OPTION VALUE=\"$id\"";
+      if ($filter->director->$id) $option .= " SELECTED";
+      $option .= ">$name, $firstname</OPTION>";
     }
-    echo "</SELECT>";
-  }
-  function composer() {
-    GLOBAL $filter, $db;
-    echo "<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE>";
+    $t->set_var("director","<SELECT NAME=\"dir_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+
+    # composer
     dbquery("SELECT id,name,firstname FROM music ORDER BY name");
+    $option = "";
     while ( $db->next_record() ) {
       $id        = $db->f('id');
       $name      = $db->f('name');
       $firstname = $db->f('firstname');
-      echo "<OPTION VALUE=\"$id\"";
-      if ($filter->composer->$id) echo " SELECTED";
-      echo ">$name, $firstname</OPTION>";
+      $option .= "<OPTION VALUE=\"$id\"";
+      if ($filter->composer->$id) $option .= " SELECTED";
+      $option .= ">$name, $firstname</OPTION>";
     }
-    echo "</SELECT>";
-  }
-?>
+    $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
 
-<FORM NAME="filter" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
- <TABLE Width="90%" Align="Center" Border="1">
-  <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ !>
-    <TABLE WIDTH="100%" BORDER="1">
-     <TR><TD WIDTH="15%"><? echo lang("mediatype") ?></TD><TD><? mtype() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("length") ?></TD><TD><? length() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("date_rec") ?></TD><TD><? aquired() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("screen") ?></TD><TD><? screen() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("picture") ?></TD><TD><? picture() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("tone") ?></TD><TD><? tone() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("longplay") ?></TD><TD><? longplay() ?></TD></TR>
-     <TR><TD WIDTH="15%"><? echo lang("fsk") ?></TD><TD><? fsk() ?></TD></TR>
-    </TABLE></TD>
-   <TD WIDTH="50%"><!-- ===================================== Right side ============ !>
-    <TABLE WIDTH="100%" BORDER="1">
-     <TR><TD WIDTH="10%"><? echo lang("title") ?></TD><TD COLSPAN="3"><? title() ?></TD></TR>
-     <TR><TD WIDTH="10%"><? echo lang("category") ?></TD><TD WIDTH="40%"><? category() ?></TD>
-         <TD WIDTH="10%"><? echo lang("actor") ?></TD><TD WIDTH="40%"><? actor() ?></TD></TR>
-     <TR><TD WIDTH="10%"><? echo lang("director") ?></TD><TD WIDTH="40%"><? director() ?></TD>
-         <TD WIDTH="10%"><? echo lang("composer") ?></TD><TD WIDTH="40%"><? composer() ?></TD></TR>
-    </TABLE></TD>
-  </TR>
- </TABLE>
- <TABLE Width="90%" Align="Center" Border="0">
-  <TR>
-   <TD ALIGN="left"><INPUT TYPE="submit" NAME="reset" VALUE="Reset"></TD>
-   <TD ALIGN="right"><INPUT TYPE="submit" NAME="save" VALUE="Save"></TD>
-  </TR>
- </TABLE>
-</FORM>
+# build target
+$t->set_var("form_target",$PHP_SELF);
+$t->set_var("listtitle",lang("filter_setup"));
+$t->set_var("mtype_name",lang("mediatype"));
+$t->set_var("length_name",lang("length"));
+$t->set_var("date_name",lang("date_rec"));
+$t->set_var("screen_name",lang("screen"));
+$t->set_var("picture_name",lang("picture"));
+$t->set_var("tone_name",lang("tone"));
+$t->set_var("longplay_name",lang("longplay"));
+$t->set_var("fsk_name",lang("fsk"));
+$t->set_var("title_name",lang("title"));
+$t->set_var("category_name",lang("category"));
+$t->set_var("actor_name",lang("actor"));
+$t->set_var("director_name",lang("director"));
+$t->set_var("composer_name",lang("composer"));
+$t->pparse("out","t_list");
 
-<?
-  include("inc/footer.inc");
+include("inc/footer.inc");
 ?>

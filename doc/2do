@@ -24,6 +24,8 @@ coming *next*:
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
 - separate the view_entry template from the edit template to move all formating
   information from the PHP code into the template
+- add Audio/Subtitle to filter settings
+- add optional "Bubble Help" (via HTML "TITLE" attribute)
 
 coming *sometimes* (maybe):
 - honour date format settings in all places

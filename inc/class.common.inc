@@ -255,7 +255,7 @@ class common {
     $str = preg_replace("'<iframe[^>]*?>.*?</iframe>'si", "", $str);
     $str = preg_replace("'<head[^>]*?>.*?</head>'si", "", $str);
     $str = preg_replace("/<((?!\/?($ignored)\b)[^>]*>)/xis", "", $str);
-    $str = preg_replace("/<($allowed).*?>/i", "<\\1>", $str);
+    $str = preg_replace("/<($allowed)\s.*?>/i", "<\\1>", $str);
     return $str;
   }
 
@@ -279,7 +279,7 @@ class common {
    * @see safehtml() for details
    */
   function safetextarea($str) {
-    return $this->safehtml($str,"block|pre|br|hr|p",TRUE,"ul|ol|li");
+    return $this->safehtml($str,"block|pre|br|hr",TRUE,"ul|ol|li|p");
   }
 
   /** prepare a string containing quotes for form input fields

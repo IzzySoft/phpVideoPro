@@ -16,6 +16,8 @@
  <li>some improvements on the PS top labels
  <li>added Session management screen
  <li>on a correct login session was always created for admin (user ID 1) - fixed
+ <li>movies could not be inserted/updated when a persons name contained single
+     quotes - fixed
 </ul>
 
 [title]

@@ -29,31 +29,31 @@
   $t->set_var("listtitle",lang("db_stats") . "</b>");
   $t->set_var("list_head",lang("stat_counts"));
   $t->set_var("item_name","<b>" . lang("movies") . "</b>");
-  $t->set_var("item_input",$stats[movies]);
+  $t->set_var("item_input",$stats['movies']);
   $t->parse("item","itemblock");
   $t->set_var("item_name","<b>" . lang("director_persons") . "</b>");
-  $t->set_var("item_input",$stats[directors]);
+  $t->set_var("item_input",$stats['directors']);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name","<b>" . lang("actor_persons") . "</b>");
-  $t->set_var("item_input",$stats[actors]);
+  $t->set_var("item_input",$stats['actors']);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name","<b>" . lang("compose_persons") . "</b>");
-  $t->set_var("item_input",$stats[composers]);
+  $t->set_var("item_input",$stats['composers']);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name","<b>" . lang("stat_categories") . "</b>");
-  $t->set_var("item_input",$stats[cats_used] . "/" . $stats[categories]);
+  $t->set_var("item_input",$stats['cats_used'] . "/" . $stats['categories']);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name","<b>" . lang("media") . "</b>");
-  $t->set_var("item_input",$stats[media]);
+  $t->set_var("item_input",$stats['media']);
   $t->parse("item","itemblock",TRUE);
-  $mc = count($stats[smedia]);
+  $mc = count($stats['smedia']);
   for ($i=0;$i<$mc;++$i) {
-    $t->set_var("item_name",$indent.$stats[smedia][$i][name]." (".$stats[smedia][$i][sname].")");
-    $t->set_var("item_input",$stats[smedia][$i][mcount]);
+    $t->set_var("item_name",$indent.$stats['smedia'][$i]['name']." (".$stats['smedia'][$i]['sname'].")");
+    $t->set_var("item_input",$stats['smedia'][$i]['mcount']);
     $t->parse("item","itemblock",TRUE);
   }
   $t->set_var("item_name","<b>" . lang("countries") . "</b>");
-  $t->set_var("item_input",$stats[countries]);
+  $t->set_var("item_input",$stats['countries']);
   $t->parse("item","itemblock",TRUE);
   $t->parse("list","listblock");
 

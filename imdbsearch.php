@@ -25,6 +25,8 @@
  $t->set_block("resultblock","resitemblock","resultitem");
 
  $t->set_block("template","movieblock","movie");
+ $t->set_block("movieblock","pgblock","pglist");
+ $t->set_block("movieblock","dirblock","dirlist");
  $t->set_block("movieblock","actblock","actlist");
 
  $t->set_var("listtitle",lang("imdb_title_search"));
@@ -64,7 +66,7 @@
      $photo_url = "";
    } else {
      $photo_url = substr($photo_url,strlen($base_url));
-     $t->set_var("mfoto",$photo_url);
+#     $t->set_var("mfoto",$photo_url);
      $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
    }
    $aka = "";
@@ -84,6 +86,14 @@
    $country .= $acountry[$i];
    $t->set_var("ncountry",lang("country"));
    $t->set_var("mcountry",$country);
+   $t->set_var("npg",lang("fsk"));
+   $pga = $movie->mpaa(); $open = FALSE;
+   foreach ($pga as $var=>$val) {
+     $t->set_var("pgval",$val);
+     $t->set_var("mpg","$val ($var)");
+     $t->parse("pglist","pgblock",$open);
+     $open = TRUE;
+   }
    $t->set_var("ngenre",lang("categories"));
    $t->set_var("mgenre",$movie->genre());
 #   $gen = $movie->genres(); // split up array and fit into template
@@ -91,10 +101,18 @@
 #   $snd = $movie->sound();  // does not match our formats
 #   $t->set_var("mtagline",$movie->tagline());
 #   $tag = $movie->taglines(); // array again - do we need this?
-   $dir = $movie->director(); // array again - need to select
-   if (is_array($dir) && !empty($dir))
-    $t->set_var("dir_name",$dir[0]["name"]); // we also have "imdb" and "role"
    $t->set_var("ndir_name",lang("director"));
+   $dir = $movie->director(); // array again - need to select
+   $cc = count($dir); $open = FALSE;
+   for ($i=0;$i<$cc;++$i) {
+    $t->set_var("dir_name",$dir[$i]["name"]); // we also have "imdb" and "role"
+    if ($i==0) $t->set_var("dsel"," SELECTED"); else $t->set_var("dsel","");
+    $t->parse("dirlist","dirblock",$open);
+    $open = TRUE;
+   }
+   $t->set_var("dir_name","");
+   $t->set_var("dsel","");
+   $t->parse("dirlist","dirblock",$open);
 #   $wrt = $movie->writing(); // writing credits - array 0..n like director
 #   $prod = $movie->producer(); // same as $wrt
    $cast = $movie->cast(); // here come the actors
@@ -107,7 +125,9 @@
      $t->parse("actlist","actblock",$open);
      $open = TRUE;
    }
-   $plot = $movie->plot(); $cc = count($plot); $comment = "";
+   $plot = $movie->plot(); $cc = count($plot);
+   if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
+     else $comment = "";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
    $t->parse("movie","movieblock");

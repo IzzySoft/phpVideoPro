@@ -34,9 +34,20 @@
  <TR><TD><B>Also known as:</B></TD><TD>{maka}</TD></TR>
  <TR><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>
  <TR><TD><B>{nyear}:</B></TD><TD>{myear}</TD></TR>
+ <TR><TD><B>{npg}:</B></TD>
+   <TD><SELECT NAME="pg">
+ <!-- BEGIN pgblock -->
+    <OPTION VALUE="pgval">{mpg}</OPTION>
+ <!-- END pgblock -->
+   </SELECT></TD></TR>
  <TR><TD><B>{nruntime}:</B></TD><TD>{mruntime} min</TD></TR>
  <TR><TD><B>{ngenre}:</B></TD><TD>{mgenre}</TD></TR>
- <TR><TD><B>{ndir_name}:</B></TD><TD>{dir_name}</TD></TR>
+ <TR><TD><B>{ndir_name}:</B></TD>
+   <TD><SELECT NAME="directors">
+ <!-- BEGIN dirblock -->
+    <OPTION VALUE="{dir_name}"{dsel}>{dir_name}</OPTION>
+ <!-- END dirblock -->
+   </SELECT></TD></TR>
  <TR><TD><B>{actors}:</B></TD>
    <TD><SELECT NAME="actors" SIZE="7" MULTIPLE CLASS="multiselect">
  <!-- BEGIN actblock -->
@@ -45,7 +56,6 @@
   </SELECT>
  </TD></TR>
  <TR><TD COLSPAN="2"><P ALIGN="justify">{mfoto_pic}{mcomment}</P></TD></TR>
- <TR><TD><B>Foto:</B></TD><TD>'{mfoto}'</TD></TR>
 </TABLE>
 <!-- END movieblock -->
 

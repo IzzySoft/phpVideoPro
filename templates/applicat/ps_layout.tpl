@@ -2,7 +2,7 @@
 <TABLE STYLE="table-layout:fixed;" ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
 <FORM NAME="label" METHOD="post" ACTION="{form_target}">
-<TABLE WIDTH="*" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -18,8 +18,7 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
 
- <DIV WIDTH="100%">
- <TABLE Style="text-align:center;margin:3;"><TR><TD>
+ <TABLE WIDTH="100%" Style="text-align:center;margin:3;"><TR><TD>
   <INPUT TYPE=HIDDEN NAME="ltype_id" VALUE="{ltype}">
   {sess_id}
   <TABLE ALIGN="center">
@@ -46,7 +45,7 @@
   </TABLE></TD></TR><TR><TD><TABLE ALIGN="center" WIDTH="100%">
     <TR CLASS="content"><TD><DIV STYLE="margin:3;text-align:center">{max_fontsize_desc} {max_fontsize}</DIV></TD></TR>
   </TABLE>
- </TD></TR></TABLE></DIV>
+ </TD></TR></TABLE>
 
 </TD></TR>
 

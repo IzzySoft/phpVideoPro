@@ -5,6 +5,7 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
+<FORM NAME="{form_name}" METHOD="post" ACTION="{form_target}">
 <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
@@ -22,7 +23,6 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<FORM NAME="{form_name}" METHOD="post" ACTION="{form_target}">
 {hiddenfields}
 <DIV STYLE="margin:3">
 
@@ -43,7 +43,7 @@
     <TR><TD>{mtype_name}</TD><TD>{mtype}</TD></TR>
     <TR><TD>{medianr_name}</TD><TD>{medianr}</TD></TR>
     <TR><TD>{counter_name}</TD><TD>
-      <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
+      <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0"><TR>
         <TD WIDTH="50%"{konq_fix}>{counter}</TD><TD WIDTH="25%">{label_name}</TD><TD WIDTH="25%">{label}</TD></TR>
       </TABLE></TD></TR>
     <TR><TD>{rc_name}</TD><TD>{rc}</TD></TR>
@@ -63,7 +63,7 @@
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
     <COLGROUP><COL WIDTH="150"><COL WIDTH="*"></COLGROUP>
     <TR><TD>{length_name}</TD>
-        <TD><TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+        <TD><TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0"><TR>
           <TD WIDTH="50%">{length}</TD>
           <TD WIDTH="25%">{longplay_name}</TD>
           <TD WIDTH="25%">{longplay}</TD></TR>
@@ -83,9 +83,9 @@
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
     <COLGROUP><COL WIDTH="15%"><COL WIDTH="30%"><COL WIDTH="30%"><COL WIDTH="15%"></COLGROUP>
     <TR><TD><DIV ALIGN="center"><B>{staff_name}</B></DIV></TD>
-        <TD><DIV ALIGN="center"><B>{name_name}</DIV></TD>
-        <TD><DIV ALIGN="center"><B>{firstname_name}</DIV></TD>
-	<TD><DIV ALIGN="center"><B>{inlist_name}</DIV></TD></TR>
+        <TD><DIV ALIGN="center"><B>{name_name}</B></DIV></TD>
+        <TD><DIV ALIGN="center"><B>{firstname_name}</B></DIV></TD>
+	<TD><DIV ALIGN="center"><B>{inlist_name}</B></DIV></TD></TR>
     <TR><TD>{director_name}</TD><TD><DIV ALIGN="center">{director}</DIV></TD>
         <TD><DIV ALIGN="center">{director_f}</DIV></TD><TD><DIV ALIGN="center">{director_list}</DIV></TD></TR>
     <TR><TD>{composer_name}</TD><TD><DIV ALIGN="center">{composer}</DIV></TD>
@@ -118,9 +118,9 @@
         <TD Width="34%"><DIV ALIGN="center">{print_label}</DIV></TD>
         <TD Width="33%"><div align="right">{button_re}</div></TD></TR>
    </TABLE>
-</TR></TD>
-</FORM>
+</TD></TR>
 
 </TABLE>
+</FORM>
 </DIV>
 </TD></TR></TABLE>

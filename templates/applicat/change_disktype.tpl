@@ -1,7 +1,8 @@
 <BR STYLE="margin-top:30">
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
-<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER=0" ALIGN="center"><TR><TD>
+<FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -15,15 +16,13 @@
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
-<FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
 <TR><TD>
 
  <TABLE STYLE="margin:3;text-align:center" BORDER="1"><TR CLASS="content"><TD>
   <TABLE ALIGN="center" BORDER="0" WIDTH="400">
-    {hidden}
     <TR><TH WIDTH="45%"><DIV ALIGN="center">{orig}</DIV></TH>
         <TD WIDTH="10%">&nbsp;</TD>
-        <TH WIDTH="45%"><DIV ALIGN="center">{new}</DIV></TD></TR>
+        <TH WIDTH="45%"><DIV ALIGN="center">{new}</DIV></TH></TR>
     <TR><TD WIDTH="45%"><DIV ALIGN="center">{o_disktype}</DIV></TD>
         <TD WIDTH="10%">&nbsp;</TD>
         <TD WIDTH="45%"><DIV ALIGN="center">{n_disktype}</DIV></TD></TR>
@@ -34,6 +33,8 @@
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD><DIV STYLE="margin:3;text-align:center">{change}</DIV></TD></TR>
-</FORM></TABLE>
+</TABLE>
+{hidden}
+</FORM>
 </DIV>
 </TD></TR></TABLE>

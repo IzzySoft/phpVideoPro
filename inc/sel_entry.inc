@@ -12,6 +12,8 @@
 
  /* $Id$ */
 
+ include("inc/includes.inc");
+
  #======================[ if the form was submitted, redirect to edit.php ]===
  if ($sel_entry && $mtype_id && $cass_id && $part) {
    $nr       = $cass_id;
@@ -22,13 +24,12 @@
    } else { $nr .= $part; }
 ?>
 <HTML><HEAD>
-  <meta http-equiv="refresh" content="0; URL=<?="edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr"?>">
+  <meta http-equiv="refresh" content="0; URL=<?=$pvp->link->slink("edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr")?>">
 </HEAD></HTML>
 <?
    exit;
  }
 
- include("inc/includes.inc");
  include("inc/header.inc");
 
  if ($sess_id) {
@@ -53,6 +54,7 @@
    $sel_mtype .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\">" . $mtypes[$i][sname] . "</OPTION>";
  }
  $sel_mtype .= "</SELECT>";
+ if (!$pvp->config->enable_cookies) $sel_mtype .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("sel_mtype",$sel_mtype);
  $t->set_var("display",lang("display"));
  $t->pparse("out","list");

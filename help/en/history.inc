@@ -2,6 +2,20 @@
 # /*  $Id$ */
 
 [title]
+0.4.9 (2003)
+[text]
+<ul>
+ <li>since some users experienced problems with the cookie and session
+     management (mostly due to their machines setup), I decided to use
+     different initial settings to be changed by the "admin" after successful
+     installation and application verification: cookies expire with the
+     browser session and are initially turned off, phpVideoPro's session are
+     set to never expire. For several reasons, after a new installation you
+     are recommended to change those values. The setup program gives you more
+     information about this.
+</ul>
+
+[title]
 0.4.8 (May 1, 2003)
 [text]
 <ul>

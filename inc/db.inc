@@ -563,6 +563,14 @@
    }
 
    ############################################################################
+   # get freetime of a given medium
+   function get_mediumfreetime($id) {
+     $this->query("SELECT free FROM cass WHERE id=$id");
+     if ( $this->next_record() ) return $this->f('free');
+       else return "";
+   }
+
+   ############################################################################
    # get list of free space on media. If $start is set, the result set is
    # limited based on $pvp->preferences->limit
    function get_freelist($minfree,$filter="",$start="") {

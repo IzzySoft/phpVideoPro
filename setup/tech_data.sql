@@ -65,6 +65,7 @@ INSERT INTO preferences (name,value) VALUES ('template','default');
 INSERT INTO preferences (name,value) VALUES ('display_limit','30');
 INSERT INTO preferences (name,value) VALUES ('date_format','y-m-d');
 INSERT INTO preferences (name,value) VALUES ('page_length','85');
+INSERT INTO preferences (name,value) VALUES ('default_movie_toneid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 

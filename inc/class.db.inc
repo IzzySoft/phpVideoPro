@@ -1118,15 +1118,17 @@
      $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part>$part");
      if ($this->next_record()) {
        $next->part = $this->f('part');
-       return $next;
+       if($next->part) return $next;
      }
      $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id>$media_nr");
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
-       $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$next->media_nr);
-       $this->next_record();
-       $next->part = $this->f('part');
-       return $next;
+       if ($next->media_nr) { # Work around MySQL bug returning "Null" sometimes
+         $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$next->media_nr);
+         $this->next_record();
+         $next->part = $this->f('part');
+         return $next;
+       }
      }
      ++$next->mtype_id;
      $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=".$next->mtype_id);
@@ -1147,18 +1149,27 @@
     * @param integer media_nr number of current medium
     * @param integer part part number of current entry
     * @return object next entry: mtype_id, media_rn, part
-    * @todo does not handle holes on media (e.g. medium with 3 movies, #2
-    *  deleted) nor holes in media number (e.g. medium #5 deleted, but 6 exists)
     */
    function get_preventry($mtype_id,$media_nr,$part) {
      $prev->mtype_id = $mtype_id;
      $prev->media_nr = $media_nr;
-     $prev->part     = --$part;
-     if ( $prev->part && $id=$this->get_movieid($mtype_id,$media_nr,$prev->part) )
-       return $prev;
-     --$prev->media_nr; $prev->part = 1;
-     if ( $this->get_movieid($mtype_id,$prev->media_nr,$prev->part) )
-       return $prev;
+     if ($part>1) {
+       $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part<$part");
+       if ($this->next_record()) {
+         $prev->part = $this->f('part');
+         return $prev;
+       }
+     }
+     if ($media_nr>1) {
+       $this->query("SELECT MAX(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id<$media_nr");
+       if ($this->next_record()) {
+         $prev->media_nr = $this->f('medianr');
+         $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$prev->media_nr);
+         $this->next_record();
+         $prev->part = $this->f('part');
+         return $prev;
+       }
+     }
      --$prev->mtype_id;
      $last = $this->get_lastmovienum();
      for ($i=0;$i<count($last);++$i) {

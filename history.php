@@ -18,6 +18,8 @@
            copyright and license)
        <li>while outsourcing some functions used in more than one file,
            update was broken (duplicate function declaration), fixed.
+       <li>when adding a new entry it was possible to get duplicate or
+           invalid media IDs. Added some check to prevent this.
       </ul>
   <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:

@@ -13,7 +13,7 @@
  /* $Id$ */
 
  $page_id = "login";
- $details = array("sess_id","logout","login","passwd","url","redir");
+ $details = array("sess_id","logout","login","passwd","url","redir","login_hint");
  foreach ($details as $var) {
    $$var = $_REQUEST[$var];
  }

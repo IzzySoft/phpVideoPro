@@ -2426,6 +2426,11 @@
          $person  = $stats[$sperson];
          $pos = strpos($person," (");
          $person_id = substr($person,0,$pos);
+         if (!strlen($person_id)) {
+           $stats[$count] = "";
+           $stats[$sperson] = "";
+           continue;
+         }
          $rank = substr($person,$pos+2,strlen($person)-($pos+3));
 	 $func = $value["func"];
          $name = $this->$func($person_id);
@@ -2449,16 +2454,18 @@
      $actors = $pvp->common->array_combine_sums($actors,$actor3_id);
      $actors = $pvp->common->array_combine_sums($actors,$actor4_id);
      $actors = $pvp->common->array_combine_sums($actors,$actor5_id);
-     arsort($actors);
-     $i = 1;
-     foreach ($actors as $key=>$value) {
-       $name  = $this->get_actor($key);
-       $act   = "rank_actor_" . $i;
-       $count = $act . "_count";
-       $stats[$act]   = $name[fullname];
-       $stats[$count] = $value;
-       ++$i;
-       if ($i>3) break;
+     if (is_array($actors)) {
+       arsort($actors);
+       $i = 1;
+       foreach ($actors as $key=>$value) {
+         $name  = $this->get_actor($key);
+         $act   = "rank_actor_" . $i;
+         $count = $act . "_count";
+         $stats[$act]   = $name[fullname];
+         $stats[$count] = $value;
+         ++$i;
+         if ($i>3) break;
+       }
      }
      return $stats;
    }

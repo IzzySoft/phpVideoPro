@@ -32,6 +32,10 @@
    $data  = $rec[$i]->comment;
    $movie = $rec[$i]->id;
    $title = $rec[$i]->title;
+   if ( preg_match("/<img[^>]*http:[^>]*>/i",$data,$matches) ) {
+     echo " <LI>\"$title\" contains an &lt;IMG&gt; tag with http: reference. Leaving untouched; please update manually.</LI>\n";
+     continue;
+   }
    if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$data,$matches) ) {
      echo " <LI>\"$title\" already seems to be up-to-date with the [href] tag.</LI>\n";
      continue;

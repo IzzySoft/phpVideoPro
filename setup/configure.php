@@ -209,7 +209,9 @@ if ($admin) {
 #--[ select primary language ]--
 $t->set_var("item_name",lang("select_primary_lang"));
 $t->set_var("item_comment",lang("select_primary_lang_comment"));
-$select  = "<SELECT NAME=\"default_lang\">";
+$select  = "<SELECT NAME=\"default_lang\" ID='prilang'";
+if ($admin) $select .= " onChange='pri_lang()'";
+$select .= ">";
 for ($i=0;$i<count($lang_installed);$i++) {
   $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
   if ( $lang_installed[$i]==$lang_preferred ) $select .= " SELECTED";
@@ -427,7 +429,22 @@ $t->parse("list","listblock",TRUE);
 #--[ complete the whole thing ]--
 if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
-if ($menue && !$update) include ($base_path . "inc/header.inc");
+if ($menue && !$update) {
+  include ($base_path . "inc/header.inc");
+  if ($admin) {
+?>
+<script language="JavaScript">//<!--
+ function pri_lang() {
+  var chk=window.confirm('<?=lang("confirm_prilang")?>');
+  lang = document.getElementById('prilang');
+  if (lang && !chk) {
+    lang.value = '<?=$lang_preferred?>';
+  }
+ }
+//--></script>
+<?
+  }
+}
 $t->pparse("out","config");
 include($base_path . "inc/footer.inc");
 ?>

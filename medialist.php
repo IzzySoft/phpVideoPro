@@ -5,14 +5,13 @@
   include("inc/header.inc");
   $filter = get_filters();
 
-?>
+  echo "<H2 Align=Center>" . lang("medialist") . "</H2>\n";
+  echo "<TABLE ALIGN=\"center\" BORDER=\"1\">\n";
+  echo " <TR><TH>" . lang("medium") . "</TH><TH>" . lang("nr")
+       . "</TH><TH>" . lang("title") . "</TH><TH>" . lang("length")
+       . "</TH><TH>" . lang("year") . "</TH><TH>" . lang("date_rec")
+       . "</TH><TH>" . lang("category") . "</TH></TR>\n";
 
-<H2 Align=Center>Medialist</H2>
-
-<Table Witdh=90% Align=Center Border=1>
- <TR><TH>Medium</TH><TH>Nr</TH><TH>Title</TH><TH>Length</TH><TH>Year</TH><TH>Date Rec.</TH><TH>category</TH><TR>
-
-<?
   $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
   $query .= " FROM video v, cat c, mtypes m";
   $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id";

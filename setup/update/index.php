@@ -162,6 +162,7 @@ $pvp->preferences->admin();
                       while ($db->next_record()) $lav[] = $db->f('lang');
                       queryf("../install/languages.sql","Refresh of language data");
                       foreach ($lav as $lavv) $db->query("UPDATE languages SET available='Yes' where lang_id='$lavv'");
+    case "0.7.2"    : queryf("0-7-2_to_0-7-3.sql","Upgrade to v0.7.3");
                       queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

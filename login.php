@@ -31,7 +31,7 @@
  }
  $t = new Template($pvp->tpl_dir);
 
- if ($_POST["submit"]) {
+ if (isset($_POST["submit"])) {
    if ($sess_id = $pvp->session->create($login,$passwd) ) {
      $url = $pvp->link->slink($url);
      if ($pvp->cookie->active) {

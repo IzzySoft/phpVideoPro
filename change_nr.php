@@ -62,11 +62,11 @@
    $new_nr = make_nr($new_cass_id,$new_part);
    header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));
  } elseif ( isset($copy) ) {
-   $movie[space]    = $db->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
+   $movie['space']    = $db->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
    $movie['mtype_id'] = $new_mtype;
    $movie['cass_id']  = $new_cass_id;
    $movie['part']     = $new_part;
-   if ( !$movie[lp] ) $movie[lp] = 0;
+   if ( !$movie['lp'] ) $movie['lp'] = 0;
    $db->add_movie($movie);
    $new_nr = make_nr($new_cass_id,$new_part);
    header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));

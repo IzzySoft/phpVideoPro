@@ -44,7 +44,7 @@
  $idfields = array("pict_id","director_list","music_list","vis_actor1","vis_actor2",
              "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id","label");
  foreach ($idfields as $field) {
-   if (!$$field) $$field = 0;
+   if (!(isset($$field))) $$field = 0;
  }
 
  $title   = $pvp->common->input2string($title);

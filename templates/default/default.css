@@ -1,40 +1,56 @@
-<style type="text/css">
-<!--
-  body { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px; background-color: #6699ff; }
+  body {
+    font-family: sans-serif;
+    font-size: 12px;
+    margin: 0;
+    background-color: #69f;
+  }
   a { text-decoration:none; }
   A:link{ text-decoration:none }
   A:visted{ text-decoration:none }
   A:active{ text-decoration:none }
   .tablink { color: #000000; }
-  TABLE { background-color: #ffffff; }
-  .navtable { background-color: #6699ff; }
-  TH { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; background-color: #ffff99; text-align: center; font-weight: bold; }
+  TABLE { background-color: #fff; }
+  .navtable { background-color: #69f; }
+  TH {
+    font-family: sans-serif;
+    font-size: 12px;
+    background-color: #ff9;
+    text-align: center;
+    font-weight: bold;
+  }
   TH A { color:blue; }
   TH.help { background-color: #e5e5e5; text-align: center; }
-  TD { font-size: 12; }
-  INPUT { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; text-decoration: none; height: 20px; }
-  SELECT { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; text-decoration: none; height: 20px; }
+  TD { font-size: 12px; }
+  INPUT {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    height: 20px;
+  }
+  SELECT {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    height: 20px;
+  }
   P { margin-top:0; margin-bottom:0; }
-  CODE { font-size: 12px; font-family: monospace; color: #660033; }
-  .nameinput { width: 120; height: 18; }
-  .techinput { width: 120; height: 18; }
-  .catinput { width: 180; height: 18; }
-  .medianrinput { width: 70; height: 18; }
-  .partinput { width: 20; height: 18; }
-  .yesnoinput { width: 40; height: 18; }
+  CODE { font-size: 12px; font-family: monospace; color: #603; }
+  .nameinput, .techinput { width: 120px; height: 18px; }
+  .catinput { width: 180px; height: 18px; }
+  .medianrinput { width: 70px; height: 18px; }
+  .partinput { width: 20px; height: 18px; }
+  .yesnoinput { width: 40px; height: 18px; }
   .titlebutton, .namebutton, .techbutton, .catbutton, .medianrbutton, .yesnobutton {
-    font-family: Verdana,Arial,Helvetica,sans-serif; background-color: #dadada;
-    height: 18;
+    font-family: sans-serif; background-color: #dadada;
+    height: 18px;
   }
   .titlebutton { font-weight: bold; }
-  .namebutton, .techbutton { width: 120; }
-  .catbutton { width: 180; }
-  .medianrbutton { width: 70; }
-  .yesnobutton { width: 40; }
-  .checkbox { height: 15; }
-  .multiselect { height: 125; width: 180; }
-  .error { color: #ff0000; }
-  .ok    { color: #0000ff; }
-  .virtual_button { border:1px outset #ffffff; background-color: #dadada; }
-//-->
-</style>
+  .namebutton, .techbutton { width: 120px; }
+  .catbutton { width: 180px; }
+  .medianrbutton { width: 70px; }
+  .yesnobutton { width: 40px; }
+  .checkbox { height: 15px; }
+  .multiselect { height: 125px; width: 180px; }
+  .error { color: #f00; }
+  .ok    { color: #00f; }
+  .virtual_button { border:1px outset #fff; background-color: #dadada; }

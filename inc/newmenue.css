@@ -3,11 +3,8 @@
 ******************************************************************************/
 
 body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  margin: 0px;
+  color: #000;
+  margin: 0;
 }
 a { text-decoration: none; }
 
@@ -18,18 +15,18 @@ a { text-decoration: none; }
 }
 a.menuButton, a.menuButtonActive, #menuBar {
   border-style: solid;
-  color: #000000;
-  left: 0px;
-  top: 0px;
+  color: #000;
+  left: 0;
+  top: 0;
 }
 #menuBar {
   background-color: #c0c0c0;
-  border-width: 0px;
+  border-width: 0;
   border-top-color: #f0f0f0;
   border-top-width: 2px;
   border-bottom-color: #909090;
   border-bottom-width: 2px;
-  padding: 0px;
+  padding: 0;
   padding-top: 2px;
   padding-bottom: 2px;
   position: absolute;
@@ -41,7 +38,7 @@ a.menuButton, a.menuButtonActive {
   border-width: 1px;
   border-color: #c0c0c0;
   cursor: default;
-  font-family: "MS Sans Serif", Arial, Tahoma, sans-serif;
+  font-family: sans-serif;
   font-size: 11px;
   font-style: normal;
   font-weight: normal;
@@ -53,12 +50,12 @@ a.menuButton, a.menuButtonActive {
 }
 a.menuButton:hover {
   border-color: #f0f0f0 #505050 #505050 #f0f0f0;
-  color: #000000;
+  color: #000;
 }
 a.menuButtonActive, a.menuButtonActive:hover {
   background-color: #909090;
   border-color: #505050 #f0f0f0 #f0f0f0 #505050;
-  color: #ffffff;
+  color: #fff;
   left: 1px;
   top: 1px;
 }
@@ -67,20 +64,20 @@ a.menuButtonActive, a.menuButtonActive:hover {
   border-style: solid;
   border-width: 2px;
   border-color: #f0f0f0 #909090 #909090 #f0f0f0;
-  padding: 0px;
+  padding: 0;
   position: absolute;
   text-align: left;
   visibility: hidden;
   z-index: 101;
 }
 a.menuItem, .menuText {
-  color: #000000;
+  color: #000;
   cursor: default;
-  font-family: "MS Sans Serif", Arial, Tahoma,sans-serif;
+  font-family: sans-serif;
   font-size: 11px;
   font-style: normal;
   font-weight: normal;
-  margin: 0px;
+  margin: 0;
   padding: 2px;
   padding-left: 12px;
   padding-right: 12px;
@@ -92,11 +89,11 @@ a.menuItem {
 .menuText {
   display: inline;
   text-align:right;
-  position: absolute; right: 0px; top: 2px; /* top: fix for Konqueror quirk */
+  position: absolute; right: 0; top: 2px; /* top: fix for Konqueror quirk */
 }
 a.menuItem:hover {
   background-color: #000080;
-  color: #ffffff;
+  color: #fff;
 }
 .menuItemSep {
   border-bottom: 1px solid #f0f0f0;

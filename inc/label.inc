@@ -57,11 +57,9 @@
      $im  = imageCreate($this->width,$this->height); // create img in desired size
      $bgcolor = explode(",", $this->color[white]);
      $fgcolor = explode(",", $this->color[blue]);
-     $border  = 15;
      $bg  = ImageColorAllocate($im, $bgcolor[0], $bgcolor[1], $bgcolor[2]);
      $fg  = ImageColorAllocate($im, $fgcolor[0], $fgcolor[1], $fgcolor[2]);
-     ImageRectangle($im,0,0,$this->width,$this->height,$fg);
-     ImageRectangle($im,$border,$border,$this->width - $border,$this->height - $border,$bg);
+     ImageRectangle($im,0,0,$this->width - 1,$this->height - 1,$fg);
      $this->label = $im;
    }
 
@@ -90,7 +88,7 @@
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
      $y = $this->vmidth - (imagefontheight($this->font) * $lines / 2);
      $textcolor_array = explode(",", $this->textcolor);
-     $color = ImageColorAllocate($this->label, $this->textcolor[0], $this->textcolor[1], $this->textcolor[2]);
+     $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
      for ($i=0;$i<count($text),$i<4;$i++) {
        imagestring($this->label, $font[$i], $x[$i], $y, "$text[$i]", $color);
        $y += imagefontheight($this->font);

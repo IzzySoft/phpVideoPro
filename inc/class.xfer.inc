@@ -41,11 +41,11 @@
    */
   function initImport() {
     GLOBAL $db;
-    $this->data   = ""; // imported file (array of strings)
-    $this->list   = "";
-    $this->items  = 0;
-    $this->errors = 0;
-    $this->report = "";
+    $this->data   = array(); // imported file (array of strings)
+    $this->list   = ""; // movies (one per line)
+    $this->items  = 0;  // count of movies in xfer::list
+    $this->errors = 0;  // count of errors occured
+    $this->report = ""; // detailed report for debug level R
     $this->avlTypes = array("audio","subtitle");
     $this->audio    = $this->mkavlang("audio");
     $this->subtitle = $this->mkavlang("subtitle");
@@ -66,8 +66,7 @@
     $this->items = 0;
   }
 
-  /** format error message
-   * @class xfer
+  /** Formating error message for display as save_result in form
    * @methode private errorMsg
    * @param string msg
    * @return string formated msg
@@ -77,7 +76,6 @@
   }
 
   /** format OK message
-   * @class xfer
    * @methode private okMsg
    * @param string msg
    * @return string formated msg
@@ -120,13 +118,12 @@
      return $mtype;
    }
 
-  /** Read a file from disk
-   * @class xfer
+  /** Read a file from disk.
+   *  On errors, the formated error message is stored in xfer::readErr
    * @method private fileRead
    * @param string file filename
    * @param optional string dir directory where the file resides
    * @return boolean success
-   * @version on error, the formated error message is stored in xfer::readErr
    */
   function fileRead($file,$dir="") {
     if ($this->mode!="import") return FALSE;
@@ -158,13 +155,13 @@
     return TRUE;
   }
 
-  /** Store movies from xfer::data into DB
-   * @class xfer
+  /** Store movies from xfer::data into DB.
+   *  How many movies could not be imported is stored to xfer::errors,
+   *  error details are stored in (appended to) xfer::report
    * @method private moviePut
    * @param boolean append Whether we append to an existing or build a new DB
-   * @return 
-   * @version How many movies could not be imported is stored to xfer::errors,
-   *  error details are stored in (appended to) xfer::report
+   * @return boolean all_success (TRUE if all entries are imported sucessfully,
+   *  FALSE otherwise)
    */
   function moviePut($append=TRUE) {
     if ($this->mode!="import") {
@@ -235,7 +232,6 @@
   } // end of method moviePut
 
   /** Retrieve movie data from DB and store them encoded into xfer::list
-   * @class xfer
    * @method private movieGet
    * @param integer id movie_id
    */
@@ -251,7 +247,6 @@
 
   /** Send the (encoded) data from xfer::list for download to the browser and
    *  reset the list
-   * @class xfer
    * @method private fileSend
    * @param string filename filename to offer for d/l
    */
@@ -267,7 +262,6 @@
 
  #================================================[ Configuration (public) ]===
   /** Enable data compression
-   * @class xfer
    * @method public compressionOn
    */
   function compressionOn() {
@@ -275,7 +269,6 @@
   }
 
   /** Disable data compression
-   * @class xfer
    * @method public compressionOff
    */
   function compressionOff() {
@@ -284,10 +277,9 @@
 
  #======================================================[ Actions (public) ]===
   /** Import data from a file
-   * @class xfer
    * @method public fileImport
    * @param string file file name to import
-   * @param optional dir directory where the file is located (if not already
+   * @param optional string dir directory where the file is located (if not already
    *  given with param file)
    * @param optional boolean append whether to append to existing DB (default)
    *  or starting with a cleanup (FALSE)
@@ -321,7 +313,6 @@
   }
 
   /** Export data to file (and send file to browser for d/l)
-   * @class xfer
    * @method public fileExport
    * @param string mode What to export: "Movie"[, "Config", "Prefs"]
    * @param optional integer id movie id (if not given, export all)

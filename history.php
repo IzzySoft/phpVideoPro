@@ -22,6 +22,12 @@
            invalid media IDs. Added some check to prevent this.
        <li>preset "Aquired" date to current date when adding a new entry
        <li>added check for valid date on adding new and changing existing entry
+       <li>slightened date check. Now providing an "incomplete" date is possible.
+           This is useful, if one e.g. does not remember the exact date of
+           aquiration, and so is just able to enter the year (or year and month).
+           Missing data are to be substituted by zeros (e.g. "2000-05-00")
+       <li>remaining time on video tape was miscalculated, if other medium (e.g. DVD)
+           with the same number existed. Fixed.
       </ul>
   <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:

@@ -39,7 +39,7 @@
 
  ##############################################################################
  # check wether the specified date is valid
- check_date($recdate);
+ check_date($recdate,0);
 
  include("inc/sql_set_persons.inc");
 

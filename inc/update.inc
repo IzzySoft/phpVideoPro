@@ -11,7 +11,7 @@
 
  ##############################################################################
  # check wether the specified date is valid
- check_date($recdate);
+ check_date($recdate,0);
 
  include("inc/sql_set_persons.inc");
 
@@ -50,7 +50,7 @@
    } else {
      $media_length = $db->f('type');
      if ( $media_length<$min["media_size"] ) debug("W",$colors["err"] . "Invalid Media size '$media_length' (should be at least '" . $min["media_size"] . "')!</Font><BR>\n");
-     $query = "SELECT length,lp FROM video WHERE cass_id='$cass_id'";
+     $query = "SELECT length,lp FROM video WHERE cass_id='$cass_id' AND mtype_id='$mtype_id'";
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
      $db->query($query);
      $i=0;

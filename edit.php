@@ -217,7 +217,7 @@
 <INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>"><? } ?>
 <Table Width="90%" Align="Center" Border="1">
- <TR><TH>Title</TH><TH ColSpan=3><? echo "<$input NAME=\"title\" VALUE=\"$title\">" ?></TH></TR>
+ <TR><TH ColSpan=4><? echo "<$input NAME=\"title\" VALUE=\"$title\">" ?></TH></TR>
  <TR>
   <TD Width=20%>MediaType</TD><TD Width=30%><?
   if ($new_entry) {

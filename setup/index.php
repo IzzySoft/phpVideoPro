@@ -13,24 +13,23 @@
  /* $Id$ */
 
   include ("../inc/config.inc");
+  include("css.inc");
   $title = "phpVideoPro Setup";
 
 ?>
 <HTML><HEAD>
- <TITLE><? echo $title ?></TITLE>
+ <TITLE><?=$title?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
 </HEAD>
 <BODY>
-<H1 ALIGN=CENTER><? echo $title ?></H1>
-<P ALIGN=JUSTIFY>Welcome to the Setup Unit of phpVideoPro! Right at the moment,
- this may not look as if it was designed by Armani - but I focussed mainly on
- functionality for now. So I beg your pardon for now - and if I will have some
- spare time in the future, I may go to make a neat design for this :)</P>
-<P ALIGN=JUSTIFY>Please select what you are going to do:</P>
-<TABLE ALIGN=CENTER WIDTH=90% BORDER=0>
- <TR><TD ALIGN=CENTER WIDTH=33%><A HREF="install.php">Fresh Installation</A></TD>
-     <TD ALIGN=CENTER WIDTH=34%><A HREF="update.php">Update existing installation</A></TD>
-     <TD ALIGN=CENTER WIDTH=33%><A HREF="configure.php">Configure existing installation</A></TD>
- </TR>
-</TABLE>
-</BODY></HTML>
+<H1 ALIGN=CENTER><?=$title?></H1>
+<TABLE ALIGN="CENTER" WIDTH="90%" BORDER="0">
+ <TR><TH>Welcome to the Setup Unit of phpVideoPro!</TH></TR>
+ <TR><TD><DIV ALIGN="center"><P><BR>Please select what you are going to do:</P>
+     <TABLE WIDTH="90%" BORDER="1">
+      <COLGROUP><COL WIDTH="33%" ALIGN="center"><COL WIDTH="34%"><COL WIDTH="33%"></COLGROUP>
+      <TR><TD ALIGN="center"><A HREF="install.php">Fresh Installation/Restore</A></TD>
+          <TD ALIGN="center"><A HREF="update.php">Update existing installation</A></TD>
+          <TD ALIGN="center"><A HREF="configure.php">Configure existing installation</A></TD></TR>
+     </TABLE></DIV></TD></TR>
+</TABLE></BODY></HTML>

@@ -132,3 +132,5 @@ INSERT INTO lang VALUES('start_page','en','Initial page');
 INSERT INTO lang VALUES('invalid_fsk','en','The value entered for %1 is invalid. %1 means Parental Guide, i.e. the minimum age below that you should give nobody access to this movie.');
 INSERT INTO lang VALUES('counter_start_stop','en','Counter Start/Stop');
 INSERT INTO lang VALUES('other_pages','en','Other pages');
+INSERT INTO lang VALUES('commercials','en','Commercials');
+INSERT INTO lang VALUES('cut_off','en','cut off');

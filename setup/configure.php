@@ -101,53 +101,13 @@ if ($menue) {
     $i++;
   }
 
-  #---------------------------------[ get preferred languages ]---
-  dbquery("SELECT value FROM preferences WHERE name='lang'");
-  if ( $db->next_record() ) {
-    $lang_preferred = $db->f('value');
-  } else {
-    debug("E","No default language set in DB!");
-  }
-
-  #-----------------------------------[ get configured colors ]---
-  dbquery("SELECT value FROM preferences WHERE name='colors'");
-  if ( $db->next_record() ) {
-    $colors   = unserialize ( rawurldecode( $db->f('value') ) );
-  } else {
-    debug("E","No colors in db?!?");
-  }
-
-  #---------------------------------------[ get user template ]---
-  dbquery("SELECT value FROM preferences WHERE name='template'");
-  if ( $db->next_record() ) {
-    $template_set = $db->f('value');
-  } else {
-    debug("E","No user template in db?!?");
-  }
-
-  #---------------------------------------[ get display limit ]---
-  dbquery("SELECT value FROM preferences WHERE name='display_limit'");
-  if ( $db->next_record() ) {
-    $display_limit = $db->f('value');
-  } else {
-    debug("E","No display limit in db?!?");
-  }
-
-  #-----------------------------------------[ get page length ]---
-  dbquery("SELECT value FROM preferences WHERE name='page_length'");
-  if ( $db->next_record() ) {
-    $page_length = $db->f('value');
-  } else {
-    debug("E","No display limit in db?!?");
-  }
-
-  #-----------------------------------------[ get date format ]---
-  dbquery("SELECT value FROM preferences WHERE name='date_format'");
-  if ( $db->next_record() ) {
-    $date_format = $db->f('value');
-  } else {
-    debug("E","No display limit in db?!?");
-  }
+  #-----------------------------------------[ get preferences ]---
+  $lang_preferred = $pvp->preferences->lang;
+  $colors         = $pvp->preferences->colors;
+  $template_set   = $pvp->preferences->template;
+  $display_limit  = $pvp->preferences->display_limit;
+  $page_length    = $pvp->preferences->page_length;
+  $date_format    = $pvp->preferences->date_format;
 
 ##################################################################
 # Obtain settings from file system

@@ -9,6 +9,8 @@
      fixed
  <li>hopefully fixed the stupid issue that no semi-colon could be used in field
      content on imported files, since db:get_sql assumed end-of-sql-command then
+ <li>in database backup, semi-colons are no longer replaced by colons now since
+     import of those is fixed by v0.4.5
 </ul>
 
 [title]

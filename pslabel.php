@@ -53,6 +53,7 @@ if (isset($create)) { // we have to create label sheet
 
   $t->set_var("_lang_director_",lang("director"));
   $t->set_var("_lang_actor_",lang("actor"));
+  $t->set_var("_lang_composer_",lang("composer"));
 
   $t->pparse("out","list");
 #

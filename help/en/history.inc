@@ -14,6 +14,7 @@
      are recommended to change those values. The setup program gives you more
      information about this.
  <li>some improvements on the PS top labels
+ <li>added Session management screen
 </ul>
 
 [title]

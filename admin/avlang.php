@@ -16,11 +16,7 @@
  $page_id = "admin_avlang";
  include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
- if ( isset($_GET["start"]) ) {
-   $start = $_GET["start"];
- } elseif ( isset($_POST["start"]) ) {
-   $start = $_POST["start"];
- }
+ $start = $_REQUEST["start"];
  $edit  = $_GET["edit"];
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
@@ -32,7 +28,7 @@
  $t->set_block("template","editblock","edit");
  $t->set_block("listblock","langblock","detail");
  $t->set_var("listtitle",lang($page_id));
- $t->set_var("formtarget",$PHP_SELF ."\" enctype=\"multipart/form-data");
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"] ."\" enctype=\"multipart/form-data");
 
  $t->set_var("listtitle",lang("admin_avlang"));
  $t->set_var("head_lang_id","ID");
@@ -75,8 +71,8 @@
 
  #====================================================[ process form input ]==
  if ( isset($_POST["update"]) ) {
-   $success = @$db->set_avlang("$lang_id",$audio,"audio");
-   if ($success) $success = @$db->set_avlang("$lang_id",$subtitle,"subtitle");
+   $success = @$db->set_avlang($_POST["lang_id"],$_POST["audio"],"audio");
+   if ($success) $success = @$db->set_avlang($_POST["lang_id"],$_POST["subtitle"],"subtitle");
    if ($success) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN>";
      else $save_result = "<SPAN CLASS='error'>".lang("update_failed")."</SPAN>";
    $t->set_var("save_result",$save_result);
@@ -84,7 +80,7 @@
 
  #====================================[ get languages and setup variables ]===
  $query = "\$db->get_langlist('',$start)";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF,$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
 
  $list = $nextmatch->list;
  $details = array ("id","name","charset");
@@ -97,7 +93,7 @@
    $t->set_var("lang_locale",$yesno[strtolower($list[$i]->available)]);
    $t->set_var("lang_audio",$yesno[$list[$i]->audio]);
    $t->set_var("lang_subtitle",$yesno[$list[$i]->subtitle]);
-   $t->set_var("lang_edit","$PHP_SELF"."?edit=".$list[$i]->id."&start=$start");
+   $t->set_var("lang_edit",$_SERVER["PHP_SELF"]."?edit=".$list[$i]->id."&start=$start");
    $t->parse("detail","langblock",TRUE);
  }
 # if ($update) $db->lang_available($targetlang,1);

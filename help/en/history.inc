@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.2.9 (August 2002)
+[text]
+<ul>
+ <li>first-time installation failed: we tried to read from tables which
+     did not yet exist
+</ul>
+
+[title]
 0.2.8 (July 29, 2002)
 [text]
 <ul>

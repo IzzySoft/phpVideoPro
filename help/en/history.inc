@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.3.7 (November 2002)
+[text]
+<ul>
+ <li>when a medium became empty (by removal of the last movie), it was always
+     removed from the media table (and thus not available for free space
+     searches). This is now configurable (config.inc, $remove_empty)
+</ul>
+
+[title]
 0.3.6 (November 3, 2002)
 [text]
 <ul>

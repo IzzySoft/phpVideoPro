@@ -19,16 +19,15 @@
  <TR>
   <TD>
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-    <COLGROUP><COL WIDTH="40%"><COL WIDTH="60%"></COLGROUP>
+    <COLGROUP><COL WIDTH="150"><COL WIDTH="*"></COLGROUP>
     <TR><TD>{mtype_name}</TD><TD>{mtype}</TD></TR>
     <TR><TD>{medianr_name}</TD><TD>{medianr}</TD></TR>
-   </TABLE>
-   <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-    <COLGROUP><COL WIDTH="40%"><COL WIDTH="30%"><COL WIDTH="15%"><COL WIDTH="15%"></COLGROUP>
-    <TR><TD>{counter_name}</TD><TD>{counter}</TD>
-        <TD>{label_name}</TD><TD>{label}</TD></TR>
-    <TR><TD>{rc_name}</TD><TD COLSPAN="3"{konq_fix}>{rc}</TD></TR>
-    <TR><TD>{commercial_name}</TD><TD ColSpan="3">{commercial}</TD></TR>
+    <TR><TD>{counter_name}</TD><TD>
+      <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
+        <TD WIDTH="50%"{konq_fix}>{counter}</TD><TD WIDTH="25%">{label_name}</TD><TD WIDTH="25%">{label}</TD></TR>
+      </TABLE></TD></TR>
+    <TR><TD>{rc_name}</TD><TD>{rc}</TD></TR>
+    <TR><TD>{commercial_name}</TD><TD>{commercial}</TD></TR>
    </TABLE>
   </TD>
   <TD>
@@ -42,7 +41,7 @@
  <TR>
   <TD>
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-    <COLGROUP><COL WIDTH="40%"><COL WIDTH="60%"></COLGROUP>
+    <COLGROUP><COL WIDTH="150"><COL WIDTH="*"></COLGROUP>
     <TR><TD>{length_name}</TD>
         <TD><TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
           <TD WIDTH="50%">{length}</TD>
@@ -65,14 +64,14 @@
         <TD><DIV ALIGN="center"><B>{name_name}</DIV></TD>
         <TD><DIV ALIGN="center"><B>{firstname_name}</DIV></TD>
 	<TD><DIV ALIGN="center"><B>{inlist_name}</DIV></TD></TR>
-    <TR><TD>{director_name}</TD><TD>{director}</TD>
-        <TD>{director_f}</TD><TD><DIV ALIGN="center">{director_list}</DIV></TD></TR>
-    <TR><TD>{composer_name}</TD><TD>{composer}</TD>
-        <TD>{composer_f}</TD><TD><DIV ALIGN="center">{composer_list}</DIV></TD></TR>
+    <TR><TD>{director_name}</TD><TD><DIV ALIGN="center">{director}</DIV></TD>
+        <TD><DIV ALIGN="center">{director_f}</DIV></TD><TD><DIV ALIGN="center">{director_list}</DIV></TD></TR>
+    <TR><TD>{composer_name}</TD><TD><DIV ALIGN="center">{composer}</DIV></TD>
+        <TD><DIV ALIGN="center">{composer_f}</DIV></TD><TD><DIV ALIGN="center">{composer_list}</DIV></TD></TR>
     <TR><TD COLSPAN="4"><HR></TD></TR>
     <!-- BEGIN actorblock -->
-    <TR><TD>{actor_name}</TD><TD>{actor}</TD>
-        <TD>{actor_f}</TD><TD><DIV ALIGN="center">{actor_list}</DIV></TD></TR>
+    <TR><TD>{actor_name}</TD><TD><DIV ALIGN="center">{actor}</DIV></TD>
+        <TD><DIV ALIGN="center">{actor_f}</DIV></TD><TD><DIV ALIGN="center">{actor_list}</DIV></TD></TR>
     <!-- END actorblock -->
    </TABLE>
   </TD></TR>

@@ -7,6 +7,8 @@
 <ul>
  <li>replaced some *.png files by *.gif pendants for correct transparency in
      all browsers (e.g. M$IE)
+ <li>cleaned up CSS -- the stylesheet files are now no longer "included" with
+     the HTML code but "refered to"
 </ul>
 
 [title]

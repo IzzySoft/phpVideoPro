@@ -14,6 +14,7 @@
 
  class nextmatch {
    VAR $totals, $start, $limit,      // total records, startpoint and limit
+       $list,$listcount,             // array/count of retrieved data
        $first, $left, $right, $last, // controls
        $script,                      // target script name to link to
        $img_dir,                     // image directory for controls
@@ -21,7 +22,9 @@
 
    function nextmatch($query,$tpl_dir,$script="",$start=0) { // init
      GLOBAL $db, $pvp, $base_path, $base_url;
-     $this->totals = $db->lim_query($query,$start);
+     $this->list = eval("return($query);");
+     $this->listcount = count($this->list) -1;
+     $this->totals = $this->list[totals];
      $this->start  = $start;
      $this->limit  = $pvp->preferences->display_limit;
      if (!strlen(trim($script))) {

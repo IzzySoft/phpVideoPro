@@ -571,8 +571,8 @@
        $restrict .=  " AND id IN ($tapelist)";
      }
      $query = "SELECT id,free FROM cass WHERE $restrict ORDER BY free DESC";
-     if ($start==="") { $this->dbquery($query); $totals = $count = $this->num_rows(); $type = "all"; }
-       else { $totals = $this->lim_query($query,$start); $type = "lim"; $count = $this->num_rows(); }
+     if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
+       else { $totals = $this->lim_query($query,$start); }
      $i=0;
      while ( $this->next_record() ) {
        $freelist[$i][id]   = $this->f('id');
@@ -580,8 +580,6 @@
        ++$i;
      }
      $freelist[totals] = $totals;
-     $freelist[count]  = $count;
-     $freelist[type]   = $type;
      return $freelist;
    }
 
@@ -609,19 +607,18 @@
      }
      $list  = implode (",",$ar); // idlist of visible staff members
      $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
-     if ($start==="") { $this->dbquery($query); $totals = $count = $this->num_rows(); $type = "all"; }
-       else { $totals = $this->lim_query($query,$start); $type = "lim"; $count = $this->num_rows(); }
+     if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
+       else { $totals = $this->lim_query($query,$start); }
      $i=0;
      while ( $this->next_record() ) {
        $stafflist[$i][id]   = $this->f('id');
        $name[firstname]     = $this->f('firstname');
        $name[name]          = $this->f('name');
+       $name[id]            = $stafflist[$i][id];
        $stafflist[$i][name] = $this->format_name($name);
        ++$i;
      }
-     $stafflist[count]  = $count;
      $stafflist[totals] = $totals;
-     $stafflist[type]   = $type;
      return $stafflist;
    }
 

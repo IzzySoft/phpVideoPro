@@ -323,3 +323,11 @@ INSERT INTO lang VALUES('sel_target_lang','en','Select target language (to trans
 INSERT INTO lang VALUES('medium_overview','en','Overview for %1');
 INSERT INTO lang VALUES('is_rw','en','rewritable');
 INSERT INTO lang VALUES('techdata','en','Technical Data');
+INSERT INTO lang VALUES('admin_printers','en','Edit printers');
+INSERT INTO lang VALUES('printer_name','en','Name');
+INSERT INTO lang VALUES('unit','en','Unit');
+INSERT INTO lang VALUES('top_offset','en','Top Offset');
+INSERT INTO lang VALUES('left_offset','en','Left Offset');
+INSERT INTO lang VALUES('printer_upd_failed','en','Update failed for the following printers: %1');
+INSERT INTO lang VALUES('printer_add_failed','en','An error occurred adding this printer.');
+INSERT INTO lang VALUES('printer_add_success','en','Printer successfully added.');

@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.4.8 (May 2003)
+[text]
+<ul>
+ <li>Printers can now be edited (see admin menu)
+</ul>
+
+[title]
 0.4.7 (April 25, 2003)
 [text]
 <ul>

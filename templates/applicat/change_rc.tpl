@@ -34,10 +34,10 @@
     <TR><TH COLSPAN="3">{rc_head}</TH></TR>
     <TR><TD COLSPAN="3"><DIV ALIGN="center">{rc}</DIV></TD></TR>
   </TABLE>
- </FORM></TD></TR></TABLE>
+ </TD></TR></TABLE>
 
 </TD></TR>
 <TR><TD><DIV STYLE="margin:3;text-align:center">{change}</DIV></TD></TR>
-</TABLE>
+</TABLE></FORM>
 </DIV>
 </TD></TR></TABLE>

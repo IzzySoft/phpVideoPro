@@ -24,6 +24,8 @@ INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (4,1,'action_top','action_top.eps','common_top.ps',0,0,273,160);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (5,2,'sf_side','sf_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (6,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (7,2,'bible_side','bibelfilm_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (8,1,'bible_top','bibelfilm_top.eps','common_top.ps',0,0,273,160);
 
 #
 # Table structure and data for 'label form definition'

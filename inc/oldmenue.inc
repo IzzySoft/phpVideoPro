@@ -13,7 +13,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("configuration") ?>", "<? echo $base_url ?>configure.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("dl_pvp_latest") ?>", "http://www.qumran.org/ftp/net/div/izzysoft/phpvideopro.tgz"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("dl_pvp_latest") ?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);

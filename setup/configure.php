@@ -416,11 +416,11 @@ $t->parse("item","itemblock");
 $t->set_var("item_name",lang("imdb_url2"));
 $t->set_var("item_comment",lang("imdb_url2_comment"));
 $select  = "<SELECT NAME=\"imdb_url2\">";
-$imdburls = $db->get_options("imdb_url");
-for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
-  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
-  if ($imdburls["imdb_url"][$i] == $imdb_url2) $select .= " SELECTED";
-  $select .= ">" . $imdburls["imdb_url"][$i] . "</OPTION>";
+$imdburls = $db->get_options("imdb_url2");
+for ($i=0;$i<count($imdburls["imdb_url2"]);++$i) {
+  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url2"][$i] . "\"";
+  if ($imdburls["imdb_url2"][$i] == $imdb_url2) $select .= " SELECTED";
+  $select .= ">" . $imdburls["imdb_url2"][$i] . "</OPTION>";
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);

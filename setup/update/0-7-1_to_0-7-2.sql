@@ -6,6 +6,8 @@
 DELETE FROM lang WHERE lang='en';
 
 # Selectable options for the new IMDB features
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_country');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');

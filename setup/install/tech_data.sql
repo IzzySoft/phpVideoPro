@@ -4,6 +4,8 @@
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://german.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_country');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');

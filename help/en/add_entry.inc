@@ -26,7 +26,7 @@ movie should be 20-1 and the second 20-2.
 Now for the feature: Let's assume you've just recorded two movies on an empty
 tape, and now you want to create the database entries for them. Are you sure
 you remember the last (physical) MediaNr you assigned? The green marked box
-assists you in finding out the last assigned number <b>for each media type</b>!
+assists you in finding out the highest assigned number <b>for each media type</b>!
 Just open it to view all its content. For the creation process, it doesn't
 matter at all what value you've selected - the green marked box is for your
 information only, its content is not stored anywhere in the database.
@@ -44,9 +44,9 @@ commercial video tape library, but for private collections only :)
 [text]
 The date field is split in day, month and year fields. As for now, the order
 is hardcoded to be day-month-year. Of course this will change in one of the
-following versions of phpVideoPro, and this format will be adjustable via the
-confirguration menue as well to take country specific settings (or special user
-preferences :) into account.
+following versions of phpVideoPro, to use the order configured with the date
+format setting in the setup menue, to take country specific settings (or
+special user preferences :) into account.
 
 [title]
 *counter_start_stop#

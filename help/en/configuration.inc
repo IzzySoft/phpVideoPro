@@ -132,7 +132,7 @@ creating a new entry, you may feel fine to see this is already checked for you.
 Nevertheless, there may be some fans of "oldies" out there who mostly record
 movies from the 1920's which, of course, ship in black-and-white mode. Those
 of you may want to change this behaviour and like to initiate the color mode
-for new movies with "*s/w#". Do this here.
+for new movies accordingly. Do this here.
 
 [title]
 *cookies#

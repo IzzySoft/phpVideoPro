@@ -45,6 +45,7 @@
  ##############################################################################
  # read a file containing sql statements and execute the statements one-by-one
  function get_sql($file) {
+   if ( !file_exists($file) ) return 0;
    $array = file ($file);
    $sql   = ""; $ok = 1;
    for ($i=0;$i<count($array);$i++) {

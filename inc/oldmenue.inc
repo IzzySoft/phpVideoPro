@@ -37,13 +37,10 @@
     $param1   = lang("enter_new_medianr",$lastnum[$i][mtype]);
     $param2   = (int)$lastnum[$i][cass_id];
     $param3   = $pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id]);
-    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', '$param3&cass_id=$param2'));\n";
-#    echo "  js1 = '<A HREF=\"JavaScript:get_movienum('; js2 = \"'$param1',$param2,'$param3')\"; js3 = '\">';\n";
-#    echo "jsx = js1 + js2 + js3;\n";
-#    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', jsx));\n";
-#    echo "jsx = js1 + '\\\n' + js2 + '\\\n' + js3; alert(jsx);\n";
-#    echo "  dhtmlMenu.addItem(new NavBarMenuItem('$itemname', \"<A HREF=\\\"JavaScript:get_movienum('$param1',$param2,'$param3')\\\">\"));\n";
-   }
+?>    js1 = 'JavaScript:get_movienum('; js2 = "'<?=$param1?>',<?=$param2?>,'<?=$param3?>')"; js3 = '';
+    jsx = js1 + js2 + js3;
+    dhtmlMenu.addItem(new NavBarMenuItem('<?=$itemname?>', jsx));
+<?   }
   } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("search_movie")?>", "<?=$pvp->link->slink($base_url.'search.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
@@ -109,7 +106,7 @@ if ($page_id) { ?>
     fullWidth = getWindowWidth()
       - (isMinNS4 && getWindowHeight() < getPageHeight() ? 16 : 0);
 
-    myNavBar1.moveTo(10,0);
+    myNavBar1.moveTo(0,8);
     myNavBar1.resize(fullWidth);
     myNavBar1.setSizes(0,1,1);
     myNavBar1.create();

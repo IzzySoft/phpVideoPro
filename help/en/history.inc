@@ -2,10 +2,27 @@
 # /*  $Id$ */
 
 [title]
-0.1.7 (August 2001)
+0.1.7 (August 16, 2001)
 [text]
+another intermediate release due to internal changes (help system). Now I will
+really go to "feature freeze" again, just creating the missing German help
+files and fixing bugs - so if anybody finds any bug, please report! I want to
+have the next release in Gamma state...
+[text]
+starting with v0.2.0, the digits of the version numbers should mean the
+following to you:<br>
+<li>last digit: beta state nr# or "0" if none<br>
+<li>middle digit: gamma state nr# or "0" if none<br>
+<li>first digit: final release nr# or "0" if none<br>
+Alphas will only be internal and have a suffix added (p#, as to be seen on the
+<A HREF="http://www.qumran.org/homes/izzy/">Demo-Site</A>).
+[text]
+<hr>Changes:
 <ul>
  <li>made help system template driven
+ <li>made help files easy to create/edit even for people without any
+     knowledge of PHP and even HTML (see <A HREF="{PHP_SELF}?topic=howto_help">HowTo</A>
+     on this)
  <li>added possibility for translation and variable usage to help templates
  <li>updated some help file content
  <li>added new German help files

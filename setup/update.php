@@ -40,7 +40,7 @@
 # 
   echo "<HTML><HEAD>\n";
   echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\n";
-  $title = "phpVideoPro v$version: ";
+  $title = "phpVideoPro: ";
   if ( !isset($oldversion) ){
     $title .= "Updating the Database";
   } else {
@@ -83,6 +83,7 @@
                         queryf("lang_en.sql","Refresh of English language support");
       case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.4 to v0.1.5");
       case "0.1.5"    : queryf("0-1-5_to_0-1-6.sql","Update from v0.1.5 to v0.1.6");
+      case "0.1.6"    : queryf("0-1-6_to_0-1-7.sql","Update from v0.1.6 to v0.1.7");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

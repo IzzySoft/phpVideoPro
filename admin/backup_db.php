@@ -42,7 +42,6 @@
        for ($k=0;$k<$fieldcount;++$k) {
          $field   = $meta[$k]["name"];
 	 $col     = "'" . str_replace("'","\'",$db->f("$field")) . "'";
-	 $col     = str_replace(";",":",$col);
 	 $fields .= $field;
 	 $cols   .= $col;
 	 if ( ($fieldcount - $k) > 1 ) {

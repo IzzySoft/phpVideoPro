@@ -12,7 +12,9 @@
  <li>some more code cleanup (to produce new bugs ;)
  <li>in edit/view entry, remaining free time now is displayed for editable
      media only (e.g. not for DVD or Original Video Tapes), i.e. at this
-     time for RVT only (until I've added support for more than one mtype here)
+     time for RVT only (until I've added support for more than one mtype here).
+     Analogue to that, the "in_list" button for an actor is not shown any more
+     in *view_entry#, when the actor is not set. Same for director and composer.
 </ul>
 
 [title]

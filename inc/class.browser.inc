@@ -21,24 +21,20 @@
   */
 class Browser {
     
-    /** 
-     * General version numbers
+    /* General version numbers
      */
     var $majorVersion = 0;
     var $minorVersion = 0;
     
-    /**
-     * Browser name
+    /* Browser name
      */
     var $browser = '';
     
-    /**
-     * Full user agent
+    /* Full user agent
      */
     var $agent = '';
     
-    /**
-     * Features
+    /* Features
      */
     var $features = array('html'       => true,
                           'hdml'       => false,
@@ -49,8 +45,7 @@ class Browser {
                           'java'       => true,
                           'javascript' => true);
     
-    /**
-     * Quirks
+    /* Quirks
      */
     var $quirks = array('must_cache_forms'         => false,
                         'avoid_popup_windows'      => false,
@@ -58,8 +53,7 @@ class Browser {
                         'break_disposition_header' => false);
     
     
-    /**
-     * Create a browser instance
+    /** Create a browser instance
      * @constructor Browser
      */
     function Browser($userAgent = null)

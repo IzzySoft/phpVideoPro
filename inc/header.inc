@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,22 +12,20 @@
 
  /* $Id$ */
 
-#  $inc_path = dirname(__FILE__);
-#  include($inc_path . "/includes.inc");
 if (!$silent) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <meta http-equiv="cache-control" content="no-cache">
  <meta http-equiv="content-language" content="<?=$pvp->preferences->get("lang")?>">
- <Title><?echo $pagename ?></Title>
+ <Title><?=$pagename?></Title>
 <? if ( $page_id != "login" ) { ?>
  <script language="JavaScript">
   function open_help(topic) {
    if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }
-   url = '<? echo $base_url ?>help/index.php' + help_topic;
+   url = '<?=$base_url?>help/index.php' + help_topic;
    var pos = (screen.width/2)-400;
-   campus=eval("window.open(url,'<? echo lang("help") ?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
+   campus=eval("window.open(url,'<?=lang("help")?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
   }
   function get_movienum(mtype,last_nr,url) {
    nr = last_nr + 1;
@@ -44,7 +42,7 @@ if (!$silent) {
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
  <tr>
-  <td><? if ($oldmenue) { ?><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
+  <td><? if ($oldmenue) { ?><img src="<?=$base_url?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
  </tr>
 </table>
 <?

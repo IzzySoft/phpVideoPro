@@ -1772,16 +1772,18 @@
     */
    function get_sql($array) {
      $sql   = ""; $ok = 1;
-     for ($i=0;$i<count($array);$i++) {
+     $lines = count($array);
+     for ($i=0;$i<$lines;$i++) {
        $pos  = strpos(" " . trim($array[$i]),"#");
-       if ($pos<>1) {
+       if ($pos<>1) { // this is no comment line, so we process it
          $sql .= $array[$i];
-         $endpos = strpos($sql,";");
-         if ($endpos) {
-           $sql = substr($sql,0,$endpos);
+         $line  = trim($array[$i]);
+         if ( (strrpos($line,";") +1)==strlen($line) ) {
+           $sql = trim($sql);
+           $sql = substr($sql,0,strlen($sql) -1);
            if ( !$this->dbquery($sql) ) $ok = 0;
            $sql = "";
-         }
+         } // end (if semicolon at end of line)
        }
      }
      return $ok;

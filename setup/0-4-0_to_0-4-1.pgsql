@@ -32,5 +32,8 @@ CREATE TABLE pvp_sessions (
 # update config for session management
 INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','7200');
 
+# prepare for language update
+DELETE FROM lang WHERE lang='en';
+
 # version update
 UPDATE pvp_config SET value='0.4.1' WHERE name='version';

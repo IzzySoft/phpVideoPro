@@ -30,7 +30,8 @@
   function preferences() {
     GLOBAL $db;
     $pnames = array ("lang","template","display_limit","date_format",
-              "page_length","default_movie_colorid","default_movie_onlabel");
+              "page_length","default_movie_colorid","default_movie_onlabel",
+	      "default_movie_toneid");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }

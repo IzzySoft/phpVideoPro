@@ -126,7 +126,7 @@
   // values:
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
-	      "commercials","tone","color");
+	      "commercials","tone","tone_id","color");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -295,6 +295,7 @@ EndHiddenFields;
   $t->set_var("counter_1",form_input("counter1",$counter1,"class=\"yesnobutton\""));
   $t->set_var("counter_2",form_input("counter2",$counter2,"class=\"yesnobutton\""));
   # Label
+  if ($new_entry) $label = $pvp->preferences->default_movie_onlabel;
   $t->set_var("label_name",lang("label"));
   $field = "<INPUT NAME=\"label\"";
   if ($edit) { 
@@ -366,11 +367,12 @@ EndHiddenFields;
 
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
+  if ($new_entry) $tone_id = $pvp->preferences->default_movie_toneid;
   if ($edit) {
     $field = "<SELECT NAME=\"tone_id\"" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($ttypes);$i++) {
       $field .= "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
-      if ($ttypes[$i][name]==$tone) $field .=  "SELECTED";
+      if ($ttypes[$i][id]==$tone_id) $field .=  "SELECTED";
       $field .= ">" . $ttypes[$i][name] . " </OPTION>";
     }
     $field .= "</SELECT>";

@@ -31,7 +31,6 @@
 <!-- BEGIN movieblock -->
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{mtitle}</DIV></TH></TR>
- <TR><TD><B>Also known as:</B></TD><TD>{maka}</TD></TR>
  <TR><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>
  <TR><TD><B>{nyear}:</B></TD><TD>{myear}</TD></TR>
  <TR><TD><B>{npg}:</B></TD>
@@ -41,7 +40,15 @@
  <!-- END pgblock -->
    </SELECT></TD></TR>
  <TR><TD><B>{nruntime}:</B></TD><TD>{mruntime} min</TD></TR>
- <TR><TD><B>{ngenre}:</B></TD><TD>{mgenre}</TD></TR>
+ <TR><TD><B>{ngenre}:</B></TD><TD>{mgenre}<BR>
+ <!-- BEGIN acatblock -->
+   <SELECT NAME="cat">
+  <!-- BEGIN catblock -->
+    <OPTION VALUE="{cid}"{csel}>{cname}</OPTION>
+  <!-- END catblock -->
+   </SELECT>
+ <!-- END acatblock -->
+  </TD></TR>
  <TR><TD><B>{ndir_name}:</B></TD>
    <TD><SELECT NAME="directors">
  <!-- BEGIN dirblock -->

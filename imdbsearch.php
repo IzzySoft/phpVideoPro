@@ -26,6 +26,9 @@
 
  $t->set_block("template","movieblock","movie");
  $t->set_block("movieblock","pgblock","pglist");
+ $t->set_block("movieblock","acatblock","acatlist");
+ $t->set_block("acatblock","catblock","catlist");
+
  $t->set_block("movieblock","dirblock","dirlist");
  $t->set_block("movieblock","actblock","actlist");
 
@@ -62,6 +65,7 @@
    $t->set_var("mtitle",$movie->title());
    $t->set_var("nyear",lang("year"));
    $t->set_var("myear",$movie->year());
+   #-=[ Foto ]=-
    if (($photo_url = $movie->photo_localurl() ) == FALSE) {
      $photo_url = "";
    } else {
@@ -69,16 +73,20 @@
 #     $t->set_var("mfoto",$photo_url);
      $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
    }
-   $aka = "";
-   foreach ( $movie->alsoknow() as $ak) {
-     $aka .= $ak["title"].": ".$ak["year"].", ".$ak["country"]." (".$ak["comment"].")<BR>";
-   }
-   $t->set_var("maka",$aka);
+   #-=[ Also Known As ]=-
+#   $aka = "";
+#   foreach ( $movie->alsoknow() as $ak) {
+#     $aka .= $ak["title"].": ".$ak["year"].", ".$ak["country"]." (".$ak["comment"].")<BR>";
+#   }
+#   $t->set_var("maka",$aka);
+   #-=[ Length ]=-
    $t->set_var("nruntime",lang("length"));
    $t->set_var("mruntime",$movie->runtime());
+   #-=[ Ratings and Votings ]=-
 #   $t->set_var("mrating",$movie->rating());
 #   $t->set_var("mvotes",$movie->votes());
 #   $t->set_var("mlanguage",$movie->language());
+   #-=[ Country ]=-
    $acountry = $movie->country(); $cc = count($acountry); $country = "";
    for ($i=0;$i+1<$cc;++$i) {
      $country .= $acountry[$i].", ";
@@ -86,6 +94,7 @@
    $country .= $acountry[$i];
    $t->set_var("ncountry",lang("country"));
    $t->set_var("mcountry",$country);
+   #-=[ FSK / PG ]=-
    $t->set_var("npg",lang("fsk"));
    $pga = $movie->mpaa(); $open = FALSE;
    foreach ($pga as $var=>$val) {
@@ -94,9 +103,40 @@
      $t->parse("pglist","pgblock",$open);
      $open = TRUE;
    }
+   #-=[ Categories ]=-
    $t->set_var("ngenre",lang("categories"));
-   $t->set_var("mgenre",$movie->genre());
-#   $gen = $movie->genres(); // split up array and fit into template
+   $gen = $movie->genres(); // split up array and fit into template
+   $cc = count($gen); $genre = "";
+   for ($i=0;$i+1<$cc;++$i) {
+     $genre .= $gen[$i].", ";
+     if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
+   }
+   $genre .= $gen[$i];
+   if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
+   $t->set_var("mgenre",$genre);
+   $catlist = $db->get_category(); $cc = count($catlist); $open=FALSE; $done=-1;
+   for ($k=0;$k<3;++$k) {
+    $t->set_var("cid","");
+    $t->set_var("csel","");
+    $t->set_var("cname","- ".lang("none")." -");
+    $t->parse("catlist","catblock");
+    for ($i=0;$i<$cc;++$i) {
+      $t->set_var("cid",$catlist[$i]["id"]);
+      if (in_array($catlist[$i]["id"],$cats) && $done!=$k) {
+        $t->set_var("csel"," SELECTED");
+        foreach ($cats as $var=>$val) {
+          if ($val==$catlist[$i]["id"]) unset ($cats[$var]);
+        }
+        $done = $k;
+      } else {
+        $t->set_var("csel","");
+      }
+      $t->set_var("cname",$catlist[$i]["name"]);
+      $t->parse("catlist","catblock",TRUE);
+    }
+    $t->parse("acatlist","acatblock",$open);
+    $open = TRUE;
+   }
 #   $col = $movie->colors(); // what to do with them?
 #   $snd = $movie->sound();  // does not match our formats
 #   $t->set_var("mtagline",$movie->tagline());

@@ -7,16 +7,19 @@
   //add more menus simply by adding more "blocks" of same code below
 
   dhtmlMenu = new NavBarMenu(80, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("edit") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("add_entry") ?>", "<? echo $base_url ?>new.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("Change Tape Nr", "<? echo $base_url ?>change_nr.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("configuration") ?>", "<? echo $base_url ?>configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin_cats") ?>", "<? echo $base_url ?>admin/cats.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin_orphans") ?>", "<? echo $base_url ?>admin/orphans.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("backup_db") ?>", "<? echo $base_url ?>admin/backup_db.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("dl_pvp_latest") ?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
+  myNavBar1.addMenu(dhtmlMenu);
+
+  dhtmlMenu = new NavBarMenu(80, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("edit") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("add_entry") ?>", "<? echo $base_url ?>new.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("configuration") ?>", "<? echo $base_url ?>configure.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);

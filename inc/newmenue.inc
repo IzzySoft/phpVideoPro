@@ -241,6 +241,11 @@ function getPageOffsetTop(el) {
 <div id="menuBar">
  <a class="menuButton"
     href=""
+    onclick="return buttonClick(this, 'adminMenu');"
+    onmouseover="buttonMouseover(this, 'adminMenu');"
+    ><? echo lang("admin") ?></a>
+ <a class="menuButton"
+    href=""
     onclick="return buttonClick(this, 'editMenu');"
     onmouseover="buttonMouseover(this, 'editMenu');"
     ><? echo lang("edit") ?></a>
@@ -268,15 +273,18 @@ function getPageOffsetTop(el) {
 
 <!-- Tags for the drop down menus. -->
 
-<div id="editMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>new.php"><? echo lang("add_entry") ?></a>
-<div class="menuItemSep"></div>
-<a class="menuItem" href="<? echo $base_url ?>configure.php"><? echo lang("configuration") ?></a>
+<div id="adminMenu" class="menu">
 <a class="menuItem" href="<? echo $base_url ?>admin/cats.php"><? echo lang("admin_cats") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>admin/orphans.php"><? echo lang("admin_orphans") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>admin/backup_db.php"><? echo lang("backup_db") ?></a>
 <div class="menuItemSep"></div>
 <a class="menuItem" href="http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"><? echo lang("dl_pvp_latest") ?></a>
+</div>
+
+<div id="editMenu" class="menu">
+<a class="menuItem" href="<? echo $base_url ?>new.php"><? echo lang("add_entry") ?></a>
+<div class="menuItemSep"></div>
+<a class="menuItem" href="<? echo $base_url ?>configure.php"><? echo lang("configuration") ?></a>
 </div>
 
 <div id="filterMenu" class="menu">

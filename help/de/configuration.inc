@@ -16,16 +16,16 @@ zu betrachten und daher auch über das Standard-Menü zu erreichen.
 Seit Version 0.3.8 kann phpVideoPro Cookies zur Verwaltung der Preferences
 (persönlichen Einstellungen, wie Filter, Template-Set, Datensätze pro Seite bei
 Listen etc.) verwenden. Um diese Funktion zu nutzen, muss die Schaltfläche
-*enable_cookies# aktiviert sein. Über das *Admin# Menü wird unter *configuration#
-die Konfiguration verwaltet, und es werden die Default-Einstellungen für die
-Preferences hier vorgenommen. Diese werden bei "neuen" Benutzern sodann aus der
-Datenbank geladen. Änderungen, die der Benutzer sodann unter *edit# -&gt;
-*preferences# vornimmt, werden in Cookies gespeichert und auch, sofern
-gespeicherte Cookies vorhanden sind, aus diesen geladen. Die Standard Filter
-Einstellungen werden über *admin# -&gt; *admin_filter# vorgenommen. Es ist eine
-gute Idee, das admin/ Verzeichnis sodann durch eine ".htaccess" Datei zu
-schützen, um nur authorisierten Benutzern den Zugriff auf Konfiguration und
-Default-Einstellungen zu geben.
+"*enable_cookies#" aktiviert sein. Über das "*Admin#" Menü wird unter
+"*configuration#" die Konfiguration verwaltet, und es werden die
+Default-Einstellungen für die Preferences hier vorgenommen. Diese werden bei
+"neuen" Benutzern sodann aus der Datenbank geladen. Änderungen, die der Benutzer
+sodann unter "*edit#" -&gt; "*preferences#" vornimmt, werden in Cookies
+gespeichert und auch, sofern gespeicherte Cookies vorhanden sind, aus diesen
+geladen. Die Standard Filter Einstellungen werden über "*admin#" -&gt;
+"*admin_filter#" vorgenommen. Es ist eine gute Idee, das admin/ Verzeichnis
+sodann durch eine ".htaccess" Datei zu schützen, um nur authorisierten Benutzern
+den Zugriff auf Konfiguration und Default-Einstellungen zu geben.
 
 [title]
 *language_settings#
@@ -149,7 +149,7 @@ geschehen.
 [text]
 <b>*enable_cookies#:</b> Ist diese Schaltfläche nicht aktiviert, werden keine
 Cookies verwendet. Das heißt dann allerdings auch, das Änderungen, die ein
-Benutzer im Menü *edit# -&gt; *preferences# vornimmt, ebenfalls in die
+Benutzer im Menü "*edit#" -&gt; "*preferences#" vornimmt, ebenfalls in die
 Datenbank geschrieben werden, und somit die Voreinstellungen überschreiben.
 Gleiches gilt auch für die Filtereinstellungen. Mit anderen Worten: phpVideoPro
 verhält sich damit wie in den vorangegangenen Versionen, und es kann zu
@@ -159,17 +159,17 @@ erwünscht sein.
 
 [text]
 <b>*expire_cookies#:</b> Hiermit wird definiert, nach welchem Zeitraum erstellte
-Cookies auf dem System des Benutzers wieder gelöscht werden. Wird hier *session#
-gewählt, verbleiben die Cookies nur solange auf dem System, bis der Benutzer
-seinen Browser wieder schließt. In den anderen Fällen bleiben sie für den
-jeweils angegebenen Zeitraum aktiv.
+Cookies auf dem System des Benutzers wieder gelöscht werden. Wird hier
+"*session#" gewählt, verbleiben die Cookies nur solange auf dem System, bis der
+Benutzer seinen Browser wieder schließt. In den anderen Fällen bleiben sie für
+den jeweils angegebenen Zeitraum aktiv.
 
 [title]
 *general#
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
-z.B. unter dem Menüpunkt *medialist# zu finden, stets in voller Länge, d.h.
+z.B. unter dem Menüpunkt "*medialist#" zu finden, stets in voller Länge, d.h.
 mit allen Datensätzen an. Bei umfangreichen Datensammlungen führte dies nicht
 nur zu langen Ladezeiten, sondern konnte durchaus auch recht unübersichtlich
 werden. Mit Version 0.2.3 wurde daher eingeführt, diese Liste in mehrere
@@ -195,11 +195,11 @@ als Standard vorgegeben, kann dort jedoch auch jedesmal angepasst werden.
 
 [text]
 <b>*date_format#:</b> In welchem Format sollen Datumsangaben präsentiert werden.
-Dies ist erst seit phpVideoPro v0.2.6 konfigurierbar; bis zur v0.3.0 sollten
-jedoch alle Menüs, Formulare und Listen entsprechen angepasst sein. Sollte
-dennoch ein Punkt vergessen worden sein, bitte ich um einen kurzen Hinweis
-(ich würde an dieser Stelle ja ein kostenloses Update als Preis anbieten - aber
-angesichts der Lizenz dieses Produktes nähme das eh niemand ernst :)
+Dies ist erst seit phpVideoPro v0.2.6 konfigurierbar; mittlerweile sollten
+jedoch alle Menüs, Formulare und Listen entsprechen angepasst sein. Habe ich
+dennoch einen Punkt übersehen, bitte ich um einen kurzen Hinweis (ich würde an
+dieser Stelle ja ein kostenloses Update als Preis anbieten - aber angesichts der
+Lizenz dieses Produktes nähme das eh niemand ernst :)
 
 [text]
 <b>*site_info#:</b> Bis einschließlich v0.3.4 folgte die Titelzeile des

@@ -13,11 +13,11 @@ while others are somehow "preferences" that should be based on an user's wishes.
 
 [text]
 Starting with v0.3.8, phpVideoPro optionally can use cookies for the preferences
-management. In this case, you set up defaults via the *admin# -&gt;
-*configuration# menue (make sure to enable cookies here), and advice the users
-to use the *edit# -&gt; *preferences# menue to set their preferences (cookies
-then are used for filter settings as well). You may then protect your admin/
-directory by an .htaccess file to give access to authorized users only.
+management. In this case, you set up defaults via the "*admin#" -&gt;
+"*configuration#" menue (make sure to enable cookies here), and advice the users
+to use the "*edit#" -&gt; "*preferences#" menue to set their preferences
+(cookies then are used for filter settings as well). You may then protect your
+admin/ directory by an ".htaccess" file to give access to authorized users only.
 
 [title]
 *language_settings#
@@ -129,8 +129,8 @@ for new movies with "*s/w#". Do this here.
 [text]
 <b>*enable_cookies#:</b> Without having this box checked, phpVideoPro won't
 use any cookies at all, i.e. preferences will allways be saved to and loaded
-from the database - thus overwriting the defaults, even if set from the *edit#
--&gt; *preferences# menue. So make sure to set this, if multiple users should
+from the database - thus overwriting the defaults, even if set from the "*edit#"
+-&gt; "*preferences#" menue. So make sure to set this, if multiple users should
 access your installation at the same time.
 
 [title]
@@ -144,7 +144,7 @@ again. In the other cases, cookies remain active for the time frame you set.
 
 [text]
 <b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with
-the *medialist# menue item, always in full length, i.e. with all records found
+the "*medialist#" menue item, always in full length, i.e. with all records found
 in the database. Having a large collection, this not only lead to long loading
 times for the page, but the long list could also be confusing for one or the
 other person :-) Thus starting with version 0.2.3, phpVideoPro supplies the
@@ -170,11 +170,10 @@ this default on the *listgen# form.
 
 [text]
 <b>*date_format#:</b> Specifies the format the date should be presented in. This
-is new with v0.2.6 of phpVideoPro, so there may be some columns/fields ignoring
-this value (there will hopefully be none of these with v0.3.0 and above - if
-you find any missings then, please report them to me!). It shall be used
-throughout the entire program for listings, forms and anything that contains
-a date field.
+is new with v0.2.6 of phpVideoPro, but meanwhile there should be no more
+columns/fields ignoring this value (if you find any missings, please report them
+to me!). It shall be used throughout the entire program for listings, forms and
+anything that contains a date field.
 
 [text]
 <b>*site_info#:</b> Starting with v0.3.5, there's a user configurable additional

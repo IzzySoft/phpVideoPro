@@ -8,6 +8,11 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
+  <LI><b>0.1.5 (Aug 2001)</b><br>
+      <ul>
+       <li>re-sorting of medialist can now be done by simply
+           clicking on the appropriate table header
+      </ul>
   <LI><b>0.1.4 (July 29, 2001)</b><br>
       <ul>
        <li>worked on the menue stuff. Menue should be "compatible"

@@ -4,19 +4,31 @@
   include("inc/header.inc");
   $filter = get_filters();
 
+  switch($order) {
+    case "title"  : $orderby = " ORDER BY v.title,v.mtype_id DESC,v.cass_id"; break;
+    case "length" : $orderby = " ORDER BY v.length,v.mtype_id DESC,v.cass_id"; break;
+    case "year"   : $orderby = " ORDER BY v.year,v.mtype_id DESC,v.cass_id"; break;
+    case "date"   : $orderby = " ORDER BY v.aq_date,v.mtype_id DESC,v.cass_id"; break;
+    case "cat"    : $orderby = " ORDER BY c.name,v.mtype_id DESC,v.cass_id"; break;
+    default       : $orderby = " ORDER BY v.mtype_id DESC,v.cass_id";
+  }
+
   echo "<H2 Align=Center>" . lang("medialist") . "</H2>\n";
   echo "<TABLE ALIGN=\"center\" BORDER=\"1\">\n";
-  echo " <TR><TH>" . lang("medium") . "</TH><TH>" . lang("nr")
-       . "</TH><TH>" . lang("title") . "</TH><TH>" . lang("length")
-       . "</TH><TH>" . lang("year") . "</TH><TH>" . lang("date_rec")
-       . "</TH><TH>" . lang("category") . "</TH></TR>\n";
+  echo " <TR><TH><A HREF=\"$PHP_SELF\">" . lang("medium")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF\">" . lang("nr")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF?order=title\">" . lang("title")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF?order=length\">" . lang("length")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF?order=year\">" . lang("year")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF?order=date\">" . lang("date_rec")
+       . "</A></TH><TH><A HREF=\"$PHP_SELF?order=cat\">" . lang("category") . "</A></TH></TR>\n";
 
   $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
   $query .= " FROM video v, cat c, mtypes m";
   $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id";
   if ( strlen($filter) ) $query .= " AND ($filter)";
-  $query .= " ORDER BY v.mtype_id DESC,v.cass_id";
-  $db->query($query);
+  $query .= $orderby;
+  dbquery($query);
   while ($db->next_record()) {
    $mtype    = $db->f('sname');
    $mtype_id = $db->f('mtype_id');

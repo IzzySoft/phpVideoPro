@@ -7,5 +7,6 @@
   body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
   .tablink { color: #000000; }
   TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color:<? echo $colors["th_background"] ?>; }
+  TH A { color:blue; }
 //-->
 </style>

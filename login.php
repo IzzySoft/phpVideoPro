@@ -25,12 +25,13 @@
        header("Location: index.php?sess_id=$sess_id");
      }
    } else {
-     echo "Login failed!";
+     echo $login_hint = $colors["err"] . lang("login_failed") . "</FONT><BR>\n";
    }
    exit;
  }
 
  $t->set_file(array("template"=>"login.tpl"));
+ $t->set_var("login_hint",$login_hint);
  $t->set_var("welcome",lang("welcome"));
  $t->set_var("head_login",lang("login"));
  $t->set_var("head_passwd",lang("password"));

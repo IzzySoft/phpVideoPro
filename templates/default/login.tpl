@@ -1,4 +1,5 @@
 <H2 ALIGN="center">&nbsp;</H2>
+<CENTER>{login_hint}</CENTER>
 <FORM NAME="deleform" METHOD="post" ACTION="{formtarget}">
  <TABLE ALIGN="center" BORDER="0">
   <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>

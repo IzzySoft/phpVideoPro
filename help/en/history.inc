@@ -7,6 +7,7 @@
 <ul>
  <li>if no matching entry was found, stafflist screen was messed up. Fixed.
  <li>completed German help files
+ <li>order by MediaNr in MediaList ignored part nr. fixed.
 </ul>
 
 [title]

@@ -11,7 +11,7 @@
     case "year"   : $orderby = " ORDER BY v.year,v.mtype_id DESC,v.cass_id"; break;
     case "date"   : $orderby = " ORDER BY v.aq_date,v.mtype_id DESC,v.cass_id"; break;
     case "cat"    : $orderby = " ORDER BY c.name,v.mtype_id DESC,v.cass_id"; break;
-    default       : $orderby = " ORDER BY v.mtype_id DESC,v.cass_id";
+    default       : $orderby = " ORDER BY v.mtype_id DESC,v.cass_id,v.part";
   }
 
   $t->set_file(array("list"=>"medialist.tpl"));

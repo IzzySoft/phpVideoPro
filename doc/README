@@ -24,7 +24,8 @@ Contents:
   2.) Warranty
   3.) Requirements
   4.) Pre-Requisites / Installation
-  5.) Download and Sites
+  5.) Known bugs / limitations
+  6.) Download and Sites
 
 ===============================================================================
 
@@ -112,7 +113,23 @@ Contents:
 
 ===============================================================================
 
-5.) Download and Sites
+5.) Known bugs / limitations
+----------------------------
+
+  Since filter settings are simply stored into the db now, it gets difficult
+  if multiple users run the program - and may lead to curious (and untested :)
+  effects if they do this at the very same time. For now, I can only tell you
+  to be aware of this. I thought about storing them into cookies - but in this
+  case the settings are only valid as long as you don't close your browser
+  (and the settings cannot be stored between sessions), so this would just be
+  "changing limitations" but not removing them. Maybe I'll think about a
+  solution for "multi-user environment" at some point in the future - for the
+  next time this limitation will persist.
+  Any bugs are not known to me - I didn't find any, and nobody reported anything :)
+
+===============================================================================
+
+6.) Download and Sites
 ----------------------
 
   First, you'll find a home page as well as a running demo (which may not

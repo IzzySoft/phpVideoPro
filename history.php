@@ -16,6 +16,15 @@
       <ul>
        <li>taperest list showed up wrong media names (and movie titles):
            Media Type specification in sql statement was incomplete :)
+       <li>added translation functionality - now phpVideoPro can go
+           multi-language! FallBack to default language (en) implemented
+           for non-existing phrases. If no translation exists at all,
+           the coders info appears :)
+       <li>added new tables to db: some for the translation stuff, and
+           one to store configuration settings. This will make updates
+           easier (for now we can determine the previously installed
+           version easily) and as well prepares the way to some better
+           setup tool at some future point
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

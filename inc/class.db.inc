@@ -772,7 +772,7 @@
        if ( strlen($movie[actors12]) ) $movie[actors12] .= ", ";
        $movie[actors12] .= $movie[actor2];
      }
-     $movie[actor35] = $movie[actor3];
+     $movie[actors35] = $movie[actor3];
      for ($i=4;$i<6;$i++) {
        $actor = "actor$i";
        if ( strlen($movie[$actor]) ) {

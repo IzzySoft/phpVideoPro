@@ -2,15 +2,23 @@
 # /*  $Id$ */
 
 [title]
-0.2.3 (2002)
+0.2.3 (June 5, 2002)
 [text]
 <ul>
  <li>added feature to walk through long lists in pieces of user-definable size
      (first/prev/next/last page of lists). Behaves a bit strange for staff
      lists (directors, artists etc.) if you have some skeletons in your closet
-     (i.e. staff members with no movie assigned :-)
+     (i.e. staff members with no movie assigned) or have some staff members
+     not marked as "in list"
  <li>added French language support
  <li>reworked translation code - incredible speed gain!
+ <li>forgot to update the version number in the installation script for
+     v0.2.1 and v0.2.2 - so if you upgrade from a fresh installation of one of
+     those, make sure to manually update the DB first ("UPDATE pvp_config SET
+     VALUE='0.2.x' WHERE name='version'", where "x" is either 1 or two,
+     depending on the version you've installed) -- or just truncate the
+     concerning update scripts (setup/0-2-x_to_0-2-y.*), otherwise the update
+     will fail. Sorry for that.
 </ul>
 
 [title]

@@ -30,8 +30,7 @@ if ( !( (isset($silent)) && $silent) ) {
 <? 
  if ( file_exists($pvp->tpl_dir . "/top.js") )
    echo " <script type='text/javascript' language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
-# if ( $page_id != "login" && $page_id != "imdbsearch" ) {
- if ( !isset($nomenue) ) { ?>
+?>
  <script type='text/javascript' language='JavaScript'>//<!--
   function open_help(topic) {
     if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }
@@ -39,14 +38,16 @@ if ( !( (isset($silent)) && $silent) ) {
     var pos = (screen.width/2)-400;
     campus=eval("window.open(url,'<?=lang("help")?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
   }
+  //--></script>
+<? if ( !isset($nomenue) ) { ?>
+ <script type='text/javascript' language='JavaScript'>//<!--
   function get_movienum(mtype,last_nr,url) {
     nr = last_nr + 1;
     new_nr = prompt(mtype + "\n" + "<?=lang("last_medianr")?> " + last_nr,nr);
     if (new_nr != "" && new_nr != null)
       window.location.href = url + "&cass_id=" + new_nr;
   }
-  //-->
- </script>
+  //--></script>
  <link href="<?=$pvp->tpl_url?>/default.css" rel="stylesheet" type="text/css">
 <?
  include($nav_script);

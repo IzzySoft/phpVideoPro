@@ -232,19 +232,11 @@
   for ($i=1;$i<=$max["actors"];$i++) {
     $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
     if ($page_id == "view") { // set imdb info url for actor
-     if (strlen(trim($actor[$i][name]))) {
-       $imdb = "http://us.imdb.com/Nsearch?name=";
-       if (strlen(trim($actor[$i][fname]))) {
-         $imdb .= $actor[$i][fname] . "+";
-       }
-       $imdb .= $actor[$i][name] . "&type=substring&occupation=actors";
-       $form_addon = $form["addon_name"] . " onClick=window.open(\"$imdb\",\"imdb\")";
-     } else { $form_addon = $form["addon_name"]; }
-     echo "<!-- $form_addon -->\n";
-    }
+      $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($actor[$i][fname],$actor[$i][name],"actors");
+    } else { $formAddon = $form["addon_name"]; }
     $t->set_var("actor_name",lang("actor") . " $i");
-    $t->set_var("actor",form_input($name,$actor[$i][name],$form_addon));
-    $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$form["addon_name"]));
+    $t->set_var("actor",form_input($name,$actor[$i][name],$formAddon));
+    $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));
     $t->set_var("actor_list",vis_actors($i));
     $t->parse("actorlist","actorblock",TRUE);
   }
@@ -387,12 +379,18 @@ EndHiddenFields;
   $t->set_var("firstname_name",lang("first_name"));
   $t->set_var("inlist_name",lang("in_list"));
   $t->set_var("director_name",lang("director"));
-  $t->set_var("director",form_input("director_name",$director_name,$form["addon_name"]));
-  $t->set_var("director_f",form_input("director_fname",$director_fname,$form["addon_name"]));
+  if ($page_id == "view") {
+    $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($director_fname,$director_name,"directors");
+  } else { $formaddon = $form["addon_name"]; }
+  $t->set_var("director",form_input("director_name",$director_name,$formAddon));
+  $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
   $t->set_var("director_list",vis_staff('director_list',$director_list));
   $t->set_var("composer_name",lang("composer"));
-  $t->set_var("composer",form_input("composer_name",$composer_name,$form["addon_name"]));
-  $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$form["addon_name"]));
+  if ($page_id == "view") {
+    $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($composer_fname,$composer_name,"composers");
+  } else { $formaddon = $form["addon_name"]; }
+  $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));
+  $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
   $t->set_var("composer_list",vis_staff('music_list',$music_list));
   // actors are set up on top, in the "actors block"
   $t->set_var("comments_name",lang("comments"));

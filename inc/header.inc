@@ -16,6 +16,7 @@
   include($inc_path . "/config.inc");
   include($inc_path . "/config_internal.inc");
   include($inc_path . "/common_funcs.inc");
+  include($inc_path . "/link.inc");
   include($inc_path . "/sql_helpers.inc");
   include($inc_path . "/template.inc");
   include($inc_path . "/validate.inc");

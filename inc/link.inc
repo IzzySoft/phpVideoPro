@@ -22,24 +22,26 @@
   ############################################################################
   # IMDB link creation
   // create url string to a persons entry in imdb
-  function linkImdbPerson($fname,$name,$occupation) {
+  function ImdbPerson($fname,$name,$occupation) {
     if (strlen(trim($name))) {
       $imdb = $this->imdb . "Nsearch?name=";
       if (strlen(trim($fname))) {
-        $imdb .= $fname . "+";
+        $imdb .= urlencode($fname) . "+";
       }
-      $imdb .= $name . "&type=substring&occupation=$occupation";
+      $imdb .= urlencode($name) . "&type=substring&occupation=$occupation";
       return $imdb;
     } else { return ""; }
-  } // end function linkImdbPerson
+  } // end function ImdbPerson
 
   // create form addon (to button) for link to a persons entry in imdb
-  function formLinkImdbPerson($fname,$name,$occupation) {
-    $imdb = $this->linkImdbPerson($fname,$name,$occupation);
+  function formImdbPerson($fname,$name,$occupation) {
+    $imdb = $this->ImdbPerson($fname,$name,$occupation);
     if (strlen($imdb)) {
       return " onClick=window.open(\"$imdb\",\"imdb\")";
     } else { return ""; }
-  } // end function formLinkImdbPerson
+  } // end function formImdbPerson
 
  } // end class link
+
+ $pvp->link = new link;
 ?>

@@ -31,10 +31,7 @@ if ($menue) {
 }
 
 if ($admin) {
-  if (!$pvp->auth->admin) { // kick-off unauthorized visitors
-    header("Location: $base_url"."login.php");
-    exit;
-  }
+  if (!$pvp->auth->admin) kickoff();
   $pvp->preferences->admin();
 }
 #============================================[ On Submit: Update changes ]===

@@ -14,10 +14,7 @@
 
   $page_id = "admin_cats";
   include( dirname(__FILE__) . "/../inc/includes.inc");
-  if (!$pvp->auth->admin) { // kick-off unauthorized visitors
-    header("Location: $base_url"."login.php");
-    exit;
-  }
+  if (!$pvp->auth->admin) kickoff();
 
   #-------------------------------------------------------[ process input ]---
   if ($submit) {

@@ -14,10 +14,7 @@
 
  $page_id = "admin_users";
  include("../inc/includes.inc");
- if (!$pvp->auth->admin) { // kick-off unauthorized visitors
-   header("Location: $base_url"."login.php");
-   exit;
- }
+ if (!$pvp->auth->admin) kickoff();
 
  #==================================================[ process the changes ]===
  if ($update) {

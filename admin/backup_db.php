@@ -15,10 +15,8 @@
  $page_id = "backup_db";
  if ($backup) $silent = 1;
  include("inc/includes.inc");
- if (!$pvp->auth->admin) { // kick-off unauthorized visitors
-   header("Location: $base_url"."login.php");
-   exit;
- }
+ if (!$pvp->auth->admin) kickoff();
+
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));

@@ -12,6 +12,8 @@
  <li>made date format configurable (right now just used with the list printing,
      everything else will follow)
  <li>added/updated some help pages
+ <li>some work on the db class in preparation for code cleanup (all direct
+     db queries should only be here: "abstraction layer" to ease changes to db)
 </ul>
 
 [title]

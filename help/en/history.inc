@@ -7,6 +7,8 @@
 <ul>
  <li>added menue item for d/l of latest version
  <li>freetime update was broken - fixed.
+ <li>filter could not be edited when no actor, director or componist was
+     in DB - fixed.
 </ul>
 
 [title]

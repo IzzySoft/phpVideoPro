@@ -23,8 +23,10 @@ CREATE TABLE actors (
 CREATE TABLE cass (
    id int(4) NOT NULL auto_increment,
    mtype_id int(3) DEFAULT '1' NOT NULL,
+   disks_id int(3),
    type int(3),
    free int(3),
+   rc varchar(25),
    PRIMARY KEY (id,mtype_id)
 );
 

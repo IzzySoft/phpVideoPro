@@ -39,7 +39,7 @@ Hier also eine kurze Erklärung der zu verwendenden Variablen:<br>
 <b>maxlines:</b> wie viele Textzeilen maximal auf dem Etikett Platz finden
 (überzählige Zeilen werden dann einfach "abgeschnitten"). Eine sehr nützliche
 Sache, wenn man (wie ich) hin und wieder den auf dem Videoband verbleibenden
-kurzen Rest mit vielen VideoClips von MTV & Co. auffüllt ;)<br>
+kurzen Rest mit vielen VideoClips von MTV &amp; Co. auffüllt ;)<br>
 <b>nr_coord, main_coord, symb_coord:</b> Die Koordinaten der einzelnen Felder
 im Format "x1,y1,x2,y2", wobei "x1,y1" die obere linke und "x2,y2" die untere
 rechte Ecke des jeweiligen Feldes bezeichnen. Die zugehörigen Felder werden

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.7 (April 2003)
+0.4.7 (April 25, 2003)
 [text]
 <ul>
  <li>Made editing for translations easy by a new form in admin menu. If you've

@@ -60,6 +60,7 @@ INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','');
 INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
 INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','604000');
+INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','7200');
 
 #
 # set default preferences

@@ -25,6 +25,11 @@
            makes sense with (e.g. it makes no sense with the colors to combine them
            with AND - since a movie is either s/w or color).
        <li>implemented filters into medialist - seems to work :)
+       <li>when updating an entry, where another one with same number but different
+           media existed, both entries were updated with the same data. fixed.
+       <li>added functionality to delete an existing entry. DB should be reorganized
+           during this process (e.g. actors deleted from actors table if no other
+           db entry is referring to them).
       </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works

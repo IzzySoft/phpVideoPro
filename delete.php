@@ -9,6 +9,15 @@
   }
   $page_id = "delete";
   include("inc/header.inc");
+  
+  function kill($table,$id) {
+    GLOBAL $colors;
+    if ( dbquery("DELETE FROM $table WHERE id='$id'") ) {
+      echo $colors["ok"] . "Done.</Font><br>\n";
+    } else {
+      echo $colors["err"] . "Failed!</Font><br>\n";
+    }
+  }
 
   echo "<H2 ALIGN=\"center\">Deleting entry $nr</H2>\n";
 
@@ -42,14 +51,16 @@
       dbquery("SELECT name,firstname FROM music WHERE id='$music_id'");
       $db->next_record();
       echo "<li>There's no other movie with music composed by " . $db->f('firstname') . " " . $db->f('name')
-           . " in this db, so I remove this entry from the composers table.<br>";
+           . " in this db, so I remove this entry from the composers table. ";
+      kill("music",$music_id);
     }
     dbquery("SELECT id FROM video WHERE director_id='$director_id' AND id<>'$id'");
     if ( !$db->next_record() ) {
       dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
       $db->next_record();
       echo "<li>There's no other movie directed by " . $db->f('firstname') . " " . $db->f('name')
-           . " in this db, so I remove this entry from the directors table.<br>";
+           . " in this db, so I remove this entry from the directors table. ";
+      kill("directors",$director_id);
     }
     for ($i=1;$i<6;$i++) {
       $aid = $actor_id[$i];
@@ -59,15 +70,43 @@
         dbquery("SELECT name,firstname FROM actors WHERE id='$aid'");
         $db->next_record();
         echo "<li>There's no other movie with the actor " . $db->f('firstname') . " " . $db->f('name')
-             . " in this db, so I remove this entry from the actors table.<br>";
+             . " in this db, so I remove this entry from the actors table. ";
+        kill("actors",$aid);
       }
     }
     # now we delete the movie entry from db
-    echo "<li>Check completed - now deleting the other movie data from db.<br>";
+    echo "<li>Check completed - now deleting remaining data for this movie from db. ";
+    if ( dbquery("DELETE FROM video WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'") ) {
+      echo $colors["ok"] . "Done.</Font><br>\n";
+    } else {
+      echo $colors["err"] . "Failed!</Font><br>\n";
+    }
     # and finally we may have to correct the free space remaining on that medium
-    echo "<li>Re-calculating remaining free space on this medium.<br>";
+    if ( $mtype_id == 1 ) { // RVT
+      echo "<li>Re-calculating remaining free space on this medium. ";
+      dbquery("SELECT type FROM cass WHERE id='$cass_id'");
+      if ( $db->next_record() ) {
+        $time_left = $db->f('type');
+        dbquery("SELECT length,lp FROM video WHERE cass_id='$cass_id' AND mtype_id='$mtype_id'");
+        while ( $db->next_record() ) {
+          $lp = $db->f('lp');
+          if ($db->f('lp') ) {
+            $time_left -= $db->f('length') / 2;
+          } else {
+            $time_left -= $db->f('length');
+          }
+        }
+        if ( dbquery("UPDATE cass SET free='$time_left' WHERE id='$cass_id'") ) {
+          echo "$time_left minutes left. " . $colors["ok"] . "Done.</Font><BR>\n";
+        } else {
+          echo $colors["err"] . "Failed updating tape list!</Font><br>\n";
+        }
+      } else {
+        echo $colors["err"] . "Failed - no entry found in tape list!</Font><br>\n";
+      }
+    }
     # and that's all.
-    echo "\n</TD></TR></TABLE>\n";
+    echo "<b><i>Finnished.</i></b>\n</TD></TR></TABLE>\n";
   }
 
   include("inc/footer.inc");

@@ -1,4 +1,7 @@
 <? // setup tables for phpVideoPro
+
+/* $Id$ */
+
   include ("../inc/config.inc");
   
   $title = "phpVideoPro v$version Setup";
@@ -14,6 +17,9 @@
  but right now I focus on the main program to make it useful, and consider this
  setup more "cosmetical" (iow, it has a very low priority). So I just built it
  to make it easier for you, the users, to setup the database for now.</P>
+<P ALIGN=JUSTIFY>If you are updating from a previous version of phpVideoPro,
+ please follow this link to the <A HREF="update.php">update</A> page. Otherwise,
+ go on reading here :)</P>
 
 <H3 ALIGN=CENTER>Requirements</H3>
 <P ALIGN=JUSTIFY>There are a few things you have to make sure first (without

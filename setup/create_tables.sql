@@ -164,3 +164,16 @@ CREATE TABLE video (
    comment text,
    PRIMARY KEY (id)
 );
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'preferences'
+#
+
+CREATE TABLE preferences (
+   id int(5) NOT NULL auto_increment,
+   name varchar(30),
+   value varchar(30),
+   PRIMARY KEY (id)
+);

@@ -45,6 +45,8 @@
    $t->parse("emptylist","emptyblock");
    $t->set_var("submit_name",lang("sellang"));
    $t->set_var("submit",lang("submit"));
+   if (!$pvp->config->enable_cookies) $hidden = "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+   $t->set_var("hidden",$hidden);
    include("../inc/header.inc");
    $t->pparse("out","list");
    include("../inc/footer.inc");
@@ -102,6 +104,7 @@
  if ($update) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
+ if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("charset","$charset,iso-8859-1");
  $t->set_var("code",lang("trans_code"));
  $t->set_var("orig",lang("orig_trans","en"));

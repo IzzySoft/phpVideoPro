@@ -13,6 +13,18 @@ die Hilfeseite für den Menüpunkt "<A HREF="{PHP_SELF}?topic=add_entry">*add_entr
 aber...
 
 [title]
+Kopieren bzw. verschieben eines Eintrags
+
+[text]
+Hin und wieder kann es nötig werden, einen Eintrag zu kopieren bzw. verschieben.
+Dies ist z.B. der Fall, wenn mehrere Teile einer Serie erfasst werden (die nur
+minimale Unterschiede in den Daten haben), oder ein bislang auf Kassette
+vorhandener Film nun als DVD erworben wurde. Die dafür notwendige Funktion
+versteckt sich hinter den Buttons "*mediatype#" und "*medianr#". Mehr darüber
+läßt sich auf der Hilfeseite für das Formular
+"<A HREF="{PHP_SELF}?topic=media_change">*media_change#</A>" erfahren.
+
+[title]
 IMDB Informationen
 
 [text]

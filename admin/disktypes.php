@@ -20,13 +20,13 @@
   if ($delete) {
     $media = $db->get_mediaForDisktype($delete);
     if ( $mcount = count($media) ) {
-      $save_result = $colors["err"].lang("disktype_contains_media")."<BR>";
+      $save_result = "<SPAN CLASS='error'>".lang("disktype_contains_media")."<BR>";
       for ($i=0;$i<$mcount;++$i) {
         $mt = $db->get_mtypes("id=".$media[$i]->mtype_id);
         $sname = $mt[0][sname];
         $save_result .= " '".$pvp->link->linkurl("/change_disktype.php?mtype_id=".$media[$i]->mtype_id."&cass_id=".$media[$i]->cass_id,"$sname ".$media[$i]->cass_id)."'";
       }
-      $save_result .= "</FONT><BR>";
+      $save_result .= "</SPAN><BR>";
     } else {
       $db->delete_disktype($delete);
     }
@@ -46,13 +46,13 @@
     }
     if ($add_err) {
       $add_err = substr($add_err,0,strlen($add_err)-1);
-      $save_result = $colors["err"].lang("disktype_add_failed")."</FONT><BR>";
+      $save_result = "<SPAN CLASS='error'>".lang("disktype_add_failed")."</SPAN><BR>";
     }
     if ($upd_err) {
       $upd_err = substr($upd_err,0,strlen($upd_err)-1);
-      $save_result .= $colors["err"] . lang("disktype_update_failed",$upd_err) . "</FONT><BR>";
+      $save_result .= "<SPAN CLASS='error'>". lang("disktype_update_failed",$upd_err) . "</SPAN><BR>";
     }
-    if ( !($add_err || $upd_err) ) $save_result = $colors["ok"].lang("update_success")."</FONT><BR>";
+    if ( !($add_err || $upd_err) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
   }
   #-------------------------------------------------------[ build up page ]---
   $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);

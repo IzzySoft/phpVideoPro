@@ -40,9 +40,9 @@
    }
    $edit = $db->set_pstemplate($ps);
    if ($edit) {
-     $save_result = $colors["ok"] . lang("update_success") . "</FONT>";
+     $save_result = "<SPAN CLASS='ok'>" .lang("update_success"). "</SPAN>";
    } else {
-     $save_result = $colors["err"] . lang("update_failed") . "</FONT>";
+     $save_result = "<SPAN CLASS='error'>" .lang("update_failed"). "</SPAN>";
    }
    $hidden = "<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>";
    if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
@@ -136,6 +136,5 @@
  include("../inc/header.inc");
  $t->pparse("out","template");
  include("../inc/footer.inc");
-
 
 ?>

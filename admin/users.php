@@ -31,9 +31,9 @@
    }
    if ($error) {
      $error = substr($error,1);
-     $save_result = $colors["err"] . lang("user_update_failed",$error) . "</Font><BR>\n";
+     $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$error) . "</SPAN><BR>\n";
    } else {
-     $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+     $save_result = "<SPAN CLASS='ok'>" . lang("update_success") . ".</SPAN><BR>\n";
    }
  }
 

@@ -43,13 +43,13 @@
     }
     if ($cat) {
       $cat = substr($cat,0,strlen($cat)-1);
-      $save_result = $colors["err"].lang("cat_update_failed",$cat)."</FONT><BR>";
+      $save_result = "<SPAN CLASS='error'>".lang("cat_update_failed",$cat)."</SPAN><BR>";
     }
     if ($trans) {
       $trans = substr($trans,0,strlen($trans)-1);
-      $save_result .= $colors["err"] . lang("cat_trans_update_failed",$trans) . "</FONT><BR>";
+      $save_result .= "<SPAN CLASS='error'>" .lang("cat_trans_update_failed",$trans) . "</SPAN><BR>";
     }
-    if ( !($cat || $trans) ) $save_result = $colors["ok"].lang("update_success")."</FONT><BR>";
+    if ( !($cat || $trans) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
     $translations = $db->get_translations( $pvp->preferences->get("lang") );
   }
 

@@ -34,15 +34,15 @@
     }
     if ($upd) {
       $upd = substr($upd,1);
-      $save_result = $colors["err"].lang("printer_upd_failed",$upd)."</FONT><BR>";
+      $save_result = "<SPAN CLASS='error'>".lang("printer_upd_failed",$upd)."</SPAN><BR>";
     } else {
-      $save_result = $colors["ok"].lang("update_success")."</FONT><BR>";
+      $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
     }
     if ( strlen(trim($new_name)) ) {
       if ( !$db->set_printer("",$new_name,$new_unit,$new_top,$new_left) ) {
-        $save_result .= $colors["err"].lang("printer_add_failed")."</FONT><BR>";
+        $save_result .= "<SPAN CLASS='error'>".lang("printer_add_failed")."</SPAN><BR>";
       } else {
-        $save_result .= $colors["ok"].lang("printer_add_success")."</FONT><BR>";
+        $save_result .= "<SPAN CLASS='ok'>".lang("printer_add_success")."</SPAN><BR>";
       }
     }
   }

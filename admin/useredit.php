@@ -33,13 +33,13 @@
        $user->pwd = $pwd1;
      } else {
        $pwd_ok = 0;
-       $save_result = $colors["err"] . lang("password_nomatch") . "</Font><BR>\n";
+       $save_result = "<SPAN CLASS='error'>". lang("password_nomatch") . "</SPAN><BR>\n";
      }
    }
    if ( $db->set_user($user) ) {
-     $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+     $save_result = "<SPAN CLASS='ok'>" .lang("update_success") . ".</SPAN><BR>\n";
    } else {
-     $save_result = $colors["err"] . lang("user_update_failed",$id) . "</Font><BR>\n";
+     $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$id). "</SPAN><BR>\n";
    }
  #=================================================[ add new user account ]===
  } elseif ($adduser) {
@@ -56,22 +56,22 @@
        $user->pwd = $pwd1;
      } else {
        $pwd_ok = 0;
-       $save_result = $colors["err"] . lang("password_nomatch") . "</Font><BR>\n";
+       $save_result = "<SPAN CLASS='error'>" .lang("password_nomatch"). "</SPAN><BR>\n";
      }
    }
    if ( $pwd_ok && $db->add_user($user) ) {
-     $save_result = $colors["ok"] . lang("create_success") . ".</Font><BR>\n";
+     $save_result = "<SPAN CLASS='ok'>" .lang("create_success"). ".</SPAN><BR>\n";
    } else {
-     $save_result .= $colors["err"] . lang("user_update_failed","#") . "</Font><BR>\n";
+     $save_result .= "<SPAN CLASS='error'>" .lang("user_update_failed","#"). "</SPAN><BR>\n";
    }
  #==================================================[ delete user account ]===
  } elseif ($delete) {
    $user = $db->get_users($delete);
    if ($confirmed) {
      if ( $db->del_user($delete) ) {
-       $save_result = $colors["ok"] . lang("user_deleted",$delete,$user->login,$user->comment) . ".</Font><BR>\n";
+       $save_result = "<SPAN CLASS='ok'>" .lang("user_deleted",$delete,$user->login,$user->comment) . ".</SPAN><BR>\n";
      } else {
-       $save_result = $colors["err"] . lang("user_delete_failed",$delete,$user->login,$user->comment) . "</Font><BR>\n";
+       $save_result = "<SPAN CLASS='error'>" .lang("user_delete_failed",$delete,$user->login,$user->comment) . "</SPAN><BR>\n";
      }
      $t->set_file(array("template"=>"delete.tpl"));
      $t->set_var("listtitle",lang("user_delete_report"));
@@ -86,7 +86,7 @@
      $t->set_var("delete",$delete);
      $t->set_var("yes",lang("yes"));
      $t->set_var("no",lang("no"));
-     $t->set_var("delete_yn",$colors["err"].lang("confirm_userdeletion",$user->login,$user->comment)."</FONT>");
+     $t->set_var("delete_yn","<SPAN CLASS='error'>".lang("confirm_userdeletion",$user->login,$user->comment)."</SPAN>");
      if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
      include("../inc/header.inc");
      $t->pparse("out","template");

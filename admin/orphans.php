@@ -42,8 +42,8 @@
       case "actor"           : $rc = $db->delete_actor($orphan[$i]->id); break;
       default                : break;
     }
-    if ($rc) { $details .= $colors["ok"] ." ".lang("ok") ."</FONT>";
-    } else { $details .= $colors["err"] ." ".lang("not_ok") ."</FONT>"; }
+    if ($rc) { $details .= "<SPAN CLASS='ok'> " .lang("ok") ."</SPAN>";
+    } else { $details .= "<SPAN CLASS='error'> " .lang("not_ok") ."</SPAN>"; }
   }
   $details .= "<br>\n";
  }

@@ -16,6 +16,7 @@
  if ($backup) $silent = 1;
  include("inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
+ $pvp->backup_dir = $base_path . "testdata";
 
  function fhead($filename) {
    header("content-type: application/octet-stream");
@@ -38,14 +39,14 @@
  $t->set_var("listtitle",lang("backup_db"));
 
  if ($backup) {
-   if ($btype=="removieint") die(lang("not_yet_implemented"));
    if ($btype=="movieint") {
-     $mlist  = $db->get_movie();
+     $mlist  = $db->get_movieids_all();
      $mcount = count($mlist);
      fhead("movies.pvp");
      fout("PVP Movie Backup: [$mcount] records");
      for ($i=0;$i<$mcount;++$i) {
-       fout( serialize($mlist[$i]) );
+       $movie = $db->get_movie($mlist[$i]);
+       fout( urlencode(serialize($movie)) );
      }
      if ($compress) echo gzencode($out);
      exit;
@@ -95,6 +96,37 @@
    if ($compress) echo gzencode($out);
    exit;
  } else {
+   if ($restore) { // restore data
+     if (!empty($rfile)) {
+       if (file_exists($pvp->backup_dir."/$rfile")) {
+         $imp->errors  = 0;
+         $data = file_get_contents($pvp->backup_dir."/$rfile");
+         if (substr($data,0,3)!="PVP") {
+           if ( !$data = @gzinflate(substr($data,10)) ) {
+             $save_result = "<SPAN CLASS='error'>".lang("backup_file_corrupt")."</SPAN>";
+             ++$imp->errors;
+           }
+         }
+         if (!$imp->errors) {
+           if ($cleandb) $db->drop_all_movies();
+           $data = explode("\n",$data);
+           $mcount = count($data);
+           $imp->records = $mcount -2;
+           for ($i=1;$i<$mcount -1;++$i) {
+             $movie = unserialize(urldecode($data[$i]));
+             if (!$db->add_movie($movie)) ++$imp->errors;
+           }
+           if ($imp->errors) {
+             $save_result = "<SPAN CLASS='error'>".lang("imp_errors",$imp->errors,$imp->records)."</SPAN>";
+           } else {
+             $save_result = "<SPAN CLASS='ok'>".lang("imp_success",$imp->records)."</SPAN>";
+           }
+         }
+       } else {
+         $save_result = "<SPAN CLASS='error'>".lang("no_restore_file")."</SPAN>";
+       }
+     }
+   }
    #===============================================[ initial hints & form ]===
    $t->set_var("title",lang("intro"));
    $t->set_var("details",lang("desc_backup_db"));
@@ -103,25 +135,43 @@
    $t->parse("item","itemblock");
    $t->set_var("title",lang("preferences"));
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
-   $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CHECKED>".lang("backup_db_complete")."<BR>"
-          . "<INPUT TYPE='radio' NAME='btype' VALUE='movies'>".lang("backup_db_movies")."<BR>"
-          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>"
-          . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint'>".lang("backup_db_movie_internal")."<BR>"
+   $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CLASS='checkbox'>".lang("backup_db_complete")."<BR>"
+#          . "<INPUT TYPE='radio' NAME='btype' VALUE='movies' CLASS='checkbox'>".lang("backup_db_movies")."<BR>"
+#          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel' CLASS='checkbox'>".lang("backup_db_moviedel")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");
-   $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='removieint'>".lang("restore_db_movie_internal");
-   $t->set_var("dright",$radio);
-   $t->set_var("hleft",lang("backup"));
-   $t->set_var("hright",lang("restore"));
+   $radio = "<INPUT TYPE='radio' NAME='rtype' VALUE='removieint' CLASS='checkbox' CHECKED>".lang("restore_db_movie_internal");
+   if(is_dir($pvp->backup_dir)) {
+     $filelist = $pvp->common->get_filenames($pvp->backup_dir,".pvp");
+     if ( $fcount   = count($filelist) ) {
+       $select   = "<SELECT NAME='rfile'>";
+       for ($i=0;$i<$fcount;++$i) {
+         $select .= "<OPTION NAME='".$filelist[$i]."'>".$filelist[$i]."</OPTION>";
+       }
+       $select .= "</SELECT><BR>"
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox' CHECKED>".lang("clean_restore")."<BR>";
+     } else {
+       $select = lang("no_backup_avail");
+     }
+   } else {
+     $select = lang("invalid_backup_dir");
+   }
+   $t->set_var("dright",$radio."<IMG WIDTH='10' BORDER='0' SRC='$space'>".$select);
+   $haction = "<INPUT TYPE='submit' NAME='backup' VALUE='".lang("button_backup")."'>";
+   $t->set_var("hleft",$haction);
+   $haction = "<INPUT TYPE='submit' NAME='restore' VALUE='".lang("button_restore")."'>";
+   $t->set_var("hright",$haction);
    $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
-   $t->set_var("settings","");
-   $t->set_var("title",lang("backup_db_runscript"));
-   $t->set_var("details","");
-   $t->parse("item","itemblock",TRUE);
-   $t->set_var("button","<INPUT TYPE='submit' NAME='backup' VALUE='".lang("yes")."'>");
+#   $t->set_var("settings","");
+#   $t->set_var("title",lang("backup_db_runscript"));
+#   $t->set_var("details","");
+#   $t->parse("item","itemblock",TRUE);
+#   $t->set_var("button","<INPUT TYPE='submit' NAME='submit' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
+   $t->set_var("save_result",$save_result);
    if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    include("../inc/header.inc");
    $t->pparse("out","template");

@@ -285,7 +285,7 @@ function getPageOffsetTop(el) {
 <div id="editMenu" class="menu">
 <a class="menuItem" href="<?=$base_url ?>new.php"><?=lang("add_entry") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="<?=$base_url ?>configure.php"><?=lang("configuration") ?></a>
+<a class="menuItem" href="<?=$base_url ?>configure.php"><?=lang("preferences") ?></a>
 </div>
 
 <div id="filterMenu" class="menu">

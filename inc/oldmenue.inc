@@ -20,7 +20,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$base_url?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$base_url?>configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$base_url?>configure.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);

@@ -14,7 +14,7 @@ Erklärung bedürfen:
 *mediatype#
 
 [text]
-<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="Editieren eines Eintrages: Medientyp" ALIGN=LEFT HSPACE=5>
+<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="Editieren eines Eintrages: Medientyp" ALIGN="LEFT" HSPACE="5" BORDER="1">
 Aus der Liste "*mediatype#" (im Bild rot markiert) läßt sich der gewünschte
 Medientyp auswählen. Während ich diese Box sicher nicht näher erklären muß,
 möchte ich an dieser Stelle jedoch auf zwei andere Dinge hinweisen: blau
@@ -27,12 +27,13 @@ einen Film auf dem jeweiligen Medium meint. RVT 68-1 wäre somit also Film Nummer
 Natürlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
 wird phpVideoPro dann nicht unbedingt so reagieren, wie man es vielleicht
 erwartet :-) Wichtig ist dieses Modell z.B. bei der Ermittlung von freien
-Bandstellen über den Menüpunkt <A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A>,
-da dieses auf der MediaNummer aufbaut. Unnötig daher zu erwähnen, daß diese
-Nummern eindeutig sein müssen - es ist nicht möglich, die gleiche Kombination
-aus Medientyp und Mediennummer mehrfach zu speichern. Wer die gleiche DVD also
-zweimal hat, muß ihr entweder zwei verschiedene Nummern geben - oder den
-entsprechenden Vermerk im Kommentarfeld unterbringen.
+Bandstellen über den Menüpunkt "<A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A>"
+(bzw. "*taperest_filtered#"), da dieses auf der MediaNummer aufbaut. Unnötig
+daher zu erwähnen, daß diese Nummern eindeutig sein müssen - es ist nicht
+möglich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
+speichern. Wer die gleiche DVD also zweimal hat, muß ihr entweder zwei
+verschiedene Nummern geben - oder den entsprechenden Vermerk im Kommentarfeld
+unterbringen.
 [text]
 Und nun ein kleines "Gimmik": Wer erinnert sich schon daran, welches die
 nächste zu vergebende *medianr# ist, wenn er gerade ein neues Band aufgenommen

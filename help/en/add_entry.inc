@@ -14,7 +14,7 @@ the movies title ;):
 MediaType
 
 [text]
-<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="piece of 'add entry' menue: mediatype" ALIGN=LEFT HSPACE=5>
+<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="piece of 'add entry' menue: mediatype" ALIGN="LEFT" HSPACE="5" BORDER="1">
 The box "MediaType" (marked red in the image displayed) offers you a list of
 available media types to select from. This box itself won't need any
 explanation, I guess - but I want to draw your attention to the other two marks:
@@ -43,7 +43,7 @@ commercial video tape library, but for private collections only :)
 
 [text]
 The date field is split in day, month and year fields. As for now, the order
-is hardcoded to be day-month-year. Of course this will change in one of the
+is hardcoded to be day-month-year. Of course this may change in one of the
 following versions of phpVideoPro, to use the order configured with the date
 format setting in the setup menue, to take country specific settings (or
 special user preferences :) into account.
@@ -63,8 +63,8 @@ displays the time.
 *label#
 
 [text]
-This is to define wether the movie should be printed on the label for this
-medium.
+This is to define wether data for this movie should be printed on the label for
+this medium.
 
 [title]
 *commercials#
@@ -96,8 +96,10 @@ With the movie data, there's only a reference stored - so if you later go to
 list some entries for a specific person, you may run into trouble: on the
 <A HREF="http://www.qumran.org/homes/izzy/">demo site</A>, I already saw
 entries keeping both name parts in one field, just to store two persons into
-one entry. Of course you <i>can</i> do so - but it's not the way I planned it,
-and some future features may not consider this possibility.
+one entry. Of course you <i>can</i> do so - but it's not the way it is intended.
+You will e.g. encounter problems in this case, when setting filters: you won't
+be able to filter for one of the two persons entered, but just for both of them
+at the same time in the same combination. Just to mention one example.
 
 [text]
 Additionally, there's a checkbox attached to each name, titled "In List". This,

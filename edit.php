@@ -20,6 +20,22 @@
     return $output;
   }
 
+  function vis_staff($name,$list) {
+    GLOBAL $edit;
+    $output  = "<CENTER>";
+    if ($edit) {
+      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"$name\" VALUE=\"1\"";
+      if ($list) $output .= " CHECKED";
+      $output .= ">";
+    } else {
+      $output .= "<INPUT TYPE=\"button\" NAME=\"$name\" VALUE=\"";
+      if ($list) { $output .= "Yes\">"; } else { $output .= "No\">"; }
+      $output .= "<INPUT TYPE=\"hidden\" NAME=\"$name\" VALUE=\"$list\">";
+    }
+    $output .= "</CENTER>";
+    return $output;
+  }
+
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
     $db->query("SELECT name,id FROM mtypes");
@@ -78,7 +94,8 @@
   }
   
   function name_sep($name,$fname) {
-    if ( ( strlen(trim($name)) ) && ( strlen(trim($fname)) ) ) echo ",&nbsp;";
+    GLOBAL $edit;
+    if ( ( strlen(trim($name)) ) && ( strlen(trim($fname)) ) || $edit ) echo ",&nbsp;";
     if ( !( strlen(trim($name)) ) || !( strlen(trim($fname)) ) ) echo "&nbsp;";
   }
   
@@ -90,7 +107,7 @@
 <?
   echo "<CENTER>$save_result</CENTER>";
 //  $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
-  $query   = "SELECT title,length,year,aq_date,source,director_id,music_id,country,"
+  $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
            . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
            . "color_id,tone_id,pict_id"
@@ -108,11 +125,11 @@
   $vis_actor5 = $db->f('actor5_list');
   $fsk = $db->f('fsk'); $comment = $db->f('comment'); $lp = $db->f('lp');
   // helper:
-  $music_id  = $db->f('music_id'); $cat1_id = $db->f('cat1_id'); $cat2_id = $db->f('cat2_id');
-  $cat3_id   = $db->f('cat3_id'); $actor1_id = $db->f('actor1_id'); $actor2_id = $db->f('actor2_id');
-  $actor3_id = $db->f('actor3_id'); $actor4_id = $db->f('actor4_id'); $actor5_id = $db->f('actor5_id');
-  $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
-  $director_id = $db->f('director_id'); $pict_id = $db->f('pict_id');
+  $music_id  = $db->f('music_id'); $music_list = $db->f('music_list'); $cat1_id = $db->f('cat1_id');
+  $cat2_id = $db->f('cat2_id'); $cat3_id   = $db->f('cat3_id'); $actor1_id = $db->f('actor1_id');
+  $actor2_id = $db->f('actor2_id'); $actor3_id = $db->f('actor3_id'); $actor4_id = $db->f('actor4_id');
+  $actor5_id = $db->f('actor5_id'); $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
+  $director_id = $db->f('director_id'); $director_list = $db->f('director_list'); $pict_id = $db->f('pict_id');
   // sub-queries
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor" . $i . "_id";
@@ -179,15 +196,10 @@
   <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
   <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
-  <TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); name_sep($director_name,$director_fname); form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD></TR>
- <TR>
-  <TD>Length</TD><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD>
-  <TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); name_sep($composer_name,$composer_fname); form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD></TR>
- <TR>
-  <TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD>
   <TD>Year</TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
  <TR>
-  <TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD>
+  <TD>Length</TD><TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0><TR><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD><TD>LongPlay:&nbsp;<INPUT NAME="lp" <?
+  if ($edit) { ?>TYPE="checkbox" VALUE="1"<? if ($lp) echo " CHECKED"; echo ">"; } else { ?>TYPE="button" VALUE="<? if ($lp) { echo "Yes\">"; } else { echo "No\">"; } } ?></TD></TR></TABLE>
   <TD>Category 1-2-3</TD><TD><?
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
@@ -209,7 +221,9 @@
   ?></TD></TR>
  <TR>
   <TD ColSpan=2>
-   <Table Width=100% Border=0>
+   <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>
+    <TR><TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD></TD>
+    <TR><TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
     <TR><TD WIDTH=30%>Tone</TD><TD><?
     if ($edit) {
       echo "<SELECT NAME=\"tone_id\">";
@@ -253,10 +267,16 @@
    </Table></TD>
   <TD ColSpan=2>
    <Table Width=100%>
-    <TR><TD><B>Actor</B></TD><TD>Name</TD><TD>First Name</TD><TD ALIGN="center">in List</TD></TR>
+    <TR><TD><B>Staff</B></TD><TD>Name</TD><TD>First Name</TD><TD ALIGN="center">in List</TD></TR>
+    <TR><TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); ?></TD>
+        <TD><? form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD>
+        <TD><? echo vis_staff('director_list',$director_list); ?></TD></TR>
+    <TR><TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); ?></TD>
+        <TD><? form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD>
+        <TD><? echo vis_staff('music_list',$music_list); ?></TD></TR>
     <?php for ($i=1;$i<=$max["actors"];$i++) {
       $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
-      echo "<TR><TD>$i</TD><TD>";
+      echo "<TR><TD>Actor $i</TD><TD>";
       form_input($name,$actor[$i][name],$form["addon_name"]);
       echo "</TD><TD>";
       form_input($fname,$actor[$i][fname],$form["addon_name"]);

@@ -28,6 +28,7 @@
     $colors = $db->get_preferences('colors');
     if ($colors) {
       $colors = unserialize( rawurldecode($colors) );
+      $this->colors = $colors;
       $colors["ok"] = "<FONT COLOR=\"" . $colors["ok"] . "\">";
       $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
       $GLOBALS['colors'] = $colors;

@@ -15,8 +15,9 @@ $colors["err"] = "<Font Color=\"#ff0000\">";
 // E - Errors
 // S - SQL statements
 // V - Variables set
+// W - Warnings
 // $debug["log"]  = "SV";
-$debug["log"]  = "E";
+$debug["log"]  = "EW";
 
 // internals - don't edit below this unless you exactly know what you are doing!
 $max["actors"]         =  5;
@@ -25,6 +26,7 @@ $max["name_chars"]     = 30;
 $max["country_chars"]  = 30;
 $max["filmlen_chars"]  =  3;
 $max["srclen_chars"]   = 15;
+$min["media_size"]     = 10; // min length of recordable media in minutes
 $form["addon_country"] = "SIZE=\"30\" MAXLENGTH=\"" . $max["country_chars"] . "\"";
 $form["addon_name"]    = "SIZE=\"30\" MAXLENGTH=\"" . $max["name_chars"] . "\"";
 $form["addon_year"]    = "SIZE=\"4\" MAXLENGTH=\"4\"";

@@ -254,7 +254,12 @@
   #---[ Obtain disktype data ]---
   $mdisktype = $db->get_disktypes($mtype_id);
   $dtcount = 0;
-  if ($new_entry) $disktype = $db->disktypeGetForMedia($mtype_id,$cass_id);
+  if ($new_entry) {
+    $tdisktype = $db->disktypeGetForMedia($mtype_id,$cass_id);
+    $disktype = $tdisktype->type;
+    $rc = $tdisktype->rc;
+    unset($tdisktype);
+  }
   if (!empty($disktype)) {
     $disktypes = $db->get_disktypes($mtype_id,$disktype);
     $dtcount   = count($disktypes);
@@ -401,7 +406,7 @@ EndHiddenFields;
   #---[ Counter settings ]---
   if ($dtcount) {
     $t->set_var("counter_name",lang("disk_type"));
-    if ($new_entry && !$disks_id = $db->disktypeGetForMedia($mtype_id,$cass_id)) {
+    if ($new_entry && empty($disktype)) {
       $dt = "<SELECT NAME='disktype' CLASS='techinput'>";
       for ($i=0;$i<$dtcount;++$i) {
         $dt .= "<OPTION VALUE='" .$disktypes[$i]->id ."'";

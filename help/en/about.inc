@@ -5,34 +5,48 @@
 Intro
 
 [text]
-This is phpVideoPro version {version}, (c) 2001 by Itzchak Rehberg, all rights
-(and links) reserved. Inspired by my long-time favorite software for this
-purpose, VideoPro (c) 1991-94 by Bernd Rickers, I started developing my own
-video management program - since on one hand VideoPro was just available as a
-DOS based clipper application, and on the other hand some now important
-features like support for DVDs and tone formats like Dolby Digital 5.1 where
-missing, and Bernd stopped development in 1994. I decided for PHP not only as
-a platform independent programming language, plus this way I would have all my
-data available from everywhere, in the worst case by visiting some internet
-cafe :-)
+If you've got too many DVDs and video tapes to handle, then you need a better
+system! That's exactly why  phpVideoPro  was created. This program is all you'll
+need to get your huge collection under control. It puts your information at your
+fingertips.
+
+[title]
+History
+
 [text]
-At this stage, phpVideoPro is intended for a single user environment. This may
-change with some future version - but don't expect multi user capabilities in
-the very close future...
+PhpVideoPro was inspired by Bernd Rickers' VideoPro, which is available in a
+DOS-based clipper application (latest release in 1994) as well as in a Windows
+version (starting from about 1993 - this is now known as Video-5, see
+<A HREF="http://www.bernd.rickers.de.vu/" TARGET="_blank">Bernd's Homepage</A>
+for details). PhpVideoPro was designed using PHP because of the cross-platform
+abilities and the added plus of having your information available anywhere at
+anytime. 
 
 [title]
 Features
 
 [text]
-So what features does phpVideoPro provide? As a video management software it is
-of course intended to manage your (private) movies collection (it does not aim
-to manage a video shop, where multiple copies of the same medium can exist).
-You can add and change entries, display a list containing all entries or
-display a list of available free space on your video tapes - and phpVideoPro
-distinguishes between DVD, Original VideoTapes (OVT - these are the ones you
-bought or got as a present) and Recorded VideoTapes (RVT - these are the ones
-you recorded yourself). Moreover, filter functions help you to select subsets
-or find special entries even in large collections.
+The program allows you to add and change entries as needed. PhpVideoPro can be
+configured to display your catalogue at will. You can view your items in a list
+containing all of your entries or you can request the program to display a list
+of available free space on your homemade video tapes. You can decide to view
+details on a specified entry, or display a list of all movies with a certain
+actor - just to mention a few examples.
+[text]
+So you can keep track of what is what and what you're looking to add to your
+closet of treasures! The filter functions help to sort through your catalogue
+by creating subsets and finding special entries within your ever-growing
+collection.
+[text]
+While you may have enough tapes and DVDs to open up your own version of
+Blockbuster, phpVideoPro wasn't designed to cater to video shops. The current
+release wasn't made to log multiple copies of the same item. The program does,
+however, distinguish between DVDs, original videotapes, and the tapes you
+recorded yourself. More to come.
+
+[title]
+Future
+
 [text]
 New features are planned, and development still goes on. The frequency of new
 releases is not very steady and probably won't ever be - since "it's only a
@@ -42,7 +56,7 @@ that there will always be a fresh release available within the next few weeks!
 So I close with my standard disclaimer: "This is only a hobby, I can't promise
 anything - I just ask you to stay tuned..."
 [text]
-<div align=right>Itzchak Rehberg, August 2001</div>
+<div align=right>Itzchak Rehberg, September 2001</div>
 
 [eof]
 

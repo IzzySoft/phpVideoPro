@@ -847,7 +847,7 @@
    * @return array mpaa (array[country]=rating)
    */
   function mpaa () { // patch by Brian Ruth not yet tested (by me...)
-   if ($this->main_mpaa == "") {
+   if (empty($this->main_mpaa)) {
     if ($this->page["Title"] == "") $this->openpage ("");
     $mpaa_s = 0;
     $mpaa_e = 0;

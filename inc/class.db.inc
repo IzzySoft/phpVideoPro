@@ -2052,7 +2052,7 @@
      if ( count($rc) ) {
        $rcs = ",";
        for ($i=0;$i<7;++$i) {
-         if ($rc[$i]) $rcs .= $i . ",";
+         if (isset($rc[$i]) && $rc[$i]) $rcs .= $i . ",";
        }
      } else {
        $rcs = "";

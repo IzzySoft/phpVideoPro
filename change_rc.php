@@ -17,11 +17,13 @@
  #=================================================[ Register global vars ]===
  $details = array ("change","o_disktype","n_disktype","rc");
  foreach ($details as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var];
+     else $$var = "";
  }
  $details = array ("mtype_id","cass_id","part");
  foreach ($details as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var];
+     else $$var = "";
  }
 
  #==================================================[ Check authorization ]===
@@ -51,7 +53,7 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_rc.tpl"));
  $t->set_block("template","disktypeblock","disk");
- $t->set_var("listtitle",lang("change_rc_for",$mt[0][sname]. " $cass_id"));
+ $t->set_var("listtitle",lang("change_rc_for",$mt[0]['sname']. " $cass_id"));
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
 
  #---[ if disktype was not yet defined, we force the user to do so now ]---
@@ -78,9 +80,10 @@
 
  #---[ Now we can go for the region code(s) ]---
  $t->set_var("rc_head",lang("region_code"));
+ $rcname = "";
  for ($i=0;$i<7;++$i) {
    $rcname .= "<INPUT TYPE='checkbox' NAME='rc[]' VALUE='$i' CLASS='checkbox'";
-   if ($rc[$i]) $rcname .= " CHECKED";
+   if (isset($rc[$i]) && $rc[$i]) $rcname .= " CHECKED";
    $rcname .= ">&nbsp;$i";
    if ($i<6) $rcname .= "&nbsp;";
  }

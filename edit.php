@@ -298,8 +298,9 @@
     }
     $t->set_var("next",$next); unset($next,$lm,$lmc);
   }
-  $referer = $_SERVER["HTTP_REFERER"];
-    $hiddenfields = <<<EndHiddenFields
+  if (isset($_SERVER["HTTP_REFERER"])) $referer = $_SERVER["HTTP_REFERER"];
+    else $referer = "";
+  $hiddenfields = <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
 <INPUT TYPE="hidden" NAME="referer" VALUE="$referer">

@@ -17,11 +17,13 @@
  #=================================================[ Register global vars ]===
  $details = array ("change","o_disktype","n_disktype","submit");
  foreach ($details as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var];
  }
+ if (!isset($submit)) $submit = FALSE;
+ if (!isset($change)) $change = FALSE;
  $details = array ("mtype_id","cass_id","part");
  foreach ($details as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var];
  }
 
  #==================================================[ Check authorization ]===
@@ -43,7 +45,7 @@
 
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_disktype.tpl"));
- $t->set_var("listtitle",lang("change_disktype",$mt[0][sname]. " $cass_id"));
+ $t->set_var("listtitle",lang("change_disktype",$mt[0]['sname']. " $cass_id"));
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("orig",lang("orig_disktype"));
  if ($disks_id) {

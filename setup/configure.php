@@ -41,29 +41,31 @@ if ( isset($update) ) {
   $pvp->preferences->set("date_format",$date_format);
   $pvp->preferences->set("default_movie_colorid",$movie_color);
   $mtypes = $db->get_mtypes();
-  unset($rw_media);
-  for ($i=0;$i<count($mtypes);$i++) {
-    $id    = $mtypes[$i][id];
-    $mtype = "mtype_".$id;
-    if (${$mtype}) {
-      if (strlen($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
+  if ($admin) {
+    unset($rw_media);
+    for ($i=0;$i<count($mtypes);$i++) {
+      $id    = $mtypes[$i][id];
+      $mtype = "mtype_".$id;
+      if (${$mtype}) {
+        if (strlen($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
+      }
+    }
+    $db->set_config("rw_media",$rw_media);
+    if (!$remove_media) $remove_media = "0";
+    $db->set_config("remove_empty_media",$remove_media);
+    $db->set_config("site",$site_info);
+    if ($install_lang && $install_lang != "-") {
+      $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
+      queryf($sql_file,"Installation of additional language file",1);
+    }
+    if ($refresh_lang && $refresh_lang != "-") {
+      $db->delete_translations($refresh_lang);
+      $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
+      queryf($sql_file,"Refresh of language phrases",1);
     }
   }
-  $db->set_config("rw_media",$rw_media);
-  if (!$remove_media) $remove_media = "0";
-  $db->set_config("remove_empty_media",$remove_media);
-  $db->set_config("site",$site_info);
   $colorcode = rawurlencode( serialize($colors) );
   $pvp->preferences->set("colors",$colorcode);
-  if ($install_lang && $install_lang != "-") {
-    $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
-    queryf($sql_file,"Installation of additional language file",1);
-  }
-  if ($refresh_lang && $refresh_lang != "-") {
-    $db->delete_translations($refresh_lang);
-    $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
-    queryf($sql_file,"Refresh of language phrases",1);
-  }
   #-----------------------------[ get available language files ]---
   if ($scan_langfile) {
     chdir("$base_path/setup");
@@ -141,40 +143,42 @@ $t->set_var("formtarget",$PHP_SELF);
 #----------------------------------------[ setup block 1: language stuff ]---
 $t->set_var("list_head",lang("language_settings"));
 
-#--[ scan for new language files? ]--
-$t->set_var("item_name",lang("scan_new_lang_files"));
-$t->set_var("item_comment",lang("scan_new_lang_comment"));
-$t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"scan_langfile\" VALUE=\"1\">");
-$t->parse("item","itemblock");
+if ($admin) {
+  #--[ scan for new language files? ]--
+  $t->set_var("item_name",lang("scan_new_lang_files"));
+  $t->set_var("item_comment",lang("scan_new_lang_comment"));
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"scan_langfile\" VALUE=\"1\">");
+  $t->parse("item","itemblock");
 
-#--[ additional language to install? ]--
-$t->set_var("item_name",lang("select_add_lang"));
-$t->set_var("item_comment",lang("select_add_lang_comment"));
-$select = "<SELECT NAME=\"install_lang\">";
-$none = TRUE;
-for ($i=0;$i<count($lang_avail);$i++) {
-  if ( in_array($lang_avail[$i]["id"],$lang_installed) ) continue;
-  $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
-  $none = FALSE;
-}
-if (!$none) $select .= "<OPTION VALUE=\"-\">-- " . lang("none") ." --</OPTION>";
-$select .= "</SELECT>";
-if ($none) $select = lang("no_add_lang");
-$t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
+  #--[ additional language to install? ]--
+  $t->set_var("item_name",lang("select_add_lang"));
+  $t->set_var("item_comment",lang("select_add_lang_comment"));
+  $select = "<SELECT NAME=\"install_lang\">";
+  $none = TRUE;
+  for ($i=0;$i<count($lang_avail);$i++) {
+    if ( in_array($lang_avail[$i]["id"],$lang_installed) ) continue;
+    $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
+    $none = FALSE;
+  }
+  if (!$none) $select .= "<OPTION VALUE=\"-\">-- " . lang("none") ." --</OPTION>";
+  $select .= "</SELECT>";
+  if ($none) $select = lang("no_add_lang");
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
 
-#--[ refresh an installed language? ]--
-$t->set_var("item_name",lang("refresh_lang"));
-$t->set_var("item_comment",lang("refresh_lang_comment"));
-$select  = "<SELECT NAME=\"refresh_lang\">";
-$select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
-for ($i=0;$i<count($lang_installed);$i++) {
-  $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-  $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+  #--[ refresh an installed language? ]--
+  $t->set_var("item_name",lang("refresh_lang"));
+  $t->set_var("item_comment",lang("refresh_lang_comment"));
+  $select  = "<SELECT NAME=\"refresh_lang\">";
+  $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
+  for ($i=0;$i<count($lang_installed);$i++) {
+    $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
+    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+  }
+  $select .= "</SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
 }
-$select .= "</SELECT>";
-$t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
 
 #--[ select primary language ]--
 $t->set_var("item_name",lang("select_primary_lang"));
@@ -187,7 +191,11 @@ for ($i=0;$i<count($lang_installed);$i++) {
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
+if ($admin) {
+  $t->parse("item","itemblock",TRUE);
+} else {
+  $t->parse("item","itemblock");
+}
 
 #--[ complete language block ]--
 $t->parse("list","listblock");
@@ -227,29 +235,31 @@ $t->parse("list","listblock",TRUE);
 #---------------------------------------------[ setup block 3: misc stuff ]---
 $t->set_var("list_head",lang("general"));
 
-#--[ rw_media ]--
-$t->set_var("item_name",lang("rw_media"));
-$t->set_var("item_comment",lang("rw_media_comment"));
-unset ($id,$name,$input);
-$mtypes = $db->get_mtypes();
-for ($i=0;$i<count($mtypes);$i++) {
-  $id[$i]   = $mtypes[$i][id];
-  $name[$i] = $mtypes[$i][sname];
-  if ($pvp->common->medium_is_rw($id[$i])) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
-  $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" . $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
-}
-$t->set_var("item_input",$input);
-$t->parse("item","itemblock");
+if ($admin) {
+  #--[ rw_media ]--
+  $t->set_var("item_name",lang("rw_media"));
+  $t->set_var("item_comment",lang("rw_media_comment"));
+  unset ($id,$name,$input);
+  $mtypes = $db->get_mtypes();
+  for ($i=0;$i<count($mtypes);$i++) {
+    $id[$i]   = $mtypes[$i][id];
+    $name[$i] = $mtypes[$i][sname];
+    if ($pvp->common->medium_is_rw($id[$i])) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
+    $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" . $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
+  }
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock");
 
-#--[ remove_empty_media ]--
-$t->set_var("item_name",lang("remove_empty_media"));
-$t->set_var("item_comment",lang("remove_empty_media_comment"));
-if ($remove_media) {
-  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\" CHECKED>");
-} else {
-  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\">");
+  #--[ remove_empty_media ]--
+  $t->set_var("item_name",lang("remove_empty_media"));
+  $t->set_var("item_comment",lang("remove_empty_media_comment"));
+  if ($remove_media) {
+    $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\" CHECKED>");
+  } else {
+    $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\">");
+  }
+  $t->parse("item","itemblock",TRUE);
 }
-$t->parse("item","itemblock",TRUE);
 
 #--[ movie_color_default ]--
 $t->set_var("item_name",lang("movie_color_default"));
@@ -264,7 +274,11 @@ for ($i=0;$i<count($pict);$i++) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
-$t->parse("item","itemblock",TRUE);
+if ($admin) {
+  $t->parse("item","itemblock",TRUE);
+} else {
+  $t->parse("item","itemblock");
+}
 
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));
@@ -289,10 +303,12 @@ $t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
 
 #--[ site info ]--
-$t->set_var("item_name",lang("site_info"));
-$t->set_var("item_comment",lang("site_info_comment"));
-$t->set_var("item_input","<INPUT SIZE='20' NAME='site_info' VALUE='$site_info'>");
-$t->parse("item","itemblock",TRUE);
+if ($admin) {
+  $t->set_var("item_name",lang("site_info"));
+  $t->set_var("item_comment",lang("site_info_comment"));
+  $t->set_var("item_input","<INPUT SIZE='20' NAME='site_info' VALUE='$site_info'>");
+  $t->parse("item","itemblock",TRUE);
+}
 
 #--[ complete misc block ]--
 $t->parse("list","listblock",TRUE);

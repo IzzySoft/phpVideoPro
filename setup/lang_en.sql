@@ -538,4 +538,7 @@ INSERT INTO lang VALUES ('backup_db_cats','en','Backup categories','Action on th
 INSERT INTO lang VALUES ('user_create_login_required','en','You must specify a login name for the user!','Error message when trying to add a user without login name');
 INSERT INTO lang VALUES ('hide_cat','en','Hide category','Hint in the Category Administration');
 INSERT INTO lang VALUES ('remove_cat','en','Remove category','Hint in the Category Administration');
+INSERT INTO lang VALUES ('imdb_title_search','en','Search movie on IMDB','Page name: retrieving movie details from the IMDB');
+INSERT INTO lang VALUES ('imdb_transfer2edit','en','Transfer data to edit screen','Button description on the IMDBSearch page');
+INSERT INTO lang VALUES ('imdbsearch','en','Retrieve movie details from the IMDB','Item in the help topic list');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

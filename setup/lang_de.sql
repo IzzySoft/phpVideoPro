@@ -188,8 +188,11 @@ INSERT INTO lang VALUES ('howto_help','de','Wie erstelle ich eine Hilfedatei?','
 INSERT INTO lang VALUES ('howto_label','de','Wie erstelle/konfiguriere ich Vorlagen für Labels?','');
 INSERT INTO lang VALUES ('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?','');
 INSERT INTO lang VALUES ('howto_templates','de','Wie erstelle ich ein neues Template Set?','');
+INSERT INTO lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
+INSERT INTO lang VALUES ('imdb_transfer2edit','de','Daten übertragen','');
 INSERT INTO lang VALUES ('imdb_url','de','Zu verwendende IMDB Site','');
 INSERT INTO lang VALUES ('imdb_url_comment','de','Die Internet Movie Database bietet ausführliche Informationen zu vielen Filmen. Es gibt verschiedene lokalisierte Sites. Da die Titel dort zumeist in der jeweiligen Landessprache abgelegt sind, empfiehlt sich die Auswahl einer Site, die am ehesten der eigenen Datenbank entspricht.','');
+INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imp_errors','de','Beim Import von %2 Datensätzen sind insgesamt %1 fehler aufgetreten.','');
 INSERT INTO lang VALUES ('imp_success','de','%1 Datensätze erfolgreich importiert.','');
 INSERT INTO lang VALUES ('incomplete_date','de','Ist das exakte Datum nicht bekannt (sondern z.B. nur die Jahreszahl \"2000\"), sind die unbekannten Werte durch Nullen zu ersetzen - im genannten Beispiel entspräche das den Eingaben \"00\" \"00\" \"2000\".','');

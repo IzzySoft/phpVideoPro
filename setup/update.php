@@ -113,13 +113,14 @@ $pvp->preferences->admin();
     case "0.3.4"    :
     case "0.3.5"    :
     case "0.3.6"    : queryf("0-3-6_to_0-3-7.".$database["type"],"Update from v0.3.6 to v0.3.7");
-                      queryf("lang_en.sql","Refresh of English language support");
 		      $colors = $pvp->preferences->colors;
 		      unset($colors["page_background"]);
 		      unset($colors["table_background"]);
 		      unset($colors["th_background"]);
 		      $pvp->preferences->set("colors",rawurlencode( serialize($colors) ));
                       break;
+    case "0.3.7"    : queryf("0-3-7_to_0-3-8.sql","Update from v0.3.7 to v0.3.8");
+                      queryf("lang_en.sql","Refresh of English language support");
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
   echo "</UL><DIV ALIGN='center'>\n";

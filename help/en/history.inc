@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.8 (November 2002)
+0.3.8 (November 10, 2002)
 [text]
 <ul>
  <li>now using cookies for user based preferences. Defaults are taken from
@@ -15,6 +15,7 @@
      use different filter settings simultaneously!
  <li>there were some problems with quote signs (and some others) in title,
      source and comment field texts. Hopefully fixed.
+ <li>going to feature freeze for v0.4.0 now...
 </ul>
 
 [title]

@@ -135,6 +135,8 @@ CREATE TABLE video (
    part int(2),
    title varchar(60),
    length int(3),
+   counter1 varchar(10),
+   counter2 varchar(10),
    aq_date varchar(10),
    source varchar(15),
    director_id int(5),

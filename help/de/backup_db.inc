@@ -47,16 +47,12 @@ Zeile direkt unterhalb der Überschrift ablesen.
 
 [text]
 phpVideoPro erkennt beim Laden der Datei, ob diese komprimiert ist, und entpackt
-sie gegebenenfalls. Die Checkbox "*clean_restore#" muss derzeit auf jeden Fall
-angewählt sein - andernfalls kommt es ziemlich schnell zu dem Fehler, dass eine
-duplikate MediaNr auftritt.
-
-[text]
-Der Restore-Prozess erkennt auch automatisch neue Kategorien. D.h., wenn z.B.
-ein Backup von Filmdaten aus einer anderen Datenbank, in der neue Kategorien
-hinzugefügt wurden, importiert wird, werden diese in der aktuellen Datenbank
-auch automatisch angelegt. Die Entscheidung, ob es sich um eine neue Kategorie
-handelt, wird auf Basis des <i>*cat_internal_name#</i> getroffen (siehe
+sie gegebenenfalls. Der Restore-Prozess erkennt auch automatisch neue
+Kategorien. D.h., wenn z.B. ein Backup von Filmdaten aus einer anderen
+Datenbank, in der neue Kategorien hinzugefügt wurden, importiert wird, werden
+diese in der aktuellen Datenbank auch automatisch angelegt. Die Entscheidung,
+ob es sich um eine neue Kategorie handelt, wird auf Basis des
+<i>*cat_internal_name#</i> getroffen (siehe
 <i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>) - daher sollte
 sicher gestellt werden, dass dieser für vorhandene Einträge nicht geändert
 wird. Wird eine neue Kategorie gefunden, so wird diese mit einer neuen ID und
@@ -69,12 +65,38 @@ damit jedem Benutzer - unabhängig von der von ihm gewählten Sprache - eine
 unter Zuhilfenahme des Translation Editors (siehe <i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>;
 zu finden im Administrations-Menü) bearbeitet werden.
 
+[text]
+Enthält ein Film Tonspur(en) oder Untertitel in einer Sprache, die dafür (noch)
+nicht aktiviert wurde, so trägt phpVideoPro auch dafür Sorge.
+
+[title]
+Ersetzen oder Anhängen?
+
+[text]
+Sollen alle Einträge in der Datenbank komplett ersetzt werden (etwa, weil gerade
+jemand mit phpVideoPro "gespielt" und alles gründlich durcheinander gebracht
+hat), so ist einfach die mit "<i>*clean_restore#</i>" beschriftete Box zu
+aktivieren. Ist die Box <i><b>nicht</b></i> aktiviert, werden alle Einträge
+der importierten Datei an die bestehenden Daten <i><b>angehängt</b></i>. Das
+heißt im Klartext:<ul>
+<li>phpVideoPro sucht für jeden Medientyp die höchste vergebene Nummer aus
+    der Datenbank. Beginnend mit der nächst höheren Nummer, werden allen
+    importierten Filmen neue MediaNummern vergeben</li>
+<li>Waren zwei Filme beim Export auf dem selben Medium, sind sie dies auch
+    nach dem Import - die Prozedur läßt sich mit dem "Kopieren der Medien"
+    vergleichen.</li>
+<li>Eventuelle Lücken in der Nummerierung werden geschlossen, da "leere Medien"
+    ja keine Filme enthalten, und demzufolge im Backup nicht erfasst sind.
+    Wer also einfach mal "aufräumen" will: Neu installieren, und trotz leerer
+    Datenbank so tun, als wolle man "hinzufügen".</li>
+</ul>
+
 [title]
 Restore (komplett)
 
 [text]
 Dafür gibt es mindestens zwei Möglichkeiten. Auf jeden Fall ist für das Restore
-eines Komplett-Backups ("*backup_db_complete#") zunächst eine neue (leere)
+eines Komplett-Backups (<i>"*backup_db_complete#"</i>) zunächst eine neue (leere)
 Datenbank anzulegen, in welcher die Tabellen dann erstellt und gefüllt werden.
 Anschließend kann dann ein beliebiges FrontEnd für die Zieldatenbank (z.B.
 phpMyAdmin) verwendet werden, um das Script in dieser Zieldatenbank auszuführen.

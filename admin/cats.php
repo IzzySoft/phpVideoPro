@@ -19,9 +19,20 @@
   if ($submit) {
     for ($i=0;$i<$lines;++$i) {
       $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans";
-      $db->set_translation(${$cat_name},"",$pvp->preferences->lang);
-      if ( !$db->update_category(${$cat_id},${$cat_name}) ) $cat .= "$i,";
-      if ( !$db->set_translation(${$cat_name},${$cat_trans},$pvp->preferences->lang) ) $trans .= "$i,";
+      if ( !strlen(trim(${$cat_name})) && !strlen(trim(${$cat_trans})) ) {
+        $catlist = $db->get_moviecatlist3(${$cat_id});
+	$totals = count($catlist);
+	if ($totals) {
+	  $catname = $db->get_category(${$cat_id});
+	  die ( display_error(lang("movies_left_in_cat",$catname,$totals)) );
+	} else {
+	  $db->delete_category(${$cat_id});
+	}
+      } else {
+        $db->set_translation(${$cat_name},"",$pvp->preferences->lang);
+        if ( !$db->update_category(${$cat_id},${$cat_name}) ) $cat .= "$i,";
+        if ( !$db->set_translation(${$cat_name},${$cat_trans},$pvp->preferences->lang) ) $trans .= "$i,";
+      }
     }
     if ( strlen(trim($new_name)) && strlen(trim($new_trans)) ) {
       if ( !$db->add_category($new_name) ) $cat .= "?,";
@@ -39,7 +50,7 @@
     $translations = $db->get_translations( $pvp->preferences->lang );
   }
 
-  #--------------------------------------------------------[ buid up page ]---
+  #-------------------------------------------------------[ build up page ]---
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("template"=>"admin_cats.tpl"));
   $t->set_block("template","catblock","cats");

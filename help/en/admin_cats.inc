@@ -8,7 +8,12 @@ Administration of categories
 [text]
 Here you can edit the categories. If you don't like the translation, just
 enter a different one into the "*category#" column. If you want to add a new
-category, just fill in your data into the last (empty) line of the table.
+category, just fill in your data into the last (empty) line of the table. In
+order to remove a category, wipe out all it's data and submit the form. If
+there's any movie in your database belonging to that category, you can't remove
+it - in this case you will get an error message telling you so, and you have
+to adjust the movies' settings first. Use the filters to find the affected
+movies.
 
 [text]
 One remaining risk is, that with the next update of phpVideoPro you might get

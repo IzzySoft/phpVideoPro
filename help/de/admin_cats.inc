@@ -8,7 +8,14 @@ Administration der Kategorien
 [text]
 Hier lassen sich die Kategorien editieren. Wenn also eine Übersetzung nicht
 gefällt, kann sie in diesem Formular angepasst werden: einfach den entsprechenden
-Wert in der Spalte "*category#" ändern.
+Wert in der Spalte "*category#" ändern. Soll eine Kategorie hinzugefügt werden,
+sind die entsprechenden Daten einfach in die letzte (leere) Zeile einzutragen.
+Zum Löschen einer Kategorie müssen die Daten für selbige aus den entsprechenden
+Feldern gelöscht werden. Sollten einer zu löschenden Kategorie noch Filme
+zugeordnet sein, wird diese nicht gelöscht. Stattdessen erscheint eine
+Fehlermeldung. In diesem Fall müssen die Daten der entsprechenden Filme zuerst
+angepasst werden, bevor die Kategorie gelöscht werden kann. Die Filterfunktion
+hilft bei der Auffindung der betroffenen Datensätze.
 
 [text]
 Ein Risiko bleibt dabei: mit dem Update auf die nächste Version, oder auch nur

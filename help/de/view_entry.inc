@@ -48,9 +48,9 @@ IMDB Informationen
 
 [text]
 Ein nettes Gimmik ist meiner Meinung nach der Gedanke, nähere Informationen
-über einen Schauspieler, Regisseur oder Komponisten mit nur einem Mausklick
-verfügbar zu haben. Und so öffnet ein solcher Mausklick auf den Button des
-entsprechenden Namens bzw. Vornamens (beide Buttons sind mit der gleichen
+über einen Film, einen Schauspieler, Regisseur oder Komponisten mit nur einem
+Mausklick verfügbar zu haben. Und so öffnet ein solcher Mausklick auf den Button
+des entsprechenden Namens bzw. Vornamens (beide Buttons sind mit der gleichen
 Funktion belegt) dann auch ein neues Fenster, in welchem die Informationen
 über Name, Vorname und "Rolle" (also Schauspieler, Regisseur bzw. Komponist)
 an die "Internet Movie DataBase" (kurz: IMDB) weitergereicht wird. Sind diese

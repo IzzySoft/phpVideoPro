@@ -40,13 +40,13 @@ the affected entries.
 IMDB information
 
 [text]
-If you want to obtain closer information about an actor, director or composer:
-just click on the button holding his/her name (or first name, doesn't matter).
-This will open a new browser window which links to the Internet Movie DataBase
-(IMDB) handing over the name, first name and occupation information from
-phpVideoPro. If this information is unambiguous (i.e. it matches exactly one
-person in the IMDB), this will bring you directly to the page with the desired
-information. Otherwise, the IMDB site will prompt you for additional
+If you want to obtain closer information about a movie, an actor, director or
+composer: just click on the button holding his/her name (or first name, doesn't
+matter). This will open a new browser window which links to the Internet Movie
+DataBase (IMDB) handing over the name, first name and occupation information
+from phpVideoPro. If this information is unambiguous (i.e. it matches exactly
+one person in the IMDB), this will bring you directly to the page with the
+desired information. Otherwise, the IMDB site will prompt you for additional
 information: this may be a list of people that matched your request, or
 something else if e.g. nothing was found.
 [text]

@@ -1,8 +1,12 @@
+<style type="text/css"><!--
+ ul {margin-left: 0; padding-left: 10px; margin-top: 0; margin-bottom:0; padding-top:0; padding-bottom:0;}
+ li {margin-top: 0; margin-bottom:0;}
+--></style>
 <H2 Align=Center>{listtitle}</H2>
 <CENTER>{save_result}</CENTER>
 <FORM NAME="{form_name}" METHOD="post" ACTION="{form_target}">
 {hiddenfields}
-<Table Width="90%" Align="Center" Border="1">
+<Table Width="90%" Align="Center" Border="1" Style="table-layout:fixed">
  <COLGROUP>
   <COL WIDTH="50%">
   <COL WIDTH="50%">

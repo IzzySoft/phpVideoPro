@@ -24,30 +24,33 @@
  if ($backup) {
    $tables = $db->table_names();
    $tablecount = count($tables);
-   $code = "######################################\n"
-         . "# Backup created by phpVideoPro v$version\n"
-         . "######################################\n\n";
+   header("content-type: application/octet-stream");
+   header("Content-Disposition: attachment; filename=pvp-backup.sql");
+   echo "######################################\n"
+      . "# Backup created by phpVideoPro v$version\n"
+      . "######################################\n\n";
    for ($i=0;$i<$tablecount;++$i) {
      $name = $tables[$i]["table_name"];
      $meta = $db->metadata($name);
      $db->dbquery("SELECT * FROM $name");
-     $code .= "#\n# table '$name'\n#\n\n";
+     echo "#\n# table '$name'\n#\n\n";
      while ( $db->next_record() ) {
        $fieldcount = count($meta);
-       $sql = "INSERT INTO $name VALUES (";
+       $fields = $cols = "";
        for ($k=0;$k<$fieldcount;++$k) {
-         $field = $meta[$k]["name"];
-	 $col   = str_replace('"','\"',$db->f("$field"));
-	 $sql  .= "\"$col\"";
-	 if ( ($fieldcount - $k) > 1 ) $sql .= ",";
+         $field   = $meta[$k]["name"];
+	 $col     = "'" . str_replace("'","\'",$db->f("$field")) . "'";
+	 $col     = str_replace(";",":",$col);
+	 $fields .= $field;
+	 $cols   .= $col;
+	 if ( ($fieldcount - $k) > 1 ) {
+	   $cols .= ","; $fields .= ",";
+	 }
        }
-       $sql .= ");\n";
-       $code .= $sql;
+       $cols = str_replace("''","' '",$cols);
+       echo "INSERT INTO $name ($fields) VALUES ($cols);\n";
      }
    }
-   header("content-type: application/octet-stream");
-   header("Content-Disposition: attachment; filename=pvp-backup.sql");
-   echo $code;
    exit;
  } else {
    #===============================================[ initial hints & form ]===

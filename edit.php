@@ -185,11 +185,11 @@
   }
  } else {
    for ($i=0;$i<count($mtypes);$i++) {
-     dbquery("SELECT MAX(cass_id) FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+     dbquery("SELECT MAX(cass_id) max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
      $db->next_record();
      $lastnum[$i][mtype]   = $mtypes[$i][sname];
      $lastnum[$i][mtype_id]= $mtypes[$i][id];
-     $lastnum[$i][cass_id] = $db->f('MAX(cass_id)');
+     $lastnum[$i][cass_id] = $db->f('max_id');
      while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
    }
    for ($i=0;$i<count($lastnum);$i++) {

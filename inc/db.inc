@@ -96,6 +96,46 @@
    }
 
    ############################################################################
+   # get installed languages
+   function get_installedlang() {
+     $this->dbquery("SELECT distinct lang FROM lang");
+     while ( $this->next_record() ) {
+       $lang[] = $this->f('lang');
+     }
+     return $lang;
+   }
+
+   ############################################################################
+   # get (un)available|all languages
+   function get_languages($avail="") {
+     switch ($avail) {
+       case "0" : $where = "WHERE available='no'"; break;
+       case "1" : $where = "WHERE available='yes'"; break;
+     }
+     $this->dbquery("SELECT lang_id,lang_name,available FROM languages $where");
+     $i=0;
+     while ( $this->next_record() ) {
+       $lang[$i]["id"]   = $this->f('lang_id');
+       $lang[$i]["name"] = $this->f('lang_name');
+       ++$i;
+     }
+     return $lang;
+   }
+
+   ############################################################################
+   # make a language (un)available
+   function lang_available($lang,$avail=1) {
+     if ($avail) $this->dbquery("UPDATE languages SET available='yes' WHERE lang_id='$lang'");
+     else $this->dbquery("UPDATE languages SET available='no' WHERE lang_id='$lang'");
+   }
+
+   ############################################################################
+   # delete translations for a specific language
+   function delete_translations($lang) {
+     $this->dbquery("DELETE FROM lang WHERE lang='$lang'");
+   }
+
+   ############################################################################
    # get all translations and return them as array
    function get_translations($pref_lang) {
      $def_lang = "en";

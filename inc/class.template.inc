@@ -14,72 +14,84 @@
 
  /* $Id$ */
 
+ /** Template processing
+  * @package Api
+  * @class Template
+  */
+
 class Template {
   var $classname = "Template";
 
-  /* if set, echo assignments */
+  # if set, echo assignments
   var $debug     = false;
 
-  /* $file[handle] = "filename"; */
+  # $file[handle] = "filename";
   var $file  = array();
 
-  /* relative filenames are relative to this pathname */
+  # relative filenames are relative to this pathname
   var $root   = "";
 
-  /* $varkeys[key] = "key"; $varvals[key] = "value"; */
+  # $varkeys[key] = "key"; $varvals[key] = "value";
   var $varkeys = array();
   var $varvals = array();
 
-  /* "remove"  => remove undefined variables
-   * "comment" => replace undefined variables with comments
-   * "keep"    => keep undefined variables
-   */
+  # "remove"  => remove undefined variables
+  # "comment" => replace undefined variables with comments
+  # "keep"    => keep undefined variables
   var $unknowns = "remove";
   
-  /* "yes" => halt, "report" => report error, continue, "no" => ignore error quietly */
+  # "yes" => halt, "report" => report error, continue, "no" => ignore error quietly
   var $halt_on_error  = "yes";
   
-  /* last error message is retained here */
+  # last error message is retained here
   var $last_error     = "";
 
 
-  /***************************************************************************/
-  /* public: Constructor.
-   * root:     template directory.
-   * unknowns: how to handle unknown variables.
+  #############################################################################
+  /** Constructor
+   * @package Api
+   * @class Template
+   * @constructor Template
+   * @param optional string root template directory
+   * @param optional string unknowns how to handle unknown variables (remove/comment/keep)
    */
   function Template($root = ".", $unknowns = "remove") {
     $this->set_root($root);
     $this->set_unknowns($unknowns);
   }
 
-  /* public: setroot(pathname $root)
-   * root:   new template directory.
+  /** Set a new template directory
+   * @package Api
+   * @class Template
+   * @method set_root
+   * @param string root new template directory
+   * @return boolean success
    */  
   function set_root($root) {
     if (!is_dir($root)) {
       $this->halt("set_root: $root is not a directory.");
       return false;
     }
-    
     $this->root = $root;
     return true;
   }
 
-  /* public: set_unknowns(enum $unknowns)
-   * unknowns: "remove", "comment", "keep"
-   *
+  /** Alter handling of unknown variables
+   * @package Api
+   * @class Template
+   * @method set_unknowns
+   * @param optional string unknowns (remove//comment/keep, defaults to keep)
    */
   function set_unknowns($unknowns = "keep") {
     $this->unknowns = $unknowns;
   }
 
-  /* public: set_file(array $filelist)
-   * filelist: array of handle, filename pairs.
-   *
-   * public: set_file(string $handle, string $filename)
-   * handle: handle for a filename,
-   * filename: name of template file
+  /** Define the template file to use
+   * @package Api
+   * @class Template
+   * @method set_file
+   * @param string handle handle for a filename - can also be an array of handle,filename
+   * @param optional string filename name of template file
    */
   function set_file($handle, $filename = "") {
     if (!is_array($handle)) {
@@ -96,9 +108,14 @@ class Template {
     }
   }
 
-  /* public: set_block(string $parent, string $handle, string $name = "")
-   * extract the template $handle from $parent, 
-   * place variable {$name} instead.
+  /** Define a block inside the template
+   *  (extract the template $handle from $parent, place variable {$name} instead)
+   * @package Api
+   * @class Template
+   * @method set_block
+   * @param string parent handle of parent block
+   * @param string handle block to define
+   * @param optional string name
    */
   function set_block($parent, $handle, $name = "") {
     if (!$this->loadfile($parent)) {
@@ -116,12 +133,14 @@ class Template {
     $this->set_var($parent, $str);
   }
   
-  /* public: set_var(array $values)
-   * values: array of variable name, value pairs.
-   *
-   * public: set_var(string $varname, string $value)
-   * varname: name of a variable that is to be defined
-   * value:   value of that variable
+  /** define the content of one {var} inside the template
+   *  Alternatively to passing two strings, they can be passed as a array
+   *  of pairs name,value
+   * @package Api
+   * @class Template
+   * @method set_var
+   * @param string varname name of a variable that is to be defined
+   * @param optional string value value of that variable
    */
   function set_var($varname, $value = "") {
     if (!is_array($varname)) {
@@ -140,34 +159,43 @@ class Template {
     }
   }
 
-  /* public: subst(string $handle)
-   * handle: handle of template where variables are to be substituted.
+  /** Substitute variables
+   * @package Api
+   * @class Template
+   * @method subst
+   * @param string handle handle of template where variables are to be substituted
+   * @return string parsed template (or FALSE on error)
    */
   function subst($handle) {
     if (!$this->loadfile($handle)) {
       $this->halt("subst: unable to load $handle.");
       return false;
     }
-
     $str = $this->get_var($handle);
     $str = @preg_replace($this->varkeys, $this->varvals, $str);
     return $str;
   }
   
-  /* public: psubst(string $handle)
-   * handle: handle of template where variables are to be substituted.
+  /** Substitute variables
+   * @package Api
+   * @class Template
+   * @method psubst
+   * @param string handle handle of template where variables are to be substituted
+   * @return boolean FALSE
    */
   function psubst($handle) {
     print $this->subst($handle);
-    
     return false;
   }
 
-  /* public: parse(string $target, string $handle, boolean append)
-   * public: parse(string $target, array  $handle, boolean append)
-   * target: handle of variable to generate
-   * handle: handle of template to substitute
-   * append: append to target handle
+  /** Parse a template
+   * @package Api
+   * @class Template
+   * @method parse
+   * @param string target handle of variable to generate
+   * @param string handle handle of template(s) to substitute (can be an array as well)
+   * @param optional boolean append append to target handle
+   * @return string parsed template
    */
   function parse($target, $handle, $append = false) {
     if (!is_array($handle)) {
@@ -184,31 +212,44 @@ class Template {
         $this->set_var($target, $str);
       }
     }
-    
     return $str;
   }
   
+  /** Parse a template (final parse)
+   *  calls parse() and then returns FALSE
+   * @package Api
+   * @class Template
+   * @method pparse
+   * @param string target handle of variable to generate
+   * @param string handle handle of template(s) to substitute (can be an array as well)
+   * @param optional boolean append append to target handle
+   * @return boolean FALSE
+   */
   function pparse($target, $handle, $append = false) {
     print $this->parse($target, $handle, $append);
     return false;
   }
   
-  /* public: get_vars()
+  /** Retrieve all set vars
+   * @package Api
+   * @class Template
+   * @method get_vars()
+   * @return array array of variables (keys)
    */
   function get_vars() {
     reset($this->varkeys);
     while(list($k, $v) = each($this->varkeys)) {
       $result[$k] = $this->varvals[$k];
     }
-    
     return $result;
   }
   
-  /* public: get_var(string varname)
-   * varname: name of variable.
-   *
-   * public: get_var(array varname)
-   * varname: array of variable names
+  /** Retrieve variable contents
+   * @package Api
+   * @class Template
+   * @method get_var
+   * @param string varname name of variable (alternatively: array of variable names)
+   * @return string variable setting (alternatively: array of contents)
    */
   function get_var($varname) {
     if (!is_array($varname)) {
@@ -218,20 +259,22 @@ class Template {
       while(list($k, $v) = each($varname)) {
         $result[$k] = $this->varvals[$k];
       }
-      
       return $result;
     }
   }
   
-  /* public: get_undefined($handle)
-   * handle: handle of a template.
+  /** Obtain list of undefined variables
+   * @package Api
+   * @class Template
+   * @method get_undefined
+   * @param string handle handle of a template.
+   * @return array array of undefined variables (FALSE if none)
    */
   function get_undefined($handle) {
     if (!$this->loadfile($handle)) {
       $this->halt("get_undefined: unable to load $handle.");
       return false;
     }
-    
     preg_match_all("/\{([^}]+)\}/", $this->get_var($handle), $m);
     $m = $m[1];
     if (!is_array($m))
@@ -249,23 +292,21 @@ class Template {
       return false;
   }
 
-  /* public: finish(string $str)
-   * str: string to finish.
+  /** Finnish a block (handle unknowns)
+   * @package Api
+   * @class Template
+   * @method finnish
+   * @param string str string to finish.
+   * @return string finnished string (parsed template)
    */
   function finish($str) {
     switch ($this->unknowns) {
-      case "keep":
-      break;
-      
-      case "remove":
-        $str = preg_replace('/{[^ \t\r\n}]+}/', "", $str);
-      break;
-
-      case "comment":
-        $str = preg_replace('/{([^ \t\r\n}]+)}/', "<!-- Template $handle: Variable \\1 undefined -->", $str);
-      break;
+      case "keep": break;
+      case "remove": $str = preg_replace('/{[^ \t\r\n}]+}/', "", $str);
+                     break;
+      case "comment": $str = preg_replace('/{([^ \t\r\n}]+)}/', "<!-- Template $handle: Variable \\1 undefined -->", $str);
+                     break;
     }
-    
     return $str;
   }
 

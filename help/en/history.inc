@@ -10,6 +10,7 @@
      phpVideoPro.
  <li>removed obsolet SQL update files in setup/ (which just increased the
      version number). Updates from "ancient versions" do still work.
+ <li>absolut taperest list was broken (fixed filters)
 </ul>
 
 [title]

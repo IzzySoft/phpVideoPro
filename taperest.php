@@ -15,7 +15,7 @@
   $page_id = "taperest";
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
-  if ($usefilter) $filter = get_filters();
+  if ($usefilter) $filter = $pvp->preferences->filter; else $filter = "";
   if (!$start) $start = 0;
   include("inc/nextmatch.inc");
 
@@ -61,7 +61,11 @@
   }
 
   for ($i=1;$i<=count($mlist);$i++) {
-    $query = "SELECT v.title,m.sname,c.name FROM video v,mtypes m,cat c WHERE cass_id='" . $mlist[$i]["id"] . "' AND v.mtype_id=m.id AND v.cat1_id=c.id AND v.mtype_id IN ($rw_media)";
+    $query = "SELECT v.title,m.sname,c.name"
+           . " FROM video v,mtypes m,cat c"
+	   . " WHERE cass_id='" . $mlist[$i]["id"] . "'"
+	   . " AND v.mtype_id=m.id AND v.cat1_id=c.id"
+	   . " AND v.mtype_id IN ($rw_media)";
     debug("S","<TR><TD colspan=4>" . $colors["ok"] . "$query</Font></TD></TR>\n");
     dbquery($query);
     $k = 0;

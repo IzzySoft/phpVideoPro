@@ -42,9 +42,11 @@
 <!-- BEGIN editblock -->
 <TABLE ALIGN="center" BORDER="1">
  <TR><TH COLSPAN="2">{edit_title}</TH></TR>
- <TR><TH>{name_name}</TH><TD>{name}</TD></TR>
- <TR><TH>{sname_name}</TH><TD>{sname}</TD></TR>
- <TR><TD COLSPAN="2"><DIV ALIGN="center">{add}</DIV></TD></TR>
+ <TR><TH>{name_name}</TH><TD><INPUT NAME="name" VALUE="{name}" CLASS="techinput"></TD></TR>
+ <TR><TH>{sname_name}</TH><TD><INPUT NAME="sname" VALUE="{sname}" CLASS="techinput"></TD></TR>
+ <INPUT TYPE="hidden" NAME="type" VALUE="{type}">
+ <INPUT TYPE="hidden" NAME="id" VALUE="{id}">
+ <TR><TD COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="update" VALUE="{add}" CLASS="techinput"></DIV></TD></TR>
 </TABLE>
 <!-- END editblock -->
 </FORM>

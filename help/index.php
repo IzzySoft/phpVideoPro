@@ -15,7 +15,7 @@
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include ("../inc/template.inc");
+include ("../inc/class.template.inc");
 ##############################################################################
 # Get the topic description - if possible with link to helpfile (if exist)
 function helppage ($topic) {

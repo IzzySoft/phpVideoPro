@@ -113,7 +113,7 @@ if ($menue) {
     echo "<HTML><HEAD>\n";
     echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
     echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
-    include($base_path . "inc/template.inc");
+    include($base_path . "inc/class.template.inc");
   }
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("config"=>"configure.tpl",

@@ -10,6 +10,8 @@
      specified (fixed)
  <li>added support for VideoCD (VCD)
  <li>some rework at the database functions/classes
+ <li>setup now checks for existance and read permissions of sql files
+     before trying to execute them and reports errors accordingly
 </ul>
 
 [title]

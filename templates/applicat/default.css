@@ -139,12 +139,12 @@
   .medianrinput { width: 70; height: 18; }
   .partinput { width: 20; height: 18; }
   .yesnoinput { width: 40; height: 18; }
-  .titlebutton { font-weight: bold; background-color: #eaeaea; }
-  .namebutton { width: 120; height: 18; background-color: #eaeaea; }
-  .techbutton { width: 120; height: 18; background-color: #eaeaea; }
-  .catbutton { width: 180; height: 18; background-color: #eaeaea; }
-  .medianrbutton { width: 70; height: 18; background-color: #eaeaea; }
-  .yesnobutton { width: 40; height: 18; background-color: #eaeaea; }
+  .titlebutton { font-weight: bold; background-color: #dadada; }
+  .namebutton { width: 120; height: 18; background-color: #dadada; }
+  .techbutton { width: 120; height: 18; background-color: #dadada; }
+  .catbutton { width: 180; height: 18; background-color: #dadada; }
+  .medianrbutton { width: 70; height: 18; background-color: #dadada; }
+  .yesnobutton { width: 40; height: 18; background-color: #dadada; }
   .checkbox { height: 15; }
   .multiselect { height: 125; width: 180; }
   .tablink { color: #000000; }
@@ -152,7 +152,7 @@
 
   .virtual_button {
     border:1px outset #ffffff;
-    background-color: #eaeaea;
+    background-color: #dadada;
   }
 //-->
 </style>

@@ -27,7 +27,7 @@
     <COLGROUP><COL WIDTH="40%"><COL WIDTH="30%"><COL WIDTH="15%"><COL WIDTH="15%"></COLGROUP>
     <TR><TD>{length_name}</TD><TD>{length}</TD>
         <TD>{longplay_name}</TD><TD>{longplay}</TD></TR>
-    <TR><TD>{counter_name}</TD><TD>{counter_1} / {counter_2}</TD>
+    <TR><TD>{counter_name}</TD><TD>{counter}</TD>
         <TD>{label_name}</TD><TD>{label}</TD></TR>
     <TR><TD>{commercial_name}</TD><TD ColSpan="3">{commercial}</TD></TR>
    </TABLE>

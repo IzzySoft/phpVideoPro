@@ -1046,6 +1046,9 @@
      if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
      $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
      $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
+     $this->dbquery("SELECT disks_id FROM cass WHERE id=".$movie[cass_id]." AND mtype_id=".$movie[mtype_id]);
+     $this->next_record();
+     $movie[disktype] = $this->f('disks_id');
      return $movie;
    }
 
@@ -1395,6 +1398,7 @@
        $this->insert_medium($cass_id,$mtype_id,$space);
        $this->update_freetime($cass_id,$mtype_id);
      }
+     if ($disktype) $this->set_disktype($cass_id,$mtype_id,$disktype);
      return $success;
    }
 
@@ -1471,6 +1475,50 @@
    ############################################################################
    # Media Specific Stuff
    ############################################################################
+
+   /** Obtain all disk type for a given media type
+    * @class sql
+    * @method get_disktypes
+    * @param integer mtype_id Media Type ID
+    * @param optional integer id ID for a specific entry
+    * @return array disktypes (array of objects, properties: id,name,size,lp,rc)
+    */
+   function get_disktypes($mtype_id,$id="") {
+     $query = "SELECT name,id,size,lp,rc FROM disks WHERE ";
+     if ($id) {
+       $query .= "id=$id";
+     } else {
+       $query .= "mtype_id=$mtype_id";
+     }
+     $this->dbquery($query);
+     while ( $this->next_record() ) {
+       $type->id   = $this->f('id');
+       $type->name = $this->f('name');
+       $type->size = $this->f('size');
+       $type->lp   = $this->f('lp');
+       $type->rc   = $this->f('rc');
+       $types[]    = $type;
+     }
+     return $types;
+   }
+
+   /** Set disktype for a medium
+    * @class sql
+    * @method set_disktype
+    * @param integer cass_id
+    * @param integer mtype_id
+    * @param integer disktype_id
+    * @return boolean success
+    */
+   function set_disktype($cass_id,$mtype_id,$disktype_id) {
+     $this->dbquery("SELECT id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->next_record();
+     if ( $id = $this->f('id') ) {
+       return $this->dbquery("UPDATE cass SET disks_id=$disktype_id WHERE id=$id AND mtype_id=$mtype_id");
+     } else {
+       return $this->dbquery("INSERT INTO cass (id,mtype_id,disks_id) VALUES($cass_id,$mtype_id,$disktype_id)");
+     }
+   }
 
    /** Get all media types and return them as array
     * @class sql

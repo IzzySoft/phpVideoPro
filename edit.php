@@ -132,7 +132,7 @@
   // values:
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
-	      "commercials","tone","tone_id","color");
+	      "commercials","tone","tone_id","color","disktype");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -219,6 +219,7 @@
   }
 
   // main block
+  #---[ navigation and title ]---
   if ($page_id == "view_entry") {
     $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
     if ($movie[previous]) {
@@ -251,6 +252,7 @@ EndHiddenFields;
     $formAddon = $form["addon_title"];
   }
   $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $formAddon . ">");
+  #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));
   if ($new_entry) {
     $field  = "<INPUT TYPE='button' NAME='media_tname' VALUE='$media_tname' CLASS='catinput'>";
@@ -288,14 +290,41 @@ EndHiddenFields;
     if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
   }
   $t->set_var("longplay",$field);
-  # Counter settings
-  if (!$edit) {
-    if (empty($counter1)) $counter1 = "&nbsp;";
-    if (empty($counter2)) $counter2 = "&nbsp;";
+  #---[ Counter settings ]---
+  if ($edit) {
+    $disktypes = $db->get_disktypes($mtype_id);
+    $dtcount   = count($disktypes);
+  } elseif ($disktype) {
+    $disktypes = $db->get_disktypes($mtype_id,$disktype);
+    $dtcount   = count($disktypes);
   }
-  $t->set_var("counter_name",lang("counter_start_stop"));
-  $t->set_var("counter_1",form_input("counter1",$counter1,"class=\"yesnobutton\""));
-  $t->set_var("counter_2",form_input("counter2",$counter2,"class=\"yesnobutton\""));
+  if ($dtcount) {
+    $t->set_var("counter_name",lang("disk_type"));
+    if ($new_entry) {
+      $dt = "<SELECT NAME='disktype'>";
+      for ($i=0;$i<$dtcount;++$i) {
+        $dt .= "<OPTION VALUE='" .$disktypes[$i]->id ."'";
+        if ($disktype==$disktypes[$i]->id) $dt .= " SELECTED";
+        $dt .= ">" .$disktypes[$i]->name;
+        if ($disktypes[$i]->size) $dt.= " (" .$disktypes[$i]->size. ")";
+        $dt .= "</OPTION>";
+      }
+      $dt .= "</SELECT>";
+    } else {
+      $dttext = $disktypes[0]->name;
+      if ($disktypes[0]->size) $dttext .= " (" .$disktypes[0]->size. ")";
+      $dt = "<INPUT TYPE='button' NAME='disktype' VALUE='$dttext' CLASS='techinput'>";
+    }
+    $t->set_var("counter",$dt);
+  } else {
+    if (!$edit) {
+      if (empty($counter1)) $counter1 = "&nbsp;";
+      if (empty($counter2)) $counter2 = "&nbsp;";
+    }
+    $t->set_var("counter_name",lang("counter_start_stop"));
+    $t->set_var("counter",form_input("counter1",$counter1,"class='yesnobutton'") . " / " . form_input("counter2",$counter2,"class='yesnobutton'"));
+  }
+
   # Label
   if ($new_entry) $label = $pvp->preferences->get("default_movie_onlabel");
   $t->set_var("label_name",lang("label"));

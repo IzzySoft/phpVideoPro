@@ -114,6 +114,7 @@ INSERT INTO lang VALUES ('directors','de','Regie');
 INSERT INTO lang VALUES ('directors_list','de','Liste der Regisseure');
 INSERT INTO lang VALUES ('director_person','de','Regisseur');
 INSERT INTO lang VALUES ('director_persons','de','Regisseure');
+INSERT INTO lang VALUES ('disk_type','de','Disk-Typ');
 INSERT INTO lang VALUES ('display','de','Anzeigen');
 INSERT INTO lang VALUES ('display_limit','de','Datensätze pro Seite');
 INSERT INTO lang VALUES ('display_limit_comment','de','gibt an, wie viele Zeilen pro Seite bei Listen angezeigt werden sollen');

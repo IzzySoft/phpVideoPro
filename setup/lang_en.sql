@@ -348,3 +348,4 @@ INSERT INTO lang VALUES('old_sessions','en','Sessions older than <INPUT NAME="%1
 INSERT INTO lang VALUES('ended_sessions','en','Ended Sessions');
 INSERT INTO lang VALUES('new_movie_on','en','New %1');
 INSERT INTO lang VALUES('last_entry','en','Last entry');
+INSERT INTO lang VALUES('disk_type','en','Disk Type');

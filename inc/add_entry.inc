@@ -48,7 +48,7 @@
  $fields = array("mtype_id","cass_id","part","title","length","country","year",
                  "cat1_id","cat2_id","cat3_id","director_list","music_list",
 		 "tone_id","pict_id","color_id","fsk","comment","lp",
-		 "counter1","counter2","commercials_id","label");
+		 "counter1","counter2","commercials_id","label","disktype");
  foreach ($fields as $value) {
    $movie[$value] = ${$value};
  }

@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>Fixed a typo in the setup wizzard (SQL syntax on Grant)
+ <li>In some rare cases, URLs have been set up incorrectly. Fixed.
 </ul>
 
 [title]

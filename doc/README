@@ -25,8 +25,9 @@ Contents:
   3.) Requirements
   4.) Pre-Requisites / Installation
   5.) Updating
-  6.) Known bugs / limitations
-  7.) Download and Sites
+  6.) Administrative hints
+  7.) Known bugs / limitations
+  8.) Download and Sites
 
 ===============================================================================
 
@@ -140,7 +141,27 @@ Contents:
 
 ===============================================================================
 
-6.) Known bugs / limitations
+6.) Administrative hints
+------------------------
+
+  Starting with v0.3.8, phpVideoPro supports a kind of "multi-user" environment.
+  While the main configuration and default preferences are stored inside the
+  database, user preferences can be managed via cookies. The biggest advantage
+  of that is, that multiple users can use different filter settings at the
+  same time, without overwriting each others settings (as it was until v0.3.7).
+  This also concerns default settings as templates, data records per page for
+  lists etc. For new users, defaults are loaded from the DB. If they change
+  anything via the edit->preferences menue, changes can be stored into cookies
+  and be loaded from there - if you specify so.
+  For this, it is recommended to set up defaults via the admin->configuration
+  menue, and optionally protect the admin part by placing an appropriate
+  .htaccess file into the admin/ directory - so only authorized users can
+  change configuration issues. Make sure to enable cookies in this form,
+  otherwise the edit->preferences use the database as storage instead.
+
+===============================================================================
+
+7.) Known bugs / limitations
 ----------------------------
 
   Since filter settings are simply stored into the db now, it gets difficult
@@ -156,7 +177,7 @@ Contents:
 
 ===============================================================================
 
-7.) Download and Sites
+8.) Download and Sites
 ----------------------
 
   First, you'll find a home page as well as a running demo (which may not

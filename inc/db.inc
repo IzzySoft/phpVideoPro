@@ -949,8 +949,7 @@
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
 		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat"),
-		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass"),
-		       array("name"=>"countries","sql"=>"SELECT count(DISTINCT country) AS countries FROM video")
+		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass")
 		     );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);
@@ -958,6 +957,8 @@
        $item = $value["name"];
        $stats[$item] = $this->f("$item");
      }
+     $this->dbquery("SELECT DISTINCT country FROM video");
+     $stats[countries] = $this->num_rows();
      $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
 		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
 		       array("name"=>"composer","sql"=>"SELECT count(id) AS rank, music_id AS item FROM video WHERE music_id>0 GROUP BY music_id ORDER BY rank DESC"),
@@ -995,7 +996,7 @@
        $cat = "cat" . $i . "_id";
        $this->dbquery("SELECT DISTINCT $cat FROM video");
        while ( $this->next_record() ) {
-         ${$cat}[] = "a_" . $this->f("$cat");
+         ${$cat}[] = "a_" . $this->f("$cat"); // "a_" needed for array_merge to turn the integer into a string
        }
        ${$cat} = array_flip(${$cat});
      }

@@ -113,6 +113,90 @@
    }
 
    ############################################################################
+   # get all data for a movie entry and return it as array
+   function get_movie($id) {
+     $query = "SELECT title,length,counter1,counter2,aq_date,source,"
+            . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
+	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
+	    . "actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"
+	    . "color_id,pict_id,commercials_id,lp,fsk,comment,mtype_id,"
+	    . "cass_id,part "
+	    . "FROM video WHERE id=$id";
+     $this->query($query);
+     $this->next_record();
+     $moviedetails = array("title","length","counter1","counter2","aq_date",
+                     "source","director_list","actor1_list","actor2_list",
+		     "actor3_list","actor4_list","actor5_list","fsk",
+		     "comment","cass_id","part");
+     foreach($moviedetails as $value) {
+       $movie[$value] = $this->f("$value");
+     }
+     $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
+                     "actor5_id","director_id","music_id","cat1_id","cat2_id",
+		     "cat3_id","tone_id","color_id","pict_id","commercials_id",
+		     "mtype_id","lp");
+     foreach($moviedetails as $value) {
+       $$value = $this->f("$value");
+     }
+     $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id","actor5_id");
+     foreach($moviedetails as $value) {
+       $name = substr($value,0,6);
+       if (${$value}) {
+         $this->query("SELECT firstname,name FROM actors WHERE id=${$value}");
+	 $this->next_record();
+         $movie[$name] = trim( $this->f('firstname') . " " . $this->f('name') );
+       } else {
+         $movie[$name] = "";
+       }
+       $$value = $this->f("$value");
+     }
+     $this->query("SELECT firstname,name FROM directors WHERE id=$director_id");
+     $this->next_record();
+     $movie[director] = trim( $this->f('firstname') . " " . $this->f('name') );
+     $this->query("SELECT firstname,name FROM music WHERE id=$music_id");
+     $this->next_record();
+     $movie[music] = trim( $this->f('firstname') . " " . $this->f('name') );
+     $this->query("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
+     $this->next_record();
+     $movie[mtype] = $this->f('name'); $movie[mtype_short] = $this->f('sname');
+     $moviedetails = array("cat1_id","cat2_id","cat3_id");
+     foreach($moviedetails as $value) {
+       $name = substr($value,0,4);
+       if (${$value}) {
+         $this->query("SELECT name FROM cat WHERE id=${$value}");
+	 $this->next_record();
+         $movie[$name] = trim( $this->f('name') );
+       } else {
+         $movie[$name] = "";
+       }
+       $$value = $this->f("$value");
+     }
+     if ($pict_id) {
+       $this->query("SELECT name,sname FROM pict WHERE id=$pict_id");
+       $this->next_record();
+       $movie[pict] = $this->f('name'); $movie[pict_short] = $this->f('sname');
+     } else {
+       $movie[pict] = $movie[pict_short] = lang("unknown");
+     }
+     $this->query("SELECT name,sname FROM colors WHERE id=$color_id");
+     $this->next_record();
+     $movie[color] = $this->f('name'); $movie[color_short] = $this->f('sname');
+     $this->query("SELECT name,sname FROM tone WHERE id=$tone_id");
+     $this->next_record();
+     $movie[tone] = $this->f('name'); $movie[tone_short] = $this->f('sname');
+     if ($commercials_id) {
+       $this->query("SELECT name FROM commercials WHERE id=$commercials_id");
+       $this->next_record();
+       $movie[commercials] = $this->f('name');
+       $movie[commercials] = lang($movie[commercials]);
+     } else {
+       $movie[commercials] = lang("unknown");
+     }
+     if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
+     return $movie;
+   }
+
+   ############################################################################
    # check wether a given person exists in the db and aquire his/her id. If not
    # found in db, insert him/her first
    function insert_person($person,$query,$sub_query,$name="",$fname="") {

@@ -37,6 +37,18 @@
    return $lang;
  }
 
+ function mk_mtypes() {
+   GLOBAL $db;
+   $mt = $db->get_mtypes();
+   $mc = count($mt);
+   for ($i=0;$i<$mc;++$i) {
+     $id = $mt[$i][sname];
+     $mtype[$id]->id   = $mt[$i][id];
+     $mtype[$id]->name = $mt[$i][name];
+   }
+   return $mtype;
+ }
+
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));
@@ -125,6 +137,7 @@
            if ($cleandb) $db->drop_all_movies();
            $avl = mkavlang($db->get_avlang("audio"));
            $sub = mkavlang($db->get_avlang("subtitle"));
+           $mtypes = mk_mtypes();
 	   $tcatlist = $db->get_category();
 	   $catcount = count($tcatlist);
 	   for ($i=0;$i<$catcount;++$i) {
@@ -141,7 +154,8 @@
                $pset = "actor_$k"; $pid = "actor$k"."_id";
                if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset][name],$movie[$pset][firstname],"actors",TRUE);
              }
-	     for ($k=1;$k<4;++$k) { // add new cats if necessary
+             #--[ add new cats if necessary ]--
+	     for ($k=1;$k<4;++$k) {
 	       $tcat = "cat$k"."int"; $tcatid = "cat$k"."_id";
                if (!empty($movie[$tcat]) && !$catlist[$movie[$tcat]]>0) {
 	         $db->add_category($movie[$tcat]);
@@ -150,6 +164,7 @@
 		 $report .= "<li>added category '".$movie[$tcat]."' (".$movie["cat$k"].")";
 	       }
 	     }
+             #--[ take care for new audio and subtitle languages ]--
              for ($k=0;$k<count($movie[audio]);++$k) { // check audio_ts
                if ( ($movie[audio][$k]) && !in_array($movie[audio][$k],$avl) ) {
                  $db->set_avlang($movie[audio][$k],1,"audio");
@@ -162,7 +177,29 @@
                  $sub[] = $movie[subtitle][$k];
                }
              }
-	     # if (!$cleandb) insert check for the MediaNr HERE *!*
+             #--[ if we add to existing entries: beware media numbers! ]--
+	     if (!$cleandb) {
+               #--[ make sure the mtype exists ]--
+               $mts = $movie[mtype_short];
+               if ( $mtypes[$mts]->id ) {
+                 $movie[mtype_id] = $mtypes[$mts]->id;
+                 $movie[mtype]    = $mtypes[$mts]->name;
+               } else {
+                 $db->set_mtypes($movie[mtype],$mts);
+                 $mtypes = mk_mtypes();
+                 $movie[mtype_id] = $mtypes[$mts]->id;
+               }
+               #--[ generate new media number: add after last ]--
+               $cid = $movie[cass_id];
+               if ( isset($newnum[$mts][$cid]) ) {
+                 $movie[cass_id] = $newnum[$mts][$cid];
+               } else {
+                 $lastnum = $db->get_lastmovienum($mtypes[$mts]->id);
+                 $movie[cass_id] = ++$lastnum[0][cass_id];
+                 $newnum[$mts][$cid] = $movie[cass_id];
+               }
+             }
+             #--[ finally: do the real import! ]--
              if (!$db->add_movie($movie)) ++$imp->errors;
            }
            if ($imp->errors) {

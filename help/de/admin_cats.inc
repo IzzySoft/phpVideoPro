@@ -3,41 +3,68 @@
 <? /* $Id$ */ ?>
 
 [title]
-Administration der Kategorien
+Beschreibung der Spalten
 
 [text]
-Hier lassen sich die Kategorien editieren. Wenn also eine Übersetzung nicht
-gefällt, kann sie in diesem Formular angepasst werden: einfach den entsprechenden
-Wert in der Spalte "*category#" ändern. Soll eine Kategorie hinzugefügt werden,
-sind die entsprechenden Daten einfach in die letzte (leere) Zeile einzutragen.
-Zum Löschen einer Kategorie müssen die Daten für selbige aus den entsprechenden
-Feldern gelöscht werden. Sollten einer zu löschenden Kategorie noch Filme
-zugeordnet sein, wird diese nicht gelöscht. Stattdessen erscheint eine
-Fehlermeldung. In diesem Fall müssen die Daten der entsprechenden Filme zuerst
-angepasst werden, bevor die Kategorie gelöscht werden kann. Die Filterfunktion
-hilft bei der Auffindung der betroffenen Datensätze.
+<TABLE ALIGN="center" BORDER="1">
+  <TR><TD><B>ID</B></TD>
+      <TD>Fortlaufende Nummer (keine Funktion)</TD></TR>
+  <TR><TD><B>*cat_internal_name#</B></TD>
+      <TD>programminterner Name der Kategorie</TD></TR>
+  <TR><TD><B>*category#</B></TD>
+      <TD>Bezeichnung der Kategorie in der aktuellen Sprache</TD></TR>
+  <TR><TD><B>&nbsp;</B></TD>
+      <TD>Löschen bzw. unterdrücken einer Kategorie</TD></TR>
+</TABLE>
+
+[title]
+Hinzufügen einer Kategorie
+
+[text]
+Soll eine Kategorie hinzugefügt werden, sind die entsprechenden Daten einfach
+in die letzte (leere) Zeile einzutragen. Der Wert in der Spalte <i>*cat_internal_name#</i>
+sollte dabei immer mit "cat_" beginnen.
+
+[title]
+Löschen einer Kategorie
+
+[text]
+Hierfür ist das Icon mit der Mülltonne gedacht. Damit man den Löschvorgang nicht
+versehentlich auslöst, erfolgt zunächst noch eine Sicherheitsabfrage. Sollten
+einer zu löschenden Kategorie noch Filme zugeordnet sein, wird diese nicht
+gelöscht. Stattdessen erscheint eine Fehlermeldung. In diesem Fall müssen die
+Daten der entsprechenden Filme zuerst angepasst werden, bevor die Kategorie
+gelöscht werden kann. Die Filterfunktion hilft bei der Auffindung der
+betroffenen Datensätze.
+
+[title]
+(De-) Aktivieren einer Kategorie
+
+[text]
+Mit dem Checkbutton lassen sich unbenutzte Kategorien ausblenden: sie werden
+dann lediglich noch auf dieser Seite, nicht jedoch beim Editieren von
+Datensätzen, Filtern oder im Suchbildschirm angezeigt. Somit kann man für
+ein wenig mehr Übersichtlichkeit sorgen, indem man nur die benötigten Kategorien
+aktiv lässt - ohne die anderen zu löschen, so dass man diese bei Bedarf schnell
+wieder verfügbar hat.
+
+[title]
+Übersetzungen anpassen
+
+[text]
+Wenn also eine Übersetzung nicht gefällt, kann sie in diesem Formular angepasst
+werden: einfach den entsprechenden Wert in der Spalte "*category#" ändern.
 
 [text]
 Ein Risiko bleibt dabei: mit dem Update auf die nächste Version, oder auch nur
 mit der Installation einer aktuelleren Sprachdatei sind die selbst erstellten
-Übersetzungen wieder überschrieben. Um dies zu vermeiden, kann in der Spalte
-"*cat_internal_name#" der interne Name der Kategorie ebenfalls angepasst werden.
-Da dieser jedoch als "Schlüssel" für die Übersetzung dient, sollte sich hier
-an die Regel gehalten werden, dass interne Kategorienamen immer mit "cat_"
-beginnen müssen. Andernfalls besteht die Gefahr, dass es zu Konflikten mit
-anderen Übersetzungen kommt. Das Resultat wäre ein fehlgeschlagenes Update:
-entweder hier an dieser Stelle (falls bereits eine Übersetzung gleichen
-"Schlüssels" existiert), oder bei einem späteren Update (wenn eine solche
-Übersetzung von <B>mir</B> hinzugefügt werden sollte). Dieses Problem läßt sich
-jedoch weitgehend vermeiden, wenn sich an meine Regeln gehalten wird :-)
-
-[text]
-Da bei der Aktualisierung von Übersetzungen bei einem Update bzw. über das
-"*configuration#" Menü zunächst alle bestehenden Übersetzungen der betroffenen
-Sprache gelöscht werden, ist es empfehlenswert, alle hier getätigten Änderungen
-in einer separaten Datei zu speichern. Vor einem Update sollte der Inhalt dieser
-Datei sodann der entsprechenden mitgelieferten Sprachdatei angehängt werden. Auf
-diese Weise bleiben hier gemachte Änderungen erhalten.
+Übersetzungen wieder überschrieben. Um dies zu vermeiden, hilft derzeit nur
+ein kleiner "work-around": über den Menüpunkt zur Bearbeitung der Übersetzungen
+alle Übersetzungen in eine Datei sichern, und vor dem nächsten Update die
+entsprechenden Zeilen mit der neuen Sprachdatei verbinden. Hat man sich an o.g.
+Regel gehalten, und alle Einträge in der Spalte <i>*handle</i> beginnen mit
+"cat_", so sollten die entsprechenden Zeilen in der Sprachdatei schnell
+aufgefunden sein.
 
 [eof]
 

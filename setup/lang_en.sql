@@ -134,3 +134,5 @@ INSERT INTO lang VALUES('counter_start_stop','en','Counter Start/Stop');
 INSERT INTO lang VALUES('other_pages','en','Other pages');
 INSERT INTO lang VALUES('commercials','en','Commercials');
 INSERT INTO lang VALUES('cut_off','en','cut off');
+INSERT INTO lang VALUES('display_limit','en','Display Limit');
+INSERT INTO lang VALUES('display_limit_comment','en','(how many lines to display per page for lists)');

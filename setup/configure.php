@@ -43,6 +43,7 @@ if ($menue) {
     $colors["err"]              = $color_err;
     dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
     dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
+    dbquery("UPDATE preferences SET value='$display_limit' WHERE name='display_limit'");
     $colorcode = rawurlencode( serialize($colors) );
     dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
     if ($install_lang && $install_lang != "-") {
@@ -123,6 +124,14 @@ if ($menue) {
     debug("E","No user template in db?!?");
   }
 
+  #---------------------------------------[ get display limit ]---
+  dbquery("SELECT value FROM preferences WHERE name='display_limit'");
+  if ( $db->next_record() ) {
+    $display_limit = $db->f('value');
+  } else {
+    debug("E","No display limit in db?!?");
+  }
+
 ##################################################################
 # Obtain settings from file system
 #
@@ -167,6 +176,7 @@ if ($menue) {
   $t->set_var("listtitle",$title);
   $t->set_var("formtarget",$PHP_SELF);
 
+  ###############################
   # setup block 1: language stuff
   $t->set_var("list_head",lang("language_settings"));
 
@@ -221,6 +231,7 @@ if ($menue) {
   # complete language block
   $t->parse("list","listblock");
 
+  ############################
   # setup block 2: color stuff
   $t->set_var("list_head",lang("colors"));
   $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
@@ -270,6 +281,20 @@ if ($menue) {
 
   # complete color block
   $t->parse("list","listblock",TRUE);
+
+  ###########################
+  # setup block 3: misc stuff
+  $t->set_var("list_head",lang("general"));
+
+  # display_limit
+  $t->set_var("item_name",lang("display_limit"));
+  $t->set_var("item_comment",lang("display_limit_comment"));
+  $t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
+  $t->parse("item","itemblock");
+
+  # complete misc block
+  $t->parse("list","listblock",TRUE);
+  
 
   # complete the whole thing
   $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");

@@ -41,7 +41,7 @@
  if ( $change ) {
    $db->move_movie($movie_id,$new_mtype,$new_cass_id,$new_part);
    $new_nr = make_nr($new_cass_id,$new_part);
-   header("location: edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr");
+   header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));
  } elseif ( $copy ) {
    $movie[space]    = $db->get_mediaspace($movie[cass_id],$movie[mtype_id]);
    $movie[mtype_id] = $new_mtype;
@@ -50,7 +50,7 @@
    if ( !$movie[lp] ) $movie[lp] = 0;
    $db->add_movie($movie);
    $new_nr = make_nr($new_cass_id,$new_part);
-   header("location: edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr");
+   header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));
    exit;
  }
 
@@ -73,7 +73,9 @@
  $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie[part]."'>");
  $t->set_var("cancel","<INPUT TYPE='cancel' NAME='cancel' VALUE='".lang("cancel")."'>");
  $t->set_var("copy","<INPUT TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
- $t->set_var("change","<INPUT TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>");
+ $change = "<INPUT TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";
+ if (!$pvp->config->enable_cookies) $change .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ $t->set_var("change",$change);
 
  $t->pparse("out","template");
 

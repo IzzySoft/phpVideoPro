@@ -67,7 +67,7 @@
     $t->set_var("title",$title);
     $t->set_var("category",$category);
     $t->set_var("length",$length);
-    $t->set_var("url","edit.php?nr=$movie_id&cass_id=$cass_id&part=$part&mtype_id=$mtype_id");
+    $t->set_var("url",$pvp->link->slink("edit.php?nr=$movie_id&cass_id=$cass_id&part=$part&mtype_id=$mtype_id"));
     $t->set_var("mtype",$mtype);
     $t->set_var("nr",$nr);
     $t->parse("itemlist","itemblock",TRUE);

@@ -77,6 +77,7 @@
    $t->set_var("listtitle",lang("print_label"));
    $t->set_var("form_target",$PHP_SELF);
    $t->set_var("create",lang("create"));
+   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    $t->pparse("out","list");
  }
  

@@ -259,8 +259,8 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='change_nr.php?id=$id'\">";
-    $field .= "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
+    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id"). "'\">";
+    $field .= "<INPUT TYPE='hidden' NAME='media_tname' VALUE='$media_tname'>";
   }
   $t->set_var("mtype",$field);
   $t->set_var("country_name",lang("country"));
@@ -274,7 +274,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\" onClick=\"window.location.href='change_nr.php?id=$id'\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id") ."'\"><INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   }
   $t->set_var("medianr",$field);
   $t->set_var("year_name",lang("year"));
@@ -355,7 +355,7 @@ EndHiddenFields;
   } else { // hide free time for non-editable media
     if ($pvp->common->medium_is_rw($mtype_id)) {
       $t->set_var("mlength_free_name",lang("free"));
-      $t->set_var("mlength_free","<INPUT TYPE='button' NAME='free' VALUE='$free' onClick=\"window.location.href='medialength.php?cass_id=$cass_id&mtype_id=$mtype_id'\"> " . lang("minute_abbrev"));
+      $t->set_var("mlength_free","<INPUT TYPE='button' NAME='free' VALUE='$free' onClick=\"window.location.href='" .$pvp->link->slink("medialength.php?cass_id=$cass_id&mtype_id=$mtype_id"). "'\"> " . lang("minute_abbrev"));
     } else {
       $t->set_var("mlength_free_name","&nbsp;");
       $t->set_var("mlength_free","&nbsp;");
@@ -460,6 +460,7 @@ EndHiddenFields;
     $t->set_var("comments",nl2br($pvp->common->make_clickable($comment)));
   }
   $hiddenfields .= "<INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+  if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
   $t->set_var("hiddenfields",$hiddenfields);
   if ($new_entry) {
     $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");

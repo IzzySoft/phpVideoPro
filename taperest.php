@@ -27,6 +27,7 @@
     $t->set_var("use_filter",$usefilter);
     $t->set_var("min_free",lang("enter_min_free"));
     $t->set_var("display",lang("display"));
+    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
     $t->pparse("out","taperest_init");
     include("inc/footer.inc");
     exit;
@@ -62,7 +63,7 @@
       while ( strlen($cass_id) < 4 ) { $cass_id = "0".$cass_id; }
       $part = $movie[part];
       if ( strlen($part) < 2 ) $part = "0".$part;
-      $mlist[$i][$k]    = "<A HREF='edit.php?mtype_id=".$movie[mtype_id]."&cass_id=".$movie[cass_id]."&part=".$movie[part]."&nr=$cass_id"."-".$part."'>".$movie[mtype_short] . " $cass_id" . "-" . $part . "</A>: " . $movie[title] . " (" . $movie[cat1] . ")";
+      $mlist[$i][$k]    = "<A HREF='" .$pvp->link->slink("edit.php?mtype_id=".$movie[mtype_id]."&cass_id=".$movie[cass_id]."&part=".$movie[part]."&nr=$cass_id"."-".$part). "'>".$movie[mtype_short] . " $cass_id" . "-" . $part . "</A>: " . $movie[title] . " (" . $movie[cat1] . ")";
       $mlist[$i][mtype] = $movie[mtype_short];
       debug("V","<TR><TD colspan=4>Title: '". $mlist[$i][$k] . "', Type: '" . $mlist[$i]["mtype"] . "'</TD></TR>\n");
       $t->set_var("movies",$mlist[$i][$k]);

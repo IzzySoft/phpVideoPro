@@ -36,6 +36,7 @@
 
  $hidden = "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>"
          . "<INPUT TYPE='hidden' NAME='cass_id' VALUE='$cass_id'>";
+ if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
 
  $t->set_var("listtitle",lang("change_media_length"));
  $t->set_var("save_result",$save_result);

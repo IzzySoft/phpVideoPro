@@ -18,7 +18,7 @@
  include($root . "inc/includes.inc");
  if ($admin) {
    if (!$pvp->auth->admin) { // kick-off unauthorized visitors
-     header("Location: $base_url"."login.php");
+     header("Location: " .$pvp->link->slink($base_url."login.php"));
      exit;
    }
    $pvp->preferences->admin();
@@ -305,6 +305,7 @@
  $t->set_var("actor_name",lang("actor"));
  $t->set_var("director_name",lang("director"));
  $t->set_var("composer_name",lang("composer"));
+ if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
  $t->pparse("out","t_list");
 
  include($root . "inc/footer.inc");

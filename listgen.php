@@ -73,6 +73,7 @@
 	 . "<OPTION VALUE=\"music\">" . lang("music_list") . "</OPTION>"
 	 . "<OPTION VALUE=\"actor\">" . lang("actors_list") . "</OPTION>"
 	 . "</SELECT>";
+ if (!$pvp->config->enable_cookies) $list .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $format = "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>"
 	 . "<OPTION VALUE=\"html\">HTML</OPTION>"
          . "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT>";

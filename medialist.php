@@ -60,7 +60,7 @@
    $t->set_var("year",$year[$i]);
    $t->set_var("date",$aq_date[$i]);
    $t->set_var("category",$category[$i]);
-   $t->set_var("url","edit.php?nr=$movie_id[$i]&cass_id=$cass_id[$i]&part=$part[$i]&mtype_id=$mtype_id[$i]");
+   $t->set_var("url",$pvp->link->slink("edit.php?nr=$movie_id[$i]&cass_id=$cass_id[$i]&part=$part[$i]&mtype_id=$mtype_id[$i]"));
    $t->parse("mdatalist","mdatablock",TRUE);
  }
  #---------------------------------------------------------[ table header ]---

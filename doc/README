@@ -151,6 +151,16 @@ Contents:
     next to it, so nobody can browse your configuration file (if tried, the
     result then would just be an empty browser window - without this setting,
     the result would be the source code of the *.inc file).
+ 7. For the data retrieval from IMDB, phpVideoPro needs a directory to store
+    the images in (as shipped, this is moviepic/imdb/). This directory must
+    be readable and writable for the web server process, which - depending on
+    the distribution used, runs under different users. To make this work
+    out-of-the-box, the moviepic/imdb/ directory is read/writeable for
+    everybody. You may want to change this, if you are concerned about
+    security: as root user, own this directory to the web server user (e.g.
+    "chown wwwrun:www moviepic/imdb") and make it writable for its owner
+    only ("chmod 0755 moviepic/imdb"). You CAN do so if you are concerned,
+    but you don't need it to use the functionality.
 
 ===============================================================================
 

@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Common functions used throughout the whole application                    *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Common functions used throughout the whole application                    #
+ #############################################################################
 
  /* $Id$ */
 
@@ -19,118 +19,118 @@
   * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
   */
 
- /** Date formatted according to user preferences
-  * @class common
-  * @attribute string date
-  */
-
 class common {
-   var $date;
+  /** Keeping the formatted date in various forms - do not directly access!
+   * @package Api
+   * @class common
+   * @attribute array date
+   */
+  var $date;
 
-   /** Constructor just calls initDate()
-    * @constructor common
-    */
-   function common() {
-     $this->initDate();
-   }
+  /** Constructor just calls initDate()
+   * @constructor common
+   */
+  function common() {
+    $this->initDate();
+  }
 
-   #============================================[ date format functions ]===
-   /** Initialize the date property
-    * @class common
-    * @method initDate
-    * @param optional mixed date date to format (either string or array)
-    */
-   function initDate($date=0) {
-     switch (strtolower(gettype($date))) {
-       case "string"  : $tdate[year] = substr($date,0,4);
-                        $tdate[mon]  = substr($date,5,2);
-                        $tdate[mday] = substr($date,8,2);
-			$tdate[string] = $date;
-			$this->date = $tdate; break;
-       case "array"   : $this->date = $date; break;
-       default        : $this->date = getdate(); break;
-     }
-     while (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
-     while (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
-     while (strlen($this->date[year])<4) $this->date[year] = "0" . $this->date[year];
-     $this->date[string] = $this->date[year] . "-" . $this->date[mon] . "-" . $this->date[mday];
-   }
+  #============================================[ date format functions ]===
+  /** Initialize the date property
+   * @class common
+   * @method initDate
+   * @param optional mixed date date to format (either string or array)
+   */
+  function initDate($date=0) {
+    switch (strtolower(gettype($date))) {
+      case "string"  : $tdate[year] = substr($date,0,4);
+                       $tdate[mon]  = substr($date,5,2);
+                       $tdate[mday] = substr($date,8,2);
+                       $tdate[string] = $date;
+                       $this->date = $tdate; break;
+      case "array"   : $this->date = $date; break;
+      default        : $this->date = getdate(); break;
+    }
+    while (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
+    while (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
+    while (strlen($this->date[year])<4) $this->date[year] = "0" . $this->date[year];
+    $this->date[string] = $this->date[year] . "-" . $this->date[mon] . "-" . $this->date[mday];
+  }
 
-   /** setRecDate calls initDate with the date specified by the params
-    * @class common
-    * @method setRecDate
-    * @param integer year
-    * @param optional integer month
-    * @param optional integer day
-    */
-   function setRecDate($year,$month="",$day="") {
-     if (strlen($month)) {
-       $date = array(year=>$year,mon=>$month,mday=>$day);
-     } else {
-       $date = $year;
-     }
-     $this->initDate($date);
-   }
+  /** setRecDate calls initDate with the date specified by the params
+   * @class common
+   * @method setRecDate
+   * @param integer year
+   * @param optional integer month
+   * @param optional integer day
+   */
+  function setRecDate($year,$month="",$day="") {
+    if (strlen($month)) {
+      $date = array(year=>$year,mon=>$month,mday=>$day);
+    } else {
+      $date = $year;
+    }
+    $this->initDate($date);
+  }
 
-   /** Retrieve the (formatted) date
-    * @class common
-    * @method getRecDate
-    * @param string format format to return the date ("string" or "array")
-    * @return mixed date date formatted according to user preferences ("string") or as array
-    */
-   function getRecDate($format) {
-     switch($format) {
-       case "string" : return $this->date[string]; break;
-       default       : return $this->date; break;
-     }
-   }
+  /** Retrieve the (formatted) date
+   * @class common
+   * @method getRecDate
+   * @param string format format to return the date ("string" or "array")
+   * @return mixed date date formatted according to user preferences ("string") or as array
+   */
+  function getRecDate($format) {
+    switch($format) {
+      case "string" : return $this->date[string]; break;
+      default       : return $this->date; break;
+    }
+  }
 
-   /** Create a date array
-    * @class common
-    * @method makeRecDateArr
-    * @param integer year
-    * @param optional integer month
-    * @param optional integer day
-    * @return array date
-    */
-   function makeRecDateArr($year,$month="",$day="") {
-     $this->setRecDate($year,$month,$day);
-     return $this->getRecDate("array");
-   }
+  /** Create a date array
+   * @class common
+   * @method makeRecDateArr
+   * @param integer year
+   * @param optional integer month
+   * @param optional integer day
+   * @return array date
+   */
+  function makeRecDateArr($year,$month="",$day="") {
+    $this->setRecDate($year,$month,$day);
+    return $this->getRecDate("array");
+  }
 
-   /** Create a date string
-    * @class common
-    * @method makeRecDateStr
-    * @param integer year
-    * @param optional integer month
-    * @param optional integer day
-    * @return string date date formatted according to user preferences
-    */
-   function makeRecDateStr($year,$month="",$day="") {
-     $this->setRecDate($year,$month,$day);
-     return $this->getRecDate("string");
-   }
-   
-   /** Format a given date according to user preferences
-    * @class common
-    * @method formatDate
-    * @param integer year
-    * @param optional integer month
-    * @param optional integer day
-    * @return string date date formatted according to user preferences
-    */
-   function formatDate($year,$month="",$day="") {
-     GLOBAL $pvp;
-     $this->setRecDate($year,$month,$day);
-     $sum = $this->date[mon] + $this->date[year] + $this->date[mday];
-     if (!$sum) return lang("unknown");
-     switch (strtolower($pvp->preferences->date_format)) {
-       case "d/m/y" : return $this->date[mday] . "/" . $this->date[mon] . "/" . $this->date[year]; break;
-       case "d.m.y" : return $this->date[mday] . "." . $this->date[mon] . "." . $this->date[year]; break;
-       case "y-m-d" :
-       default      : return $this->getRecDate("string"); break;
-     }
-   }
+  /** Create a date string
+   * @class common
+   * @method makeRecDateStr
+   * @param integer year
+   * @param optional integer month
+   * @param optional integer day
+   * @return string date date formatted according to user preferences
+   */
+  function makeRecDateStr($year,$month="",$day="") {
+    $this->setRecDate($year,$month,$day);
+    return $this->getRecDate("string");
+  }
+
+  /** Format a given date according to user preferences
+   * @class common
+   * @method formatDate
+   * @param integer year
+   * @param optional integer month
+   * @param optional integer day
+   * @return string date date formatted according to user preferences
+   */
+  function formatDate($year,$month="",$day="") {
+    GLOBAL $pvp;
+    $this->setRecDate($year,$month,$day);
+    $sum = $this->date[mon] + $this->date[year] + $this->date[mday];
+    if (!$sum) return lang("unknown");
+    switch (strtolower($pvp->preferences->date_format)) {
+      case "d/m/y" : return $this->date[mday] . "/" . $this->date[mon] . "/" . $this->date[year]; break;
+      case "d.m.y" : return $this->date[mday] . "." . $this->date[mon] . "." . $this->date[year]; break;
+      case "y-m-d" :
+      default      : return $this->getRecDate("string"); break;
+    }
+  }
 
   #==========================================[ text formatting functions ]===
   /** Search a text block for URLs and make them clickable

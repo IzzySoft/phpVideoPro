@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Controls for long lists split into parts based on user-specified limit    *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Controls for long lists split into parts based on user-specified limit    #
+ #############################################################################
 
  /* $Id$ */
 

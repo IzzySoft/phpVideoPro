@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Maintain the (DB-stored) user preferences                                 *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Maintain the (DB-stored) user preferences                                 #
+ #############################################################################
 
  /* $Id$ */
 
@@ -57,7 +57,7 @@
     $db->set_preferences($name,$value);
   }
 
-  ##############################################################################
+  ############################################################################
   /** get id for a filter part (helper to get_filters())
    * @class preferences
    * @method get_id
@@ -82,7 +82,7 @@
    return $query;
   }
 
-  ##############################################################################
+  ############################################################################
   /** get filter settings from db
    * @class preferences
    * @method get_filters

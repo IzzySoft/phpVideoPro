@@ -474,5 +474,55 @@ class DB_Sql {
      }
    return $return;
   }
-}
+
+#================================================[ api ref for attributes ]===
+/** Machine that runs the Database to connect to
+ * @package Api
+ * @class DB_Sql
+ * @attribute string Host
+ */
+/** Database to connect to
+ * @package Api
+ * @class DB_Sql
+ * @attribute string Database
+ */
+/** Database user with sufficient priviledges
+ * @package Api
+ * @class DB_Sql
+ * @attribute string User
+ */
+/** Password for the User to connect to the DB
+ * @package Api
+ * @class DB_Sql
+ * @attribute string Password
+ */
+/** Automatically free result set? Defaults to "0"
+ * @package Api
+ * @class DB_Sql
+ * @attribute boolean $Auto_Free
+ */
+/** Enable Debug output? Defaults to "0"
+ * @package Api
+ * @class DB_Sql
+ * @attribute boolean $Debug
+ */
+/** How to handle severe errors. Defaults to "yes". Possible values:
+ *  "yes" (halt with message), "no" (ignore errors quietly), "report"
+ *  (ignore errror, but spit a warning)
+ * @package Api
+ * @class DB_Sql
+ * @attribute string $Halt_On_Error = "yes";
+ */
+/** Error reporting - error number
+ * @package Api
+ * @class DB_Sql
+ * @attribute integer Errno
+ */
+/** Error reporting - the error description
+ * @package Api
+ * @class DB_Sql
+ * @attribute string $Error
+ */
+
+} // end class DB_Sql
 ?>

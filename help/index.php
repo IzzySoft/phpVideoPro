@@ -20,8 +20,7 @@ function helppage ($topic) {
     $help->url  = "<A HREF=\"$PHP_SELF?topic=$topic\">$desc</A>";
     $help->file = $default_file;
   } else {
-    $help->url  = FALSE;
-    $help->file = FALSE;
+    $help = helppage("no_topic");
   }
   return $help;
 }
@@ -61,11 +60,7 @@ if ($topic) { // display specific help page
      . "<TD><A HREF=\"JavaScript:history.back()\">" . lang("back")
      . "</A></TD><TD ALIGN=RIGHT><A HREF=\"$PHP_SELF\">" . lang("index") . "</A></TD></TR></TABLE>\n";
   $help = helppage($topic);
-  if ( $help->file ) {
-    include($help->file);
-  } else {
-    include(dirname(__FILE__)) . "/no_topic.inc";
-  }
+  include($help->file);
 } else { // display help index
   echo "<H3>" . lang("index") . "</H3>\n";
   include("help_topics.php");

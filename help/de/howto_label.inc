@@ -5,7 +5,8 @@
 *intro#
 
 [text]
-Hierbei gilt es zumindest zwei Dateien zu berücksichtigen: die Konfigurationsdatei
+Etiketten werden im Verzeichnis "labels/" erstellt bzw. konfiguriert. Hierbei
+gilt es zumindest zwei Dateien zu berücksichtigen: die Konfigurationsdatei
 (*.config) und das optionale "leere Etikett" als Grafik-Datei (*.png). Beide
 müssen den gleichen "Vornamen" haben: heißt also die Konfigurationsdatei
 "Favorit.config", muss die zugehörige Grafikdatei "Favorit.png" heißen. Ist

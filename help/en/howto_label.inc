@@ -5,14 +5,15 @@
 *intro#
 
 [text]
-Concerning labels, there are (at least) two files to consider. One is the
-configuration file (*.config), and one (optional file) is the "empty" label
-image (the label as it should look like, just except the data on it - *.png).
-Both have to have the same name - if you e.g. call the config file
-my_favorite.config, the graphics file to use with this config has to be called
-my_favorite.png. If there's no *.png file available for the *.config file,
-that's no problem: an empty template will be created having white background,
-and the fields specified in the *.config will be drawn with lines.
+Labels are created/configured within the "labels/" directory. There are (at
+least) two files to consider. One is the configuration file (*.config), and one
+(optional file) is the "empty" label image (the label as it should look like,
+just except the data on it - *.png). Both have to have the same name - if you
+e.g. call the config file my_favorite.config, the graphics file to use with
+this config has to be called my_favorite.png. If there's no *.png file
+available for the *.config file, that's no problem: an empty template will be
+created having white background, and the fields specified in the *.config will
+be drawn with lines.
 
 [text]
 In the *.config file, as you may have guessed, you configure how the label

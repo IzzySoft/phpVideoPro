@@ -1131,11 +1131,11 @@
     * @return boolean success
     */
    function drop_all_movies() {
-     if (!$this->query("DELETE FROM video")) return FALSE;
-     if (!$this->query("DELETE FROM cass")) return FALSE;
-     if (!$this->query("DELETE FROM music")) return FALSE;
-     if (!$this->query("DELETE FROM directors")) return FALSE;
-     if (!$this->query("DELETE FROM actors")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE video")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE cass")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE music")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE actors")) return FALSE;
    }
 
    /** Get movie ids
@@ -1743,8 +1743,8 @@
        exit;
      }
      if ( ( bool ) !ini_get('magic_quotes_gpc')
-      || basename($GLOBALS['PHP_SELF'])=="change_nr.php"
-      || basename($GLOBALS['PHP_SELF'])=="backup_db.php" ) {
+      || basename($_SERVER['PHP_SELF'])=="change_nr.php"
+      || basename($_SERVER['PHP_SELF'])=="backup_db.php" ) {
        $title  = addslashes($title);
        $comment= addslashes($comment);
        $source = addslashes($source);
@@ -2320,12 +2320,27 @@
 
    function check_person($name,$fname,$table,$code=FALSE) {
      if ($code) {
-       $name = addslashes($name); $firstname = addslashes($firstname);
+       $name = addslashes($name); $fname = addslashes($fname);
      }
-     $get  = "SELECT id FROM $table WHERE name='$name' AND firstname='$fname'";
+     if ( !$name ) {
+       $where  = "name IS NULL";
+       $values = "NULL,";
+     } else {
+       $where  = "name='$name'";
+       $values = "'$name',";
+     }
+     $where .= " AND ";
+     if ( !$fname ) {
+       $where  .= "firstname IS NULL";
+       $values .= "NULL";
+     } else {
+       $where  .= "firstname='$fname'";
+       $values .= "'$fname'";
+     }
+     $get  = "SELECT id FROM $table WHERE $where";
      $this->dbquery($get);
      if ( $this->next_record() ) return $this->f('id');
-     $this->dbquery("INSERT INTO $table (name,firstname) VALUES ('$name','$fname')");
+     $this->dbquery("INSERT INTO $table (name,firstname) VALUES ($values)");
      $this->dbquery($get);
      $this->next_record();
      return $this->f('id');

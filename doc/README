@@ -108,6 +108,8 @@ Contents:
       trailing slash.
     - $base_path: same as $base_url, but for the file system (so for
       Windoze this one starts with the drive letter)
+    - $backup_path: this is where phpVideoPro looks for the backup files to
+      restore from (see online help on the admin->backup screen)
     - $database : settings for the database (host running the db server,
       database name, user and password to access the database).
     The other settings you can leave unchanged, they have suitable defaults.

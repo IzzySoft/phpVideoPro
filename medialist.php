@@ -52,8 +52,9 @@
    $movie_id[$row] = urlencode($mtype[$row] . " " . $nr[$row]);
    $title[$row]    = $db->f('title'); check_empty($title[$row]);
    $length[$row]   = $db->f('length'); check_empty($length[$row]);
-   $year[$row]     = $db->f('year'); check_empty($year[$row]);
-   $aq_date[$row]  = $db->f('aq_date');  check_empty($aq_date[$row]);
+   $year[$row]     = $db->f('year'); if (!$year[$row]) $year[$row] = ""; check_empty($year[$row]);
+   $t_aq_date      = $db->f('aq_date');  check_empty($t_aq_date);
+   $aq_date[$row]  = $pvp->common->formatDate($t_aq_date);
    $category[$row] = $db->f('name'); check_empty($category[$row]);
    $row++;
   }

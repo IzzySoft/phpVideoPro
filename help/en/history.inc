@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.2.4 (2002)
+[text]
+<ul>
+ <li>$recdate in view_entry was not displayed correctly for "unknown dates"
+ <li>fixed display of unknown dates in medialist
+</ul>
+
+[title]
 0.2.3 (June 5, 2002)
 [text]
 <ul>

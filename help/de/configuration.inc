@@ -208,6 +208,16 @@ auf der <A HREF="{PHP_SELF}?topic=imdbsearch">IMDB Suchseite</A>. Natürlich
 können später bei Bedarf gezielt andere Werte verwendet werden, ohne dies erst
 hier wieder anzupassen.
 
+[text]
+<b>*imdb_txwin_autoclose#:</b> Diese Angabe bezieht sich auf das IMDB-Fenster,
+welches sich aus dem Formular <A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>
+öffnen lässt. In diesem Fenster wird sodann die IMDB zu Informationen über den
+gerade bearbeiteten Film abgefragt. Sind die gewünschten Informationen
+schließlich gefunden, und der Anwender hat den Button zur Datenübernahme
+betätigt, wird dieses Fenster nicht länger benötigt, und kann daher geschlossen
+werden. Mit diesem Punkt in der Konfiguration läßt sich festlegen, ob dies
+geschehen soll.
+
 [title]
 *general#
 
@@ -232,6 +242,23 @@ Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Übel ein neuer
 Drucker in die Datenbank eingetragen werden. Das hierfür zu verwendende Formular
 findet sich im Administrations-Menü unter dem Punkt <i>*admin_printers#</i>
 (näheres siehe <i><A HREF="{PHP_SELF}?topic=admin_printers">hier</A></i>).
+
+[text]
+<b>*cache_enable#</b>: Mittels spezieller Informationen im sogenannten "Header"
+einer HTML-Datei (das ist ein für den normalen Anwender unsichtbarer Bereich)
+lassen sich sowohl Proxies (Zwischenspeicher) als auch Browser (Mozilla &amp;
+Co) anweisen, eine Seite für eine bestimmte Zeit im Cache zu halten - oder
+halt nicht. Ist die Seite im Cache vorhanden, und das "Haltbarkeitsdatum" noch
+nicht überschritten, wird sie bei einem erneuten Aufruf nicht neu vom Server
+angefordert, sondern aus dem Cache bezogen. Gerade bei dynamischen Seiten (wie
+sie bei phpVideoPro der Fall sind), ist dies nicht immer unbedingt erwünscht.
+Hinzu kommt, dass manche Browser (u.a. der MSIE) die Seiten teilweise selbst
+dann noch aus dem Cache beziehen, wenn der Anwender explizit den Button für
+"Seite neu laden" betätigt - was recht nervig sein kann.
+[text]
+Ob also eine Seite in den Cache wandern soll - oder eben nicht, läßt sich mit
+dieser Option festlegen. phpVideoPro sendet dann die jeweils nötigen Anweisungen
+an den Proxy bzw. Browser.
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie

@@ -59,10 +59,7 @@
  your existing database before executing the script! Furthermore, please
  inspect config.inc for possible changes.</P>
 <P ALIGN=JUSTIFY>For each update step, you should then be notified wether it
- was successfull or not. So if the amount of "comments" on the following page
- is less than the number of the upgrade you select from the list below, there
- probably went something wrong. Of course, if there are errors reported, you
- can be sure that something went wrong :) So now, if you've made your backup
+ was successfull or not. So now, if you've made your backup
  (or decided not to backup at all), we can go on with the update process.</P>
 <P ALIGN=JUSTIFY>The version of phpVideoPro's database which is installed on
  your machine appears to be v<? echo $oldversion ?>. If this is <b>not</b>
@@ -80,11 +77,12 @@
     switch ($oldversion) {
       case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
       case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
-                        queryf("lang_en.sql","Activation of English language support");
-      case "0.1.2"    : queryf("0-1-2_to_0-1-3.sql","Update from v0.1.2 to v0.1.3");
-      case "0.1.3"    : queryf("0-1-3_to_0-1-4.sql","Update from v0.1.3 to v0.1.4");
+                        ; // queryf("lang_en.sql","Activation of English language support");
+      case "0.1.2"    : ; // queryf("0-1-2_to_0-1-3.sql","Update from v0.1.2 to v0.1.3");
+      case "0.1.3"    : queryf("0-1-3_to_0-1-4.sql","Update from v0.1.2 to v0.1.4");
                         queryf("lang_en.sql","Refresh of English language support");
       case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.4 to v0.1.5");
+      case "0.1.5"    : queryf("0-1-5_to_0-2-0.sql","Update from v0.1.5 to v0.2.0");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

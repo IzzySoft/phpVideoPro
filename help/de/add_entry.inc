@@ -120,5 +120,18 @@ unterdrücken (wenn es einem z.B. peinlich ist, daß Sascha Hehn auch in einem
 70ger Jahre P*rn* der eigenen Sammlung mitgespielt hat, und nicht nur in der
 Schwarzwaldklinik :)
 
+[title]
+*comments#
+
+[text]
+Hier können beliebige Kommentare zum Film erfasst werden. Einige spezielle Tags
+werden zur Unterstützung angeboten: so lassen sich [href]URLs[/href] verlinkbar
+machen (sie werden dann in einem separaten Browser-Fenster geöffnet), sowie
+[img]Grafiken[/img] auch [imgr]rechtsbündig[/imgr] einbinden. Desweiteren ist
+die Verwendung einiger "normaler" HTML Tags für die Formatierung erlaubt: dies
+sind B,I,U,CENTER sowie BLOCK,PRE,BR,P,HR und Listen. Alle anderen Tags werden
+gnadenlos entfernt - dies dient dem Schutz der Site gegen "bösartigen" HTML
+Code.
+
 [eof]
 

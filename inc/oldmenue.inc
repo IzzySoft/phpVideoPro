@@ -10,6 +10,7 @@
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$pvp->link->slink($base_url.'admin/cats.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_disktypes")?>", "<?=$pvp->link->slink($base_url.'admin/disktypes.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_translations")?>", "<?=$pvp->link->slink($base_url.'admin/translations.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_pstemplates")?>", "<?=$pvp->link->slink($base_url.'admin/ps_templates.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_printers")?>", "<?=$pvp->link->slink($base_url.'admin/printers.php')?>"));

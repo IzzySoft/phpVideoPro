@@ -89,8 +89,6 @@
      }
      if ($i==0) debug("W",$colors["err"] . "No items found on media '$cass_id', so tape must be empty. If so, you'ld better delete it instead of updating without contents. Otherwise, there may be a problem!</Font><BR>\n");
      $query = "UPDATE cass SET free=$media_length WHERE id=$cass_id";
-     clean_query($query);
-     debug("S",$colors["ok"] . "$query</Font><BR>\n");
      dbquery($query);
    }
  }

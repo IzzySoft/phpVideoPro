@@ -9,6 +9,8 @@
      "unimportant warnings") from PHP
  <li>added fields for audio and subtitle tracks to movie data
  <li>added audio and subtitle to search function
+ <li>sometimes the link to the previous movie (in view_entry) was broken
+     (especially when "part 1" of a medium was missing and MySQL used). Fixed.
 </ul>
 
 [title]

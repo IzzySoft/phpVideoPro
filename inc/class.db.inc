@@ -1620,7 +1620,7 @@
        $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part<$part");
        if ($this->next_record()) {
          $prev->part = $this->f('part');
-         return $prev;
+         if ($prev->part) return $prev; // MySQL sometimes returns empty rows
        }
      }
      if ($media_nr>1) {

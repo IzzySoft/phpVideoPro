@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.5.0
+# German Language File created by phpVideoPro v0.5.1
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
@@ -16,6 +16,7 @@ INSERT INTO lang VALUES ('admin_access','de','Ist Administrator');
 INSERT INTO lang VALUES ('admin_cats','de','Administration der Kategorien');
 INSERT INTO lang VALUES ('admin_disktypes','de','Disk-Typen bearbeiten');
 INSERT INTO lang VALUES ('admin_filter','de','Default Filtereinstellung');
+INSERT INTO lang VALUES ('admin_movietech','de','Filmtechnische Daten bearbeiten');
 INSERT INTO lang VALUES ('admin_orphans','de','Verwaiste Einträge entfernen');
 INSERT INTO lang VALUES ('admin_printers','de','Drucker bearbeiten');
 INSERT INTO lang VALUES ('admin_pstemplates','de','PSLabel Templates bearbeiten');
@@ -90,6 +91,7 @@ INSERT INTO lang VALUES ('compose_person','de','Komponist');
 INSERT INTO lang VALUES ('compose_persons','de','Komponisten');
 INSERT INTO lang VALUES ('configuration','de','Konfiguration');
 INSERT INTO lang VALUES ('config_media','de','Medien und Filme');
+INSERT INTO lang VALUES ('confirm_delete','de','Soll dieser Eintrag wirklich gelöscht werden?');
 INSERT INTO lang VALUES ('confirm_userdelete','de','Löschen des Benutzers #%1');
 INSERT INTO lang VALUES ('confirm_userdeletion','de','Soll der Benutzer \"%1\" (%2) wirklich gelöscht werden?');
 INSERT INTO lang VALUES ('content','de','Inhalt');

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.4 (Oktober 2002)
+0.3.4 (Oktober 24, 2002)
 [text]
 <ul>
  <li>when deleting the last movie from a r/w medium, the empty medium is now

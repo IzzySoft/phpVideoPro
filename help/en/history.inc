@@ -9,6 +9,9 @@
      an entry. Fixed.
  <li>on the start page, when an entry was selected HTML header was created
      twice - which caused problems with Netscape 4.x. Fixed by Michael.
+ <li>some browsers (including Opera) always displayed cached copies when e.g.
+     changing some values on the configuration page. They shouldn't do so
+     anymore (at least Opera does not :)
 </ul>
 
 [title]

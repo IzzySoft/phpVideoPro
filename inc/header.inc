@@ -36,6 +36,7 @@ if (!$silent) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
+ <meta http-equiv="cache-control" content="no-cache">
  <Title><?echo $pagename ?></Title>
  <script language="JavaScript">
 

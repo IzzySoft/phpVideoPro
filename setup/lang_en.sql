@@ -72,6 +72,22 @@ INSERT INTO lang VALUES('taperest_absolute','en','TapeRest (absolute)');
 INSERT INTO lang VALUES('taperest_filtered','en','TapeRest (filtered)');
 INSERT INTO lang VALUES('help','en','Help');
 INSERT INTO lang VALUES('general','en','General');
+INSERT INTO lang VALUES('sure_to_delete','en','Are you sure you want to delete all data for %1');
+INSERT INTO lang VALUES('nobody_named','en','There\'s no other movie by a %1 named %2 %3 in this db, so I remove this entry from the %1\'s table.');
+INSERT INTO lang VALUES('compose_person','en','composer');
+INSERT INTO lang VALUES('director_person','en','director');
+INSERT INTO lang VALUES('check_completed','en','Check completed');
+INSERT INTO lang VALUES('delete_remaining','en','now deleting remaining data for this movie from db');
+INSERT INTO lang VALUES('ok','en','OK');
+INSERT INTO lang VALUES('not_ok','en','Failed');
+INSERT INTO lang VALUES('recalc_free','en','Re-calculating remaining free space on this medium');
+INSERT INTO lang VALUES('tapelist_update_failed','en','Failed updating tape list');
+INSERT INTO lang VALUES('no_entry_in_tapelist','en','Failed - no entry found in tape list');
+INSERT INTO lang VALUES('finnished','en','Finnished');
+INSERT INTO lang VALUES('time_left','en','%1 minutes left');
+
+
+
 
 # when finished, activate language
 UPDATE languages SET available='Yes' WHERE lang_id='en';

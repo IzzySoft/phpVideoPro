@@ -73,7 +73,19 @@ INSERT INTO lang VALUES('taperest_absolute','de','Bandrest (absolut)');
 INSERT INTO lang VALUES('taperest_filtered','de','Bandrest (gefiltert)');
 INSERT INTO lang VALUES('help','de','Hilfe');
 INSERT INTO lang VALUES('general','de','Allgemein');
-
+INSERT INTO lang VALUES('sure_to_delete','de','Alle Daten für %1 werden gelöscht! Fortfahren');
+INSERT INTO lang VALUES('nobody_named','de','Es gibt keinen weiteren Film unter Mitwirkung von %1 %2 %3 in der Datenbank; dieser Name wird also aus der Tabelle gelöscht.');
+INSERT INTO lang VALUES('compose_person','de','Komponist');
+INSERT INTO lang VALUES('director_person','de','Regisseur');
+INSERT INTO lang VALUES('check_completed','de','Prüfung abgeschlossen');
+INSERT INTO lang VALUES('delete_remaining','de','alle verbleibenden Daten dieses Films werden nun gelöscht');
+INSERT INTO lang VALUES('ok','de','OK');
+INSERT INTO lang VALUES('not_ok','de','Fehler');
+INSERT INTO lang VALUES('recalc_free','de','Berechne freien Platz auf dem Medium');
+INSERT INTO lang VALUES('tapelist_update_failed','de','Liste mit verfügbarer Restzeit konnte nicht aktualisiert werden');
+INSERT INTO lang VALUES('no_entry_in_tapelist','de','Fehlgeschlagen - kein Eintrag in Restzeit-Liste');
+INSERT INTO lang VALUES('finnished','de','Fertig');
+INSERT INTO lang VALUES('time_left','de','%1 Minuten frei');
 
 # when finished, activate language
 UPDATE languages SET available='Yes' WHERE lang_id='de';

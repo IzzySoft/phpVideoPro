@@ -12,10 +12,11 @@
   
   function kill($table,$id) {
     GLOBAL $colors;
+    echo " ";
     if ( dbquery("DELETE FROM $table WHERE id='$id'") ) {
-      echo $colors["ok"] . "Done.</Font><br>\n";
+      echo $colors["ok"] . lang("ok") . ".</Font><br>\n";
     } else {
-      echo $colors["err"] . "Failed!</Font><br>\n";
+      echo $colors["err"] . lang("not_ok") . "!</Font><br>\n";
     }
   }
 
@@ -28,9 +29,9 @@
  <INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
  <INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>">
  <TABLE WIDTH="90%" ALIGN="center" BORDER="0">
-  <TR><TD ALIGN="center" COLSPAN="2"><? echo $colors["err"] ?>Are you sure you want to delete all data for <?php echo $nr ?>?</FONT></TD></TR>
-  <TR><TD ALIGN="center"><INPUT TYPE="submit" NAME="cancel" VALUE="NO!"></TD>
-      <TD ALIGN="center"><INPUT TYPE="submit" NAME="approved" VALUE="Yes."></TD>
+  <TR><TD ALIGN="center" COLSPAN="2"><? echo $colors["err"] . lang("sure_to_delete",$nr); ?>?</FONT></TD></TR>
+  <TR><TD ALIGN="center" WIDTH="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo strtoupper(lang("no")) ?>!"></TD>
+      <TD ALIGN="center"><INPUT TYPE="submit" NAME="approved" VALUE="<? echo lang("yes") ?>."></TD>
  </TABLE>
 </FORM>
 <?
@@ -50,16 +51,16 @@
     if ( !$db->next_record() ) {
       dbquery("SELECT name,firstname FROM music WHERE id='$music_id'");
       $db->next_record();
-      echo "<li>There's no other movie with music composed by " . $db->f('firstname') . " " . $db->f('name')
-           . " in this db, so I remove this entry from the composers table. ";
+      $firstname = $db->f('firstname'); $name = $db->f('name');
+      echo "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
       kill("music",$music_id);
     }
     dbquery("SELECT id FROM video WHERE director_id='$director_id' AND id<>'$id'");
     if ( !$db->next_record() ) {
       dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
       $db->next_record();
-      echo "<li>There's no other movie directed by " . $db->f('firstname') . " " . $db->f('name')
-           . " in this db, so I remove this entry from the directors table. ";
+      $firstname = $db->f('firstname'); $name = $db->f('name');
+      echo "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
       kill("directors",$director_id);
     }
     for ($i=1;$i<6;$i++) {
@@ -69,21 +70,21 @@
       if ( !$db->next_record() ) {
         dbquery("SELECT name,firstname FROM actors WHERE id='$aid'");
         $db->next_record();
-        echo "<li>There's no other movie with the actor " . $db->f('firstname') . " " . $db->f('name')
-             . " in this db, so I remove this entry from the actors table. ";
+        $firstname = $db->f('firstname'); $name = $db->f('name');
+        echo "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
         kill("actors",$aid);
       }
     }
     # now we delete the movie entry from db
-    echo "<li>Check completed - now deleting remaining data for this movie from db. ";
+    echo "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
     if ( dbquery("DELETE FROM video WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'") ) {
-      echo $colors["ok"] . "Done.</Font><br>\n";
+      echo $colors["ok"] . lang("ok") . ".</Font><br>\n";
     } else {
-      echo $colors["err"] . "Failed!</Font><br>\n";
+      echo $colors["err"] . lang("not_ok") . "!</Font><br>\n";
     }
     # and finally we may have to correct the free space remaining on that medium
     if ( $mtype_id == 1 ) { // RVT
-      echo "<li>Re-calculating remaining free space on this medium. ";
+      echo "<li>" . lang("recalc_free"). ". ";
       dbquery("SELECT type FROM cass WHERE id='$cass_id'");
       if ( $db->next_record() ) {
         $time_left = $db->f('type');
@@ -97,16 +98,16 @@
           }
         }
         if ( dbquery("UPDATE cass SET free='$time_left' WHERE id='$cass_id'") ) {
-          echo "$time_left minutes left. " . $colors["ok"] . "Done.</Font><BR>\n";
+          echo lang("time_left",$time_left) . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
         } else {
-          echo $colors["err"] . "Failed updating tape list!</Font><br>\n";
+          echo $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
         }
       } else {
-        echo $colors["err"] . "Failed - no entry found in tape list!</Font><br>\n";
+        echo $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
       }
     }
     # and that's all.
-    echo "<b><i>Finnished.</i></b>\n</TD></TR></TABLE>\n";
+    echo "<b><i>" . lang("finnished") . ".</i></b>\n</TD></TR></TABLE>\n";
   }
 
   include("inc/footer.inc");

@@ -54,10 +54,24 @@
  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </HEAD>
 <BODY>
-<H1 ALIGN=CENTER><? echo $title ?></H1>
+<H2 ALIGN=CENTER><? echo $title ?></H2>
+<P ALIGN=JUSTIFY>This page is intended to create all tables needed for
+ phpVideoPro as well as to insert initial data into them. Right now this
+ is done in three steps:</P>
 <UL>
-
+ <LI>Creation of all tables
+ <LI>Insertion of an initial list of categories
+ <LI>Insertion of technical data, i.e. colors (b/w, color, 3D), media types
+     (DVD, original video tapes, self recorded video tapes), screen formats
+     (4:3, 16:9), tone formats (from Mono to Digital Dolby 6.1).
+</UL>
+<P ALIGN=JUSTIFY>For each of those mentioned steps you should be informed
+ below if they were completed successfully. So, if below this are less than
+ three statements about successfully completion, there was probably something
+ going wrong...</P>
+<UL>
 <?
+
 ##################################################################
 # Get SQL statements from their files and execute them
 #

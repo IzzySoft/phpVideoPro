@@ -86,19 +86,8 @@
  };
  ##############################################################################
  # updating free time on media for (Re)Writable Media
- if ($lp) $length /= 2;
  if ( $pvp->common->medium_is_rw($mtype_id) ) { // calc free space only for writable media
-   $query = "SELECT free FROM cass WHERE id=$cass_id";
-   dbquery($query);
-   if ( !$db->next_record() ) {
-     $free  = $mlength - $length;
-     $query = "INSERT INTO cass (id,type,free) VALUES ($cass_id,$mlength,$free)";
-     dbquery($query);
-   } else {
-     $free = $db->f('free') - $length;
-     $query = "UPDATE cass SET free=$free WHERE id=$cass_id";
-     dbquery($query);
-   }
+   $db->update_freetime($cass_id,$mtype_id);
  }
  
 ?>

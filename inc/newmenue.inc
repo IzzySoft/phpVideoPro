@@ -289,7 +289,8 @@ function getPageOffsetTop(el) {
 <div class="menuItemSep"></div>
 <a class="menuItem" href="<? echo $base_url ?>taperest.php"><? echo lang("taperest_absolute") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>taperest.php?usefilter=1"><? echo lang("taperest_filtered") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>dupes.php"><? echo lang("duplicate") ?></a>
+<div class="menuItemSep"></div>
+<a class="menuItem" href="<? echo $base_url ?>stats.php"><? echo lang("db_stats") ?></a>
 </div>
 
 <div id="printMenu" class="menu">

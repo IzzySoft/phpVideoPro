@@ -16,13 +16,14 @@ Development Crew
 <UL>
  <LI>The Beta-Testers and Bug-Reporters, especially Peter Bieringer for testing
      and help with PostgreSQL, and Michael Hasselberg for pointing out Bugs (if
-     there were a "most reported award", it would belong to him!)</LI>
+     there were a "most reported award", it would belong to him!) plus inventing
+     the new PostScript based label engine</LI>
  <LI>all the language support files generators: Tsvetanka Stoyanova for
      Bulgarian, Annette for French, Alessandro Danti for Italian, Knut Fjellheim
      for Norwegian, Leszek Boroch and Jacek Wolski for Polish, Tom Albers for
      Dutch, Tony Granberg for Swedish</LI>
  <LI>SourceForge and Freshmeat for hosting the project (well, and some other
-     sites promoting it)
+     sites promoting it)</LI>
 </UL>
 
 [title]

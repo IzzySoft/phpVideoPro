@@ -23,6 +23,8 @@
  <li>added a new label engine using PostScript to create labels (thanx to
      Michael Hasselberg who created this module!). Be aware that this new
      engine is not yet completed and thus still experimental.
+ <li>added some new labels for the new PS engine. Side labels already look
+     really great (and work great as well)!
 </ul>
 
 [title]

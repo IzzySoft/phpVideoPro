@@ -93,7 +93,7 @@ if ( isset($update) ) {
     closedir($handle);
   }
   ?><HTML><HEAD>
-      <meta http-equiv="refresh" content="0; URL=<? echo $url ?>">
+      <meta http-equiv="refresh" content="0; URL=<?=$pvp->link->slink($url)?>">
     </HEAD></HTML><?
   exit;
 }

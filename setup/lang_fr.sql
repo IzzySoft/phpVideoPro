@@ -3,9 +3,7 @@
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='fr';
-INSERT INTO lang VALUES ('3d','fr','3D','');
 INSERT INTO lang VALUES ('about','fr','A propos','');
-INSERT INTO lang VALUES ('actions','fr','Actions','');
 INSERT INTO lang VALUES ('actor','fr','Acteur','');
 INSERT INTO lang VALUES ('actors','fr','Acteurs','');
 INSERT INTO lang VALUES ('actors_list','fr','Liste des Acteurs','');
@@ -16,7 +14,6 @@ INSERT INTO lang VALUES ('add_entry','fr','Ajouter une entrée','');
 INSERT INTO lang VALUES ('add_user','fr','Ajouter un utilisateur','');
 INSERT INTO lang VALUES ('admin','fr','Admin','');
 INSERT INTO lang VALUES ('admin_access','fr','Peut accéder aux menus administateurs','');
-INSERT INTO lang VALUES ('admin_access_short','fr','adm','');
 INSERT INTO lang VALUES ('admin_cats','fr','Gérer les catégories','');
 INSERT INTO lang VALUES ('admin_disktypes','fr','Editer les types de disque','');
 INSERT INTO lang VALUES ('admin_filter','fr','Paramétrages du filtre par défaut','');
@@ -67,28 +64,23 @@ INSERT INTO lang VALUES ('cat_love','fr','Histoires d\'amour','');
 INSERT INTO lang VALUES ('cat_melodrama','fr','Mélodrame','');
 INSERT INTO lang VALUES ('cat_misc','fr','Divers','');
 INSERT INTO lang VALUES ('cat_music','fr','Musique','');
-INSERT INTO lang VALUES ('cat_musical','fr','Musical','');
 INSERT INTO lang VALUES ('cat_musicmovie','fr','Films musicaux','');
-INSERT INTO lang VALUES ('cat_nature','fr','Nature','');
 INSERT INTO lang VALUES ('cat_opera','fr','Opéra','');
 INSERT INTO lang VALUES ('cat_operetta','fr','Opérette','');
 INSERT INTO lang VALUES ('cat_party','fr','Fête','');
 INSERT INTO lang VALUES ('cat_problem','fr','Problème','');
 INSERT INTO lang VALUES ('cat_report','fr','Reportage','');
-INSERT INTO lang VALUES ('cat_satire','fr','Satire','');
 INSERT INTO lang VALUES ('cat_scary','fr','Film d\'horreur','');
 INSERT INTO lang VALUES ('cat_sf','fr','Science Fiction','');
 INSERT INTO lang VALUES ('cat_show','fr','Montrer','');
 INSERT INTO lang VALUES ('cat_spy','fr','Films d\'espionage','');
 INSERT INTO lang VALUES ('cat_stage','fr','Théatre','');
-INSERT INTO lang VALUES ('cat_thriller','fr','Thriller','');
 INSERT INTO lang VALUES ('cat_trans_update_failed','fr','La mise à jour a échoué lors de la traduction des catégories suivantes','');
 INSERT INTO lang VALUES ('cat_travesty','fr','Parodie','');
 INSERT INTO lang VALUES ('cat_update_failed','fr','Mise à jour raté pour la catégorie suivante: %1','');
 INSERT INTO lang VALUES ('cat_vacation','fr','Vacances','');
 INSERT INTO lang VALUES ('cat_videoclip','fr','Vidéo-clip','');
 INSERT INTO lang VALUES ('cat_war','fr','Film de guerre','');
-INSERT INTO lang VALUES ('cat_western','fr','Western','');
 INSERT INTO lang VALUES ('cat_westerncomedy','fr','Western spaghetti','');
 INSERT INTO lang VALUES ('cat_xmas','fr','Noël','');
 INSERT INTO lang VALUES ('change_disktype','fr','Changer le type de disque pour %1','');
@@ -107,14 +99,12 @@ INSERT INTO lang VALUES ('commercials','fr','Publicité','');
 INSERT INTO lang VALUES ('composer','fr','Composition','');
 INSERT INTO lang VALUES ('compose_person','fr','Compositeur','');
 INSERT INTO lang VALUES ('compose_persons','fr','Compositeurs','');
-INSERT INTO lang VALUES ('configuration','fr','Configuration','');
 INSERT INTO lang VALUES ('config_media','fr','Films et média','');
 INSERT INTO lang VALUES ('confirm_delete','fr','Voulez-vous vraiment supprimer cet enregistrement?','');
 INSERT INTO lang VALUES ('confirm_prilang','fr','Voulez-vous vraiment changer le langage principal pour TOUS les (nouveaux) utilisateurs?','');
 INSERT INTO lang VALUES ('confirm_userdelete','fr','Vous êtes sur le point de supprimer l\'utilisateur %1','');
 INSERT INTO lang VALUES ('confirm_userdeletion','fr','Voulez-vous vraiment supprimer l\'utilisateur \"%1\" (%2)?','');
 INSERT INTO lang VALUES ('content','fr','Index','');
-INSERT INTO lang VALUES ('cookies','fr','Cookies','');
 INSERT INTO lang VALUES ('counter_start_stop','fr','Compteur au début et à la fin','');
 INSERT INTO lang VALUES ('countries','fr','Pays','');
 INSERT INTO lang VALUES ('country','fr','pays','');
@@ -135,14 +125,13 @@ INSERT INTO lang VALUES ('delete_orphans','fr','Suppression de %1 orphelin(s):',
 INSERT INTO lang VALUES ('delete_remaining','fr','Tous les dates de ce film en va remplacé','');
 INSERT INTO lang VALUES ('deleting_entry','fr','Remplacer de date %1','');
 INSERT INTO lang VALUES ('del_access','fr','Peut supprimer des entrées','');
-INSERT INTO lang VALUES ('del_access_short','fr','del','');
 INSERT INTO lang VALUES ('desc_admin_orphans','fr','\"Les entrées orphelines\" sont des données sans attributions, par exemple: Les acteurs, réalisateurs et/ou compositeurs qui ne sont plus référencés dans aucun film. C\'est principalement les résultats du changement d\'un nom mal orthographié après l\'avoir enregistré, mais jamais les resulats d\'entrées de film détruites. 
- C\'est une bonne idée de supprimer ces entrées: d\'un côté, cela sauve des ressources, et de l\'autre, cela aide à prévenir un ralentissement des actions de la base de données.','');
+  C\'est une bonne idée de supprimer ces entrées: d\'un côté, cela sauve des ressources, et de l\'autre, cela aide à prévenir un ralentissement des actions de la base de données.','');
 INSERT INTO lang VALUES ('desc_backup_db','fr','C\'est toujours une bonne idée d\'avoir une sauvegarde sous la main. Alors qu\'il est préférable d\'utiliser les outils propres avec votre base de données (<code>mysql_dump</code>, <code>pgsql_dump</code> etc.) pour cela, vous pouvez avoir une base de données hébergée sur une machine où vous n\'avez pas d\'accès shell. Dans ce case, utilisez \"Sauvegarde complète\" qui sauve votre base de données entière dans un script SQL <BR>Si vous voulez juste sauver vos données de film, par exemple pour les dupliquer  dans une autre base de données, vous pouvez utiliser le format interne de phpVideoPro lui-même: comme cela, vous pouvez même migrer entre différents types de base de données, p.ex. MySQL et PostgresSQL. La reconstitution de la sauvegarde complète d\'une version précédente de phpVideoPro vers une nouvelle a comme conséquence le besoin de mettre à jour la base de données après (comme si vous mettiez juste à jour phpVideoPro), la sauvegarde interne de PVP devrait être compatible entre les 
- versions (le futur le montrera;)<BR>Vous pouvez vouloir compreser votre sauvegarde: si votre
- installation de PHP est compilée avec el support de gzip, cocher simplement la case compression
- et cela sauvera jusqu\'à 90% de la taille du fichier.<BR>
- ','');
+  versions (le futur le montrera;)<BR>Vous pouvez vouloir compreser votre sauvegarde: si votre
+  installation de PHP est compilée avec el support de gzip, cocher simplement la case compression
+  et cela sauvera jusqu\'à 90% de la taille du fichier.<BR>
+  ','');
 INSERT INTO lang VALUES ('director','fr','Réalisateur','');
 INSERT INTO lang VALUES ('directors','fr','Réalisateurs','');
 INSERT INTO lang VALUES ('directors_list','fr','Liste des Réalisateurs','');
@@ -180,7 +169,6 @@ INSERT INTO lang VALUES ('format','fr','Format','');
 INSERT INTO lang VALUES ('free','fr','Libre','');
 INSERT INTO lang VALUES ('free_space_on_media','fr','Les prochains média ont au moins %1 minutes de libre:','');
 INSERT INTO lang VALUES ('free_space_title','fr','Place choissable sur les mediums','');
-INSERT INTO lang VALUES ('fsk','fr','PG','');
 INSERT INTO lang VALUES ('general','fr','Général','');
 INSERT INTO lang VALUES ('goto_entry','fr','Annonce le film:','');
 INSERT INTO lang VALUES ('graphic_file','fr','Ficher d\'image','');
@@ -199,7 +187,6 @@ INSERT INTO lang VALUES ('howto_templates','fr','Comment créer un nouveau gabari
 INSERT INTO lang VALUES ('imp_errors','fr','Importation de %2 enregistrements achevée avec %1 erreurs.','');
 INSERT INTO lang VALUES ('imp_success','fr','Importation de %1 enregistrements achevée avec succès','');
 INSERT INTO lang VALUES ('incomplete_date','fr','Si vous ne connaissez pas la date exacte, mais par exemple, que vous l\'avez enregistrer en 2000, substistuez les données manquantes par des zéros, dans notre exemple, la date ressemblera à \"00\" \"00\" \"2000\"','');
-INSERT INTO lang VALUES ('index','fr','Index','');
 INSERT INTO lang VALUES ('info_common','fr','Information courante','');
 INSERT INTO lang VALUES ('info_common_info','fr','<DIV ALIGN=\"center\">C\'est la version %1 de phpVideoPro, fonctionnant sur %2.</div>','');
 INSERT INTO lang VALUES ('info_noupdate','fr','<DIV ALIGN=\"center\">La version installée de phpVideoPro (%1) est récente - il n\'y a pas de  version plus nouvelle disponible en télécharger. Pour télécharger le tarball de la version installée, veuillez suivre <A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">ce lien</a>.</div>','');
@@ -225,13 +212,10 @@ INSERT INTO lang VALUES ('line_count','fr','Lignes','');
 INSERT INTO lang VALUES ('list','fr','Liste','');
 INSERT INTO lang VALUES ('listgen','fr','Générateur de liste','');
 INSERT INTO lang VALUES ('lists','fr','Listes','');
-INSERT INTO lang VALUES ('login','fr','Login','');
 INSERT INTO lang VALUES ('login_failed','fr','Votre Login a échoué. Soit vous l\'avez mal orthografié ou le compte demandé n\'existe pas <P />','');
 INSERT INTO lang VALUES ('login_required','fr','Vos droits ne sont pas suffisants pour l\'action demandé. Vous pouvez vous loguer avec un compte approprié maintenant.<P />','');
 INSERT INTO lang VALUES ('logout_user','fr','Logué comme \"%1\".<A HREF=\"%2\">Déconnection</a>','');
-INSERT INTO lang VALUES ('longplay','fr','LongPlay','');
 INSERT INTO lang VALUES ('lower_left_corner','fr','Coin en bas à gauche (x/y)','');
-INSERT INTO lang VALUES ('max','fr','max','');
 INSERT INTO lang VALUES ('max_fontsize','fr','Taille de police max.','');
 INSERT INTO lang VALUES ('media','fr','Médias','');
 INSERT INTO lang VALUES ('medialength','fr','Longueur du média','');
@@ -246,9 +230,6 @@ INSERT INTO lang VALUES ('medium','fr','Média','');
 INSERT INTO lang VALUES ('medium_deleted','fr','Plus de films dans ce média - média enlevé','');
 INSERT INTO lang VALUES ('medium_not_deleted','fr','Média non-enlevé','');
 INSERT INTO lang VALUES ('medium_overview','fr','Vue d\'ensemble pour %1','');
-INSERT INTO lang VALUES ('menues','fr','Menus','');
-INSERT INTO lang VALUES ('min','fr','min','');
-INSERT INTO lang VALUES ('minute_abbrev','fr','min','');
 INSERT INTO lang VALUES ('month','fr','Mois','');
 INSERT INTO lang VALUES ('movies','fr','Films','');
 INSERT INTO lang VALUES ('movies_left_in_cat','fr','La catégorie %1 contient encrore %2 film(s) et ne peut être supprimée pour cela. Désolé.','');
@@ -280,7 +261,6 @@ INSERT INTO lang VALUES ('no_restore_file','fr','Désolé, le fichier sélectionné 
 INSERT INTO lang VALUES ('no_space_of','fr','Non recherchement pour la reste de temps en liste avec min. %1 minutes de place libre en DB','');
 INSERT INTO lang VALUES ('nr','fr','No','');
 INSERT INTO lang VALUES ('of_aquiration','fr','d\'enregistrement','');
-INSERT INTO lang VALUES ('ok','fr','OK','');
 INSERT INTO lang VALUES ('old_sessions','fr','Sessions plus vieilles que <INPUT NAME=\"%1\" VALUE=\"\" CLASS=\"yesnobutton\"> jours','');
 INSERT INTO lang VALUES ('orig_disktype','fr','Type de disque original','');
 INSERT INTO lang VALUES ('orig_medianr','fr','MédiaNo original','');
@@ -328,19 +308,15 @@ INSERT INTO lang VALUES ('select_add_lang_comment','fr','(L\'anglais est déjà in
 INSERT INTO lang VALUES ('select_primary_lang','fr','Choix de langue primaire','');
 INSERT INTO lang VALUES ('select_primary_lang_comment','fr','(pour toutes expressions manquantes, il y aura toujours le recours à l\'anglais)','');
 INSERT INTO lang VALUES ('sel_target_lang','fr','Sélectionner la langue (vers laquelle traduire )','');
-INSERT INTO lang VALUES ('session','fr','Session','');
 INSERT INTO lang VALUES ('session_expired','fr','Votre session a expirée - veuillez vous reloguer','');
 INSERT INTO lang VALUES ('session_purgetime','fr','Après combien de temps est-ce qu\'une session inactive est expirée?','');
 INSERT INTO lang VALUES ('session_purgetime_comment','fr','Combien de temps est-ce que une session reste valable sans activité de l\'utilisateur?','');
 INSERT INTO lang VALUES ('sess_dla','fr','Dernier accès','');
 INSERT INTO lang VALUES ('sess_end','fr','Terminée','');
-INSERT INTO lang VALUES ('sess_id','fr','Session ID','');
 INSERT INTO lang VALUES ('sess_ip','fr','IP distante','');
 INSERT INTO lang VALUES ('sess_start','fr','Démarrée','');
 INSERT INTO lang VALUES ('set_filter','fr','Placer de filtre','');
 INSERT INTO lang VALUES ('site_info_comment','fr','Quelle information du site est à afficher dans le titre du navigateur?','');
-INSERT INTO lang VALUES ('source','fr','Source','');
-INSERT INTO lang VALUES ('staff','fr','Staff','');
 INSERT INTO lang VALUES ('start_page','fr','Page de démarrage','');
 INSERT INTO lang VALUES ('start_pvp','fr','Démarrer phpVideoPro','');
 INSERT INTO lang VALUES ('stats','fr','Statistiques','');

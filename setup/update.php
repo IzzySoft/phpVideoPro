@@ -85,6 +85,7 @@ if ( !isset($oldversion) ) {
   $final = "";
   echo "<UL>\n";
 
+$pvp->preferences->admin();
 #-----------------[ Get SQL statements from their files and execute them ]---
   switch ($oldversion) {
     case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");

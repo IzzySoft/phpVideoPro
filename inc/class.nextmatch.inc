@@ -41,7 +41,7 @@
      $this->listcount = count($this->list) -1;
      $this->totals = $this->list[totals];
      $this->start  = $start;
-     $this->limit  = $pvp->preferences->display_limit;
+     $this->limit  = $pvp->preferences->get("display_limit");
      if (!strlen(trim($script))) {
        $this->script = $PHP_SELF;
      } else {

@@ -47,9 +47,9 @@
    function limit($start=0) {
      GLOBAL $pvp;
      switch($pvp->config->db->type) {
-       case "mysql" : $this->limit = " LIMIT $start," . $pvp->preferences->display_limit;
+       case "mysql" : $this->limit = " LIMIT $start," . $pvp->preferences->get("display_limit");
                       break;
-       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->display_limit . ",$start";
+       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->get("display_limit") . ",$start";
                       break;
        default      : $this->limit = ""; break;
      }

@@ -20,7 +20,6 @@
  $agent->major   = $browser->getMajor();
  $agent->minor   = $browser->getMinor();
  $agent->version = $browser->getVer();
- if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 
  #======================================[ setup menu depending on browser ]===
  if ($agent->name == "netscape") {
@@ -69,6 +68,9 @@
  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
  if (!$pvpinstall) {
+  $pvp->config->enable_cookies = $db->get_config("enable_cookies");
+  $pvp->config->expire_cookies = $db->get_config("expire_cookies");
+  include (dirname(__FILE__) . "/class.cookie.inc");
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;
   $site     = $db->get_config("site");
@@ -78,16 +80,16 @@
   if ($runupdate) {
    $charset = 'iso-8859-15';
   } else {
-   $plang  = $pvp->preferences->lang;
+   $plang  = $pvp->preferences->get("lang");
    $db->query("SELECT charset FROM languages WHERE lang_id='$plang'");
    $db->next_record();
    $charset  = $db->f('charset');
    if (!strlen($charset)) $charset = 'iso-8859-15';
    unset ($plang);
   }
-  $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->template;
-  $pvp->preferences->remove_empty_media = $db->get_config("remove_empty_media");
-  $defaults["scolor"] = $pvp->preferences->default_movie_colorid;
+  $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
+  $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");
+  $defaults["scolor"] = $pvp->preferences->get("default_movie_colorid");
  }
 
  #=======================================================[ debug settings ]===

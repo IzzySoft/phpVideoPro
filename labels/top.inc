@@ -16,5 +16,5 @@ $entry[] = "*{title}";
 $entry[] = "{country} {year}";
 $entry[] = "Regie: {director}";
 $entry[] = "Darsteller: {actors12}";
-$entry[] = "{actor35}";
+$entry[] = "{actors35}";
 $entry[] = "";

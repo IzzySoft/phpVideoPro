@@ -14,7 +14,7 @@
 
  #========================================================[ initial setup ]==
  $page_id = "medialist";
- include("inc/header.inc");
+ include("inc/includes.inc");
  $filter = get_filters();
  if (!$start) $start = 0;
  include("inc/class.nextmatch.inc");
@@ -48,6 +48,7 @@
  }
 
  #======================================================[ create the list ]===
+ include("inc/header.inc");
  #---------------------------------------------------------[ movies' data ]---
  for ($i=0;$i<count($mtype);$i++) {
    $t->set_var("listtitle",lang("medialist"));

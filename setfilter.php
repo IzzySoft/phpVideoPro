@@ -14,7 +14,7 @@
 
  #========================================================[ initial setup ]===
  $page_id = "filter";
- include("inc/header.inc");
+ include("inc/includes.inc");
 
  function sort_ar($a1,$a2) {
    if($a1[name]<$a2[name]) return -1;
@@ -281,6 +281,7 @@
  $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
  #=========================================================[ build target ]===
+ include("inc/header.inc");
  $t->set_var("form_target",$PHP_SELF);
  $t->set_var("listtitle",lang("filter_setup"));
  $t->set_var("mtype_name",lang("mediatype"));

@@ -13,6 +13,7 @@
  /* $Id$ */
 
   $page_id = "stats";
+  include("inc/includes.inc");
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
 

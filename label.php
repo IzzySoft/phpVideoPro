@@ -16,7 +16,7 @@
  $silent = $cass_id || isset($create);
  $page_id = "label";
  $labels_pp = 8; // how many labels per page
- include("inc/header.inc");
+ include("inc/includes.inc");
  include("inc/class.label.inc");
 
  #========================[ create exactly one label and send it as image ]===
@@ -44,6 +44,7 @@
        $t->parse("definitionlist","definitionblock",TRUE);
      }
    }
+   include("inc/header.inc");
    $t->pparse("out","list");
  #===============================[ query user input for multi-label-print ]===
  } else { // no arguments - so we have to prompt for them
@@ -68,6 +69,7 @@
      $t->set_var("label",$label);
      $t->parse("definitionlist","definitionblock",TRUE);
    }
+   include("inc/header.inc");
    $t->set_var("mtype",lang("mediatype"));
    $t->set_var("medianr",lang("medianr"));
    $t->set_var("label",lang("label"));

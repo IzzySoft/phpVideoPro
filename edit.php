@@ -21,7 +21,7 @@
     include("delete.php");
     exit;
   } else { $page_id = "view_entry"; }
-  include("inc/header.inc");
+  include("inc/includes.inc");
 ?>
  <script language="JavaScript"><!--
    function mklabel(labelconf) {
@@ -172,6 +172,7 @@
 
 ################################################################
 # Form Start
+  include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("edit"=>"edit.tpl"));
   $t->set_var("form_name","entryform");
@@ -295,7 +296,7 @@ EndHiddenFields;
   $t->set_var("counter_1",form_input("counter1",$counter1,"class=\"yesnobutton\""));
   $t->set_var("counter_2",form_input("counter2",$counter2,"class=\"yesnobutton\""));
   # Label
-  if ($new_entry) $label = $pvp->preferences->default_movie_onlabel;
+  if ($new_entry) $label = $pvp->preferences->get("default_movie_onlabel");
   $t->set_var("label_name",lang("label"));
   $field = "<INPUT NAME=\"label\"";
   if ($edit) { 
@@ -367,7 +368,7 @@ EndHiddenFields;
 
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
-  if ($new_entry) $tone_id = $pvp->preferences->default_movie_toneid;
+  if ($new_entry) $tone_id = $pvp->preferences->get("default_movie_toneid");
   if ($edit) {
     $field = "<SELECT NAME=\"tone_id\"" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($ttypes);$i++) {

@@ -20,9 +20,8 @@
 
  $page_id = "media_change";
 
+ include("inc/includes.inc");
  if ( $copy || $change ) {
-   $silent=1;
-   include("inc/header.inc");
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
      display_error($error);

@@ -13,13 +13,14 @@
  /* $Id$ */
 
   $page_id = "taperest";
-  include("inc/header.inc");
+  include("inc/includes.inc");
   $t = new Template($pvp->tpl_dir);
-  if ($usefilter) $filter = $pvp->preferences->filter; else $filter = "";
+  if ($usefilter) $filter = $pvp->preferences->get("filter"); else $filter = "";
   if (!$start) $start = 0;
   include("inc/class.nextmatch.inc");
 
   if (!$minfree) {
+    include("inc/header.inc");
     $t->set_file(array("taperest_init"=>"taperest_init.tpl"));
     $t->set_var("form_target",$PHP_SELF);
     $t->set_var("use_filter",$usefilter);
@@ -40,6 +41,7 @@
   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?minfree=$minfree",$start);
 
   if (!$nextmatch->listcount) {
+    include("inc/header.inc");
     $t->set_var("title",lang("no_entries_found"));
     $t->set_var("msg",lang("no_space_of",$minfree));
     $t->pparse("out","taperest_empty");
@@ -74,6 +76,7 @@
     $t->set_var("free",$mlist[$i][free]);
     $t->parse("itemlist","itemblock",TRUE);
   }
+  include("inc/header.inc");
   $t->set_var("freespace",lang("free_space_on_media",$minfree));
   $t->set_var("medium",lang("medium"));
   $t->set_var("nr",lang("nr"));

@@ -13,7 +13,7 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
- include("inc/header.inc");
+ include("inc/includes.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"medialength.tpl"));
 
@@ -45,6 +45,7 @@
  $input = "<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>";
  $t->set_var("submit",$input);
 
+ include("inc/header.inc");
  $t->pparse("out","template");
 
  include("inc/footer.inc");

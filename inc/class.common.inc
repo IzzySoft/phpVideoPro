@@ -124,7 +124,7 @@ class common {
     $this->setRecDate($year,$month,$day);
     $sum = $this->date[mon] + $this->date[year] + $this->date[mday];
     if (!$sum) return lang("unknown");
-    switch (strtolower($pvp->preferences->date_format)) {
+    switch (strtolower($pvp->preferences->get("date_format"))) {
       case "d/m/y" : return $this->date[mday] . "/" . $this->date[mon] . "/" . $this->date[year]; break;
       case "d.m.y" : return $this->date[mday] . "." . $this->date[mon] . "." . $this->date[year]; break;
       case "y-m-d" :

@@ -14,7 +14,7 @@
 
  #========================================================[ initial setup ]===
  $page_id = $stafftype;
- include("inc/header.inc");
+ include("inc/includes.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"stafflist.tpl"));
  $t->set_block("list","itemblock","itemlist");
@@ -84,6 +84,7 @@
  }
 
  #====================================================[ draw table header ]===
+ include("inc/header.inc");
  $t->set_var("listtitle",lang($page_id));
  $t->set_var("stafftype",lang($stafftype));
  $t->set_var("title",lang("title"));

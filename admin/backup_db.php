@@ -14,7 +14,7 @@
 
  $page_id = "backup_db";
  if ($backup) $silent = 1;
- include("../inc/header.inc");
+ include("inc/includes.inc");
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));
@@ -59,6 +59,7 @@
    $t->parse("item","itemblock");
    $t->set_var("button","<INPUT TYPE='submit' NAME='backup' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
+   include("../inc/header.inc");
    $t->pparse("out","template");
  }
 

@@ -21,7 +21,7 @@ if ($menue) {
     include ($root . "inc/config_internal.inc");
     include ($root . "inc/common_funcs.inc");
   } else {
-    include ($root . "inc/header.inc");
+    include ($root . "inc/includes.inc");
   }
 } else {
   include ("../inc/config.inc");
@@ -30,6 +30,7 @@ if ($menue) {
   include("../templates/default/default.css");
 }
 
+if ($admin) $pvp->preferences->admin();
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
   $url = $PHP_SELF;
@@ -72,7 +73,7 @@ if ( isset($update) ) {
     }
   }
   $colorcode = rawurlencode( serialize($colors) );
-  $pvp->preferences->set("colors",$colorcode);
+  if ($admin) $pvp->preferences->set("colors",$colorcode);
   #-----------------------------[ get available language files ]---
   if ($scan_langfile) {
     chdir("$base_path/setup");
@@ -99,15 +100,15 @@ if ($scan_langfile) $lang_unavail = $db->get_languages(0);
 $lang_installed = $db->get_installedlang();
 
 #======================================================[ get preferences ]===
-$lang_preferred = $pvp->preferences->lang;
-$colors         = $pvp->preferences->colors;
-$template_set   = $pvp->preferences->template;
-$display_limit  = $pvp->preferences->display_limit;
-$page_length    = $pvp->preferences->page_length;
-$date_format    = $pvp->preferences->date_format;
-$movie_tone     = $pvp->preferences->default_movie_toneid;
-$movie_color    = $pvp->preferences->default_movie_colorid;
-$onlabel_default= $pvp->preferences->default_movie_onlabel;
+$lang_preferred = $pvp->preferences->get("lang");
+$colors         = $pvp->preferences->get("colors");
+$template_set   = $pvp->preferences->get("template");
+$display_limit  = $pvp->preferences->get("display_limit");
+$page_length    = $pvp->preferences->get("page_length");
+$date_format    = $pvp->preferences->get("date_format");
+$movie_tone     = $pvp->preferences->get("default_movie_toneid");
+$movie_color    = $pvp->preferences->get("default_movie_colorid");
+$onlabel_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
@@ -215,17 +216,19 @@ $t->parse("list","listblock");
 $t->set_var("list_head",lang("colors"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 
-#--[ feedback "ok" ]--
-$t->set_var("item_name",lang("feedback_ok"));
-$t->set_var("item_comment","");
-$t->set_var("item_input",$color_input . " NAME=\"color_ok\" VALUE=\"" . $colors["ok"] . "\">");
-$t->parse("item","itemblock");
+if ($admin) { // this color array has probs with cookies
+  #--[ feedback "ok" ]--
+  $t->set_var("item_name",lang("feedback_ok"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"color_ok\" VALUE=\"" . $colors["ok"] . "\">");
+  $t->parse("item","itemblock");
 
-#--[ feedback "err" ]--
-$t->set_var("item_name",lang("feedback_err"));
-$t->set_var("item_comment","");
-$t->set_var("item_input",$color_input . " NAME=\"color_err\" VALUE=\"" . $colors["err"] . "\">");
-$t->parse("item","itemblock",TRUE);
+  #--[ feedback "err" ]--
+  $t->set_var("item_name",lang("feedback_err"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"color_err\" VALUE=\"" . $colors["err"] . "\">");
+  $t->parse("item","itemblock",TRUE);
+}
 
 #--[ template set ]--
 $t->set_var("item_name",lang("template_set"));
@@ -238,7 +241,11 @@ for ($i=0;$i<count($tpldir);$i++) {
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
+if ($admin) {
+  $t->parse("item","itemblock",TRUE);
+} else {
+  $t->parse("item","itemblock");
+}
 
 #--[ complete color block ]--
 $t->parse("list","listblock",TRUE);
@@ -295,7 +302,7 @@ for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i][id];
   $name   = $pict[$i][name];
   $input .= "<INPUT TYPE='radio' NAME='movie_tone' VALUE='$id'";
-  if ($pvp->preferences->default_movie_toneid==$id) {
+  if ($pvp->preferences->get("default_movie_toneid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
@@ -310,7 +317,7 @@ for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i][id];
   $name   = $pict[$i][name];
   $input .= "<INPUT TYPE='radio' NAME='movie_color' VALUE='$id'";
-  if ($pvp->preferences->default_movie_colorid==$id) {
+  if ($pvp->preferences->get("default_movie_colorid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
@@ -393,6 +400,7 @@ $t->parse("list","listblock",TRUE);
 
 #--[ complete the whole thing ]--
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
+if ($menue && !$update) include ("inc/header.inc");
 $t->pparse("out","config");
 
 include($base_path . "inc/footer.inc");

@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- include("inc/header.inc");
+ include("inc/includes.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("info"=>"info.tpl"));
 
@@ -25,6 +25,7 @@
                   break;
  }
 
+ include("inc/header.inc");
  $t->set_var("listtitle",$title);
  $t->set_var("details",$details);
  $t->pparse("out","info");

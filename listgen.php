@@ -13,8 +13,8 @@
  #========================================================[ initial setup ]===
  $page_id = "listgen";
  if ($outputtype) $silent = TRUE;
- include("inc/header.inc");
- if (!$pagelength) $pagelength = $pvp->preferences->page_length;
+ include("inc/includes.inc");
+ if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
 
  #=========================================[ create and send list for d/l ]===
  if ($outputtype) {
@@ -60,6 +60,7 @@
  }
 
  #========================================[ form to prompt user for input ]===
+ include("inc/header.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"listgen.tpl"));
  $t->set_block("list","definitionblock","definitionlist");

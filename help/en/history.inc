@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.3.8 (November 2002)
+[text]
+<ul>
+ <li>now using cookies for user based preferences. Defaults are taken from
+     the DB as usual. DB preferences (= defaults) are managed via the
+     admin-&gt;configuration menue, while edit-&gt;configuration manages
+     the user preferences, i.e. by cookies.
+</ul>
+
+[title]
 0.3.7 (November 6, 2002)
 [text]
 <ul>

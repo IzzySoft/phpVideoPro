@@ -13,3 +13,6 @@ $symb_coord = "130,0,150,20"; # symbol field for genre symbol
 # what information should be displayed on the label (per movie)
 # we want one line only, so we use a scalar variable:
 $entry = "*{title}   {length}";
+
+# how much to enlarge the fontsize
+$fontsize = 2;

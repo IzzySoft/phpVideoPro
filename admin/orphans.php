@@ -13,7 +13,7 @@
  /* $Id$ */
 
 # $page_id = "admin_orphans";
- include("../inc/header.inc");
+ include("inc/includes.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_orphans.tpl"));
  $t->set_block("template","itemblock","item");
@@ -59,6 +59,7 @@
  $t->parse("item","itemblock",TRUE);
 
  $t->set_var("listtitle",lang("admin_orphans"));
+ include("../inc/header.inc");
  $t->pparse("out","template");
 
  include("../inc/footer.inc");

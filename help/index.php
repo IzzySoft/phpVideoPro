@@ -28,7 +28,7 @@ include ("../inc/class.template.inc");
 function helppage ($topic) {
   GLOBAL $pvp,$PHP_SELF;
   $desc = lang($topic);
-  $lang = $pvp->preferences->lang;
+  $lang = $pvp->preferences->get("lang");
   $name = $topic . ".inc";
   $file = dirname(__FILE__) . "/" . $lang . "/" . $name;
   $default_file = dirname(__FILE__) . "/en/" . $name;
@@ -295,7 +295,7 @@ $pm->set_nav("close","<A HREF=\"JavaScript:window.close()\">" . lang("close") . 
 if ($topic) { // display specific help page
   $help = helppage($topic);
   if ( !$help->file ) {
-    $lang = $pvp->preferences->lang;
+    $lang = $pvp->preferences->get("lang");
     $help->file = dirname(__FILE__) . "/" . $lang . "/no_topic.inc";
     if ( !file_exists($help->file) ) {
       $help->file = dirname(__FILE__) . "/en/no_topic.inc";

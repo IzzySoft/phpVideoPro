@@ -18,6 +18,7 @@
     exit;
   }
   $page_id = "delete";
+  include("inc/includes.inc");
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("delete"=>"delete.tpl",
@@ -91,7 +92,7 @@
     # and finally we may have to correct the free space remaining on that medium (if rewritable)
     if ( $pvp->common->medium_is_rw($mtype_id) ) {
       $details .= "<li>" . lang("check_media_delete"). ". ";
-      if ( $pvp->preferences->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
+      if ( $pvp->config->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
         $details .= $colors["ok"] . lang("medium_deleted") . "</Font><BR>";
       } else {
         $details .= $colors["ok"] . lang("medium_not_deleted") . "</Font><BR>";

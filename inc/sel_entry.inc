@@ -28,6 +28,7 @@
    exit;
  }
 
+ include("inc/includes.inc");
  include("inc/header.inc");
   
  #=================================================[ build the input form ]===

@@ -12,38 +12,14 @@
 
  /* $Id$ */
 
-  $inc_path = dirname(__FILE__);
-  include($inc_path . "/config.inc");
-  include($inc_path . "/config_internal.inc");
-  include($inc_path . "/common_funcs.inc");
-  include($inc_path . "/class.link.inc");
-  include($inc_path . "/class.template.inc");
-  include($inc_path . "/class.validate.inc");
-  $pagename = "phpVideoPro v$version @ $site";
-  switch ( strtolower($page_id) ) {
-    case ""              : break;
-    case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;
-    case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
-    case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
-    case "edit"          : $mt = $db->get_mtypes("id=$mtype_id");
-                           $pagename .= " [ " . lang("edit_entry",$mt[0][sname]." ".$nr) . " ]";
-			   unset($mt); break;
-    case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
-    case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
-    case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
-    case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
-    case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
-    case "view_entry"    : $mt = $db->get_mtypes("id=$mtype_id");
-                           $pagename .= " [ " . lang("view_entry",$mt[0][sname]." ".$nr) . " ]";
-			   unset($mt); break;
-    default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
-  }
+#  $inc_path = dirname(__FILE__);
+#  include($inc_path . "/includes.inc");
 if (!$silent) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <meta http-equiv="cache-control" content="no-cache">
- <meta http-equiv="content-language" content="<?=$pvp->preferences->lang?>">
+ <meta http-equiv="content-language" content="<?=$pvp->preferences->get("lang")?>">
  <Title><?echo $pagename ?></Title>
  <script language="JavaScript">
 
@@ -59,6 +35,7 @@ if (!$silent) {
  include($nav_script);
  include($base_path . "templates/default/default.css");
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
+ if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

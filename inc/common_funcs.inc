@@ -112,7 +112,7 @@
   */
  function get_filters() {
   global $pvp;
-  return $pvp->preferences->filter;
+  return $pvp->preferences->get("filter");
  }
 
  ##############################################################################
@@ -136,7 +136,7 @@
  }
 
  # initiate the translations only once
- if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->lang );
+ if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->get("lang") );
 
  /** build the translations (helper func to function lang)
   * @package Api

@@ -11,7 +11,6 @@
  /* $Id$ */
 
  include("inc/sel_entry.inc");
- # includes inc/header.inc if needed
  include("inc/footer.inc");
 
 ?>

@@ -20,7 +20,7 @@
   */
 
  class preferences {
-  var $colors, $filter, $lang, $template,
+  var $admin, $colors, $filter, $lang, $template,
       $display_limit, $date_format, $page_length;
   
   ############################################################################
@@ -47,6 +47,16 @@
   }
 
   ############################################################################
+  /** (un)set the admin mode
+   * @class preferences
+   * @method admin
+   * @param optional boolean mode admin mode
+   */
+  function admin($mode=1) {
+    $this->admin = $mode;
+  }
+
+  #################################################[ set/get preferences ]####
   /** Set a preference
    * @class preferences
    * @method set
@@ -54,11 +64,30 @@
    * @param mixed value
    */
   function set($name,$value) {
-    GLOBAL $db;
-    $db->set_preferences($name,$value);
+    GLOBAL $db, $pvp;
+    if ($pvp->config->enable_cookies && !$this->admin) {
+      $pvp->cookie->set($name,$value);
+    } else {
+      $db->set_preferences($name,$value);
+    }
   }
 
-  ############################################################################
+  /** Get a preference
+   * @class preferences
+   * @method get
+   * @param string name preference to set
+   */
+  function get($name) {
+    GLOBAL $pvp;
+    if ($pvp->config->enable_cookies && !$this->admin) {
+      $pref = $pvp->cookie->get($name);
+      if (strlen($pref)) { return($pref); } else { return $this->$name; }
+    } else {
+      return $this->$name;
+    }
+  }
+
+  ##############################################################[ filters ]###
   /** get id for a filter part (helper to get_filters())
    * @class preferences
    * @method get_id
@@ -83,7 +112,6 @@
    return $query;
   }
 
-  ############################################################################
   /** get filter settings from db
    * @class preferences
    * @method get_filters

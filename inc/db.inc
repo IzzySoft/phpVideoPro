@@ -215,6 +215,27 @@
    }
 
    ############################################################################
+   # get movie list it as array of movies (see get_movie)
+   function get_movielist($order="") {
+     $filter = get_filters();
+     switch ($order) {
+       default  : $orderby = "mtype_id DESC,cass_id,part";
+     }
+     $query = "SELECT id FROM video v";
+     if (strlen($filter)) $query .= " WHERE $filter";
+     $query .= " ORDER BY $orderby";
+     $this->dbquery($query);
+     while ( $this->next_record() ) {
+       $list[] = $this->f('id');
+     }
+     $len = count($list);
+     for ($i=0;$i<$len;$i++) {
+       $movielist[] = $this->get_movie($list[$i]);
+     }
+     return $movielist;
+   }
+
+   ############################################################################
    # check wether a given person exists in the db and aquire his/her id. If not
    # found in db, insert him/her first
    function insert_person($person,$query,$sub_query,$name="",$fname="") {

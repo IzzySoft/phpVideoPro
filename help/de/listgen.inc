@@ -28,9 +28,10 @@ erstellt, der sich sodann direkt (nach dem Speichern im Dateisystem und/oder
 Öffnen mit einem beliebigen Texteditor wie [k]write) drucken läßt.<br>Zur
 Alternative steht ein Export im CSV Format (die einzelnen Spalten sind mittels
 Tabulatoren (Tab-Stops) getrennt, die erste Zeile enthält die Tabellenüberschriften),
-wobei sich das Resultat dann in eine beliebige Textverarbeitung (Word,
-OpenOffice/StarOffice etc.) oder Tabellenkalkulation (Excel, OpenOffice/StarOffice)
-importieren und mittels dieser nachbereiten läßt.<br>
+bzw. eine HTML Tabelle, wobei sich das Resultat dann in eine beliebige
+Textverarbeitung (Word, OpenOffice/StarOffice etc.), Tabellenkalkulation (Excel,
+OpenOffice/StarOffice) bzw. einen HTML Editor (Netscape Composer, DreamWeaver,
+Quanta) importieren und mittels dieser nachbereiten läßt.<br>
 Ich empfehle für letzteres die Erstellung einer Dokumentvorlage, in der alle
 gewünschten Tabellen- und Textformatierungen (Schriftart und -größe,
 Hintergrundfarben z.B. für den Tabellenkopf, Kopfzeilen der Seiten mit Überschrift
@@ -45,7 +46,11 @@ Formularfelder
 <b>*format#:</b> <b><i>ASCII</i></b> bezeichnet eine formatierte Liste (etwas
 spartanisch, eher für "Faule" gedacht, die sich nicht den Aufwand der
 Nachbearbeitung machen wollen), die zum direkten Ausdruck gedacht ist (siehe
-oben). <b><i>CSV</i></b> ebenfalls im ASCII Format, jedoch sind hier alle Felder
+oben). <b><i>HTML</i></b> auch im ASCII Format *grins*, erzeugt eine einfache
+HTML Tabelle ohne speziellere Formatierung. Eignet sich besonders zur schnellen
+Nachbearbeitung z.B. mit OpenOffice, da sich hier die nötigen Format-Korrekturen,
+zumal bei Verwendung einer geeigneten Dokumentvorlage, doch stark in Grenzen
+halten. <b><i>CSV</i></b> ebenfalls im ASCII Format, jedoch sind hier alle Felder
 lediglich mit Tabulatoren getrennt, um anschließend in eine Tabelle umgewandelt
 und dort weiter bearbeitet werden zu können (abermals siehe oben).<br>
 <b>*line_count#</b>: Wie viele Zeilen reinen (ASCII) Textes auf eine Seite

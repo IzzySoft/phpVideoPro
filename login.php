@@ -21,6 +21,8 @@
      $url = $HTTP_REFERER;
      if (strpos($url,$base_url)===false) $url = "index.php";
    }
+ } else {
+   $url = "index.php";
  }
  if ($sess_id && $logout) {
    $pvp->session->end($sess_id);

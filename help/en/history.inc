@@ -2,23 +2,36 @@
 # /*  $Id$ */
 
 [title]
-0.4.5 (2003)
+0.4.5 (April 11, 2003)
 [text]
+This is the "Passover" version for this year: now we clean up with the "Chametz"
+possibly entered by some users (see first and secon item below):
 <ul>
  <li>Added support for several special tags within the comment field: You now
      may easily add thumbnails by using the [img] and [imgr] tags (the first
-     just puts the image on the lefthand side, the latter on the righthand
-     side). To add an URL to an external reference, you may now use the [href]
-     tag. In all three cases, enclose the target by opening and closing tags,
-     e.g.: [href]http://www.izzysoft.de/[/href]. Until now, phpVideoPro
-     automatically converted all strings that look like an URL into the [href]
-     format. For that reason, the image links could only refer to <b>local</b>
-     images and not to other systems, since otherwise those links would be
-     broken. To prevent this (and make you able to use images from whatever
-     source), I provided a script to update your comments and dropped the
-     former behaviour. I suggest you to run that script - the update page
-     will provide you with the necessary link.<br>One more note: the [href]
-     and [img]/[imgr] tags must <b>not</b> be nested.
+     just puts the image on the lefthand, the latter on the righthand side). To
+     add an URL to an external reference, you may now use the [href] tag. In
+     all three cases, enclose the target by opening and closing tags, e.g.:
+     [url]http://www.izzysoft.de/[/url]. Until now, phpVideoPro automatically
+     converted all strings that look like an URL into the [url] format (for
+     output only). For that reason, the image links could only refer to
+     <b>local</b> images and not to other systems, since otherwise those links
+     would be broken. To prevent this (and make you able to use images from
+     whatever source), I provided a script to update your comments and dropped
+     the former behaviour. I suggest you to run that script - the update page
+     will provide you with the necessary link.<br>One more note: the [url] and
+     [img]/[imgr] tags must <b>not</b> be nested.
+ <li>Protected user input against malicious HTML code: now there are only a few
+     HTML tags allowed within the fields (see
+     "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>" for details)
+ <li>Fixed syntax error in Spanish language file - now Spanish should install
+     fine.
+ <li>Added Search function (to be found via the *edit# menue). Filter settings
+     are added to the conditions entered into this form for the search. See
+     help on <A HREF="{PHP_SELF}?topic=search_movie">*search_movie#</A> for
+     details.
+ <li>Fixed some problems with the configuration/preferences update (some
+     settings could not be changed)
 </ul>
 
 [title]

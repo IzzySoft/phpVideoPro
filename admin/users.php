@@ -72,7 +72,7 @@
 
  $t->set_var("listtitle",lang("admin_users"));
  $t->set_var("formtarget",$PHP_SELF);
- $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE=".lang("update").">");
+ $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='update' VALUE=".lang("update").">");
  $t->set_var("adduser",$pvp->link->linkurl("useredit.php?addnew=1",lang("add_user")));
  $t->set_var("save_result",$save_result);
  $t->set_var("head_users",lang("user"));

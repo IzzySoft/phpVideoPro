@@ -65,7 +65,7 @@
   $t->set_var("head_cat_id","ID");
   $t->set_var("head_cat_name",lang("cat_internal_name"));
   $t->set_var("head_cat_trans",lang("category"));
-  $t->set_var("update","<INPUT TYPE='submit' NAME='submit' VALUE='".lang("update")."'>");
+  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("update")."'>");
 
   function make_input($name,$value,$type="text") {
     GLOBAL $form;

@@ -164,9 +164,9 @@
      $select = lang("invalid_backup_dir");
    }
    $t->set_var("dright",$radio."<IMG WIDTH='10' BORDER='0' SRC='$space'>".$select);
-   $haction = "<INPUT TYPE='submit' NAME='backup' VALUE='".lang("button_backup")."'>";
+   $haction = "<INPUT TYPE='submit' CLASS='submit' NAME='backup' VALUE='".lang("button_backup")."'>";
    $t->set_var("hleft",$haction);
-   $haction = "<INPUT TYPE='submit' NAME='restore' VALUE='".lang("button_restore")."'>";
+   $haction = "<INPUT TYPE='submit' CLASS='submit' NAME='restore' VALUE='".lang("button_restore")."'>";
    $t->set_var("hright",$haction);
    $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
@@ -174,7 +174,7 @@
 #   $t->set_var("title",lang("backup_db_runscript"));
 #   $t->set_var("details","");
 #   $t->parse("item","itemblock",TRUE);
-#   $t->set_var("button","<INPUT TYPE='submit' NAME='submit' VALUE='".lang("yes")."'>");
+#   $t->set_var("button","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
    $t->set_var("save_result",$save_result);
    if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");

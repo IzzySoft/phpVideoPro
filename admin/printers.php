@@ -59,7 +59,7 @@
   $t->set_var("head_print_unit",lang("unit"));
   $t->set_var("head_print_top",lang("top_offset"));
   $t->set_var("head_print_left",lang("left_offset"));
-  $t->set_var("update","<INPUT TYPE='submit' NAME='submit' VALUE='".lang("update")."'>");
+  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("update")."'>");
 
   function make_input($name,$value,$type="text",$class="yesnobutton") {
     switch($type) {

@@ -69,7 +69,7 @@
   $t->set_var("head_size",lang("disk_size"));
   $t->set_var("head_lp",lang("longplay"));
   $t->set_var("head_rc",lang("region_code"));
-  $t->set_var("update","<INPUT TYPE='submit' NAME='submit' VALUE='".lang("update")."'>");
+  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("update")."'>");
 
   function make_input($name,$value,$type="text") {
     GLOBAL $form;

@@ -24,7 +24,7 @@
   $t->set_var("button","");
  } else {
   $t->set_var("formtarget",$PHP_SELF);
-  $t->set_var("button","<INPUT TYPE='submit' NAME='delete' VALUE='" . lang("delete"). "'>");
+  $t->set_var("button","<INPUT TYPE='submit' CLASS='submit' NAME='delete' VALUE='" . lang("delete"). "'>");
   $t->set_var("title",lang("intro"));
   $t->set_var("details",lang("desc_admin_orphans"));
   $t->parse("item","itemblock");

@@ -189,21 +189,15 @@
    }
    return $lang;
  }
+
+ # initiate the translations only once
+ $translations = $db->get_translations( get_lang() );
+
  function translate($key,$vars=FALSE) {
-   GLOBAL $db;
-   $trans = $key;
+   GLOBAL $db, $translations;
+   $trans = $translations[strtolower($key)];
+   if (!$trans) $trans = $key;
    if (!$vars) $vars=array();
-   $lang = strtolower(get_lang());
-   dbquery("SELECT message_id,lang,content FROM lang WHERE lang='$lang' OR lang='en'");
-   while ( $db->next_record() ) {
-     $msg_id = $db->f('message_id');
-     $transi = $db->f('content');
-     $langi  = $db->f('lang');
-     if ( strtolower($key)==strtolower($msg_id) ) {
-       $trans = $transi;
-       if ( $lang==$langi) break;
-     }
-   }
    $ndx = 1;
    while ( list($k,$v)=each($vars) ) {
      $trans = preg_replace("/%$ndx/",$v,$trans);

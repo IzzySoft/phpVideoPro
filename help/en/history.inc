@@ -10,6 +10,7 @@
      lists (directors, artists etc.) if you have some skeletons in your closet
      (i.e. staff members with no movie assigned :-)
  <li>added French language support
+ <li>reworked translation code - incredible speed gain!
 </ul>
 
 [title]

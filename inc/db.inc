@@ -96,6 +96,23 @@
    }
 
    ############################################################################
+   # get all translations and return them as array
+   function get_translations($pref_lang) {
+     $def_lang = "en";
+     $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$def_lang'");
+     while ( $this->next_record() ) { // initiate with fall-back
+       $msg_id         = $this->f('message_id');
+       $trans[$msg_id] = $this->f('content');
+     }
+     $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$pref_lang'");
+     while ( $this->next_record() ) { // overwrite with preferred (if exists)
+       $msg_id         = $this->f('message_id');
+       $trans[$msg_id] = $this->f('content');
+     }
+     return $trans;
+   }
+
+   ############################################################################
    # check wether a given person exists in the db and aquire his/her id. If not
    # found in db, insert him/her first
    function insert_person($person,$query,$sub_query,$name="",$fname="") {

@@ -12,21 +12,16 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- Restore function should be able to ADD to existing entries by evaluating
-  the mtype set with the imported movie, and then correctly increment the
-  MediaNr while adding the movie. As with categories, new mediatypes should
-  be added when needed.
 - after updating, there should be a link to the initial page instead of
   (or in addition to) the one to the configuration page
 - remove path and URL from inc/config.inc and auto-evaluate it in
   inc/config_internal
+- export-button for selected movie (view_entry) and selected movies (movie list)
+  for transfer, similiar to a "partial backup"
 
 coming *next*:
 - PS template(s) for DVD covers
 - form(s) to edit label sheets (for PSLabels)
-- as soon as the Restore function of the backup page can handle the "ADD to
-  existing entries" function: export-button for selected movie (view_entry)
-  and selected movies (movie list) for transfer, similiar to a "partial backup"
 - movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
   the possibility to "order by rating")
 

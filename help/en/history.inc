@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.5.9 (2004)
+[text]
+<ul>
+ <li>updated French language file
+</ul>
+
+[title]
 0.5.8 (February 12, 2004)
 [text]
 <ul>

@@ -46,8 +46,10 @@
    $par = "?order=$order";
    $scrits = "";
    foreach ($values as $key=>$val) {
-     $par .= "&$key=$val";
-     $scrits .= "&$key=$val";
+     if (!empty($val)) {
+       $par .= "&$key=$val";
+       $scrits .= "&$key=$val";
+     }
    }
    $scrits = substr($scrits,1);
    $t->set_var("ocrits","&$scrits");

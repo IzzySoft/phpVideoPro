@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,6 +12,10 @@
 
  /* $Id$ */
 
+ if (!isset($linestart)) $linestart = "";
+ if (!isset($lineend)) $lineend = "";
+ if (!isset($blockstart)) $blockstart = "";
+ if (!isset($blockend)) $blockend = "";
  #=================================================[ get the movies' list ]===
  $movielist = $db->get_movielist($order);
  $listlength = count($movielist);
@@ -31,6 +35,7 @@
                . lang("length") . $sep
                . "LP" . $lineend;
  }
+ $underline = "";
  for ($i=0;$i<$pagewidth;$i++) {
    $underline .= "-";
  }
@@ -38,7 +43,7 @@
  $pages = ceil($listlength / $pagelength); $page = 0;
 
  #=======================================================[ build the list ]===
- if (!$multipage) $out = "$listheader\n";
+ if (!$multipage) $out = "$listheader\n"; else $out = "";
  for ($i=0;$i<$listlength;$i++) {
    if ($multipage && !($i % $pagelength)) { // new page
      ++$page;
@@ -46,20 +51,20 @@
      $out .= listtitle($page,$pages) . "\n";
      $out .= "\n$listheader\n$underline\n";
    }
-   if (strlen($movielist[$i][lp])) { $lp = lang("yes"); } else { $lp = lang("no"); }
+   if (strlen($movielist[$i]['lp'])) { $lp = lang("yes"); } else { $lp = lang("no"); }
    if ($align) {
-     $title  = $pvp->common->fillblanks($movielist[$i][title],55);
-     $cat    = $pvp->common->centerstr($movielist[$i][cat1],17);
-     $length = $pvp->common->padblanks($movielist[$i][length],5);
+     $title  = $pvp->common->fillblanks($movielist[$i]['title'],55);
+     $cat    = $pvp->common->centerstr($movielist[$i]['cat1'],17);
+     $length = $pvp->common->padblanks($movielist[$i]['length'],5);
      $lp     = $pvp->common->centerstr($lp,4);
    } else {
-     $title  = $movielist[$i][title];
-     $cat    = $movielist[$i][cat1];
-     $length = $movielist[$i][length];
+     $title  = $movielist[$i]['title'];
+     $cat    = $movielist[$i]['cat1'];
+     $length = $movielist[$i]['length'];
    }
-   $line = $linestart . $movielist[$i][mtype_short] . " "
-         . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
-         . $pvp->common->padzeros($movielist[$i][part],2) . $sep
+   $line = $linestart . $movielist[$i]['mtype_short'] . " "
+         . $pvp->common->padzeros($movielist[$i]['cass_id'],4) . "-"
+         . $pvp->common->padzeros($movielist[$i]['part'],2) . $sep
          . $title . $sep
          . $cat . $sep
          . $length . $sep

@@ -125,34 +125,37 @@ closepath clip \n",$eps_llx, $eps_lly, $eps_urx, $eps_ury);
   $t = new Template($pvp->pstpl_dir);
   $t->set_file(array("label"=>$eps_file[ps]));
   $t->set_block("label","definitionblock","definitionlist");
-  $moviecount = count($movies);
-          for ($i=0;$i<$moviecount;$i++) {
-           $movie = $db->get_movie($movies[$i]);
-    for ($lines=0;$lines<count($pslabel);$lines++) {
-             preg_match_all("/\{_\S+_\}/",$pslabel[$lines],$matches);
-             $matchcount = count($matches[0]);
-             for ($k=0;$k<$matchcount;$k++) { // replace placeholders
-	       # make clean name of var for data base lookup
-               $var  = substr($matches[0][$k],2,strlen($matches[0][$k])-4);
-               # make name pattern for substitution
-               $svar  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
-	       # now lookup var in data base and get value in $rvar
-               $rvar = $movie[$var];
-	       # deal with special vars like length
-               if ($var == "length") { // convert to hh:mm
-                 $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
-                 $hours   = floor($rvar / 60);
-                 $rvar    = "$hours:$minutes";
-            }
-            $t->set_var($svar, $rvar);
-          }
-        } // for $lines
-        $t->parse("definitionlist","definitionblock",TRUE);
-      } // for $i
+  $moviecount  = count($movies);
+  $lmoviecount = 0;
+     for ($i=0;$i<$moviecount;$i++) {
+       $movie = $db->get_movie($movies[$i]);
+       if (!$movie[label]) continue;
+       ++$lmoviecount;
+       for ($lines=0;$lines<count($pslabel);$lines++) {
+         preg_match_all("/\{_\S+_\}/",$pslabel[$lines],$matches);
+         $matchcount = count($matches[0]);
+         for ($k=0;$k<$matchcount;$k++) { // replace placeholders
+           # make clean name of var for data base lookup
+           $var  = substr($matches[0][$k],2,strlen($matches[0][$k])-4);
+           # make name pattern for substitution
+           $svar  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
+	   # now lookup var in data base and get value in $rvar
+           $rvar = $movie[$var];
+	   # deal with special vars like length
+           if ($var == "length") { // convert to hh:mm
+             $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
+             $hours   = floor($rvar / 60);
+             $rvar    = "$hours:$minutes";
+           }
+           $t->set_var($svar, $rvar);
+         }
+       } // for $lines
+       $t->parse("definitionlist","definitionblock",TRUE);
+     } // for $i
 # fill in header information and overwrite any garbage
     $t->set_var("_cass_id_", $medianr);
-    $t->set_var("_side_lines_",$moviecount);
-    $t->set_var("_top_lines_",$moviecount);
+    $t->set_var("_side_lines_",$lmoviecount);
+    $t->set_var("_top_lines_",$lmoviecount);
     $t->pparse("out","label");
 #
      } // if medianr

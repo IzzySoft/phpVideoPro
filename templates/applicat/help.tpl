@@ -1,5 +1,5 @@
 <BR>
-<TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed"><TR><TD>
+<TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
 <TABLE WIDTH="90%" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">

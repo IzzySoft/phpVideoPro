@@ -136,7 +136,7 @@
        $lang[] = $this->f('lang');
      }
      $langs = "'" . implode("','",$lang) . "'";
-     $this->dbquery("SELECT DISTINCT lang_id FROM languages WHERE lang_id IN ($langs) ORDER BY lang_name");
+     $this->dbquery("SELECT lang_id FROM languages WHERE lang_id IN ($langs) ORDER BY lang_name");
      while ( $this->next_record() ) {
        $langres[] = $this->f('lang_id');
      }

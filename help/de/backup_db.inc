@@ -19,13 +19,10 @@ Zieldatenbank auszuführen. Oder aber, wem das lieber ist: auch phpVideoPro
 selbst kann dafür benutzt werden.
 
 [text]
-In letzterem Falle sind jedoch noch ein paar Vorbereitungen nötig: zunächst
-ist das Script im setup/ Verzeichnis unter dem Namen "tech_data.sql" abzulegen
-(die vorhandene Datei ist dabei zu überschreiben). Dann müssen die beiden
-Dateien "categories.sql" und "lang_en.sql" geleert und anschließend mit
-mindestens zwei Zeilen, die jeweils mit einem "#" beginnen, wieder gefüllt
-werden (andernfalls kommt es zu Fehlermeldungen). Abschließend ist zu
-verfahren, wie bei jeder Neuinstallation von phpVideoPro.
+In letzterem Falle ist das Script im setup/ Verzeichnis unter dem Namen
+"restore.sql" abzulegen. Abschließend ist zu verfahren, wie bei jeder
+Neuinstallation von phpVideoPro - nur anstelle von "create" ist halt "restore"
+zu wählen.
 
 [title]
 Warum gibt es denn keinen Menüpunkt für die Wiederherstellung?

@@ -19,10 +19,8 @@ phpMyAdmin). Alternatively, you can let phpVideoPro do this.
 
 [text]
 In the latter case, you have to put the SQL file into the setup/ directory.
-Rename it to "tech_data.sql" (yes, overwrite that file), then truncate the
-"categories.sql" and "lang_en.sql" files and put at least two lines into these
-two files, each starting with a hash mark ("#"). Finally, act as if you where
-doing a fresh installation. That's it.
+Rename it to "restore.sql" Finally, act as if you where doing a fresh
+installation - just select "restore" instead of "create". That's it.
 
 [title]
 Why is there no "Restore Database" menue item?

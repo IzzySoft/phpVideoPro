@@ -6,7 +6,9 @@
 [text]
 <ul>
  <li>added feature to walk through long lists in pieces of user-definable size
-     (first/prev/next/last page of lists)
+     (first/prev/next/last page of lists). Behaves a bit strange for staff
+     lists (directors, artists etc.) if you have some skeletons in your closet
+     (i.e. staff members with no movie assigned :-)
 </ul>
 
 [title]

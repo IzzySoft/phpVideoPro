@@ -9,34 +9,33 @@
   }
   $page_id = "delete";
   include("inc/header.inc");
+  $t = new Template($pvp->tpl_dir);
+  $t->set_file(array("delete"=>"delete.tpl",
+                     "yn"=>"delete_yn.tpl"));
   
   function kill($table,$id) {
-    GLOBAL $colors;
-    echo " ";
+    GLOBAL $colors, $details;
+    $details .= " ";
     if ( dbquery("DELETE FROM $table WHERE id='$id'") ) {
-      echo $colors["ok"] . lang("ok") . ".</Font><br>\n";
+      $details .= $colors["ok"] . lang("ok") . ".</Font><br>\n";
     } else {
-      echo $colors["err"] . lang("not_ok") . "!</Font><br>\n";
+      $details .= $colors["err"] . lang("not_ok") . "!</Font><br>\n";
     }
   }
 
-  echo "<H2 ALIGN=\"center\">" . lang("deleting_entry",$nr) . "</H2>\n";
+  $t->set_var("listtitle",lang("deleting_entry",$nr));
 
-  if (!$approved) { ?>
-<FORM NAME="deleform" METHOD="post" ACTION="<? echo basename(__FILE__) ?>">
- <INPUT TYPE="hidden" NAME="nr" VALUE="<? echo $nr ?>">
- <INPUT TYPE="hidden" NAME="cass_id" VALUE="<? echo $cass_id ?>">
- <INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
- <INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>">
- <TABLE WIDTH="90%" ALIGN="center" BORDER="0">
-  <TR><TD ALIGN="center" COLSPAN="2"><? echo $colors["err"] . lang("sure_to_delete",$nr); ?>?</FONT></TD></TR>
-  <TR><TD ALIGN="center" WIDTH="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo strtoupper(lang("no")) ?>!"></TD>
-      <TD ALIGN="center"><INPUT TYPE="submit" NAME="approved" VALUE="<? echo lang("yes") ?>."></TD>
- </TABLE>
-</FORM>
-<?
+  if (!$approved) { // sure to delete?
+    $t->set_var("formtarget",basename(__FILE__));
+    $t->set_var("nr",$nr);
+    $t->set_var("cass_id",$cass_id);
+    $t->set_var("part",$part);
+    $t->set_var("mtype_id",$mtype_id);
+    $t->set_var("delete_yn",$colors["err"] . lang("sure_to_delete",$nr) . "?");
+    $t->set_var("no",strtoupper(lang("no")) . "!");
+    $t->set_var("yes",lang("yes") . ".");
+    $t->pparse("out","yn");
   } else { // here comes the real delete!
-    echo "<TABLE WIDTH=\"90%\" ALIGN=\"center\"><TR><TD>\n";
     # first obtain some data
     $query = "SELECT id,music_id,director_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id"
            . " FROM video WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'";
@@ -52,7 +51,7 @@
       dbquery("SELECT name,firstname FROM music WHERE id='$music_id'");
       $db->next_record();
       $firstname = $db->f('firstname'); $name = $db->f('name');
-      echo "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
+      $details = "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
       kill("music",$music_id);
     }
     dbquery("SELECT id FROM video WHERE director_id='$director_id' AND id<>'$id'");
@@ -60,7 +59,7 @@
       dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
       $db->next_record();
       $firstname = $db->f('firstname'); $name = $db->f('name');
-      echo "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
+      $details .= "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
       kill("directors",$director_id);
     }
     for ($i=1;$i<6;$i++) {
@@ -71,20 +70,20 @@
         dbquery("SELECT name,firstname FROM actors WHERE id='$aid'");
         $db->next_record();
         $firstname = $db->f('firstname'); $name = $db->f('name');
-        echo "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
+        $details .= "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
         kill("actors",$aid);
       }
     }
     # now we delete the movie entry from db
-    echo "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
+    $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
     if ( dbquery("DELETE FROM video WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'") ) {
-      echo $colors["ok"] . lang("ok") . ".</Font><br>\n";
+      $details .= $colors["ok"] . lang("ok") . ".</Font><br>\n";
     } else {
-      echo $colors["err"] . lang("not_ok") . "!</Font><br>\n";
+      $details .= $colors["err"] . lang("not_ok") . "!</Font><br>\n";
     }
     # and finally we may have to correct the free space remaining on that medium
     if ( $mtype_id == 1 ) { // RVT
-      echo "<li>" . lang("recalc_free"). ". ";
+      $details .= "<li>" . lang("recalc_free"). ". ";
       dbquery("SELECT type FROM cass WHERE id='$cass_id'");
       if ( $db->next_record() ) {
         $time_left = $db->f('type');
@@ -98,16 +97,18 @@
           }
         }
         if ( dbquery("UPDATE cass SET free='$time_left' WHERE id='$cass_id'") ) {
-          echo lang("time_left",$time_left) . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
+          $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
         } else {
-          echo $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
+          $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
         }
       } else {
-        echo $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+        $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
       }
     }
     # and that's all.
-    echo "<b><i>" . lang("finnished") . ".</i></b>\n</TD></TR></TABLE>\n";
+    $details .= "<b><i>" . lang("finnished") . ".</i></b>\n</TD></TR></TABLE>\n";
+    $t->set_var("details",$details);
+    $t->pparse("out","delete");
   }
 
   include("inc/footer.inc");

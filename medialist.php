@@ -19,44 +19,30 @@
   if (!$start) $start = 0;
   include("inc/nextmatch.inc");
 
-  switch($order) {
-    case "title"  : $orderby = " ORDER BY v.title,v.mtype_id DESC,v.cass_id"; break;
-    case "length" : $orderby = " ORDER BY v.length,v.mtype_id DESC,v.cass_id"; break;
-    case "year"   : $orderby = " ORDER BY v.year,v.mtype_id DESC,v.cass_id"; break;
-    case "date"   : $orderby = " ORDER BY v.aq_date,v.mtype_id DESC,v.cass_id"; break;
-    case "cat"    : $orderby = " ORDER BY c.name,v.mtype_id DESC,v.cass_id"; break;
-    default       : $orderby = " ORDER BY v.mtype_id DESC,v.cass_id,v.part";
-  }
-
   $t->set_file(array("list"=>"medialist.tpl"));
   $t->set_block("list","mdatablock","mdatalist");
 
-  $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
-  $query .= " FROM video v, cat c, mtypes m";
-  $query .= " WHERE v.cat1_id=c.id AND v.mtype_id=m.id";
-  if ( strlen($filter) ) $query .= " AND ($filter)";
-  $query .= $orderby;
+  $query = "\$db->get_movielist(\"$order\",\"\",$start)";
   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?order=$order",$start);
-  $row=0;
-  while ($db->next_record()) {
-   $mtype[$row]    = $db->f('sname');
-   $mtype_id[$row] = $db->f('mtype_id');
-   $cass_id[$row]  = $db->f('cass_id');
-   $nr[$row]       = $cass_id[$row];
-   $part[$row]     = $db->f('part');
-   while (strlen($nr[$row])<4) { $nr[$row] = "0" . $nr[$row]; }
-   $nr[$row]      .= "-";
-   if (strlen($part[$row])<2) {
-     $nr[$row] .= "0" . $part[$row];
-   } else { $nr[$row] .= $part[$row]; }
-   $movie_id[$row] = urlencode($mtype[$row] . " " . $nr[$row]);
-   $title[$row]    = $db->f('title'); check_empty($title[$row]);
-   $length[$row]   = $db->f('length'); check_empty($length[$row]);
-   $year[$row]     = $db->f('year'); if (!$year[$row]) $year[$row] = ""; check_empty($year[$row]);
-   $t_aq_date      = $db->f('aq_date');  check_empty($t_aq_date);
-   $aq_date[$row]  = $pvp->common->formatDate($t_aq_date);
-   $category[$row] = $db->f('name'); check_empty($category[$row]);
-   $row++;
+  $list = $nextmatch->list;
+  for ($i=0;$i<$nextmatch->listcount;$i++) {
+   $mtype[$i]    = $list[$i][mtype_short];
+   $mtype_id[$i] = $list[$i][mtype_id];
+   $cass_id[$i]  = $list[$i][cass_id];
+   $nr[$i]       = $cass_id[$i];
+   $part[$i]     = $list[$i][part];
+   while (strlen($nr[$i])<4) { $nr[$i] = "0" . $nr[$i]; }
+   $nr[$i]      .= "-";
+   if (strlen($part[$i])<2) {
+     $nr[$i] .= "0" . $part[$i];
+   } else { $nr[$i] .= $part[$i]; }
+   $movie_id[$i] = urlencode($mtype[$i] . " " . $nr[$i]);
+   $title[$i]    = $list[$i][title]; check_empty($title[$i]);
+   $length[$i]   = $list[$i][length]; check_empty($length[$i]);
+   $year[$i]     = $list[$i][year]; if (!$year[$i]) $year[$i] = ""; check_empty($year[$i]);
+   $t_aq_date      = $list[$i][aq_date];  check_empty($t_aq_date);
+   $aq_date[$i]  = $pvp->common->formatDate($t_aq_date);
+   $category[$i] = $list[$i][cat1]; check_empty($category[$i]);
   }
   for ($i=0;$i<count($mtype);$i++) {
    $t->set_var("listtitle",lang("medialist"));

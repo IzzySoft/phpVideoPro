@@ -23,24 +23,12 @@
   include("inc/nextmatch.inc");
 
   // retrieve all staff members
-  $query="SELECT id FROM $stafftype ORDER BY name,firstname";
+  $query = "\$db->get_visstafflist($stafftype,\"$filter\",$start)";
   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?stafftype=$stafftype",$start);
-  $i = 0;
-  while ( $db->next_record() ) {
-    $staff[$i][id]        = $db->f('id');
-    $i++;
-  }
-  for ($k=0;$k<$i;$k++) {
-    switch ($stafftype) {
-      case "actors"    : $staff[$k][name] = $db->get_actor($staff[$k][id]); break;
-      case "directors" : $staff[$k][name] = $db->get_director($staff[$k][id]); break;
-      case "music"     : $staff[$k][name] = $db->get_music($staff[$k][id]); break;
-    }
-  }
-
+  $staff = $nextmatch->list;
   // now get & draw the list
   $row = 0;
-  for ($i=0;$i<count($staff);$i++) {
+  for ($i=0;$i<$nextmatch->listcount;$i++) {
     $movies = $db->get_movienamelist($stafftype,$staff[$i][name],$filter);
     $moviecount = count($movies);
     $same_name = FALSE;

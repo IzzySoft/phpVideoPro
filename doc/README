@@ -173,11 +173,10 @@ Contents:
 7.) Known bugs / limitations
 ----------------------------
 
-  Although phpVideoPro is somehow multi-user capable now (since v0.3.8), there's
-  no protection for your data given, i.e. any user that can access phpVideoPro
-  via his browser, can as well read as write, creating new entries and modify
-  and delete existing ones. This limitation may be removed by a future version.
-  Any bugs are not known to me - I didn't find any, and nobody reported anything :)
+  Any bugs are not known to me - I didn't find any (or fixed them immediately),
+  and nobody reported anything still open recently :)
+  As for limitations: At least some versions of M$ Internet Explorer do have
+  problems with the Hebrew support - but I don't know what to do about it...
 
 ===============================================================================
 
@@ -190,9 +189,9 @@ Contents:
   http://sourceforge.net/projects/videopro/ - on both sides you'll also find
   tarballs to download. The tarball of the latest available version should
   always be available by an "alias":
-  http://www.qumran.org/ftp/net/div/izzysoft/phpvideopro.tgz should always
-  point to the GNU-zipped tarball of the latest version (hopefully - if I
-  didn't forget to update that link :)
+  http://www.qumran.org/homes/izzy/software/get_update?program=pvp should
+  always send you the GNU-zipped tarball of the latest version (hopefully - if
+  I didn't forget to update it :)
   If you have questions/suggestions, you can also contact me via email, using
   the address izzysoft@qumran.org - and please, don't give up waiting if I
   do not respond that quickly; it sometimes takes me a while :)

@@ -107,9 +107,10 @@
      $fieldwidth = $field[2] - $field[0];
      do { // calculate position of the text on the label
        $textwidth = $length * imagefontwidth($font);
-       $x = ($fieldwidth - $textwidth) / 2; $x = ceil($x) + $field[0];
+       $x = ceil( ($fieldwidth - $textwidth) / 2 );
        --$font;
      } while (($x < 0) && ($font > 0));
+     $x += + $field[0];
      return $x;
    }
 
@@ -125,13 +126,17 @@
      ++$font;
      $vmidth = ceil($field[3] - $field[1]) / 2;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
-     $y = $vmidth - (imagefontheight($font) * $lines / 2) + $field[1];
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
      $movielines = count($this->entry);
+     if ( isset($this->titleline) && $movielines < 3 && font < 5) { // at least half of the lines use fontsize +1
+       $y = $vmidth - (imagefontheight($font +1) * $lines / 2) + $field[1];
+     } else {
+       $y = $vmidth - (imagefontheight($font) * $lines / 2) + $field[1];
+     }
      for ($i=0;$i<$lines;$i++) {
        $mod = $i % $movielines;
-       if ($i % $movielines == $this->titleline) {
+       if (isset($this->titleline) && $i % $movielines == $this->titleline) {
          if ($font < 5) { 
            $usefont = $font +1;
            $x[$i] = $this->get_textpos($text[$i],$field,$usefont);

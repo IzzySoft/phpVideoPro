@@ -18,6 +18,18 @@ Stelle nur auf die Punkte eingegangen werden, die aus meiner Sicht einer
 Erklärung bedürfen:
 
 [title]
+IMDB
+
+[text]
+Direkt neben dem Eingabefeld für den Filmtitel befindet sich ein Button für die
+"Internet Movie DataBase" (IMDB) - eine Datenbank, in der über das Internet
+Informationen zu (fast) allen Filmen abgefragt werden können. Im "Eingabemodus"
+(wenn also ein neuer Film angelegt oder ein bestehender bearbeitet wird) öffnet
+ein "Klick" auf diesen Button ein neues Fenster, um für den Film die Daten aus
+der IMDB zu beziehen. Wurde der gewünschte Film dort gefunden, können die
+verfügbaren Details aus diesem Fenster hierher übertragen werden.
+
+[title]
 *medianr#
 
 [text]

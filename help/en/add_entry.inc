@@ -18,6 +18,17 @@ some comment (beside the fact that the unnamed input box on top is intended to
 keep the movies title ;):
 
 [title]
+IMDB
+
+[text]
+Next to the entry field for the movies title, you find a button for the
+"Internet Movie DataBase" (IMDB) - which is a site on the internet where you can
+retrieve details to (almost) all movies. If you are editing a (new) movie, a
+"click" on that button opens a new window to query against that database. If
+the requested movie is found, you can transfer available data from that new
+window into this edit screen, which saves you some typing.
+
+[title]
 *medianr#
 
 [text]

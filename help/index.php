@@ -21,7 +21,7 @@ include ("../inc/template.inc");
 # Get the topic description - if possible with link to helpfile (if exist)
 function helppage ($topic) {
   $desc = lang($topic);
-  $lang = get_lang();
+  $lang = $pvp->preferences->lang;
   $name = $topic . ".inc";
   $file = dirname(__FILE__) . "/" . $lang . "/" . $name;
   $default_file = dirname(__FILE__) . "/en/" . $name;
@@ -210,7 +210,7 @@ $pm->set_nav("close","<A HREF=\"JavaScript:window.close()\">" . lang("close") . 
 if ($topic) { // display specific help page
   $help = helppage($topic);
   if ( !$help->file ) {
-    $lang = get_lang();
+    $lang = $pvp->preferences->lang;
     $help->file = dirname(__FILE__) . "/" . $lang . "/no_topic.inc";
     if ( !file_exists($help->file) ) {
       $help->file = dirname(__FILE__) . "/en/no_topic.inc";

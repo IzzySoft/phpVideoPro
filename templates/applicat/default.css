@@ -8,13 +8,11 @@
     font-size: 12;
   }
   a {
-/*    color: #003399;
- */
+/*    color: #003399; */
     text-decoration:none;
   }
 /*  a:active { color: #003399; }
-  a:visited { color: #888888; }
- */
+  a:visited { color: #888888; } */
   p, ol, ul, li, dl, dt, dd, blockquote {
     font-family: ;
     font-size: 12;
@@ -60,7 +58,7 @@
   input, textarea  {
     font-family: monospace;
     color: #000000;
-/*    font-size: 15px; */
+    font-size: 12px;
     border-width: 1px;
   }
   input.submit {
@@ -98,7 +96,6 @@
     border-bottom-color: #AAAAAA;
   }
   .wintitle {
-/*    font-family: ; */
     font-size: 12;
     background-color: #0000DF;
     color: #FFFFFF;

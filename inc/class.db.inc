@@ -1037,6 +1037,44 @@
      }
      return $success;
    }
+
+   /** Get a list of duplicate titles
+    * @class sql
+    * @method get_dupetitles
+    * @return array array of titles:
+    *  array[$i][title]; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
+    *  where $i counts the distinct titles, and $k the copies per title
+    */
+   function get_dupetitles() {
+     $query  = "SELECT o.title as titel, o.id as o_id, o.mtype_id as o_mtypeid,"
+             . " o.cass_id as o_cassnr, o.part as o_part, o.length as o_len,"
+             . " d.id as d_id, d.mtype_id as d_mtypeid, d.cass_id as d_cassnr,"
+             . " d.part as d_part, d.length as d_len"
+             . " FROM video o, video d"
+             . " WHERE o.title=d.title AND o.id<d.id"
+             . " ORDER BY o_id ASC";
+     $this->dbquery($query);
+     $i = -1;
+     while ( $this->next_record() ) {
+       $title = $this->f('titel');
+       if ( $i==-1 || $dupes[$i][title]!=$title ) {
+         ++$i; $k=0;
+         $dupes[$i][title] = $title;
+         $dupes[$i][$k]->id       = $this->f('o_id');
+         $dupes[$i][$k]->mtype_id = $this->f('o_mtypeid');
+         $dupes[$i][$k]->cass_nr  = $this->f('o_cassnr');
+         $dupes[$i][$k]->part     = $this->f('o_part');
+         $dupes[$i][$k]->len      = $this->f('o_len');
+       }
+       ++$k;
+       $dupes[$i][$k]->id       = $this->f('d_id');
+       $dupes[$i][$k]->mtype_id = $this->f('d_mtypeid');
+       $dupes[$i][$k]->cass_nr  = $this->f('d_cassnr');
+       $dupes[$i][$k]->part     = $this->f('d_part');
+       $dupes[$i][$k]->len      = $this->f('d_len');
+     }
+     return $dupes;
+   }
    
    ############################################################################
    # Media Specific Stuff

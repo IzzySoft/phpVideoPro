@@ -46,10 +46,17 @@
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }
+
  $title   = $pvp->common->input2string($title);
- $title   = $pvp->common->safeinput(addslashes($title));
- $source  = $pvp->common->safeinput(addslashes($source));
- $comment = $pvp->common->safetextarea(addslashes($comment));
+ if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
+   $title   = addslashes($title);
+   $comment = addslashes($comment);
+   $source  = addslashes($source);
+ }
+
+ $title   = $pvp->common->safeinput($title);
+ $source  = $pvp->common->safeinput($source);
+ $comment = $pvp->common->safetextarea($comment);
  $fields   = array("country","year","length","src","fsk","counter1","counter2");
  foreach ($fields as $field) {
    ${$field} = $pvp->common->safeinput(${$field});
@@ -64,6 +71,7 @@
 	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id"
           . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
+# die($update);
  if ( dbquery($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
    $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";

@@ -223,7 +223,9 @@
      if (!$trans) { // remove translation
        $this->query("DELETE FROM lang WHERE message_id='$id' AND lang='$lang'");
      } else {
-       $trans = addslashes($trans);
+       if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
+         $trans = addslashes($trans);
+       }
        $this->query("SELECT * FROM lang WHERE message_id='$id' AND lang='$lang'");
        if ( $this->next_record() ) {
          $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
@@ -1377,9 +1379,11 @@
        display_error( lang("dupe_id_entered") );
        exit;
      }
-     $title  = addslashes($title);
-     $comment= addslashes($comment);
-     $source = addslashes($source);
+     if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
+       $title  = addslashes($title);
+       $comment= addslashes($comment);
+       $source = addslashes($source);
+     }
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"

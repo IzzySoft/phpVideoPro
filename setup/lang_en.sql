@@ -290,3 +290,5 @@ INSERT INTO lang VALUES('confirm_userdeletion','en','Do you really want to delet
 INSERT INTO lang VALUES('user_delete_report','en','Results of user deletion process');
 INSERT INTO lang VALUES('user_deleted','en','Successfully deleted user #%1, "%2" (%3)');
 INSERT INTO lang VALUES('user_delete_failed','en','Deletion of user #%1, "%2" (%3) failed');
+INSERT INTO lang VALUES('submit','en','Submit');
+INSERT INTO lang VALUES('welcome','en','Welcome to phpVideoPro');

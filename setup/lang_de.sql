@@ -281,3 +281,5 @@ INSERT INTO lang VALUES('confirm_userdeletion','de','Soll der Benutzer "%1" (%2)
 INSERT INTO lang VALUES('user_delete_report','de','Ergebnis des Löschvorgangs');
 INSERT INTO lang VALUES('user_deleted','de','Der Benutzer #%1, "%2" (%3), wurde erfolgreich gelöscht.');
 INSERT INTO lang VALUES('user_delete_failed','de','Das Löschen des Benutzers #%1, "%2" (%3), ist fehlgeschlagen.');
+INSERT INTO lang VALUES('submit','de','Absenden');
+INSERT INTO lang VALUES('welcome','de','Willkommen bei phpVideoPro');

@@ -13,11 +13,14 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
+ if (!isset($admin)) $admin = FALSE;
  while ( list($vn,$vv)=each($_REQUEST) ) {
    $$vn = $vv;
  }
+ if (!isset($reset)) $reset = FALSE;
+ if (!isset($save)) $save = FALSE;
  $page_id = "filter";
- if ($admin) $root = "../";
+ if ($admin) $root = "../"; else $root = "";
  include($root . "inc/includes.inc");
  if ($admin) {
    if (!$pvp->auth->admin) { // kick-off unauthorized visitors
@@ -28,8 +31,8 @@
  }
 
  function sort_ar($a1,$a2) {
-   if($a1[name]<$a2[name]) return -1;
-     else if ($a1[name]>$a2[name]) return 1;
+   if($a1['name']<$a2['name']) return -1;
+     else if ($a1['name']>$a2['name']) return 1;
  }
 
  #-------------------------------------------------------[ init templates ]---
@@ -47,7 +50,7 @@
  } elseif ($save) { // new filter values were submitted
    $mtypes = $db->get_mtypes();
    for ($i=0;$i<count($mtypes);$i++) {
-     $id = $mtypes[$i][id];
+     $id = $mtypes[$i]['id'];
      $field = "mtype_" . $id;
      if (${$field}) $filter->mtype->$id = TRUE; else $filter->mtype->$id = FALSE;
    }
@@ -57,19 +60,19 @@
    $filter->aquired_max = $aquired_max;
    $pict = $db->get_pict();
    for ($i=0;$i<count($pict);$i++) {
-     $id    = $pict[$i][id];
+     $id    = $pict[$i]['id'];
      $field = "pict_" . $id;
      if (${$field}) $filter->pict->$id = TRUE; else $filter->pict->$id = FALSE;
    }
    $pict = $db->get_color();
    for ($i=0;$i<count($pict);$i++) {
-     $id    = $pict[$i][id];
+     $id    = $pict[$i]['id'];
      $field = "color_" . $id;
      if (${$field}) $filter->color->$id = TRUE; else $filter->color->$id = FALSE;
    }
    $pict = $db->get_tone();
    for ($i=0;$i<count($pict);$i++) {
-     $id    = $pict[$i][id];
+     $id    = $pict[$i]['id'];
      $field = "tone_" . $id;
      if (${$field}) $filter->tone->$id = TRUE; else $filter->tone->$id = FALSE;
    }
@@ -117,14 +120,15 @@
  unset ($id,$name);
  $mtypes = $db->get_mtypes();
  for ($i=0;$i<count($mtypes);$i++) {
-   $id[$i]   = $mtypes[$i][id];
-   $name[$i] = $mtypes[$i][sname];
+   $id[$i]   = $mtypes[$i]['id'];
+   $name[$i] = $mtypes[$i]['sname'];
    if ($filter->mtype->$id[$i]) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
  }
  $t->set_var("item","");
  for ($k=0;$k<count($id);$k++) {
    $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "\" . $checked[$k] class=\"checkbox\">&nbsp;$name[$k]</TD>");
-   $t->parse("inputlist","inputblock",TRUE);
+   if ($k) $t->parse("inputlist","inputblock",TRUE);
+     else  $t->parse("inputlist","inputblock");
  }
  $t->parse("mtype","t_item");
 
@@ -161,8 +165,8 @@
  $t->set_var("item","");
  $pict = $db->get_pict();
  for ($i=0,$k=1;$i<count($pict);$i++,$k++) {
-   $id[$i]   = $pict[$i][id];
-   $name[$i] = $pict[$i][name];
+   $id[$i]   = $pict[$i]['id'];
+   $name[$i] = $pict[$i]['name'];
  }
  for ($k=0;$k<count($id);$k++) {
    if ($filter->pict->$id[$k]) { $checked = " CHECKED"; } else { $checked = ""; }
@@ -177,8 +181,8 @@
  $t->set_var("item","");
  $pict = $db->get_color();
  for ($i=0;$i<count($pict);$i++) {
-   $id[$i]   = $pict[$i][id];
-   $name[$i] = $pict[$i][name];
+   $id[$i]   = $pict[$i]['id'];
+   $name[$i] = $pict[$i]['name'];
    $input = "<INPUT TYPE=\"checkbox\" NAME=\"color_$id[$i]\"";
    if ($filter->color->$id[$i]) $input .= " CHECKED";
    $input .= " class=\"checkbox\">&nbsp;" . lang("$name[$i]");
@@ -192,8 +196,8 @@
  $t->set_var("itemlist","");
  $pict = $db->get_tone();
  for ($i=0;$i<count($pict);$i++) {
-   $id[$i]   = $pict[$i][id];
-   $name[$i] = $pict[$i][name];
+   $id[$i]   = $pict[$i]['id'];
+   $name[$i] = $pict[$i]['name'];
    $t->set_var("input",$name[$i]);
    $t->parse("itemlist","itemblock",TRUE);
  }
@@ -238,9 +242,9 @@
  $pict = $db->get_category("");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
-   if ($pict[$i][enabled]) {
-     $id   = $pict[$i][id];
-     $name = $pict[$i][name];
+   if ($pict[$i]['enabled']) {
+     $id   = $pict[$i]['id'];
+     $name = $pict[$i]['name'];
      $option .= "<OPTION VALUE=\"$id\"";
      if ($filter->cat->$id) $option .= " SELECTED";
      $option .= ">$name</OPTION>";
@@ -254,9 +258,9 @@
  if (is_array($pict)) usort ($pict,"sort_ar");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
-   $id   = $pict[$i][id];
-   $name = $pict[$i][name];
-   $firstname = $pict[$i][firstname];
+   $id   = $pict[$i]['id'];
+   $name = $pict[$i]['name'];
+   $firstname = $pict[$i]['firstname'];
    $option .= "<OPTION VALUE=\"$id\"";
    if ($filter->actor->$id) $option .= " SELECTED";
    $option .= ">$name, $firstname</OPTION>";
@@ -269,9 +273,9 @@
  if (is_array($pict)) usort ($pict,"sort_ar");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
-   $id   = $pict[$i][id];
-   $name = $pict[$i][name];
-   $firstname = $pict[$i][firstname];
+   $id   = $pict[$i]['id'];
+   $name = $pict[$i]['name'];
+   $firstname = $pict[$i]['firstname'];
    $option .= "<OPTION VALUE=\"$id\"";
    if ($filter->director->$id) $option .= " SELECTED";
    $option .= ">$name, $firstname</OPTION>";
@@ -285,9 +289,9 @@
  dbquery("SELECT id,name,firstname FROM music ORDER BY name");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
-   $id   = $pict[$i][id];
-   $name = $pict[$i][name];
-   $firstname = $pict[$i][firstname];
+   $id   = $pict[$i]['id'];
+   $name = $pict[$i]['name'];
+   $firstname = $pict[$i]['firstname'];
    $option .= "<OPTION VALUE=\"$id\"";
    if ($filter->composer->$id) $option .= " SELECTED";
    $option .= ">$name, $firstname</OPTION>";

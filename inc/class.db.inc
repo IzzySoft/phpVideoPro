@@ -148,6 +148,21 @@
      return $list;
    }
 
+   /** (Un)Set enabled flag for audio or subtitle
+    * @class sql
+    * @method set_avlang
+    * @param string lang_id language key like "de" or "en"
+    * @param integer flag 0=disable, 1=enable
+    * @param string type "audio" or "subtitle"
+    * @return boolean success
+    */
+   function set_avlang($id,$flag,$type) {
+     if ( ($flag < 0) || ($flag > 1) ) return FALSE;
+     if ( (strtolower($type)!="audio") && (strtolower($type)!="subtitle") ) return FALSE;
+     $query = "UPDATE languages SET $type=$flag WHERE lang_id='$id')";
+     return $this->query($query);
+   }
+
    /** Get installed languages (both available and unavailable)
     * @class sql
     * @method get_installedlang

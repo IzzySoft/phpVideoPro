@@ -11,6 +11,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$base_url?>admin/cats.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$base_url?>admin/orphans.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$base_url?>admin/backup_db.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$base_url?>admin/configure.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
   myNavBar1.addMenu(dhtmlMenu);

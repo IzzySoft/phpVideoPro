@@ -277,6 +277,7 @@ function getPageOffsetTop(el) {
 <a class="menuItem" href="<?=$base_url ?>admin/cats.php"><?=lang("admin_cats") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/orphans.php"><?=lang("admin_orphans") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/backup_db.php"><?=lang("backup_db") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/configure.php"><?=lang("configuration") ?></a>
 <div class="menuItemSep"></div>
 <a class="menuItem" href="http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"><?=lang("dl_pvp_latest") ?></a>
 </div>

@@ -101,19 +101,24 @@
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='cats' CLASS='checkbox'>".lang("backup_db_cats")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='sysconf' CLASS='checkbox'>".lang("backup_db_sysconf")."<BR>"
-          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'";
+   if ($_POST["compress"]) $radio .= " CHECKED";
+   $radio .= ">".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");
    $radio = "<INPUT TYPE='radio' NAME='rtype' VALUE='removieint' CLASS='checkbox' CHECKED>".lang("restore_db_internal");
    if(is_dir($pvp->backup_dir)) {
      $filelist = $pvp->common->get_filenames($pvp->backup_dir,".pvp");
+     asort($filelist); reset($filelist);
      if ( $fcount   = count($filelist) ) {
        $select   = "<SELECT NAME='rfile'>";
-       for ($i=0;$i<$fcount;++$i) {
-         $select .= "<OPTION NAME='".$filelist[$i]."'>".$filelist[$i]."</OPTION>";
+       foreach ($filelist as $var) {
+         $select .= "<OPTION NAME='$var'>$var</OPTION>";
        }
        $select .= "</SELECT><BR>"
-          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox' CHECKED>".lang("clean_restore")."<BR>";
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox'";
+       if ($_POST["cleandb"]) $select .= " CHECKED";
+       $select .= ">".lang("clean_restore")."<BR>";
      } else {
        $select = lang("no_backup_avail");
      }

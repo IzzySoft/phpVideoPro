@@ -143,18 +143,24 @@
     * @class sql
     * @method get_languages
     * @param optional integer avail available (1) or unavailable(0); default: both
-    * @return array languages (id,name)
+    * @return array languages (id,name, charset, avail)
     */
    function get_languages($avail="") {
      switch ($avail) {
        case "0" : $where = "WHERE available='no'"; break;
        case "1" : $where = "WHERE available='yes'"; break;
      }
-     $this->dbquery("SELECT lang_id,lang_name,available FROM languages $where");
+     $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where");
      $i=0;
      while ( $this->next_record() ) {
        $lang[$i]["id"]   = $this->f('lang_id');
        $lang[$i]["name"] = $this->f('lang_name');
+       $lang[$i]["charset"] = $this->f('charset');
+       if ( strtolower( $this->f('available') ) == "yes" ) {
+         $lang[$i]["avail"]  = 1;
+       } else {
+         $lang[$i]["avail"]  = 0;
+       }
        ++$i;
      }
      return $lang;
@@ -232,7 +238,7 @@
     * @param string lang language to retrieve for
     * @param optional integer start (for lim_query)
     * @param optional string msgID single translation to catch
-    * @return object translations (msgID = translation, list[] of msgIDs)
+    * @return object translations (msgID = translation, xlist[] of msgIDs)
     */
    function get_singletrans($lang,$start="",$msg="") {
      $query = "SELECT message_id,content FROM lang WHERE lang='$lang'";

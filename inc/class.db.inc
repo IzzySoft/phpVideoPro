@@ -956,6 +956,30 @@
      return $commercials;
    }
 
+   /** check tech tables for movie references
+    * @class sql
+    * @method check_movietechref
+    * @param string table
+    * @param integer id
+    * @return boolean is_referenced
+    */
+   function check_movietechref($table,$id) {
+     switch($table) {
+       case "pict"  : $restrict = "WHERE pict_id=$id"; break;
+       case "color" : $restrict = "WHERE color_id=$id"; break;
+       case "tone"  : $restrict = "WHERE tone_id=$id"; break;
+       case "mtype" : $restrict = "WHERE mtype_id=$id"; break;
+       default      :
+     }
+     $this->dbquery("SELECT COUNT(id) AS ref FROM video $restrict");
+     if ( $this->next_record() ) {
+       $ref = $this->f('ref');
+     } else {
+       $ref = 0;
+     }
+     return $ref;
+   }
+
    ############################################################################
    # movie data
    ############################################################################

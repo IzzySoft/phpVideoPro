@@ -8,6 +8,7 @@
  <li>movie title button now also links to IMDB information (as names do)
  <li>movielist: order by category didn't work. Fixed.
  <li>added statistics page
+ <li>help system ignored language settings (did nobody notice this?) - fixed.
 </ul>
 
 [title]

@@ -21,11 +21,11 @@ don't even need to know HTML - you can just edit a simple text file which
      Find the language code for your language (see
      "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>" on how to do
      this), and create the directory with the name of the language code below
-     the help directory - e.g. "lang/fi" for Finnish.
+     the help directory - e.g. "help/fi" for Finnish.
  <LI>Now either create a new file with the name <topic>.inc in your languages
-     directory (e.g. "lang/fi/about.inc" for the Finnish "About" topic), or
-     copy it from the English tree (lang/en) as a template.
- <LI>Open your new help file ("lang/fi/about.inc" in the above example) with
+     directory (e.g. "help/fi/about.inc" for the Finnish "About" topic), or
+     copy it from the English tree (help/en) as a template.
+ <LI>Open your new help file ("help/fi/about.inc" in the above example) with
      your favorite editor and translate/create the help topic. The format of
      such a file is explained below.
  <LI>That's all - you are done! phpVideoPro will automatically find and use the

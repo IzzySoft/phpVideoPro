@@ -16,13 +16,13 @@
 if ($menue) {
   $page_id = "configuration";
   if ($admin) $root = "../";
-  if ($update) {
-    include ($root . "inc/config.inc");
-    include ($root . "inc/config_internal.inc");
-    include ($root . "inc/common_funcs.inc");
-  } else {
+#  if ($update) {
+#    include ($root . "inc/config.inc");
+#    include ($root . "inc/config_internal.inc");
+#    include ($root . "inc/common_funcs.inc");
+#  } else {
     include ($root . "inc/includes.inc");
-  }
+#  }
 } else {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");

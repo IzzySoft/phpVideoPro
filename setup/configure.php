@@ -39,6 +39,19 @@ if ( isset($update) ) {
   $pvp->preferences->set("display_limit",$display_limit);
   $pvp->preferences->set("page_length",$page_length);
   $pvp->preferences->set("date_format",$date_format);
+  $pvp->preferences->set("default_movie_colorid",$movie_color);
+  $mtypes = $db->get_mtypes();
+  unset($rw_media);
+  for ($i=0;$i<count($mtypes);$i++) {
+    $id    = $mtypes[$i][id];
+    $mtype = "mtype_".$id;
+    if (${$mtype}) {
+      if (strlen($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
+    }
+  }
+  $db->set_config("rw_media",$rw_media);
+  if (!$remove_media) $remove_media = "0";
+  $db->set_config("remove_empty_media",$remove_media);
   $colorcode = rawurlencode( serialize($colors) );
   $pvp->preferences->set("colors",$colorcode);
   if ($install_lang && $install_lang != "-") {
@@ -82,6 +95,8 @@ $template_set   = $pvp->preferences->template;
 $display_limit  = $pvp->preferences->display_limit;
 $page_length    = $pvp->preferences->page_length;
 $date_format    = $pvp->preferences->date_format;
+$movie_color    = $pvp->preferences->default_movie_colorid;
+$remove_media   = $db->get_config("remove_empty_media");
 
 #==========================================[ get available template sets ]===
 chdir("$base_path/templates");
@@ -210,11 +225,50 @@ $t->parse("list","listblock",TRUE);
 #---------------------------------------------[ setup block 3: misc stuff ]---
 $t->set_var("list_head",lang("general"));
 
+#--[ rw_media ]--
+$t->set_var("item_name",lang("rw_media"));
+$t->set_var("item_comment",lang("rw_media_comment"));
+unset ($id,$name,$input);
+$mtypes = $db->get_mtypes();
+for ($i=0;$i<count($mtypes);$i++) {
+  $id[$i]   = $mtypes[$i][id];
+  $name[$i] = $mtypes[$i][sname];
+  if ($pvp->common->medium_is_rw($id[$i])) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
+  $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" . $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
+}
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock");
+
+#--[ remove_empty_media ]--
+$t->set_var("item_name",lang("remove_empty_media"));
+$t->set_var("item_comment",lang("remove_empty_media_comment"));
+if ($remove_media) {
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\" CHECKED>");
+} else {
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"remove_media\" VALUE=\"1\">");
+}
+$t->parse("item","itemblock",TRUE);
+
+#--[ movie_color_default ]--
+$t->set_var("item_name",lang("movie_color_default"));
+$t->set_var("item_comment",lang("movie_color_default_comment"));
+unset($id,$input);
+$pict = $db->get_color();
+for ($i=0;$i<count($pict);$i++) {
+  $id     = $pict[$i][id];
+  $name   = $pict[$i][name];
+  $input .= "<INPUT TYPE='radio' NAME='movie_color' VALUE='$id'";
+  if ($pvp->preferences->default_movie_colorid==$id) {
+    $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
+}
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
+
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));
 $t->set_var("item_comment",lang("display_limit_comment"));
 $t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
-$t->parse("item","itemblock");
+$t->parse("item","itemblock",TRUE);
 
 #--[ lines per page ]--
 $t->set_var("item_name",lang("lines_per_page"));

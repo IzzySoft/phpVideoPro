@@ -13,6 +13,7 @@
      set to never expire. For several reasons, after a new installation you
      are recommended to change those values. The setup program gives you more
      information about this.
+ <li>some improvements on the PS top labels
 </ul>
 
 [title]

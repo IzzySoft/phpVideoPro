@@ -1411,11 +1411,12 @@
      while ( $this->next_record() ) {
        $list[] = $this->f('id');
      }
-     $len = count($list);
+     if (isset($list)) $len = count($list); else $len = 0;
      for ($i=0;$i<$len;$i++) {
        $movielist[] = $this->get_movie($list[$i]);
      }
-     if ($totals) $movielist['totals'] = $totals;
+     if (isset($totals) && $totals) $movielist['totals'] = $totals;
+     if (!isset($movielist)) $movielist = array();
      return $movielist;
    }
 
@@ -1520,7 +1521,7 @@
     * @see sql::get_movielist(), sql::get_movie()
     */
    function get_moviecatlist($cat) {
-     return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
+     return $this->get_movielist("cat1_id,title","cat1_id=$cat");
    }
 
    /** Get movie list for cat1..cat3 as array of movies (see get_movie)
@@ -1585,7 +1586,8 @@
        }
        $list[] = $movie;
      }
-     return $list;
+     if (isset($list)) return $list;
+     return array();
    }
 
    /** Get first movie numbers for each media type

@@ -62,7 +62,7 @@ class Template {
     $this->set_var("logoff_link",$base_url."login.php?logout=1");
     $this->set_var("page_id",$page_id);
     $this->set_var("help_link","open_help('$page_id')");
-    if (method_exists($pvp->link,"slink")) { // not needed for help system
+    if (isset($pvp->link) && method_exists($pvp->link,"slink")) { // not needed for help system
       $this->set_var("home_link",$pvp->link->slink($base_url."index.php"));
       $this->set_var("search_link",$pvp->link->slink($base_url."search.php"));
     }

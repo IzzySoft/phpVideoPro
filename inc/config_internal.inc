@@ -3,6 +3,8 @@
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
+$pvp->tpl_dir = $base_path . "templates/default";
+
 // retrieve browser information
 include($base_path . "inc/browser.inc");
 $browser = new browser;

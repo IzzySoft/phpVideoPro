@@ -12,6 +12,7 @@
       <ul>
        <li>re-sorting of medialist can now be done by simply
            clicking on the appropriate table header
+       <li>started with template stuff
       </ul>
   <LI><b>0.1.4 (July 29, 2001)</b><br>
       <ul>

@@ -33,7 +33,7 @@
     }
     if ($add_err) {
       $add_err = substr($add_err,0,strlen($add_err)-1);
-      $save_result = $colors["err"].lang("disktype_add_failed",$add_err)."</FONT><BR>";
+      $save_result = $colors["err"].lang("disktype_add_failed")."</FONT><BR>";
     }
     if ($upd_err) {
       $upd_err = substr($upd_err,0,strlen($upd_err)-1);

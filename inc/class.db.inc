@@ -428,6 +428,36 @@
      return $orphan;
    }
 
+   /** Delete an actor from DB
+    * @class sql
+    * @method delete_actor
+    * @param mixed id either integer (id) or string (comma separated list of ids)
+    * @return boolean success
+    */
+   function delete_actor($id) {
+     return $this->delete_row("actors",$id);
+   }
+
+   /** Delete an director from DB
+    * @class sql
+    * @method delete_director
+    * @param mixed id either integer (id) or string (comma separated list of ids)
+    * @return boolean success
+    */
+   function delete_director($id) {
+     return $this->delete_row("directors",$id);
+   }
+
+   /** Delete an composer from DB
+    * @class sql
+    * @method delete_composer
+    * @param mixed id either integer (id) or string (comma separated list of ids)
+    * @return boolean success
+    */
+   function delete_composer($id) {
+     return $this->delete_row("music",$id);
+   }
+
    ############################################################################
    # categories
    ############################################################################

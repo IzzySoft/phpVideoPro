@@ -13,6 +13,10 @@
  /* $Id$ */
 
  if (!isset($_REQUEST["part"])) $new_entry=TRUE;
+ if ($_POST["cancel"]) {
+   header("Location: ".$_POST["referer"]);
+   exit;
+ }
  include("edit.php");
 
 ?>

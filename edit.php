@@ -283,9 +283,11 @@
     }
     $t->set_var("next",$next); unset($next,$lm,$lmc);
   }
+  $referer = $_SERVER["HTTP_REFERER"];
     $hiddenfields = <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
+<INPUT TYPE="hidden" NAME="referer" VALUE="$referer">
 EndHiddenFields;
   if (!$new_entry) {
     $hiddenfields .= "\n<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";
@@ -396,8 +398,8 @@ EndHiddenFields;
   } else {
     $field = "<DIV STYLE='margin-top:1px'>";
     if (!$edit) {
-      if (empty($counter1)) $counter1 = "&nbsp;&nbsp;&nbsp;&nbsp;";
-      if (empty($counter2)) $counter2 = "&nbsp;&nbsp;&nbsp;&nbsp;";
+      if (empty($counter1)) $counter1 = "<font face='monospace'>&nbsp;&nbsp;&nbsp;&nbsp;</font>";
+      if (empty($counter2)) $counter2 = "<font face='monospace'>&nbsp;&nbsp;&nbsp;&nbsp;</font>";
       $field .= "<SPAN CLASS='virtual_button' ALIGN='center' STYLE='width:".YN_WIDTH."'>$counter1</SPAN>"
              . " / <SPAN CLASS='virtual_button' ALIGN='center' STYLE='width:".YN_WIDTH."'>$counter2</SPAN>";
     } else {

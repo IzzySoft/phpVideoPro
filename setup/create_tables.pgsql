@@ -227,6 +227,7 @@ CREATE TABLE lang (
   message_id varchar(150) NOT NULL,
   lang varchar(5) DEFAULT 'en' NOT NULL,
   content text NOT NULL,
+  comment text,
   PRIMARY KEY (message_id,lang)
 );
 

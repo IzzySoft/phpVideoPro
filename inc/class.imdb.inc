@@ -951,13 +951,18 @@
    * @method results
    * @return array results
    */
-  function results () {
+  function results ($url="") {
    if ($this->page == "") {
-     $be = new IMDB_Request($this->mkurl());
+     if (empty($url)) $url = $this->mkurl();
+     $be = new IMDB_Request($url);
      $be->sendrequest();
      $fp = $be->getResponseBody();
      if ( !$fp ){
        if ($header = $be->getResponseHeader("Location")){
+        if (strpos($header,$this->imdbsite."/find?")) {
+          return $this->results($header);
+          break(4);
+        }
         $url = explode("/",$header);
         $id  = substr($url[count($url)-2],2);
         $this->resu[0] = new imdb($id);

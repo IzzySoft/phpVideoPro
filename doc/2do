@@ -12,11 +12,19 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- redirecting on forced login due to missing permissions
 - User should be able to change his/her password without having admin
   privileges
+- PS template(s) for DVD covers
 
 coming *next*:
+- Restore function should take care for changed/new categories (refering to
+  them not via id but the internal name for changed ones, and having a
+  default category for new ones). If possible, just add a backup to the
+  existing movies (e.g. by placing every new movie on its own medium using
+  a default mediatype for it - this could e.g. be a fantasy-type like
+  "PVPNew Medium"). In this case, user has to manually assign the movies to
+  the real media. When using the "Fantasy-Media" this could be done via a
+  separate page, just selecting all movies from this media type.
 - form(s) to edit label sheets (for PSLabels)
 - store user-based preferences into a different table if no cookies are used
 

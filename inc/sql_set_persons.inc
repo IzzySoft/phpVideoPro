@@ -19,10 +19,10 @@
  $dmsg     .= "<ul>\n";
  $query     = "SELECT id FROM directors";
  $sub_query = "INSERT INTO directors";
- $dir_id    = insert_person("director",$query,$sub_query,$director_name,$director_fname);
+ $dir_id    = insert_person("director",$query,$sub_query,addslashes($director_name),addslashes($director_fname));
  $query     = "SELECT id FROM music";
  $sub_query = "INSERT INTO music";
- $mus_id    = insert_person("composer",$query,$sub_query,$composer_name,$composer_fname);
+ $mus_id    = insert_person("composer",$query,$sub_query,addslashes($composer_name),addslashes($composer_fname));
  for ($i=1;$i<=$max["actors"];$i++) {
    $act       = "actor" . $i;
    $aname     = $act . "_name";
@@ -30,7 +30,7 @@
    $aid       = "act" . $i . "_id";
    $query     = "SELECT id FROM actors";
    $sub_query = "INSERT INTO actors";
-   ${$aid}    = insert_person($act,$query,$sub_query,${$aname},${$fname});
+   ${$aid}    = insert_person($act,$query,$sub_query,addslashes(${$aname}),addslashes(${$fname}));
  }
  $dmsg .= "</ul>\n";
  debug("S",$dmsg);

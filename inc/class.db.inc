@@ -989,8 +989,10 @@
      $movie[music_] = $name;
      for ($i=1;$i<6;$i++) { // actor 1..5: [actor1],[actor1_rev],[actor_1]...
        $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
+       $tname  = stripslashes($this->f("$dbname"));
+       $tfname = stripslashes($this->f("$dbfname"));
        $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
-       $name = $this->format_name( array(name=>$this->f("$dbname"),firstname=>$this->f("$dbfname")) );
+       $name = $this->format_name( array(name=>$tname,firstname=>$tfname) );
        $movie[$vname] = $name[fullname]; $movie[$vrev] = $name[reverse];
        $movie[$aname] = $name;
      }

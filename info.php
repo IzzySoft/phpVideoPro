@@ -23,7 +23,7 @@
                    $details = lang("info_noupdate",$version);
 		   break;
     default      : $title   = lang("info_common");
-                   $details = lang("info_common_info",$version);
+                   $details = lang("info_common_info",$version,$SERVER_NAME);
 		   break;
   }
 

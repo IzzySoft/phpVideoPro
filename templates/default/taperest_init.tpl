@@ -4,6 +4,6 @@
     <TR><TD COLSPAN=3>&nbsp;</TD></TR>
     <TR><TD>{min_free}</TD>
         <TD><INPUT NAME="minfree"></TD>
-        <TD><INPUT TYPE="submit" NAME="getrest" VALUE="{display}"></TR>
+        <TD><INPUT TYPE="submit" NAME="getrest" VALUE="{display}"></TD></TR>
   </TABLE>
  </FORM>

@@ -12,9 +12,6 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- moving color settings into template's stylesheet (remove from config screen)
-- moving parts from config.inc to config screen: rw_media, remove_empty and
-  defaults[scolor]
 
 coming *next*:
 - manage preferences via cookies, taking defaults from DB

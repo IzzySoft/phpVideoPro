@@ -48,9 +48,6 @@
           settings you <b>must</b> check, so this is done fast:<BR><BR>
           <TABLE WIDTH="90%" ALIGN="center" BORDER="1">
 	   <COLGROUP><COL WIDTH="15%"><COL WIDTH="85%"></COLGROUP>
-	   <TR><TD><b>$site</b></TD>
-	       <TD>just the name for your running copy. It's only used to be
-	       displayed in the title bar for now.</TD></TR>
            <TR><TD><b>$base_url</b></TD>
 	       <TD>the root directory of your phpVideoPro copy. Make sure it has
                a leading slash (i.e. it has to be the complete path starting

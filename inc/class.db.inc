@@ -289,9 +289,12 @@
    function set_preferences($name,$value) {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
-     $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
-     if ( !$this->affected_rows() )
+     $this->query("SELECT value FROM preferences WHERE name='$name'");
+     if ( $this->next_record() ) {
+       $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
+     } else {
        $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value')");
+     }
    }
 
    /** Remove preferences from DB
@@ -331,9 +334,12 @@
    function set_config($name,$value) {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
-     $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
-     if ( !$this->affected_rows() )
+     $this->query("SELECT value FROM pvp_config WHERE name='$name'");
+     if ( $this->next_record() ) {
+       $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
+     } else {
        $this->dbquery("INSERT INTO pvp_config (name,value) VALUES ('$name','$value')");
+     }
    }
 
    ############################################################################

@@ -11,6 +11,12 @@
  <li>added some intro for new users to the initial screen. This intro can be
      switched of on a per-user-based preference (via the edit-&gt;preferences
      screen)
+ <li>Decision on whether to use cookies is now made based on cookies-&gt;active.
+     I.e. if the browser does not support cookies (or the user decided so),
+     phpVideoPro will detect and honor this. The result in this case should be
+     that there are no longer multiple cookie requests on a single page.
+     Nevertheless, since HTTP is stateless phpVideoPro will check that once at
+     the beginning of every page (i.e., the result is not stored anywhere).
 </ul>
 
 [title]

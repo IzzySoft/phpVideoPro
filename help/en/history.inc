@@ -11,6 +11,7 @@
      (CSV version)
  <li>made date format configurable (right now just used with the list printing,
      everything else will follow)
+ <li>added/updated some help pages
 </ul>
 
 [title]

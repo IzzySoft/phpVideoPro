@@ -251,27 +251,14 @@ class common {
     return $ar1;
   }
 
-   #===================================================[ misc functions ]===
-  /** check wether a medium is (re)writeable (as e.g. RVT) or not (e.g. DVD)
-   * @class common
-   * @method medium_is_rw
-   * @param integer id mtype_id
-   * @return boolean TRUE if medium is writeable
-   */
-  function medium_is_rw($id) {
-    GLOBAL $rw_media;
-    $rw = explode(",",$rw_media);
-    if ( in_array($id,$rw) ) return TRUE;
-    return FALSE;
-  }
-
+   #===================================================[ form functions ]===
   /** Build &lt;SELECT&gt; box for MediaTypes
    * @class common
    * @method make_mtype_selectbox
    * @param string name name for the &lt;SELECT&gt; object
    * @param optional integer selected which mtype_id should be marked selected
-   * @param optional boolean short wether to use the short name of mtype
-   * @return string the complete HTML code for the &lt;SELECT&gt; box (default)
+   * @param optional boolean short wether to use the short name of mtype (default)
+   * @return string the complete HTML code for the &lt;SELECT&gt; box
    */
   function make_mtype_selectbox($name,$selected=1,$short=TRUE) {
     GLOBAL $db;
@@ -285,6 +272,37 @@ class common {
     }
     $select .= "</SELECT>";
     return $select;
+  }
+
+  /** Build &lt;SELECT&gt; box for LastMovieNum
+   * @class common
+   * @method make_lastnum_selectbox
+   * @param string name name for the &lt;SELECT&gt; object
+   * @return string the complete HTML code for the &lt;SELECT&gt; box
+   */
+   function make_lastnum_selectbox($name) {
+    GLOBAL $db;
+    $select = "<SELECT NAME='$name'>";
+    $lastnum = $db->get_lastmovienum();
+    for ($i=0;$i<count($lastnum);++$i) {
+      $select .= "<OPTION>" . $lastnum[$i][entry] . "</OPTION>";
+    }
+    $select .= "</SELECT>";
+    return $select;
+   }
+
+   #===================================================[ misc functions ]===
+  /** check wether a medium is (re)writeable (as e.g. RVT) or not (e.g. DVD)
+   * @class common
+   * @method medium_is_rw
+   * @param integer id mtype_id
+   * @return boolean TRUE if medium is writeable
+   */
+  function medium_is_rw($id) {
+    GLOBAL $rw_media;
+    $rw = explode(",",$rw_media);
+    if ( in_array($id,$rw) ) return TRUE;
+    return FALSE;
   }
 
  } // end class common

@@ -1,5 +1,6 @@
 # ========================================================
-# English Translation phrases for phpVideoPro
+# Swedish Translation phrases for phpVideoPro
+# by Tony Granberg
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='sv';

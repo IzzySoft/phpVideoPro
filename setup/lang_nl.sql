@@ -1,5 +1,6 @@
 # ========================================================
 # Dutch Translation phrases for phpVideoPro
+# by Tom Albers
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='nl';

@@ -38,6 +38,11 @@
  <script language="JavaScript" src="<? echo $nav_script ?>"></script>
  <script language="JavaScript">
 
+  function open_help() {
+   var pos = (screen.width/2)-400;
+   campus=eval("window.open('<? echo $base_url ?>help/index.php','<? echo lang("help") ?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
+  }
+
   var myNavBar1 = new NavBar(0);
   var dhtmlMenu;
 
@@ -77,7 +82,7 @@
 
   dhtmlMenu = new NavBarMenu(62, 80);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "<? echo $base_url ?>help/index.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "JavaScript:open_help()"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "<? echo $base_url ?>about.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "<? echo $base_url ?>history.php"));
   myNavBar1.addMenu(dhtmlMenu);

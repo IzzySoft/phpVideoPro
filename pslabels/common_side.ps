@@ -39,7 +39,10 @@ gsave
   %% start at left_text_offset for X and 
   %% 0.9 * label_height (1 - 1/(2* no_of_lines) for Y
   %%
-  1.2 cm label_height 0.9 mul height 2 div sub moveto % variablen einbauen !
+  %% for Y is more complicated (remember PS starts the side buttom-up):
+  %% first calculate half of the "free space", then move it up over the text
+  %% (label_height*0.9-this_lines*height)/2 + (this_lines-0.5)*height
+  1.2 cm label_height 0.9 mul this_lines height mul sub 2 div height this_lines 0.5 sub mul add moveto
 %%  0 height neg rmoveto	% only in simple_side
 <!-- BEGIN definitionblock -->
   gsave

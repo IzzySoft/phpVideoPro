@@ -18,34 +18,6 @@
   * @author Izzy (izzysoft@qumran.org)
   * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
   */
- /** Color settings for HTML code
-  * @class preferences
-  * @attribute array colors
-  */
- /** Filter settings for DB queries
-  * @class preferences
-  * @attribute object filter
-  */
- /** Default language for translation system
-  * @class preferences
-  * @attribute string lang
-  */
- /** Default template directory
-  * @class preferences
-  * @attribute string template
-  */
- /** Datasets per page
-  * @class preferences
-  * @attribute integer display_limit
-  */
- /** Date format to use
-  * @class preferences
-  * @attribute string date_format
-  */
- /** Lines per page (for printing)
-  * @class preferences
-  * @attribute integer page_length
-  */
 
  class preferences {
   var $colors, $filter, $lang, $template,
@@ -195,6 +167,52 @@
    // if we get here, there's no filter defined
    return "";
   } // end get_filters()
+
+ /** Color settings for HTML code
+  * @class preferences
+  * @attribute array colors
+  */
+ /** Filter settings for DB queries
+  * @class preferences
+  * @attribute object filter
+  * @version object description:<pre>
+  * $filter->mtype       (Array of $id)
+  * $filter->length_min  (int)
+  * $filter->length_max  (int)
+  * $filter->aquired_min (int)
+  * $filter->aquired_max (int)
+  * $filter->pict        (Array of $id)
+  * $filter->color       (Array of $id)
+  * $filter->tone        (Array of $id)
+  * $filter->lp          (Boolean)
+  * $filter->fsk_min     (int)
+  * $filter->fsk_max     (int)
+  * $filter->title       (String)
+  * $filter->cat         (Array of $id)
+  * $filter->actor       (Array of $id)
+  * $filter->director    (Array of $id)
+  * $filter->composer    (Array of $id)</pre>
+  */
+ /** Default language for translation system
+  * @class preferences
+  * @attribute string lang
+  */
+ /** Default template directory
+  * @class preferences
+  * @attribute string template
+  */
+ /** Datasets per page
+  * @class preferences
+  * @attribute integer display_limit
+  */
+ /** Date format to use
+  * @class preferences
+  * @attribute string date_format
+  */
+ /** Lines per page (for printing)
+  * @class preferences
+  * @attribute integer page_length
+  */
 
  } // end class preferences
 

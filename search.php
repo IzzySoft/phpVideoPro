@@ -21,6 +21,7 @@
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"medialist.tpl"));
    $t->set_block("list","mdatablock","mdatalist");
+   $t->set_block("list","emptyblock","emptylist");
    if (!$start) $start = 0;
    $values = array ("mtype_id"=>$mtype_id,"cat_id"=>$cat_id,"ptype"=>$ptype,
                     "pname"=>$pname,"title"=>$title,"comment"=>$comment,

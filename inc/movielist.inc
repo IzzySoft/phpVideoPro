@@ -37,6 +37,10 @@
  #======================================================[ create the list ]===
  include("inc/header.inc");
  #---------------------------------------------------------[ movies' data ]---
+ if ( !count($mtype) ) {
+   $t->set_var("no_data",lang("no_entries_found"));
+   $t->parse("emptylist","emptyblock");
+ }
  for ($i=0;$i<count($mtype);$i++) {
    $t->set_var("listtitle",lang("medialist"));
    $t->set_var("mtype",$mtype[$i]);

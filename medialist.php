@@ -23,6 +23,7 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"medialist.tpl"));
  $t->set_block("list","mdatablock","mdatalist");
+ $t->set_block("list","emptyblock","emptylist");
 
  #=======================================[ get movies and setup variables ]===
  $query = "\$db->get_movielist(\"$order\",\"\",$start)";

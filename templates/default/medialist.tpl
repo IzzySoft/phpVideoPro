@@ -22,6 +22,9 @@
        <TD>{category}</TD>
    </TR>
    <!-- END mdatablock -->
+   <!-- BEGIN emptyblock -->
+   <TR><TD COLSPAN="7"><DIV ALIGN="center">{no_data}</DIV></TD></TR>
+   <!-- END emptyblock -->
   </Table>
  </TD></TR>
  <TR><TD>{first}{left}</TD>

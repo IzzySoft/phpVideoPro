@@ -22,12 +22,11 @@
  $agent->version = $browser->getVer();
 
  #======================================[ setup menu depending on browser ]===
+ $oldmenue = FALSE;
  if ($agent->name == "mozilla") {
   if ($agent->version < 5) {
    $oldmenue = TRUE;
   }
- } else {
-  $oldmenue = FALSE;
  }
  if ($oldmenue) {
   $nav_script = $base_path . "inc/oldmenue.inc";

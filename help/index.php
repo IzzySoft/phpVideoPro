@@ -279,7 +279,7 @@ class pagemaker {
 
 
 ###################==================================[ MAIN - HERE WE GO! ]===
-$title = "phpVideoPro v$version - " . lang("help") . ": ";
+$title = "phpVideoPro v$version @ $site - " . lang("help") . ": ";
 if ($topic) { $title .= lang($topic); } else { $title .= lang("index"); }
 
 echo "<HTML><HEAD>\n";

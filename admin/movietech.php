@@ -18,11 +18,16 @@
 
  #==================================================[ process the changes ]===
  if ($update) {
-   if ($error) {
-     $error = substr($error,1);
-     $save_result = $colors["err"] . lang("user_update_failed",$error) . "</Font><BR>\n";
-   } else {
+   switch($type) {
+     case "pict"  : $success = $db->set_pict($name,$sname,$id); break;
+     case "color" : $success = $db->set_color($name,$sname,$id); break;
+     case "mtype" : $success = $db->set_mtypes($name,$sname,$id); break;
+     default      :
+   }
+   if ($success) {
      $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+   } else {
+     $save_result = $colors["err"] . lang("update_failed") . "</Font><BR>\n";
    }
  }
 
@@ -39,56 +44,123 @@
  $t->set_block("mainblock","mtypeitemblock","mtype");
  $t->set_block("template","editblock","edit");
 
- #---------------------------------------------------------[ screen block ]---
- $picts = $db->get_pict();
- $pictcount = count($picts);
- for ($i=0;$i<$pictcount;++$i) {
-   $t->set_var("item_name",$picts[$i][name]);
-   $t->set_var("item_sname",$picts[$i][sname]);
-   $edit  = $pvp->link->linkurl("$PHP_SELF?type=pict&edit=" .$picts[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-   $trash = $pvp->link->linkurl("$PHP_SELF?type=pict&delete=" .$picts[$i][id],"<IMG SRC='$trash_img' BORDER='0'>");
-   $t->set_var("edit",$edit);
-   $t->set_var("trash",$trash);
-   $t->parse("screen","screenitemblock",TRUE);
- }
- $t->set_var("screen_title",lang("screen"));
- $t->set_var("screen_add",$pvp->link->linkurl("$PHP_SELF?add=screen",lang("add_entry")));
+ #----------------------------------------------------------[ edit screen ]---
+ if ($edit) {
+   switch($type) {
+     case "pict"  : $t->set_var("edit_title",lang("screen"));
+                    $item = $db->get_pict($edit);
+                    break;
+     case "color" : $t->set_var("edit_title",lang("picture"));
+                    $item = $db->get_color($edit);
+                    break;
+     case "mtype" : $t->set_var("edit_title",lang("mediatype"));
+                    $item = $db->get_mtypes($edit);
+                    break;
+     default      :
+   }
+   $t->set_var("name_name",lang("name"));
+   $t->set_var("name",$item[name]);
+   $t->set_var("sname_name",lang("sname"));
+   $t->set_var("sname",$item[sname]);
+   $t->set_var("type",$type);
+   $t->set_var("id",$edit);
+   $t->set_var("add",lang("update"));
+   $t->set_var("main",""); # disable list
+   $t->parse("edit","editblock");
+ } elseif ($add) {
+   switch($add) {
+     case "pict"   : $t->set_var("edit_title",lang("screen"));
+                     break;
+     case "color"  : $t->set_var("edit_title",lang("picture"));
+                     break;
+     case "mtype"  : $t->set_var("edit_title",lang("mediatype"));
+                     break;
+     default       :
+   }
+   $t->set_var("name_name",lang("name"));
+   $t->set_var("sname_name",lang("sname"));
+   $t->set_var("type",$add);
+   $t->set_var("add",lang("create"));
+   $t->set_var("main",""); # disable list
+   $t->parse("edit","editblock");
+ } else {
+   if ($delete) {
+     switch($type) {
+       case "pict"  : $success = $db->set_pict("","",$delete); break;
+       case "color" : $success = $db->set_color("","",$delete); break;
+       case "mtype" : $success = $db->set_mtypes("","",$delete); break;
+       default      :
+     }
+     if ($success) {
+       $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+     } else {
+       $save_result = $colors["err"] . lang("update_failed") . "</Font><BR>\n";
+     }
+   }
 
- #----------------------------------------------------------[ color block ]---
- $colors = $db->get_color();
- $colorcount = count($colors);
- for ($i=0;$i<$colorcount;++$i) {
-   $t->set_var("item_name",$colors[$i][name]);
-   $t->set_var("item_sname",$colors[$i][sname]);
-   $edit  = $pvp->link->linkurl("$PHP_SELF?type=color&edit=" .$colors[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-   $trash = $pvp->link->linkurl("$PHP_SELF?type=color&delete=" .$colors[$i][id],"<IMG SRC='$trash_img' BORDER='0'>");
-   $t->set_var("edit",$edit);
-   $t->set_var("trash",$trash);
-   $t->parse("color","coloritemblock",TRUE);
- }
- $t->set_var("color_title",lang("picture"));
- $t->set_var("color_add",$pvp->link->linkurl("$PHP_SELF?add=color",lang("add_entry")));
+   #-------------------------------------------------------[ screen block ]---
+   $picts = $db->get_pict();
+   $pictcount = count($picts);
+   for ($i=0;$i<$pictcount;++$i) {
+     $t->set_var("item_name",$picts[$i][name]);
+     $t->set_var("item_sname",$picts[$i][sname]);
+     $edit  = $pvp->link->linkurl("$PHP_SELF?type=pict&edit=" .$picts[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink("$PHP_SELF?type=pict&delete=".$picts[$i][id]);
+     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $t->set_var("edit",$edit);
+     $t->set_var("trash",$trash);
+     $t->parse("screen","screenitemblock",TRUE);
+   }
+   $t->set_var("screen_title",lang("screen"));
+   $t->set_var("screen_add",$pvp->link->linkurl("$PHP_SELF?add=pict",lang("add_entry")));
 
- #---------------------------------------------------------[ mtypes block ]---
- $mtypes = $db->get_mtypes();
- $mtypecount = count($mtypes);
- for ($i=0;$i<$mtypecount;++$i) {
-   $t->set_var("item_name",$mtypes[$i][name]);
-   $t->set_var("item_sname",$mtypes[$i][sname]);
-   $edit  = $pvp->link->linkurl("$PHP_SELF?type=mtype&edit=" .$mtypes[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-   $trash = $pvp->link->linkurl("$PHP_SELF?type=mtype&delete=" .$mtypes[$i][id],"<IMG SRC='$trash_img' BORDER='0'>");
-   $t->set_var("edit",$edit);
-   $t->set_var("trash",$trash);
-   $t->parse("mtype","mtypeitemblock",TRUE);
- }
- $t->set_var("mtype_title",lang("mediatype"));
- $t->set_var("mtype_add",$pvp->link->linkurl("$PHP_SELF?add=mtype",lang("add_entry")));
+   #--------------------------------------------------------[ color block ]---
+   $colors = $db->get_color();
+   $colorcount = count($colors);
+   for ($i=0;$i<$colorcount;++$i) {
+     $t->set_var("item_name",$colors[$i][name]);
+     $t->set_var("item_sname",$colors[$i][sname]);
+     $edit  = $pvp->link->linkurl("$PHP_SELF?type=color&edit=" .$colors[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink("$PHP_SELF?type=color&delete=".$colors[$i][id]);
+     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $t->set_var("edit",$edit);
+     $t->set_var("trash",$trash);
+     $t->parse("color","coloritemblock",TRUE);
+   }
+   $t->set_var("color_title",lang("picture"));
+   $t->set_var("color_add",$pvp->link->linkurl("$PHP_SELF?add=color",lang("add_entry")));
 
- $t->set_var("name",lang("name"));
- $t->set_var("sname",lang("sname"));
- $t->parse("main","mainblock");
+   #-------------------------------------------------------[ mtypes block ]---
+   $mtypes = $db->get_mtypes();
+   $mtypecount = count($mtypes);
+   for ($i=0;$i<$mtypecount;++$i) {
+     $t->set_var("item_name",$mtypes[$i][name]);
+     $t->set_var("item_sname",$mtypes[$i][sname]);
+     $edit  = $pvp->link->linkurl("$PHP_SELF?type=mtype&edit=" .$mtypes[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink("$PHP_SELF?type=mtype&delete=".$mtypes[$i][id]);
+     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $t->set_var("edit",$edit);
+     $t->set_var("trash",$trash);
+     $t->parse("mtype","mtypeitemblock",TRUE);
+   }
+   $t->set_var("mtype_title",lang("mediatype"));
+   $t->set_var("mtype_add",$pvp->link->linkurl("$PHP_SELF?add=mtype",lang("add_entry")));
+
+   $t->set_var("name",lang("name"));
+   $t->set_var("sname",lang("sname"));
+   $t->parse("main","mainblock");
  
- $t->set_var("edit",""); # remove editblock
+   $t->set_var("edit",""); # remove editblock
+?>
+<SCRIPT LANGUAGE="JavaScript">
+ function delconfirm(url) {
+  check = confirm("<?=lang("confirm_delete")?>");
+  if (check == true) window.location.href=url;
+ }
+</SCRIPT>
+<?
+ } // end "else" for edit/add/delete
+
  $t->set_var("listtitle",lang("admin_movietech"));
  $t->set_var("formtarget",$PHP_SELF);
  $t->set_var("save_result",$save_result);

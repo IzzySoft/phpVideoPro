@@ -12,9 +12,6 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- Restore function should take care for changed/new categories (refering to
-  them not via id but the internal name to correctly assign even detect changed
-  ones, and having categories not yet existing added)
 - Restore function should be able to ADD to existing entries by evaluating
   the mtype set with the imported movie, and then correctly increment the
   MediaNr while adding the movie. As with categories, new mediatypes should

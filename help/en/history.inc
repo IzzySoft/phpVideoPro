@@ -13,6 +13,11 @@
      with Netscape &lt; v6)
  <li>Pressing the "Cancel" button of the prompt for the media number for a new
      entry (menu Edit-&gt;New...) no longer results in an error
+ <li>the Restore function should now take care for new categories - which may
+     be important if you import data from a different installation where new
+     categories may have been added. For this we refer to the categories
+     internal name - so be again warned here not to change that one for
+     existing entries ;)
 </ul>
 
 [title]

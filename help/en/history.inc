@@ -5,8 +5,10 @@
 0.5.4 (2003)
 [text]
 <ul>
- <li>Available languages in select box on configuration screen are now ordered
+ <li>available languages in select box on configuration screen are now ordered
      alphabetically
+ <li>translations for a specific language can now be removed via the
+     configuration screen (via the admin menu)
 </ul>
 
 [title]

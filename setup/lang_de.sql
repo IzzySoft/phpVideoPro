@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.5.2
+# German Language File created by phpVideoPro v0.5.3
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
@@ -119,6 +119,8 @@ INSERT INTO lang VALUES ('date_rec','de','Aufnahmedatum');
 INSERT INTO lang VALUES ('day','de','Tag');
 INSERT INTO lang VALUES ('db_stats','de','Statistiken');
 INSERT INTO lang VALUES ('delete','de','Löschen');
+INSERT INTO lang VALUES ('delete_lang','de','Übersetzungen löschen');
+INSERT INTO lang VALUES ('delete_lang_comment','de','Entfernt alle Übersetzungen für die angegebene Sprache aus der Datenbank. Die Sprachdatei bleibt dabei unangetastet, sodass ein späteres Neu-Einlesen jederzeit möglich ist (sofern eine Sprachdatei existiert).');
 INSERT INTO lang VALUES ('delete_orphans','de','Lösche %1 verwaiste Einträge:');
 INSERT INTO lang VALUES ('delete_remaining','de','alle verbleibenden Daten dieses Films werden nun gelöscht');
 INSERT INTO lang VALUES ('deleting_entry','de','Lösche Datensatz %1');

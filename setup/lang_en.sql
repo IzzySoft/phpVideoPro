@@ -114,7 +114,7 @@ INSERT INTO lang VALUES('select_add_lang','en','Select additional language to in
 INSERT INTO lang VALUES('select_add_lang_comment','en','(English is already installed and always will be - see next item. For other languages that are already installed, see next item, too.)');
 INSERT INTO lang VALUES('no_add_lang','en','No additional language available.');
 INSERT INTO lang VALUES('refresh_lang','en','Refresh language');
-INSERT INTO lang VALUES('refresh_lang_comment','en','(re-insert phrases from language file into db)');
+INSERT INTO lang VALUES('refresh_lang_comment','en','Re-insert phrases from language file into DB');
 INSERT INTO lang VALUES('none','en','None');
 INSERT INTO lang VALUES('select_primary_lang','en','Select primary language');
 INSERT INTO lang VALUES('select_primary_lang_comment','en','(for missing phrases, there will always be a fall-back to English)');
@@ -367,3 +367,5 @@ INSERT INTO lang VALUES('confirm_delete','en','Do you really want to delete this
 INSERT INTO lang VALUES('movies_left_reference','en','This entry cannot be deleted: There are %1 movie(s) in DB referencing it.');
 INSERT INTO lang VALUES('cat_handle_empty','en','The handle for a category must not be empty. Please go back and fix this for category #%1.');
 INSERT INTO lang VALUES('disktype_name_empty','en','The name for a disk type must not be empty. Please go back and fix this for disk type #%1.');
+INSERT INTO lang VALUES('delete_lang','en','Delete language');
+INSERT INTO lang VALUES('delete_lang_comment','en','Delete all phrases of the specified language from db. This will not delete the language file, so you can re-insert phrases later (if you do not delete the file yourself).');

@@ -2,8 +2,10 @@
    /* $Id$ */
 
   $page_id = $stafftype;
-//  $stafftable = $stafftype . "s";
   include("inc/header.inc");
+  $t = new Template($pvp->tpl_dir);
+  $t->set_file(array("list"=>"stafflist_list.tpl",
+                     "item"=>"stafflist_item.tpl"));
   $filter = get_filters();
 
   function getStaffClause($i) {
@@ -41,13 +43,6 @@
     $i++;
   }
 
-  // draw table header
-  echo "<H2 Align=Center>" . lang($page_id) . "</H2>\n";
-  echo "<TABLE ALIGN=\"center\" BORDER=\"1\">\n";
-  echo " <TR><TH>" . lang($stafftype) . "</TH><TH>" . lang("title") . "</TH>"
-     . "<TH>" . lang("category") . "</TH><TH>" . lang("length") . "</TH>"
-     . "<TH>" . lang("medianr") . "</TH></TR>\n";
-
   // now get & draw the list
   for ($i=0;$i<count($staff);$i++) {
     $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id,";
@@ -62,51 +57,58 @@
     $query .= " FROM video v, cat c, mtypes m";
     $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id AND ("
             . getStaffClause($i);
-/*
-            . " (v.$stafftype"."1_id='" . $staff[$i]->id ."'"
-	    . " AND v.$stafftype"."1_list='1') OR"
-            . " (v.$stafftype"."2_id='" . $staff[$i]->id ."'"
-	    . " AND v.$stafftype"."2_list='1') OR"
-            . " (v.$stafftype"."3_id='" . $staff[$i]->id ."'"
-	    . " AND v.$stafftype"."3_list='1') OR"
-            . " (v.$stafftype"."4_id='" . $staff[$i]->id ."'"
-	    . " AND v.$stafftype"."4_list='1') OR"
-            . " (v.$stafftype"."5_id='" . $staff[$i]->id ."'"
-	    . " AND v.$stafftype"."5_list='1'))";
-*/
     if ( strlen($filter) ) $query .= " AND ($filter)";
-//    $query .= " ORDER BY v.mtype_id DESC,v.cass_id";
     $same_name = FALSE;
+    $row = 0;
     dbquery($query);
     while ($db->next_record()) {
-     $mtype    = $db->f('sname');
-     $mtype_id = $db->f('mtype_id');
-     $cass_id  = $db->f('cass_id');
-     $nr       = $cass_id;
-     $part     = $db->f('part');
-     while (strlen($nr)<4) { $nr = "0" . $nr; }
-     $nr      .= "-";
-     if (strlen($part)<2) { $nr .= "0" . $part; } else { $nr .= $part; }
-     $movie_id = urlencode($mtype . " " . $nr);
-     $title    = $db->f('title'); check_empty($title);
-     $length   = $db->f('length'); check_empty($length);
-     $year     = $db->f('year'); check_empty($year);
-     $aq_date  = $db->f('aq_date');  check_empty($aq_date);
-     $category = $db->f('name'); check_empty($category);
-
+     $mtype[$row]    = $db->f('sname');
+     $mtype_id[$row] = $db->f('mtype_id');
+     $cass_id[$row]  = $db->f('cass_id');
+     $nr[$row]       = $cass_id[$row];
+     $part[$row]     = $db->f('part');
+     while (strlen($nr[$row])<4) { $nr[$row] = "0" . $nr[$row]; }
+     $nr[$row]      .= "-";
+     if (strlen($part[$row])<2) {
+       $nr[$row] .= "0" . $part[$row];
+     } else { $nr[$row] .= $part[$row]; }
+     $movie_id[$row] = urlencode($mtype[$row] . " " . $nr[$row]);
+     $title[$row]    = $db->f('title'); check_empty($title[$row]);
+     $length[$row]   = $db->f('length'); check_empty($length[$row]);
+     $year[$row]     = $db->f('year'); check_empty($year[$row]);
+     $aq_date[$row]  = $db->f('aq_date');  check_empty($aq_date[$row]);
+     $category[$row] = $db->f('name'); check_empty($category[$row]);
+    }
+    $same_name = FALSE;
+    for ($k=0;$k<count($mtype);$k++) {
      if ($same_name) {
-       echo " <TR><TD>&nbsp;</TD>\n";
+       $t->set_var("name","&nbsp;");
+       $t->set_var("namesep","&nbsp;");
+       $t->set_var("firstname","&nbsp;");
      } else {
-       echo " <TR><TD>" . $staff[$i]->name . ", " . $staff[$i]->firstname . "</TD>\n";
+       $t->set_var("name",$staff[$i]->name);
+       $t->set_var("namesep",", ");
+       $t->set_var("firstname",$staff[$i]->firstname);
      }
-     echo "     <TD>$title</TD>\n"
-        . "     <TD>$category</TD>\n"
-	. "     <TD>$length</TD>\n"
-	. "     <TD><A HRef=\"edit.php?nr=$movie_id&cass_id=$cass_id&part=$part&mtype_id=$mtype_id\">$mtype $nr</A></TD></TR>\n";
-    $same_name = TRUE;
+     $t->set_var("title",$title[$k]);
+     $t->set_var("category",$category[$k]);
+     $t->set_var("length",$length[$k]);
+     $t->set_var("url","edit.php?nr=$movie_id[$k]&cass_id=$cass_id[$k]&part=$part[$k]&mtype_id=$mtype_id[$k]");
+     $t->set_var("mtype",$mtype[$k]);
+     $t->set_var("nr",$nr[$k]);
+     $t->parse("mediadata","item",TRUE);
+     $same_name = TRUE;
     }
   }
-  echo "</Table>\n";
+
+  // draw table header
+  $t->set_var("listtitle",lang($page_id));
+  $t->set_var("stafftype",lang($stafftype));
+  $t->set_var("title",lang("title"));
+  $t->set_var("category",lang("category"));
+  $t->set_var("length",lang("length"));
+  $t->set_var("medianr",lang("medianr"));
+  $t->pparse("out","list");
 
   include("inc/footer.inc");
 

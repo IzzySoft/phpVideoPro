@@ -1,14 +1,14 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.4.7
+# German Language File created by phpVideoPro v0.4.8
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
 INSERT INTO lang VALUES ('about','de','About');
 INSERT INTO lang VALUES ('actions','de','Aktionen');
-INSERT INTO lang VALUES ('actor','de','Schauspieler');
-INSERT INTO lang VALUES ('actors','de','Schauspieler');
-INSERT INTO lang VALUES ('actors_list','de','Liste der Schauspieler');
-INSERT INTO lang VALUES ('actor_persons','de','Schauspieler');
+INSERT INTO lang VALUES ('actor','de','Darsteller');
+INSERT INTO lang VALUES ('actors','de','Darsteller');
+INSERT INTO lang VALUES ('actors_list','de','Liste der Darsteller');
+INSERT INTO lang VALUES ('actor_persons','de','Darsteller');
 INSERT INTO lang VALUES ('add_access','de','Darf Datensätze hinzufügen');
 INSERT INTO lang VALUES ('add_entry','de','Neuer Datensatz');
 INSERT INTO lang VALUES ('add_user','de','Benutzer hinzufügen');
@@ -18,6 +18,7 @@ INSERT INTO lang VALUES ('admin_filter','de','Default Filtereinstellung');
 INSERT INTO lang VALUES ('admin_orphans','de','Verwaiste Einträge entfernen');
 INSERT INTO lang VALUES ('admin_printers','de','Drucker bearbeiten');
 INSERT INTO lang VALUES ('admin_pstemplates','de','PSLabel Templates bearbeiten');
+INSERT INTO lang VALUES ('admin_sessions','de','Sessions verwalten');
 INSERT INTO lang VALUES ('admin_translations','de','Übersetzungen bearbeiten');
 INSERT INTO lang VALUES ('admin_useredit','de','Bearbeite Benutzerkonto');
 INSERT INTO lang VALUES ('admin_users','de','Benutzerverwaltung');
@@ -124,6 +125,7 @@ INSERT INTO lang VALUES ('edit','de','Bearbeiten');
 INSERT INTO lang VALUES ('edit_entry','de','Bearbeite Datensatz %1');
 INSERT INTO lang VALUES ('enable_cookies','de','Cookies aktivieren?');
 INSERT INTO lang VALUES ('enable_cookies_comment','de','Sollen benutzerspezifische Einstellungen (z.B. Filter) über Cookies verwaltet werden?');
+INSERT INTO lang VALUES ('ended_sessions','de','Beendete Sitzungen');
 INSERT INTO lang VALUES ('enter_min_free','de','Mindestgröße des freien Platzes in Minuten:');
 INSERT INTO lang VALUES ('expire_cookies','de','Haltbarkeitsdatum der Kekse');
 INSERT INTO lang VALUES ('expire_cookies_comment','de','Wie lange sollen die Cookies auf dem Rechner des Benutzers gespeichert bleiben?');
@@ -213,6 +215,7 @@ INSERT INTO lang VALUES ('no_entry_in_tapelist','de','Fehlgeschlagen - kein Eint
 INSERT INTO lang VALUES ('no_orphans_found','de','Glückwunsch! Keine Leiche (mehr?) im Keller.');
 INSERT INTO lang VALUES ('no_space_of','de','Es konnte kein Medium mit mindestens %1 Minuten freiem Platz in der Datenbank gefunden werden.');
 INSERT INTO lang VALUES ('of_aquiration','de','der Aufnahme');
+INSERT INTO lang VALUES ('old_sessions','de','Sitzungen älter als <INPUT NAME=\"%1\" VALUE=\"\" CLASS=\"yesnobutton\"> Tage');
 INSERT INTO lang VALUES ('orig_medianr','de','ursprüngliche MediaNr');
 INSERT INTO lang VALUES ('orig_trans','de','Original-Text (%1)');
 INSERT INTO lang VALUES ('orphans_found','de','%1 verwaiste Einträge gefunden:');
@@ -252,6 +255,9 @@ INSERT INTO lang VALUES ('sel_target_lang','de','Zielsprache für die Übersetzung
 INSERT INTO lang VALUES ('session_expired','de','Die Session ist nicht länger gültig - eine erneute Anmeldung ist nötig.');
 INSERT INTO lang VALUES ('session_purgetime','de','Inaktivitäts-Timeout für Sitzungen');
 INSERT INTO lang VALUES ('session_purgetime_comment','de','Wie lange soll eine (angemeldete) Sitzung ohne Benutzer-Aktivität gültig bleiben?');
+INSERT INTO lang VALUES ('sess_dla','de','Letzter Zugriff');
+INSERT INTO lang VALUES ('sess_end','de','Beendet');
+INSERT INTO lang VALUES ('sess_start','de','Gestartet');
 INSERT INTO lang VALUES ('set_filter','de','Filter setzen');
 INSERT INTO lang VALUES ('site_info_comment','de','für die Anzeige in der Titelbar');
 INSERT INTO lang VALUES ('source','de','Quelle');

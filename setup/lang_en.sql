@@ -344,4 +344,5 @@ INSERT INTO lang VALUES('sess_ip','en','Remote IP');
 INSERT INTO lang VALUES('sess_start','en','Started');
 INSERT INTO lang VALUES('sess_dla','en','Last accessed');
 INSERT INTO lang VALUES('sess_end','en','Ended');
-INSERT INTO lang VALUES('delete_old_session','en','Delete sessions older than <INPUT NAME="%1" VALUE="" CLASS="yesnobutton"> days');
+INSERT INTO lang VALUES('old_sessions','en','Sessions older than <INPUT NAME="%1" VALUE="" CLASS="yesnobutton"> days');
+INSERT INTO lang VALUES('ended_sessions','en','Ended Sessions');

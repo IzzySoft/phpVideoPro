@@ -54,11 +54,11 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.4.8');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.5.0');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
-INSERT INTO pvp_config (name,value) VALUES ('site','');
-INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','0');
+INSERT INTO pvp_config (name,value) VALUES ('site','MySite');
+INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
 INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','0');
 INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
 

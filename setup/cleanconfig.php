@@ -8,15 +8,13 @@
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # Administration: Clean up pvp_config and preferences table                 #
+ # included by update.php for updates from versions <= 0.4.8                 #
  #############################################################################
 
  /* $Id$ */
 
- include("inc/includes.inc");
- include("inc/header.inc");
-
  ####################################################[ CleanUp pvp_config ]###
- echo "<P><B>Cleaning up config table:</B>";
+ echo $colors["ok"] . " <LI>Cleaning up config table:";
  $rows = 0;
  $details = array ("rw_media","remove_empty_media","site","enable_cookies",
                    "expire_cookies","session_purgetime");
@@ -28,10 +26,10 @@
      if ( $db->affected_rows() ) ++$rows;
    }
  }
- echo " Found and removed duplicates for $rows entries.</P>\n";
+ echo " Found and removed duplicates for $rows entries.</FONT><BR>\n";
 
  ###################################################[ CleanUp preferences ]###
- echo "<P><B>Cleaning up preferences table:</B>";
+ echo $colors["ok"] . " <LI>Cleaning up preferences table:";
  $rows = 0;
  $details = array ("lang","template","display_limit","date_format",
                    "page_length","default_movie_colorid","default_movie_onlabel",
@@ -44,7 +42,6 @@
      if ( $db->affected_rows() ) ++$rows;
    }
  }
- echo " Found and removed duplicates for $rows entries.</P>\n";
+ echo " Found and removed duplicates for $rows entries.</FONT><BR>\n";
 
- include("inc/footer.inc");
 ?>

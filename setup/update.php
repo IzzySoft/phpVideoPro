@@ -129,7 +129,9 @@ $pvp->preferences->admin();
     case "0.4.5"    :
     case "0.4.6"    : queryf("0-4-6_to_0-4-7.sql","Update from v0.4.6 to v0.4.7");
     case "0.4.7"    : queryf("0-4-7_to_0-4-8.sql","Update from v0.4.7 to v0.4.8");
+    case "0.4.8"    : queryf("0-4-8_to_0-5-0.sql","Update from v0.4.8 to v0.5.0");
                       queryf("lang_en.sql","Refresh of English language support");
+                      include ("cleanconfig.php");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

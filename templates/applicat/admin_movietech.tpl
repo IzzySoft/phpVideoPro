@@ -84,7 +84,7 @@
 </FORM>
 <!-- END editblock -->
 
-
+<DIV STYLE="margin:3;text-align:center"><SPAN CLASS="virtual_button">{admin_avlang}</SPAN></DIV>
 </TABLE>
 </DIV>
 </TD></TR></TABLE>

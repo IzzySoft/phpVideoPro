@@ -199,6 +199,7 @@
 
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);
+ $t->set_var("admin_avlang",$pvp->link->linkurl("avlang.php",lang("admin_avlang")));
  $t->pparse("out","template");
 
  include("../inc/footer.inc");

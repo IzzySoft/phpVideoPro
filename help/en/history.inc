@@ -8,6 +8,9 @@
  <li>categories on the search and filter screen are now sorted by their
      translated name instead of the internal name
  <li>last fix on stats (v0.6.7) restricted rankings to "Top 1" (instead "Top 3")
+ <li>added some intro for new users to the initial screen. This intro can be
+     switched of on a per-user-based preference (via the edit-&gt;preferences
+     screen)
 </ul>
 
 [title]

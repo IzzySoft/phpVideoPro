@@ -147,3 +147,6 @@ INSERT INTO lang VALUES('lines_per_page_comment','de','Dieser Wert gibt an, wiev
 INSERT INTO lang VALUES('date_format','de','Datumsformat');
 INSERT INTO lang VALUES('date_format_comment','de','Gibt an, in welchem Format Datumsangaben angezeigt werden sollen. Zur Verfügung stehen die Formate y-m-d, d.m.y and d/m/y');
 INSERT INTO lang VALUES('listgen','de','Listengenerator');
+INSERT INTO lang VALUES('list','de','Liste');
+INSERT INTO lang VALUES('format','de','Format');
+INSERT INTO lang VALUES('line_count','de','Zeilen');

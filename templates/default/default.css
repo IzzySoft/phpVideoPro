@@ -1,6 +1,6 @@
 <style type="text/css">
 <!--
-  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
+  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
   a { text-decoration:none; }
   A:link{ text-decoration:none }
   A:visted{ text-decoration:none }

@@ -37,6 +37,7 @@ if (!$silent) {
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <meta http-equiv="cache-control" content="no-cache">
+ <meta http-equiv="content-language" content="<?=$pvp->preferences->lang?>">
  <Title><?echo $pagename ?></Title>
  <script language="JavaScript">
 
@@ -48,11 +49,11 @@ if (!$silent) {
   }
 
  </script>
- <? include($nav_script);
-    include($base_path . "templates/default/default.css") ?>
-</HEAD>
-<BODY leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"<?
-if ($oldmenue) echo " onLoad=\"init();\"" ?><!-- {body_tags}-->
+<?
+ include($nav_script);
+ include($base_path . "templates/default/default.css");
+ if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
+?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
  <tr>

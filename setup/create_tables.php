@@ -72,5 +72,33 @@ $query_count = 5;
       (you'll find it within the admin menue) and change the admin password,
       plus optionally setup new accounts or modify the guest account, so you
       don't need to login the next time ;) More information on this you'll find
-      within the online help system. Enjoy!</DIV></TD></TR>
+      within the online help system.</DIV></TD></TR>
+ <TR><TD><DIV ALIGN="justify">Since there have been some problems reported
+      concerning cookie and session management, after v0.4.8 I decided to change
+      the initial values to somewhat fail-safe. As long as you use phpVideoPro
+      in a single user environment only, you may stay with these settings,
+      though they have their disadvantages. I recommend you to use cookies for
+      several reasons - most important even in a single user environment is
+      the storage of temporary preferences like filters. For a multi user
+      environment, it is strongly recommended to enforce the usage of cookies
+      by phpVideoPro -- otherwise users will overwrite each others preferences
+      plus the application defaults, since without cookies both are the same
+      at the moment.</DIV></TD></TR>
+ <TR><TD><DIV ALIGN="justify">So please, after changing the master password,
+      go to the admin-&gt;configuration menu and check at least the following
+      items:<UL>
+      <LI><b>enable cookies:</b> this ensures that phpVideoPro always uses
+          cookies, so no user can overwrite another's preferences, plus you
+          may use non-permanent preferences (via the edit menu -- preferences
+          changed via the admin menu are permanent application defaults)</LI>
+      <LI><b>cookies lifetime:</b> the new default is to expire the cookies
+          with the browser session. If you want your users to be able to store
+          their preferences beyond this limit, set it to somewhat different,
+          e.g. "1 year"</LI>
+      <LI><b>timeout inactive sessions:</b> this is a security relevant item,
+          at least if you decide to put phpVideoPro online. Initially, a
+          session is never expired. The recommended value is "2 hours" if the
+          application can be accessed via the Internet.</LI></UL></DIV></TD></TR>
+ <TR><TD><DIV ALIGN="justify">If you've read so far and noticed my hints, there's
+          only one thing left to say for me: Enjoy phpVideoPro!</DIV></TD></TR>
 </TABLE></BODY></HTML>

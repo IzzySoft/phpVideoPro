@@ -25,8 +25,6 @@ coming *sometimes* (maybe):
 - new database field: "lent to" (to find out where your media *really* are :)
 - making categories editable (user-defined categories etc.)
 - make menu template-driven
-- adding *all* media types to cass table. This requires a new field
-  (mtype) as well - and maybe we rename the table :)
 - configurable format of counter display: as is in db / in minutes / in hh:mm
   (same for length field)
 - making out-sourcing of security relevant files (inc/*) possible

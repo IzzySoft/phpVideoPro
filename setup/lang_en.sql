@@ -211,3 +211,4 @@ INSERT INTO lang VALUES('director_persons','en','Directors');
 INSERT INTO lang VALUES('actor_persons','en','Actors');
 INSERT INTO lang VALUES('categories','en','Categories');
 INSERT INTO lang VALUES('countries','en','Countries');
+INSERT INTO lang VALUES('stat_categories','en','Categories (used/all)');

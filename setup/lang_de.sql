@@ -1,5 +1,5 @@
 # ========================================================
-# English Translation phrases for phpVideoPro
+# German Translation phrases for phpVideoPro
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='de';
@@ -211,3 +211,4 @@ INSERT INTO lang VALUES('director_persons','de','Regisseure');
 INSERT INTO lang VALUES('actor_persons','de','Schauspieler');
 INSERT INTO lang VALUES('categories','de','Kategorien');
 INSERT INTO lang VALUES('countries','de','Länder');
+INSERT INTO lang VALUES('stat_categories','de','Kategorien (benutzt/alle)');

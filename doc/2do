@@ -12,8 +12,9 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- making deletion of empty media (on deletion of last movie) optional (right
-  now a medium is automatically deleted with the last movie on it)
+- moving color settings into template's stylesheet (remove from config screen)
+- moving parts from config.inc to config screen: rw_media, remove_empty and
+  defaults[scolor]
 
 coming *next*:
 - manage preferences via cookies, taking defaults from DB

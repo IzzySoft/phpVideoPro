@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.3.6 (November 2002)
+[text]
+<ul>
+ <li>added managment (i.e. search for and deletion of) orphaned entries in/from
+     the staff tables
+</ul>
+
+[title]
 0.3.5 (Oktober 29, 2002)
 [text]
 <ul>

@@ -77,6 +77,12 @@
    }
 
    ############################################################################
+   # delete a complete row from a table
+   function delete_row($table,$id) {
+     return $this->dbquery("DELETE FROM $table WHERE id IN ($id)"); 
+   }
+
+   ############################################################################
    # get all media types and return them as array
    function get_mtypes($restrict="") {
      if ( strlen($restrict) ) {
@@ -418,6 +424,7 @@
 		     "cat3_id","pict_id","commercials_id","lp");
      foreach($moviedetails as $value) {
        $$value = $this->f("$value");
+       $movie[$value] = $$value;
      }
      $movie[actors12] = $movie[actor1];
      if ( strlen($movie[actor2]) ) {
@@ -568,6 +575,20 @@
      $this->query("SELECT free FROM cass WHERE id=$id");
      if ( $this->next_record() ) return $this->f('free');
        else return "";
+   }
+
+   ############################################################################
+   # get space on a medium
+   function get_mediaspace($id,$field="type") {
+     $this->dbquery("SELECT $field FROM cass WHERE id=$id");
+     if ( $this->next_record() ) return $this->f("$field");
+     return "";
+   }
+
+   ############################################################################
+   # update freetime on a medium
+   function update_freetime($id,$free) {
+     return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id");
    }
 
    ############################################################################

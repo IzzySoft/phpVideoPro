@@ -26,5 +26,11 @@ screen, since a similiar "key" already exists within the translations table,
 or sometime later when you upgrade to a newer version, since <B>I</B>
 decided to use the same term). Thus you prevent trouble if you follow my rules :)
 
+[text]
+Since on update of a language first all translations belonging to it are removed
+from the database, I recommend you to record your changes into a separate
+language file. Before updating your language, make sure to add the contents of
+this file to the language file shipped, so your changes will remain.
+
 [eof]
 

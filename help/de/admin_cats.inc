@@ -31,5 +31,13 @@ entweder hier an dieser Stelle (falls bereits eine Übersetzung gleichen
 Übersetzung von <B>mir</B> hinzugefügt werden sollte). Dieses Problem läßt sich
 jedoch weitgehend vermeiden, wenn sich an meine Regeln gehalten wird :-)
 
+[text]
+Da bei der Aktualisierung von Übersetzungen bei einem Update bzw. über das
+"*configuration#" Menü zunächst alle bestehenden Übersetzungen der betroffenen
+Sprache gelöscht werden, ist es empfehlenswert, alle hier getätigten Änderungen
+in einer separaten Datei zu speichern. Vor einem Update sollte der Inhalt dieser
+Datei sodann der entsprechenden mitgelieferten Sprachdatei angehängt werden. Auf
+diese Weise bleiben hier gemachte Änderungen erhalten.
+
 [eof]
 

@@ -15,7 +15,7 @@ the MediaNr, you can view/edit details of that movie (see
 [text]
 Since this list can become quite long, it is split to multiple pages. You can
 define the maximum number of datasets per page, using the item "*display_limit#"
-on the <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A> menu.
+on the "<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>" menu.
 
 [eof]
 

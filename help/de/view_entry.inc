@@ -74,9 +74,11 @@ Die mit "*print_label#" bezeichnete Auswahl-Box ermöglicht den Druck eines
 Etiketts für das ausgewählte Medium. Es listet alle verfügbaren Vorlagen auf
 und startet die Anzeige eines Etiketts für das gesamte Medium (also eines,
 welches Titel und Laufzeit aller auf dem Medium verfügbaren Filme enthält).
-Derzeit (v0.2.4) ist die maximale Anzahl der Filme, die auf dem Etikett
-abgebildet werden, auf 4 beschränkt - dies wird ggf. später konfigurierbar
-werden.
+Je nach Größe und Format eines Etikettes, ist die Anzahl der auf selbigem
+verfügbaren Zeilen unterschiedlich: d.h. es können unter Umständen nicht alle
+Informationen untergebracht werden. Wie viele Zeilen verfügbar sind, ist in der
+Konfigurationsdatei des jeweiligen Etikettes festgelegt (siehe
+"<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>").
 
 [text]
 Um selbsterstellte Etikett-Vorlagen zu verwenden, sind diese einfach in das

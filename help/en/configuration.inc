@@ -28,7 +28,7 @@ as additional available, phpVideoPro uses its database. So to add a new
 language, one has to update this. This is done using SQL files which I for
 simplicity will call "language files" from now on. A new language file has to
 be introduced to the system, which is done done by setting this checkbox (and
-submitting the form, of course :). See "Language to install" below, as well as
+submitting the form, of course :). See "*select_add_lang#" below, as well as
 "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>" for details).
 
 [text]
@@ -95,7 +95,7 @@ there is <b><i>not</i></b> any remaining free time - so (s)he wishes to remove
 it from the management. If you e.g. don't delete movies from your recordables,
 but just overwrite them with new movies, this belongs to the second catagory,
 too. So decide here what is to happen when you <b><i>delete</i></b> the last
-item from a movie: check the box, and the medium will be removed from the
+item from a medium: check the box, and the medium will be removed from the
 "freespace table", i.e. it won't be available for free-space search. Leave it
 unchecked, and the medium's complete capacity will be considered as free and
 thus available space.
@@ -163,10 +163,10 @@ display (using the option "*in_list#" within the "*edit#" form.
 
 [text]
 <b>*lines_per_page#:</b> This is for the preparation of plain-text lists for
-printing (see <A HREF="{PHP_SELF}?topic=listgen">*listgen#</A>) and specifies
+printing (see "<A HREF="{PHP_SELF}?topic=listgen">*listgen#</A>") and specifies
 the amount of lines that fit on one sheet of paper. After the here specified
 number of lines, a form feed is inserted to start a new page. You can override
-this default on the *listgen# form.
+this default on the "*listgen#" form.
 
 [text]
 <b>*date_format#:</b> Specifies the format the date should be presented in. This

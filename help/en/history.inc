@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.4.0 (November/December 2002)
+[text]
+<ul>
+ <li>brought help files up-to-date
+ <li>fixed a minor bug concerning label's content
+</ul>
+
+[title]
 0.3.8 (November 10, 2002)
 [text]
 <ul>

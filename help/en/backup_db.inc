@@ -19,7 +19,7 @@ phpMyAdmin). Alternatively, you can let phpVideoPro do this.
 
 [text]
 In the latter case, you have to put the SQL file into the setup/ directory.
-Rename it to "restore.sql" Finally, act as if you where doing a fresh
+Rename it to "restore.sql". Finally, act as if you where doing a fresh
 installation - just select "restore" instead of "create". That's it.
 
 [title]
@@ -29,7 +29,9 @@ Why is there no "Restore Database" menue item?
 Easy to explain: of course I could put such an item there. But it wouldn't
 help you much: if your database is intact, you will not need to restore, will
 you? And if it is not intact, phpVideoPro wouldn't start up correctly - i.e.
-you could not use this menue item...
+you could not use this menue item...<BR>
+Moreover, anybody with access to this menue item could overwrite your database
+then. I guess, that's not in your interest.
 
 [eof]
 

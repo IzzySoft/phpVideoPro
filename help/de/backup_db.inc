@@ -31,7 +31,9 @@ Warum gibt es denn keinen Menüpunkt für die Wiederherstellung?
 Diese Frage läßt sich einfach beantworten: er macht keinen Sinn. Ist die
 Datenbank intakt, wird er nicht benötigt. Und ist sie nicht mehr intakt,
 startet phpVideoPro nicht mehr richtig - und das Menü ist gar nicht da, kann
-also auch nicht benutzt werden...
+also auch nicht benutzt werden...<BR>
+Außerdem könnte jeder, der Zugriff auf diesen Menüpunkt hat, die Datenbank
+überschreiben. Keine gute Idee - eher ein Sicherheitsrisiko.
 
 [eof]
 

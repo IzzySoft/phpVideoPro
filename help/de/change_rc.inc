@@ -7,35 +7,35 @@
 
 [text]
 Disk-Typen und RegionCodes beziehen sich immer auf das gesamte Medium, daher
-können sie in phpVideoPro auch nicht gemeinsam mit den Film-Daten bearbeitet
+kÃ¶nnen sie in phpVideoPro auch nicht gemeinsam mit den Film-Daten bearbeitet
 werden. Entweder werden diese Daten zusammen mit denen des ersten Filmes eines
-neuen Mediums erfasst - oder halt später über diese Seite ergänzt/korrigiert.
+neuen Mediums erfasst - oder halt spÃ¤ter Ã¼ber diese Seite ergÃ¤nzt/korrigiert.
 
 [title]
 *disk_type#
 
 [text]
 Ein Disk-Typ besteht aus einem oder zwei Teilen: immer enthalten ist der
-eigentliche Disk-Typ selbst, und in vielen Fällen kommt die Größe des Mediums
+eigentliche Disk-Typ selbst, und in vielen FÃ¤llen kommt die GrÃ¶ÃŸe des Mediums
 hinzu. Diese beiden Angaben helfen heraus zu finden, ob sich die betreffende
-Disk auf einem bestimmten DVD-Player wiedergeben läßt (so mancher Player
-unterstützt z.B. keine DVD-R oder gar überhaupt nichts selbst gebranntes), ob
-ein Backup mittels einer einfachen 1:1 Kopie möglich ist, und mehr. Darüber
-hinaus sind verschiedene Features (wie z.B. Regional-Codes) nur für bestimmte
-Disk-Typen (in diesem Falle DVDs) verfügbar.
+Disk auf einem bestimmten DVD-Player wiedergeben lÃ¤ÃŸt (so mancher Player
+unterstÃ¼tzt z.B. keine DVD-R oder gar Ã¼berhaupt nichts selbst gebranntes), ob
+ein Backup mittels einer einfachen 1:1 Kopie mÃ¶glich ist, und mehr. DarÃ¼ber
+hinaus sind verschiedene Features (wie z.B. Regional-Codes) nur fÃ¼r bestimmte
+Disk-Typen (in diesem Falle DVDs) verfÃ¼gbar.
 
 [title]
 *region_code#
 
 [text]
-Für die Anzahl der gleichzeitig erfassbaren RegionalCodes gibt es eigentlich
-kein Limit (außer, dass es nur die Codes 0..6 gibt). Eine Mehrfach-Auswahl ist
-hier möglich, da ich bereits von ein paar DVDs gehört habe, die mehr als einen
-(aber dennoch nicht alle) RegionalCodes unterstützen. Für RC-freie DVDs sollten
-dennoch nicht alle Felder markiert werden: der Code "0" steht für "code-free"
-und sollte in diesem speziellen Fall als einziger verwendet werden. Natürlich
-steht es jedem frei, trotzdem alle Häkchen zu machen - das ist aber wirklich
-nicht nötig :-)
+FÃ¼r die Anzahl der gleichzeitig erfassbaren RegionalCodes gibt es eigentlich
+kein Limit (auÃŸer, dass es nur die Codes 0..6 gibt). Eine Mehrfach-Auswahl ist
+hier mÃ¶glich, da ich bereits von ein paar DVDs gehÃ¶rt habe, die mehr als einen
+(aber dennoch nicht alle) RegionalCodes unterstÃ¼tzen. FÃ¼r RC-freie DVDs sollten
+dennoch nicht alle Felder markiert werden: der Code "0" steht fÃ¼r "code-free"
+und sollte in diesem speziellen Fall als einziger verwendet werden. NatÃ¼rlich
+steht es jedem frei, trotzdem alle HÃ¤kchen zu machen - das ist aber wirklich
+nicht nÃ¶tig :-)
 
 [eof]
 

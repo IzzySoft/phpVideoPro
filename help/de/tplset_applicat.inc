@@ -7,21 +7,21 @@
 
 [text]
 phpVideoPro hat ein Template-gesteuertes Frontend - was heisst, dass das
-"Look-and-feel" der Anwendung relativ einfach an die eigenen Bedürfnisse
-angepasst werden kann, indem man ein neues Template-Set hinzufügt bzw. ein
-bereits bestehendes ändert. Das <I>Applicat</I> Template-Set ist das erste,
-welches von dieser Funktionalität profitiert: bevor es der Anwendung hinzu
-gefügt wurde, existierte lediglich das <I>Default</I> Template-Set.
+"Look-and-feel" der Anwendung relativ einfach an die eigenen BedÃ¼rfnisse
+angepasst werden kann, indem man ein neues Template-Set hinzufÃ¼gt bzw. ein
+bereits bestehendes Ã¤ndert. Das <I>Applicat</I> Template-Set ist das erste,
+welches von dieser FunktionalitÃ¤t profitiert: bevor es der Anwendung hinzu
+gefÃ¼gt wurde, existierte lediglich das <I>Default</I> Template-Set.
 
 [text]
 Und obwohl <I>Applicat</I> sich hinsichtlich des Design der Formulare nicht 
 wesentlich vom </I>Default</I> Template-Set unterscheidet, erscheint es
-bedeutend klarer und bietet sogar zusätzliche Funktionalität: Die "TitleBar"
-jeder Seite enthält einige "QuickLinks" zu wichtigen Funktionen, die bislang
-nur durch teilweise mühsames Hangeln durch die Menüs erreichbar waren. Und
-auch wenn diese Buttons intuitiv und selbsterklärend sein sollten, sind sie
-in der folgenden Tabelle aufgeschlüsselt: ihre Funktion unterscheidet sich
-teilweise geringfügig, abhängig davon, ob man sich in der Applikation selbst
+bedeutend klarer und bietet sogar zusÃ¤tzliche FunktionalitÃ¤t: Die "TitleBar"
+jeder Seite enthÃ¤lt einige "QuickLinks" zu wichtigen Funktionen, die bislang
+nur durch teilweise mÃ¼hsames Hangeln durch die MenÃ¼s erreichbar waren. Und
+auch wenn diese Buttons intuitiv und selbsterklÃ¤rend sein sollten, sind sie
+in der folgenden Tabelle aufgeschlÃ¼sselt: ihre Funktion unterscheidet sich
+teilweise geringfÃ¼gig, abhÃ¤ngig davon, ob man sich in der Applikation selbst
 oder im Hilfe-System befindet.
 
 [title]
@@ -35,14 +35,14 @@ Beschreibung der Buttons
  <TR><TD><INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_back.gif" WIDTH="14" HEIGHT="13"
 ></TD>
      <TD><DIV ALIGN="center">-</DIV></TD>
-     <TD>Gehe einen Schritt in der History zurück (analog dem <I>Zurück</I> Button des Browsers)</TD></TR>
+     <TD>Gehe einen Schritt in der History zurÃ¼ck (analog dem <I>ZurÃ¼ck</I> Button des Browsers)</TD></TR>
  <TR><TD><INPUT TYPE="image" NAME="button_close" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_close.gif" WIDTH="14" HEIGHT="13"
 ></TD>
-     <TD>Abmelden und zurück zum Login Screen</TD>
-     <TD><I>*help#</I> Fenster schließen</TD></TR>
+     <TD>Abmelden und zurÃ¼ck zum Login Screen</TD>
+     <TD><I>*help#</I> Fenster schlieÃŸen</TD></TR>
  <TR><TD><INPUT TYPE="image" NAME="button_help" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_help.gif" WIDTH="14" HEIGHT="13"
 ></TD>
-     <TD>Fenster mit Kontext-bezogener Hilfe öffnen</TD>
+     <TD>Fenster mit Kontext-bezogener Hilfe Ã¶ffnen</TD>
      <TD><DIV ALIGN="center">-</DIV></TD></TR>
  <TR><TD><INPUT TYPE="image" NAME="button_home" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_home.gif" WIDTH="14" HEIGHT="13"
 ></TD>
@@ -58,8 +58,8 @@ Beschreibung der Buttons
 Einstellungen
 
 [text]
-Für das <I>Applicat</I> Template-Set sind keine besonderen Einstellungen nötig.
-Es kann über das Menü <I><A HREF="{PHP_SELF}?topic=configuration">*configuration#</A></I>
+FÃ¼r das <I>Applicat</I> Template-Set sind keine besonderen Einstellungen nÃ¶tig.
+Es kann Ã¼ber das MenÃ¼ <I><A HREF="{PHP_SELF}?topic=configuration">*configuration#</A></I>
 (de)aktiviert werden.
 
 [eof]

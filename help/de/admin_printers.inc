@@ -6,53 +6,53 @@
 *intro#
 
 [text]
-Mit dieser Seite verhält es sich wie bei "*admin_cats#" - natürlich mit der
+Mit dieser Seite verhÃ¤lt es sich wie bei "*admin_cats#" - natÃ¼rlich mit der
 nicht unwesentlichen Abweichungen, dass hier <b><i>Drucker</i></b> bearbeitet
 werden und keine Kategorien :-) Um einen Drucker zu entfernen, ist einfach das
-Namensfeld zu leeren (und das Formular abzuschicken). Um die Einstellungen für
-einen Drucker anzupassen, einfach die entsprechenden Werte verändern (und
-ebenfalls den schönen Button am Ende der Seite drücken). Ein neuer Drucker
-läßt sich in der letzten (leeren) Zeile hinzufügen.
+Namensfeld zu leeren (und das Formular abzuschicken). Um die Einstellungen fÃ¼r
+einen Drucker anzupassen, einfach die entsprechenden Werte verÃ¤ndern (und
+ebenfalls den schÃ¶nen Button am Ende der Seite drÃ¼cken). Ein neuer Drucker
+lÃ¤ÃŸt sich in der letzten (leeren) Zeile hinzufÃ¼gen.
 
 [title]
 Was ist ein Offset?
 
 [text]
 Der druckbare Bereich auf einem Blatt Papier stimmt nicht bei allen Druckern
-überein: es mag Drucker geben, die an beliebiger Stelle auf dem Papier drucken
-können. Die meisten Drucker benötigen zumindest einen schmalen Rand zur
-Papierführung - aber auch hier sind sie sich nicht alle einig, wie schmal
+Ã¼berein: es mag Drucker geben, die an beliebiger Stelle auf dem Papier drucken
+kÃ¶nnen. Die meisten Drucker benÃ¶tigen zumindest einen schmalen Rand zur
+PapierfÃ¼hrung - aber auch hier sind sie sich nicht alle einig, wie schmal
 "schmal" nun ist...
 
 [text]
 Wenn nun keine der vorhandenen Definitionen mit dem zu verwendenden Drucker
-akkurat arbeitet, kann hier anhand der herausgefundenen Maße (Differenz der
-Randeinstellungen bei einem Testdruck) ein neuer Drucker hinzugefügt, oder aber
+akkurat arbeitet, kann hier anhand der herausgefundenen MaÃŸe (Differenz der
+Randeinstellungen bei einem Testdruck) ein neuer Drucker hinzugefÃ¼gt, oder aber
 auch ein bestehender angepasst werden.
 
 [title]
 Einheiten
 
 [text]
-In der Spalte "*units#" finden sich verschiedene Maßeinheiten, die vielleicht
-nicht alle geläufig sind. Daher hier eine kurze Auflistung:
+In der Spalte "*units#" finden sich verschiedene MaÃŸeinheiten, die vielleicht
+nicht alle gelÃ¤ufig sind. Daher hier eine kurze Auflistung:
 <TABLE ALIGN="center" BORDER="1" WIDTH="95%" STYLE="margin:5">
   <TR><TH CLASS="help">Einheit</TH><TH CLASS="help">Vergleich</TH><TH CLASS="help">Beschreibung</TH></TR>
   <TR><TD>pt</TD><TD>&nbsp;</TD><TD>Der "Punkt" ist die kleinste Einheit bei PostScript</TD></TR>
-  <TR><TD>inch</TD><TD>72 pt</TD><TD>Alte britische Maßeinheit, der wohl auch unser "Zollstock" seinen Namen verdankt</TD></TR>
-  <TR><TD>mm</TD><TD>2.83465 pt</TD><TD>Millimeter ist die kleinste metrische Maßeinheit, die in unserem Kontext einen Sinn ergibt</TD></TR>
-  <TR><TD>cm</TD><TD>28.346 pt</TD><TD>Das gleiche wie 10 mm. Die Frage, ob PostScript nur 4 Stellen nach dem Komma unterstützt, geht an Michael (bis dahin am besten "mm" für genauere Angaben verwenden ;)</TD></TR>
+  <TR><TD>inch</TD><TD>72 pt</TD><TD>Alte britische MaÃŸeinheit, der wohl auch unser "Zollstock" seinen Namen verdankt</TD></TR>
+  <TR><TD>mm</TD><TD>2.83465 pt</TD><TD>Millimeter ist die kleinste metrische MaÃŸeinheit, die in unserem Kontext einen Sinn ergibt</TD></TR>
+  <TR><TD>cm</TD><TD>28.346 pt</TD><TD>Das gleiche wie 10 mm. Die Frage, ob PostScript nur 4 Stellen nach dem Komma unterstÃ¼tzt, geht an Michael (bis dahin am besten "mm" fÃ¼r genauere Angaben verwenden ;)</TD></TR>
 </TABLE>
 
 [title]
 Eine letzte Anmerkung...
 
 [text]
-Hinzugefügte/geänderte Angaben können bei einem Update (oder einer Neuinstallation)
+HinzugefÃ¼gte/geÃ¤nderte Angaben kÃ¶nnen bei einem Update (oder einer Neuinstallation)
 verloren gehen, daher sind...
 <ol>
  <li>...Backups empfohlen (phpVideoPro bietet entsprechende Funktionen an)</li>
- <li>...Änderungen/Angaben für neue Drucker am besten an mich zu schicken, so
+ <li>...Ã„nderungen/Angaben fÃ¼r neue Drucker am besten an mich zu schicken, so
      dass Sie in neueren Versionen von phpVideoPro gleich mit enthalten sind.
      Dies stellt sicher, dass sie dann auch bei Updates bzw. Neuinstallationen
      erhalten bleiben ;)</li>

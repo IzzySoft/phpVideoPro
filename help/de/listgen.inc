@@ -6,17 +6,17 @@
 *intro#
 
 [text]
-Auch wenn dieser Punkt im Menü "*print#" zu finden ist, werden hier lediglich
-Daten für den Druck vorbereitet. Ich hatte zunächst verschiedene Varianten von
-Ausgabeformaten in Erwägung gezogen. An erster Stelle stand PostScript: damit
-wären zwar alle Unix/Linux Benutzer wunderbar klar gekommen (verwendet doch
+Auch wenn dieser Punkt im MenÃ¼ "*print#" zu finden ist, werden hier lediglich
+Daten fÃ¼r den Druck vorbereitet. Ich hatte zunÃ¤chst verschiedene Varianten von
+Ausgabeformaten in ErwÃ¤gung gezogen. An erster Stelle stand PostScript: damit
+wÃ¤ren zwar alle Unix/Linux Benutzer wunderbar klar gekommen (verwendet doch
 hier nahezu jeder "Druckertreiber" PostScript als Eingabeformat) - jedoch unsere
-armen M$-Abhängigen (Windoze Benutzer) wären darüber sicher nicht besonders
-glücklich gewesen (auch wenn sie zur Verarbeitung GhostScript installieren
-könnten). Als Alternative bot sich an, die Listen als riesige, mehrseitige
+armen M$-AbhÃ¤ngigen (Windoze Benutzer) wÃ¤ren darÃ¼ber sicher nicht besonders
+glÃ¼cklich gewesen (auch wenn sie zur Verarbeitung GhostScript installieren
+kÃ¶nnten). Als Alternative bot sich an, die Listen als riesige, mehrseitige
 Etiketten zu betrachten - da dies jedoch ebenso riesige Grafikdateien zum
-Ergebnis hätte, kämen zum einen die Drucker anständig in's Schwitzen, und zum
-anderen würde der Druck damit auch recht lange dauern...
+Ergebnis hÃ¤tte, kÃ¤men zum einen die Drucker anstÃ¤ndig in's Schwitzen, und zum
+anderen wÃ¼rde der Druck damit auch recht lange dauern...
 
 [title]
 Wie funktioniert es nun?
@@ -25,39 +25,39 @@ Wie funktioniert es nun?
 Also entschloss ich mich, die Listenaufbereitung auf unterschiedliche Weise
 vonstatten gehen zu lassen: Die Listen werden entweder als reiner (ASCII) Text
 erstellt, der sich sodann direkt (nach dem Speichern im Dateisystem und/oder
-Öffnen mit einem beliebigen Texteditor wie [k]write) drucken läßt.<br>Zur
+Ã–ffnen mit einem beliebigen Texteditor wie [k]write) drucken lÃ¤ÃŸt.<br>Zur
 Alternative steht ein Export im CSV Format (die einzelnen Spalten sind mittels
-Tabulatoren (Tab-Stops) getrennt, die erste Zeile enthält die Tabellenüberschriften),
+Tabulatoren (Tab-Stops) getrennt, die erste Zeile enthÃ¤lt die TabellenÃ¼berschriften),
 bzw. als HTML Tabelle, wobei sich das Resultat dann in eine beliebige
 Textverarbeitung (Word, OpenOffice/StarOffice etc.), Tabellenkalkulation (Excel,
 OpenOffice/StarOffice) bzw. einen HTML Editor (Netscape Composer, DreamWeaver,
-Quanta) importieren und mittels dieser nachbereiten lässt.<br>
-Ich empfehle für letzteres die Erstellung einer Dokumentvorlage, in der alle
-gewünschten Tabellen- und Textformatierungen (Schriftart und -größe,
-Hintergrundfarben z.B. für den Tabellenkopf, Kopfzeilen der Seiten mit Überschrift
-und Seitenzahlen etc.) bereits festgelegt sind. Besonders, wenn häufiger Listen
+Quanta) importieren und mittels dieser nachbereiten lÃ¤sst.<br>
+Ich empfehle fÃ¼r letzteres die Erstellung einer Dokumentvorlage, in der alle
+gewÃ¼nschten Tabellen- und Textformatierungen (Schriftart und -grÃ¶ÃŸe,
+Hintergrundfarben z.B. fÃ¼r den Tabellenkopf, Kopfzeilen der Seiten mit Ãœberschrift
+und Seitenzahlen etc.) bereits festgelegt sind. Besonders, wenn hÃ¤ufiger Listen
 gedruckt werden sollen, hilft dies, den Zeitaufwand ein wenig zu begrenzen.
 
 [title]
 Formularfelder
 
 [text]
-<b>*list#:</b> Welche Liste erstellt werden soll (erklärt sich selbst)<br>
+<b>*list#:</b> Welche Liste erstellt werden soll (erklÃ¤rt sich selbst)<br>
 <b>*format#:</b> <b><i>ASCII</i></b> bezeichnet eine formatierte Liste (etwas
-spartanisch, eher für "Faule" gedacht, die sich nicht den Aufwand der
+spartanisch, eher fÃ¼r "Faule" gedacht, die sich nicht den Aufwand der
 Nachbearbeitung machen wollen), die zum direkten Ausdruck gedacht ist (siehe
 oben). <b><i>HTML</i></b> auch im ASCII Format *grins*, erzeugt eine einfache
 HTML Tabelle ohne speziellere Formatierung. Eignet sich besonders zur schnellen
-Nachbearbeitung z.B. mit OpenOffice, da sich hier die nötigen Format-Korrekturen,
+Nachbearbeitung z.B. mit OpenOffice, da sich hier die nÃ¶tigen Format-Korrekturen,
 zumal bei Verwendung einer geeigneten Dokumentvorlage, doch stark in Grenzen
 halten. <b><i>CSV</i></b> ebenfalls im ASCII Format, jedoch sind hier alle Felder
-lediglich mit Tabulatoren getrennt, um anschließend in eine Tabelle umgewandelt
-und dort weiter bearbeitet werden zu können (abermals siehe oben).<br>
+lediglich mit Tabulatoren getrennt, um anschlieÃŸend in eine Tabelle umgewandelt
+und dort weiter bearbeitet werden zu kÃ¶nnen (abermals siehe oben).<br>
 <b>*line_count#</b>: Wie viele Zeilen reinen (ASCII) Textes auf eine Seite
 Papier passen (dies kann je nach Drucker unterschiedlich sein). Der Vorgabewert
 wird aus den Voreinstellungen (siehe
-"<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>") übernommen, kann
-jedoch hier überschrieben werden. Für CSV und HTML Listen wird der Inhalt dieses
+"<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>") Ã¼bernommen, kann
+jedoch hier Ã¼berschrieben werden. FÃ¼r CSV und HTML Listen wird der Inhalt dieses
 Feldes freilich ignoriert.
 
 [eof]

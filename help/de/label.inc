@@ -6,16 +6,16 @@
 Druck von Etiketten
 
 [text]
-Hier läßt sich eine Liste von Etiketten erstellen. Die Anzahl der Etiketten
-auf der Ergebnisseite hängt von der Anzahl der ausgefüllten, nicht der vorhandenen
-Zeilen ab (wenn also nur zwei Zeilen ausgefüllt wurden, gibt es auch nur zwei
-Etiketten - und nicht etwa zwei ausgefüllte und drei leere :)
+Hier lÃ¤ÃŸt sich eine Liste von Etiketten erstellen. Die Anzahl der Etiketten
+auf der Ergebnisseite hÃ¤ngt von der Anzahl der ausgefÃ¼llten, nicht der vorhandenen
+Zeilen ab (wenn also nur zwei Zeilen ausgefÃ¼llt wurden, gibt es auch nur zwei
+Etiketten - und nicht etwa zwei ausgefÃ¼llte und drei leere :)
 
 [text]
-Die Regeln sind hier recht einfach: für jedes gewünschte Etikett sind der
+Die Regeln sind hier recht einfach: fÃ¼r jedes gewÃ¼nschte Etikett sind der
 Medientyp, die Nummer des Mediums und die zu verwendende Etiketten-Vorlage
 anzugeben. Nachdem das Formular dann mit dem "*create#" Button abgeschickt
-wurde, sollten die gewünschten Labels angezeigt werden und lassen sich sodann
+wurde, sollten die gewÃ¼nschten Labels angezeigt werden und lassen sich sodann
 mittels der Druckfunktion des Browsers zu Papier bringen.
 
 [eof]

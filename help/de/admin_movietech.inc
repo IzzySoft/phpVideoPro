@@ -5,41 +5,41 @@
 *intro#
 
 [text]
-Unter diesem Menüpunkt können die für Filme verfügbaren technischen Daten, wie
+Unter diesem MenÃ¼punkt kÃ¶nnen die fÃ¼r Filme verfÃ¼gbaren technischen Daten, wie
 "*screen#", "*picture#", "*mediatype#" und "*tone#" bearbeitet werden. Es lassen
-sich eigene Typen hinzufügen, wie auch vorhandene bearbeiten oder löschen.
+sich eigene Typen hinzufÃ¼gen, wie auch vorhandene bearbeiten oder lÃ¶schen.
 
 [title]
-Vorhandene Einträge bearbeiten
+Vorhandene EintrÃ¤ge bearbeiten
 
 [text]
 Um einen vorhandenen Eintrag anzupassen, ist auf das Edit-Icon in der selben
-Zeile zu klicken. Dies führt sodann zu einer Maske, in der die zugehörigen Daten
-bearbeitet werden können. So kann z.B. der ausführliche Name ("*name#") für
-einen Typen geändert werden. Vorsicht geboten ist jedoch bzgl. des Kurznamens
-("*sname#"): in älteren Versionen von phpVideoPro wurde dieser genutzt, um
-verschiedene Prüfungen durchzuführen - und ich bin nicht sicher, ob ich alle
-diesbezüglichen Referenzen im Code bereits angepasst habe...
+Zeile zu klicken. Dies fÃ¼hrt sodann zu einer Maske, in der die zugehÃ¶rigen Daten
+bearbeitet werden kÃ¶nnen. So kann z.B. der ausfÃ¼hrliche Name ("*name#") fÃ¼r
+einen Typen geÃ¤ndert werden. Vorsicht geboten ist jedoch bzgl. des Kurznamens
+("*sname#"): in Ã¤lteren Versionen von phpVideoPro wurde dieser genutzt, um
+verschiedene PrÃ¼fungen durchzufÃ¼hren - und ich bin nicht sicher, ob ich alle
+diesbezÃ¼glichen Referenzen im Code bereits angepasst habe...
 
 [title]
-Einen neuen Eintrag hinzufügen
+Einen neuen Eintrag hinzufÃ¼gen
 
 [text]
-Hierfür ist einfach auf "*add_entry#" in der letzten Zeile der Tabelle zu
-klicken, zu der der gewünschte Eintrag hinzugefügt werden soll. Es erscheint
+HierfÃ¼r ist einfach auf "*add_entry#" in der letzten Zeile der Tabelle zu
+klicken, zu der der gewÃ¼nschte Eintrag hinzugefÃ¼gt werden soll. Es erscheint
 dann die gleiche Maske wie beim Bearbeiten oben - der Unterschied ist jedoch,
-dass ein neuer Datensatz hinzugefügt (also ein zusätzlicher Typ verfügbar) wird,
-für den die Warnungen hinsichtlich des "*sname#" (s.o.) natürlich nicht gelten.
+dass ein neuer Datensatz hinzugefÃ¼gt (also ein zusÃ¤tzlicher Typ verfÃ¼gbar) wird,
+fÃ¼r den die Warnungen hinsichtlich des "*sname#" (s.o.) natÃ¼rlich nicht gelten.
 
 [title]
-Löschen eines Eintrags
+LÃ¶schen eines Eintrags
 
 [text]
-Für diesen Zweck ist das Mülltonnen-Icon gedacht. Nach einem Klick auf selbiges
-erscheint zunächst eine Aufforderung zur Bestätigung - falls man versehentlich
+FÃ¼r diesen Zweck ist das MÃ¼lltonnen-Icon gedacht. Nach einem Klick auf selbiges
+erscheint zunÃ¤chst eine Aufforderung zur BestÃ¤tigung - falls man versehentlich
 daneben geklickt hat (und z.B. eigentlich bearbeiten wollte). Hat man die
-Löschung bestätigt, wird zunächst noch eine Integritätsprüfung durchgeführt:
-Es sollte somit nicht möglich sein, einen Typ zu löschen, der noch von mindestens
+LÃ¶schung bestÃ¤tigt, wird zunÃ¤chst noch eine IntegritÃ¤tsprÃ¼fung durchgefÃ¼hrt:
+Es sollte somit nicht mÃ¶glich sein, einen Typ zu lÃ¶schen, der noch von mindestens
 einem Film referenziert wird.
 
 [eof]

@@ -6,13 +6,13 @@
 *intro#
 
 [text]
-Die verschiedenen Disk-Typen unterstützen unterschiedliche Features (oder auch
+Die verschiedenen Disk-Typen unterstÃ¼tzen unterschiedliche Features (oder auch
 Limitierungen), und diese lassen sich auf dieser Seite zuordnen. Die Handhabung
-dieses Formulars ist äquivalent zu dem für die
-<A HREF="{PHP_SELF}?topic=admin_cats">Kategorien</A>): vorhandene Einträge
-können bearbeitet, neue hinzugefügt (letzteres über den freien Eintrag am
-Ende der Tabelle), nicht (mehr) benötigte gelöscht werden (indem der Inhalt
-des Feldes "*name#" für den betreffenden Eintrag geleert wird).
+dieses Formulars ist Ã¤quivalent zu dem fÃ¼r die
+<A HREF="{PHP_SELF}?topic=admin_cats">Kategorien</A>): vorhandene EintrÃ¤ge
+kÃ¶nnen bearbeitet, neue hinzugefÃ¼gt (letzteres Ã¼ber den freien Eintrag am
+Ende der Tabelle), nicht (mehr) benÃ¶tigte gelÃ¶scht werden (indem der Inhalt
+des Feldes "*name#" fÃ¼r den betreffenden Eintrag geleert wird).
 
 [title]
 Felder
@@ -20,51 +20,51 @@ Felder
 [text]
 <b>*mediatype#:</b>
 [text]
-Jedem Medientyp können mehrere Disk-Typen zugeordnet werden. Eine VideoCD kann
+Jedem Medientyp kÃ¶nnen mehrere Disk-Typen zugeordnet werden. Eine VideoCD kann
 beispielsweise eine "VCD" oder auch eine "SVCD" sein, und (wieder-) beschreibbare
-Medien können unterschiedliche Kapazitäten aufweisen. Mit dieser Auswahl-Box
+Medien kÃ¶nnen unterschiedliche KapazitÃ¤ten aufweisen. Mit dieser Auswahl-Box
 wird der Medientyp festgelegt, dem der betreffende Disk-Typ zugeordnet ist.
 [text]
 <b>*name#:</b>
 [text]
 Namen sind Schall und Rauch - ein Disk-Typ kann also frei nach Gusto benannt
 werden. Eine Eingabe in diesem Feld ist allerdings notwendig, um den Eintrag
-speichern zu können.
+speichern zu kÃ¶nnen.
 [text]
 <b>*disk_size#:</b>
 [text]
 Der hiermit definierte Wert ist optional; gedacht ist, wie anhand der bereits
-definierten Disk-Typen ersichtlich, an eine Größe in MB oder GB.
+definierten Disk-Typen ersichtlich, an eine GrÃ¶ÃŸe in MB oder GB.
 [text]
 <b>*longplay# / *region_code#:</b>
 [text]
-Mithilfe dieser Check-Boxen wird angegeben, ob das betreffende "Feature" für
-diesen Disk-Typ verfügbar ist.
+Mithilfe dieser Check-Boxen wird angegeben, ob das betreffende "Feature" fÃ¼r
+diesen Disk-Typ verfÃ¼gbar ist.
 
 [title]
-Löschen eines Disk-Typs
+LÃ¶schen eines Disk-Typs
 
 [text]
-Einen Disk-Typ zu löschen ist einfach - jedoch läßt sich diese Löschung nur
-schwer rückgängig machen. Daher sei hier kurz erwähnt, was beim Löschen passiert:
+Einen Disk-Typ zu lÃ¶schen ist einfach - jedoch lÃ¤ÃŸt sich diese LÃ¶schung nur
+schwer rÃ¼ckgÃ¤ngig machen. Daher sei hier kurz erwÃ¤hnt, was beim LÃ¶schen passiert:
 [text]
-Wird ein Disk-Typ gelöscht, der noch für das eine oder andere Medium gesetzt
+Wird ein Disk-Typ gelÃ¶scht, der noch fÃ¼r das eine oder andere Medium gesetzt
 ist, wird bei den betreffenden Medien diese Zuordnung aufgehoben (es steht dann
-also anschließend dort nur noch "unbekannt"), anschließend wird die Definition
-des betreffenden Disk-Typs gelöscht. Dies alles geschieht ohne eine Warnung.
-Wie üblich ist es also auch diesbezüglich zu empfehlen, immer ein möglichst
+also anschlieÃŸend dort nur noch "unbekannt"), anschlieÃŸend wird die Definition
+des betreffenden Disk-Typs gelÃ¶scht. Dies alles geschieht ohne eine Warnung.
+Wie Ã¼blich ist es also auch diesbezÃ¼glich zu empfehlen, immer ein mÃ¶glichst
 aktuelles Backup bereit zu haben :-)
 
 [title]
 Updates
 
 [text]
-Wie auch bei den Kategorien bereits erwähnt, wenn auch an dieser Stelle etwas
-unwahrscheinlicher, können veränderte/hinzugefügte Disk-Typ Definitionen beim
-Update auf eine neuere Version von phpVideoPro überschrieben werden. Um dies
-zu vermeiden (und überhaupt), sollten die Disk-Typen, an die ich nicht gedacht,
-die aber benötigt werden, mir zur Sicherheit mitgeteilt werden - damit ich sie
-für folgende Versionen berücksichtigen kann.
+Wie auch bei den Kategorien bereits erwÃ¤hnt, wenn auch an dieser Stelle etwas
+unwahrscheinlicher, kÃ¶nnen verÃ¤nderte/hinzugefÃ¼gte Disk-Typ Definitionen beim
+Update auf eine neuere Version von phpVideoPro Ã¼berschrieben werden. Um dies
+zu vermeiden (und Ã¼berhaupt), sollten die Disk-Typen, an die ich nicht gedacht,
+die aber benÃ¶tigt werden, mir zur Sicherheit mitgeteilt werden - damit ich sie
+fÃ¼r folgende Versionen berÃ¼cksichtigen kann.
 
 [eof]
 

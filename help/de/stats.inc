@@ -6,14 +6,14 @@
 
 [text]
 Diese Seite gibt einen Einblick in die Statistik der Datenbank. Eine
-"Interaktion" ist hier nicht möglich, daher gibt es eigentlich auch nichts zu
-erklären... Dennoch ein paar Worte:
+"Interaktion" ist hier nicht mÃ¶glich, daher gibt es eigentlich auch nichts zu
+erklÃ¤ren... Dennoch ein paar Worte:
 
 [text]
 Die Statistiken sind zweigeteilt. Der erste Block gibt einfach nur die "Summen"
-aus, während der zweite eine Art "Hitliste" darstellt. Die Punkte sprechen
-hier eigentlich für sich selbst; nur eine Kleinigkeit zum Ranking der Kategorien
-gäbe es zu nennen: hier wird nur die Hauptkategorie ("*category# 1") ausgewertet;
+aus, wÃ¤hrend der zweite eine Art "Hitliste" darstellt. Die Punkte sprechen
+hier eigentlich fÃ¼r sich selbst; nur eine Kleinigkeit zum Ranking der Kategorien
+gÃ¤be es zu nennen: hier wird nur die Hauptkategorie ("*category# 1") ausgewertet;
 diese sollte einen Film am besten beschreiben. Alles andere "arbeitet wie
 gewohnt".
 

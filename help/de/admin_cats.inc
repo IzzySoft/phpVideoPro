@@ -14,28 +14,28 @@ Beschreibung der Spalten
   <TR><TD><B>*category#</B></TD>
       <TD>Bezeichnung der Kategorie in der aktuellen Sprache</TD></TR>
   <TR><TD><B>&nbsp;</B></TD>
-      <TD>Löschen bzw. unterdrücken einer Kategorie</TD></TR>
+      <TD>LÃ¶schen bzw. unterdrÃ¼cken einer Kategorie</TD></TR>
 </TABLE>
 
 [title]
-Hinzufügen einer Kategorie
+HinzufÃ¼gen einer Kategorie
 
 [text]
-Soll eine Kategorie hinzugefügt werden, sind die entsprechenden Daten einfach
+Soll eine Kategorie hinzugefÃ¼gt werden, sind die entsprechenden Daten einfach
 in die letzte (leere) Zeile einzutragen. Der Wert in der Spalte <i>*cat_internal_name#</i>
 sollte dabei immer mit "cat_" beginnen.
 
 [title]
-Löschen einer Kategorie
+LÃ¶schen einer Kategorie
 
 [text]
-Hierfür ist das Icon mit der Mülltonne gedacht. Damit man den Löschvorgang nicht
-versehentlich auslöst, erfolgt zunächst noch eine Sicherheitsabfrage. Sollten
-einer zu löschenden Kategorie noch Filme zugeordnet sein, wird diese nicht
-gelöscht. Stattdessen erscheint eine Fehlermeldung. In diesem Fall müssen die
+HierfÃ¼r ist das Icon mit der MÃ¼lltonne gedacht. Damit man den LÃ¶schvorgang nicht
+versehentlich auslÃ¶st, erfolgt zunÃ¤chst noch eine Sicherheitsabfrage. Sollten
+einer zu lÃ¶schenden Kategorie noch Filme zugeordnet sein, wird diese nicht
+gelÃ¶scht. Stattdessen erscheint eine Fehlermeldung. In diesem Fall mÃ¼ssen die
 Daten der entsprechenden Filme zuerst angepasst werden, bevor die Kategorie
-gelöscht werden kann. Die Filterfunktion hilft bei der Auffindung der
-betroffenen Datensätze.
+gelÃ¶scht werden kann. Die Filterfunktion hilft bei der Auffindung der
+betroffenen DatensÃ¤tze.
 
 [title]
 (De-) Aktivieren einer Kategorie
@@ -43,26 +43,26 @@ betroffenen Datensätze.
 [text]
 Mit dem Checkbutton lassen sich unbenutzte Kategorien ausblenden: sie werden
 dann lediglich noch auf dieser Seite, nicht jedoch beim Editieren von
-Datensätzen, Filtern oder im Suchbildschirm angezeigt. Somit kann man für
-ein wenig mehr Übersichtlichkeit sorgen, indem man nur die benötigten Kategorien
-aktiv lässt - ohne die anderen zu löschen, so dass man diese bei Bedarf schnell
-wieder verfügbar hat.
+DatensÃ¤tzen, Filtern oder im Suchbildschirm angezeigt. Somit kann man fÃ¼r
+ein wenig mehr Ãœbersichtlichkeit sorgen, indem man nur die benÃ¶tigten Kategorien
+aktiv lÃ¤sst - ohne die anderen zu lÃ¶schen, so dass man diese bei Bedarf schnell
+wieder verfÃ¼gbar hat.
 
 [title]
-Übersetzungen anpassen
+Ãœbersetzungen anpassen
 
 [text]
-Wenn also eine Übersetzung nicht gefällt, kann sie in diesem Formular angepasst
-werden: einfach den entsprechenden Wert in der Spalte "*category#" ändern.
+Wenn also eine Ãœbersetzung nicht gefÃ¤llt, kann sie in diesem Formular angepasst
+werden: einfach den entsprechenden Wert in der Spalte "*category#" Ã¤ndern.
 
 [text]
-Ein Risiko bleibt dabei: mit dem Update auf die nächste Version, oder auch nur
+Ein Risiko bleibt dabei: mit dem Update auf die nÃ¤chste Version, oder auch nur
 mit der Installation einer aktuelleren Sprachdatei sind die selbst erstellten
-Übersetzungen wieder überschrieben. Um dies zu vermeiden, hilft derzeit nur
-ein kleiner "work-around": über den Menüpunkt zur Bearbeitung der Übersetzungen
-alle Übersetzungen in eine Datei sichern, und vor dem nächsten Update die
+Ãœbersetzungen wieder Ã¼berschrieben. Um dies zu vermeiden, hilft derzeit nur
+ein kleiner "work-around": Ã¼ber den MenÃ¼punkt zur Bearbeitung der Ãœbersetzungen
+alle Ãœbersetzungen in eine Datei sichern, und vor dem nÃ¤chsten Update die
 entsprechenden Zeilen mit der neuen Sprachdatei verbinden. Hat man sich an o.g.
-Regel gehalten, und alle Einträge in der Spalte <i>*handle</i> beginnen mit
+Regel gehalten, und alle EintrÃ¤ge in der Spalte <i>*handle</i> beginnen mit
 "cat_", so sollten die entsprechenden Zeilen in der Sprachdatei schnell
 aufgefunden sein.
 

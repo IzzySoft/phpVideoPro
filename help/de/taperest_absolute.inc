@@ -6,22 +6,22 @@
 Ermittlung von freiem Aufnahmeplatz
 
 [text]
-Mittels dieses Features läßt sich freier Platz in spezifizierter Größe
-lokalisieren - natürlich nur auf Medien, auf denen auch aufgenommen werden kann.
-Zunächst muss das benötigte Minimum an freiem Speicherplatz in ein Formular
+Mittels dieses Features lÃ¤ÃŸt sich freier Platz in spezifizierter GrÃ¶ÃŸe
+lokalisieren - natÃ¼rlich nur auf Medien, auf denen auch aufgenommen werden kann.
+ZunÃ¤chst muss das benÃ¶tigte Minimum an freiem Speicherplatz in ein Formular
 eingegeben werden. Ist dieses Formular versendet, wird entweder eine Liste mit
-all den Bändern angezeigt, auf denen mindestens der angegebene Platz verfügbar
+all den BÃ¤ndern angezeigt, auf denen mindestens der angegebene Platz verfÃ¼gbar
 ist, zusammen mit der Information, welche Filme welcher Kategorie bereits auf
-diesen Medien aufgenommen wurden sowie dem tatsächlich auf diesem Medium
-verfügbaren Speicherplatz - oder aber ein Hinweis, daß kein betreffendes Medium
-in der Datenbank zu finden ist. Der "freie Platz" wird für normale
+diesen Medien aufgenommen wurden sowie dem tatsÃ¤chlich auf diesem Medium
+verfÃ¼gbaren Speicherplatz - oder aber ein Hinweis, daÃŸ kein betreffendes Medium
+in der Datenbank zu finden ist. Der "freie Platz" wird fÃ¼r normale
 Geschwindigkeit gerechnet - bei LongPlay kann diese Angabe daher verdoppelt
 werden.
 
 [text]
-Es gibt zwei Möglichkeiten, diese Liste aufzurufen: <b>gefiltert</b> bedeutet,
-daß die definierten <A HREF="{PHP_SELF}?topic=filter">Filterregeln</A>
-Anwendung finden - <b>absolut</b> hingegen, daß diese unberücksichtigt bleiben.
+Es gibt zwei MÃ¶glichkeiten, diese Liste aufzurufen: <b>gefiltert</b> bedeutet,
+daÃŸ die definierten <A HREF="{PHP_SELF}?topic=filter">Filterregeln</A>
+Anwendung finden - <b>absolut</b> hingegen, daÃŸ diese unberÃ¼cksichtigt bleiben.
 
 [eof]
 

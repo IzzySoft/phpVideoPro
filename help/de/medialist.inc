@@ -2,26 +2,26 @@
 # /* $Id$ */
 
 [title]
-Liste erfaßter Medien
+Liste erfaÃŸter Medien
 
 [text]
 Auf dieser Seite wird eine Liste mit allen Filmen aus der Datenbank angezeigt,
-die den definierten Filterregeln entsprechen. Standardmäßig ist diese nach
-MedienTyp und MediaNr sortiert - diese Sortierung läßt sich jedoch einfach
-durch einen Klick auf den Kopf der Spalte, nach der man gern sortieren möchte,
-ändern.
+die den definierten Filterregeln entsprechen. StandardmÃ¤ÃŸig ist diese nach
+MedienTyp und MediaNr sortiert - diese Sortierung lÃ¤ÃŸt sich jedoch einfach
+durch einen Klick auf den Kopf der Spalte, nach der man gern sortieren mÃ¶chte,
+Ã¤ndern.
 
 [text]
-Da diese Liste ziemlich lang werden könnte, wird ihre Ausgabe auf mehrere
-Seiten unterteilt. Wie viele Datensätze pro Seite angezeigt werden sollen,
-läßt sich über den Punkt "*display_limit#" im Menü
+Da diese Liste ziemlich lang werden kÃ¶nnte, wird ihre Ausgabe auf mehrere
+Seiten unterteilt. Wie viele DatensÃ¤tze pro Seite angezeigt werden sollen,
+lÃ¤ÃŸt sich Ã¼ber den Punkt "*display_limit#" im MenÃ¼
 <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A> einstellen.
 
 [text]
 Aus dieser Liste heraus gelangt man mittels eines Mausklicks auf die MediaNr
 zur Detailansicht des betreffenden Films, von wo aus man den entsprechenden
 Eintrag sodann <A HREF="{PHP_SELF}?topic=add_entry">editieren</A> oder auch
-löschen kann.
+lÃ¶schen kann.
 
 [eof]
 

@@ -5,169 +5,169 @@
 Einleitung
 
 [text]
-In diesem Formular lassen sich generelle Einstellungen für phpVideoPro
+In diesem Formular lassen sich generelle Einstellungen fÃ¼r phpVideoPro
 vornehmen, wie z.B. Sprach- und Farbeinstellungen. Einige der hier beschriebenen
-Optionen sind nur über den Aufruf des Konfigurations-Formulars über das "Admin"
-Menü verfügbar, da es sich um Eigenschaften handelt, die nur der Administrator
-bearbeiten sollte. Andere hingegen sind eher als benutzerabhängige Präferenzen
-zu betrachten und daher auch über das Standard-Menü zu erreichen.
+Optionen sind nur Ã¼ber den Aufruf des Konfigurations-Formulars Ã¼ber das "Admin"
+MenÃ¼ verfÃ¼gbar, da es sich um Eigenschaften handelt, die nur der Administrator
+bearbeiten sollte. Andere hingegen sind eher als benutzerabhÃ¤ngige PrÃ¤ferenzen
+zu betrachten und daher auch Ã¼ber das Standard-MenÃ¼ zu erreichen.
 
 [text]
-phpVideoPro verwendet Cookies zur Verwaltung der Preferences (persönlichen
-Einstellungen, wie Filter, Template-Set, Datensätze pro Seite bei Listen etc.).
-Um diese Funktion zu nutzen, muss die Schaltfläche "*enable_cookies#" aktiviert
-sein. Über das "*Admin#" Menü wird unter "*configuration#" die Konfiguration
-verwaltet, und es werden die Default-Einstellungen für die Preferences hier
+phpVideoPro verwendet Cookies zur Verwaltung der Preferences (persÃ¶nlichen
+Einstellungen, wie Filter, Template-Set, DatensÃ¤tze pro Seite bei Listen etc.).
+Um diese Funktion zu nutzen, muss die SchaltflÃ¤che "*enable_cookies#" aktiviert
+sein. Ãœber das "*Admin#" MenÃ¼ wird unter "*configuration#" die Konfiguration
+verwaltet, und es werden die Default-Einstellungen fÃ¼r die Preferences hier
 vorgenommen. Diese werden bei "neuen" Benutzern sodann aus der Datenbank
-geladen. Änderungen, die der Benutzer sodann unter "*edit#" -&gt;
+geladen. Ã„nderungen, die der Benutzer sodann unter "*edit#" -&gt;
 "*preferences#" vornimmt, werden in Cookies gespeichert und auch, sofern
 gespeicherte Cookies vorhanden sind, aus diesen geladen. Die Standard Filter
-Einstellungen werden über "*admin#" -&gt; "*admin_filter#" vorgenommen. Damit
+Einstellungen werden Ã¼ber "*admin#" -&gt; "*admin_filter#" vorgenommen. Damit
 nur authorisierte Benutzer Zugriff auf Konfiguration und Default-Einstellungen
-haben, sind die entsprechenden Administrationsseiten über das Session-Management
-geschützt: nur mit der "Admin" Berechtigung kann hier Zugriff erlangt werden.
-Auch wenn das Administrationsmenü ohne diese Berechtigung überhaupt nicht
-angezeigt wird, wird selbige auf den jeweiligen Seiten nochmals überprüft: sie
-lässt sich also nicht einfach durch die direkte Angabe der URL umgehen.
+haben, sind die entsprechenden Administrationsseiten Ã¼ber das Session-Management
+geschÃ¼tzt: nur mit der "Admin" Berechtigung kann hier Zugriff erlangt werden.
+Auch wenn das AdministrationsmenÃ¼ ohne diese Berechtigung Ã¼berhaupt nicht
+angezeigt wird, wird selbige auf den jeweiligen Seiten nochmals Ã¼berprÃ¼ft: sie
+lÃ¤sst sich also nicht einfach durch die direkte Angabe der URL umgehen.
 
 [title]
 *language_settings#
 
 [text]
-<b>*scan_new_lang_files#:</b> Zur Speicherung der für das Übersetzungsmodul
-benötigten Daten verwendet phpVideoPro seine Datenbank. Will man also eine
-neue Sprache hinzufügen, muss die entsprechende Sprachdatei (eine Textdatei,
-die die benötigten SQL Statements hierfür enthält) importiert werden. Dazu
-muss diese dem System zunächst bekannt gemacht werden - dies geschieht durch
-das Aktivieren dieser Box (und natürlich anschließendes Versenden des Formulars).
-Die weiteren Schritte folgen unten. Wie eine neue Sprachdatei (z.B. für eine
-neue Sprache, die bislang noch nicht von phpVideoPro unterstützt wird) erstellt
+<b>*scan_new_lang_files#:</b> Zur Speicherung der fÃ¼r das Ãœbersetzungsmodul
+benÃ¶tigten Daten verwendet phpVideoPro seine Datenbank. Will man also eine
+neue Sprache hinzufÃ¼gen, muss die entsprechende Sprachdatei (eine Textdatei,
+die die benÃ¶tigten SQL Statements hierfÃ¼r enthÃ¤lt) importiert werden. Dazu
+muss diese dem System zunÃ¤chst bekannt gemacht werden - dies geschieht durch
+das Aktivieren dieser Box (und natÃ¼rlich anschlieÃŸendes Versenden des Formulars).
+Die weiteren Schritte folgen unten. Wie eine neue Sprachdatei (z.B. fÃ¼r eine
+neue Sprache, die bislang noch nicht von phpVideoPro unterstÃ¼tzt wird) erstellt
 werden kann, findet sich in der Hilfe zum Punkt "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>".
 
 [text]
-<b>*select_add_lang#:</b> Natürlich können hier nur verfügbare Sprachen
-ausgewählt werden (das sind jene, zu denen bereits eine Sprachdatei existiert) -
-phpVideoPro gehört nicht in die Kategorie "KI" und kann daher nicht mal eben
-eine neue Sprache selbst erfinden :) Um die Übersetzungen für eine bereits
-installierte Sprache zu aktualisieren, gibt es den nächsten Punkt.
+<b>*select_add_lang#:</b> NatÃ¼rlich kÃ¶nnen hier nur verfÃ¼gbare Sprachen
+ausgewÃ¤hlt werden (das sind jene, zu denen bereits eine Sprachdatei existiert) -
+phpVideoPro gehÃ¶rt nicht in die Kategorie "KI" und kann daher nicht mal eben
+eine neue Sprache selbst erfinden :) Um die Ãœbersetzungen fÃ¼r eine bereits
+installierte Sprache zu aktualisieren, gibt es den nÃ¤chsten Punkt.
 
 [text]
 <b>*refresh_lang#:</b> Steht eine neuere Version einer bereits installierten
-Sprachdatei zur Verfügung (oder hat man selbst eine vorhandene Sprachdatei
-angepasst), können hiermit die entsprechenden Einträge in der Datenbank
-aktualisiert werden. Dabei werden alle bestehenden Einträge für die ausgewählte
-Sprache zunächst aus der Datenbank gelöscht, und sodann die Einträge aus der
-Sprachdatei importiert. Die Möglichkeit, bestehende Einträge beizubehalten, und
+Sprachdatei zur VerfÃ¼gung (oder hat man selbst eine vorhandene Sprachdatei
+angepasst), kÃ¶nnen hiermit die entsprechenden EintrÃ¤ge in der Datenbank
+aktualisiert werden. Dabei werden alle bestehenden EintrÃ¤ge fÃ¼r die ausgewÃ¤hlte
+Sprache zunÃ¤chst aus der Datenbank gelÃ¶scht, und sodann die EintrÃ¤ge aus der
+Sprachdatei importiert. Die MÃ¶glichkeit, bestehende EintrÃ¤ge beizubehalten, und
 nur neue zu importieren, gibt es derzeit noch nicht.
 
 [text]
-<b>*delete_lang#:</b> Sei es zu Testzwecken, für eine Präsentation für
+<b>*delete_lang#:</b> Sei es zu Testzwecken, fÃ¼r eine PrÃ¤sentation fÃ¼r
 fremdsprachige Freunde/Bekannte, oder einfach nur so: manchmal kommt man an den
-Punkt, einfach Übersetzungen für zu viele Sprachen installiert zu haben, und
-möchte nun endlich wieder Ordnung schaffen. Dafür ist dies der richtige Platz:
-Für die ausgewählte Sprache werden alle Übersetzungen aus der Datenbank entfernt,
-wobei die Sprachdatei selbst nicht berührt wird. Sind Änderungen an den
-jeweiligen Übersetzungen gemacht worden (z.B. mit Hilfe des eingebauten
+Punkt, einfach Ãœbersetzungen fÃ¼r zu viele Sprachen installiert zu haben, und
+mÃ¶chte nun endlich wieder Ordnung schaffen. DafÃ¼r ist dies der richtige Platz:
+FÃ¼r die ausgewÃ¤hlte Sprache werden alle Ãœbersetzungen aus der Datenbank entfernt,
+wobei die Sprachdatei selbst nicht berÃ¼hrt wird. Sind Ã„nderungen an den
+jeweiligen Ãœbersetzungen gemacht worden (z.B. mit Hilfe des eingebauten
 Translation-Editors), sollten diese allerdings mit selbigem zuvor in eine
-Datei gesichert werden. So läßt sich sicherstellen, die Übersetzungen zu einem
-beliebigen zukünftigen Zeitpunkt wieder re-installieren zu können. Hinweis: die
-Englischen Übersetzungen können nicht gelöscht werden - sie werden als "FallBack"
-für alle anderen Sprachen benötigt.
+Datei gesichert werden. So lÃ¤ÃŸt sich sicherstellen, die Ãœbersetzungen zu einem
+beliebigen zukÃ¼nftigen Zeitpunkt wieder re-installieren zu kÃ¶nnen. Hinweis: die
+Englischen Ãœbersetzungen kÃ¶nnen nicht gelÃ¶scht werden - sie werden als "FallBack"
+fÃ¼r alle anderen Sprachen benÃ¶tigt.
 
 [text]
 <b>*select_primary_lang#:</b> Aus den vorhandenen Sprachen kann eine als
-"Primärsprache" ausgewählt werden. Das heißt, phpVideoPro versucht alle
-Bildschirmausgaben in dieser Sprache durchzuführen. Ist die Übersetzung für
-eine Phrase nicht in der "Primärsprache" vorhanden, wird in den Englischen
-Übersetzungen gesucht. Schlägt auch dies fehl, taucht ein "Sprachcode" des
+"PrimÃ¤rsprache" ausgewÃ¤hlt werden. Das heiÃŸt, phpVideoPro versucht alle
+Bildschirmausgaben in dieser Sprache durchzufÃ¼hren. Ist die Ãœbersetzung fÃ¼r
+eine Phrase nicht in der "PrimÃ¤rsprache" vorhanden, wird in den Englischen
+Ãœbersetzungen gesucht. SchlÃ¤gt auch dies fehl, taucht ein "Sprachcode" des
 Programmierers auf - sollte dies nicht auf einen Benutzerfehler (wie etwa eine
-gelöschte Englische Sprache) zurückzuführen sein, erbitte ich eine
+gelÃ¶schte Englische Sprache) zurÃ¼ckzufÃ¼hren sein, erbitte ich eine
 Nachricht an mich, damit ich den Fehler beheben kann!
 
 [title]
 *config_media#
 
 [text]
-<b>*rw_media#:</b> Für Medien wie z.B. Original-Videokassetten oder DVDs macht
+<b>*rw_media#:</b> FÃ¼r Medien wie z.B. Original-Videokassetten oder DVDs macht
 es wenig Sinn, "Bandreste" zu verwalten - weil es einfach keine gibt. Bei
-anderen Medien wiederum, wie z.B. selbst bespielten Videokassetten, gehört die
+anderen Medien wiederum, wie z.B. selbst bespielten Videokassetten, gehÃ¶rt die
 Verwaltung verbleibender freier Zeit zu den elementaren Funktionen, die von
 einer Software wie phpVideoPro (mit Recht) erwartet werden. Manch einer erstellt
-sich seine VideoCDs selbst, ein anderer kauft sie ausschließlich. In einigen
-mittlerweile gar nicht mehr so seltenen Fällen erstellen Anwender gar ihre DVDs
-selbst, und benötigen daher auch für diese die Restzeit-Verwaltung. Um jedem
+sich seine VideoCDs selbst, ein anderer kauft sie ausschlieÃŸlich. In einigen
+mittlerweile gar nicht mehr so seltenen FÃ¤llen erstellen Anwender gar ihre DVDs
+selbst, und benÃ¶tigen daher auch fÃ¼r diese die Restzeit-Verwaltung. Um jedem
 gerecht zu werden, ist dieser Punkt konfigurierbar. Es sind hier also die
-Medien zu markieren, für die Restzeiten verwaltet (und angezeigt) werden sollen.
+Medien zu markieren, fÃ¼r die Restzeiten verwaltet (und angezeigt) werden sollen.
 
 [text]
 <b>*remove_empty_media#:</b> Auch hier soll unterschiedlichen Vorgehensweisen
-Rechnung getragen werden: Manch einer löscht keine Aufnahmen, sondern überspielt
-sie allenfalls gelegentlich. Wenn dieser Mensch also Einträge aus der Datenbank
-löscht, heißt das für ihn: das Medium existiert nicht mehr (verschenkt oder
-weggeworfen). Ein anderer löscht hingegen die Einträge aus der Datenbank, damit
-er bei nächster Gelegenheit die ungewünschte Aufnahme überspielen kann (weil
+Rechnung getragen werden: Manch einer lÃ¶scht keine Aufnahmen, sondern Ã¼berspielt
+sie allenfalls gelegentlich. Wenn dieser Mensch also EintrÃ¤ge aus der Datenbank
+lÃ¶scht, heiÃŸt das fÃ¼r ihn: das Medium existiert nicht mehr (verschenkt oder
+weggeworfen). Ein anderer lÃ¶scht hingegen die EintrÃ¤ge aus der Datenbank, damit
+er bei nÃ¤chster Gelegenheit die ungewÃ¼nschte Aufnahme Ã¼berspielen kann (weil
 ihm die Restzeit-Anzeige sodann dieses Medium vorschlagen wird). Je nach
-gewünschter Vorgehensweise kann hier also angegeben werden, was passieren soll,
-wenn der letzte Eintrag für ein Medium entfernt wird: ist die Box markiert,
-wird sodann auch das Medium aus der Restzeit-Tabelle entfernt (steht also für
-die Restzeit-Suche nicht mehr zur Verfügung) - andernfalls wird für die
-Restzeit-Suche die gesamte Kapazität des Mediums berücksichtigt.
+gewÃ¼nschter Vorgehensweise kann hier also angegeben werden, was passieren soll,
+wenn der letzte Eintrag fÃ¼r ein Medium entfernt wird: ist die Box markiert,
+wird sodann auch das Medium aus der Restzeit-Tabelle entfernt (steht also fÃ¼r
+die Restzeit-Suche nicht mehr zur VerfÃ¼gung) - andernfalls wird fÃ¼r die
+Restzeit-Suche die gesamte KapazitÃ¤t des Mediums berÃ¼cksichtigt.
 
 [text]
 <b>*movie_onlabel_default#:</b> Wenn jemand die letzten 10..20 Minuten seiner
-Videokassetten gern mit ein paar VideoClips von MTV füllt, möchte er diese
-Clips nicht unbedingt auch auf dem Label stehen haben - sonst könnten diese
-Label teilweise recht unübersichtlich werden. Daher läßt sich für jeden Eintrag
-einstellen, ob dessen Informationen bei Generierung eines Labels für das
-betreffende Medium eingeschlossen werden sollen. Hier läßt sich festlegen, wie
-die Einstellung für neue Einträge vorbelegt sein soll.
+Videokassetten gern mit ein paar VideoClips von MTV fÃ¼llt, mÃ¶chte er diese
+Clips nicht unbedingt auch auf dem Label stehen haben - sonst kÃ¶nnten diese
+Label teilweise recht unÃ¼bersichtlich werden. Daher lÃ¤ÃŸt sich fÃ¼r jeden Eintrag
+einstellen, ob dessen Informationen bei Generierung eines Labels fÃ¼r das
+betreffende Medium eingeschlossen werden sollen. Hier lÃ¤ÃŸt sich festlegen, wie
+die Einstellung fÃ¼r neue EintrÃ¤ge vorbelegt sein soll.
 
 [text]
 <b>*movie_tone_default#:</b> Bislang war das immer "Mono" - aber ich denke, das
 ist kaum mehr der richtige Wert. Der hier eingestellte Wert wird als Vorgabe
-für neue Einträge verwendet. Wer also ausschließlich (oder überwiegend) DVDs
+fÃ¼r neue EintrÃ¤ge verwendet. Wer also ausschlieÃŸlich (oder Ã¼berwiegend) DVDs
 mit Dolby 5.1 erwirbt, sollte hier auch Dolby 5.1 einstellen.
 
 [text]
 <b>*movie_color_default#:</b> Heutzutage werden die meisten Filme in Farbe
-ausgestrahlt - daher ist es natürlich auch sinnvoll, wenn dies die
-Voreinstellung für neue Einträge ist. Andernfalls mag es unter den Anwendern
-auch solche geben, die überwiegend Filme aus den Zwanziger Jahren sammeln,
-welche freilich in schwarz/weiß sind. In diesem Fall wäre es natürlich
-wünschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
+ausgestrahlt - daher ist es natÃ¼rlich auch sinnvoll, wenn dies die
+Voreinstellung fÃ¼r neue EintrÃ¤ge ist. Andernfalls mag es unter den Anwendern
+auch solche geben, die Ã¼berwiegend Filme aus den Zwanziger Jahren sammeln,
+welche freilich in schwarz/weiÃŸ sind. In diesem Fall wÃ¤re es natÃ¼rlich
+wÃ¼nschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
 geschehen.
 
 [title]
 *cookies#
 
 [text]
-<b>*enable_cookies#:</b> Ist diese Schaltfläche nicht aktiviert, werden keine
-Cookies verwendet. Das heißt dann allerdings auch, das Änderungen, die ein
-Benutzer im Menü "*edit#" -&gt; "*preferences#" vornimmt, ebenfalls in die
-Datenbank geschrieben werden, und somit die Voreinstellungen überschreiben.
-Gleiches gilt auch für die Filtereinstellungen. Mit anderen Worten: phpVideoPro
-verhält sich damit wie in seinen ersten Versionen, und es kann zu Problemen
-führen, sollten mehrere Benutzer dieselbe Installation simultan verwenden. Für
-eine Einzelplatz-Installation kann jedoch genau dieses Verhalten erwünscht sein.
+<b>*enable_cookies#:</b> Ist diese SchaltflÃ¤che nicht aktiviert, werden keine
+Cookies verwendet. Das heiÃŸt dann allerdings auch, das Ã„nderungen, die ein
+Benutzer im MenÃ¼ "*edit#" -&gt; "*preferences#" vornimmt, ebenfalls in die
+Datenbank geschrieben werden, und somit die Voreinstellungen Ã¼berschreiben.
+Gleiches gilt auch fÃ¼r die Filtereinstellungen. Mit anderen Worten: phpVideoPro
+verhÃ¤lt sich damit wie in seinen ersten Versionen, und es kann zu Problemen
+fÃ¼hren, sollten mehrere Benutzer dieselbe Installation simultan verwenden. FÃ¼r
+eine Einzelplatz-Installation kann jedoch genau dieses Verhalten erwÃ¼nscht sein.
 
 [text]
 <b>*expire_cookies#:</b> Hiermit wird definiert, nach welchem Zeitraum erstellte
-Cookies auf dem System des Benutzers wieder gelöscht werden. Wird hier
-"*session#" gewählt, verbleiben die Cookies nur solange auf dem System, bis der
-Benutzer seinen Browser wieder schließt. In den anderen Fällen bleiben sie für
+Cookies auf dem System des Benutzers wieder gelÃ¶scht werden. Wird hier
+"*session#" gewÃ¤hlt, verbleiben die Cookies nur solange auf dem System, bis der
+Benutzer seinen Browser wieder schlieÃŸt. In den anderen FÃ¤llen bleiben sie fÃ¼r
 den jeweils angegebenen Zeitraum aktiv.
 
 [text]
 <b>*session_purgetime#:</b> Wenn sich ein Benutzer bei phpVideoPro anmeldet,
-werden ihm/ihr zusätzliche Rechte eingeräumt, die dem entsprechenden Konto
-zugewiesen wurden - dies kann z.B. das Bearbeiten und/oder Löschen von Daten
-beinhalten. Verläßt dieser Benutzer nun z.B. seinen Arbeitsplatz, ohne sich
+werden ihm/ihr zusÃ¤tzliche Rechte eingerÃ¤umt, die dem entsprechenden Konto
+zugewiesen wurden - dies kann z.B. das Bearbeiten und/oder LÃ¶schen von Daten
+beinhalten. VerlÃ¤ÃŸt dieser Benutzer nun z.B. seinen Arbeitsplatz, ohne sich
 zuvor abzumelden, besteht die Gefahr, dass jemand anderes seine Sitzung benutzt
-und Daten manipuliert. Um dieses Risiko möglichst gering zu halten, bietet
+und Daten manipuliert. Um dieses Risiko mÃ¶glichst gering zu halten, bietet
 phpVideoPro die Option, eine inaktive Sitzung nach einem definierten Zeitraum
-zu löschen. Die vom Benutzer in seinen "Keksen" gespeicherten Einstellungen
+zu lÃ¶schen. Die vom Benutzer in seinen "Keksen" gespeicherten Einstellungen
 sind hiervon nicht betroffen: er/sie wird lediglich vom System abgemeldet, und
-verfügt somit (bis zu einer erneuten Anmeldung) lediglich noch über die Rechte
+verfÃ¼gt somit (bis zu einer erneuten Anmeldung) lediglich noch Ã¼ber die Rechte
 des Gast-Kontos.
 
 [title]
@@ -175,83 +175,83 @@ des Gast-Kontos.
 
 [text]
 <b>*template_set#:</b> Das Design betreffend basiert phpVideoPro auf Templates.
-Hier lässt sich das gewünschte Template-Set auswählen, und phpVideoPro erhält
+Hier lÃ¤sst sich das gewÃ¼nschte Template-Set auswÃ¤hlen, und phpVideoPro erhÃ¤lt
 auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
-XMMS bzw. WinAmp bekannt sein dürften).
+XMMS bzw. WinAmp bekannt sein dÃ¼rften).
 
 [text]
-<b>*imdb_url#:</b> Die Internet Movie DataBase bietet umfangreiche Daten für
-viele Filme. Diese können aus phpVideoPro heraus einfach abgerufen werden, indem
+<b>*imdb_url#:</b> Die Internet Movie DataBase bietet umfangreiche Daten fÃ¼r
+viele Filme. Diese kÃ¶nnen aus phpVideoPro heraus einfach abgerufen werden, indem
 im Betrachtungsmodus eines Filmeintrages auf den Button des Titels oder des
-Crew-Mitglieds geklickt wird. Während die Namen der Crewmitglieder sich für
-gewöhnlich nicht ändern, kann der Filmtitel bei synchronisierten Fassungen
+Crew-Mitglieds geklickt wird. WÃ¤hrend die Namen der Crewmitglieder sich fÃ¼r
+gewÃ¶hnlich nicht Ã¤ndern, kann der Filmtitel bei synchronisierten Fassungen
 durchaus vom "Original-Titel" abweichen - was sodann eine manuelle Suche auf
-der IMDB Site erforderlich macht. Eine höhere Trefferwahrscheinlichkeit lässt
-sich daher erreichen, wenn hier eine Site ausgewählt wird, die mit der
-häufigsten Sprachversion der in phpVideoPro gespeicherten Filmtitel überein
-stimmt - für Deutschland wäre dies die deutsche IMDB Site.
+der IMDB Site erforderlich macht. Eine hÃ¶here Trefferwahrscheinlichkeit lÃ¤sst
+sich daher erreichen, wenn hier eine Site ausgewÃ¤hlt wird, die mit der
+hÃ¤ufigsten Sprachversion der in phpVideoPro gespeicherten Filmtitel Ã¼berein
+stimmt - fÃ¼r Deutschland wÃ¤re dies die deutsche IMDB Site.
 [text]
-Leider gibt es noch nicht für alle Sprachen eine eigene IMDB Site. Die mir
-bekannten Sites sind bereits als Optionen verfügbar - wenn jemand weitere Sites
+Leider gibt es noch nicht fÃ¼r alle Sprachen eine eigene IMDB Site. Die mir
+bekannten Sites sind bereits als Optionen verfÃ¼gbar - wenn jemand weitere Sites
 kennt, bitte ich um eine kurze Notiz, damit ich sie ebenfalls einpflegen kann!
 
 
 [text]
 <b>*printer#:</b> Um eine exakte Positionierung der Etiketten auf den zu
-verwendenden Label-Sheets gewährleisten zu können, müssen die genauen
-Seitenränder des zu verwendenden Druckers bekannt sein. Ist der gewünschte
-Drucker in der Liste nicht enthalten, kann zunächst einer der vorhandenen
-"getestet" werden: manche Drucker sind bezüglich Ihrer "Rand-Einstellungen"
-kompatibel (so viele Möglichkeiten gibt es ja auch nicht). Ist ein "kompatibler"
-Drucker dabei, wäre eine Nachricht an mich hilfreich mit Angabe des genutzten
-und des ausgewählten Druckers. Zukünftige Versionen von phpVideoPro könnten
-dann eine "Drucker-Kompatibilitäts-Liste" enthalten.<BR>
-Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Übel ein neuer
-Drucker in die Datenbank eingetragen werden. Das hierfür zu verwendende Formular
-findet sich im Administrations-Menü unter dem Punkt <i>*admin_printers#</i>
-(näheres siehe <i><A HREF="{PHP_SELF}?topic=admin_printers">hier</A></i>).
+verwendenden Label-Sheets gewÃ¤hrleisten zu kÃ¶nnen, mÃ¼ssen die genauen
+SeitenrÃ¤nder des zu verwendenden Druckers bekannt sein. Ist der gewÃ¼nschte
+Drucker in der Liste nicht enthalten, kann zunÃ¤chst einer der vorhandenen
+"getestet" werden: manche Drucker sind bezÃ¼glich Ihrer "Rand-Einstellungen"
+kompatibel (so viele MÃ¶glichkeiten gibt es ja auch nicht). Ist ein "kompatibler"
+Drucker dabei, wÃ¤re eine Nachricht an mich hilfreich mit Angabe des genutzten
+und des ausgewÃ¤hlten Druckers. ZukÃ¼nftige Versionen von phpVideoPro kÃ¶nnten
+dann eine "Drucker-KompatibilitÃ¤ts-Liste" enthalten.<BR>
+Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Ãœbel ein neuer
+Drucker in die Datenbank eingetragen werden. Das hierfÃ¼r zu verwendende Formular
+findet sich im Administrations-MenÃ¼ unter dem Punkt <i>*admin_printers#</i>
+(nÃ¤heres siehe <i><A HREF="{PHP_SELF}?topic=admin_printers">hier</A></i>).
 
 [text]
-<b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
-z.B. unter dem Menüpunkt "*medialist#" zu finden, stets in voller Länge, d.h.
-mit allen Datensätzen an. Bei umfangreichen Datensammlungen führte dies nicht
-nur zu langen Ladezeiten, sondern konnte durchaus auch recht unübersichtlich
-werden. Daher lassen sich diese Listen nun in mehrere "Häppchen" unterteilen.
-Die Größe dieser "Häppchen" lässt sich mit diesem Punkt einstellen: er gibt an,
+<b>*display_limit#:</b> Ã„ltere Versionen von phpVideoPro zeigten Listen, wie
+z.B. unter dem MenÃ¼punkt "*medialist#" zu finden, stets in voller LÃ¤nge, d.h.
+mit allen DatensÃ¤tzen an. Bei umfangreichen Datensammlungen fÃ¼hrte dies nicht
+nur zu langen Ladezeiten, sondern konnte durchaus auch recht unÃ¼bersichtlich
+werden. Daher lassen sich diese Listen nun in mehrere "HÃ¤ppchen" unterteilen.
+Die GrÃ¶ÃŸe dieser "HÃ¤ppchen" lÃ¤sst sich mit diesem Punkt einstellen: er gibt an,
 wie viele Zeilen die jeweilige Tabelle haben soll. Innerhalb der Listen ist eine
-Navigation mittels vier Buttons möglich: diese führen jeweils zur ersten/letzten
-bzw. vorigen/nächsten Seite.
+Navigation mittels vier Buttons mÃ¶glich: diese fÃ¼hren jeweils zur ersten/letzten
+bzw. vorigen/nÃ¤chsten Seite.
 
 [text]
-Zugegebenermaßen scheint es bei den Besetzungslisten (Darsteller, Regisseure
+ZugegebenermaÃŸen scheint es bei den Besetzungslisten (Darsteller, Regisseure
 etc.) zu kleinen Ungereimtheiten zu kommen, und die Anzahl der Zeilen kann
-nicht nur vom eingestellten "*display_limit#" abweichen, sondern außerdem auch
-von Seite zu Seite differieren. Dies liegt daran, dass hier die "Häppchen-Größe"
-auf die Anzahl der Personen angewendet wird. Diese können aber durchaus auch als
-"nicht anzuzeigen" erfaßt sein (Option "*in_list#" im "*edit#" Formular).
+nicht nur vom eingestellten "*display_limit#" abweichen, sondern auÃŸerdem auch
+von Seite zu Seite differieren. Dies liegt daran, dass hier die "HÃ¤ppchen-GrÃ¶ÃŸe"
+auf die Anzahl der Personen angewendet wird. Diese kÃ¶nnen aber durchaus auch als
+"nicht anzuzeigen" erfaÃŸt sein (Option "*in_list#" im "*edit#" Formular).
 
 [text]
-<b>*lines_per_page#:</b> Diese Angabe dient den Vorbereitungen für den
+<b>*lines_per_page#:</b> Diese Angabe dient den Vorbereitungen fÃ¼r den
 Listendruck und gibt an, wie viele Zeilen (reinen ASCII) Textes auf ein Blatt
 Papier passen. Einmal an dieser Stelle festgelegt, wird dieser Wert bei jedem
-Aufruf des Menüpunktes "*listgen#" (siehe <A HREF="{PHP_SELF}?topic=listgen">dort</A>)
+Aufruf des MenÃ¼punktes "*listgen#" (siehe <A HREF="{PHP_SELF}?topic=listgen">dort</A>)
 als Standard vorgegeben, kann dort jedoch auch jedesmal angepasst werden.
 
 [text]
-<b>*date_format#:</b> In welchem Format sollen Datumsangaben präsentiert werden.
-Möglicherweise wird dieses Format noch nicht in allen Menüs, Formulare und
-Listen berücksichtigt. Sollte dies jemandem auffallen, bitte ich um einen kurzen
-Hinweis zwecks Korrektur (ich würde an dieser Stelle ja ein kostenloses Update
-als Preis anbieten - aber angesichts der Lizenz dieses Produktes nähme das
+<b>*date_format#:</b> In welchem Format sollen Datumsangaben prÃ¤sentiert werden.
+MÃ¶glicherweise wird dieses Format noch nicht in allen MenÃ¼s, Formulare und
+Listen berÃ¼cksichtigt. Sollte dies jemandem auffallen, bitte ich um einen kurzen
+Hinweis zwecks Korrektur (ich wÃ¼rde an dieser Stelle ja ein kostenloses Update
+als Preis anbieten - aber angesichts der Lizenz dieses Produktes nÃ¤hme das
 ohnehin niemand ernst :)
 
 [text]
-<b>*site_info#:</b> Während der Beginn der Titelzeile des Browserfensters
+<b>*site_info#:</b> WÃ¤hrend der Beginn der Titelzeile des Browserfensters
 generell dem Muster "phpVideoPro v&lt;Version&gt;" und das Ende derselben " [
-&lt;Job&gt; ]" folgt, lässt sich der Teil dazwischen an dieser Stelle
-konfigurieren: "@ &lt;site_info&gt;" wird sodann dazwischen eingefügt. Dies ist
+&lt;Job&gt; ]" folgt, lÃ¤sst sich der Teil dazwischen an dieser Stelle
+konfigurieren: "@ &lt;site_info&gt;" wird sodann dazwischen eingefÃ¼gt. Dies ist
 z.B. hilfreich zur Orientierung, wenn man verschiedene Installationen zur
-selben Zeit in verschiedenen Browser-Fenstern geöffnet hat.
+selben Zeit in verschiedenen Browser-Fenstern geÃ¶ffnet hat.
 
 [eof]
 

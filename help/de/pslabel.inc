@@ -8,62 +8,62 @@
 [text]
 Als Alternative zum PHP basierten Label-Generator, welcher einfach nur "plain
 Text" auf PNG Bilder setzt, hat Michael Hasselberg den PS Label Generator
-erstellt (und wartet auch den Code hierfür). Aufbauend auf PostScript-Templates
-ergeben sich hier wesentlich bessere und umfangreichere Möglichkeiten des
-Designs - von der zusätzlichen Flexibilität einmal ganz zu schweigen.
+erstellt (und wartet auch den Code hierfÃ¼r). Aufbauend auf PostScript-Templates
+ergeben sich hier wesentlich bessere und umfangreichere MÃ¶glichkeiten des
+Designs - von der zusÃ¤tzlichen FlexibilitÃ¤t einmal ganz zu schweigen.
 
 [text]
-Als Voraussetzung für die Benutzung dieses Label-Generators muss auf dem
+Als Voraussetzung fÃ¼r die Benutzung dieses Label-Generators muss auf dem
 (Client-) System ein PostScript Prozessor (und Betrachter) installiert sein.
-Für Linux (und andere *nix) basierte Systeme bedarf dies keiner besonderen
-Erwähnung: mir ist keine Distribution bekannt, die nicht bereits mit
-GhostScript einher kommt. Für Windows (und andere Betriebssysteme) kann es
+FÃ¼r Linux (und andere *nix) basierte Systeme bedarf dies keiner besonderen
+ErwÃ¤hnung: mir ist keine Distribution bekannt, die nicht bereits mit
+GhostScript einher kommt. FÃ¼r Windows (und andere Betriebssysteme) kann es
 jedoch notwendig sein, einen solchen separat zu installieren - was jedoch in
-den seltensten Fällen ein Problem darstellen sollte. Wer das PostScript Label
-System benutzen möchte, sollte halt lediglich sicher stellen, das ein solcher
+den seltensten FÃ¤llen ein Problem darstellen sollte. Wer das PostScript Label
+System benutzen mÃ¶chte, sollte halt lediglich sicher stellen, das ein solcher
 Prozessor/Viewer installiert ist.
 
 [title]
 *labeltype#
 
 [text]
-Wird "PS Label" über das Menü aufgerufen, muss zunächst ein Label Typ festgelegt
+Wird "PS Label" Ã¼ber das MenÃ¼ aufgerufen, muss zunÃ¤chst ein Label Typ festgelegt
 werden. Die Engine ist so konzipiert, dass der Druck auf fertigen Label-Sheets
-(mit selbstklebenden Labels) erfolgen kann - aber natürlich nicht muss: er kann
-durchaus auf einfachem Papier erfolgen, und die erzeugten Etiketten können dann
+(mit selbstklebenden Labels) erfolgen kann - aber natÃ¼rlich nicht muss: er kann
+durchaus auf einfachem Papier erfolgen, und die erzeugten Etiketten kÃ¶nnen dann
 von Hand ausgeschnitten und mit Pritt-Stift o.a. auf die Tapes geklebt werden.
 
 [text]
 Die Auswahl-Box auf dieser Seite gibt den Label-Typ an (unter diesem Namen
-können die Label-Sheets im einschlägigen Fachhandel bezogen werden) und zeigt
-zusätzlich auf, wohin die erzeugten Etiketten anschließend geklebt werden
+kÃ¶nnen die Label-Sheets im einschlÃ¤gigen Fachhandel bezogen werden) und zeigt
+zusÃ¤tzlich auf, wohin die erzeugten Etiketten anschlieÃŸend geklebt werden
 sollen: z.B. auf die Seite oder das Top einer VHS Kassette. Nach getroffener
-Auswahl führt, wer hätte das gedacht, der "*layout_label#" Button zum zweiten
+Auswahl fÃ¼hrt, wer hÃ¤tte das gedacht, der "*layout_label#" Button zum zweiten
 Schritt:
 
 [title]
 *print_label#
 
 [text]
-Hier sind die Nummern der Medien einzugeben, für die ein Etikett generiert
-werden soll. Während wir im vorigen Punkt die <b><i>Maße</i></b> des Etiketts
+Hier sind die Nummern der Medien einzugeben, fÃ¼r die ein Etikett generiert
+werden soll. WÃ¤hrend wir im vorigen Punkt die <b><i>MaÃŸe</i></b> des Etiketts
 festgelegt haben, geht es hier um das Design: welche Farben und Grafiken sollen
 benutzt werden. Auch wenn die Namen der Designs zumeist an Kategorien erinnern
 (auf diesen basieren die von mir erzeugten Vorlagen auch), werden sie aus zwei
-Gründen <b><i>nicht</i></b> automatisch ausgewählt: erstens können auf dem
+GrÃ¼nden <b><i>nicht</i></b> automatisch ausgewÃ¤hlt: erstens kÃ¶nnen auf dem
 jeweiligen Medium durchaus mehrere Filme verschiedener Kategorien sein, und
-zweitens weiß phpVideoPro beim Aufruf dieser Seite ja noch gar nicht, für
-welche Medien Etiketten erzeugt werden sollen. Sicher ließe sich für den
+zweitens weiÃŸ phpVideoPro beim Aufruf dieser Seite ja noch gar nicht, fÃ¼r
+welche Medien Etiketten erzeugt werden sollen. Sicher lieÃŸe sich fÃ¼r den
 zweiten Punkt irgend was mit JavaScript machen - aber JavaScript vermeide ich
-für phpVideoPro lieber, soweit dies möglich ist ;)
+fÃ¼r phpVideoPro lieber, soweit dies mÃ¶glich ist ;)
 
 [text]
-Sind alle nötigen Angaben gemacht, werden die gewünschten Etiketten nach
-Betätigen des *create# Buttons erzeugt. Keine Sorge bezüglich nicht ausgefüllter
-Felder: ist für ein Feld keine Nummer eingetragen, wird hier auch kein Etikett
-generiert. Und dies gilt nicht nur für die Anzahl, sondern auch die Position:
-dadurch ist es möglich, einen nicht vollständig aufgebrauchten Bogen auch
-vollständig aufzubrauchen.
+Sind alle nÃ¶tigen Angaben gemacht, werden die gewÃ¼nschten Etiketten nach
+BetÃ¤tigen des *create# Buttons erzeugt. Keine Sorge bezÃ¼glich nicht ausgefÃ¼llter
+Felder: ist fÃ¼r ein Feld keine Nummer eingetragen, wird hier auch kein Etikett
+generiert. Und dies gilt nicht nur fÃ¼r die Anzahl, sondern auch die Position:
+dadurch ist es mÃ¶glich, einen nicht vollstÃ¤ndig aufgebrauchten Bogen auch
+vollstÃ¤ndig aufzubrauchen.
 
 [eof]
 

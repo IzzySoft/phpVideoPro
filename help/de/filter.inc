@@ -5,21 +5,21 @@
 Einleitung
 
 [text]
-Beide Menüpunkte - "*set_filter#" wie auch "*unset_filter#" - führen zum selben
+Beide MenÃ¼punkte - "*set_filter#" wie auch "*unset_filter#" - fÃ¼hren zum selben
 Formular, mit nur einem kleinen (wenn auch signifikanten) Unterschied:
-"*unset_filter#" löscht zuvor alle gesetzten Filter, so daß problemlos
+"*unset_filter#" lÃ¶scht zuvor alle gesetzten Filter, so daÃŸ problemlos
 mit der Erstellung eines neuen Regelsets begonnen werden kann - ohne zuerst auf
-bestehende Regeln prüfen zu müssen.
+bestehende Regeln prÃ¼fen zu mÃ¼ssen.
 
 [text]
-Wurde dieses Formular über das Menü "*admin#" -&gt; "*admin_filter#" aufgerufen,
+Wurde dieses Formular Ã¼ber das MenÃ¼ "*admin#" -&gt; "*admin_filter#" aufgerufen,
 so werden die Default Filtereinstellungen, welche in der Datenbank gespeichert
-sind, bearbeitet. Ein Aufruf über das "*edit#" Menü hingegen speichert
-Änderungen in Cookies (und liest sie, ihre Existenz vorausgesetzt, auch aus
-selbigen) - sofern Cookies aktiviert sind. Dies ermöglicht mehreren Benutzern,
+sind, bearbeitet. Ein Aufruf Ã¼ber das "*edit#" MenÃ¼ hingegen speichert
+Ã„nderungen in Cookies (und liest sie, ihre Existenz vorausgesetzt, auch aus
+selbigen) - sofern Cookies aktiviert sind. Dies ermÃ¶glicht mehreren Benutzern,
 zur gleichen Zeit mit ein und derselben Installation zu arbeiten, und dennoch
-ihre eigenen Filtereinstellungen vornehmen zu können - ohne die eines anderen
-zu überschreiben.
+ihre eigenen Filtereinstellungen vornehmen zu kÃ¶nnen - ohne die eines anderen
+zu Ã¼berschreiben.
 
 [title]
 Filterregeln
@@ -28,25 +28,25 @@ Filterregeln
 <H4>in einer gemeinsamen Zelle gruppierte Filter</H4>
   <OL>
    <li><b>Filter mit min/max Werten</b><br>
-       Diese werden mit UND verknüpft; gibt man also "min 60" und "max 90"
-       für die Länge an, bedeutet dies: alle Filme mit 60-90 Minuten Länge.
-       Wird nur einer der beiden Werte angegeben, findet natürlich auch nur
-       dieser Berücksichtigung.
+       Diese werden mit UND verknÃ¼pft; gibt man also "min 60" und "max 90"
+       fÃ¼r die LÃ¤nge an, bedeutet dies: alle Filme mit 60-90 Minuten LÃ¤nge.
+       Wird nur einer der beiden Werte angegeben, findet natÃ¼rlich auch nur
+       dieser BerÃ¼cksichtigung.
    <li><b>Titel</b><br>
-       Ein beliebiger Teil des gewünschten Titels kann hier eingegeben
-       werden; der Begriff "Mission" würde hier also sowohl auf den Film
-       "James Bond: In tödlicher Mission" wie auch auf "Mission Impossible"
+       Ein beliebiger Teil des gewÃ¼nschten Titels kann hier eingegeben
+       werden; der Begriff "Mission" wÃ¼rde hier also sowohl auf den Film
+       "James Bond: In tÃ¶dlicher Mission" wie auch auf "Mission Impossible"
        zutreffen.
    <li><b>andere Filter</b><br>
        Alle anderen Filter werden mittels ODER verbunden; wird also z.B.
-       als MedienTyp sowohl DVD als auch OVT aktiviert, heißt dies: sowohl
-       DVDs als auch Originalbänder (wenn mir jemand ein Medium bringt,
-       welches zugleich DVD und VHS-Tape ist, muß ich diese Regel nochmals
-       überdenken :-)
+       als MedienTyp sowohl DVD als auch OVT aktiviert, heiÃŸt dies: sowohl
+       DVDs als auch OriginalbÃ¤nder (wenn mir jemand ein Medium bringt,
+       welches zugleich DVD und VHS-Tape ist, muÃŸ ich diese Regel nochmals
+       Ã¼berdenken :-)
   </OL>
 
 [text]
-<H4>Verknüpfung der einzelnen Regeln</H4>
+<H4>VerknÃ¼pfung der einzelnen Regeln</H4>
 
 [text]
 Die einzelnen Filterregeln werden nun wieder mit UND verbunden: "DVD" als

@@ -2,34 +2,34 @@
 # /* $Id$ */
 
 [title]
-Wie erstelle ich eine Sprachdatei für meine Muttersprache?
+Wie erstelle ich eine Sprachdatei fÃ¼r meine Muttersprache?
 
 [text]
 Dies ist leichter, als mancher denken mag (seit v0.4.6 sogar sehr einfach, dank
-des neuen Editors für Übersetzungen) - es sind nur wenige Schritte nötig:
+des neuen Editors fÃ¼r Ãœbersetzungen) - es sind nur wenige Schritte nÃ¶tig:
 [text]
 <OL>
- <LI>Zunächst ist ein LogIn als Administrator erforderlich.</LI>
- <LI>Nun ist im Menü der Punkt "*admin# -&gt; *admin_translations#"
-     auszuwählen...</LI>
- <LI>...und hier die gewünschte Zielsprache. Ein "Klick" auf "*submit#" führt
-     dann direkt zur Bearbeitung der Übersetzungen.</LI>
- <LI>Sofern auf einer Seite Änderungen erfolgt sind, müssen diese (pro Seite)
+ <LI>ZunÃ¤chst ist ein LogIn als Administrator erforderlich.</LI>
+ <LI>Nun ist im MenÃ¼ der Punkt "*admin# -&gt; *admin_translations#"
+     auszuwÃ¤hlen...</LI>
+ <LI>...und hier die gewÃ¼nschte Zielsprache. Ein "Klick" auf "*submit#" fÃ¼hrt
+     dann direkt zur Bearbeitung der Ãœbersetzungen.</LI>
+ <LI>Sofern auf einer Seite Ã„nderungen erfolgt sind, mÃ¼ssen diese (pro Seite)
      mittels des "*update#" Buttons gespeichert werden.</LI>
- <LI>Alles fertig? Dann gilt es, die Übersetzungen in eine Datei zu sichern.
-     In dieser ist nochmals zu prüfen, ob der eingetragene Zeichensatz mit dem
-     verwendeten übereinstimmt. Dies läßt sich anhand des ersten SQL Kommandos
+ <LI>Alles fertig? Dann gilt es, die Ãœbersetzungen in eine Datei zu sichern.
+     In dieser ist nochmals zu prÃ¼fen, ob der eingetragene Zeichensatz mit dem
+     verwendeten Ã¼bereinstimmt. Dies lÃ¤ÃŸt sich anhand des ersten SQL Kommandos
      ("UPDATE...") ermitteln. Sollte dies nicht der Fall sein, muss es noch
-     in der Datei angepasst und diese sodann über die "*admin# -&gt; *configuration#"
+     in der Datei angepasst und diese sodann Ã¼ber die "*admin# -&gt; *configuration#"
      Seite neu eingeladen werden, um die Datenbank entsprechend zu synchronisieren.</LI>
 </OL>
 
 [text]
-So, und jetzt würde ich mich freuen, eine Kopie dieser Datei zu erhalten, um sie
-in zukünftigen Versionen von phpVideoPro verwenden zu können!
+So, und jetzt wÃ¼rde ich mich freuen, eine Kopie dieser Datei zu erhalten, um sie
+in zukÃ¼nftigen Versionen von phpVideoPro verwenden zu kÃ¶nnen!
 
 [title]
-Die vorhandenen Übersetzungen für meine Sprache gefallen mir nicht...
+Die vorhandenen Ãœbersetzungen fÃ¼r meine Sprache gefallen mir nicht...
 
 [text]
 Kein Problem. Siehe oben - gleiche Prozedur :-)

@@ -33,6 +33,7 @@ INSERT INTO lang VALUES ('backup_db_moviedel','de','Nur Film-relevante Daten sic
 INSERT INTO lang VALUES ('backup_db_movies','de','Nur Film-relevante Daten sichern (Film, Schauspieler etc.)','');
 INSERT INTO lang VALUES ('backup_db_movie_internal','de','Alle Film-relevanten Daten im phpVideoPro internen Format sichern','');
 INSERT INTO lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erstellt werden?','');
+INSERT INTO lang VALUES ('backup_db_sysconf','de','Systemkonfiguration und Default-Einstellungen sichern','');
 INSERT INTO lang VALUES ('backup_file_corrupt','de','Die ausgewählte Backup-Datei ist defekt!','');
 INSERT INTO lang VALUES ('backup_file_unreadable','de','Kann die Sicherungsdatei nicht lesen - sind die Zugriffsrechte korrekt gesetzt?','');
 INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
@@ -379,7 +380,7 @@ INSERT INTO lang VALUES ('refresh_lang','de','Übersetzungen erneut einlesen',''
 INSERT INTO lang VALUES ('refresh_lang_comment','de','(alte Übersetzungen löschen und Sprachdatei erneut importieren)','');
 INSERT INTO lang VALUES ('remove_empty_media','de','Leere Medien entfernen','');
 INSERT INTO lang VALUES ('remove_empty_media_comment','de','Sollen Medien aus der Restzeittabelle entfernt werden, wenn der letzte Film davon gelöscht wurde?','');
-INSERT INTO lang VALUES ('restore_db_movie_internal','de','Filme aus einer PVP Backup Datei importieren','');
+INSERT INTO lang VALUES ('restore_db_internal','de','PVP Backup Datei importieren','');
 INSERT INTO lang VALUES ('rw_media','de','Editierbare Medien','');
 INSERT INTO lang VALUES ('rw_media_comment','de','Medien, für die eine Restzeit-Anzeige verwaltet werden soll.','');
 INSERT INTO lang VALUES ('s/w','de','s/w','');

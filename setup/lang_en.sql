@@ -370,7 +370,6 @@ INSERT INTO lang VALUES('backup_compress','en','Enable compression?','Backup pag
 INSERT INTO lang VALUES('invalid_backup_dir','en','The configured Backup directory does not exist.','Hint displayed when trying to restore data from a file (this file has to be placed in the Backup directory for restore)');
 INSERT INTO lang VALUES('button_backup','en','Backup','Button description to start the Backup');
 INSERT INTO lang VALUES('button_restore','en','Restore','Button description for restore start');
-INSERT INTO lang VALUES('restore_db_movie_internal','en','Restore movies from a PVP backup file','Action on the Backup/Restore page');
 INSERT INTO lang VALUES('no_backup_avail','en','No Backup file available to restore from.','Hint on the Backup/Restore page');
 INSERT INTO lang VALUES('no_restore_file','en','Sorry: the selected file does no longer exist!','Hint on the Backup/Restore page');
 INSERT INTO lang VALUES('imp_errors','en','Import of %2 records finnished with %1 errors.','Result message after import');
@@ -533,4 +532,6 @@ INSERT INTO lang VALUES ('skip_intro_comment','en','Whether to skip the introduc
 INSERT INTO lang VALUES ('xfer_unknown_filetype','en','This backup file type is not (yet) handled by phpVideoPro.','Error message on backup/restore');
 INSERT INTO lang VALUES ('xfer_wrong_mode','en','Program error: You are in the wrong mode for the requested operation. Required mode is "%1", actual mode is "%2". Please report this to the author with the details of the action performed.','Error message on backup/restore');
 INSERT INTO lang VALUES ('admin_required','en','This action requires admin privileges!','Error message when accessing an admin function without the required user privilege. Should never be displayed ;)');
+INSERT INTO lang VALUES ('restore_db_internal','en','Restore from a PVP backup file','Action on the Backup/Restore page');
+INSERT INTO lang VALUES ('backup_db_sysconf','en','Backup system config and default preferences','');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

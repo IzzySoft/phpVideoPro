@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.6.10 (2004)
+[text]
+<ul>
+ <li>updated Dutch translations (Thanx to Ron Dekker)
+ <li>fixed a lot of the PHP notices (due to uninitialized vars etc.)
+</ul>
+
+[title]
 0.6.9 (November 07, 2004)
 [text]
 <ul>

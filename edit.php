@@ -85,6 +85,9 @@
      $scolors[$i][name] = $db->f('name');
      $i++;
     }
+    for ($i=0;$i<count($scolors);$i++) {
+     $scolors[$i][name] = lang($scolors[$i][name]);
+    }
     dbquery("SELECT name,id FROM pict");
     $i = 0;
     while ( $db->next_record() ){
@@ -162,7 +165,7 @@
   $tone = $db->f('name');
   dbquery("SELECT name FROM colors WHERE id=$color_id");
   $db->next_record();
-  $color = $db->f('name');
+  $color = lang($db->f('name'));
   dbquery("SELECT name FROM pict WHERE id=$pict_id");
   $db->next_record();
   $pict_format = $db->f('name');
@@ -333,7 +336,7 @@ EndHiddenFields;
     $field = "<SELECT NAME=\"color_id\">";
     for ($i=0;$i<count($scolors);$i++) {
       $field .= "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
-      if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][name]==$defaults["scolor"]) ) $field .= " SELECTED";
+      if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][id]==$defaults["scolor"]) ) $field .= " SELECTED";
       $field .= ">" . $scolors[$i][name] . " </OPTION>";
     }
     $field .= "</SELECT>";

@@ -25,5 +25,5 @@ $database["user"]      = "guest";
 $database["password"]  = "";
 
 // some default settings
-$defaults["scolor"] = "Farbe"; // most movies today have more than two colors ;)
+$defaults["scolor"] = 2; // 1=b/w, 2=color, 3=3d - if you didn't change sth. :)
 ?>

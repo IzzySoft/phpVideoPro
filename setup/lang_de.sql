@@ -140,3 +140,5 @@ INSERT INTO lang VALUES('print_label','de','Etikett drucken:');
 INSERT INTO lang VALUES('howto_label','de','Wie erstelle/konfiguriere ich Vorlagen für Labels?');
 INSERT INTO lang VALUES('label','de','Etikett');
 INSERT INTO lang VALUES('print','de','Drucken');
+INSERT INTO lang VALUES('medialist_num','de','Numerisch sortierte Medienliste');
+INSERT INTO lang VALUES('medialist_alpha','de','Alphabetisch sortierte Medienliste');

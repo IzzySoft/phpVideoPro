@@ -140,3 +140,5 @@ INSERT INTO lang VALUES('print_label','en','Print Label:');
 INSERT INTO lang VALUES('howto_label','en','How to create/configure label templates');
 INSERT INTO lang VALUES('label','en','Label');
 INSERT INTO lang VALUES('print','en','Print');
+INSERT INTO lang VALUES('medialist_num','en','Medialist in numerical order');
+INSERT INTO lang VALUES('medialist_alpha','en','Medialist in alphabetical order');

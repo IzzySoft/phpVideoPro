@@ -14,6 +14,9 @@
  <li>added/updated some help pages
  <li>some work on the db class in preparation for code cleanup (all direct
      db queries should only be here: "abstraction layer" to ease changes to db)
+ <li>$db-&gt;get_movie() now uses outer joins (speeds up list building by at
+     least factor 2!). Side effect: you have to make sure your DB type supports
+     this (e.g. PostgreSQL 7.0 does NOT, here it was added with 7.1 afaik)
 </ul>
 
 [title]

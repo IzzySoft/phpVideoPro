@@ -12,6 +12,9 @@
      immediately, since this new feature is not yet thouroughly tested. In
      order to enable it, edit the inc/config.inc file; you'll find more
      explanations at the end of this file within the "technical" block.
+ <li>media capacity for (re)writable media is now editable. To use this
+     feature, just click on the button for the remaining time ("*free#")
+     when viewing an entry.
 </ul>
 
 [title]

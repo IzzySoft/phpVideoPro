@@ -1340,8 +1340,8 @@
     *  i:part, i:entry; where i:entry = "mtype cass_id-part")
     *  integer part if called w/ both params
     */
-   function get_lastmovienum($mtype_id=0,$cass_id=0) {
-     if ($mtype_id && $cass_id) {
+   function get_lastmovienum($mtype_id="",$cass_id="") {
+     if (is_numeric($mtype_id) && is_numeric($cass_id)) {
        $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
        if ( $this->next_record() ) {
          return $this->f('max_part');

@@ -2,7 +2,7 @@
 
 $base_url   = "/local/phpvideo/";
 $nav_script = $base_url . "inc/navcond.js";
-$version    = "0.0.1";
+$version    = "0.0.2";
 
 // colors - mainly for debug messages
 $colors["ok"]  = "<Font Color=\"#0000ff\">";
@@ -20,6 +20,7 @@ $debug["log"]  = "ES";
 
 // internals - don't edit below this unless you exactly know what you are doing!
 $max["actors"]         =  5;
+$max["categories"]     =  3;
 $max["name_chars"]     = 30;
 $max["country_chars"]  = 30;
 $max["filmlen_chars"]  =  3;

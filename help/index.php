@@ -129,8 +129,10 @@ class pagemaker {
 
  function make_page($title,$file) {
   $input = file($file);
-  if (substr(trim($input[0]),0,1)=="!") $file = dirname($file) . "/" . trim(substr($input[0],1));
-  $input = file($file);
+  if (substr(trim($input[0]),0,1)=="!") { // "symbolic link"
+    $file = dirname($file) . "/" . trim(substr($input[0],1));
+    $input = file($file);
+  }
   $line  = 0;
   while ( $line<count($input) ) {
    switch ( trim(strtolower($input[$line])) ) {

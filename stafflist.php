@@ -19,6 +19,8 @@
   $t->set_block("list","itemblock","itemlist");
   $t->set_block("list","notfoundblock","notfoundlist");
   $filter = get_filters();
+  if (!$start) $start = 0;
+  include("inc/nextmatch.inc");
 
   function getStaffClause($i) {
     GLOBAL $staff,$stafftype;
@@ -46,7 +48,9 @@
   }
   
   // retrieve all staff members
-  dbquery("SELECT id,name,firstname FROM $stafftype ORDER BY id");
+#  $query="SELECT id,name,firstname FROM $stafftype ORDER BY id";
+  $query="SELECT id,name,firstname FROM $stafftype ORDER BY name,firstname";
+  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?stafftype=$stafftype",$start);
   $i = 0;
   while ( $db->next_record() ) {
     $staff[$i]->id        = $db->f('id');
@@ -130,6 +134,10 @@
   $t->set_var("category",lang("category"));
   $t->set_var("length",lang("length"));
   $t->set_var("medianr",lang("medianr"));
+  $t->set_var("first",$nextmatch->first);
+  $t->set_var("left",$nextmatch->left);
+  $t->set_var("right",$nextmatch->right);
+  $t->set_var("last",$nextmatch->last);
   $t->pparse("out","list");
 
   include("inc/footer.inc");

@@ -51,8 +51,18 @@
  #=================================================[ build the input form ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"select_entry.tpl"));
+ $t->set_block("list","introblock","intro");
  $t->set_var("login_info",$login_info);
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
+ $t->set_var("listtitle",lang("welcome")." v$version");
+ #----------------------------------------------------[ intro for newbies ]---
+ if ( !$pvp->preferences->get("skip_intro") ) {
+   $t->set_var("intro_head",lang("intro_usage_title"));
+   $intro_text = lang("intro_usage").lang("intro_usage_skip");
+   $t->set_var("intro_text",$intro_text);
+   $t->parse("intro","introblock");
+ }
+ #----------------------------------------------------[ "goto_entry" form ]---
  $t->set_var("goto_entry",lang("goto_entry"));
  $t->set_var("mtype",lang("mediatype"));
  $t->set_var("cass_id",lang("medianr"));
@@ -64,7 +74,7 @@
    $sel_mtype .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\">" . $mtypes[$i][sname] . "</OPTION>";
  }
  $sel_mtype .= "</SELECT>";
- if (!$pvp->config->enable_cookies) $sel_mtype .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ if (!$pvp->cookie->active) $sel_mtype .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("sel_mtype",$sel_mtype);
  $t->set_var("display",lang("display"));
  $t->pparse("out","list");

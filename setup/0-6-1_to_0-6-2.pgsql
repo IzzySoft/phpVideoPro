@@ -5,6 +5,7 @@
 # add column to cat table to mark a category als enabled/disabled
 ALTER TABLE cat ADD enabled INT;
 ALTER TABLE cat ALTER enabled SET DEFAULT 1;
+UPDATE TABLE cat SET enabled=1 WHERE enabled IS NULL;
 ALTER TABLE cat ADD CONSTRAINT cat_enabled_notnullcheck CHECK (enabled IS NOT NULL);
 
 # add a table to keep the user preferences when cookies are disabled

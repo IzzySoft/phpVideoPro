@@ -1,5 +1,5 @@
 This is the README file I wrote for phpVideoPro v0.1.3 (and last updated for
-v0.3.5). As you may know, programmers get very lazy on writing documentation -
+v0.3.8). As you may know, programmers get very lazy on writing documentation -
 so starting with point 3.), the information in this file may or may not fit
 newer versions, since I may have forgotten to update it. Don't be angry at me if
 this happens - just drop me a note about it - or even better, update this file
@@ -164,15 +164,10 @@ Contents:
 7.) Known bugs / limitations
 ----------------------------
 
-  Since filter settings are simply stored into the db now, it gets difficult
-  if multiple users run the program - and may lead to curious (and untested :)
-  effects if they do this at the very same time. For now, I can only tell you
-  to be aware of this. I thought about storing them into cookies - but in this
-  case the settings are only valid as long as you don't close your browser
-  (and the settings cannot be stored between sessions), so this would just be
-  "changing limitations" but not removing them. Maybe I'll think about a
-  solution for "multi-user environment" at some point in the future - for the
-  next time this limitation will persist.
+  Although phpVideoPro is somehow multi-user capable now (since v0.3.8), there's
+  no protection for your data given, i.e. any user that can access phpVideoPro
+  via his browser, can as well read as write, creating new entries and modify
+  and delete existing ones. This limitation may be removed by a future version.
   Any bugs are not known to me - I didn't find any, and nobody reported anything :)
 
 ===============================================================================

@@ -13,7 +13,8 @@
  /* $Id$ */
 
  class preferences {
-  var $colors, $lang, $template, $display_limit, $date_format, $page_length;
+  var $colors, $filter, $lang, $template,
+      $display_limit, $date_format, $page_length;
   
   ############################################################################
   # constructor: read all values from DB
@@ -31,6 +32,7 @@
       $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
       $GLOBALS['colors'] = $colors;
     }
+    $this->filter = $this->get_filters();
   }
 
   ############################################################################
@@ -45,7 +47,7 @@
   function get_fquery(&$found,$fname,$tname="") {
    GLOBAL $db, $filter;
    if ( !strlen($tname) ) $tname=$fname;
-   dbquery("SELECT id FROM $tname");
+   $db->query("SELECT id FROM $tname");
    while ( $db->next_record() ) {
      $id   = $db->f('id');
      if ($filter->$fname->$id) {
@@ -62,7 +64,7 @@
   # get filter settings from db
   function get_filters() {
    global $db, $filter;
-   dbquery("SELECT value FROM preferences WHERE name='filter'");
+   $db->query("SELECT value FROM preferences WHERE name='filter'");
    if ( $db->next_record() ) { // there are already filters defined
      $filter = unserialize ( rawurldecode( $db->f('value') ) );
      $i=0;
@@ -90,7 +92,7 @@
      $temp = $this->get_fquery($found,"director","directors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ composer ]---
-     dbquery("SELECT id FROM music");
+     $db->query("SELECT id FROM music");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ($filter->composer->$id) {
@@ -102,7 +104,7 @@
      if ($found>1) $sql[$i] = " (" . $sql[$i] . " )";
      if ($found) { $found=0; $i++; }
      // -----------[ actor ]---
-     dbquery("SELECT id FROM actors");
+     $db->query("SELECT id FROM actors");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ($filter->actor->$id) {
@@ -114,7 +116,7 @@
      if ($found>1) $sql[$i] = " (" . $sql[$i] . " )";
      if ($found) { $found=0; $i++; }
      // -----------[ category ]---
-     dbquery("SELECT id FROM cat");
+     $db->query("SELECT id FROM cat");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ($filter->cat->$id) {
@@ -132,12 +134,11 @@
        for ($i=1;$i<count($sql);$i++) {
          $where .= " AND" . $sql[$i];
        }
-       debug("V","<b>Where-Clause:</b> $where<br>");
        return $where;
      }
-     debug("V","Empty filter<br>");
+     // if we get here, the filter is empty
    }
-   debug("V","No filter defined<br>");
+   // if we get here, there's no filter defined
    return "";
   } // end get_filters()
 

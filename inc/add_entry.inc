@@ -44,7 +44,8 @@
  ##############################################################################
  # check if "fsk" (= pg, parental guide) is integer
  if ( !$valid->num($fsk) ) {
-   $error = lang("invalid_fsk") . "</P>\n";
+   $error = lang("fsk");
+   $error = lang("invalid_fsk",$error) . "</P>\n";
    display_error($error);
    exit;
  }

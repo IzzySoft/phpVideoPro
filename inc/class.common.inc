@@ -44,7 +44,7 @@ class common {
     switch (strtolower(gettype($date))) {
       case "string"  : $tdate['year'] = substr($date,0,4);
                        $tdate['mon']  = substr($date,5,2);
-                       $tdate[mday] = substr($date,8,2);
+                       $tdate['mday'] = substr($date,8,2);
                        $tdate['string'] = $date;
                        $this->date = $tdate; break;
       case "array"   : $this->date = $date; break;

@@ -341,7 +341,7 @@
        $trans["xcomment"]["$msg"] = stripslashes($this->f('comment'));
        $list[] = $msg;
      }
-     if ($totals) $trans[totals] = $totals;
+     if ($totals) $trans['totals'] = $totals;
      $trans["xlist"] = $list;
      return $trans;
    }
@@ -353,7 +353,7 @@
     * @class sql
     * @method get_options
     * @param optional string name name of option to retrieve values for
-    * @return array array of option arrays ($list[name][$i]=value)
+    * @return array array of option arrays ($list['name'][$i]=value)
     */
    function get_options($name="") {
      $query = "SELECT name,value"
@@ -577,7 +577,7 @@
        }
        $list[] = $s;
      }
-     if ($totals) $list[totals] = $totals;
+     if ($totals) $list['totals'] = $totals;
      return $list;
    }
 
@@ -716,17 +716,17 @@
     * return array name
     */
    function format_name($name) {
-     $name[name] = $name[reverse] = trim($name[name]);
-     $name[firstname] = $name[fullname] = trim($name[firstname]);
-     if (strlen($name[fullname])) {
-       if (strlen($name[firstname])) $name[fullname] .= " " . $name[name];
+     $name['name'] = $name['reverse'] = trim($name['name']);
+     $name['firstname'] = $name['fullname'] = trim($name['firstname']);
+     if (strlen($name['fullname'])) {
+       if (strlen($name['firstname'])) $name['fullname'] .= " " . $name['name'];
      } else {
-       $name[fullname] = $name[name];
+       $name['fullname'] = $name['name'];
      }
-     if (strlen($name[reverse])) {
-       if (strlen($name[firstname])) $name[reverse] .= ", " . $name[firstname];
+     if (strlen($name['reverse'])) {
+       if (strlen($name['firstname'])) $name['reverse'] .= ", " . $name['firstname'];
      } else {
-       $name[reverse] = $name[firstname];
+       $name['reverse'] = $name['firstname'];
      }
      return $name;
    }
@@ -742,20 +742,20 @@
      if ($id) {
        $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
        if ( $this->next_record() ) {
-         $person[id]   = trim($id);
-         $person[name] = $this->f('name');
-         $person[firstname] = $this->f('firstname');
+         $person['id']   = trim($id);
+         $person['name'] = $this->f('name');
+         $person['firstname'] = $this->f('firstname');
 	 $person = $this->format_name($person);
        } else {
-         $person[name] = $person[firstname] = $person[fullname] = $person[reverse] = "";
+         $person['name'] = $person['firstname'] = $person['fullname'] = $person['reverse'] = "";
        }
      } else {
        $this->dbquery("SELECT id,firstname,name FROM $table");
        $i=0;
        while ( $this->next_record() ) {
-         $person[$i][id]   = $this->f('id');
-         $person[$i][name] = $this->f('name');
-         $person[$i][firstname] = $this->f('firstname');
+         $person[$i]['id']   = $this->f('id');
+         $person[$i]['name'] = $this->f('name');
+         $person[$i]['firstname'] = $this->f('firstname');
 	 $person[$i] = $this->format_name($person[$i]);
 	 ++$i;
        }
@@ -919,8 +919,8 @@
        }
        $i=0;
        while ( $this->next_record() ) {
-         $cat[$i][id]   = $this->f('id');
-         $cat[$i][name] = lang($this->f('name'));
+         $cat[$i]['id']   = $this->f('id');
+         $cat[$i]['name'] = lang($this->f('name'));
 	 $cat[$i][internal] = $this->f('name');
 	 $cat[$i][enabled] = $this->f('enabled');
 	 ++$i;
@@ -928,14 +928,14 @@
        if ($inUse) {
          $catcount = count($cat);
 	 for ($i=0;$i<$catcount;++$i) {
-	   $catID = $cat[$i][id];
+	   $catID = $cat[$i]['id'];
 	   $this->dbquery("SELECT COUNT(*) AS used FROM video WHERE cat1_id='$catID' OR cat2_id='$catID' OR cat3_id='$catID'");
 	   $this->next_record();
 	   $cat[$i][used] = $this->f('used');
 	 }
        }
        if ($order=="") {
-         $compare = create_function('$a,$b','return strcmp($a[name],$b[name]);');
+         $compare = create_function('$a,$b','return strcmp($a["name"],$b["name"]);');
          usort($cat,$compare); reset($cat);
        }
        return $cat;
@@ -1016,18 +1016,18 @@
        $this->query("SELECT id,name,sname FROM $table");
        $i=0;
        while ( $this->next_record() ) {
-         $av[$i][id]    = $this->f('id');
-	 $av[$i][name]  = $this->f('name');
-	 $av[$i][sname] = $this->f('sname');
+         $av[$i]['id']    = $this->f('id');
+	 $av[$i]['name']  = $this->f('name');
+	 $av[$i]['sname'] = $this->f('sname');
 	 ++$i;
        }
      } else {
        $this->query("SELECT name,sname FROM $table WHERE id=$id");
        if ( $this->next_record() ) {
-         $av[name]  = $this->f('name');
-         $av[sname] = $this->f('sname');
+         $av['name']  = $this->f('name');
+         $av['sname'] = $this->f('sname');
        } else {
-         $av[name] = $av[sname] = "";
+         $av['name'] = $av['sname'] = "";
        }
      }
      return $av;
@@ -1135,8 +1135,8 @@
        $this->query("SELECT id,name FROM commercials");
        $i=0;
        while ( $this->next_record() ) {
-         $commercials[$i][name] = lang($this->f('name'));
-	 $commercials[$i][id]   = $this->f('id');
+         $commercials[$i]['name'] = lang($this->f('name'));
+	 $commercials[$i]['id']   = $this->f('id');
          ++$i;
        }
      } else {
@@ -1298,34 +1298,34 @@
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
-       $movie[title]   = stripslashes($movie[title]);
-       $movie[source]  = stripslashes($movie[source]);
+       $movie['title']   = stripslashes($movie['title']);
+       $movie['source']  = stripslashes($movie['source']);
        $taudio = $this->f("audio");
        $tsubt = $this->f("subtitle");
-       $movie[audio]   = explode(",",substr($taudio,1,strlen($taudio)-2));
-       $movie[subtitle]= explode(",",substr($tsubt,1,strlen($tsubt)-2));
-       $movie[comment] = stripslashes($movie[comment]);
-       if (!$movie[length]) $movie[length] = 0;
-       $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
-       $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
-       $movie[director_] = $name;
-       $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
-       $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
-       $movie[music_] = $name;
-       for ($i=1;$i<6;$i++) { // actor 1..5: [actor1],[actor1_rev],[actor_1]...
+       $movie['audio']   = explode(",",substr($taudio,1,strlen($taudio)-2));
+       $movie['subtitle']= explode(",",substr($tsubt,1,strlen($tsubt)-2));
+       $movie['comment'] = stripslashes($movie['comment']);
+       if (!$movie['length']) $movie['length'] = 0;
+       $name = $this->format_name( array("name"=>$this->f('dname'),"firstname"=>$this->f('dfname')) );
+       $movie['director'] = $name['fullname']; $movie['director_rev'] = $name['reverse'];
+       $movie['director_'] = $name;
+       $name = $this->format_name( array("name"=>$this->f('mname'),"firstname"=>$this->f('mfname')) );
+       $movie['music'] = $name['fullname']; $movie['music_rev'] = $name['reverse'];
+       $movie['music_'] = $name;
+       for ($i=1;$i<6;$i++) { // actor 1..5: ['actor1'],[actor1_rev],[actor_1]...
          $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
          $tname  = stripslashes($this->f("$dbname"));
          $tfname = stripslashes($this->f("$dbfname"));
          $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
-         $name = $this->format_name( array(name=>$tname,firstname=>$tfname) );
-         $movie[$vname] = $name[fullname]; $movie[$vrev] = $name[reverse];
+         $name = $this->format_name( array("name"=>$tname,"firstname"=>$tfname) );
+         $movie[$vname] = $name['fullname']; $movie[$vrev] = $name['reverse'];
          $movie[$aname] = $name;
        }
-       $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
-       $movie[color] = lang($this->f('cname')); $movie[color_short] = $this->f('csname');
-       $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
-       $movie[cat1int] = $this->f('cat1name'); $movie[cat2int] = $this->f('cat2name'); $movie[cat3int] = $this->f('cat3name');
-       $movie[cat1] = lang($movie[cat1int]); $movie[cat2] = lang($movie[cat2int]); $movie[cat3] = lang($movie[cat3int]);
+       $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
+       $movie['color'] = lang($this->f('cname')); $movie['color_short'] = $this->f('csname');
+       $movie['tone'] = $this->f('tname'); $movie['tone_short'] = $this->f('tsname');
+       $movie['cat1int'] = $this->f('cat1name'); $movie['cat2int'] = $this->f('cat2name'); $movie['cat3int'] = $this->f('cat3name');
+       $movie['cat1'] = lang($movie['cat1int']); $movie['cat2'] = lang($movie['cat2int']); $movie['cat3'] = lang($movie['cat3int']);
 
        $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",
@@ -1334,40 +1334,40 @@
          $$value = $this->f("$value");
          $movie[$value] = $$value;
        }
-       $movie[actors12] = $movie[actor1];
-       if ( strlen($movie[actor2]) ) {
-         if ( strlen($movie[actors12]) ) $movie[actors12] .= ", ";
-         $movie[actors12] .= $movie[actor2];
+       $movie['actors12'] = $movie['actor1'];
+       if ( strlen($movie['actor2']) ) {
+         if ( strlen($movie['actors12']) ) $movie['actors12'] .= ", ";
+         $movie['actors12'] .= $movie['actor2'];
        }
-       $movie[actors35] = $movie[actor3];
+       $movie['actors35'] = $movie['actor3'];
        for ($i=4;$i<6;$i++) {
          $actor = "actor$i";
          if ( strlen($movie[$actor]) ) {
-           if ( strlen($movie[actors35]) ) $movie[actors35] .= ", ";
-	   $movie[actors35] .= $movie[$actor];
+           if ( strlen($movie['actors35']) ) $movie['actors35'] .= ", ";
+	   $movie['actors35'] .= $movie[$actor];
          }
        }
-       $movie[actors] = $movie[actors12];
-       if ( strlen($movie[actors35]) ) {
-         if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
-         $movie[actors] .= $movie[actors35];
+       $movie['actors'] = $movie['actors12'];
+       if ( strlen($movie['actors35']) ) {
+         if ( strlen($movie['actors']) ) $movie['actors'] .= ", ";
+         $movie['actors'] .= $movie['actors35'];
        }
        if ($pict_id) {
          $pict = $this->get_pict($pict_id);
-         $movie[pict] = $pict[name]; $movie[pict_short] = $$pict[sname];
+         $movie['pict'] = $pict['name']; $movie['pict_short'] = $pict['sname'];
        } else {
-         $movie[pict] = $movie[pict_short] = lang("unknown");
+         $movie['pict'] = $movie['pict_short'] = lang("unknown");
        }
        if ($commercials_id) {
-         $movie[commercials] = $this->get_commercials($commercials_id);
+         $movie['commercials'] = $this->get_commercials($commercials_id);
        } else {
-         $movie[commercials] = lang("unknown");
+         $movie['commercials'] = lang("unknown");
        }
-       if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
-       $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
-       $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
-       $movie[disktype] = $this->get_disktype_id($movie[mtype_id],$movie[cass_id]);
-       $movie[rc]       = $this->get_rc($movie[mtype_id],$movie[cass_id]);
+       if ($lp) { $movie['lp'] = lang("longplay"); } else { $movie['lp'] = ""; }
+       $movie['previous'] = $this->get_preventry($movie['mtype_id'],$movie['cass_id'],$movie['part']);
+       $movie['next']     = $this->get_nextentry($movie['mtype_id'],$movie['cass_id'],$movie['part']);
+       $movie['disktype'] = $this->get_disktype_id($movie['mtype_id'],$movie['cass_id']);
+       $movie['rc']       = $this->get_rc($movie['mtype_id'],$movie['cass_id']);
        if ($id) return $movie;
        $list[] = $movie;
      }
@@ -1414,7 +1414,7 @@
      for ($i=0;$i<$len;$i++) {
        $movielist[] = $this->get_movie($list[$i]);
      }
-     if ($totals) $movielist[totals] = $totals;
+     if ($totals) $movielist['totals'] = $totals;
      return $movielist;
    }
 
@@ -1432,6 +1432,7 @@
     */
    function searchmovies($order="",$start="") {
      GLOBAL $searchmovievals;
+     $restrict = "";
      foreach ($searchmovievals as $key=>$val) {
        ${$key} = $val;
      }
@@ -1544,19 +1545,19 @@
     */
    function get_movienamelist($table,$name,$filter="") {
      switch ($table) {
-       case "directors" : $restrict = "v.director_id=$name[id] AND v.director_list=1";
+       case "directors" : $restrict = "v.director_id=".$name['id']." AND v.director_list=1";
 			  $revname = "director_rev"; $fullname = "director";
 			  $firstname = "director_first"; $lastname = "director_last";
 			  break;
-       case "music"     : $restrict = "v.music_id=$name[id] AND v.music_list=1";
+       case "music"     : $restrict = "v.music_id=".$name['id']." AND v.music_list=1";
 			  $revname = "music_rev"; $fullname = "music";
 			  $firstname = "music_first"; $lastname = "music_last";
 			  break;
-       case "actors"    : $restrict = "((v.actor1_id=$name[id] AND v.actor1_list=1)"
-                                    . " OR  (v.actor2_id=$name[id] AND v.actor2_list=1)"
-                                    . " OR  (v.actor3_id=$name[id] AND v.actor3_list=1)"
-                                    . " OR  (v.actor4_id=$name[id] AND v.actor4_list=1)"
-                                    . " OR  (v.actor5_id=$name[id] AND v.actor5_list=1))";
+       case "actors"    : $restrict = "((v.actor1_id=".$name['id']." AND v.actor1_list=1)"
+                                    . " OR  (v.actor2_id=".$name['id']." AND v.actor2_list=1)"
+                                    . " OR  (v.actor3_id=".$name['id']." AND v.actor3_list=1)"
+                                    . " OR  (v.actor4_id=".$name['id']." AND v.actor4_list=1)"
+                                    . " OR  (v.actor5_id=".$name['id']." AND v.actor5_list=1))";
 			  $revname = "actor_rev"; $fullname = "actor";
 			  $firstname = "actor_first"; $lastname = "actor_last";
 			  break;
@@ -1571,11 +1572,11 @@
 	    . "AND $restrict";
      $this->query($query);
      while ( $this->next_record() ) {
-       $movie[$revname]   = $name[reverse];
-       $movie[$fullname]  = $name[fullname];
-       $movie[$lastname]  = $name[name];
-       $movie[$firstname] = $name[firstname];
-       $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
+       $movie[$revname]   = $name['reverse'];
+       $movie[$fullname]  = $name['fullname'];
+       $movie[$lastname]  = $name['name'];
+       $movie[$firstname] = $name['firstname'];
+       $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
        $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
        $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id");
        foreach($moviedetails as $value) {
@@ -1607,19 +1608,19 @@
      }
      $mtypes = $this->get_mtypes();
      for ($i=0;$i<count($mtypes);$i++) {
-       $this->dbquery("SELECT MIN(cass_id) as min_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+       $this->dbquery("SELECT MIN(cass_id) as min_id FROM video WHERE mtype_id=" . $mtypes[$i]['id']);
        $this->next_record();
-       $firstnum[$i][mtype]   = $mtypes[$i][sname];
-       $firstnum[$i][mtype_id]= $mtypes[$i][id];
-       $firstnum[$i][cass_id] = $this->f('min_id');
-       while ( strlen($firstnum[$i][cass_id])<4 ) { $firstnum[$i][cass_id] = "0" . $firstnum[$i][cass_id]; }
+       $firstnum[$i]['mtype']   = $mtypes[$i]['sname'];
+       $firstnum[$i]['mtype_id']= $mtypes[$i]['id'];
+       $firstnum[$i]['cass_id'] = $this->f('min_id');
+       while ( strlen($firstnum[$i]['cass_id'])<4 ) { $firstnum[$i]['cass_id'] = "0" . $firstnum[$i]['cass_id']; }
      }
      for ($i=0;$i<count($firstnum);$i++) {
-       $this->dbquery("SELECT MIN(part) as min_part FROM video WHERE cass_id=" . $firstnum[$i][cass_id] . " AND mtype_id=" . $firstnum[$i][mtype_id]);
+       $this->dbquery("SELECT MIN(part) as min_part FROM video WHERE cass_id=" . $firstnum[$i]['cass_id'] . " AND mtype_id=" . $firstnum[$i]['mtype_id']);
        $this->next_record();
-       $firstnum[$i][part]    = $this->f('min_part');
-       while ( strlen($firstnum[$i][part])<2 ) { $firstnum[$i][part] = "0" . $firstnum[$i][part]; }
-       $firstnum[$i][entry] = $firstnum[$i][mtype] . " " . $firstnum[$i][cass_id] . "-" . $firstnum[$i][part];
+       $firstnum[$i]['part']    = $this->f('min_part');
+       while ( strlen($firstnum[$i]['part'])<2 ) { $firstnum[$i]['part'] = "0" . $firstnum[$i]['part']; }
+       $firstnum[$i]['entry'] = $firstnum[$i]['mtype'] . " " . $firstnum[$i]['cass_id'] . "-" . $firstnum[$i]['part'];
      }
      return $firstnum;
    }
@@ -1643,7 +1644,7 @@
        } else {
          $mtypes = $this->get_mtypes();
          for ($i=0;$i<count($mtypes);++$i) {
-           if ($mtypes[$i][id]==$mtype_id) {
+           if ($mtypes[$i]['id']==$mtype_id) {
              $mt[0] = $mtypes[$i];
              $mtypes = $mt;
              unset($mt);
@@ -1654,19 +1655,19 @@
        $mtypes = $this->get_mtypes();
      }
      for ($i=0;$i<count($mtypes);++$i) {
-       $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+       $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i]['id']);
        $this->next_record();
-       $lastnum[$i][mtype]   = $mtypes[$i][sname];
-       $lastnum[$i][mtype_id]= $mtypes[$i][id];
-       $lastnum[$i][cass_id] = $this->f('max_id');
-       while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
+       $lastnum[$i]['mtype']   = $mtypes[$i]['sname'];
+       $lastnum[$i]['mtype_id']= $mtypes[$i]['id'];
+       $lastnum[$i]['cass_id'] = $this->f('max_id');
+       while ( strlen($lastnum[$i]['cass_id'])<4 ) { $lastnum[$i]['cass_id'] = "0" . $lastnum[$i]['cass_id']; }
      }
      for ($i=0;$i<count($lastnum);$i++) {
-       $this->dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
+       $this->dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i]['cass_id'] . " AND mtype_id=" . $lastnum[$i]['mtype_id']);
        $this->next_record();
-       $lastnum[$i][part]    = $this->f('max_part');
-       while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }
-       $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
+       $lastnum[$i]['part']    = $this->f('max_part');
+       while ( strlen($lastnum[$i]['part'])<2 ) { $lastnum[$i]['part'] = "0" . $lastnum[$i]['part']; }
+       $lastnum[$i]['entry'] = $lastnum[$i]['mtype'] . " " . $lastnum[$i]['cass_id'] . "-" . $lastnum[$i]['part'];
      }
      return $lastnum;
    }
@@ -1701,7 +1702,7 @@
      $mts   = $this->get_mtypes();
      $maxid = 0;
      for ($i=0;$i<count($mts);++$i) {
-       $mtid = $mts[$i][id];
+       $mtid = $mts[$i]['id'];
        $mt[$mtid] = 1;
        if ($mtid>$maxid) $maxid = $mtid;
      }
@@ -1753,7 +1754,7 @@
      }
      $mts   = $this->get_mtypes();
      for ($i=0;$i<count($mts);++$i) {
-       $mtid = $mts[$i][id];
+       $mtid = $mts[$i]['id'];
        $mt[$mtid] = 1;
        if (!isset($minid)) $minid = $mtid;
          elseif ($mtid<$minid) $minid = $mtid;
@@ -1763,9 +1764,9 @@
      } while ( (!isset($mt[$prev->mtype_id])) && ($prev->mtype_id>$minid) );
      $last = $this->get_lastmovienum();
      for ($i=0;$i<count($last);++$i) {
-       if ($last[$i][mtype_id]==$prev->mtype_id) {
-         $prev->part = $last[$i][part];
-	 $prev->media_nr = $last[$i][cass_id];
+       if ($last[$i]['mtype_id']==$prev->mtype_id) {
+         $prev->part = $last[$i]['part'];
+	 $prev->media_nr = $last[$i]['cass_id'];
 	 return $prev;
        }
      }
@@ -1818,8 +1819,8 @@
        if (${$value} == "") ${$value} = "NULL";
      }
      if ($lp) { $lp = 1; } else { $lp = 0; }
-     $audio_ts = ",".@implode(",",$movie[audio]).",";
-     $subtitle = ",".@implode(",",$movie[subtitle]).",";
+     $audio_ts = ",".@implode(",",$movie['audio']).",";
+     $subtitle = ",".@implode(",",$movie['subtitle']).",";
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
@@ -1867,19 +1868,19 @@
      }
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $movie = $this->get_movie($id);
-       $space = $this->get_mediaspace($movie[cass_id],$movie[mtype_id]);
+       $space = $this->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
      }
      $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
             . " WHERE id=$id";
      $success = $this->dbquery($query);
      if (is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
      $this->update_freetime($cass_id,$mtype_id);
-     if ( $pvp->common->medium_is_rw($movie[mtype_id]) && $movie[cass_id]!=$cass_id ) {
-       $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie[cass_id]." AND mtype_id=".$movie[mtype_id]);
+     if ( $pvp->common->medium_is_rw($movie['mtype_id']) && $movie['cass_id']!=$cass_id ) {
+       $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
        if ( $this->next_record() ) {
-         $this->update_freetime($movie[cass_id],$movie[mtype_id]);
+         $this->update_freetime($movie['cass_id'],$movie['mtype_id']);
        } else {
-         $this->delete_medium($movie[cass_id],$movie[mtype_id]);
+         $this->delete_medium($movie['cass_id'],$movie['mtype_id']);
        }
      }
      return $success;
@@ -1889,7 +1890,7 @@
     * @class sql
     * @method get_dupetitles
     * @return array array of titles:
-    *  array[$i][title]; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
+    *  array[$i]['title']; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
     *  where $i counts the distinct titles, and $k the copies per title
     */
    function get_dupetitles() {
@@ -1904,9 +1905,9 @@
      $i = -1;
      while ( $this->next_record() ) {
        $title = $this->f('titel');
-       if ( $i==-1 || $dupes[$i][title]!=$title ) {
+       if ( $i==-1 || $dupes[$i]['title']!=$title ) {
          ++$i; $k=0;
-         $dupes[$i][title] = $title;
+         $dupes[$i]['title'] = $title;
          $dupes[$i][$k]->id       = $this->f('o_id');
          $dupes[$i][$k]->mtype_id = $this->f('o_mtypeid');
          $dupes[$i][$k]->cass_nr  = $this->f('o_cassnr');
@@ -2100,9 +2101,9 @@
      $this->dbquery("SELECT id,name,sname FROM mtypes $where ORDER BY id");
      $i = 0;
      while ( $this->next_record() ) {
-       $mtypes[$i][id] = $this->f('id');
-       $mtypes[$i][sname] = $this->f('sname');
-       $mtypes[$i][name] = $this->f('name');
+       $mtypes[$i]['id'] = $this->f('id');
+       $mtypes[$i]['sname'] = $this->f('sname');
+       $mtypes[$i]['name'] = $this->f('name');
        ++$i;
      }
      return $mtypes;
@@ -2257,12 +2258,12 @@
        else { $totals = $this->lim_query($query,$start); }
      $i=0;
      while ( $this->next_record() ) {
-       $freelist[$i][id]         = $this->f('id');
-       $freelist[$i][mtype_id]   = $this->f('mtype_id');
+       $freelist[$i]['id']       = $this->f('id');
+       $freelist[$i]['mtype_id'] = $this->f('mtype_id');
        $freelist[$i][free]       = $this->f('free');
        ++$i;
      }
-     $freelist[totals] = $totals;
+     $freelist['totals'] = $totals;
      return $freelist;
    }
 
@@ -2307,16 +2308,16 @@
          else { $totals = $this->lim_query($query,$start); }
        $i=0;
        while ( $this->next_record() ) {
-         $stafflist[$i][id]   = $this->f('id');
-         $name[firstname]     = $this->f('firstname');
-         $name[name]          = $this->f('name');
-         $name[id]            = $stafflist[$i][id];
-         $stafflist[$i][name] = $this->format_name($name);
+         $stafflist[$i]['id']   = $this->f('id');
+         $name['firstname']     = $this->f('firstname');
+         $name['name']          = $this->f('name');
+         $name['id']            = $stafflist[$i]['id'];
+         $stafflist[$i]['name'] = $this->format_name($name);
          ++$i;
        }
-       $stafflist[totals] = $totals;
+       $stafflist['totals'] = $totals;
      } else {
-       $stafflist[totals] = 0;
+       $stafflist['totals'] = 0;
      }
      return $stafflist;
    }
@@ -2428,10 +2429,10 @@
      $mt = $this->get_mtypes();
      $ct = count($mt);
      for ($i=0;$i<$ct;++$i) {
-       $this->dbquery("SELECT DISTINCT cass_id FROM video WHERE mtype_id=".$mt[$i][id]);
+       $this->dbquery("SELECT DISTINCT cass_id FROM video WHERE mtype_id=".$mt[$i]['id']);
        $ms[mcount] = $this->num_rows();
-       $ms[name]  = $mt[$i][name];
-       $ms[sname] = $mt[$i][sname];
+       $ms['name']  = $mt[$i]['name'];
+       $ms['sname'] = $mt[$i]['sname'];
        $stats[smedia][] = $ms;
      }
      $this->dbquery("SELECT DISTINCT country FROM video");
@@ -2492,7 +2493,7 @@
          $name = $this->$func($person_id);
 	 switch($func) {
 	   case "get_category" : $stats[$sperson] = $name; break;
-	   default             : $stats[$sperson] = $name[fullname]; break;
+	   default             : $stats[$sperson] = $name['fullname']; break;
 	 }
 	 $stats[$count] = $rank;
        }
@@ -2517,7 +2518,7 @@
          $name  = $this->get_actor($key);
          $act   = "rank_actor_" . $i;
          $count = $act . "_count";
-         $stats[$act]   = $name[fullname];
+         $stats[$act]   = $name['fullname'];
          $stats[$count] = $value;
          ++$i;
          if ($i>3) break;
@@ -2667,7 +2668,7 @@
      $this->query("SELECT id,unit,size FROM units");
      $i=0;
      while ( $this->next_record() ) {
-       $units[$i][id]   = $this->f('id');
+       $units[$i]['id']   = $this->f('id');
        $units[$i][unit] = $this->f('unit');
        $units[$i][factor] = $this->f('size');
        ++$i;
@@ -2686,7 +2687,7 @@
      while ( $this->next_record() ) {
        $label_forms[$i][product] = $this->f('product');
        $label_forms[$i][vendor] = $this->f('vendor');
-       $label_forms[$i][id]   = $this->f('id');
+       $label_forms[$i]['id']   = $this->f('id');
        ++$i;
      }
    return $label_forms;
@@ -2803,7 +2804,7 @@
      if ( $this->dbquery($query) ) {
        $i=0;
      while ( $this->next_record() ) {
-         $eps_template[$i][id] = $this->f('id');
+         $eps_template[$i]['id'] = $this->f('id');
          $eps_template[$i][description] = $this->f('description');
          ++$i;
        }
@@ -2880,7 +2881,7 @@
      $tpl->ury = $this->f('ury');
      $template[] = $tpl;
    }
-   if ($totals) $template[totals] = $totals;
+   if ($totals) $template['totals'] = $totals;
    return $template;
  }
 

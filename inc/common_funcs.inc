@@ -155,6 +155,7 @@
   * @param optional array vars array of replacement strings (see function lang)
   */
  function translate($key,$vars=FALSE) {
+   if (empty($key)) return $key;
    GLOBAL $translations;
    $trans = $translations[strtolower($key)];
    if (!$trans) $trans = $key;

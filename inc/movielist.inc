@@ -15,11 +15,11 @@
  #=======================================[ get movies and setup variables ]===
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount;$i++) {
-   $mtype[$i]    = $list[$i][mtype_short];
-   $mtype_id[$i] = $list[$i][mtype_id];
-   $cass_id[$i]  = $list[$i][cass_id];
+   $mtype[$i]    = $list[$i]['mtype_short'];
+   $mtype_id[$i] = $list[$i]['mtype_id'];
+   $cass_id[$i]  = $list[$i]['cass_id'];
    $nr[$i]       = $cass_id[$i];
-   $part[$i]     = $list[$i][part];
+   $part[$i]     = $list[$i]['part'];
    while (strlen($nr[$i])<4) { $nr[$i] = "0" . $nr[$i]; }
    $nr[$i]      .= "-";
    if (strlen($part[$i])<2) {
@@ -27,12 +27,12 @@
    } else { $nr[$i] .= $part[$i]; }
 #   $movie_id[$i] = urlencode($mtype[$i] . " " . $nr[$i]);
    $movie_id[$i] = urlencode($nr[$i]);
-   $title[$i]    = $list[$i][title]; check_empty($title[$i]);
-   $length[$i]   = $list[$i][length]; check_empty($length[$i]);
-   $year[$i]     = $list[$i][year]; if (!$year[$i]) $year[$i] = ""; check_empty($year[$i]);
-   $t_aq_date      = $list[$i][aq_date];  check_empty($t_aq_date);
+   $title[$i]    = $list[$i]['title']; check_empty($title[$i]);
+   $length[$i]   = $list[$i]['length']; check_empty($length[$i]);
+   $year[$i]     = $list[$i]['year']; if (!$year[$i]) $year[$i] = ""; check_empty($year[$i]);
+   $t_aq_date      = $list[$i]['aq_date'];  check_empty($t_aq_date);
    $aq_date[$i]  = $pvp->common->formatDate($t_aq_date);
-   $category[$i] = $list[$i][cat1]; check_empty($category[$i]);
+   $category[$i] = $list[$i]['cat1']; check_empty($category[$i]);
  }
 
  #======================================================[ create the list ]===

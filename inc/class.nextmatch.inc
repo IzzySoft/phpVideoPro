@@ -39,7 +39,7 @@
      GLOBAL $db, $pvp, $base_path, $base_url;
      $this->list = eval("return($query);");
      $this->listcount = count($this->list) -1;
-     $this->totals = $this->list[totals];
+     $this->totals = $this->list['totals'];
      $this->start  = $start;
      $this->limit  = $pvp->preferences->get("display_limit");
      if (!strlen(trim($script))) $script = $_SERVER["PHP_SELF"];

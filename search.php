@@ -20,7 +20,7 @@
                   "pname","title","comment","minlen","maxlen","minfsk","maxfsk",
                   "start","order");
  foreach ($postit as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = "";
  }
  unset($postit);
 

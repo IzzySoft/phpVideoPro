@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.7.3 (2005)
+[text]
+<ul>
+ <li>fixed some warnings occuring with empty DB (e.g. after fresh install)
+ <li>IMDB Title search did not work for some movies due to IMDB-internal
+     redirects - hopefully fixed.
+</ul>
+
+[title]
 0.7.2 (December 20, 2004)
 [text]
 <ul>

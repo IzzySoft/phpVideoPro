@@ -399,7 +399,7 @@ EndHiddenFields;
   if ($edit) {
     $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></DIV>");
   } else {
-    $t->set_var("comments",nl2br($comment));
+    $t->set_var("comments",nl2br($pvp->common->make_clickable($comment)));
   }
   $hiddenfields .= "<INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
   $t->set_var("hiddenfields",$hiddenfields);

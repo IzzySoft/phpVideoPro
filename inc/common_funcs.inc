@@ -219,7 +219,7 @@ class common {
    function common() {
      $this->initDate();
    }
-
+   #============================================[ date format functions ]===
    function initDate($date=0) {
      switch (strtolower(gettype($date))) {
        case "string"  : $tdate[year] = substr($date,0,4);
@@ -262,7 +262,28 @@ class common {
      return $this->getRecDate("string");
    }
 
+   #===========================================[ text display functions ]===
+  // function make_clickable taken from text_to_links() in the SourceForge Snipplet Library
+  // http://sourceforge.net/snippet/detail.php?type=snippet&id=100004
+  function make_clickable($data) {
+    if(empty($data)) {
+      return $data;
+    }
+    $lines = split("\n",$data);
+    while ( list ($key,$line) = each ($lines)) {
+      $line = eregi_replace("([ \t]|^)www\."," http://www.",$line);
+      $line = eregi_replace("([ \t]|^)ftp\."," ftp://ftp.",$line);
+      $line = eregi_replace("(http://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
+      $line = eregi_replace("(https://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
+      $line = eregi_replace("(ftp://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
+      $newText .= "$line\n";
+    }
+    return $newText;
+  }
  } // end class common
  
  $pvp->common = new common;
+?>
+<?
+
 ?>

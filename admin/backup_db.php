@@ -15,6 +15,7 @@
  $page_id = "backup_db";
  if ($backup) $silent = 1;
  include(dirname(__FILE__) . "/../inc/includes.inc");
+ include("../inc/class.xfer.inc");
  if (!$pvp->auth->admin) kickoff();
 
  function fhead($filename) {
@@ -27,26 +28,6 @@
    $str .= "\n";
    if ($compress) { $out .= $str; }
    else { echo $str; }
- }
-
- function mkavlang($avl) {
-   $lc = count($avl);
-   for ($i=0;$i<$lc;++$i) {
-     $lang[] = $avl[$i]->id;
-   }
-   return $lang;
- }
-
- function mk_mtypes() {
-   GLOBAL $db;
-   $mt = $db->get_mtypes();
-   $mc = count($mt);
-   for ($i=0;$i<$mc;++$i) {
-     $id = $mt[$i][sname];
-     $mtype[$id]->id   = $mt[$i][id];
-     $mtype[$id]->name = $mt[$i][name];
-   }
-   return $mtype;
  }
 
  $t = new Template($pvp->tpl_dir);
@@ -62,15 +43,9 @@
    $stamp = date('ymd'); // to generate a unique filename
  #---------------------------------------------[ Movies only (PVP format) ]---
    if ($_POST["btype"]=="movieint") {
-     $mlist  = $db->get_movieids_all();
-     $mcount = count($mlist);
-     fhead("movies_".$stamp.".pvp");
-     fout("PVP Movie Backup: [$mcount] records");
-     for ($i=0;$i<$mcount;++$i) {
-       $movie = $db->get_movie($mlist[$i]);
-       fout( urlencode(serialize($movie)) );
-     }
-     if ($_POST["compress"]) echo gzencode($out);
+     $xfer = new xfer("export");
+     if ($_POST["compress"]) $xfer->compressionOn();
+     $xfer->fileExport();
      exit;
    }
  #--------------------------------------[ Complete DB backup (SQL format) ]---
@@ -109,101 +84,9 @@
  } else {
  #======================================================[ run the restore ]===
    if ($_POST["restore"]) { // restore data
-     $rfile = $_POST["rfile"];
-     if (!empty($rfile)) {
-       if (file_exists($pvp->backup_dir."/$rfile")) {
-         $imp->errors  = 0;
-         if (!is_readable($pvp->backup_dir."/$rfile")) {
-           $save_result = "<SPAN CLASS='error'>".lang("backup_file_unreadable")."</SPAN>";
-           ++$imp->errors;
-         } else {
-           $data = @file_get_contents($pvp->backup_dir."/$rfile");
-           if (substr($data,0,3)!="PVP") {
-             if ( !$data = @gzinflate(substr($data,10)) ) {
-               $save_result = "<SPAN CLASS='error'>".lang("backup_file_corrupt")."</SPAN>";
-               ++$imp->errors;
-             }
-           }
-         }
-         if (!$imp->errors) {
-           if ($_POST["cleandb"]) $db->drop_all_movies();
-           $avl = mkavlang($db->get_avlang("audio"));
-           $sub = mkavlang($db->get_avlang("subtitle"));
-           $mtypes = mk_mtypes();
-	   $tcatlist = $db->get_category();
-	   $catcount = count($tcatlist);
-	   for ($i=0;$i<$catcount;++$i) {
-	     $catlist[$tcatlist[$i][internal]] = $tcatlist[$i][id];
-	   }
-           $data = explode("\n",$data);
-           $mcount = count($data);
-           $imp->records = $mcount -2;
-           for ($i=1;$i<$mcount -1;++$i) {
-             $movie = unserialize(urldecode($data[$i]));
-             if ($movie[director_id]) $movie[director_id] = $db->check_person($movie[director_][name],$movie[director_][firstname],"directors",TRUE);
-             if ($movie[music_id]) $movie[music_id] = $db->check_person($movie[music_][name],$movie[music_][firstname],"music",TRUE);
-             for ($k=1;$k<6;++$k) {
-               $pset = "actor_$k"; $pid = "actor$k"."_id";
-               if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset][name],$movie[$pset][firstname],"actors",TRUE);
-             }
-             #--[ add new cats if necessary ]--
-	     for ($k=1;$k<4;++$k) {
-	       $tcat = "cat$k"."int"; $tcatid = "cat$k"."_id";
-               if (!empty($movie[$tcat]) && !$catlist[$movie[$tcat]]>0) {
-	         $db->add_category($movie[$tcat]);
-		 $db->set_translation($movie[$tcat],$movie["cat$k"],"en");
-		 $movie[$tcatid] = $db->get_category_id($movie[$tcat]);
-		 $report .= "<li>added category '".$movie[$tcat]."' (".$movie["cat$k"].")";
-	       }
-	     }
-             #--[ take care for new audio and subtitle languages ]--
-             for ($k=0;$k<count($movie[audio]);++$k) { // check audio_ts
-               if ( ($movie[audio][$k]) && !in_array($movie[audio][$k],$avl) ) {
-                 $db->set_avlang($movie[audio][$k],1,"audio");
-                 $avl[] = $movie[audio][$k];
-               }
-             }
-             for ($k=0;$k<count($movie[subtitle]);++$k) { // check subtitles
-               if ( ($movie[subtitle][$k]) && !in_array($movie[subtitle][$k],$sub) ) {
-                 $db->set_avlang($movie[subtitle][$k],1,"subtitle");
-                 $sub[] = $movie[subtitle][$k];
-               }
-             }
-             #--[ if we add to existing entries: beware media numbers! ]--
-	     if (!$_POST["cleandb"]) {
-               #--[ make sure the mtype exists ]--
-               $mts = $movie[mtype_short];
-               if ( $mtypes[$mts]->id ) {
-                 $movie[mtype_id] = $mtypes[$mts]->id;
-                 $movie[mtype]    = $mtypes[$mts]->name;
-               } else {
-                 $db->set_mtypes($movie[mtype],$mts);
-                 $mtypes = mk_mtypes();
-                 $movie[mtype_id] = $mtypes[$mts]->id;
-               }
-               #--[ generate new media number: add after last ]--
-               $cid = $movie[cass_id];
-               if ( isset($newnum[$mts][$cid]) ) {
-                 $movie[cass_id] = $newnum[$mts][$cid];
-               } else {
-                 $lastnum = $db->get_lastmovienum($mtypes[$mts]->id);
-                 $movie[cass_id] = ++$lastnum[0][cass_id];
-                 $newnum[$mts][$cid] = $movie[cass_id];
-               }
-             }
-             #--[ finally: do the real import! ]--
-             if (!$db->add_movie($movie)) ++$imp->errors;
-           }
-           if ($imp->errors) {
-             $save_result = "<SPAN CLASS='error'>".lang("imp_errors",$imp->errors,$imp->records)."</SPAN>";
-           } else {
-             $save_result = "<SPAN CLASS='ok'>".lang("imp_success",$imp->records)."</SPAN>";
-           }
-         }
-       } else {
-         $save_result = "<SPAN CLASS='error'>".lang("no_restore_file")."</SPAN>";
-       }
-     }
+     $xfer = new xfer("import");
+     if ($_POST["compress"]) $xfer->compressionOn();
+     $save_result = $xfer->fileImport($_POST["rfile"],$pvp->backup_dir,!$_POST["cleandb"]);
    }
    #===============================================[ initial hints & form ]===
    $t->set_var("title",lang("intro"));

@@ -297,3 +297,5 @@ INSERT INTO lang VALUES('layout_label','de','Layout wählen');
 INSERT INTO lang VALUES('printer','de','Drucker');
 INSERT INTO lang VALUES('printer_comment','de','Für den Druck auf Formularen (wie z.B. von PSLabels verwendet), werden die exakten Offsets des verwendeten Druckers benötigt.');
 INSERT INTO lang VALUES('session_expired','de','Die Session ist nicht länger gültig - eine erneute Anmeldung ist nötig.');
+INSERT INTO lang VALUES('search','de','Suchen');
+INSERT INTO lang VALUES('search_movie','de','Filmsuche');

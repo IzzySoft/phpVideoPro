@@ -307,3 +307,5 @@ INSERT INTO lang VALUES('printer','en','Printer');
 INSERT INTO lang VALUES('printer_comment','en','If you want to print on forms (as used for the PS Labels), we need the exact offsets of your printer.');
 INSERT INTO lang VALUES('session_expired','en','Your session has expired - please log in again.');
 INSERT INTO lang VALUES('pslabel','en','PS Label');
+INSERT INTO lang VALUES('search','en','Search');
+INSERT INTO lang VALUES('search_movie','en','MovieSearch');

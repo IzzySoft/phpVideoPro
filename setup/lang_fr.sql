@@ -1,9 +1,8 @@
 # ========================================================
-# French Language File created by phpVideoPro v0.4.6
+# French Language File created by phpVideoPro v0.4.6p5
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='fr';
-INSERT INTO lang VALUES ('3d','fr','3D');
 INSERT INTO lang VALUES ('about','fr','Sur');
 INSERT INTO lang VALUES ('actor','fr','Acteur');
 INSERT INTO lang VALUES ('actors','fr','Acteurs');
@@ -40,8 +39,7 @@ INSERT INTO lang VALUES ('directors','fr','Régisseurs');
 INSERT INTO lang VALUES ('directors_list','fr','List des Regisseures');
 INSERT INTO lang VALUES ('director_person','fr','Regisseur');
 INSERT INTO lang VALUES ('display','fr','De faire voir');
-INSERT INTO lang VALUES ('display_limit','fr','Display Limit');
-INSERT INTO lang VALUES ('display_limit_comment','fr','(comment a-t-yl des lignes pour le display par suivant per pages)');
+INSERT INTO lang VALUES ('display_limit_comment','fr','comment a-t-yl des lignes pour le display par suivant per pages');
 INSERT INTO lang VALUES ('dupe_id_entered','fr','Il existe déja de date de medium avec le numero donnée de medium en DB. Pressez-vous le buttom \"Retour\" pour corriger l\'enrigistrement, s-il-vous-plait. Attention: directément à coté de la placement pour le texte pour le numero du medium il se trouve d\'une box de value. Cette box de value vous aider trouver de la numero maximum. Normalement c\'est une bonne idée, pour une nouvelle medium d\'augmenté de numero premiere, pour une nouvelle film sur la meme medium d\'augmenté de numero deuxieme en un.');
 INSERT INTO lang VALUES ('edit','fr','Éditer');
 INSERT INTO lang VALUES ('edit_entry','fr','Edition de date %1');
@@ -56,7 +54,6 @@ INSERT INTO lang VALUES ('first_name','fr','Pré-Nom');
 INSERT INTO lang VALUES ('free','fr','Libre');
 INSERT INTO lang VALUES ('free_space_on_media','fr','À la prochaine medium sont restée %1 minutes libre:');
 INSERT INTO lang VALUES ('free_space_title','fr','Place choissable sur les mediums');
-INSERT INTO lang VALUES ('fsk','fr','PG');
 INSERT INTO lang VALUES ('general','fr','Pas de specialement');
 INSERT INTO lang VALUES ('goto_entry','fr','Annonce le film:');
 INSERT INTO lang VALUES ('help','fr','Aide');
@@ -70,7 +67,6 @@ INSERT INTO lang VALUES ('howto_label','fr','Comment à configurer des templates 
 INSERT INTO lang VALUES ('howto_lang','fr','Comment de figurer d\'une nouvelle record de langue?');
 INSERT INTO lang VALUES ('howto_templates','fr','Comment de figurer d\'une nouvelle set des modéle?');
 INSERT INTO lang VALUES ('incomplete_date','fr','En cas d\'inconnue de la date completement remplace avec du numero \"0\".');
-INSERT INTO lang VALUES ('index','fr','Index');
 INSERT INTO lang VALUES ('intro','fr','Introduction');
 INSERT INTO lang VALUES ('invalid_fsk','fr','Le mode donné pour PG (\"%1\") est invalide.<br>PG fait place pour Parentelle Guide mentant l\'age min, de-quelle le film est agreable.');
 INSERT INTO lang VALUES ('invalid_media_nr','fr','Le numero de medium comme donné est incomplet ou invalidé. Placez d\'une <b>numero</b> en <b>deux</b> place pour le texte pour le numero de medium, s-il-vous-plait');
@@ -78,15 +74,11 @@ INSERT INTO lang VALUES ('in_list','fr','en liste');
 INSERT INTO lang VALUES ('language_settings','fr','Configuration de la langue');
 INSERT INTO lang VALUES ('length','fr','Longue');
 INSERT INTO lang VALUES ('longplay','fr','LongPlay');
-INSERT INTO lang VALUES ('max','fr','max');
 INSERT INTO lang VALUES ('medialength','fr','Longue de medium');
 INSERT INTO lang VALUES ('medialist','fr','Liste de medium');
 INSERT INTO lang VALUES ('medianr','fr','MediaNo');
 INSERT INTO lang VALUES ('mediatype','fr','Type de medium');
-INSERT INTO lang VALUES ('medium','fr','Medium');
 INSERT INTO lang VALUES ('menues','fr','Menues');
-INSERT INTO lang VALUES ('min','fr','min');
-INSERT INTO lang VALUES ('minute_abbrev','fr','min');
 INSERT INTO lang VALUES ('month','fr','Mois');
 INSERT INTO lang VALUES ('music','fr','Musique');
 INSERT INTO lang VALUES ('music_list','fr','List des Compositeurs');
@@ -103,7 +95,6 @@ INSERT INTO lang VALUES ('no_entry_in_tapelist','fr','Non recherchement en liste
 INSERT INTO lang VALUES ('no_space_of','fr','Non recherchement pour la reste de temps en liste avec min. %1 minutes de place libre en DB');
 INSERT INTO lang VALUES ('nr','fr','No');
 INSERT INTO lang VALUES ('of_aquiration','fr','d\'enrigistrement');
-INSERT INTO lang VALUES ('ok','fr','OK');
 INSERT INTO lang VALUES ('other_pages','fr','Autre Sites');
 INSERT INTO lang VALUES ('page_bg','fr','Fond de la site');
 INSERT INTO lang VALUES ('picture','fr','Format de couleur');
@@ -121,7 +112,6 @@ INSERT INTO lang VALUES ('select_add_lang_comment','fr','La langue anglais est f
 INSERT INTO lang VALUES ('select_primary_lang','fr','Choix de langue primaire');
 INSERT INTO lang VALUES ('select_primary_lang_comment','fr','(En cas de la manque d\'une traduiresation il est utilisé la langue anglaise)');
 INSERT INTO lang VALUES ('set_filter','fr','Placer de filtre');
-INSERT INTO lang VALUES ('source','fr','Source');
 INSERT INTO lang VALUES ('staff','fr','Personnel');
 INSERT INTO lang VALUES ('start_page','fr','Site de comence');
 INSERT INTO lang VALUES ('start_pvp','fr','Commencer phpVideoPro');
@@ -135,7 +125,6 @@ INSERT INTO lang VALUES ('taperest_filtered','fr','Reste de band (filtrée)');
 INSERT INTO lang VALUES ('template_set','fr','Set de modéle');
 INSERT INTO lang VALUES ('th_bg','fr','Fond de tete du tablau');
 INSERT INTO lang VALUES ('time_left','fr','%1 minutes reste');
-INSERT INTO lang VALUES ('title','fr','Title');
 INSERT INTO lang VALUES ('tone','fr','Format de tone');
 INSERT INTO lang VALUES ('unknown','fr','non identificée');
 INSERT INTO lang VALUES ('unset_filter','fr','Remplacer de filtre');

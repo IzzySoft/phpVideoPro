@@ -92,6 +92,17 @@
     return $db->verify_session($id,$REMOTE_ADDR);
   }
 
+  /** End a session
+   * @class session
+   * @method end
+   * @param string id
+   */
+  function end($id) {
+    GLOBAL $db,$REMOTE_ADDR;
+    $ended = time();
+    $db->end_session($id,$REMOTE_ADDR,$ended);
+  }
+
   /** Destroy a session
    * @class session
    * @method destroy

@@ -322,6 +322,17 @@
      return $this->query($query);
    }
 
+   /** End a session
+    * @class sql
+    * @method end_session
+    * @param string sess_id
+    * @param string ip
+    * @param timestamp end
+    */
+   function end_session($sess_id,$ip,$end) {
+     $this->query("UPDATE pvp_sessions SET ended='$end' WHERE id='$sess_id' AND ip='$ip'");
+   }
+
    /** Verify (and update) a session
     * @class sql
     * @method verify_session

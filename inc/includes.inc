@@ -24,6 +24,7 @@
 #  if ( !ini_get("register_globals") ) include ($inc_path . "/globals.inc");
   if (!isset($pvpinstall)) $translations = $db->get_translations( $pvp->preferences->get("lang") );
   $pagename = "phpVideoPro v$version @ $site";
+  if (!isset($page_id)) $page_id = "";
   switch ( strtolower($page_id) ) {
     case ""              : break;
     case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;

@@ -52,7 +52,8 @@
    $t->set_var("date",$aq_date[$i]);
    $t->set_var("category",$category[$i]);
    $t->set_var("url",$pvp->link->slink("edit.php?nr=$movie_id[$i]&cass_id=$cass_id[$i]&part=$part[$i]&mtype_id=$mtype_id[$i]"));
-   $t->parse("mdatalist","mdatablock",TRUE);
+   if ($i) $t->parse("mdatalist","mdatablock",TRUE);
+     else $t->parse("mdatalist","mdatablock");
  }
  #---------------------------------------------------------[ table header ]---
  $t->set_var("mtype",lang("medium"));

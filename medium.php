@@ -58,12 +58,13 @@
  $mcount = count($mid);
  for ($i=0;$i<$mcount;++$i) {
    $movie = $db->get_movie($mid[$i]);
-   $url   = $base_url ."index.php?sel_entry=1&mtype_id=$mtype_id&cass_id=$cass_id&part=".$movie[part];
-   $mlink = $pvp->link->linkurl($url,$movie[part]."&nbsp;");
-   $mdata = $movie[title]." (".$movie[cat1]. ", ".$movie[length]." ".lang("minute_abbrev").")";
+   $url   = $base_url ."index.php?sel_entry=1&mtype_id=$mtype_id&cass_id=$cass_id&part=".$movie['part'];
+   $mlink = $pvp->link->linkurl($url,$movie['part']."&nbsp;");
+   $mdata = $movie['title']." (".$movie['cat1']. ", ".$movie['length']." ".lang("minute_abbrev").")";
    $t->set_var("mlink",$mlink);
    $t->set_var("mdata",$mdata);
-   $t->parse("movie","movieblock",TRUE);
+   if ($i) $t->parse("movie","movieblock",TRUE);
+     else $t->parse("movie","movieblock");
  }
 
  include("inc/header.inc");

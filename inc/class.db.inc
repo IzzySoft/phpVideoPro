@@ -1046,9 +1046,7 @@
      if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
      $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
      $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
-     $this->dbquery("SELECT disks_id FROM cass WHERE id=".$movie[cass_id]." AND mtype_id=".$movie[mtype_id]);
-     $this->next_record();
-     $movie[disktype] = $this->f('disks_id');
+     $movie[disktype] = $this->get_disktype_id($movie[mtype_id],$movie[cass_id]);
      return $movie;
    }
 
@@ -1500,6 +1498,19 @@
        $types[]    = $type;
      }
      return $types;
+   }
+
+   /** Get a specific disktype id
+    * @class sql
+    * @method get_disktype_id
+    * @param integer mtype_id
+    * @param integer cass_id
+    * @return integer disktype_id
+    */
+   function get_disktype_id($mtype_id,$cass_id) {
+     $this->dbquery("SELECT disks_id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->next_record();
+     return $this->f('disks_id');
    }
 
    /** Set disktype for a medium

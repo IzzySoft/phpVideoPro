@@ -31,6 +31,9 @@
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
     case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
     case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
+    case "view_entry"    : $mt = $db->get_mtypes("id=$mtype_id");
+                           $pagename .= " [ " . lang("view_entry",$mt[0][sname]." ".$nr) . " ]";
+			   break;
     default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
   }
 if (!$silent) {

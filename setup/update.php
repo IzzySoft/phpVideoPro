@@ -56,7 +56,8 @@
 
 <P ALIGN=JUSTIFY>This simple script will update your database from a previous
  version of phpVideoPro to the recent one. I strongly recommend you to backup
- your existing database before executing the script!</P>
+ your existing database before executing the script! Furthermore, please
+ inspect config.inc for possible changes.</P>
 <P ALIGN=JUSTIFY>For each update step, you should then be notified wether it
  was successfull or not. So if the amount of "comments" on the following page
  is less than the number of the upgrade you select from the list below, there
@@ -80,6 +81,8 @@
       case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
       case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
                         queryf("lang_en.sql","Activation of English language support");
+      case "0.1.2"    : queryf("0-1-2_to_0-1-3.sql","Update from v0.1.2 to v0.1.3");
+                        queryf("lang_en.sql","Refresh of English language support");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

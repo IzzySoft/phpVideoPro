@@ -90,6 +90,7 @@ INSERT INTO lang VALUES('configuration','en','Configuration');
 INSERT INTO lang VALUES('index','en','Index');
 INSERT INTO lang VALUES('intro','en','Intro');
 INSERT INTO lang VALUES('menues','en','Menues');
+INSERT INTO lang VALUES('back','en','Back');
 INSERT INTO lang VALUES('close','en','Close');
 
 

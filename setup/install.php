@@ -48,6 +48,8 @@
           make sure it has a leading slash (i.e. it has to be the complete
           path starting with your web servers document root) as well as a
           trailing slash.
+      <li>$base_path: same as $base_url, but regarding your file system
+          (so for Windoze this one starts with a drive letter)
       <li>$database : settings for the database (host running the db server,
           database name, user and password to access the database).
      </ul>

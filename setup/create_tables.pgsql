@@ -123,7 +123,7 @@ CREATE TABLE tone (
 #
 
 CREATE TABLE commercials (
-   id,
+   id int,
    name varchar(30),
    PRIMARY KEY (id)
 );

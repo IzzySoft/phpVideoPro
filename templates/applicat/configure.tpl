@@ -1,7 +1,6 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
-<FORM NAME="config_form" METHOD="post" ACTION="{formtarget}">
 <TABLE WIDTH="95%" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
@@ -16,6 +15,9 @@
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
+<TR><TD>
+<FORM NAME="config_form" METHOD="post" ACTION="{formtarget}">
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
 
 <TABLE ALIGN="center" WIDTH="100%" BORDER="1" STYLE="margin:5">
@@ -40,6 +42,7 @@
 {config_end}
 
 </TABLE>
-</FORM>
+</FORM></TD></TR>
+</TABLE>
 </DIV>
 </TD></TR></TABLE>

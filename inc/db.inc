@@ -899,7 +899,7 @@
     * @return integer id (person_id)
     */
    function insert_person($person,$query,$sub_query,$name="",$fname="") {
-     GLOBAL $db,$dmsg,$colors;
+     GLOBAL $dmsg,$colors;
      if ( strlen( trim($name . $fname) ) < 1) {
        $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
        return 0;
@@ -936,6 +936,28 @@
      }
      return $id;
    } // end insert_person()
+
+   ############################################################################
+   /** Gather statistic informations from the database
+    * @class sql
+    * @method get_stats
+    * @return array stats
+    */
+   function get_stats() {
+     $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM video"),
+                       array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
+		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
+		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
+		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat"),
+		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass") );
+     foreach($details as $value) {
+       $this->dbquery($value["sql"]);
+       $this->next_record();
+       $item = $value["name"];
+       $stats[$item] = $this->f("$item");
+     }
+     return $stats;
+   }
 
    ############################################################################
    /** Execute the statements in the passed $array one-by-one, ignore comments

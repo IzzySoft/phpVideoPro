@@ -46,11 +46,13 @@ You can even have phpVideoPro talking to you in your own language (if it not
 already does) by making a special language file (don't forget to send it to the
 author afterwards to have it included with future versions of phpVideoPro).
 [text]
-While you may have enough tapes and DVDs to open up your own version of
-Blockbuster, phpVideoPro wasn't designed to cater to video shops. The current
-release wasn't made to log multiple copies of the same item. The program does,
-however, distinguish between DVDs, VideoCDs, original videotapes, and the tapes
-you recorded yourself. More to come.
+The program does distinguish between DVDs, VideoCDs, original videotapes, plus
+the tapes you recorded yourself. While you may have enough tapes and DVDs to
+open up your own version of Blockbuster, phpVideoPro wasn't designed to cater
+to video shops. The current release wasn't made to log multiple copies of the
+same item. However, multiple simultan users are served together with their own
+preferences and permissions with the help of cookies and a built-in session
+management. More to come.
 
 [title]
 Future
@@ -64,7 +66,7 @@ that there will always be a fresh release available within the next few weeks!
 So I close with my standard disclaimer: "This is only a hobby, I can't promise
 anything - I just ask you to stay tuned..."
 [text]
-<div align=right>Itzchak Rehberg, October 2002</div>
+<div align=right>Itzchak Rehberg, March 2003</div>
 
 [eof]
 

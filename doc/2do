@@ -13,13 +13,13 @@ account" izzysoft@qumran.org.
 
 coming *soon*:
 - statistics page
-- translation for categories missing
 - menue items for "change MediaNr" and "change MediaType"
 
 coming *next*:
 - search function
 - overview "per tape" (should look equivalent to taperest)
 - find duplicate movies
+- enable/disable a category (to get rid of unwanted ones)
 
 coming *sometimes* (maybe):
 - add admin menu (search/delete orphans, backup/restore DB, etc.)

@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.2.8 (July 2002)
+[text]
+<ul>
+ <li>categories are now translated (if you miss translations for your language,
+     see the "HowTo" section on how to create them, then create them, and send
+     them to me :)
+</ul>
+
+[title]
 0.2.7 (July 4, 2002)
 [text]
 <ul>

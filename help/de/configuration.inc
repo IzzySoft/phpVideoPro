@@ -184,6 +184,23 @@ auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
 [text]
+<b>*imdb_url#:</b> Die Internet Movie DataBase bietet umfangreiche Daten für
+viele Filme. Diese können aus phpVideoPro heraus einfach abgerufen werden, indem
+im Betrachtungsmodus eines Filmeintrages auf den Button des Titels oder des
+Crew-Mitglieds geklickt wird. Während die Namen der Crewmitglieder sich für
+gewöhnlich nicht ändern, kann der Filmtitel bei synchronisierten Fassungen
+durchaus vom "Original-Titel" abweichen - was sodann eine manuelle Suche auf
+der IMDB Site erforderlich macht. Eine höhere Trefferwahrscheinlichkeit lässt
+sich daher erreichen, wenn hier eine Site ausgewählt wird, die mit der
+häufigsten Sprachversion der in phpVideoPro gespeicherten Filmtitel überein
+stimmt - für Deutschland wäre dies die deutsche IMDB Site.
+[text]
+Leider gibt es noch nicht für alle Sprachen eine eigene IMDB Site. Die mir
+bekannten Sites sind bereits als Optionen verfügbar - wenn jemand weitere Sites
+kennt, bitte ich um eine kurze Notiz, damit ich sie ebenfalls einpflegen kann!
+
+
+[text]
 <b>*printer#:</b> Um eine exakte Positionierung der Etiketten auf den zu
 verwendenden Label-Sheets gewährleisten zu können, müssen die genauen
 Seitenränder des zu verwendenden Druckers bekannt sein. Ist der gewünschte

@@ -241,7 +241,7 @@
    ############################################################################
    # get data for commercials
    function get_commercials($id) {
-     $this->query("SELECT name FROM commercials WHERE id=$commercials_id");
+     $this->query("SELECT name FROM commercials WHERE id=$id");
      if ( $this->next_record() ) {
        $commercials = $this->f('name');
        $commercials = lang($commercials);
@@ -323,7 +323,7 @@
        $$value = $this->f("$value");
      }
      if ($pict_id) {
-       $pict = get_pict($pict_id);
+       $pict = $this->get_pict($pict_id);
        $movie[pict] = $pict[name]; $movie[pict_short] = $$pict[sname];
      } else {
        $movie[pict] = $movie[pict_short] = lang("unknown");

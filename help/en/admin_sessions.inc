@@ -21,7 +21,7 @@ Deleting ended sessions
 [text]
 You can hurt noone by this, because it affects only old sessions where the
 user already has logged off - but it may be required from time to time to
-clean up your database and you do not use the automatic session purge feature
+clean up your database if you do not use the automatic session purge feature
 (just to bring it back into your mind: on the <A HREF="{PHP_SELF}?topic=configuration">configuration</A>
 screen you can set up phpVideoPro to automatically purge invalid sessions from
 the database).

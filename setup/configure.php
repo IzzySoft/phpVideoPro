@@ -33,6 +33,7 @@ if ( isset($update) ) {
   $url = $PHP_SELF;
   $pvp->preferences->set("lang",$default_lang);
   $pvp->preferences->set("template",$template_set);
+  $pvp->preferences->set("imdb_url",$imdb_url);
   $pvp->preferences->set("display_limit",$cdisplay_limit);
   $pvp->preferences->set("page_length",$cpage_length);
   $pvp->preferences->set("date_format",$cdate_format);
@@ -102,6 +103,7 @@ $lang_installed = $db->get_installedlang();
 #======================================================[ get preferences ]===
 $lang_preferred = $pvp->preferences->get("lang");
 $template_set   = $pvp->preferences->get("template");
+$imdb_url       = $pvp->preferences->get("imdb_url");
 $cdisplay_limit = $pvp->preferences->get("display_limit");
 $cpage_length   = $pvp->preferences->get("page_length");
 $cdate_format   = $pvp->preferences->get("date_format");
@@ -376,6 +378,22 @@ for ($i=0;$i<count($tpldir);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock");
+
+#--[ imdb_url ]--
+$t->set_var("item_name",lang("imdb_url"));
+$t->set_var("item_comment","imdb_url_comment");
+$select  = "<SELECT NAME=\"imdb_url\">";
+$imdburls = $db->get_options("imdb_url");
+for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
+  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
+  if ($imdburls["imdb_url"][$i] == $imdb_url) $select .= " SELECTED";
+  $select .= ">" . $imdburls["imdb_url"][$i] . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+#echo "IMDB URLs: <PRE>";print_r($imdburls);echo "</PRE>\n";
+#exit; # *!*
 
 #--[ printer_id ]--
 $t->set_var("item_name",lang("printer"));

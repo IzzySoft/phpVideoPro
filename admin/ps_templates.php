@@ -99,7 +99,7 @@
    $query = "\$db->get_pstemplates(\"\",$start)";
    $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF,$start);
    $list = $nextmatch->list;
-   for ($i=0;$i<$nextmatch->listcount -1;$i++) {
+   for ($i=0;$i<$nextmatch->listcount;$i++) {
      $t->set_var("id",$list[$i]->id);
      $t->set_var("desc",$list[$i]->desc);
      $t->set_var("type",$list[$i]->type_desc);

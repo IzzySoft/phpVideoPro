@@ -306,6 +306,9 @@ if ( !$force_en && $pvp->preferences->get("lang")!="en" )
   $pm->set_nav("force","<A HREF='$PHP_SELF?topic=$topic&force_en=1'><IMG SRC='$base_url/templates/default/images/english.jpg' BORDER='0' ALT='English'></A>");
 $pm->set_nav("index","<A HREF=\"$PHP_SELF\">" . lang("index") . "</A>");
 $pm->set_nav("close","<A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A>");
+$pm->set_nav("btn_index",lang("index"));
+$pm->set_nav("btn_back",lang("back"));
+$pm->set_nav("btn_close",lang("close"));
 if ($topic) { // display specific help page
   $help = helppage($topic);
   if ( !$help->file ) {

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.6 (2004)
+0.6.6 (October 15, 2004)
 [text]
 <ul>
  <li>some code cleanup: made it more strict to prevent some "notices" (aka
@@ -20,6 +20,8 @@
      DB but appends all contained data, starting with the "last entry +1"
      media number for each media type. New media types are created if necessary,
      new languages for audio and subtitles will be activated if needed.
+ <li>updated Russian translations (still waiting for your feedback - my Russian
+     is just basic)
 </ul>
 
 [title]

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.8 (2004)
+0.5.8 (February 12, 2004)
 [text]
 <ul>
  <li>when forced to login (e.g. due to missing privileges), browser now is

@@ -230,6 +230,27 @@ class common {
     }
     return $result;
    } // end function get_filenames()
+
+   #==================================================[ array functions ]===
+  /** combine two arrays that contain "statistics", i.e. the values are the
+   *  count for their keys
+   * @class common
+   * @method array_combine_sums
+   * @param array ar1 array to append to
+   * @param array ar2 array to be appended to ar1
+   * @return array ar1 updated with values from ar2
+   */
+  function array_combine_sums($ar1,$ar2) {
+    foreach ($ar1 as $key=>$value) {
+      if ( isset($ar2[$key]) ) {
+        $ar1[$key] += $ar2[$key];
+	unset($ar2[$key]);
+      }
+    }
+    $ar1 += $ar2;
+    return $ar1;
+  }
+
  } // end class common
  
 ?>

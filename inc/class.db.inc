@@ -221,7 +221,7 @@
     */
    function set_translation($id,$trans,$lang) {
      if (!$trans) { // remove translation
-       $query = "DELETE FROM lang WHERE message_id='$id' AND lang='$lang'";
+       $this->query("DELETE FROM lang WHERE message_id='$id' AND lang='$lang'");
      } else {
        $trans = addslashes($trans);
        $this->query("SELECT * FROM lang WHERE message_id='$id' AND lang='$lang'");

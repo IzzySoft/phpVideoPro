@@ -17,6 +17,8 @@ include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
 include ("../inc/class.template.inc");
+$translations = $db->get_translations( $pvp->preferences->get("lang") );
+
 #=============================================[ Get the needed parameters ]===
 /** Find the input file for the requested help topic
  * @package Help

@@ -10,6 +10,7 @@
 
  /* $Id$ */
 
+ $page_id = "listgen";
  if ($outputtype) $silent = TRUE;
  include("inc/header.inc");
  if (!$pagelength) $pagelength = $pvp->preferences->page_length;

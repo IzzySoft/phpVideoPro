@@ -1377,6 +1377,7 @@
     * @return object next entry: mtype_id, media_rn, part
     */
    function get_nextentry($mtype_id,$media_nr,$part) {
+     if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
      $next->mtype_id = $mtype_id;
      $next->media_nr = $media_nr;
      $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part>$part");
@@ -1417,6 +1418,7 @@
     * @return object next entry: mtype_id, media_rn, part
     */
    function get_preventry($mtype_id,$media_nr,$part) {
+     if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
      $prev->mtype_id = $mtype_id;
      $prev->media_nr = $media_nr;
      if ($part>1) {
@@ -1430,6 +1432,7 @@
        $this->query("SELECT MAX(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id<$media_nr");
        if ($this->next_record()) {
          $prev->media_nr = $this->f('medianr');
+         if (!is_numeric($prev->media_nr)) return FALSE;
          $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$prev->media_nr);
          $this->next_record();
          $prev->part = $this->f('part');

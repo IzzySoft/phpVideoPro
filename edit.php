@@ -60,6 +60,21 @@
     $input = "INPUT TYPE=\"button\"";
     // $input .= " readonly"; // HTML 4.0 - not supported by Netscape 4.x
   }
+
+  function form_input($name,$value,$addons="") {
+    GLOBAL $edit;
+    if ($edit) {
+      $type = " " . trim($addons) . " ";
+    } else {
+      if ( strlen(trim($value)) < 1 ) {
+        $type = " TYPE=\"hidden\" ";
+      } else {
+        $type = " TYPE=\"button\" ";
+      }
+    }
+    $field = "<INPUT" . $type . "NAME=\"$name\" VALUE=\"$value\">";
+    echo $field;
+  }
   
 ?>
 
@@ -138,6 +153,8 @@
     $db->query($query); $db->next_record();
     $free  = $db->f('free');
   }
+################################################################
+# Form Start
 ?>
 <FORM NAME="entryform" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
 <Table Width="90%" Align="Center" Border="1">
@@ -155,16 +172,16 @@
   } else {
     echo "<$input NAME=\"media_tname\" VALUE=\"$media_tname\">";
   } ?></TD>
-  <TD Width=20%>Country</TD><TD Width=30%><? echo "<$input NAME=\"country\" VALUE=\"$country\">" ?></TD></TR>
+  <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
   <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<$input NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
-  <TD>Director</TD><TD><? check_empty_name($director); echo "<$input NAME=\"director_name\" VALUE=\"$director_name\">&nbsp;<$input NAME=\"director_fname\" VALUE=\"$director_fname\">"; ?></TD></TR>
+  <TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); echo "&nbsp;"; form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD></TR>
  <TR>
-  <TD>Length</TD><TD><? echo "<$input NAME=\"length\" VALUE=\"$length\">" ?> min</TD>
-  <TD>Composer</TD><TD><? check_empty_name($composer); echo "<$input NAME=\"composer_name\" VALUE=\"$composer_name\">&nbsp;<$input NAME=\"composer_fname\" VALUE=\"$composer_fname\">" ?></TD></TR>
+  <TD>Length</TD><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD>
+  <TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); echo "&nbsp;"; form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD></TR>
  <TR>
   <TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD>
-  <TD>Year</TD><TD><? echo "<$input NAME=\"year\" VALUE=\"$year\">" ?></TD></TR>
+  <TD>Year</TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
  <TR>
   <TD>Tone</TD><TD><?
   if ($edit) {
@@ -249,23 +266,20 @@
       echo "<$input NAME=\"pict_format\" VALUE=\"$pict_format\">";
     }
     ?></TD></TR>
-    <TR><TD Width=40%>Source</TD><TD Width=60%><? echo "<$input NAME=\"src\" VALUE=\"$src\">" ?></TD></TR>
-    <TR><TD>FSK</TD><TD><? echo "<$input NAME=\"fsk\" VALUE=\"$fsk\">" ?></TD></TR>
+    <TR><TD Width=40%>Source</TD><TD Width=60%><? form_input("src",$src,$form["addon_src"]); ?></TD></TR>
+    <TR><TD>FSK</TD><TD><? form_input("fsk",$fsk,$form["addon_fsk"]); ?></TD></TR>
    </Table></TD>
   <TD ColSpan=2>
    <Table Width=100%>
     <TR><TD><B>Actor</B></TD><TD>Name</TD><TD>First Name</TD><TD ALIGN="center">in List</TD></TR>
-    <TR><TD>1</TD><TD><? echo "<$input NAME=\"actor1_name\" VALUE=\"" . $actor[1][name] . "\">" ?></TD><TD><? echo "<$input NAME=\"actor1_fname\" VALUE=\"" . $actor[1][fname] . "\">" ?></TD><TD><? echo vis_actors(1) ?></TD></TR>
-    <TR><TD>2</TD><TD><? echo "<$input NAME=\"actor2_name\" VALUE=\"" . $actor[2][name] . "\">" ?></TD><TD><? echo "<$input NAME=\"actor2_fname\" VALUE=\"" . $actor[2][fname] . "\">" ?></TD><TD><? echo vis_actors(2) ?></TD></TR>
-    <TR><TD>3</TD><TD><? echo "<$input NAME=\"actor3_name\" VALUE=\"" . $actor[3][name] . "\">" ?></TD><TD><? echo "<$input NAME=\"actor3_fname\" VALUE=\"" . $actor[3][fname] . "\">" ?></TD><TD><? echo vis_actors(3) ?></TD></TR>
-    <TR><TD>4</TD><TD><? echo "<$input NAME=\"actor4_name\" VALUE=\"" . $actor[4][name] . "\">" ?></TD><TD><? echo "<$input NAME=\"actor4_fname\" VALUE=\"" . $actor[4][fname] . "\">" ?></TD><TD><? echo vis_actors(4) ?></TD></TR>
-    <TR><TD>5</TD><TD><? echo "<$input NAME=\"actor5_name\" VALUE=\"" . $actor[5][name] . "\">" ?></TD><TD><? echo "<$input NAME=\"actor5_fname\" VALUE=\"" . $actor[5][fname] . "\">" ?></TD><TD><? echo vis_actors(5) ?></TD></TR>
-<!--
-    <TD>&nbsp;</TD><TD>2</TD><TD><? check_empty_name($actor[2]); echo "<$input NAME=\"actor_2\" VALUE=\"" . $actor[2] . "\">" ?></TD><TD><? echo vis_actors(2) ?></TD></TR>
-    <TD>&nbsp;</TD><TD>3</TD><TD><? check_empty_name($actor[3]); echo "<$input NAME=\"actor_3\" VALUE=\"" . $actor[3] . "\">" ?></TD><TD><? echo vis_actors(3) ?></TD></TR>
-    <TD>&nbsp;</TD><TD>4</TD><TD><? check_empty_name($actor[4]); echo "<$input NAME=\"actor_4\" VALUE=\"" . $actor[4] . "\">" ?></TD><TD><? echo vis_actors(4) ?></TD></TR>
-    <TD>&nbsp;</TD><TD>5</TD><TD><? check_empty_name($actor[5]); echo "<$input NAME=\"actor_5\" VALUE=\"" . $actor[5] . "\">" ?></TD><TD><? echo vis_actors(5) ?></TD></TR>
--->
+    <?php for ($i=1;$i<=$max["actors"];$i++) {
+      $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
+      echo "<TR><TD>$i</TD><TD>";
+      form_input($name,$actor[$i][name],$form["addon_name"]);
+      echo "</TD><TD>";
+      form_input($fname,$actor[$i][fname],$form["addon_name"]);
+      echo "</TD><TD>" . vis_actors($i) . "</TD></TR>\n";
+    } ?>
    </Table>
   </TD>
   </TR>

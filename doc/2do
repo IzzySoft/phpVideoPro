@@ -17,7 +17,7 @@ coming *next*:
 - form(s) to edit label sheets (for PSLabels)
 
 coming *sometimes* (maybe):
-- add confirmation to disk type deletion
+- add check to disk type deletion
 - movie language setting(s)
 - store user-based preferences into a different table if no cookies are used
 - add "sample-links" to translation editor

@@ -86,7 +86,10 @@
       dbquery("UPDATE preferences SET value='$save' WHERE name='filter'");
     } else {
       dbquery("INSERT INTO preferences (name,value) VALUES ('filter','$save')");
-    }
+    } ?>
+<HTML><HEAD>
+  <meta http-equiv="refresh" content="0; URL=<? echo $base_url . "index.php" ?>">
+</HEAD></HTML><?
   }
 
   dbquery("SELECT value FROM preferences WHERE name='filter'");

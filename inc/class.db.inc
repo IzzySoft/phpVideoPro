@@ -418,6 +418,17 @@
      return $this->affected_rows();
    }
 
+   /** remove a category
+    * @class sql
+    * @method delete_category
+    * @param integer id category ID (PK of table)
+    * @return boolean success
+    */
+   function delete_category($id) {
+     $this->dbquery("DELETE FROM cat WHERE id=$id");
+     return $this->affected_rows();
+   }
+
    ############################################################################
    # technical data
    ############################################################################

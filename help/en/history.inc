@@ -2,7 +2,16 @@
 # /*  $Id$ */
 
 [title]
-0.5.9 (May 16, 2004)
+0.6.1 (2004)
+[text]
+<ul>
+ <li>IMDB site for reference lookups is now configurable as a preference. If
+     you know additional IMDB sites with the same query syntax, please drop
+     me a note!
+</ul>
+
+[title]
+0.6.0 (May 16, 2004)
 [text]
 <ul>
  <li>updated French language file (supplied by Didier CLERC)

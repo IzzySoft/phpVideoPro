@@ -54,7 +54,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.4.1');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.4.2');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','');
@@ -76,6 +76,7 @@ INSERT INTO preferences (name,value) VALUES ('page_length','85');
 INSERT INTO preferences (name,value) VALUES ('default_movie_toneid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
+INSERT INTO preferences (name,value) VALUES ('printer_id','1');
 
 #
 # list of languages and their keys

@@ -118,9 +118,11 @@ $pvp->preferences->admin();
 		      unset($colors["table_background"]);
 		      unset($colors["th_background"]);
 		      $pvp->preferences->set("colors",rawurlencode( serialize($colors) ));
-    case "0.3.7"    : queryf("0-3-7_to_0-3-8.sql","Update from v0.3.7 to v0.3.8");
-    case "0.3.8"    : queryf("0-3-8_to_0-4-0.sql","Update from v0.3.8 to v0.4.0");
+    case "0.3.7"    :
+    case "0.3.8"    :
     case "0.4.0"    : queryf("0-4-0_to_0-4-1.".$database["type"],"Update from v0.4.0 to v0.4.1");
+    case "0.4.1"    : queryf("0-4-1_to_0-4-2.sql","Update from v0.4.1 to v0.4.2");
+                      queryf("pslabel.".$database["type"],"Set up of PSLabel tables");
                       queryf("lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

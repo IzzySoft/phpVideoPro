@@ -70,7 +70,8 @@ if ( isset($update) ) {
     if (!$_POST["session_purgetime"]) $session_purgetime = "0"; else $session_purgetime = $_POST["session_purgetime"];
     $db->set_config("session_purgetime",$session_purgetime);
     $db->set_config("site",$_POST["site_info"]);
-    $install_lang = $_POST["install_lang"];
+    if (isset($_POST["install_lang"])) $install_lang = $_POST["install_lang"];
+    else $install_lang = "";
     if ($install_lang && $install_lang != "-") {
       $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
       queryf($sql_file,"Installation of additional language file",1);
@@ -103,6 +104,7 @@ if ( isset($update) ) {
 
  #========================================================[ get languages ]===
 $lang_avail = $db->get_languages(1);
+$langu = array();
 for ($i=0;$i<count($lang_avail);$i++) {
   $langu[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
 }

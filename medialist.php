@@ -15,6 +15,7 @@
   $query .= " FROM video v, cat c, mtypes m";
   $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id";
   if ( strlen($filter) ) $query .= " AND ($filter)";
+  $query .= " ORDER BY v.mtype_id DESC,v.cass_id";
   $db->query($query);
   while ($db->next_record()) {
    $mtype    = $db->f('sname');

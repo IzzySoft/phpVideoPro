@@ -14,8 +14,6 @@ account" izzysoft@qumran.org.
 coming *soon*:
 - translation for categories missing
 - setup: check for existence and readability of SQL files before execution
-- fields for counter settings (start/end of movie for old tape recorders
-  (feature request by user via sourceforge))
 - field for "commercials" (tri-state: yes/no/cut off manually)
 
 coming *next*:

@@ -15,6 +15,8 @@
      staff members have been entered to the DB
  <li>the "search movies" form skipped movies without comment/title even if you
      did not specify comment/title in the search form
+ <li>with register_globals=off AND cookies disabled, some pages just kicked
+     the user off - fixed.
 </ul>
 
 [title]

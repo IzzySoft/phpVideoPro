@@ -232,3 +232,4 @@ INSERT INTO lang VALUES('admin_cats','de','Administration der Kategorien');
 INSERT INTO lang VALUES('cat_internal_name','de','Handle');
 INSERT INTO lang VALUES('cat_update_failed','de','Aktualisierung fehlgeschlagen für folgende Kategorien: %1');
 INSERT INTO lang VALUES('cat_trans_update_failed','de','Aktualisierung der Übersetzungen für folgende Kategorien fehlgeschlagen: %1');
+INSERT INTO lang VALUES('movies_left_in_cat','de','Die Kategorie %1 enthält noch %2 Film(e) und kann daher nicht gelöscht werden.');

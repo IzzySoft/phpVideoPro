@@ -14,6 +14,7 @@
 
  $page_id = "admin_movietech";
  include("../inc/includes.inc");
+ include("../inc/header.inc");
  if (!$pvp->auth->admin) kickoff();
 
  #==================================================[ process the changes ]===
@@ -198,7 +199,6 @@
 
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);
- include("../inc/header.inc");
  $t->pparse("out","template");
 
  include("../inc/footer.inc");

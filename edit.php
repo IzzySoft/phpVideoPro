@@ -345,7 +345,7 @@ EndHiddenFields;
   }
   $t->set_var("screen",$field);
   $t->set_var("source_name",lang("source"));
-  if (strlen(trim($src))) {
+  if (strlen(trim($src)) || $edit) {
     $t->set_var("source",form_input("src",$src,$form["addon_src"]));
   } else {
     $t->set_var("source",form_input("dummy",lang("unknown"),$form["addon_src"]));

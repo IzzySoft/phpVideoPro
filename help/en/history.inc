@@ -15,6 +15,7 @@
            via the configuration screen)
        <li>fixed a template parse bug in filter menue
        <li>some cosmetical fixes on view/edit and filter screen
+       <li>update to "source" field went into the Nirwana - fixed.
       </ul>
   <LI><b>0.1.5 (August 5, 2001)</b><br>
       alpha-release "camouflage":

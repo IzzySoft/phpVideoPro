@@ -62,6 +62,25 @@
    }
 
    ############################################################################
+   # get all media types and return them as array
+   function get_mtypes($restrict="") {
+     if ( strlen($restrict) ) {
+       $where = " WHERE $restrict";
+     } else {
+       $where = "";
+     }
+     $this->dbquery("SELECT id,name,sname FROM mtypes $where ORDER BY id");
+     $i = 0;
+     while ( $this->next_record() ) {
+       $mtypes[$i][id] = $this->f('id');
+       $mtypes[$i][sname] = $this->f('sname');
+       $mtypes[$i][name] = $this->f('name');
+       ++$i;
+     }
+     return $mtypes;
+   }
+
+   ############################################################################
    # check wether a given person exists in the db and aquire his/her id. If not
    # found in db, insert him/her first
    function insert_person($person,$query,$sub_query,$name="",$fname="") {

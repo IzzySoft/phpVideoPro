@@ -36,9 +36,9 @@
   if ($reset) { // user wants to unset all filter
     dbquery ("DELETE FROM preferences WHERE name='filter'");
   } elseif ($save) { // new filter values were submitted
-    dbquery("SELECT id FROM mtypes");
-    while ( $db->next_record() ) {
-      $id    = $db->f('id');
+    $mtypes = $db->get_mtypes();
+    for ($i=0;$i<count($mtypes);$i++) {
+      $id = $mtypes[$i][id];
       $field = "mtype_" . $id;
       if (${$field}) $filter->mtype->$id = TRUE;
     }
@@ -100,17 +100,15 @@
   # Create the Form Fields
   // ------------------------------------------------------------------[ left side ]------
   # mtype
-    dbquery("SELECT id,sname FROM mtypes");
-    $i=0;
-    while ( $db->next_record() ) {
-      $id[$i]   = $db->f('id');
-      $name[$i] = $db->f('sname');
-      if ($filter->mtype->$id) { $checked = " CHECKED"; } else { $checked = ""; }
-      $i++;
+    $mtypes = $db->get_mtypes();
+    for ($i=0;$i<count($mtypes);$i++) {
+      $id[$i]   = $mtypes[$i][id];
+      $name[$i] = $mtypes[$i][sname];
+      if ($filter->mtype->$id[$i]) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
     }
     $t->set_var("item","");
     for ($k=0;$k<count($id);$k++) {
-      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "$checked\" class=\"checkbox\">&nbsp;$name[$k]</TD>");
+      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "\" . $checked[$k] class=\"checkbox\">&nbsp;$name[$k]</TD>");
       $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("mtype","t_item");
@@ -145,7 +143,7 @@
     # screen
     $t->set_var("inputlist","");
     dbquery("SELECT id,name FROM pict");
-    $i=0;
+    $i=0; unset($id);
     while ( $db->next_record() ) {
       $id[$i]   = $db->f('id');
       $name[$i] = $db->f('name');

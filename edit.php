@@ -57,14 +57,7 @@
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
     $dinput = "INPUT";
-    dbquery("SELECT id,name,sname FROM mtypes");
-    $i = 0;
-    while ( $db->next_record() ){
-     $mtypes[$i][id]    = $db->f('id');
-     $mtypes[$i][name]  = $db->f('name');
-     $mtypes[$i][sname] = $db->f('sname');
-     $i++;
-    }
+    $mtypes = $db->get_mtypes();
     dbquery("SELECT name,id FROM tone");
     $i = 0;
     while ( $db->next_record() ){
@@ -164,9 +157,8 @@
     $actor[$i][name]  = $db->f('name');
     $actor[$i][fname] = $db->f('firstname');
   }
-  dbquery("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
-  $db->next_record();
-  $mediatype = $db->f('sname'); $media_tname = $db->f('name');
+  $mtypes = $db->get_mtypes("id=$mtype_id");
+  $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
   dbquery("SELECT name,firstname FROM directors WHERE id=$director_id");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');

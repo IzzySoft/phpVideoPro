@@ -36,9 +36,9 @@
   $t->set_var("add_part",$form["addon_part"]);
   $t->set_var("add_cass",$form["addon_cass_id"]);
   $sel_mtype = "<SELECT NAME=\"mtype_id\">";
-  dbquery("SELECT id,sname FROM mtypes");
-  while ( $db->next_record() ) {
-    $sel_mtype .= "<OPTION VALUE=\"" . $db->f('id') . "\">" . $db->f('sname') . "</OPTION>";
+  $mtypes = $db->get_mtypes();
+  for ($i=0;$i<count($mtypes);$i++) {
+    $sel_mtype .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\">" . $mtypes[$i][sname] . "</OPTION>";
   }
   $sel_mtype .= "</SELECT>";
   $t->set_var("sel_mtype",$sel_mtype);

@@ -83,9 +83,8 @@
  ##############################################################################
  # updating free time on media for Recorded Video Tapes
  if ($lp) $length /= 2;
- $query = "SELECT sname FROM mtypes WHERE id=$mtype_id";
- dbquery($query);
- if ( !$db->next_record() ) {
+ $mtypes = $db->get_mtypes("id=$mtype_id");
+ if ( !$mtypes[0][id] ) {
    debug("E",$colors["err"] . "Could not obtain media type for mtype_id '$mtype_id'!</Font><BR>\n");
  } elseif ( strtolower($db->f('sname'))=="rvt" ) { // calc free space only for recorded video tapes
    $query = "SELECT free FROM cass WHERE id=$cass_id";

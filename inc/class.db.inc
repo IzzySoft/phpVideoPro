@@ -904,6 +904,22 @@
      return "";
    }
 
+   /** Set space on a medium
+    * @class sql
+    * @method set_mediaspace
+    * @param integer id media id
+    * @param integer mtype_id media type id
+    * @param integer space
+    * @param optional string field fieldname ("type" or "free", defaults to type)
+    * @return mixed either freetime (integer) or empty string
+    */
+   function set_mediaspace($id,$mtype_id,$space,$field="type") {
+     if ( $this->dbquery("UPDATE cass SET $field=$space WHERE id=$id AND mtype_id=$mtype_id") ) {
+       return $this->update_freetime($id,$mtype_id);
+     }
+     return FALSE;
+   }
+
    /** Update freetime on a medium. If $free is not specified, recalc freetime
     * @class sql
     * @method update_freetime

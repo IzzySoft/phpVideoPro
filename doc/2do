@@ -13,7 +13,6 @@ account" izzysoft@qumran.org.
 
 coming *soon*:
 - fix the SQL file import (db::get_sql()) to allow ";" within field contents
-- search function
 
 coming *next*:
 - get around the problem with ' "," ' in SQL for the comments

@@ -269,7 +269,7 @@ class common {
      }
    }
 
-   #===========================================[ text display functions ]===
+  #==========================================[ text formatting functions ]===
   // function make_clickable taken from text_to_links() in the SourceForge Snipplet Library
   // http://sourceforge.net/snippet/detail.php?type=snippet&id=100004
   function make_clickable($data) {
@@ -286,6 +286,34 @@ class common {
       $newText .= "$line\n";
     }
     return $newText;
+  }
+
+  // fill a string with zeros until its length is $len , start from left
+  function padzeros($num,$len) {
+    while (strlen($num)<$len) {
+      $num = "0$num";
+    }
+    return $num;
+  }
+ 
+  // fill a string with blanks until its length is $len , start from left
+  function padblanks($str,$len) {
+    while (strlen($str)<$len) $str = " $str";
+    return $str;
+  }
+
+  // fill a string with blanks until its length is $len , start from right
+  function fillblanks($str,$len) {
+    while (strlen($str)<$len) $str .= " ";
+    if (strlen($str)>$len) $str = substr($str,0,$len);
+    return $str;
+  }
+
+  // center a string by adding spaces to the left and right
+  function centerstr($str,$len) {
+    while (strlen($str)<$len) $str = " $str ";
+    if (strlen($str)>$len) $str = substr($str,0,$len);
+    return $str;
   }
 
    #============================================[ file system functions ]===

@@ -38,21 +38,21 @@ Settings
 Some settings may be directly modified on this page, and you can do so by
 (un)checking the available checkboxes and pushing the *update# button:
 [text]
-<table align='center' border='1'>
+<table align='center' border='1' style='margin:5'>
  <tr><td><b>*read_access_short#</b></td>
-     <td>wether the user should be able to browse your data. This includes
+     <td>whether the user should be able to browse your data. This includes
          lists and records as well as labels.</td></tr>
  <tr><td><b>*add_access_short#</b></td>
-     <td>wether the user may <b><i>add new</i></b> entries. This privilege
+     <td>whether the user may <b><i>add new</i></b> entries. This privilege
          does not allow her/him to modify existing entries.</td></tr>
  <tr><td><b>*upd_access_short#</b></td>
-     <td>wether the user may update existing entries. Does not provide the
+     <td>whether the user may update existing entries. Does not provide the
          ability to add new ones.</td></tr>
  <tr><td><b>*del_access_short#</b></td>
-     <td>wether the user should be able to delete records.</td></tr>
+     <td>whether the user should be able to delete records.</td></tr>
  <tr><td><b>*admin_access_short#</b></td>
-     <td>wether the user may access administrative pages. Giving this
-         privilege to an account, the user may give his own account any
+     <td>whether the user may access administrative pages. Giving this
+         privilege to an account, the user may give the own account any
 	 privilege (s)he wants, may create/drop/modify other accounts
 	 and change all your default configuration. So be careful with this!</td></tr>
 </table>

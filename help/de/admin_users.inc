@@ -41,7 +41,7 @@ Einige Einstellungen lassen sich direkt auf dieser Seite verändern, indem die
 entsprechenden Checkboxen (nicht) gesetzt werden und anschließend der
 &quot;*update#&quot; Button betätigt wird:
 [text]
-<table align='center' border='1'>
+<table align='center' border='1' style='margin:5'>
  <tr><td><b>*read_access_short#</b></td>
      <td>Soll der Benutzer Daten betrachten können? Dies schließt die Anzeige
          von Listen sowie einzelnen Datensätzen ein, darüber hinaus jedoch auch

@@ -112,15 +112,17 @@
   $movie = $db->get_movie($id);
 
   // values:
-  $title = $movie[title]; $length = $movie[length]; $year = $movie[year];
-  $recdate = $movie[aq_date]; $src = $movie[source]; $country = $movie[country];
+  $mdetails = array ("title","length","year","country","fsk","lp","comment",
+              "counter1","counter2","music_list","director_list","commercials",
+	      "tone","color");
+  foreach ($mdetails as $value) {
+    $$value = $movie[$value];
+  }
+  $recdate = $movie[aq_date]; $src = $movie[source];
   $vis_actor1 = $movie[actor1_list]; $vis_actor2 = $movie[actor2_list];
   $vis_actor3 = $movie[actor3_list]; $vis_actor4 = $movie[actor4_list];
-  $vis_actor5 = $movie[actor5_list]; $fsk = $movie[fsk]; $lp = $movie[lp];
-  $comment = $movie[comment]; $counter1 = $movie[counter1]; $counter2 = $movie[counter2];
-  $music_list = $movie[music_list]; $director_list = $movie[director_list];
+  $vis_actor5 = $movie[actor5_list];
 
-  // sub-queries
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor_$i";
     $actor[$i][name]  = $movie[$act_id][name];
@@ -133,9 +135,6 @@
 
   $mtypes = $db->get_mtypes("id=$mtype_id");
   $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
-  $commercials = $movie[commercials];
-  $tone = $movie[tone];
-  $color = $movie[color];
   $pict_format = $movie[pict];
 
   for ($i=1;$i<4;$i++) {
@@ -149,21 +148,7 @@
     $free  = $db->f('free');
   }
  } else {
-   for ($i=0;$i<count($mtypes);$i++) {
-     dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
-     $db->next_record();
-     $lastnum[$i][mtype]   = $mtypes[$i][sname];
-     $lastnum[$i][mtype_id]= $mtypes[$i][id];
-     $lastnum[$i][cass_id] = $db->f('max_id');
-     while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
-   }
-   for ($i=0;$i<count($lastnum);$i++) {
-     dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
-     $db->next_record();
-     $lastnum[$i][part]    = $db->f('max_part');
-     while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }
-     $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
-   }
+   $lastnum = $db->get_lastmovienum();
  } // end if (!$new_entry)
   ##########################################################################
   # set some useful defaults

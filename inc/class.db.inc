@@ -189,16 +189,11 @@
     * @return array language names (lang)
     */
    function get_installedlang() {
-     $this->dbquery("SELECT distinct lang FROM lang");
+     $this->dbquery("SELECT distinct lang FROM lang ORDER BY lang");
      while ( $this->next_record() ) {
        $lang[] = $this->f('lang');
      }
-     $langs = "'" . implode("','",$lang) . "'";
-     $this->dbquery("SELECT lang_id FROM languages WHERE lang_id IN ($langs) ORDER BY lang_name");
-     while ( $this->next_record() ) {
-       $langres[] = $this->f('lang_id');
-     }
-     return $langres;
+     return $lang;
    }
 
    /** Get (un)available|all languages
@@ -346,6 +341,7 @@
             . "  FROM pvp_options";
      if (strlen($name)) { $query .= " WHERE name='$name'"; }
      $this->query($query);
+     $list = array();
      while ( $this->next_record() ) {
        $optname = $this->f('name');
        $list["$optname"][] = $this->f('value');

@@ -31,7 +31,9 @@
     GLOBAL $db,$pvp;
     $pnames = array ("lang","template","display_limit","date_format",
               "page_length","default_movie_colorid","default_movie_onlabel",
-	      "default_movie_toneid","printer_id","imdb_url");
+	      "default_movie_toneid","printer_id","imdb_url","imdb_url2",
+              "imdb_tx_title","imdb_tx_year","imdb_tx_pg","imdb_tx_length",
+              "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }

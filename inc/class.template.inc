@@ -56,8 +56,10 @@ class Template {
    * @param optional string unknowns how to handle unknown variables (remove/comment/keep)
    */
   function Template($root = ".", $unknowns = "remove") {
+    GLOBAL $pvp,$base_path,$base_url;
     $this->set_root($root);
     $this->set_unknowns($unknowns);
+    $this->set_var("tpl_dir",str_replace($base_path,$base_url,$pvp->tpl_dir)."/");
   }
 
   /** Set a new template directory

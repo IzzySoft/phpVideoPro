@@ -1,10 +1,15 @@
 <? /* Edit an entry */
 
+  /* $Id$ */
+
   if ($new_entry) {
     $page_id = "new_entry";
     $edit    = TRUE;
   } elseif ($edit) {
     $page_id = "edit";
+  } elseif ($delete) {
+    include("delete.php");
+    exit;
   } else { $page_id = "view"; }
   include("inc/config.inc");
   include("inc/header.inc");

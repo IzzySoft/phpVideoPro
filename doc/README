@@ -80,6 +80,9 @@ Contents:
     (this has to be one supported by phpVideoPro, of course)! (if requirements
     1. and 2. are met, point your browser to the setup/phpinfo.php file via
     http to see what features are supported by your PHP setup)
+ 4. Supported databases are:
+    - MySQL version 3.28.32 or higher
+    - PostgreSQL 7.1 (?) or higher (may be lower, too - YOU need to report this)
 
 ===============================================================================
 

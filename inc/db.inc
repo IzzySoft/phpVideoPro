@@ -360,6 +360,7 @@
    ############################################################################
    # get all data for a movie entry and return it as array
    function get_movie($id) {
+     if (!$id) return "";
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"

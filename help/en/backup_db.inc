@@ -15,7 +15,7 @@ There are different types of backups possible:<ul>
      entered for your movies, i.e. the actors, directors, comments etc.</li>
  <li><b><i>"*backup_db_sysconf#"</i></b> backs up all data you maintain via
      the menu <i>*admin# -&gt; *configuration#</i>, i.e. the system
-     configuration and default preferences.</li>
+     configuration and default preferences, plus the printers.</li>
 </ul>
 
 [text]

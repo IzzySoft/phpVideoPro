@@ -14,7 +14,8 @@ phpVideoPro bietet verschiedene Backup-Typen:<ul>
      Filme relevanten Daten, die vom Benutzer erfasst wurden (also Filmtitel,
      Schauspieler, Regisseure, Kommentare etc.pp.).</li>
  <li><b><i>"*backup_db_sysconf#"</i></b> erstellt eine Sicherung der Daten, die
-     im Menü <i>*admin# -&gt; *configuration#</i> verwaltet werden.</li>
+     im Menü <i>*admin# -&gt; *configuration#</i> verwaltet werden, sowie der
+     Druckerkonfigurationen.</li>
 </ul>
 
 [text]

@@ -245,12 +245,11 @@
     }
   }
 
-  /** Update system config and default preferences from backup file
+  /** Update system config and default preferences from backup file.
+   *  Possible errors are logged to xfer::report, plus xfer::errors is
+   *  incremented
    * @method private configPut
    * @return boolean success
-   * @version At the moment always returns TRUE since the methods used
-   *  for the DB update (db::set_config and db::set_preferences) do not
-   *  return a result
    */
   function configPut() {
     GLOBAL $db;
@@ -264,13 +263,29 @@
       switch ($item->type) {
         case "config"  :
           unset($item->data["version"]);
+          $err = 0;
           foreach ($item->data as $var=>$val) {
-            $db->set_config($var,$val);
+            if ( !$db->set_config($var,$val) ) ++$err;
+          }
+          if ($err) {
+            ++$this->errors;
+            $this->report .= "<li>".lang("configuration")."</li>";
           }
           break;
         case "syspref" :
+          $err = 0;
           foreach ($item->data as $var=>$val) {
-            $db->set_preferences($var,$val);
+            if ( !$db->set_preferences($var,$val) ) ++$err;
+          }
+          if ($err) {
+            ++$this->errors;
+            $this->report .= "<li>".lang("preferences")."</li>";
+          }
+          break;
+        case "printer" :
+          if ( !$db->printerReplace($item->data) ) {
+            $this->report .= "<li>".lang("printer")."</li>";
+            ++$this->errors;
           }
           break;
         default        : continue; // skip unknown type
@@ -284,13 +299,21 @@
    */
   function configGet() {
     GLOBAL $db;
+    #--[ pvp_config ]--
     $conf = $db->get_config_all();
     $list->type = "config";
     $list->data = $conf;
     $this->list = urlencode(serialize($list))."\n";
     ++$this->items;
+    #--[ preferences ]--
     $conf = $db->get_preferences_all("default");
     $list->type = "syspref";
+    $list->data = $conf;
+    $this->list .= urlencode(serialize($list))."\n";
+    ++$this->items;
+    #--[ printers ]--
+    $conf = $db->get_printer();
+    $list->type = "printer";
     $list->data = $conf;
     $this->list .= urlencode(serialize($list))."\n";
     ++$this->items;
@@ -355,7 +378,7 @@
         if ($this->configPut()) return $this->okMsg( lang("imp_success",$this->items) );
           else {
           $msg = lang("imp_errors",$this->errors,$this->items);
-          if ( debugLevel("R") ) $msg .= "<UL>".$this->report."</UL>";
+          if ( debugLevel("R") ) $msg .= "Errors: <UL>".$this->report."</UL>";
           return $this->errorMsg($msg);
         }
         break;

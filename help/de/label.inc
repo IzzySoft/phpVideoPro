@@ -7,7 +7,7 @@ Druck von Etiketten
 
 [text]
 Hier läßt sich eine Liste von Etiketten erstellen. Die Anzahl der Etiketten
-auf der Ergebnisseite hängt von der Anzal der ausgefüllten, nicht der vorhandenen
+auf der Ergebnisseite hängt von der Anzahl der ausgefüllten, nicht der vorhandenen
 Zeilen ab (wenn also nur zwei Zeilen ausgefüllt wurden, gibt es auch nur zwei
 Etiketten - und nicht etwa zwei ausgefüllte und drei leere :)
 

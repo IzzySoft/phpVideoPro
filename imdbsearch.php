@@ -186,7 +186,6 @@
    #-=[ Misc stuff - maybe for the future ]=-
 #   $col = $movie->colors(); // what to do with them?
 #   $snd = $movie->sound();  // does not match our formats
-#   $t->set_var("mtagline",$movie->tagline());
 #   $tag = $movie->taglines(); // array again - do we need this?
 #   $wrt = $movie->writing(); // writing credits - array 0..n like director
 #   $prod = $movie->producer(); // same as $wrt
@@ -202,6 +201,8 @@
    $plot = $movie->plot(); $cc = count($plot);
    if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
      else $comment = "";
+   $tagline = $movie->tagline();
+   if (!empty($tagline)) $comment .= "<B>$tagline</B><BR>";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
    $t->set_var("comments_chk",$pvp->common->make_checkbox("comments_chk",$imdb_tx_comments));

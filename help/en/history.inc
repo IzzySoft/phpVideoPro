@@ -11,6 +11,7 @@
      the HTML code but "linked to"
  <li>a lot of HTML cleanup to get as close as possible to the HTML 4.01
      standard. This is mainly done to avoid browser quirks (not for prestige ;)
+ <li>Italian translations updated (thanx to Lorenzo!)
 </ul>
 
 [title]

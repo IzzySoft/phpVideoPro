@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -295,7 +295,7 @@ echo "</HEAD><BODY>\n";
 $pm = new pagemaker;
 $pm->set_nav("back","<A HREF=\"JavaScript:history.back()\">" . lang("back") . "</A>");
 if ( !$force_en && $pvp->preferences->get("lang")!="en" )
-  $pm->set_nav("force","<A HREF='$PHP_SELF?topic=$topic&force_en=1'><IMG SRC='$base_url/templates/default/images/english.jpg'></A>");
+  $pm->set_nav("force","<A HREF='$PHP_SELF?topic=$topic&force_en=1'><IMG SRC='$base_url/templates/default/images/english.jpg' BORDER='0'></A>");
 $pm->set_nav("index","<A HREF=\"$PHP_SELF\">" . lang("index") . "</A>");
 $pm->set_nav("close","<A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A>");
 if ($topic) { // display specific help page

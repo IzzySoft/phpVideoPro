@@ -23,6 +23,7 @@ body {
   text-align: left;
   width: 100%;
   z-index: 100;
+  position: fixed;
 }
 
 a.menuButton, a.menuButtonActive {

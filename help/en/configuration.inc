@@ -89,5 +89,20 @@ is very simple: phpVideoPro employs the "*display_limit#" on the staff members
 here. So the difference comes up when you marked some stuff members as not to
 display (using the option "*in_list#" within the "*edit#" form.
 
+[text]
+<b>*lines_per_page#:</b> This is for the preparation of plain-text lists for
+printing (see <A HREF="{PHP_SELF}?topic=listgen">*listgen#</A>) and specifies
+the amount of lines that fit on one sheet of paper. After the here specified
+number of lines, a form feed is inserted to start a new page. You can override
+this default on the *listgen# form.
+
+[text]
+<b>*date_format#:</b> Specifies the format the date should be presented in. This
+is new with v0.2.6 of phpVideoPro, so there may be some columns/fields ignoring
+this value (there will hopefully be none of these with v0.3.0 and above - if
+you find any missings then, please report them to me!). It shall be used
+throughout the entire program for listings, forms and anything that contains
+a date field.
+
 [eof]
 

@@ -236,3 +236,6 @@ INSERT INTO lang VALUES('credits','en','Credits');
 INSERT INTO lang VALUES('movies_left_in_cat','en','Category %1 still contains %2 movie(s) and hence cannot be deleted. Sorry.');
 INSERT INTO lang VALUES('admin_orphans','en','Removal of orphaned entries');
 INSERT INTO lang VALUES('desc_admin_orphans','en','"Orphaned entries" are data without assignment, i.e. here: Actors, directors and/or composers to whom is nowhere refered to from any movie. These are mostly results of changing a misspelled name after having it saved - but never results of deleted movie entries. Hence it\'s a good idea to remove those entries: on one hand it saves resources, and on the other it helps to prevent a slow-down of database actions.');
+INSERT INTO lang VALUES('orphans_found','en','Found %1 orphan(s):');
+INSERT INTO lang VALUES('no_orphans_found','en','Congratulations! You seem to have no skeletons in your closet (any more?).');
+INSERT INTO lang VALUES('delete_orphans','en','Deleting %1 orphan(s):');

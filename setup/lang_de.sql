@@ -235,3 +235,6 @@ INSERT INTO lang VALUES('cat_trans_update_failed','de','Aktualisierung der Übers
 INSERT INTO lang VALUES('movies_left_in_cat','de','Die Kategorie %1 enthält noch %2 Film(e) und kann daher nicht gelöscht werden.');
 INSERT INTO lang VALUES('admin_orphans','de','Verwaiste Einträge entfernen');
 INSERT INTO lang VALUES('desc_admin_orphans','de','Verwaiste Einträge sind Daten ohne Zuordnung. Hier handelt es sich dabei um Schauspieler, Regisseure bzw. Komponisten, die keinem Film zugeordnet sind. Diese "Waisenkinder" entstehen z.B., wenn ein "Schreibfehler" bei einem Namen nachträglich korrigiert - nicht jedoch, wenn ein Film aus dem Bestand entfernt wird. Sie sollten von daher entfernt werden: dies spart zum einen Platz in der Datenbank, und hilft zum anderen, ein unnötiges "Ausbremsen" zu vermeiden.');
+INSERT INTO lang VALUES('orphans_found','de','%1 verwaiste Einträge gefunden:');
+INSERT INTO lang VALUES('no_orphans_found','de','Glückwunsch! Keine Leiche (mehr?) im Keller.');
+INSERT INTO lang VALUES('delete_orphans','de','Lösche %1 verwaiste Einträge:');

@@ -10,8 +10,8 @@
  <li>fixed vertical align of text on label
  <li>max number of lines to fit on label now configurable with the label's
      config
- <li>text (and db fields) to put on label are now configurable (one per
-     movie only right now - multiline follows next week, hopefully ;)
+ <li>text (and db fields) to put on label are now configurable - even
+     multiple text lines per movie are supported
 </ul>
 
 [title]

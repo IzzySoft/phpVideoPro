@@ -33,8 +33,8 @@
  </COLGROUP>
  <TR><TH ColSpan="2">
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-     <TR><TH STYLE="width:15px;vertical-align:middle;">{previous}</TH><TH WIDTH="80%" STYLE="text-align:center"> {title}</TH>
-         <TH STYLE="width:15px;vertical-align:middle;text-align:right">{next}</TH></TR>
+     <TR><TH STYLE="width:22px;vertical-align:middle;">{previous}</TH><TH WIDTH="80%" STYLE="text-align:center"> {title}</TH>
+         <TH STYLE="width:22px;vertical-align:middle;text-align:right">{next}</TH></TR>
    </TABLE>
  <TR CLASS="content">
   <TD>

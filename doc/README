@@ -147,6 +147,15 @@ Contents:
     files for the English [en] support, since these files ARE ALLWAYS
     REQUIRED by phpVideoPro). The worst thing to happen is, that the whole
     application may be English only, regardless of your configuration.
+ 6. To safeguard your installation you should add the .inc file extension
+    in your web servers config to be recognized as a PHP file. For Apache,
+    search the config for the line
+    AddType application/x-httpd-php .php
+    and add the line
+    AddType application/x-httpd-php .inc
+    next to it, so nobody can browse your configuration file (if tried, the
+    result then would just be an empty browser window - without this setting,
+    the result would be the source code of the *.inc file).
 
 ===============================================================================
 

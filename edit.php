@@ -70,46 +70,17 @@
     $input = "INPUT SIZE=\"30\"";
     $dinput = "INPUT";
     $mtypes = $db->get_mtypes();
-    dbquery("SELECT name,id FROM tone");
-    $i = 0;
-    while ( $db->next_record() ){
-     $ttypes[$i][id]   = $db->f('id');
-     $ttypes[$i][name] = $db->f('name');
-     $i++;
-    }
-    dbquery("SELECT name,id FROM cat");
-    $i = 0;
-    while ( $db->next_record() ){
-     $cats[$i][id]   = $db->f('id');
-     $cats[$i][name] = $db->f('name');
-     $i++;
-    }
-    dbquery("SELECT name,id FROM colors");
-    $i = 0;
-    while ( $db->next_record() ){
-     $scolors[$i][id]   = $db->f('id');
-     $scolors[$i][name] = $db->f('name');
-     $i++;
-    }
+    $ttypes = $db->get_tone();
+    $cats   = $db->get_category("");
+    $scolors = $db->get_color();
     for ($i=0;$i<count($scolors);$i++) {
      $scolors[$i][name] = lang($scolors[$i][name]);
     }
-    dbquery("SELECT name,id FROM pict");
-    $i = 0;
-    while ( $db->next_record() ){
-     $picts[$i][id]   = $db->f('id');
-     $picts[$i][name] = $db->f('name');
-     $i++;
-    }
-    dbquery("SELECT id,name FROM commercials");
-    $i=0;
-    while ( $db->next_record() ){
-      $comm[$db->f('id')] = $db->f('name');
-      $comm_id[$i]        = $db->f('id');
-      $i++;
-    }
-    for ($i=0;$i<count($comm);$i++) {
-      $comm[$i] = lang($comm[$i]);
+    $picts = $db->get_pict();
+    $commercials = $db->get_commercials();
+    for ($i=0;$i<count($commercials);$i++) {
+      $comm[$commercials[$i][id]] = $commercials[$i][name];
+      $comm_id[$i] = $commercials[$i][id];
     }
   } else {
     $input = $dinput = "INPUT TYPE=\"button\"";

@@ -14,6 +14,10 @@
 
  /* $Id$ */
 
+ $details = array("director_name","director_fname","composer_name","composer_fname");
+ foreach ($details as $var) {
+   ${$var} = $pvp->common->input2string(${$var});
+ }
  $dmsg = "";
  $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
  $dmsg     .= "<ul>\n";
@@ -30,7 +34,7 @@
    $aid       = "act" . $i . "_id";
    $query     = "SELECT id FROM actors";
    $sub_query = "INSERT INTO actors";
-   ${$aid}    = insert_person($act,$query,$sub_query,addslashes(${$aname}),addslashes(${$fname}));
+   ${$aid}    = insert_person($act,$query,$sub_query,addslashes($pvp->common->input2string(${$aname})),addslashes($pvp->common->input2string(${$fname})));
  }
  $dmsg .= "</ul>\n";
  debug("S",$dmsg);

@@ -136,6 +136,7 @@
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
+  $title = $pvp->common->string2input($movie[title]);
   $recdate = $movie[aq_date]; $src = $movie[source];
   $vis_actor1 = $movie[actor1_list]; $vis_actor2 = $movie[actor2_list];
   $vis_actor3 = $movie[actor3_list]; $vis_actor4 = $movie[actor4_list];
@@ -143,13 +144,13 @@
 
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor_$i";
-    $actor[$i][name]  = $movie[$act_id][name];
-    $actor[$i][fname] = $movie[$act_id][firstname];
+    $actor[$i][name]  = $pvp->common->string2input($movie[$act_id][name]);
+    $actor[$i][fname] = $pvp->common->string2input($movie[$act_id][firstname]);
   }
-  $director_name  = $movie[director_][name];
-  $director_fname = $movie[director_][firstname];
-  $composer_name  = $movie[music_][name];
-  $composer_fname = $movie[music_][firstname];
+  $director_name  = $pvp->common->string2input($movie[director_][name]);
+  $director_fname = $pvp->common->string2input($movie[director_][firstname]);
+  $composer_name  = $pvp->common->string2input($movie[music_][name]);
+  $composer_fname = $pvp->common->string2input($movie[music_][firstname]);
   $pict_format = $movie[pict];
 
   for ($i=1;$i<4;$i++) {

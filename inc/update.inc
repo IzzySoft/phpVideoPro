@@ -46,6 +46,7 @@
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }
+ $title   = $pvp->common->input2string($title);
  $title   = $pvp->common->safeinput(addslashes($title));
  $source  = $pvp->common->safeinput(addslashes($source));
  $comment = $pvp->common->safetextarea(addslashes($comment));

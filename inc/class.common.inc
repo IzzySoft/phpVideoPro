@@ -282,6 +282,31 @@ class common {
     return $this->safehtml($str,"block|pre|br|hr|p",TRUE,"ul|ol|li");
   }
 
+  /** prepare a string containing quotes for form input fields
+   * @class common
+   * @method string2input
+   * @param string string to convert
+   * @return string converted string
+   */
+  function string2input($string) {
+    $string = str_replace("'","&lsquo;",$string);
+    $string = str_replace('"',"&quot;",$string);
+    return $string;
+  }
+
+  /** reverse convert input string
+   * @class common
+   * @method input2string
+   * @param string string to convert
+   * @return string converted string
+   * @see string2input
+   */
+  function input2string($string) {
+    $string = str_replace("&quot;",'"',$string);
+    $string = str_replace("&lsquo;","'",$string);
+    return $string;
+  }
+
    #============================================[ file system functions ]===
   /** get a list of files from within a given directory optionally using a mask
    *  (where $mask is the file's extension)

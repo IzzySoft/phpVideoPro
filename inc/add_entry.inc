@@ -61,6 +61,7 @@
  foreach ($fields as $value) {
    $movie[$value] = ${$value};
  }
+ $movie[title] = $pvp->common->input2string($movie[title]);
  $movie[aq_date] = $recdate; $movie[source] = $src; $movie[space] = $mlength;
  $movie[director_id] = $dir_id; $movie[music_id] = $mus_id;
  for ($i=1;$i<6;++$i) {

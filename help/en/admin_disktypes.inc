@@ -13,6 +13,33 @@ edit entries simply using the form elements, add a new disk type using the last
 row, and deleting elements by just emptying the respective name field.
 
 [title]
+Fields
+
+[text]
+<b>*mediatype#:</b>
+[text]
+Each media type can have multiple disk types, i.e. a VideoCD can be either
+VCD or SVCD, and (re-)writable CDs/DVDs can have different capacities. Use this
+select box to define the *mediatype# you want to specify the *disk_type# for.
+[text]
+<b>*name#:</b>
+[text]
+You are free to decide by what name you want to refer to this disk type, so
+name it as you like. The "*name#" field is mandatory.
+[text]
+<b>*disk_size#:</b>
+[text]
+This is the capacity of the medium. The value to fill in here is optional and
+for now just used as information represented to you, so you could fill in any
+string you like. Recommended is something like a size in MB/GB, as you can see
+with the disk types already defined.
+[text]
+<b>*longplay# / *region_code#:</b>
+[text]
+These checkboxes are to define whether the mentioned feature/quirk applies to
+the specified disk type.
+
+[title]
 Deleting a disk type
 
 [text]

@@ -343,8 +343,9 @@
    function verify_session($id,$ip) {
      GLOBAL $pvp;
      $query = "SELECT user_id FROM pvp_sessions "
-            . "WHERE id='$id' AND ip='$ip' AND ended IS NULL "
-	    . "AND dla>".time()-$pvp->config->session_purgetime;
+            . "WHERE id='$id' AND ip='$ip' AND ended IS NULL";
+     if ($pvp->config->session_purgetime)
+	 $query .= " AND dla>".time()-$pvp->config->session_purgetime;
      $this->query($query);
      if ( $this->next_record() ) {
        $user_id = $this->f('user_id');

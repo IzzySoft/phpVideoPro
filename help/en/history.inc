@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.4 (2003)
+0.4.4 (April 4, 2003)
 [text]
 <ul>
  <li>fixed another cookie-overwritten var on the configuration page which made

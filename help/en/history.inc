@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.2 (2002)
+0.2.2 (May 30, 2002)
 [text]
 <ul>
  <li>edit.tpl caused probs with NS 4.x (almost fixed - NS 4.x too stupid)

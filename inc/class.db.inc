@@ -365,11 +365,11 @@
    /** Get a category's data
     * @class sql
     * @method get_category
-    * @param integer id category id
+    * @param optional integer id category id
     * @param optional string order subclause for ORDER BY
-    * @return array category (id:name)
+    * @return mixed string(catname) or array of categories (id,name,internal name)
     */
-   function get_category($id,$order="") {
+   function get_category($id="",$order="") {
      if ($id) {
        $this->query("SELECT name FROM cat WHERE id=$id");
        if ( $this->next_record() ) {
@@ -387,6 +387,7 @@
        while ( $this->next_record() ) {
          $cat[$i][id]   = $this->f('id');
          $cat[$i][name] = lang($this->f('name'));
+	 $cat[$i][internal] = $this->f('name');
 	 ++$i;
        }
        return $cat;

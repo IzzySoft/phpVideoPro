@@ -14,6 +14,7 @@
 
  #========================================================[ initial setup ]===
  include("inc/includes.inc");
+ if (!$pvp->auth->update) kickoff();
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"medialength.tpl"));
 

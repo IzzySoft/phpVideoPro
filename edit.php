@@ -22,6 +22,11 @@
     exit;
   } else { $page_id = "view_entry"; }
   include("inc/includes.inc");
+  if ( ($new_entry && !$pvp->auth->add)
+    || (!$new_entry && $edit && !$pvp->auth->update)
+    || (!$new_entry && !$edit && !$pvp->auth->browse) ) {
+    kickoff(); // kick-off unauthorized visitors
+  }
 ?>
  <script language="JavaScript"><!--
    function mklabel(labelconf) {

@@ -15,6 +15,7 @@
  #========================================================[ initial setup ]==
  $page_id = "medialist";
  include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
  $filter = get_filters();
  if (!$start) $start = 0;
  include("inc/class.nextmatch.inc");

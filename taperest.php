@@ -14,6 +14,7 @@
 
   $page_id = "taperest";
   include("inc/includes.inc");
+  if (!$pvp->auth->browse) kickoff();
   $t = new Template($pvp->tpl_dir);
   if ($usefilter) $filter = $pvp->preferences->get("filter"); else $filter = "";
   if (!$start) $start = 0;

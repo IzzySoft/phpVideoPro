@@ -14,6 +14,7 @@
  $page_id = "listgen";
  if ($outputtype) $silent = TRUE;
  include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
  if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
 
  #=========================================[ create and send list for d/l ]===

@@ -17,6 +17,7 @@
  $page_id = "label";
  $labels_pp = 8; // how many labels per page
  include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
  include("inc/class.label.inc");
 
  #========================[ create exactly one label and send it as image ]===

@@ -19,6 +19,8 @@
   }
   $page_id = "delete";
   include("inc/includes.inc");
+  if (!$pvp->auth->delete) kickoff();
+
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("delete"=>"delete.tpl",

@@ -15,6 +15,7 @@
  #========================================================[ initial setup ]===
  $page_id = $stafftype;
  include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"stafflist.tpl"));
  $t->set_block("list","itemblock","itemlist");

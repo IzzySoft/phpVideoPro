@@ -34,7 +34,9 @@
     <TR><TD>{director_name}</TD><TD>{director}</TD><TD>{director_f}</TD><TD><div align=center>{director_list}</div></TD></TR>
     <TR><TD>{composer_name}</TD><TD>{composer}</TD><TD>{composer_f}</TD><TD><div align=center>{composer_list}</div></TD></TR>
     <TR><TD COLSPAN="4"><HR></TD></TR>
-{actorlist}
+    <!-- BEGIN actorblock -->
+    <TR><TD>{actor_name}</TD><TD>{actor}</TD><TD>{actor_f}</TD><TD><div align=center>{actor_list}</div></TD></TR>
+    <!-- END actorblock -->
    </Table>
   </TD></TR>
  <TR><TD ColSpan=4 Align=Center>

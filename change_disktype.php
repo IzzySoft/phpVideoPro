@@ -68,7 +68,7 @@
  $hidden = "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>"
          . "<INPUT TYPE='hidden' NAME='cass_id' VALUE='$cass_id'>"
          . "<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+ if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
  $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("update")."'>";
  $t->set_var("change",$change);

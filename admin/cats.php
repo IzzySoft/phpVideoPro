@@ -116,7 +116,7 @@
  $t->set_var("save_result",$save_result);
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$catcount'>";
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+ if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
       
  include( dirname(__FILE__) . "/../inc/header.inc");

@@ -97,7 +97,7 @@
 # $t->set_var("head_edit",lang("edit"));
 # $t->set_var("head_delete",lang("delete"));
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$usercount'>";
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+ if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
  $t->pparse("out","template");
 

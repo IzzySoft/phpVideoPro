@@ -252,7 +252,7 @@
    $t->parse("item","itemblock",TRUE);
    $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
    $t->set_var("save_result",$save_result);
-   if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+   if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
    include("../inc/header.inc");
    $t->pparse("out","template");
  }

@@ -214,7 +214,7 @@
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("save_result",$save_result);
 
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+ if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
  $t->pparse("out","template");
 

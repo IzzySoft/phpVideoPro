@@ -41,7 +41,7 @@
    */
   function slink($target) {
     GLOBAL $pvp,$sess_id;
-    if (!$pvp->config->enable_cookies) {
+    if (!$pvp->cookie->active) {
       if (!$sess_id) $sess_id = $_REQUEST["sess_id"];
       $pos = strpos($target,"?");
       if ($pos) {

@@ -25,7 +25,7 @@
     */
    function auth() {
      GLOBAL $pvp,$db;
-     if ($pvp->config->enable_cookies) $sess_id = $pvp->cookie->get("sess_id");
+     if ($pvp->cookie->active) $sess_id = $pvp->cookie->get("sess_id");
      $user_id = $pvp->session->verify();
      if (!$user_id) { // guest account requested
        $user = $db->get_logindata("guest");

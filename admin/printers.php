@@ -119,7 +119,7 @@
  $t->set_var("print_left",make_input("new_left",""));
  $t->parse("item","itemblock",TRUE);
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$pcount'>";
- if (!$pvp->config->enable_cookies)
+ if (!$pvp->cookie->active)
    $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_GET["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
 

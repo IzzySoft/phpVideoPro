@@ -70,7 +70,7 @@
    }
    $dtsel .= "</SELECT>";
    $t->set_var("n_disktype",$dtsel);
-   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+   if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
    $t->parse("disk","disktypeblock");
  } else {
    $t->set_var("disk","");

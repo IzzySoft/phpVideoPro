@@ -61,7 +61,7 @@
      $save_result = "<SPAN CLASS='error'>" .lang("update_failed"). "</SPAN>";
    }
    $hidden = "<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>";
-   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+   if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
    $t->set_var("hidden",$hidden);
    $t->set_var("save_result",$save_result);
  } elseif ($remove) { $db->set_pstemplate((int)$remove); }
@@ -70,7 +70,7 @@
  if ($edit) {
    $ps = $db->get_pstemplates($edit);
    $hidden = "<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>";
-   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
+   if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
    $t->set_var("hidden",$hidden);
    $t->set_var("button",lang("update"));
  } elseif ($add) {

@@ -132,7 +132,7 @@
    */
   function retrieve_filter($user_id="") {
     GLOBAL $pvp,$db;
-    if ($pvp->config->enable_cookies && !$this->admin) {
+    if ($pvp->cookie->active && !$this->admin) {
       $pref = $pvp->cookie->get("filter");
       if (strlen($pref)) { return($pref); }
         else { return $db->get_preferences("filter",$user_id); }

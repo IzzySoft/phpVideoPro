@@ -34,11 +34,13 @@
  ##############################################################################
  # check wether the specified date is valid
  function check_date($date,$exact=1) {
+   $correct = TRUE;
+   if ( (substr($date,4,1)!="-") || (substr($date,7,1)!="-") ) $correct = FALSE;
    $month = substr($date,5,2);
    $day   = substr($date,8);
    $year  = substr($date,0,4);
-   if ($exact) { $correct = checkdate($month,$day,$year); }
-     else { $correct = is_num($month . $day . $year) && ($month<13) && ($day<31) && ($year>1900); }
+   if ($exact && $correct) { $correct = checkdate($month,$day,$year);
+   } elseif ($correct) { $correct = is_num($month . $day . $year) && ($month<13) && ($day<32) && ($year>1900); }
    if ( !(trim($date)=="" || trim($date)=="0000-00-00") ) {
      if ( !$correct ) {
        $error = "The date of aquiration you specified (\"$date\") is invalid. When "

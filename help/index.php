@@ -3,6 +3,7 @@ include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
 include ("../inc/sql_helpers.inc");
+include ("../inc/template.inc");
 // include("../inc/header.inc");
 ##############################################################################
 # Get the topic description - if possible with link to helpfile (if exist)
@@ -28,26 +29,157 @@ function helppage ($topic) {
 ##############################################################################
 # Print topic url (if available) or just name (otherwise)
 function print_url($topic) {
+  GLOBAL $content;
   $help = helppage($topic);
   if ($help->url) { $text = $help->url; } else { $text = $help->desc; }
-  echo "$text\n";
+  $content .= "$text\n";
 }
 function li($topic,$level=1) {
+  GLOBAL $content;
   for ($i=0;$i<$level;$i++) {
-    echo "&nbsp;&nbsp;";
+    $content .= "&nbsp;&nbsp;";
   }
   print_url($topic);
-  echo "<br>\n";
+  $content .= "<br>\n";
 }
 function headline($topic,$level=0) {
+  GLOBAL $content;
   for ($i=0;$i<$level;$i++) {
-    echo "&nbsp;&nbsp;";
+    $content .= "&nbsp;&nbsp;";
   }
-  echo "<b>";
+  $content .= "<b>";
   print_url($topic);
-  echo "</b><br>\n";
+  $content .= "</b><br>\n";
 }
 
+##############################################################################
+# Build page content from template & input file
+class pagemaker {
+
+ VAR $t,       // template class
+     $block;   // active block
+
+ function pagemaker() {
+  global $pvp;
+  $this->t = new Template($pvp->tpl_dir);
+  $this->t->set_file(array("main"=>"help.tpl"));
+  $this->t->set_block("main","titleblock","titlelist");
+  $this->t->set_block("titleblock","textblock","textlist");
+  $this->block->name = "";
+ }
+
+ function add_block($content) {
+  if (!$this->block->name) return;
+  if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
+   $var = substr($matches[0],1,strlen($matches[0])-2);
+   for ($i=0;$i<count($matches[0]);$i++) {
+     $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
+     $pos = strpos($var,"->");
+     if ($pos) {
+      $obj = substr($var,0,$pos); $prop = substr($var,$pos+2);
+      GLOBAL $$obj;
+      $rvar = $$obj->$prop;
+     } else { $rvar = $GLOBALS[$var]; }
+     $content = preg_replace("/\{$var\}/",$rvar,$content);
+   }
+  }
+ if ( preg_match_all("/\*\S+\#/",$content,$matches) ) { // replace translations
+   $var = substr($matches[0],1,strlen($matches[0])-2);
+   for ($i=0;$i<count($matches[0]);$i++) {
+     $var  = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
+     $rvar = lang($var);
+     $content = preg_replace("/\*$var\#/",$rvar,$content);
+   }
+  }
+  $this->block->content .= $content;
+ }
+
+ function parse_block($keep=1) {
+  if (!$this->block->name) return;
+  $list   = $this->block->name . "list";
+  $pblock = $this->block->name . "block";
+  $this->t->set_var($this->block->name,trim($this->block->content));
+  $this->t->parse($list,$pblock,$this->block->append);
+  if (!$this->block->append) $this->block->append = 1;
+  $this->block->content = "";
+ }
+
+ function close_block () {
+  if (!$this->block->name) return;
+  $this->parse_block();
+  $this->block->append  = 0;
+ }
+
+ function set_nav($name,$content) {
+   $this->t->set_var($name,$content);
+ }
+
+ function make_page($title,$file) {
+  $input = file($file);
+  if (substr(trim($input[0]),0,1)=="!") $file = dirname($file) . "/" . trim(substr($input[0],1));
+  $input = file($file);
+  $line  = 0;
+  while ( $line<count($input) ) {
+   switch ( trim(strtolower($input[$line])) ) {
+    case "[title]"   : if ($this->block->name) {
+                        if ($this->block->name=="title") {
+                         $this->close_block();
+                        } else {
+			 $this->close_block();
+                         $this->block->content = $this->block->title;
+                         $this->block->name = "title";
+			 $this->block->append  = 1;
+			 $this->close_block();
+			 $this->block->content = "";
+			}
+		       }
+                       $this->block->name = "title";
+		       ++$line;
+                       continue;
+		       break;
+    case "[text]"    : if ($this->block->name) {
+                        if ($this->block->name=="text") {
+                         $this->parse_block();
+                        } else {
+                         $this->block->title   = $this->block->content;
+			 $this->block->content = "";
+                        }
+		       }
+                       $this->block->name = "text";
+		       ++$line;
+                       continue;
+		       break;
+    case "[eof]"     : $eof = TRUE; break;
+    default          : break;
+   }
+   if ($eof) {
+    $this->close_block();
+    $this->block->content = $this->block->title;
+    $this->block->name = "title";
+    $this->block->append  = 1;
+    $this->close_block();
+    break;
+   }
+   if ( substr(trim($input[$line]),0,1) == "#" ) { // comment line
+     $line++;
+     continue;
+   }
+   switch ($this->block->name) {
+    case "title"   : $this->block->content .= $input[$line]; break;
+    default        : //$this->block->title  = "";
+                     $this->add_block($input[$line]);
+		     break;
+   }
+   $line++;
+  }
+  $this->t->set_var("listtitle",$title);
+  $this->t->pparse("out","main");
+ } // end function make_page
+} // end class pagemaker
+
+
+##############################################################################
+# Main - do the job!
 $title = "phpVideoPro v$version - " . lang("help") . ": ";
 if ($topic) { $title .= lang($topic); } else { $title .= lang("index"); }
 
@@ -56,13 +188,11 @@ echo " <TITLE>$title</TITLE>\n";
 include($base_path . "templates/default/default.css");
 echo "</HEAD><BODY>\n";
 
+$pm = new pagemaker;
+$pm->set_nav("back","<A HREF=\"JavaScript:history.back()\">" . lang("back") . "</A>");
+$pm->set_nav("index","<A HREF=\"$PHP_SELF\">" . lang("index") . "</A>");
+$pm->set_nav("close","<A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A>");
 if ($topic) { // display specific help page
-  echo "<TABLE WIDTH=100% class=navtable><TR><TD COLSPAN=2>&nbsp;</TD></TR>"
-     . "<TD><A HREF=\"JavaScript:history.back()\">" . lang("back")
-     . "</A></TD><TD ALIGN=RIGHT><A HREF=\"$PHP_SELF\">" . lang("index") . "</A></TD></TR>\n"
-     . "<TR><TD COLSPAN=2>&nbsp;</TD></TR>\n"
-     . "<TR><TD COLSPAN=2><DIV ALIGN=CENTER><H2>" . lang($topic) . "</H2></DIV></TD></TR></TABLE>\n";
-  echo "<TABLE WIDTH=90% ALIGN=CENTER BORDER=0><TR><TD>\n";
   $help = helppage($topic);
   if ( !$help->file ) {
     $help->file = dirname(__FILE__) . "/" . $lang . "/" . $name;
@@ -70,17 +200,16 @@ if ($topic) { // display specific help page
       $help->file = dirname(__FILE__) . "/en/" . $name;
     }
   }
-  include($help->file);
+  $pm->make_page(lang($topic),$help->file);
 } else { // display help index
-  echo "<TABLE WIDTH=100% class=navtable><TR><TD COLSPAN=2>&nbsp;</TD></TR>\n"
-       . "<TR><TD><DIV ALIGN=CENTER><H2>" . lang("help") . ": " . lang("index") . "</H2></DIV></TD></TR></TABLE>\n";
-  echo "<TABLE WIDTH=90% ALIGN=CENTER BORDER=0><TR><TD>\n";
   include("help_topics.php");
+  $pm->t->set_var("listtitle",lang(index));
+  $pm->t->set_var("title","");
+  $pm->t->set_var("text","$content");
+  $pm->t->parse("textlist","textblock");
+  $pm->t->parse("titlelist","titleblock");
+  $pm->t->pparse("out","main");
 }
-echo "</TABLE>\n";
-echo "<TABLE WIDTH=100% class=navtable><TR><TD>&nbsp;</TD></TR><TR><TD>"
-   . "<P ALIGN=CENTER><A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A></P>"
-   . "</TD></TR><TR><TD>&nbsp;</TD></TR></TABLE>\n";
 
 include("../inc/footer.inc");
 ?>

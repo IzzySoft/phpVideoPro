@@ -1,17 +1,21 @@
-<? /* set_filter */
- ?>
-<? /* $Id$ */ ?>
+# /* set_filter */
+# /* $Id$ */
 
-<Table Width=90% Align=Center>
- <TR><TD>
-  <P Align=Justify>Beide Menüpunkte - "<?=lang("set_filter")?>" wie auch
-   "<?=lang("unset_filter")?>" - führen zum selben Formular, mit nur einem
-   kleinen (wenn auch signifikanten) Unterschied: "<?=lang("unset_filter")?>"
-   löscht zuvor alle gesetzten Filter, sodaß problemlos mit der Erstellung
-   eines neuen Regelsets begonnen werden kann - ohne zuerst auf bestehende
-   Regeln prüfen zu müssen.</P>
-  <H3>Filterregeln</H3>
-  <H4>in einer gemeinsamen Zelle gruppierte Filter</H4>
+[title]
+Einleitung
+
+[text]
+Beide Menüpunkte - "*set_filter#" wie auch "*unset_filter#" - führen zum selben
+Formular, mit nur einem kleinen (wenn auch signifikanten) Unterschied:
+"*unset_filter#" löscht zuvor alle gesetzten Filter, so daß problemlos
+mit der Erstellung eines neuen Regelsets begonnen werden kann - ohne zuerst auf
+bestehende Regeln prüfen zu müssen.
+
+[title]
+Filterregeln
+
+[text]
+<H4>in einer gemeinsamen Zelle gruppierte Filter</H4>
   <OL>
    <li><b>Filter mit min/max Werten</b><br>
        Diese werden mit UND verknüpft; gibt man also "min 60" und "max 90"
@@ -30,10 +34,14 @@
        welches zugleich DVD und VHS-Tape ist, muß ich diese Regel nochmals
        überdenken :-)
   </OL>
-  <H4>Verknüpfung der einzelnen Regeln</H4>
-  <P Align=Justify>Die einzelnen Filterregeln werden nun wieder mit UND
-   verbunden: "DVD" als Medientyp und "Science Fiction" als Kategorie
-   resultiert daher in allen DVDs, welche Science Fiction Filme enthalten.</P>
- </TD></TR>
-</Table>
+
+[text]
+<H4>Verknüpfung der einzelnen Regeln</H4>
+
+[text]
+Die einzelnen Filterregeln werden nun wieder mit UND verbunden: "DVD" als
+Medientyp und "Science Fiction" als Kategorie resultiert daher in allen DVDs,
+welche Science Fiction Filme enthalten.
+
+[eof]
 

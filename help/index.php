@@ -126,8 +126,8 @@ class pagemaker {
                          $this->close_block();
                         } else {
 			 $this->close_block();
-                         $this->block->content = $this->block->title;
                          $this->block->name = "title";
+                         $this->add_block($this->block->title);
 			 $this->block->append  = 1;
 			 $this->close_block();
 			 $this->block->content = "";
@@ -154,8 +154,8 @@ class pagemaker {
    }
    if ($eof) {
     $this->close_block();
-    $this->block->content = $this->block->title;
     $this->block->name = "title";
+    $this->add_block($this->block->title);
     $this->block->append  = 1;
     $this->close_block();
     break;

@@ -2,6 +2,7 @@
 # English Translation phrases for phpVideoPro
 # ========================================================
 
+UPDATE languages SET charset='iso-8859-1' WHERE lang_id='en';
 INSERT INTO lang (message_id,lang,content) VALUES ('not_yet_implemented','en','Sorry - not yet implemented.');
 INSERT INTO lang VALUES('medium','en','Medium');
 INSERT INTO lang VALUES('nr','en','Nr');

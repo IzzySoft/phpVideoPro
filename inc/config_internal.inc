@@ -64,9 +64,18 @@ $db->next_record();
 $version  = $db->f('value');
 $pre      = "p7";
 if ($pre) $version .= $pre;
-$db->query("SELECT value FROM preferences WHERE name='charset'");
-$db->next_record();
-$charset  = $db->f('value');
+if ($runupdate) {
+  $charset = 'iso-8859-1';
+} else {
+  $db->query("SELECT value FROM preferences WHERE name='lang'");
+  $db->next_record();
+  $plang  = $db->f('value');
+  $db->query("SELECT charset FROM languages WHERE lang_id='$plang'");
+  $db->next_record();
+  $charset  = $db->f('charset');
+  if (!strlen($charset)) $charset = 'iso-8859-1';
+  unset ($plang);
+}
 $db->query("SELECT value FROM preferences WHERE name='template'");
 $db->next_record();
 $pvp->tpl_dir = $base_path . "templates/" . $db->f('value');

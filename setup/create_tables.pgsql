@@ -204,6 +204,7 @@ CREATE TABLE lang (
 CREATE TABLE languages (
   lang_id char(2) NOT NULL,
   lang_name varchar(50) NOT NULL,
+  charset varchar(20),
   available char(3) DEFAULT 'No' NOT NULL,
   PRIMARY KEY (lang_id)
 );

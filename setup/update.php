@@ -15,6 +15,7 @@
 ##################################################################
 # Configuration of Setup module
 #
+  $runupdate = 1;
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
@@ -94,6 +95,7 @@
       case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.4 to v0.1.5");
       case "0.1.5"    : queryf("0-1-5_to_0-1-6.sql","Update from v0.1.5 to v0.1.6");
       case "0.1.6"    : queryf("0-1-6_to_0-1-7.sql","Update from v0.1.6 to v0.1.7");
+      case "0.1.7"    : queryf("0-1-7_to_0-2-0.sql","Update from v0.1.7 to v0.2.0");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

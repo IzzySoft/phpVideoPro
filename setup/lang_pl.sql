@@ -4,6 +4,7 @@
 # iso-8859-2
 # ========================================================
 
+UPDATE languages SET charset='iso-8859-2' WHERE lang_id='pl';
 INSERT INTO lang (message_id,lang,content) VALUES ('not_yet_implemented','pl','Niestety, jeszcze nie zaimplementowane.');
 INSERT INTO lang VALUES('medium','pl','Medium');
 INSERT INTO lang VALUES('nr','pl','Nr');

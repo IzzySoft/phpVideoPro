@@ -3,6 +3,7 @@
 # provided by Knut Fjellheim <knutfjellheim@hotmail.com>
 # ========================================================
 
+UPDATE languages SET charset='iso-8859-1' WHERE lang_id='no';
 INSERT INTO lang (message_id,lang,content) VALUES ('not_yet_implemented','no','Beklager - ikke implementert.');
 INSERT INTO lang VALUES('medium','no','Media');
 INSERT INTO lang VALUES('nr','no','Nr');

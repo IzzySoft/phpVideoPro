@@ -130,7 +130,7 @@
       return "<INPUT SIZE='$maxchars' MAXLENGTH='$maxchars' NAME='$name' VALUE='$value'>";
     }
     if ($vsize) $width = $vsize; else $width = $maxchars*0.7."em";
-    return "<DIV CLASS='virtual_button' ALIGN='center' STYLE='width:$width'>$value</DIV>";
+    return "<DIV CLASS='virtual_button' STYLE='text-align:center;width:$width'>$value</DIV>";
   }
   
   if ($update) { include("inc/update.inc"); }
@@ -195,7 +195,7 @@
 # Form Start
   include("inc/header.inc");
 ?>
- <script language="JavaScript"><!--
+ <script TYPE="text/javascript" language="JavaScript"><!--
    function mklabel(labelconf) {
      if (labelconf != "-") {
        url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&labelconf="?>' + labelconf;
@@ -351,7 +351,7 @@ EndHiddenFields;
     $last_part = $db->get_lastmovienum($mtype_id,$cass_id);
     $next_part = $last_part +1;
   } else {
-    $field = "<DIV CLASS='virtual_button' ALIGN='center' STYLE='width:".CAT_BTN_WID."'>$media_tname</DIV>";
+    $field = "<DIV CLASS='virtual_button' STYLE='text-align:center;width:".CAT_BTN_WID."'>$media_tname</DIV>";
     $field .= "<INPUT TYPE='hidden' NAME='media_tname' VALUE='$media_tname'>";
   }
   $t->set_var("mtype",$field);
@@ -427,8 +427,8 @@ EndHiddenFields;
     if (!$edit) {
       if (empty($counter1)) $counter1 = "<font face='monospace'>&nbsp;&nbsp;&nbsp;&nbsp;</font>";
       if (empty($counter2)) $counter2 = "<font face='monospace'>&nbsp;&nbsp;&nbsp;&nbsp;</font>";
-      $field .= "<SPAN CLASS='virtual_button' ALIGN='center' STYLE='width:".YN_WIDTH."'>$counter1</SPAN>"
-             . " / <SPAN CLASS='virtual_button' ALIGN='center' STYLE='width:".YN_WIDTH."'>$counter2</SPAN>";
+      $field .= "<SPAN CLASS='virtual_button' STYLE='text-align:center;width:".YN_WIDTH."'>$counter1</SPAN>"
+             . " / <SPAN CLASS='virtual_button' STYLE='text-align:center;width:".YN_WIDTH."'>$counter2</SPAN>";
     } else {
       $field .= form_input("counter1",$counter1,"class='yesnoinput'") . " / "
              . form_input("counter2",$counter2,"class='yesnoinput'");

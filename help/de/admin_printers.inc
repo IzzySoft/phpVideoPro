@@ -26,7 +26,7 @@ Papierführung - aber auch hier sind sie sich nicht alle einig, wie schmal
 
 [text]
 Wenn nun keine der vorhandenen Definitionen mit dem zu verwendenden Drucker
-akkurat arbeitet, kann hier anhand der herausgefundenen Masse (Differenz der
+akkurat arbeitet, kann hier anhand der herausgefundenen Maße (Differenz der
 Randeinstellungen bei einem Testdruck) ein neuer Drucker hinzugefügt, oder aber
 auch ein bestehender angepasst werden.
 

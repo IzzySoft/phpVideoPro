@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
-# $page_id = "backup_db";
+ $page_id = "backup_db";
  if ($backup) $silent = 1;
  include("../inc/header.inc");
  $t = new Template($pvp->tpl_dir);

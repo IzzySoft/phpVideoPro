@@ -68,7 +68,7 @@
        $movie = $db->get_movie($mlist[$i]);
        fout( urlencode(serialize($movie)) );
      }
-     if ($compress) echo gzencode($out);
+     if ($_POST["compress"]) echo gzencode($out);
      exit;
    }
    if ($_POST["compress"]) { fhead("pvp-backup.sql.gz"); }
@@ -76,7 +76,7 @@
    fout("######################################");
    fout("# Backup created by phpVideoPro v$version");
    fout("######################################");
-   switch ($btype) {
+   switch ($_POST["btype"]) {
      case "movieint" : $tables = array(); break;
      case "moviedel" : $purge = TRUE;
      case "movies"   :
@@ -94,7 +94,6 @@
      $meta = $db->metadata($name);
      $db->dbquery("SELECT * FROM $name");
      fout("\n#\n# table '$name'\n#");
-     if ($purge) fout("DELETE FROM $name;");
      while ( $db->next_record() ) {
        $fieldcount = count($meta);
        $fields = $cols = "";

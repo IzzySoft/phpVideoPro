@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.2 (2004)
+0.6.2 (June 1, 2004)
 [text]
 <ul>
  <li>on a new installation, the pvp_options table (introduced with v0.6.1) was

@@ -507,6 +507,7 @@ EndHiddenFields;
         $audio_ts .= ">".$audio_langs[$k]->name."</OPTION>";
       }
       $audio_ts .= "</SELECT>";
+      if ( $agent->name=="msie" && !(($i+1)%3) ) $audio_ts .= "<BR>"; // work around IE bug
     }
     $t->set_var("audio",$audio_ts);
     $audio_langs = $db->get_avlang("subtitle");
@@ -519,6 +520,7 @@ EndHiddenFields;
         $sub_ts .= ">".$audio_langs[$k]->name."</OPTION>";
       }
       $sub_ts .= "</SELECT>";
+      if ( $agent->name=="msie" && !(($i+1)%3) ) $sub_ts .= "<BR>"; // work around IE bug
     }
     $t->set_var("subtitle",$sub_ts);
   } else { // !$edit

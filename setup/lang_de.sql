@@ -245,3 +245,4 @@ INSERT INTO lang VALUES('remove_empty_media','de','Leere Medien entfernen');
 INSERT INTO lang VALUES('remove_empty_media_comment','de','Sollen Medien aus der Restzeittabelle entfernt werden, wenn der letzte Film davon gelöscht wurde?');
 INSERT INTO lang VALUES('movie_color_default','de','Default Farbformat eines Films');
 INSERT INTO lang VALUES('movie_color_default_comment','de','Wenn ein neuer Eintrag angelegt wird, ist dies die Voreinstellung für das Default Farbformat.');
+INSERT INTO lang VALUES('site_info_comment','de','für die Anzeige in der Titelbar');

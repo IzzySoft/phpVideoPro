@@ -247,3 +247,5 @@ INSERT INTO lang VALUES('remove_empty_media','en','Remove empty media');
 INSERT INTO lang VALUES('remove_empty_media_comment','en','Should media be removed from the free-space-maintenance, when the last movie is deleted from them?');
 INSERT INTO lang VALUES('movie_color_default','en','Default color format of a movie');
 INSERT INTO lang VALUES('movie_color_default_comment','en','This will be used as pre-set color format of a new entry.');
+INSERT INTO lang VALUES('site_info','en','Site Info');
+INSERT INTO lang VALUES('site_info_comment','en','What site info to display in the browsers title bar');

@@ -52,6 +52,7 @@ if ( isset($update) ) {
   $db->set_config("rw_media",$rw_media);
   if (!$remove_media) $remove_media = "0";
   $db->set_config("remove_empty_media",$remove_media);
+  $db->set_config("site",$site_info);
   $colorcode = rawurlencode( serialize($colors) );
   $pvp->preferences->set("colors",$colorcode);
   if ($install_lang && $install_lang != "-") {
@@ -97,6 +98,7 @@ $page_length    = $pvp->preferences->page_length;
 $date_format    = $pvp->preferences->date_format;
 $movie_color    = $pvp->preferences->default_movie_colorid;
 $remove_media   = $db->get_config("remove_empty_media");
+$site_info      = $db->get_config("site");
 
 #==========================================[ get available template sets ]===
 chdir("$base_path/templates");
@@ -284,6 +286,12 @@ $select .= ">d/m/y</OPTION></SELECT>";
 $t->set_var("item_name",lang("date_format"));
 $t->set_var("item_comment",lang("date_format_comment"));
 $t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ site info ]--
+$t->set_var("item_name",lang("site_info"));
+$t->set_var("item_comment",lang("site_info_comment"));
+$t->set_var("item_input","<INPUT SIZE='20' NAME='site_info' VALUE='$site_info'>");
 $t->parse("item","itemblock",TRUE);
 
 #--[ complete misc block ]--

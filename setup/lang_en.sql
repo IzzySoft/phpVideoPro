@@ -319,3 +319,4 @@ INSERT INTO lang VALUES('target_trans','en','Translation for your target languag
 INSERT INTO lang VALUES('trans_sample','en','Link to Sample');
 INSERT INTO lang VALUES('save_lang_file','en','Save target translations to file');
 INSERT INTO lang VALUES('admin_translations','en','Edit Translations');
+INSERT INTO lang VALUES('sel_target_lang','en','Select target language (to translate to):');

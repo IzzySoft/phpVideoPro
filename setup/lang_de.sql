@@ -308,3 +308,4 @@ INSERT INTO lang VALUES('target_trans','de','Übersetzung für die Ziel-Sprache la
 INSERT INTO lang VALUES('trans_sample','de','Beispiel-Links');
 INSERT INTO lang VALUES('save_lang_file','de','Übersetzungen für die Ziel-Sprache in Datei sichern');
 INSERT INTO lang VALUES('admin_translations','de','Übersetzungen bearbeiten');
+INSERT INTO lang VALUES('sel_target_lang','de','Zielsprache für die Übersetzungen:');

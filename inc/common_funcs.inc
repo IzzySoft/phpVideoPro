@@ -93,7 +93,7 @@
  $translations = $db->get_translations( $pvp->preferences->lang );
 
  function translate($key,$vars=FALSE) {
-   GLOBAL $db, $translations;
+   GLOBAL $translations;
    $trans = $translations[strtolower($key)];
    if (!$trans) $trans = $key;
    if (!$vars) $vars=array();
@@ -232,7 +232,4 @@ class common {
  } // end class common
  
  $pvp->common = new common;
-?>
-<?
-
 ?>

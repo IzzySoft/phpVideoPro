@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.6.8
+# German Language File created by phpVideoPro v0.6.9
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -41,6 +41,7 @@ INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
 INSERT INTO lang VALUES ('categories','de','Kategorien','');
 INSERT INTO lang VALUES ('category','de','Kategorie','');
 INSERT INTO lang VALUES ('catlist_alpha','de','Nach Kategorien sortierte alphabetische Medienliste','');
+INSERT INTO lang VALUES ('cat_action','de','Action','');
 INSERT INTO lang VALUES ('cat_adventure','de','Abenteuer','');
 INSERT INTO lang VALUES ('cat_agents','de','Agentenfilm','');
 INSERT INTO lang VALUES ('cat_animal','de','Tier','');
@@ -55,15 +56,18 @@ INSERT INTO lang VALUES ('cat_comedy','de','Komödie','');
 INSERT INTO lang VALUES ('cat_concert','de','Konzert','');
 INSERT INTO lang VALUES ('cat_crime','de','Krimi','');
 INSERT INTO lang VALUES ('cat_documentary','de','Dokumentarfilm','');
+INSERT INTO lang VALUES ('cat_drama','de','Drama','');
 INSERT INTO lang VALUES ('cat_fairytale','de','Märchen','');
 INSERT INTO lang VALUES ('cat_fantasy','de','Fantasy','');
 INSERT INTO lang VALUES ('cat_handle_empty','de','Das Handle für eine Kategorie darf nicht leer sein - bitte Daten für Kategorie #%1 korrigieren!','');
 INSERT INTO lang VALUES ('cat_history','de','Historie','');
 INSERT INTO lang VALUES ('cat_judaica','de','Judaistik','');
 INSERT INTO lang VALUES ('cat_love','de','Liebesfilm','');
+INSERT INTO lang VALUES ('cat_melodrama','de','Melodrama','');
 INSERT INTO lang VALUES ('cat_misc','de','Sonstige','');
 INSERT INTO lang VALUES ('cat_monumental','de','Monumentalfilm','');
 INSERT INTO lang VALUES ('cat_music','de','Musik','');
+INSERT INTO lang VALUES ('cat_musical','de','Musical','');
 INSERT INTO lang VALUES ('cat_musicmovie','de','Musikfilm','');
 INSERT INTO lang VALUES ('cat_nature','de','Naturfilm','');
 INSERT INTO lang VALUES ('cat_opera','de','Oper','');
@@ -71,14 +75,20 @@ INSERT INTO lang VALUES ('cat_operetta','de','Operette','');
 INSERT INTO lang VALUES ('cat_party','de','Feier','');
 INSERT INTO lang VALUES ('cat_problem','de','Problemfilm','');
 INSERT INTO lang VALUES ('cat_report','de','Reportage','');
+INSERT INTO lang VALUES ('cat_satire','de','Satire','');
 INSERT INTO lang VALUES ('cat_scary','de','Gruselfilm','');
+INSERT INTO lang VALUES ('cat_sf','de','Science Fiction','');
+INSERT INTO lang VALUES ('cat_show','de','Show','');
 INSERT INTO lang VALUES ('cat_spy','de','Spionage','');
 INSERT INTO lang VALUES ('cat_stage','de','Bühnenstück','');
+INSERT INTO lang VALUES ('cat_thriller','de','Thriller','');
 INSERT INTO lang VALUES ('cat_trans_update_failed','de','Aktualisierung der Übersetzungen für folgende Kategorien fehlgeschlagen: %1','');
 INSERT INTO lang VALUES ('cat_travesty','de','Travestie','');
 INSERT INTO lang VALUES ('cat_update_failed','de','Aktualisierung fehlgeschlagen für folgende Kategorien: %1','');
 INSERT INTO lang VALUES ('cat_vacation','de','Urlaub','');
+INSERT INTO lang VALUES ('cat_videoclip','de','Videoclip','');
 INSERT INTO lang VALUES ('cat_war','de','Kriegsfilm','');
+INSERT INTO lang VALUES ('cat_western','de','Western','');
 INSERT INTO lang VALUES ('cat_westerncomedy','de','Western-Komödie','');
 INSERT INTO lang VALUES ('cat_xmas','de','Weihnachten','');
 INSERT INTO lang VALUES ('change_disktype','de','Disk-Typ ändern für %1','');
@@ -125,7 +135,7 @@ INSERT INTO lang VALUES ('delete_remaining','de','alle verbleibenden Daten diese
 INSERT INTO lang VALUES ('deleting_entry','de','Lösche Datensatz %1','');
 INSERT INTO lang VALUES ('del_access','de','Darf Datensätze löschen','');
 INSERT INTO lang VALUES ('desc_admin_orphans','de','Verwaiste Einträge sind Daten ohne Zuordnung. Hier handelt es sich dabei um Schauspieler, Regisseure bzw. Komponisten, die keinem Film zugeordnet sind. Diese \"Waisenkinder\" entstehen z.B., wenn ein \"Schreibfehler\" bei einem Namen nachträglich korrigiert - nicht jedoch, wenn ein Film aus dem Bestand entfernt wird. Sie sollten von daher entfernt werden: dies spart zum einen Platz in der Datenbank, und hilft zum anderen, ein unnötiges \"Ausbremsen\" zu vermeiden.','');
-INSERT INTO lang VALUES ('desc_backup_db','de','Ein Backup ist immer eine gute Sache (sicher ist sicher :). Über dieses Formular kann der Inhalt der Datenbank gesichert werden. Es wird ein SQL Script erstellt, welches dann bei Bedarf wieder in eine (leere) Datenbank eingespielt werden kann. Gut geeignet zum Beispiel, um die Daten einer Filmsammlung zu duplizieren und auf einem weiteren Rechner zu installieren. Wichtig: nie das Backup einer neueren Version mit einer älteren Version von phpVideoPro verwenden - das kann Nebenwirkungen haben!<BR>','');
+INSERT INTO lang VALUES ('desc_backup_db','de','Ein Backup ist immer eine gute Sache (sicher ist sicher :). Auch wenn für ein komplettes Backup die Verwendung der datenbankeigenen Tools (<code>mysql_dump</code>, <code>pgsql_dump</code>, usw.) heran gezogen werden sollte, kann es mittels dieses Formulares erstellt werden (wenn z.B. mangels Systemzugriff auf den Server die erstgenannten Tools nicht genutzt werden können).<BR>Wenn es jedoch um die Sicherung der Filmdaten selbst (und nicht des ganzen Setups) geht, sollte dafür das interne Format von phpVideoPro genutzt werden: Dann lassen sich die Daten nämlich auch für eine andere Version von phpVideoPro verwenden - was bei einem Komplett-Backup nicht unbedingt empfehlenswert ist!<BR>Noch ein Tipp: Sofern die verwendete PHP Installation über <code>gzip</code> support verfügt, lässt sich mittels der Datenkompression die Größe des erstellten Backup-Files um bis zu 90% reduzieren.','');
 INSERT INTO lang VALUES ('director','de','Regie','');
 INSERT INTO lang VALUES ('directors','de','Regie','');
 INSERT INTO lang VALUES ('directors_list','de','Liste der Regisseure','');
@@ -439,7 +449,6 @@ INSERT INTO lang VALUES ('update_success','de','Datensatz erfolgreich aktualisie
 INSERT INTO lang VALUES ('upd_access','de','Darf Datensätze aktualisieren','');
 INSERT INTO lang VALUES ('upper_right_corner','de','Obere rechte Ecke (x/y)','');
 INSERT INTO lang VALUES ('user','de','Benutzer','');
-INSERT INTO lang VALUES ('user_create_login_required','de','Für den Benutzer muss ein Login-Name angegeben werden!','');
 INSERT INTO lang VALUES ('user_deleted','de','Der Benutzer #%1, \"%2\" (%3), wurde erfolgreich gelöscht.','');
 INSERT INTO lang VALUES ('user_delete_failed','de','Das Löschen des Benutzers #%1, \"%2\" (%3), ist fehlgeschlagen.','');
 INSERT INTO lang VALUES ('user_delete_report','de','Ergebnis des Löschvorgangs','');

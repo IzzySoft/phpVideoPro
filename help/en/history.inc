@@ -8,6 +8,9 @@
  <li>IMDB site for reference lookups is now configurable as a preference. If
      you know additional IMDB sites with the same query syntax, please drop
      me a note!
+ <li>logged-in user now can view his/her account data and modify his/her
+     password by clicking on the user info link in the menu bar (not available
+     with Netscape &lt; v6)
 </ul>
 
 [title]

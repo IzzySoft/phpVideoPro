@@ -45,7 +45,7 @@
 
 <!-- BEGIN editblock -->
 <TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
- <TR><TH COLSPAN="2"><DIV ALIGN="center">{lang_name} ({lang_id})</TH></TR>
+ <TR><TH COLSPAN="2"><DIV ALIGN="center">{lang_name} ({lang_id})</DIV></TH></TR>
  <TR><TH STYLE="vertical-align:middle">{head_lang_audio}</TH>
      <TD>{lang_audio}</TD></TR>
  <TR><TH STYLE="vertical-align:middle">{head_lang_subtitle}</TH>

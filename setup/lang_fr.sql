@@ -230,6 +230,7 @@ INSERT INTO lang VALUES ('label','fr','Etiquette','');
 INSERT INTO lang VALUES ('labels','fr','Etiquettes','');
 INSERT INTO lang VALUES ('labeltype','fr','Type d\'étiquette','');
 INSERT INTO lang VALUES ('language_settings','fr','Configuration de la langue','');
+INSERT INTO lang VALUES ('lang_fr','fr','Français','');
 INSERT INTO lang VALUES ('last_entry','fr','Dernière entrée','');
 INSERT INTO lang VALUES ('last_medianr','fr','Le plus grand numéro pour ce média est à présent:','');
 INSERT INTO lang VALUES ('layout_label','fr','Agencement choisi','');

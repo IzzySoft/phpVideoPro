@@ -184,6 +184,7 @@ INSERT INTO lang VALUES ('is_rw','iw','ניתן לכתוב עליה שוב','');
 INSERT INTO lang VALUES ('label','iw','תווית','');
 INSERT INTO lang VALUES ('labels','iw','תוויות מיוחדות למדפסת או תוויות רגילות','');
 INSERT INTO lang VALUES ('labeltype','iw',':סוג תווית','');
+INSERT INTO lang VALUES ('lang_iw','iw','עברית','');
 INSERT INTO lang VALUES ('language_settings','iw','קביעת שפות','');
 INSERT INTO lang VALUES ('layout_label','iw','בחר הגדרת תווית','');
 INSERT INTO lang VALUES ('left_offset','iw','שולים שמאלים','');

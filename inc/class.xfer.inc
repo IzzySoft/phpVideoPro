@@ -350,6 +350,7 @@
     $cats = $db->get_category();
     $ccount = count($cats);
     for ($i=0;$i<$ccount;++$i,++$this->items) {
+      $cats[$i][trans] = $db->get_trans_all($cats[$i][internal]);
       $this->list .= urlencode(serialize($cats[$i]))."\n";
     }
   }

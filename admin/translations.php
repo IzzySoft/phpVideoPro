@@ -15,7 +15,7 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_translations";
  include("../inc/includes.inc");
- if (!$pvp->auth->browse) kickoff();
+ if (!$pvp->auth->admin) kickoff();
  $filter = get_filters();
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
@@ -79,7 +79,7 @@
    exit;
  }
 
- #=======================================[ get movies and setup variables ]===
+ #=================================[ get translations and setup variables ]===
  $query = "\$db->get_singletrans(\"en\",$start)";
  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?targetlang=$targetlang",$start);
 

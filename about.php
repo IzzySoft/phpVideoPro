@@ -1,7 +1,6 @@
 <? /* About */
 
   $page_id = "about";
-  include("inc/config.inc");
   include("inc/header.inc");
 
 ?>

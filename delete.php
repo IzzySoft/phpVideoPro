@@ -2,8 +2,8 @@
 
   /* $Id$ */
 
-  include("inc/config.inc");
   if ($cancel) {
+    include("inc/config.inc");
     header("Location: $base_url/edit.php?nr=" . urlencode("$nr") . "&cass_id=$cass_id&part=$part&mtype_id=$mtype_id");
     exit;
   }

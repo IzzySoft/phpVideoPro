@@ -3,7 +3,6 @@
 /* $Id$ */
 
   $page_id = "filter";
-  include("inc/config.inc");
   include("inc/header.inc");
 
   echo "<H2 Align=Center>" . lang("filter_setup") . "</H2>\n\n";

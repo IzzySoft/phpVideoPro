@@ -7,7 +7,6 @@
 #
   include ("../inc/config.inc");
   include ("../inc/common_funcs.inc");
-  include ("../inc/db_mysql.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;
   $db->Host     = $database["host"];

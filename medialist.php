@@ -1,7 +1,6 @@
 <? /* Medialist */
 
   $page_id = "medialist";
-  include("inc/config.inc");
   include("inc/header.inc");
   $filter = get_filters();
 

@@ -2,7 +2,6 @@
    /* $Id$ */
 
   $page_id = "taperest";
-  include("inc/config.inc");
   include("inc/header.inc");
   if ($usefilter) $filter = get_filters();
 

@@ -6,8 +6,8 @@
 # Configuration of Setup module
 #
   include ("../inc/config.inc");
-  include ("../inc/common_funcs.inc");
   include ("../inc/db_mysql.inc");
+  include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;
   $db->Host     = $database["host"];
@@ -20,7 +20,7 @@
 ##################################################################
 # Output page intro
 # 
-  $title = "phpVideoPro v$version: Setting up the Database"; ?>
+  $title = "phpVideoPro: Setting up the Database"; ?>
 <HTML><HEAD>
  <TITLE><? echo $title ?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -50,9 +50,14 @@
   $tables   = queryf("create_tables.sql","Creation of tables");
   $cats     = queryf("categories.sql","Insertion of categories");
   $techdata = queryf("tech_data.sql","Insertion of technical data");
+  $def_lang = queryf("lang_en.sql","Prepare default language");
+  $query_count = 4;
 
 ##################################################################
 # Closing page
 # ?>
 </UL>
+<P ALIGN=JUSTIFY>Congratulations - if there are <? echo $query_count ?>
+ lines stating "success", you've done it - the basic installation is complete!
+ You can then proceed to the <A HREF="configure.php">configuration</A> page.</P>
 </BODY></HTML>

@@ -3,7 +3,6 @@
 /* $Id$ */
 
   $page_id = "history";
-  include("inc/config.inc");
   include("inc/header.inc");
 
 ?>
@@ -24,14 +23,18 @@
        <li>added new tables to db: some for the translation stuff, and
            one to store configuration settings. This will make updates
            easier (for now we can determine the previously installed
-           version easily) and as well prepares the way to some better
-           setup tool at some future point
-       <li>started "internationalization process" by making the pages
+           version easily) and as well prepared the way to some better
+           setup tool (see below)
+       <li>"internationalized" phpVideoPro by making the pages
            using the translation code (and adding required translations
            to lang_en.sql and lang_de.sql). (Hopefully) finnished for
            most pages (tell me if I forgot something :).
        <li>setup now autodetects version of already installed database
            when updating
+       <li>renewed setup tool - now it contains a configuration page
+           as well
+       <li>moved main part of inc/config.inc into db for easier maintenance
+           by new configuration page
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

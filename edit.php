@@ -11,7 +11,6 @@
     include("delete.php");
     exit;
   } else { $page_id = "view"; }
-  include("inc/config.inc");
   include("inc/header.inc");
 
   function vis_actors($num) {

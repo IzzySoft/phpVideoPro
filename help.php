@@ -1,6 +1,5 @@
 <? /* Help */
 
-  include("inc/config.inc");
   include("inc/header.inc");
 
 ?>

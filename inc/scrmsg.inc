@@ -3,8 +3,8 @@
   /* $Id$ */
 
   /***************************************************************************\
-  * ScrMsg  (Screen Message funcs for PHP)   (c) 2001 by eInsurance AG Munich *
-  * written by Itzchak Rehberg <itzchak.rehberg@einsurance.de>                *
+  * ScrMsg  (Screen Message funcs for PHP)                                    *
+  * written by Itzchak Rehberg <izzy@qumran.org>                              *
   * ---------------------------------------------------                       *
   * common functions needed in many applications, souch as colored output     *
   * generator, debug functions a.s.o.                                         *

@@ -64,12 +64,12 @@
 
  ##############################################################################
  # interface to get_sql()
- function queryf($file,$comment) {
+ function queryf($file,$comment,$silent=0) {
    GLOBAL $colors;
    if ( get_sql($file) ) {
-     echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
+     if (!$silent) echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
    } else {
-     echo $colors["err"] . " <li>$comment failed, process stopped.</Font><BR>\n";
+     if (!$silent) echo $colors["err"] . " <li>$comment failed, process stopped.</Font><BR>\n";
      exit;
    }
  }

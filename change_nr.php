@@ -1,6 +1,5 @@
 <? /* Change number of medium (tape/dvd) */
 
-  include("inc/config.inc");
   include("inc/header.inc");
 
 ?>

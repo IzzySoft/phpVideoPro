@@ -1,6 +1,5 @@
 <? /* Dupes (Duplicate titles) */
 
-  include("inc/config.inc");
   include("inc/header.inc");
 
 ?>

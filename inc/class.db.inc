@@ -1468,7 +1468,7 @@
        display_error( lang("dupe_id_entered") );
        exit;
      }
-     if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
+     if ( ( bool ) !ini_get('magic_quotes_gpc') || basename($GLOBALS['PHP_SELF'])=="change_nr.php" ) {
        $title  = addslashes($title);
        $comment= addslashes($comment);
        $source = addslashes($source);

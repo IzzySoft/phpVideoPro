@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.8 (2004)
+0.6.8 (October 31, 2004)
 [text]
 <ul>
  <li>categories on the search and filter screen are now sorted by their

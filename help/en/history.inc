@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.2 (February 2003)
+0.4.2 (February 23, 2003)
 [text]
 <ul>
  <li>made session_purgetime (inactivity timeout for logged-in sessions) user

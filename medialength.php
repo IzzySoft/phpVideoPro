@@ -44,7 +44,7 @@
  $t->set_var("info",lang("change_media_length_for",$medianr));
  $input = "<INPUT NAME='mlength' VALUE='$mlength' ".$form["addon_filmlen"].">";
  $t->set_var("input",$input);
- $input = "<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>";
+ $input = "<INPUT CLASS='submit' TYPE='submit' NAME='update' VALUE='".lang("update")."'>";
  $t->set_var("submit",$input);
 
  include("inc/header.inc");

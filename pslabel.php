@@ -260,6 +260,7 @@ include("inc/footer.inc");
    }
    $ltype   = "<SELECT NAME=\"ltype_id\">$ltypelist</SELECT>";
    include("inc/header.inc");
+   $t->set_var("listtitle",lang("print_label"));
    $t->set_var("ltype",$ltype);
    $t->parse("definitionlist","definitionblock",TRUE);
    $t->set_var("lselect",lang("labeltype"));

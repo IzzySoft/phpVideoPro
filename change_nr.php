@@ -72,8 +72,8 @@
  $t->set_var("n_medianr","<INPUT NAME='new_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie[cass_id]."'>");
  $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie[part]."'>");
  $t->set_var("cancel","<INPUT TYPE='cancel' NAME='cancel' VALUE='".lang("cancel")."'>");
- $t->set_var("copy","<INPUT TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
- $change = "<INPUT TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";
+ $t->set_var("copy","<INPUT CLASS='submit' TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
+ $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";
  if (!$pvp->config->enable_cookies) $change .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("change",$change);
 

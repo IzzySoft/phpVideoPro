@@ -14,6 +14,12 @@
 
   $page_id = "filter";
   include("inc/header.inc");
+
+  function sort_ar($a1,$a2) {
+    if($a1[name]<$a2[name]) return -1;
+      else if ($a1[name]>$a2[name]) return 1;
+  }
+
   // init templates
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("t_list"=>"setfilter_list.tpl",
@@ -34,72 +40,78 @@
   debug("V",$ddump);
 
   if ($reset) { // user wants to unset all filter
-    dbquery ("DELETE FROM preferences WHERE name='filter'");
+    $db->unset_preferences("filter");
   } elseif ($save) { // new filter values were submitted
     $mtypes = $db->get_mtypes();
     for ($i=0;$i<count($mtypes);$i++) {
       $id = $mtypes[$i][id];
       $field = "mtype_" . $id;
-      if (${$field}) $filter->mtype->$id = TRUE;
+      if (${$field}) $filter->mtype->$id = TRUE; else $filter->mtype->$id = FALSE;
     }
     $filter->length_min  = $length_min;
     $filter->length_max  = $length_max;
     $filter->aquired_min = $aquired_min;
     $filter->aquired_max = $aquired_max;
-    dbquery("SELECT id FROM pict");
-    while ( $db->next_record() ) {
-      $id    = $db->f('id');
+    $pict = $db->get_pict();
+    for ($i=0;$i<count($pict);$i++) {
+      $id    = $pict[$i][id];
       $field = "pict_" . $id;
-      if (${$field}) $filter->pict->$id = TRUE;
+      if (${$field}) $filter->pict->$id = TRUE; else $filter->pict->$id = FALSE;
     }
-    dbquery("SELECT id,name FROM colors");
-    while ( $db->next_record() ) {
-      $id    = $db->f('id');
+    $pict = $db->get_color();
+    for ($i=0;$i<count($pict);$i++) {
+      $id    = $pict[$i][id];
       $field = "color_" . $id;
-      if (${$field}) $filter->color->$id = TRUE;
+      if (${$field}) $filter->color->$id = TRUE; else $filter->color->$id = FALSE;
     }
-    dbquery("SELECT id,name FROM tone");
-    while ( $db->next_record() ) {
-      $id    = $db->f('id');
+    $pict = $db->get_tone();
+    for ($i=0;$i<count($pict);$i++) {
+      $id    = $pict[$i][id];
       $field = "tone_" . $id;
-      if (${$field}) $filter->tone->$id = TRUE;
+      if (${$field}) $filter->tone->$id = TRUE; else $filter->tone->$id = FALSE;
     }
     $filter->lp = $lp;
     $filter->fsk_min = $fsk_min;
     $filter->fsk_max = $fsk_max;
     $filter->title   = $title;
+    // first reset, then set anew - to allow editing of pre-sets:
+    $max = count($filter->cat);
+    for ($i=0;$i<$max;$i++) $filter->cat->$i = FALSE;
     for ($i=0;$i<count($cat_id);$i++) {
       $filter->cat->$cat_id[$i] = TRUE;
     }
+    $max = count($filter->actor);
+    for ($i=0;$i<$max;$i++) $filter->actor->$i = FALSE;
     for ($i=0;$i<count($act_id);$i++) {
       $filter->actor->$act_id[$i] = TRUE;
     }
+    $max = count($filter->director);
+    for ($i=0;$i<$max;$i++) $filter->director->$i = FALSE;
     for ($i=0;$i<count($dir_id);$i++) {
       $filter->director->$dir_id[$i] = TRUE;
     }
+    $max = count($filter->composer);
+    for ($i=0;$i<$max;$i++) $filter->composer->$i = FALSE;
     for ($i=0;$i<count($mus_id);$i++) {
       $filter->composer->$mus_id[$i] = TRUE;
     }
     $save = rawurlencode( serialize($filter) );
-    dbquery("SELECT value FROM preferences WHERE name='filter'");
-    if ( $db->next_record() ) {
-      dbquery("UPDATE preferences SET value='$save' WHERE name='filter'");
-    } else {
-      dbquery("INSERT INTO preferences (name,value) VALUES ('filter','$save')");
-    } ?>
+    $db->set_preferences("filter",$save);
+/* ?>
 <HTML><HEAD>
   <meta http-equiv="refresh" content="0; URL=<? echo $base_url . "index.php" ?>">
-</HEAD></HTML><?
+</HEAD></HTML><? */
   }
 
-  dbquery("SELECT value FROM preferences WHERE name='filter'");
-  if ( $db->next_record() ) { // there are already filters defined
-    $filter = unserialize ( rawurldecode( $db->f('value') ) );
+  $filter = $db->get_preferences("filter");
+  if ( $filter ) { // there are already filters defined
+    $filter = unserialize ( rawurldecode( $filter ) );
   }
   ########################################################################################
   # Create the Form Fields
   // ------------------------------------------------------------------[ left side ]------
   # mtype
+    unset ($id,$name);
     $mtypes = $db->get_mtypes();
     for ($i=0;$i<count($mtypes);$i++) {
       $id[$i]   = $mtypes[$i][id];
@@ -141,51 +153,44 @@
     $t->parse("date","t_item");
 
     # screen
+    unset($id);
     $t->set_var("inputlist","");
-    dbquery("SELECT id,name FROM pict");
-    $i=0; unset($id);
-    while ( $db->next_record() ) {
-      $id[$i]   = $db->f('id');
-      $name[$i] = $db->f('name');
-      $i++;
-    }
     $t->set_var("item","");
+    $pict = $db->get_pict();
+    for ($i=0,$k=1;$i<count($pict);$i++,$k++) {
+      $id[$i]   = $pict[$i][id];
+      $name[$i] = $pict[$i][name];
+    }
     for ($k=0;$k<count($id);$k++) {
-      if ($filter->pict->$id) { $checked = " CHECKED"; } else { $checked = ""; }
+      if ($filter->pict->$id[$k]) { $checked = " CHECKED"; } else { $checked = ""; }
       $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"pict_" . $id[$k] . "\"$checked class=\"checkbox\">&nbsp;$name[$k]");
       $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("screen","t_item");
 
     # picture
+    unset($id);
     $t->set_var("inputlist","");
-    dbquery("SELECT id,name FROM colors");
-    $i=0;
-    while ( $db->next_record() ) {
-      $id[$i]   = $db->f('id');
-      $name[$i] = $db->f('name');
-      $i++;
-    }
     $t->set_var("item","");
-    for ($k=0;$k<$i;$k++) {
-      $input = "<INPUT TYPE=\"checkbox\" NAME=\"color_$id[$k]\"";
-      if ($filter->color->$id[$k]) $input .= " CHECKED";
-      $input .= " class=\"checkbox\">&nbsp;" . lang("$name[$k]");
+    $pict = $db->get_color();
+    for ($i=0;$i<count($pict);$i++) {
+      $id[$i]   = $pict[$i][id];
+      $name[$i] = $pict[$i][name];
+      $input = "<INPUT TYPE=\"checkbox\" NAME=\"color_$id[$i]\"";
+      if ($filter->color->$id[$i]) $input .= " CHECKED";
+      $input .= " class=\"checkbox\">&nbsp;" . lang("$name[$i]");
       $t->set_var("input",$input);
       $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("picture","t_item");
 
     # tone
-    dbquery("SELECT id,name FROM tone");
-    $i=0;
-    while ( $db->next_record() ) {
-      $id[$i]   = $db->f('id');
-      $name[$i] = $db->f('name');
-      $i++;
-    }
+    unset($id);
     $t->set_var("itemlist","");
-    for ($i=0;$i<count($name);$i++) {
+    $pict = $db->get_tone();
+    for ($i=0;$i<count($pict);$i++) {
+      $id[$i]   = $pict[$i][id];
+      $name[$i] = $pict[$i][name];
       $t->set_var("input",$name[$i]);
       $t->parse("itemlist","itemblock",TRUE);
     }
@@ -226,11 +231,12 @@
     $t->set_var("title",$input);
 
     # category
-    dbquery("SELECT id,name FROM cat ORDER BY name");
+    unset($id);
+    $pict = $db->get_category("");
     $option = "";
-    while ( $db->next_record() ) {
-      $id        = $db->f('id');
-      $name      = $db->f('name');
+    for ($i=0;$i<count($pict);$i++) {
+      $id   = $pict[$i][id];
+      $name = $pict[$i][name];
       $option .= "<OPTION VALUE=\"$id\"";
       if ($filter->cat->$id) $option .= " SELECTED";
       $option .= ">$name</OPTION>";
@@ -238,12 +244,14 @@
     $t->set_var("category","<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # actor
-    dbquery("SELECT id,name,firstname FROM actors ORDER BY name");
+    unset($id);
+    $pict = $db->get_actor("");
+    usort ($pict,"sort_ar");
     $option = "";
-    while ( $db->next_record() ) {
-      $id        = $db->f('id');
-      $name      = $db->f('name');
-      $firstname = $db->f('firstname');
+    for ($i=0;$i<count($pict);$i++) {
+      $id   = $pict[$i][id];
+      $name = $pict[$i][name];
+      $firstname = $pict[$i][firstname];
       $option .= "<OPTION VALUE=\"$id\"";
       if ($filter->actor->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";
@@ -251,12 +259,14 @@
     $t->set_var("actor","<SELECT NAME=\"act_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # director
-    dbquery("SELECT id,name,firstname FROM directors ORDER BY name");
+    unset($id);
+    $pict = $db->get_director("");
+    usort ($pict,"sort_ar");
     $option = "";
-    while ( $db->next_record() ) {
-      $id        = $db->f('id');
-      $name      = $db->f('name');
-      $firstname = $db->f('firstname');
+    for ($i=0;$i<count($pict);$i++) {
+      $id   = $pict[$i][id];
+      $name = $pict[$i][name];
+      $firstname = $pict[$i][firstname];
       $option .= "<OPTION VALUE=\"$id\"";
       if ($filter->director->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";
@@ -264,12 +274,15 @@
     $t->set_var("director","<SELECT NAME=\"dir_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # composer
+    unset($id);
+    $pict = $db->get_music("");
+    usort ($pict,"sort_ar");
     dbquery("SELECT id,name,firstname FROM music ORDER BY name");
     $option = "";
-    while ( $db->next_record() ) {
-      $id        = $db->f('id');
-      $name      = $db->f('name');
-      $firstname = $db->f('firstname');
+    for ($i=0;$i<count($pict);$i++) {
+      $id   = $pict[$i][id];
+      $name = $pict[$i][name];
+      $firstname = $pict[$i][firstname];
       $option .= "<OPTION VALUE=\"$id\"";
       if ($filter->composer->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";

@@ -17,6 +17,8 @@
      when viewing an entry.
  <li>categories can now be edited. However, you can't add or remove categories
      yet - this features will be part of a future release.
+ <li>cleaned up the comments so phpdocgen doesn't complain any more. Added
+     some more comments, amongst others for the auto-generated api doc
 </ul>
 
 [title]

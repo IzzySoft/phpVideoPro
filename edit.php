@@ -191,9 +191,11 @@
       $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));
       $t->set_var("actor_list",vis_actors($i));
     } else {
-      $t->set_var("actor","&nbsp;");
-      $t->set_var("actor_f","&nbsp;");
-      $t->set_var("actor_list","&nbsp;");
+      $visible = "vis_actor" . $i;
+      $formAddon = $form["addon_name"];
+      $t->set_var("actor",form_input($name,"&nbsp;",$formAddon));
+      $t->set_var("actor_f",form_input($fname,"&nbsp;",$formAddon));
+      $t->set_var("actor_list","<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
     }
     $t->parse("actorlist","actorblock",TRUE);
   }
@@ -382,9 +384,10 @@ EndHiddenFields;
     $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
     $t->set_var("director_list",vis_staff('director_list',$director_list));
   } else {
-    $t->set_var("director","&nbsp;");
-    $t->set_var("director_f","&nbsp;");
-    $t->set_var("director_list","&nbsp;");
+    $formAddon = $form["addon_name"];
+    $t->set_var("director",form_input("director_name","&nbsp;",$formAddon));
+    $t->set_var("director_f",form_input("director_fname","&nbsp;",$formAddon));
+    $t->set_var("director_list","<INPUT TYPE=\"button\" NAME=\"director_list\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
   }
   $t->set_var("composer_name",lang("composer"));
   if ($page_id == "view_entry") {
@@ -395,9 +398,10 @@ EndHiddenFields;
     $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
     $t->set_var("composer_list",vis_staff('music_list',$music_list));
   } else {
-    $t->set_var("composer","&nbsp;");
-    $t->set_var("composer_f","&nbsp;");
-    $t->set_var("composer_list","&nbsp;");
+    $formAddon = $form["addon_name"];
+    $t->set_var("composer",form_input("composer_name","&nbsp;",$formAddon));
+    $t->set_var("composer_f",form_input("composer_fname","&nbsp;",$formAddon));
+    $t->set_var("composer_list","<INPUT TYPE=\"button\" NAME=\"music_list\" class=\"yesnobutton\" VALUE=\"&nbsp;\"");
   }
   // actors are set up on top, in the "actors block"
   $t->set_var("comments_name",lang("comments"));

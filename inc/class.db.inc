@@ -2073,6 +2073,85 @@
      return FALSE;
   }
 
+ /** get eps template types
+  * @class sql
+  * @method get_labeltypes
+  * @return array labeltypes array of objects
+  */
+ function get_labeltypes() {
+   $query = "SELECT id,type,description FROM label_forms";
+   $this->dbquery($query);
+   while ( $this->next_record() ) {
+     $type->id = $this->f('id');
+     $type->type = $this->f('type');
+     $type->desc = $this->f('description');
+     $label[] = $type;
+   }
+   return $label;
+ }
+
+ /** get complete eps template description list
+  * @class sql
+  * @method get_pstemplates
+  * @param optional integer id eps template id
+  * @param optional integer start for limit queries
+  * @return array templates array of objects
+  */
+ function get_pstemplates($id="",$start="") {
+   $query = "SELECT e.id,e.type,e.description,e.eps_filename,e.ps_filename,"
+          . "e.llx,e.lly,e.urx,e.ury,l.description AS typedesc "
+          . "FROM eps_templates e,label_forms l "
+          . "WHERE e.type=l.type";
+   if ($id) $query .= " AND e.id=$id";
+   $query .= " ORDER BY e.description";
+   if ($start==="") { $this->dbquery($query); }
+     else { $totals = $this->lim_query($query,$start); }
+   while ( $this->next_record() ) {
+     $tpl->id = $this->f('id');
+     $tpl->type_id = $this->f('type');
+     $tpl->type_desc = $this->f('typedesc');
+     $tpl->desc = $this->f('description');
+     $tpl->eps_file = $this->f('eps_filename');
+     $tpl->ps_file = $this->f('ps_filename');
+     $tpl->llx = $this->f('llx');
+     $tpl->lly = $this->f('lly');
+     $tpl->urx = $this->f('urx');
+     $tpl->ury = $this->f('ury');
+     $template[] = $tpl;
+   }
+   if ($totals) $template[totals] = $totals;
+   return $template;
+ }
+
+ /** set ps template details
+  * @class sql
+  * @method set_pstemplate
+  * @param mixed pstemplate integer id to delete or object to update
+  * @return boolean success
+  */
+ function set_pstemplate($ps) {
+   if (is_int($ps)) {
+     $query = "DELETE FROM eps_templates WHERE id=$ps";
+   } elseif ($ps->id) {
+     $id    = $ps->id;
+     $query = "UPDATE eps_templates SET type=".$ps->type_id.",description='"
+            . $ps->desc."',eps_filename='".$ps->eps_file."',ps_filename='"
+            . $ps->ps_file."',llx=".$ps->llx.",lly=".$ps->lly.",urx="
+            . $ps->urx.",ury=".$ps->ury." WHERE id=$id";
+   } else {
+     $this->query("SELECT MAX(id) AS maxid FROM eps_templates");
+     $this->next_record();
+     $id = $this->f('maxid') +1;
+     $query = "INSERT INTO eps_templates (id,type,description,eps_filename,"
+            . "ps_filename,llx,lly,urx,ury) VALUES ($id,"
+            . $ps->type_id.",'".$ps->desc."','".$ps->eps_file."','"
+            . $ps->ps_file."',".$ps->llx.",".$ps->lly.",".$ps->urx.",".$ps->ury.")";
+   }
+   $this->dbquery($query);
+   if ($this->affected_rows()<0) return FALSE;
+   return $id;
+ }
+
  } // end class sql
 
  $db = new sql;

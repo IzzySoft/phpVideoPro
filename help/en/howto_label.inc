@@ -61,11 +61,11 @@ Variables that may be used in the "entry" variable
  <li>aq_date: *date_rec#</li>
  <li>source: *source#</li>
  <li>actor1,..,actor5: the actors 1..5 (format "firstname lastname")</li>
- <li>actor12: enumeration of actor1 and actor2 ("actor1, actor2"). This
+ <li>actors12: enumeration of actor1 and actor2 ("actor1, actor2"). This
      considers undefined actors as well - so if e.g. actor2 is not set, it
-     would be the same as actor1 above. This rule applies to actor35 and
+     would be the same as actor1 above. This rule applies to actors35 and
      actors variables as well.</li>
- <li>actor35: same as actor12 but for actor3, actor4, actor5</li>
+ <li>actors35: same as actors12 but for actor3, actor4, actor5</li>
  <li>actors: same as actor12, but enumerates all (set) actors</li>
  <li>director: *director#</li>
  <li>music: composer of the movie's soundtrack</li>
@@ -79,7 +79,7 @@ Variables that may be used in the "entry" variable
  <li>tone: Mono, Stereo, Dolby Digital 5.1, etc.</li>
  <li>tone_short: same in the format "1.0", "2.0" .. "6.1"</li>
  <li>lp: is it *longplay# (*yes# / *no#)?</li>
- <li>commercials: is the movie interrupted by commecials?</li>
+ <li>commercials: is the movie interrupted by commercials?</li>
 </ul>
 
 [eof]

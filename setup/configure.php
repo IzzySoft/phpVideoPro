@@ -144,18 +144,18 @@ if ($menue) {
 # 
   echo "<HTML><HEAD>\n";
   echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
-  $title = "phpVideoPro v$version: Configuration";
+  $title = "phpVideoPro v$version: " . lang("configuration");
   echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
   echo "<H2 ALIGN=CENTER>$title</H2>\n";
   echo "<TABLE ALIGN=CENTER WIDTH=90% BORDER=1>\n";
   ?>
 
 <FORM NAME="config_form" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
-<TR><TH>Language Settings:</TH></TR>
+<TR><TH><?=lang("language_settings")?>:</TH></TR>
 <TR><TD><TABLE WIDTH=100%>
- <TR><TD WIDTH=70%><b>Scan for new language files?</b><br>(If you created your own language file and put it into the setup directory, this will tell phpVideoPro to look for it)</TD>
+ <TR><TD WIDTH=70%><b><?=lang("scan_new_lang_files")?></b><br><?=lang("scan_new_lang_comment")?></TD>
     <TD WIDTH=30%><INPUT TYPE="checkbox" NAME="scan_langfile" VALUE="1"></TD></TR>
- <TR><TD WIDTH=70%><b>Select additional language to install:</b><br>(English is already installed and always will be - see next item. For other languages that are already installed, see next item, too.)</TD>
+ <TR><TD WIDTH=70%><b><?=lang("select_add_lang")?>:</b><br><?=lang("select_add_lang_comment")?></TD>
     <TD WIDTH=30%><?
   $select = "<SELECT NAME=\"install_lang\">";
   $none = TRUE;
@@ -164,18 +164,18 @@ if ($menue) {
     $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
     $none = FALSE;
   }
-  if (!$none) $select .= "<OPTION VALUE=\"-\">-- None --</OPTION>";
+  if (!$none) $select .= "<OPTION VALUE=\"-\">-- " . lang("none") ." --</OPTION>";
   $select .= "</SELECT>";
-?><? if ($none) { echo "No additional language available."; } else { echo $select; } ?></TD></TR>
- <TR><TD><b>Refresh language:</b><br>(re-insert phrases from language file into db)</TD>
+?><? if ($none) { echo lang("no_add_lang"); } else { echo $select; } ?></TD></TR>
+ <TR><TD><b><?=lang("refresh_lang")?>:</b><br><?=lang("refresh_lang_comment")?></TD>
     <TD><SELECT NAME="refresh_lang"><?
-  echo "<OPTION VALUE=\"-\">-- None --</OPTION>";
+  echo "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
   for ($i=0;$i<count($lang_installed);$i++) {
     echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
     echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
   }
 ?></SELECT></TD></TR>
- <TR><TD><b>Select primary language:</b><br>(for missing phrases, there will always be a fall-back to English)</TD>
+ <TR><TD><b><?=lang("select_primary_lang")?>:</b><br><?=lang("select_primary_lang_comment")?></TD>
     <TD><SELECT NAME="default_lang"><?
   for ($i=0;$i<count($lang_installed);$i++) {
     echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
@@ -183,21 +183,21 @@ if ($menue) {
     echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
   }
 ?></SELECT></TD></TR>
- <TR><TD><b>Enter charset to use:</b><br>(this is important for character encoding; if unsure, don't touch :)</TD>
+ <TR><TD><b><?=lang("use_charset")?>:</b><br><?=lang("use_charset_comment")?></TD>
     <TD><INPUT SIZE=10 NAME="charset" VALUE="<? echo $charset ?>"></TD></TR>
 </TABLE></TD></TR>
-<TR><TH>Colors:</TH></TR><TR><TD><TABLE WIDTH=100%>
- <TR><TD WIDTH=70%><b>Page Background:</b></TD>
+<TR><TH><?=lang("colors")?>:</TH></TR><TR><TD><TABLE WIDTH=100%>
+ <TR><TD WIDTH=70%><b><?=lang("page_bg")?>:</b></TD>
     <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="page_background" VALUE="<? echo $colors["page_background"] ?>"></TD></TR>
- <TR><TD WIDTH=70%><b>Table Background:</b></TD>
+ <TR><TD WIDTH=70%><b><?=lang("table_bg")?>:</b></TD>
     <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="table_background" VALUE="<? echo $colors["table_background"] ?>"></TD></TR>
- <TR><TD><b>Table Headers Background:</b></TD>
+ <TR><TD><b><?=lang("th_bg")?>:</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="th_background" VALUE="<? echo $colors["th_background"] ?>"></TD></TR>
- <TR><TD><b>Feedback "OK":</b></TD>
+ <TR><TD><b><?=lang("feedback_ok")?>:</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_ok" VALUE="<? echo $colors["ok"] ?>"></TD></TR>
- <TR><TD><b>Feedback "Failure":</b></TD>
+ <TR><TD><b><?=lang("feedback_err")?>:</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_err" VALUE="<? echo $colors["err"] ?>"></TD></TR>
- <TR><TD><b>Template Set:</b></TD>
+ <TR><TD><b><?=lang("template_set")?>:</b></TD>
     <TD><SELECT NAME="template_set"><?
  for ($i=0;$i<count($tpldir);$i++) {
    echo "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
@@ -205,13 +205,13 @@ if ($menue) {
    echo ">" . ucfirst($tpldir[$i]) . "</OPTION>";
  } ?></SELECT></TD></TR>
 </TABLE></TD></TR>
-<TR><TD><DIV ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></DIV></TD></TR>
+<TR><TD><DIV ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="<?=lang("update")?>"></DIV></TD></TR>
 </FORM>
 <?
 
 ##################################################################
 # Closing page
 # ?>
-<? if (!$menue) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR><? } ?>
+<? if (!$menue) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php"><?=lang("start_pvp")?></A></TD></TR><? } ?>
 </TABLE>
 </BODY></HTML>

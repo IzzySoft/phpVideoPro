@@ -25,7 +25,8 @@
    if (strlen($part[$i])<2) {
      $nr[$i] .= "0" . $part[$i];
    } else { $nr[$i] .= $part[$i]; }
-   $movie_id[$i] = urlencode($mtype[$i] . " " . $nr[$i]);
+#   $movie_id[$i] = urlencode($mtype[$i] . " " . $nr[$i]);
+   $movie_id[$i] = urlencode($nr[$i]);
    $title[$i]    = $list[$i][title]; check_empty($title[$i]);
    $length[$i]   = $list[$i][length]; check_empty($length[$i]);
    $year[$i]     = $list[$i][year]; if (!$year[$i]) $year[$i] = ""; check_empty($year[$i]);

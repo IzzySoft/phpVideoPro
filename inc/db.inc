@@ -385,24 +385,31 @@
      $moviedetails = array("title","length","country","year","counter1",
                      "counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
-		     "actor5_list","fsk","comment","cass_id","part");
+		     "actor5_list","music_list","fsk","comment","cass_id","part");
      foreach($moviedetails as $value) {
        $movie[$value] = $this->f("$value");
      }
      $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
      $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
+     $movie[director_] = $name;
      $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
      $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
+     $movie[music_] = $name;
      $name = $this->format_name( array(name=>$this->f('a1name'),firstname=>$this->f('a1fname')) );
      $movie[actor1] = $name[fullname]; $movie[actor1_rev] = $name[reverse];
+     $movie[actor_1] = $name;
      $name = $this->format_name( array(name=>$this->f('a2name'),firstname=>$this->f('a2fname')) );
      $movie[actor2] = $name[fullname]; $movie[actor2_rev] = $name[reverse];
+     $movie[actor_2] = $name;
      $name = $this->format_name( array(name=>$this->f('a3name'),firstname=>$this->f('a3fname')) );
      $movie[actor3] = $name[fullname]; $movie[actor3_rev] = $name[reverse];
+     $movie[actor_3] = $name;
      $name = $this->format_name( array(name=>$this->f('a4name'),firstname=>$this->f('a4fname')) );
      $movie[actor4] = $name[fullname]; $movie[actor4_rev] = $name[reverse];
+     $movie[actor_4] = $name;
      $name = $this->format_name( array(name=>$this->f('a5name'),firstname=>$this->f('a5fname')) );
      $movie[actor5] = $name[fullname]; $movie[actor5_rev] = $name[reverse];
+     $movie[actor_5] = $name;
      $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
      $movie[color] = $this->f('cname'); $movie[color_short] = $this->f('csname');
      $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');

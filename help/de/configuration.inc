@@ -74,5 +74,27 @@ weiteres erstellen :), lassen diese sich hier auswählen, und phpVideoPro erhält
 auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
+[title]
+*general#
+
+[text]
+<b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
+z.B. unter dem Menüpunkt *medialist# zu finden, stets in voller Länge, d.h.
+mit allen Datensätzen an. Bei umfangreichen Datensammlungen führte dies nicht
+nur zu langen Ladezeiten, sondern konnte durchaus auch recht unübersichtlich
+werden. Mit Version 0.2.3 wurde daher eingeführt, diese Liste in mehrere
+"Häppchen" unterteilen zu können. Die Größe dieser "Häppchen" läßt sich mit
+diesem Punkt einstellen: er gibt an, wie viele Zeilen die jeweilige Tabelle
+haben soll. Innerhalb der Listen läßt sich mit vier Buttons navigieren: diese
+führen jeweils zur ersten/letzten bzw. vorigen/nächsten Seite.
+
+[text]
+Zugegebenermaßen scheint es bei den Besetzungslisten (Darsteller, Regisseure
+etc.) zu kleinen Ungereimtheiten zu kommen, und die Anzahl der Zeilen kann
+nicht nur vom eingestellten "*display_limit#" abweichen, sondern außerdem auch
+von Seite zu Seite differieren. Dies liegt daran, dass hier die "Häppchen-Größe"
+auf die Anzahl der Personen angewendet wird. Diese können aber durchaus auch als
+"nicht anzuzeigen" erfaßt sein (Option "*in_list#" im "*edit#" Formular).
+
 [eof]
 

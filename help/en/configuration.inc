@@ -67,5 +67,27 @@ I (the author) just provided an initial template set; but as soon as there are
 additional template sets available (which will only happen when <b>YOU</b>
 write them - I'm not a good designer), this is the place to make your choice.
 
+[title]
+*general#
+
+[text]
+<b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with
+the *medialist# menue item, always in full length, i.e. with all records found
+in the database. Having a large collection, this not only lead to long loading
+times for the page, but the long list could also be confusing for one or the
+other person :-) Thus starting with version 0.2.3, phpVideoPro supplies the
+possibility to show those lists in pieces whose size you can specify here:
+How many lines do you wish to be displayed in those lists. Navigation is
+provided by four buttons that bring you to the first/last resp. previous/next
+page of the complete list.
+
+[text]
+I have to admit that with the staff lists, this feature may seem to work in a
+strange way: not only that the line count differs from the entered
+"*display_limit#" - additionally it may even vary between pages! The reason
+is very simple: phpVideoPro employs the "*display_limit#" on the staff members
+here. So the difference comes up when you marked some stuff members as not to
+display (using the option "*in_list#" within the "*edit#" form.
+
 [eof]
 

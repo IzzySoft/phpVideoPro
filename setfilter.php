@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -234,11 +234,13 @@
  $pict = $db->get_category("");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
-   $id   = $pict[$i][id];
-   $name = $pict[$i][name];
-   $option .= "<OPTION VALUE=\"$id\"";
-   if ($filter->cat->$id) $option .= " SELECTED";
-   $option .= ">$name</OPTION>";
+   if ($pict[$i][enabled]) {
+     $id   = $pict[$i][id];
+     $name = $pict[$i][name];
+     $option .= "<OPTION VALUE=\"$id\"";
+     if ($filter->cat->$id) $option .= " SELECTED";
+     $option .= ">$name</OPTION>";
+   }
  }
  $t->set_var("category","<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 

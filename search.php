@@ -71,7 +71,8 @@
  $cats = $db->get_category(); $ccount = count($cats);
  $cat_field = "<SELECT NAME='cat_id[]' SIZE='7' MULTIPLE CLASS='multiselect'>";
  for ($i=0;$i<$ccount;++$i) {
-   $cat_field .= "<OPTION VALUE='".$cats[$i][id]."'>".lang($cats[$i][internal])."</OPTION>";
+   if ($cats[$i][enabled])
+     $cat_field .= "<OPTION VALUE='".$cats[$i][id]."'>".lang($cats[$i][internal])."</OPTION>";
  }
  $cat_field .= "</SELECT>";
  $t->set_var("cat_field",$cat_field);

@@ -21,6 +21,7 @@ if (!$silent) {
  <meta http-equiv="cache-control" content="no-cache">
  <meta http-equiv="content-language" content="<?=$pvp->preferences->get("lang")?>">
  <Title><?echo $pagename ?></Title>
+<? if ( $page_id != "login" ) { ?>
  <script language="JavaScript">
 
   function open_help(topic) {
@@ -43,4 +44,9 @@ if (!$silent) {
   <td><? if ($oldmenue) { ?><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
  </tr>
 </table>
-<?php } // not silent ?>
+<?
+} else {
+ include($base_path . "templates/default/default.css");
+ echo "</HEAD><BODY>\n";
+} // !login
+} // not silent ?>

@@ -14,9 +14,9 @@
   <TD ColSpan=2><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0>
        <TR><TD>{length_name}</TD><TD>&nbsp;{length}</TD>
        <TD>{longplay_name}:&nbsp;{longplay}</TD></TR>
-       <TR><TD>{counter_name}<TD>&nbsp;{counter_1}</TD>
+       <TR><TD>{counter_name}</TD><TD>&nbsp;{counter_1}</TD>
        <TD>{counter_2}</TD></TR>
-       <TR><TD>{commercial_name}<TD ColSpan=2>&nbsp;{commercial}</TD></TR>
+       <TR><TD>{commercial_name}</TD><TD ColSpan=2>&nbsp;{commercial}</TD></TR>
       </TABLE></TD>
   <TD>{category_name}</TD><TD>{category}</TD></TR>
  <TR>

@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.2.2 (2001)
+[text]
+<ul>
+ <li>edit.tpl caused probs with NS 4.x (almost fixed - NS 4.x too stupid)
+</ul>
+
+[title]
 0.2.1 (September 30, 2001)
 [text]
 <ul>

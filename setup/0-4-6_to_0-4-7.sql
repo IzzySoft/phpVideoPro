@@ -30,9 +30,5 @@ UPDATE languages SET charset='iso-8859-13' WHERE lang_id='lr';
 UPDATE languages SET charset='iso-8859-13' WHERE lang_id='lt';
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='et';
 
-# drop obsolete tables
-DROP TABLE label_type;
-DROP TABLE label_types;
-
 # version update
 UPDATE pvp_config SET value='0.4.7' WHERE name='version';

@@ -4,7 +4,7 @@
 
 # New table structs
 CREATE TABLE disks (
-  id INT SERIAL,
+  id SERIAL,
   mtype_id INT NOT NULL,
   name VARCHAR(100) NOT NULL,
   size VARCHAR(20),

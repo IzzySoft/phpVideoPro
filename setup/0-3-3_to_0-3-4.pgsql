@@ -3,11 +3,10 @@
 # ========================================================
 
 # Cass table has changed
-ALTER TABLE cass ADD mtype_id INT DEFAULT '1' NOT NULL;
+ALTER TABLE cass ADD mtype_id INT;
+ALTER TABLE cass ALTER mtype_id SET DEFAULT '1';
 UPDATE cass SET mtype_id=1;
-ALTER TABLE cass DROP INDEX;
-ALTER TABLE cass MODIFY id int NOT NULL;
-ALTER TABLE cass ADD PRIMARY KEY (id,mtype_id);
+ALTER TABLE cass ADD CONSTRAINT mtype_id_notnullcheck CHECK (mtype_id IS NOT NULL);
 
 # version update
 UPDATE pvp_config SET value='0.3.4' WHERE name='version';

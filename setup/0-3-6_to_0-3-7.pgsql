@@ -11,8 +11,10 @@ INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 INSERT INTO preferences (name,value) VALUES ('default_movie_toneid','2');
 
 # should title appear on labels
-ALTER TABLE video ADD label INT DEFAULT '1' NOT NULL;
+ALTER TABLE video ADD label INT;
+ALTER TABLE video ALTER label SET DEFAULT '1';
 UPDATE video SET label='1';
+ALTER TABLE video ADD CONSTRAINT label_notnullcheck CHECK (label IS NOT NULL);
 
 # version update
 UPDATE pvp_config SET value='0.3.7' WHERE name='version';

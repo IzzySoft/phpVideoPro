@@ -289,8 +289,9 @@ if ($topic) { $title .= lang($topic); } else { $title .= lang("index"); }
 echo "<HTML><HEAD>\n";
 echo " <TITLE>$title</TITLE>\n";
 echo " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
-#include($base_path . "templates/default/default.css");
 include($pvp->tpl_dir . "/default.css");
+if ( file_exists($pvp->tpl_dir . "/top.js") )
+  echo " <script language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
 echo "</HEAD><BODY>\n";
 
 $pm = new pagemaker;

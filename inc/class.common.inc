@@ -166,13 +166,13 @@ class common {
       }
       if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" SRC=\"\\1\">",$matches[0][$i]);
+          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" STYLE=\"margin-right:4\" SRC=\"\\1\">",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       if ( preg_match_all("/\[imgr\]\S+\[\/imgr\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" SRC=\"\\1\">",$matches[0][$i]);
+          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" STYLE=\"margin-left:4\" SRC=\"\\1\">",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }

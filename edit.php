@@ -20,7 +20,7 @@
   } elseif ($delete) {
     include("delete.php");
     exit;
-  } else { $page_id = "view"; }
+  } else { $page_id = "view_entry"; }
   include("inc/header.inc");
 
   function vis_actors($num) {
@@ -206,7 +206,7 @@
   # set some useful defaults
   if ( trim($recdate)=="" ) $recdate = $pvp->common->getRecDate("string");
   switch ( strtolower($page_id) ) {
-    case "view"      : if ( trim($recdate)=="0000-00-00" ) $recdate = lang("unknown"); break;
+    case "view_entry"      : if ( trim($recdate)=="0000-00-00" ) $recdate = lang("unknown"); break;
   }
   if ($create) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
@@ -222,7 +222,7 @@
   $t->set_var("form_target",$PHP_SELF);
   switch ( strtolower($page_id) ) {
     case "edit"      : $t->set_var("listtitle",lang("edit_entry",$nr)); break;
-    case "view"      : $t->set_var("listtitle",lang("view_entry",$nr)); break;
+    case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$nr)); break;
     case "add_entry" : $t->set_var("listtitle",lang("add_entry")); break;
     default          : break;
   }
@@ -232,7 +232,7 @@
   // actors block
   for ($i=1;$i<=$max["actors"];$i++) {
     $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
-    if ($page_id == "view") { // set imdb info url for actor
+    if ($page_id == "view_entry") { // set imdb info url for actor
       $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($actor[$i][fname],$actor[$i][name],"actors");
     } else { $formAddon = $form["addon_name"]; }
     $t->set_var("actor_name",lang("actor") . " $i");
@@ -406,14 +406,14 @@ EndHiddenFields;
   $t->set_var("firstname_name",lang("first_name"));
   $t->set_var("inlist_name",lang("in_list"));
   $t->set_var("director_name",lang("director"));
-  if ($page_id == "view") {
+  if ($page_id == "view_entry") {
     $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($director_fname,$director_name,"directors");
   } else { $formaddon = $form["addon_name"]; }
   $t->set_var("director",form_input("director_name",$director_name,$formAddon));
   $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
   $t->set_var("director_list",vis_staff('director_list',$director_list));
   $t->set_var("composer_name",lang("composer"));
-  if ($page_id == "view") {
+  if ($page_id == "view_entry") {
     $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($composer_fname,$composer_name,"composers");
   } else { $formaddon = $form["addon_name"]; }
   $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));

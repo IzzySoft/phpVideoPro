@@ -29,6 +29,8 @@
     li("music",2);
     li("taperest_absolute",2);
     li("taperest_filtered",2);
+  headline("other_pages");
+   li("view_entry");
   headline("howto");
    li("howto_lang");
    li("howto_help");

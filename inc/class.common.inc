@@ -401,6 +401,8 @@ class common {
    * @return array ar1 updated with values from ar2
    */
   function array_combine_sums($ar1,$ar2) {
+    if (empty($ar1)) return $ar2;
+    if (empty($ar2)) return $ar1;
     foreach ($ar1 as $key=>$value) {
       if ( isset($ar2[$key]) ) {
         $ar1[$key] += $ar2[$key];

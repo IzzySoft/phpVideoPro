@@ -1,5 +1,5 @@
 # ========================================================
-# Russian Language File created by phpVideoPro v0.7.1
+# Russian Language File created by phpVideoPro v0.7.2
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='ru';
@@ -24,6 +24,7 @@ INSERT INTO lang VALUES ('admin_movietech','ru','Редактировать да
 INSERT INTO lang VALUES ('admin_orphans','ru','Удаление осиротевших вхождений','');
 INSERT INTO lang VALUES ('admin_printers','ru','Редактировать принтеры','');
 INSERT INTO lang VALUES ('admin_pstemplates','ru','Редактировать шаблоны PSLabel ','');
+INSERT INTO lang VALUES ('admin_required','ru','Это действие требует административных привилегий!','');
 INSERT INTO lang VALUES ('admin_sessions','ru','Управление сессиями','');
 INSERT INTO lang VALUES ('admin_translations','ru','Перевод интерфейса','');
 INSERT INTO lang VALUES ('admin_useredit','ru','Редактировать пользовательскую запись','');
@@ -43,6 +44,7 @@ INSERT INTO lang VALUES ('backup_db_runscript','ru','Хотите создать
 INSERT INTO lang VALUES ('backup_file_corrupt','ru','Отобранный резервный файл испорчен - не может восстановить от этого!','');
 INSERT INTO lang VALUES ('backup_file_unreadable','ru','Не могу читать резервный файл - удостоверяются, что разрешения файла установлены правильно!','');
 INSERT INTO lang VALUES ('button_restore','ru','Восстановить','');
+INSERT INTO lang VALUES ('cache_enable','ru','Позволите кэширование браузера/полномочия?','');
 INSERT INTO lang VALUES ('cancel','ru','Отменить','');
 INSERT INTO lang VALUES ('categories','ru','Категории','');
 INSERT INTO lang VALUES ('category','ru','Категория','');
@@ -200,15 +202,20 @@ INSERT INTO lang VALUES ('imdbsearch','ru','Восстановите детал�
 INSERT INTO lang VALUES ('imdb_title_search','ru','Искать фильм на IMDB','');
 INSERT INTO lang VALUES ('imdb_transfer2edit','ru','Данные передачи к редактирующемуся экрану','');
 INSERT INTO lang VALUES ('imdb_tx','ru','Данные, чтобы перейти от IMDB','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose','ru','Автоматически закройте окно поиска на передаче данных?','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','ru','Когда Вы получили все необходимые данные от IMDB и передали их вашему редактировать форму, окно поиска больше не необходимо. Однако, Вы можете хотеть держать это для ссылки или других причин.','');
 INSERT INTO lang VALUES ('imdb_tx_actor','ru','Актеры','');
 INSERT INTO lang VALUES ('imdb_tx_cat','ru','Категории','');
 INSERT INTO lang VALUES ('imdb_tx_comment','ru','Когда добавление/редактирование фильм с особенностью IMDB: какую информацию Вы хотите передать базе данных phpVideoPro по умолчанию?','');
 INSERT INTO lang VALUES ('imdb_tx_comments','ru','Комментарии','');
+INSERT INTO lang VALUES ('imdb_tx_country','ru','Страна','');
 INSERT INTO lang VALUES ('imdb_tx_director','ru','Режиссер','');
 INSERT INTO lang VALUES ('imdb_tx_length','ru','Продолжительность','');
+INSERT INTO lang VALUES ('imdb_tx_music','ru','Композиторы','');
 INSERT INTO lang VALUES ('imdb_tx_title','ru','Название','');
 INSERT INTO lang VALUES ('imdb_tx_year','ru','Год','');
 INSERT INTO lang VALUES ('imdb_url','ru','Участок IMDB, чтобы использовать','');
+INSERT INTO lang VALUES ('imdb_url2','ru','Альтернативный участок IMDB','');
 INSERT INTO lang VALUES ('imp_errors','ru','Импорт %2 отчетов закончился с %1 ошибкой.','');
 INSERT INTO lang VALUES ('imp_success','ru','Импорт %1 отчета, успешно законченного.','');
 INSERT INTO lang VALUES ('incomplete_date','ru','Если Вы не знаете точную дату, но - например - только, что Вы приобретали это в году 2000, ноли замены для неизвестных данных - в нашем примере, дата должна напомнить \"00\" \"00\" \"2000\".','');
@@ -420,6 +427,7 @@ INSERT INTO lang VALUES ('read_access_short','ru','чит','');
 INSERT INTO lang VALUES ('recalc_free','ru','Перевычисление остающийся свободным местом на этом носителе','');
 INSERT INTO lang VALUES ('refresh_lang','ru','Обновить язык','');
 INSERT INTO lang VALUES ('refresh_lang_comment','ru','Вставлять фразы от языкового файла в ДБ','');
+INSERT INTO lang VALUES ('remove_cat','ru','Удалите категорию','');
 INSERT INTO lang VALUES ('remove_empty_media','ru','Удаляй пустые носители','');
 INSERT INTO lang VALUES ('remove_empty_media_comment','ru','Носитель должен быть удален от свободного космического обслуживания, когда последний фильм удален из этого?','');
 INSERT INTO lang VALUES ('restore_db_movie_internal','ru','Восстановите фильмы от резервного файла PVP','');
@@ -448,6 +456,8 @@ INSERT INTO lang VALUES ('sess_start','ru','Запущенный','');
 INSERT INTO lang VALUES ('set_filter','ru','Задать фильтр','');
 INSERT INTO lang VALUES ('site_info','ru','Информация о сайте','');
 INSERT INTO lang VALUES ('site_info_comment','ru','Информация о сайте отображаемая в заголовке браузера','');
+INSERT INTO lang VALUES ('skip_intro','ru','Пропустите введение новичка?','');
+INSERT INTO lang VALUES ('skip_intro_comment','ru','Пропускать ли текст введения на странице начала','');
 INSERT INTO lang VALUES ('source','ru','Источник','');
 INSERT INTO lang VALUES ('staff','ru','Персонал','');
 INSERT INTO lang VALUES ('start_page','ru','Начальная страница','');

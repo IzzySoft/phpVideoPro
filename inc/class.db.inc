@@ -1032,44 +1032,51 @@
      foreach ($searchmovievals as $key=>$val) {
        ${$key} = $val;
      }
-     for ($i=0;$i<count($mtype_id);++$i) {
+     $ccount = count($mtype_id);
+     for ($i=0;$i<$ccount;++$i) {
+       if (!$mtype_id[$i]) break;
        if ($i==0) { $restrict .= "("; } else { $restrict .= " OR "; }
        $restrict .= "v.mtype_id=".$mtype_id[$i]." ";
+       if ($i+1==$ccount) $restrict .= ") ";
      }
      $ccount = count($cat_id);
      for ($i=0;$i<$ccount;++$i) {
+       if (!$cat_id[$i]) break;
        $cat = $cat_id[$i];
-       if ($i==0) $restrict .= ") AND (";
+       if ($i==0) { if ($restrict) $restrict .= "AND "; $restrict .= " ("; }
        $restrict .= "v.cat1_id=$cat OR v.cat2_id=$cat OR v.cat3_id=$cat ";
-       if ($i+1<$ccount) $restrict .= " OR ";
+       if ($i+1<$ccount) { $restrict .= " OR "; } else { $restrict .= ") "; }
      }
-     $restrict .= ") AND v.title LIKE '%$title%' AND ";
-     switch ($ptype) {
-       case director :
-         $this->query("SELECT id FROM directors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
-         while ( $this->next_record() ) {
-           $pids .= ",".$this->f('id');
-         }
-         $pids = substr($pids,1);
-         $restrict .= "director_id IN ($pids) AND"; break;
-       default       : 
-         $this->query("SELECT id FROM actors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
-         while ( $this->next_record() ) {
-           $pids .= ",".$this->f('id');
-         }
-         $pids = substr($pids,1);
-         for ($i=1;$i<6;++$i) {
-           if ($i==1) $restrict .= "(";
-           $restrict .= "v.actor$i"."_id IN ($pids)";
-           if ($i<5) $restrict .= " OR ";
-         }
+     if ($restrict) $restrict .= "AND ";
+     $restrict .= "v.title LIKE '%$title%' AND ";
+     if ($pname) {
+       switch ($ptype) {
+         case director :
+           $this->query("SELECT id FROM directors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+           while ( $this->next_record() ) {
+             $pids .= ",".$this->f('id');
+           }
+           $pids = substr($pids,1);
+           $restrict .= "director_id IN ($pids) AND"; break;
+         default       : 
+           $this->query("SELECT id FROM actors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+           while ( $this->next_record() ) {
+             $pids .= ",".$this->f('id');
+           }
+           $pids = substr($pids,1);
+           for ($i=1;$i<6;++$i) {
+             if ($i==1) $restrict .= "(";
+             $restrict .= "v.actor$i"."_id IN ($pids)";
+             if ($i<5) $restrict .= " OR ";
+           }
+       }
+       $restrict .= ") AND ";
      }
-     $restrict .= ") AND comment LIKE '%$comment%'";
+     $restrict .= "comment LIKE '%$comment%'";
      if ($minlen) $restrict .= " AND length>$minlen";
      if ($maxlen) $restrict .= " AND length<$maxlen";
      if ($minfsk) $restrict .= " AND fsk>$minfsk";
      if ($maxfsk) $restrict .= " AND fsk<$maxfsk";
-#     echo "<B>Order:</B> $order<BR><B>Start:</B> $start<BR><B>Restrict:</B> $restrict<BR>\n"; exit;
      return $this->get_movielist($order,$restrict,$start);
    }
 

@@ -57,9 +57,9 @@
 
  include("inc/sql_set_persons.inc");
 
- if ($cat2_id < 0) $cat2_id="NULL";
- if ($cat3_id < 0) $cat3_id="NULL";
- if ($pict_id < 0) $pict_id="NULL";
+ if ($cat2_id < 0) $cat2_id="0";
+ if ($cat3_id < 0) $cat3_id="0";
+ if ($pict_id < 0) $pict_id="0";
  (int) $cass_id;
  (int) $part;
 

@@ -31,7 +31,7 @@
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
     case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
     case "edit"          : $mt = $db->get_mtypes("id=$mtype_id");
-                           $pagename .= " [ " . lang("edit_entry",$mt[0][sname]." ".$nr) . " ]";
+                           $pagename .= " [ " . lang("edit_entry",$mt[0]['sname']." ".$nr) . " ]";
 			   unset($mt); break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;

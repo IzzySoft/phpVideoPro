@@ -21,6 +21,10 @@
  while ( list($vn,$vv)=each($_POST) ) {
    $$vn = $vv;
  }
+ if (!isset($new_entry)) $new_entry = FALSE;
+ if (!isset($edit)) $edit = FALSE;
+ if (!isset($update)) $update = FALSE;
+ if (!isset($create)) $create = FALSE;
 
  #==========[ Initial setup: Target action (New|Edit|Delete or View only) ]===
  if (!$new_entry && !isset($_REQUEST["mtype_id"])) {
@@ -93,13 +97,13 @@
     $cats   = $db->get_category("");
     $scolors = $db->get_color();
     for ($i=0;$i<count($scolors);$i++) {
-     $scolors[$i][name] = lang($scolors[$i][name]);
+     $scolors[$i]['name'] = lang($scolors[$i]['name']);
     }
     $picts = $db->get_pict();
     $commercials = $db->get_commercials();
     for ($i=0;$i<count($commercials);$i++) {
-      $comm[$commercials[$i][id]] = $commercials[$i][name];
-      $comm_id[$i] = $commercials[$i][id];
+      $comm[$commercials[$i]['id']] = $commercials[$i]['name'];
+      $comm_id[$i] = $commercials[$i]['id'];
     }
   } else {
     $input = $dinput = "INPUT TYPE='button'";
@@ -146,22 +150,22 @@
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
-  $title = $pvp->common->string2input($movie[title]);
-  $recdate = $movie[aq_date]; $src = $movie[source];
-  $vis_actor1 = $movie[actor1_list]; $vis_actor2 = $movie[actor2_list];
-  $vis_actor3 = $movie[actor3_list]; $vis_actor4 = $movie[actor4_list];
-  $vis_actor5 = $movie[actor5_list];
+  $title = $pvp->common->string2input($movie['title']);
+  $recdate = $movie['aq_date']; $src = $movie['source'];
+  $vis_actor1 = $movie['actor1_list']; $vis_actor2 = $movie['actor2_list'];
+  $vis_actor3 = $movie['actor3_list']; $vis_actor4 = $movie['actor4_list'];
+  $vis_actor5 = $movie['actor5_list'];
 
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor_$i";
-    $actor[$i][name]  = $pvp->common->string2input($movie[$act_id][name]);
-    $actor[$i][fname] = $pvp->common->string2input($movie[$act_id][firstname]);
+    $actor[$i]['name']  = $pvp->common->string2input($movie[$act_id]['name']);
+    $actor[$i]['fname'] = $pvp->common->string2input($movie[$act_id]['firstname']);
   }
-  $director_name  = $pvp->common->string2input($movie[director_][name]);
-  $director_fname = $pvp->common->string2input($movie[director_][firstname]);
-  $composer_name  = $pvp->common->string2input($movie[music_][name]);
-  $composer_fname = $pvp->common->string2input($movie[music_][firstname]);
-  $pict_format = $movie[pict];
+  $director_name  = $pvp->common->string2input($movie['director_']['name']);
+  $director_fname = $pvp->common->string2input($movie['director_']['firstname']);
+  $composer_name  = $pvp->common->string2input($movie['music_']['name']);
+  $composer_fname = $pvp->common->string2input($movie['music_']['firstname']);
+  $pict_format = $movie['pict'];
 
   for ($i=1;$i<4;$i++) {
     $cat_nr  = "cat$i";
@@ -174,7 +178,7 @@
  } // end if (!$new_entry)
 
   $mtypes = $db->get_mtypes("id=$mtype_id");
-  $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
+  $mediatype = $mtypes[0]['sname']; $media_tname = $mtypes[0]['name'];
   ##########################################################################
   # set some useful defaults
   if ( trim($recdate)=="" ) $recdate = $pvp->common->getRecDate("string");
@@ -208,11 +212,12 @@
   $t->set_var("form_name","entryform");
   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
   switch ( strtolower($page_id) ) {
-    case "edit"      : $t->set_var("listtitle",lang("edit_entry",$movie[mtype_short]." ".$nr)); break;
-    case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$movie[mtype_short]." ".$nr)); break;
+    case "edit"      : $t->set_var("listtitle",lang("edit_entry",$movie['mtype_short']." ".$nr)); break;
+    case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$movie['mtype_short']." ".$nr)); break;
     case "add_entry" : $t->set_var("listtitle",lang("add_entry")); break;
     default          : break;
   }
+  if (!isset($save_result)) $save_result = "";
   $t->set_var("save_result",$save_result);
   $t->set_block("edit","actorblock","actorlist");
 
@@ -220,16 +225,16 @@
   for ($i=1;$i<=$max["actors"];$i++) {
     $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
     if ($page_id == "view_entry") { // set imdb info url for actor
-      $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($actor[$i][fname],$actor[$i][name],"actors");
+      $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($actor[$i]['fname'],$actor[$i]['name'],"actors");
     } else { $formAddon = $form["addon_name"]." CLASS='nameinput'"; }
     if ($i==1) {
       $t->set_var("actor_name",lang("actors"));
     } else {
       $t->set_var("actor_name","&nbsp;");
     }
-    if ( $edit || strlen($actor[$i][name] . $actor[$i][fname]) ) {
-      $t->set_var("actor",form_input($name,$actor[$i][name],$formAddon));
-      $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));
+    if ( $edit || strlen($actor[$i]['name'] . $actor[$i]['fname']) ) {
+      $t->set_var("actor",form_input($name,$actor[$i]['name'],$formAddon));
+      $t->set_var("actor_f",form_input($fname,$actor[$i]['fname'],$formAddon));
       $t->set_var("actor_list",vis_actors($i));
     } else {
       $visible = "vis_actor" . $i;
@@ -243,6 +248,7 @@
   // main block
   #---[ Obtain disktype data ]---
   $mdisktype = $db->get_disktypes($mtype_id);
+  $dtcount = 0;
   if ($disktype) {
     $disktypes = $db->get_disktypes($mtype_id,$disktype);
     $dtcount   = count($disktypes);
@@ -254,7 +260,7 @@
   #---[ navigation and title ]---
   if ($page_id == "view_entry") {
     $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
-    if ($movie[previous]) {
+    if ($movie['previous']) {
       $lm = $db->get_firstmovienum(); $lmc = count($lm); $i=0;
       while ( ($lm[$i]["cass_id"]==0) && ($i < $lmc) ) {
         ++$i;
@@ -262,17 +268,17 @@
       $prev = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$lm[$i]["mtype_id"]
             . "&cass_id=".(int) $lm[$i]["cass_id"]."&part=".(int) $lm[$i]["part"])
             . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0'></A>";
-      $prev .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie[previous]->mtype_id
-            . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part)
+      $prev .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie['previous']->mtype_id
+            . "&cass_id=".$movie['previous']->media_nr."&part=".$movie['previous']->part)
 	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0'></A>";
     } else {
       $prev = "<IMG SRC='".$tpl_dir."/images/first-grey.gif'>"
             . "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
     }
     $t->set_var("previous",$prev); unset($prev);
-    if ($movie[next]) {
-      $next = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie[next]->mtype_id
-            . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part)
+    if ($movie['next']) {
+      $next = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie['next']->mtype_id
+            . "&cass_id=".$movie['next']->media_nr."&part=".$movie['next']->part)
             . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
       $lm = $db->get_lastmovienum(); $lmc = count($lm);
       do {
@@ -373,7 +379,7 @@ EndHiddenFields;
       $field .= ">";
     } else {
       if ($lp) $lp = lang("yes"); else $lp = lang("no");
-      $field = vform_input("lp",$lp,"",YN_WID);
+      $field = vform_input("lp",$lp,"",YN_WIDTH);
     }
   } else {
     $t->set_var("longplay_name","");
@@ -424,8 +430,8 @@ EndHiddenFields;
     if ($label) $field .= " CHECKED";
     $field .= ">";
   } else {
-    if ($label) $f .= lang("yes"); else $f = lang("no");
-    $field = vform_input("label",$f,"",YN_BTN_WID);
+    if ($label) $f = lang("yes"); else $f = lang("no");
+    $field = vform_input("label",$f,"",YN_WIDTH);
   }
   $t->set_var("label",$field);
 
@@ -437,10 +443,10 @@ EndHiddenFields;
     $field .= "<SELECT NAME='cat" . $i . "_id' class='catinput'>";
     if ($i > 1) $field .= "<OPTION VALUE='-1'>- ".lang("none")." -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
-      if ($cats[$k][enabled]) {
-        $field .= "<OPTION VALUE='" . $cats[$k][id] . "'";
-        if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
-        $field .= ">" . $cats[$k][name] . " </OPTION>";
+      if ($cats[$k]['enabled']) {
+        $field .= "<OPTION VALUE='" . $cats[$k]['id'] . "'";
+        if ($cats[$k]['name']==$cat[$i]) $field .= " SELECTED";
+        $field .= ">" . $cats[$k]['name'] . " </OPTION>";
       }
     }
     $field .= "</SELECT>";
@@ -487,11 +493,12 @@ EndHiddenFields;
   if ($recdate == lang("unknown")) {
     $tdate = vform_input("recdate",$recdate,"",TECH_BTN_WID);
   } else {
+    $tdate = "";
     if ($edit) {
       $recdate_arr = $pvp->common->makeRecDateArr($recdate);
-      $tdate .= "<$dinput NAME='recday' VALUE='" . $recdate_arr[mday] . "' " . $form["addon_day"]." CLASS='partinput'" . ">.";
-      $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr[mon] . "' " . $form["addon_month"]." CLASS='partinput'" . ">.";
-      $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr[year] . "' " . $form["addon_year"]." CLASS='yesnoinput'" . ">";
+      $tdate .= "<$dinput NAME='recday' VALUE='" . $recdate_arr['mday'] . "' " . $form["addon_day"]." CLASS='partinput'" . ">.";
+      $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr['mon'] . "' " . $form["addon_month"]." CLASS='partinput'" . ">.";
+      $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr['year'] . "' " . $form["addon_year"]." CLASS='yesnoinput'" . ">";
     } else {
       $recdate = $pvp->common->formatDate($recdate);
       $tdate = vform_input("recdate",$recdate,"",TECH_BTN_WID);
@@ -505,9 +512,9 @@ EndHiddenFields;
   if ($edit) {
     $field = "<SELECT NAME='tone_id'" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($ttypes);$i++) {
-      $field .= "<OPTION VALUE='" . $ttypes[$i][id] . "'";
-      if ($ttypes[$i][id]==$tone_id) $field .=  "SELECTED";
-      $field .= ">" . $ttypes[$i][name] . " </OPTION>";
+      $field .= "<OPTION VALUE='" . $ttypes[$i]['id'] . "'";
+      if ($ttypes[$i]['id']==$tone_id) $field .=  "SELECTED";
+      $field .= ">" . $ttypes[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
@@ -518,9 +525,9 @@ EndHiddenFields;
   if ($edit) {
     $field = "<SELECT NAME='color_id'" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($scolors);$i++) {
-      $field .= "<OPTION VALUE='" . $scolors[$i][id] . "'";
-      if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][id]==$defaults["scolor"]) ) $field .= " SELECTED";
-      $field .= ">" . $scolors[$i][name] . " </OPTION>";
+      $field .= "<OPTION VALUE='" . $scolors[$i]['id'] . "'";
+      if ($scolors[$i]['name']==$color || ($new_entry && $scolors[$i]['id']==$defaults["scolor"]) ) $field .= " SELECTED";
+      $field .= ">" . $scolors[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
@@ -531,9 +538,9 @@ EndHiddenFields;
   if ($edit) {
     $field = "<SELECT NAME='pict_id'" . $form["addon_tech"] . "><OPTION VALUE='-1'>" . lang("unknown") . "</OPTION>";
     for ($i=0;$i<count($picts);$i++) {
-      $field .= "<OPTION VALUE='" . $picts[$i][id] . "'";
-      if ($picts[$i][name]==$pict_format) $field .=  "SELECTED";
-      $field .= ">" . $picts[$i][name] . " </OPTION>";
+      $field .= "<OPTION VALUE='" . $picts[$i]['id'] . "'";
+      if ($picts[$i]['name']==$pict_format) $field .=  "SELECTED";
+      $field .= ">" . $picts[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
@@ -561,12 +568,13 @@ EndHiddenFields;
   $t->set_var("subtitle_name",lang("subtitle"));
   if ($edit) {
     $audio_langs = $db->get_avlang("audio");
+    $audio_ts = "";
     for ($i=0;$i<AUDIO_TS;++$i) {
       $atsname = "audio_ts".$i;
       $audio_ts .= "<SELECT NAME='$atsname' CLASS='techinput'><OPTION VALUE='-'>-</OPTION>";
       for ($k=0;$k<count($audio_langs);$k++) {
         $audio_ts .= "<OPTION VALUE='".$audio_langs[$k]->id."'";
-        if ( $audio_langs[$k]->id == $audio[$i] ) $audio_ts .= " SELECTED";
+        if ( isset($audio[$i]) && $audio_langs[$k]->id == $audio[$i] ) $audio_ts .= " SELECTED";
         $audio_ts .= ">".$audio_langs[$k]->name."</OPTION>";
       }
       $audio_ts .= "</SELECT>";
@@ -574,12 +582,13 @@ EndHiddenFields;
     }
     $t->set_var("audio",$audio_ts);
     $audio_langs = $db->get_avlang("subtitle");
+    $sub_ts = "";
     for ($i=0;$i<SUBTITLES;++$i) {
       $atsname = "subtitle".$i;
       $sub_ts .= "<SELECT NAME='$atsname' CLASS='techinput'><OPTION VALUE='-'>-</OPTION>";
       for ($k=0;$k<count($audio_langs);$k++) {
         $sub_ts .= "<OPTION VALUE='".$audio_langs[$k]->id."'";
-        if ( $audio_langs[$k]->id == $subtitle[$i] ) $sub_ts .= " SELECTED";
+        if ( isset($subtitle[$i]) && $audio_langs[$k]->id == $subtitle[$i] ) $sub_ts .= " SELECTED";
         $sub_ts .= ">".$audio_langs[$k]->name."</OPTION>";
       }
       $sub_ts .= "</SELECT>";
@@ -587,9 +596,11 @@ EndHiddenFields;
     }
     $t->set_var("subtitle",$sub_ts);
   } else { // !$edit
+    $audio_ts = "";
     for ($i=0;$i<count($audio);++$i) {
       if (isset($audio[$i]) && !empty($audio[$i])) $audio_ts .= ", ".lang("lang_".$audio[$i]);
     }
+    $sub_ts = "";
     for ($i=0;$i<count($subtitle);++$i) {
       if (isset($subtitle[$i]) && !empty($subtitle[$i])) $sub_ts .= ", ".lang("lang_".$subtitle[$i]);
     }
@@ -649,7 +660,7 @@ EndHiddenFields;
     $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='update' VALUE='" . lang("update") . "'>");
     $t->set_var("print_label","&nbsp;");
   } else {
-    $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
+    $labels = $pvp->common->get_filenames($base_path . "labels",".config");
     $labellist = "<SELECT NAME='labelconf' onChange='mklabel(this.options[this.selectedIndex].value)'><OPTION VALUE='-'>" . lang("print_label") . "</OPTION>";
     for ($i=0;$i<count($labels);$i++) {
       $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);

@@ -41,7 +41,7 @@
  <TR><TH>Medium</TH><TH>Nr</TH><TH>Free</TH><TH>Contains</TH><TR><?
 
   for ($i=1;$i<=count($mlist);$i++) {
-    $query = "SELECT v.title,m.sname,c.name FROM video v,mtypes m,cat c WHERE cass_id='" . $mlist[$i]["id"] . "' AND v.mtype_id=m.id AND v.cat1_id=c.id";
+    $query = "SELECT v.title,m.sname,c.name FROM video v,mtypes m,cat c WHERE cass_id='" . $mlist[$i]["id"] . "' AND v.mtype_id=m.id AND v.cat1_id=c.id AND v.mtype_id IN ($rw_media)";
     debug("S","<TR><TD colspan=4>" . $colors["ok"] . "$query</Font></TD></TR>\n");
     $db->query($query);
     $k = 0;

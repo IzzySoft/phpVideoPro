@@ -12,7 +12,13 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.1.1 (July 2001)</b><br>
+  <LI><b>0.1.2 (July 2001)</b><br>
+      <ul>
+       <li>taperest list showed up wrong media names (and movie titles):
+           Media Type specification in sql statement was incomplete :)
+      </ul>
+  <LI><b>0.1.1 (July 4, 2001)</b><br>
+      alpha release "independence day":
       <ul>
        <li>(un)setting of filters now implemented
        <li>for now filters follow this rule: multiple selected items of the
@@ -32,6 +38,7 @@
            db entry is referring to them).
        <li>added filtered taperest list (list of remaining time on tapes which only
            includes tapes that match the filter criteria)
+       <li>small updates to the README (update process, latest version URL)
       </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works

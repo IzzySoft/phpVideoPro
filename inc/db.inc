@@ -12,11 +12,11 @@
 
  /* $Id$ */
 
- class sql { // extends DB_Sql {
+ class sql extends DB_Sql {
    VAR $limit;
 
    function sql() { // init
-     // $this->DB_Sql; // constructor of base class needs explicit call
+     $this->DB_Sql; // constructor of base class needs explicit call
      $this->limit();
    }
 
@@ -57,7 +57,7 @@
      GLOBAL $db,$colors;
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
      $this->clean_query($query);
-     if ( $db->query($query) ) return 1;
+     if ( $this->query($query) ) return 1;
      return 0;
    }
 
@@ -83,15 +83,15 @@
      }
      $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . "</Font>";
      $this->dbquery($query);
-     if ( $db->next_record() ) {
-       $id = $db->f('id');
+     if ( $this->next_record() ) {
+       $id = $this->f('id');
        $dmsg  .= " (Got: '$id')</Font>\n";
      } else {
        $dmsg  .= "<BR>" . $colors["err"] . "$person not found in db! Trying to insert...</Font><BR>\n";
        if ( $this->dbquery($sub_query) ) {
          $this->dbquery($query);
-         if ( $db->next_record() ) {
-           $id = $db->f('id');
+         if ( $this->next_record() ) {
+           $id = $this->f('id');
            $dmsg  .= $colors["ok"] . "$person \"$name, $fname\" inserted into db (id: $id).</Font>\n";
          } else {
            $dmsg  .= $colors["err"] . "Something strange happened: inserted $person \"$name, $fname\" into db, but could not find him/her afterwards!</Font>\n";
@@ -138,22 +138,22 @@
 
  } // end class sql
 
- $pvp->sql = new sql;
+ $db = new sql;
 
  ##############################################################################
  # placeholder(s) for backward compatibility
  function dbquery($query) {
-   GLOBAL $pvp;
-   return $pvp->sql->dbquery($query);
+   GLOBAL $db;
+   return $db->dbquery($query);
  }
  function insert_person($person,$query,$sub_query,$name="",$fname="") {
    // only called from inc/sql_set_persons.inc
-   GLOBAL $pvp;
-   return $pvp->sql->insert_person($person,$query,$sub_query,$name,$fname);
+   GLOBAL $db;
+   return $db->insert_person($person,$query,$sub_query,$name,$fname);
  }
  function queryf($file,$comment,$silent=0) { // only used in setup/*
-   GLOBAL $pvp;
-   $pvp->sql->queryf($file,$comment,$silent);
+   GLOBAL $db;
+   $db->queryf($file,$comment,$silent);
  }
 
 ?>

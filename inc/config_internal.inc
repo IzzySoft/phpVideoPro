@@ -50,11 +50,12 @@ $form["addon_tech"]    = "class=\"techinput\"";
 #----------------------------------------[ read preferences from DB ]---
 $pvp->db_include = dirname(__FILE__) . "/db_" . $database["type"] . ".inc";
 include ($pvp->db_include);
-$db = new DB_Sql;
-$db->Host     = $database["host"];
-$db->Database = $database["database"];
-$db->User     = $database["user"];
-$db->Password = $database["password"];
+include (dirname(__FILE__) . "/db.inc");
+$pvp->config->db->type = strtolower($database["type"]);
+$db->Host     = $pvp->config->db->host     = $database["host"];
+$db->Database = $pvp->config->db->database = $database["database"];
+$db->User     = $pvp->config->db->user     = $database["user"];
+$db->Password = $pvp->config->db->password = $database["password"];
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
 if (!$pvpinstall) {

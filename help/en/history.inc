@@ -14,6 +14,7 @@
      multiple text lines per movie are supported
  <li>toolbar is now displayed for labels to allow easier access to the print
      function (no effect on Konqueror whyever - but works fine with Mozilla)
+ <li>added HowTo on creation/configuration of label templates (in help system)
 </ul>
 
 [title]

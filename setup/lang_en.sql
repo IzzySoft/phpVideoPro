@@ -137,3 +137,4 @@ INSERT INTO lang VALUES('cut_off','en','cut off');
 INSERT INTO lang VALUES('display_limit','en','Display Limit');
 INSERT INTO lang VALUES('display_limit_comment','en','(how many lines to display per page for lists)');
 INSERT INTO lang VALUES('print_label','en','Print Label:');
+INSERT INTO lang VALUES('howto_label','en','How to create/configure label templates');

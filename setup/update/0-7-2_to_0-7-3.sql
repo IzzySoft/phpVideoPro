@@ -13,4 +13,4 @@ INSERT INTO preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_music');
 
 # version update
-#UPDATE pvp_config SET value='0.7.2' WHERE name='version';
+UPDATE pvp_config SET value='0.7.3' WHERE name='version';

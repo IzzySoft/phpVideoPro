@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.3 (2005)
+0.7.3 (January 7, 2005)
 [text]
 <ul>
  <li>fixed some warnings occuring with empty DB (e.g. after fresh install)

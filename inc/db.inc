@@ -266,31 +266,41 @@
    ############################################################################
    # get audio/video data and return it as array
    function get_av($id,$table) {
-     $this->query("SELECT name,sname FROM $table WHERE id=$id");
-     if ( $this->next_record() ) {
-       $av[name]  = $this->f('name');
-       $av[sname] = $this->f('sname');
+     if ($id=="") {
+       $this->query("SELECT id,name,sname FROM $table");
+       $i=0;
+       while ( $this->next_record() ) {
+         $av[$i][id]    = $this->f('id');
+	 $av[$i][name]  = $this->f('name');
+	 $av[$i][sname] = $this->f('sname');
+       }
      } else {
-       $av[name] = $av[sname] = "";
+       $this->query("SELECT name,sname FROM $table WHERE id=$id");
+       if ( $this->next_record() ) {
+         $av[name]  = $this->f('name');
+         $av[sname] = $this->f('sname');
+       } else {
+         $av[name] = $av[sname] = "";
+       }
      }
      return $av;
    }
 
    ############################################################################
    # get all pict data and return it as array
-   function get_pict($id) {
+   function get_pict($id="") {
      return $this->get_av($id,"pict");
    }
 
    ############################################################################
    # get all color data and return it as array
-   function get_color($id) {
+   function get_color($id="") {
      return $this->get_av($id,"colors");
    }
 
    ############################################################################
    # get all tone data and return it as array
-   function get_tone($id) {
+   function get_tone($id="") {
      return $this->get_av($id,"tone");
    }
 

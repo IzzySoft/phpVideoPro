@@ -199,10 +199,12 @@
        $msg_id         = $this->f('message_id');
        $trans[$msg_id] = stripslashes($this->f('content'));
      }
-     $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$pref_lang'");
-     while ( $this->next_record() ) { // overwrite with preferred (if exists)
-       $msg_id         = $this->f('message_id');
-       $trans[$msg_id] = stripslashes($this->f('content'));
+     if ($pref_lang != $def_lang) {
+       $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$pref_lang'");
+       while ( $this->next_record() ) { // overwrite with preferred (if exists)
+         $msg_id         = $this->f('message_id');
+         $trans[$msg_id] = stripslashes($this->f('content'));
+       }
      }
      return $trans;
    }

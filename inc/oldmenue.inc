@@ -45,6 +45,7 @@
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("print") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("label") ?>", "<? echo $base_url ?>label.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>listgen.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);

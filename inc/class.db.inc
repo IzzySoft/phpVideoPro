@@ -305,6 +305,42 @@
    }
 
    ############################################################################
+   # Session managment
+   ############################################################################
+   /** Create a session
+    * @class sql
+    * @method create_session
+    * @param string id session-id
+    * @param string ip remote-ip
+    * @param integer user_id
+    * @param timestamp started
+    * @return boolean success
+    */
+   function create_session($id,$ip,$user_id,$started) {
+     $query = "INSERT INTO pvp_sessions (id,ip,user_id,started,dla) VALUES ("
+            . "'$id','$ip',$user_id,$started,$started)";
+     return $this->query($query);
+   }
+
+   /** Verify (and update) a session
+    * @class sql
+    * @method verify_session
+    * @param string id session-id
+    * @param string ip remote-ip
+    * @return integer user-id
+    */
+   function verify_session($id,$ip) {
+     $this->query("SELECT user_id FROM pvp_sessions WHERE id='$id' AND ip='$ip'");
+     if ( $this->next_record() ) {
+       $user_id = $this->f('user_id');
+       $this->dbquery("UPDATE pvp_sessions SET dla=".time()." WHERE id='$id' AND ip='$ip'");
+       return $user_id;
+     } else {
+       return FALSE;
+     }
+   }
+
+   ############################################################################
    # User managment
    ############################################################################
    /** Get users

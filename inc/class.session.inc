@@ -73,9 +73,7 @@
       $id = md5( $this->randomstring() );
       $ip = $REMOTE_ADDR;
       $started = time();
-      $query = "INSERT INTO pvp_sessions (id,ip,user_id,started,dla) VALUES ("
-             . "'$id','$ip',$user_id,$started,$started)";
-      if ( $db->query($query) ) {
+      if ( $db->create_session($id,$ip,$user_id,$started) ) {
         return $id;
       } else { return FALSE; }
     } else {
@@ -87,16 +85,11 @@
    * @class session
    * @method verify
    * @param string id identifier of the session to verify
+   * @return integer user-id
    */
   function verify($id) {
     GLOBAL $db,$REMOTE_ADDR;
-    $db->dbquery("SELECT dla FROM pvp_sessions WHERE id='$id' AND ip='$REMOTE_ADDR'");
-    if ( $db->next_record() ) {
-      $db->dbquery("UPDATE pvp_sessions SET dla=".time()." WHERE id='$id' AND ip='$REMOTE_ADDR'");
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+    return $db->verify_session($id,$REMOTE_ADDR);
   }
 
   /** Destroy a session

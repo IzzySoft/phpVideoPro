@@ -159,6 +159,16 @@
    return $trans;
  }
 
+ /** kick-off unauthorized visitor
+  * @package Api
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @function kickoff
+  */
+ function kickoff() {
+   header("Location: $base_url"."login.php");
+   exit;
+ }
  include (dirname(__FILE__) . "/class.common.inc");
  $pvp->common = new common;
 ?>

@@ -112,7 +112,7 @@
         $type = " TYPE=\"button\" ";
       }
     }
-    $field = "<INPUT" . $type . "NAME=\"$name\" VALUE=\"$value\">";
+    $field = "<INPUT" . $type . "NAME=\"$name\" VALUE=\"$value\" $addons>";
     return $field;
   }
   
@@ -231,8 +231,19 @@
   // actors block
   for ($i=1;$i<=$max["actors"];$i++) {
     $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
+    if ($page_id == "view") { // set imdb info url for actor
+     if (strlen(trim($actor[$i][name]))) {
+       $imdb = "http://us.imdb.com/Nsearch?name=";
+       if (strlen(trim($actor[$i][fname]))) {
+         $imdb .= $actor[$i][fname] . "+";
+       }
+       $imdb .= $actor[$i][name] . "&type=substring&occupation=actors";
+       $form_addon = $form["addon_name"] . " onClick=window.open(\"$imdb\",\"imdb\")";
+     } else { $form_addon = $form["addon_name"]; }
+     echo "<!-- $form_addon -->\n";
+    }
     $t->set_var("actor_name",lang("actor") . " $i");
-    $t->set_var("actor",form_input($name,$actor[$i][name],$form["addon_name"]));
+    $t->set_var("actor",form_input($name,$actor[$i][name],$form_addon));
     $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$form["addon_name"]));
     $t->set_var("actor_list",vis_actors($i));
     $t->parse("actorlist","actorblock",TRUE);

@@ -24,8 +24,8 @@
  </TABLE>
  <TABLE Width="90%" Align="Center" Border="0" class="navtable">
   <TR>{sess_id}
-   <TD><P ALIGN="left"><INPUT TYPE="submit" NAME="reset" VALUE="Reset"></P></TD>
-   <TD><P ALIGN="right"><INPUT TYPE="submit" NAME="save" VALUE="Save"></P></TD>
+   <TD><P ALIGN="left"><INPUT TYPE="submit" NAME="reset" VALUE="{reset}"></P></TD>
+   <TD><P ALIGN="right"><INPUT TYPE="submit" NAME="save" VALUE="{update}"></P></TD>
   </TR>
  </TABLE>
 </FORM>

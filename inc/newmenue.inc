@@ -272,6 +272,8 @@ function getPageOffsetTop(el) {
 <a class="menuItem" href="<? echo $base_url ?>new.php"><? echo lang("add_entry") ?></a>
 <div class="menuItemSep"></div>
 <a class="menuItem" href="<? echo $base_url ?>configure.php"><? echo lang("configuration") ?></a>
+<div class="menuItemSep"></div>
+<a class="menuItem" href="http://www.qumran.org/ftp/net/div/izzysoft/phpvideopro.tgz"><? echo lang("dl_pvp_latest") ?></a>
 </div>
 
 <div id="filterMenu" class="menu">

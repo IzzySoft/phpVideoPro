@@ -6,16 +6,14 @@
   //define menu items (first parameter of NavBarMenu specifies main category width, second specifies sub category width in pixels)
   //add more menus simply by adding more "blocks" of same code below
 
-//  dhtmlMenu = new NavBarMenu(60, 120);
-//  dhtmlMenu.addItem(new NavBarMenuItem("Home", "http://www.qumran.org/local/"));
-//  myNavBar1.addMenu(dhtmlMenu);
-
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("edit") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("add_entry") ?>", "<? echo $base_url ?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("Change Tape Nr", "<? echo $base_url ?>change_nr.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("configuration") ?>", "<? echo $base_url ?>configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("dl_pvp_latest") ?>", "http://www.qumran.org/ftp/net/div/izzysoft/phpvideopro.tgz"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);

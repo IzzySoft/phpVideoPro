@@ -8,9 +8,8 @@
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("t_list"=>"setfilter_list.tpl",
                      "t_item"=>"setfilter_item.tpl",
-//                     "tone_item"=>"setfilter_tone_item.tpl",
-                     "tone_list"=>"setfilter_tone_list.tpl",
-		     "t_input"=>"setfilter_item_input.tpl"));
+                     "tone_list"=>"setfilter_tone_list.tpl"));
+  $t->set_block("t_item","inputblock","inputlist");
   $t->set_block("tone_list","listblock","listlist");
   $t->set_block("listblock","itemblock","itemlist");
 
@@ -99,7 +98,7 @@
     $t->set_var("item","");
     for ($k=0;$k<count($id);$k++) {
       $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "$checked\">&nbsp;$name[$k]</TD>");
-      $t->parse("item","t_input",TRUE);
+      $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("mtype","t_item");
 
@@ -108,12 +107,12 @@
     if ( isset($filter->length_min) ) $input .= " VALUE=\"" . $filter->length_min . "\"";
     $input .= $form["addon_filmlen"] . ">";
     $t->set_var("input",$input);
-    $t->parse("item","t_input");
+    $t->parse("inputlist","inputblock");
     $input = lang("max") . ":&nbsp;<INPUT NAME=\"length_max\"";
     if ( isset($filter->length_max) ) $input .= " VALUE=\"" . $filter->length_max . "\"";
     $input .= $form["addon_filmlen"] . ">";
     $t->set_var("input",$input);
-    $t->parse("item","t_input",TRUE);
+    $t->parse("inputlist","inputblock",TRUE);
     $t->parse("length","t_item");
 
     # date
@@ -122,12 +121,12 @@
     if ( isset($filter->aquired_min) ) $input .= " VALUE=\"" . $filter->aquired_min . "\"";
     $input .= "$addon>";
     $t->set_var("input",$input);
-    $t->parse("item","t_input");
+    $t->parse("inputlist","inputblock");
     $input = lang("max") . ":&nbsp;<INPUT NAME=\"aquired_max\"";
     if ( isset($filter->aquired_max) ) $input .= " VALUE=\"" . $filter->aquired_max . "\"";
     $input .= "$addon>";
     $t->set_var("input",$input);
-    $t->parse("item","t_input",TRUE);
+    $t->parse("inputlist","inputblock",TRUE);
     $t->parse("date","t_item");
 
     # screen
@@ -142,7 +141,7 @@
     for ($k=0;$k<count($id);$k++) {
       if ($filter->pict->$id) { $checked = " CHECKED"; } else { $checked = ""; }
       $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"pict_" . $id[$k] . "\"$checked>&nbsp;$name[$k]");
-      $t->parse("item","t_input",TRUE);
+      $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("screen","t_item");
 
@@ -160,7 +159,7 @@
       if ($filter->color->$id[$k]) $input .= " CHECKED";
       $input .= ">&nbsp;" . lang("$name[$k]");
       $t->set_var("input",$input);
-      $t->parse("item","t_input",TRUE);
+      $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("picture","t_item");
 
@@ -198,12 +197,12 @@
     if ( isset($filter->fsk_min) ) $input .= " VALUE=\"" . $filter->fsk_min . "\"";
     $input .= $form["addon_fsk"] . ">";
     $t->set_var("input",$input);
-    $t->parse("item","t_input");
+    $t->parse("inputlist","inputblock");
     $input = lang("max") . ":&nbsp;<INPUT NAME=\"fsk_max\"";
     if ( isset($filter->fsk_max) ) $input .= " VALUE=\"" . $filter->fsk_max . "\"";
     $input .= $form["addon_fsk"] . ">";
     $t->set_var("input",$input);
-    $t->parse("item","t_input",TRUE);
+    $t->parse("inputlist","inputblock",TRUE);
     $t->parse("fsk","t_item");
 
   // -----------------------------------------------------------------[ right side ]------

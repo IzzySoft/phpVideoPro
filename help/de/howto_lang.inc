@@ -22,7 +22,7 @@ des neuen Editors für Übersetzungen) - es sind nur wenige Schritte nötig:
 
 [text]
 (für detailliertere Ausführungen siehe
-<a href={PHP_SELF}?topic=admin_translations>*admin_translations#</a>).
+<a href={_SERVER["PHP_SELF"]}?topic=admin_translations>*admin_translations#</a>).
 So, und jetzt würde ich mich freuen, eine Kopie dieser Datei zu erhalten, um sie
 in zukünftigen Versionen von phpVideoPro verwenden zu können!
 

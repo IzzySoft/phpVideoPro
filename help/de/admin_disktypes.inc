@@ -8,7 +8,7 @@
 Die verschiedenen Disk-Typen unterstützen unterschiedliche Features (oder auch
 Limitierungen), und diese lassen sich auf dieser Seite zuordnen. Die Handhabung
 dieses Formulars ist äquivalent zu dem für die
-<A HREF="{PHP_SELF}?topic=admin_cats">Kategorien</A>): vorhandene Einträge
+<A HREF="{_SERVER["PHP_SELF"]}?topic=admin_cats">Kategorien</A>): vorhandene Einträge
 können bearbeitet, neue hinzugefügt (letzteres über den freien Eintrag am
 Ende der Tabelle), nicht (mehr) benötigte gelöscht werden (indem der Inhalt
 des Feldes "*name#" für den betreffenden Eintrag geleert wird).

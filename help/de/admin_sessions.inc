@@ -25,7 +25,7 @@ bei denen der jeweilige User sich ohnehin bereits abgemeldet hat. Ein solcher
 Eintrag hat nur noch statistischen Wert. Ist phpVideoPro entsprechend
 konfiguriert, ist dieser Job unnötig: phpVideoPro kann automatisch "alte"
 Einträge aus der Datenbank entfernen. Die entsprechende Einstellung ist auf
-der <A HREF="{PHP_SELF}?topic=configuration">Konfigurations-Seite</A>
+der <A HREF="{_SERVER["PHP_SELF"]}?topic=configuration">Konfigurations-Seite</A>
 vorzunehmen (siehe dort).
 
 [title]

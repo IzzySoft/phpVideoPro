@@ -53,7 +53,7 @@ Einstellungen
 
 [text]
 Für das <I>Applicat</I> Template-Set sind keine besonderen Einstellungen nötig.
-Es kann über das Menü <I><A HREF="{PHP_SELF}?topic=configuration">*configuration#</A></I>
+Es kann über das Menü <I><A HREF="{_SERVER["PHP_SELF"]}?topic=configuration">*configuration#</A></I>
 (de)aktiviert werden.
 
 [eof]

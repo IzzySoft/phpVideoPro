@@ -24,7 +24,7 @@
  }
  unset($postit);
 
- #######################################################[ Display Results ]###
+ #======================================================[ Display Results ]===
  if ($start||$submit||$order) {
    include("inc/class.nextmatch.inc");
    $t = new Template($pvp->tpl_dir);
@@ -85,12 +85,13 @@
    exit;
  }
 
- ###########################################################[ Search Form ]###
+ #==========================================================[ Search Form ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"search.tpl"));
  $t->set_var("listtitle",lang("search_movie"));
  $t->set_var("submit",lang("search"));
  $t->set_var("mtype_name",lang("mediatype"));
+ #----------------------------------------------------------[ Media Types ]---
  $mtypes = $db->get_mtypes();
  $mtype_field = "<SELECT NAME='mtype_id[]' SIZE='7' MULTIPLE CLASS='multiselect'>";
  for ($i=0;$i<count($mtypes);++$i) {
@@ -98,6 +99,7 @@
  }
  $mtype_field .= "</SELECT>";
  $t->set_var("mtype_field",$mtype_field);
+ #-----------------------------------------------------------[ Categories ]---
  $t->set_var("cat_name",lang("category"));
  $cats = $db->get_category(); $ccount = count($cats);
  $cat_field = "<SELECT NAME='cat_id[]' SIZE='7' MULTIPLE CLASS='multiselect'>";
@@ -107,7 +109,7 @@
  }
  $cat_field .= "</SELECT>";
  $t->set_var("cat_field",$cat_field);
-
+ #------------------------------------------------------[ Audio Languages ]---
  $t->set_var("audio_name",lang("audio_ts"));
  $langs = $db->get_avlang("audio"); $lc = count($langs);
  $lang_field = "<SELECT NAME='audio_id[]' SIZE='4' MULTIPLE CLASS='multiselect'>";
@@ -116,6 +118,7 @@
  }
  $lang_field .= "</SELECT>";
  $t->set_var("audio_field",$lang_field);
+ #---------------------------------------------------[ Subtitle Languages ]---
  $t->set_var("subtitle_name",lang("subtitle"));
  $langs = $db->get_avlang("subtitle"); $lc = count($langs);
  $lang_field = "<SELECT NAME='subtitle_id[]' SIZE='4' MULTIPLE CLASS='multiselect'>";
@@ -124,7 +127,7 @@
  }
  $lang_field .= "</SELECT>";
  $t->set_var("subtitle_field",$lang_field);
-
+ #---------------------------------[ Inputs (Actors, title, comment etc.) ]---
  $t->set_var("person_field","<SELECT NAME='ptype'><OPTION NAME='actor'>".lang("actor")."</OPTION><OPTION NAME='director'>".lang("director_person")."</OPTION></SELECT>");
  $t->set_var("name_field","<INPUT NAME='pname' ".$form["addon_name"].">");
  $t->set_var("title_name",lang("title"));
@@ -138,7 +141,7 @@
  $t->set_var("fsk_name",lang("fsk"));
  $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"].">");
  $t->set_var("fsk_max","<INPUT NAME='maxfsk' ".$form["addon_fsk"].">");
- if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+ if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("inc/header.inc");
  $t->pparse("out","template");
 

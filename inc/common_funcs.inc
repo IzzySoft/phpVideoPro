@@ -166,6 +166,7 @@
   * @function kickoff
   */
  function kickoff() {
+   GLOBAL $base_url;
    header("Location: $base_url"."login.php");
    exit;
  }

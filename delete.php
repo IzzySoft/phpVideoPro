@@ -93,8 +93,11 @@
       $details .= "<li>" . lang("recalc_free"). ". ";
       if ( $db->update_freetime($cass_id,$mtype_id) ) {
 	$time_left = $db->get_mediumfreetime($cass_id);
-	if ( !strlen($time_left) ) $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
-        $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
+	if ( strlen($time_left) ) {
+          $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
+	} else {
+	  $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+	}
       } else {
         $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
       }

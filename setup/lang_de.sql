@@ -1,8 +1,8 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.6.11
+# Deutsch Language File created by phpVideoPro v0.7.1
 # ========================================================
 
-UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
+UPDATE languages SET charset='No' WHERE lang_id='de';
 INSERT INTO lang VALUES ('actions','de','Aktionen','');
 INSERT INTO lang VALUES ('actor','de','Darsteller','');
 INSERT INTO lang VALUES ('actors','de','Darsteller','');
@@ -20,6 +20,7 @@ INSERT INTO lang VALUES ('admin_movietech','de','Filmtechnische Daten bearbeiten
 INSERT INTO lang VALUES ('admin_orphans','de','Verwaiste Einträge entfernen','');
 INSERT INTO lang VALUES ('admin_printers','de','Drucker bearbeiten','');
 INSERT INTO lang VALUES ('admin_pstemplates','de','PSLabel Templates bearbeiten','');
+INSERT INTO lang VALUES ('admin_required','de','Dieser Vorgang benötigt Administratorrechte!','');
 INSERT INTO lang VALUES ('admin_sessions','de','Sessions verwalten','');
 INSERT INTO lang VALUES ('admin_translations','de','Übersetzungen bearbeiten','');
 INSERT INTO lang VALUES ('admin_useredit','de','Bearbeite Benutzerkonto','');
@@ -188,11 +189,23 @@ INSERT INTO lang VALUES ('howto_help','de','Wie erstelle ich eine Hilfedatei?','
 INSERT INTO lang VALUES ('howto_label','de','Wie erstelle/konfiguriere ich Vorlagen für Labels?','');
 INSERT INTO lang VALUES ('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?','');
 INSERT INTO lang VALUES ('howto_templates','de','Wie erstelle ich ein neues Template Set?','');
+INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
 INSERT INTO lang VALUES ('imdb_transfer2edit','de','Daten übertragen','');
+INSERT INTO lang VALUES ('imdb_tx','de','Welche Daten sollen von der IMDB in die Datenbank von phpVideoPro übernommen werden?','');
+INSERT INTO lang VALUES ('imdb_tx_actor','de','Schauspieler','');
+INSERT INTO lang VALUES ('imdb_tx_cat','de','Kategorien','');
+INSERT INTO lang VALUES ('imdb_tx_comment','de','phpVideoPro bietet die Möglichkeit, beim Anlegen eines neuen bzw. editieren eines existenten Datensatzes für einen Film Daten aus der IMDB abzurufen und zu übernehmen. Hier kann festgelegt werden, welche Daten standardmäßig übernommen werden sollen.','');
+INSERT INTO lang VALUES ('imdb_tx_comments','de','Kommentar','');
+INSERT INTO lang VALUES ('imdb_tx_director','de','Regisseur','');
+INSERT INTO lang VALUES ('imdb_tx_length','de','Filmlänge','');
+INSERT INTO lang VALUES ('imdb_tx_pg','de','FSK','');
+INSERT INTO lang VALUES ('imdb_tx_title','de','Filmtitel','');
+INSERT INTO lang VALUES ('imdb_tx_year','de','Jahr','');
 INSERT INTO lang VALUES ('imdb_url','de','Zu verwendende IMDB Site','');
+INSERT INTO lang VALUES ('imdb_url2','de','Alternative IMDB Site','');
+INSERT INTO lang VALUES ('imdb_url2_comment','de','Obwohl es lokalisierte Versionen der IMDB gibt (z.B. german.imdb.com), sind die eigentlichen Filmdaten dort nicht in die jeweilige Landessprache übersetzt worden - sondern lediglich die \"Bedienelemente\" der Webseiten. Das macht das Parsen nach den benötigten Daten komplizierter (ohne das das Ergebnis den Aufwand rechtfertigen könnte), weshalb phpVideoPro hierfür eine <b><i>Englische</i></b> IMDB-Site benötigt, die hier auszuwählen ist. Allerdings funktioniert bei der lokalisierten Site auch die Suche nach einem Filmtitel in der Landessprache: für die Suche empfiehlt sich daher die lokalisierte Version.','');
 INSERT INTO lang VALUES ('imdb_url_comment','de','Die Internet Movie Database bietet ausführliche Informationen zu vielen Filmen. Es gibt verschiedene lokalisierte Sites. Da die Titel dort zumeist in der jeweiligen Landessprache abgelegt sind, empfiehlt sich die Auswahl einer Site, die am ehesten der eigenen Datenbank entspricht.','');
-INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imp_errors','de','Beim Import von %2 Datensätzen sind insgesamt %1 fehler aufgetreten.','');
 INSERT INTO lang VALUES ('imp_success','de','%1 Datensätze erfolgreich importiert.','');
 INSERT INTO lang VALUES ('incomplete_date','de','Ist das exakte Datum nicht bekannt (sondern z.B. nur die Jahreszahl \"2000\"), sind die unbekannten Werte durch Nullen zu ersetzen - im genannten Beispiel entspräche das den Eingaben \"00\" \"00\" \"2000\".','');
@@ -223,6 +236,7 @@ INSERT INTO lang VALUES ('lang_bg','de','Bulgarisch','language name');
 INSERT INTO lang VALUES ('lang_bn','de','Bengalisch','language name');
 INSERT INTO lang VALUES ('lang_bo','de','Tibetanisch','language name');
 INSERT INTO lang VALUES ('lang_br','de','Bretonisch','language name');
+INSERT INTO lang VALUES ('lang_bs','de','Bosnisch','');
 INSERT INTO lang VALUES ('lang_ca','de','Catalanisch','language name');
 INSERT INTO lang VALUES ('lang_co','de','Korsich','language name');
 INSERT INTO lang VALUES ('lang_cs','de','Tschechisch','language name');
@@ -263,6 +277,8 @@ INSERT INTO lang VALUES ('lang_ko','de','Koreanisch','language name');
 INSERT INTO lang VALUES ('lang_ku','de','Kurdisch','language name');
 INSERT INTO lang VALUES ('lang_ky','de','Kirgisisch','language name');
 INSERT INTO lang VALUES ('lang_la','de','Latein','language name');
+INSERT INTO lang VALUES ('lang_lb','de','Luxemburgisch','');
+INSERT INTO lang VALUES ('lang_li','de','Limburgisch','');
 INSERT INTO lang VALUES ('lang_lo','de','Laothisch','language name');
 INSERT INTO lang VALUES ('lang_lt','de','Litauisch','language name');
 INSERT INTO lang VALUES ('lang_lv','de','Lettisch','language name');
@@ -287,6 +303,7 @@ INSERT INTO lang VALUES ('lang_rm','de','Rätoromanisch','language name');
 INSERT INTO lang VALUES ('lang_ro','de','Romänisch','language name');
 INSERT INTO lang VALUES ('lang_ru','de','Russisch','language name');
 INSERT INTO lang VALUES ('lang_rw','de','Ruandisch','language name');
+INSERT INTO lang VALUES ('lang_sc','de','Sardinisch','');
 INSERT INTO lang VALUES ('lang_sg','de','Sango','language name');
 INSERT INTO lang VALUES ('lang_sh','de','Serbo-Kroatisch','language name');
 INSERT INTO lang VALUES ('lang_si','de','Singhalesisch','language name');
@@ -307,6 +324,7 @@ INSERT INTO lang VALUES ('lang_tk','de','Turkmenisch','language name');
 INSERT INTO lang VALUES ('lang_to','de','Tongaisch','language name');
 INSERT INTO lang VALUES ('lang_tr','de','Türkisch','language name');
 INSERT INTO lang VALUES ('lang_tt','de','Tatarisch','language name');
+INSERT INTO lang VALUES ('lang_ty','de','Tahitisch','');
 INSERT INTO lang VALUES ('lang_uk','de','Ukrainisch','language name');
 INSERT INTO lang VALUES ('lang_uz','de','Usbekisch','language name');
 INSERT INTO lang VALUES ('lang_vi','de','Vietnamesisch','language name');

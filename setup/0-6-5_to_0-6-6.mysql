@@ -1,0 +1,15 @@
+# =======================================================
+# Updating Database for phpVideoPro from v0.6.4 to v0.6.5
+# =======================================================
+
+# adding audio + subtitle facility
+ALTER TABLE languages ADD audio INT(1) NOT NULL DEFAULT 0;
+ALTER TABLE languages ADD subtitle INT(1) NOT NULL DEFAULT 0;
+UPDATE languages SET audio=1 WHERE lang_id IN ("de","en","es","fr","it","ru");
+UPDATE languages SET subtitle=1 WHERE lang_id IN ("da","de","en","es","fi","fr","hr","hu","it","iw","nl","no","pl","ru","sk","sr","sv","tr");
+
+ALTER TABLE video ADD audio VARCHAR(50) AFTER fsk;
+ALTER TABLE video ADD subtitle VARCHAR(100) AFTER fsk;
+
+# version update
+#UPDATE pvp_config SET value='0.6.6' WHERE name='version';

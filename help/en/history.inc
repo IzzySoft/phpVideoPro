@@ -15,6 +15,7 @@
      information about this.
  <li>some improvements on the PS top labels
  <li>added Session management screen
+ <li>on a correct login session was always created for admin (user ID 1) - fixed
 </ul>
 
 [title]

@@ -272,7 +272,7 @@ EndHiddenFields;
     if ($lp) $field .= " CHECKED";
     $field .= ">";
   } else {
-    $field .= ">TYPE=\"button\" VALUE=\"";
+    $field .= "TYPE=\"button\" VALUE=\"";
     if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
   }
   $t->set_var("longplay",$field);

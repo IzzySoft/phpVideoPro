@@ -180,7 +180,8 @@ if ($admin) {
   $none = TRUE;
   for ($i=0;$i<count($lang_avail);$i++) {
     if ( in_array($lang_avail[$i]["id"],$lang_installed) ) continue;
-    $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
+#    $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
+    $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . lang("lang_".$lang_avail[$i]["id"]) . "</OPTION>";
     $none = FALSE;
   }
   if (!$none) $select .= "<OPTION VALUE=\"-\" SELECTED>-- " . lang("none") ." --</OPTION>";
@@ -196,7 +197,8 @@ if ($admin) {
   $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
   for ($i=0;$i<count($lang_installed);$i++) {
     $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+#    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+    $select .= ">" . lang("lang_".$lang_installed[$i]) . "</OPTION>";
   }
   $select .= "</SELECT>";
   $t->set_var("item_input",$select);
@@ -210,7 +212,8 @@ if ($admin) {
   for ($i=0;$i<count($lang_installed);$i++) {
     if ($lang_installed[$i]=="en") continue;
     $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+#    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+    $select .= ">" . lang("lang_".$lang_installed[$i]) . "</OPTION>";
   }
   $select .= "</SELECT>";
   $t->set_var("item_input",$select);

@@ -12,9 +12,6 @@
 
  /* $Id$ */
 
- #===============================================================[ common ]===
- $site       = "Zion";    # what do you want to be displayed in the title bar?
-
  #==========================================================[ directories ]===
  $base_url   = "/local/phpvideo/";
  # path relative to web server's DOCUMENT_ROOT

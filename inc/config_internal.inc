@@ -71,6 +71,7 @@
  if (!$pvpinstall) {
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;
+  $site     = $db->get_config("site");
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");
   if ($pre) $version .= $pre;

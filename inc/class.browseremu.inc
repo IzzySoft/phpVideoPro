@@ -1,0 +1,211 @@
+<?php
+ #############################################################################
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Browser Emulator (for IMDB queries)                                       #
+ # ------------------------------------------------------------------------- #
+ # Browser Emulating file functions v2.0                                     #
+ # (c) Kai Blankenhorn          www.bitfolge.de/en          kaib@bitfolge.de #
+ #############################################################################
+
+ /* $Id$ */
+
+/** BrowserEmulator class. Provides methods for opening urls and emulating 
+ *  a web browser request.
+ * @package Api
+ * @class BrowserEmulator
+ */
+ class BrowserEmulator {
+
+   var $headerLines = Array ();
+   var $postData = Array ();
+   var $authUser = "";
+   var $authPass = "";
+   var $port;
+   var $lastResponse = Array ();
+
+   /** Initialization
+    * @constructor BrowserEmulator
+    */
+   function BrowserEmulator () {
+     $this->resetHeaderLines ();
+     $this->resetPort ();
+   }
+
+   /** Add a single header field to the HTTP request header. The resulting header
+    * line will have the format "$name: $value\n"
+    * @method addHeaderLine
+    * @param string name
+    * @param string value
+    */
+   function addHeaderLine ($name, $value) {
+     $this->headerLines[$name] = $value;
+   }
+
+   /** Delete all custom header lines. This will not remove the User-Agent
+    *  header field, which is necessary for correct operation and will be set
+    *  to "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)", i.e. M$IE
+    *  6.0 on WinXP
+    * @method resetHeaderLines
+    */
+   function resetHeaderLines () {
+     $this->headerLines = Array ();
+     $this->headerLines["User-Agent"] =
+	       "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+   }
+
+   /** Add a post parameter. Post parameters are sent in the body of an HTTP
+    *  POST request.
+    * @method add PostData
+    * @param string name
+    * @param string value
+    */
+   function addPostData ($name, $value) {
+     $this->postData[$name] = $value;
+   }
+
+   /** Delete all custom post parameters.
+    * @method resetPostData
+    */
+   function resetPostData () {
+    $this->postData = Array ();
+   }
+
+   /** Set an auth user and password to use for the request.
+    *  Set both as empty strings to disable authentication.
+    * @method setAuth
+    * @param string user
+    * @param string pass
+    */
+   function setAuth ($user, $pass) {
+    $this->authUser = $user;
+    $this->authPass = $pass;
+   }
+
+   /** Select a custom port to use for the request.
+    * @method setPort
+    */
+   function setPort ($portNumber) {
+    $this->port = $portNumber;
+   }
+
+  /** Reset the port used for request to the HTTP default (80).
+   * @method resetPort
+   */
+  function resetPort () {
+   $this->port = 80;
+  }
+
+  /** Make an fopen call to $url with the parameters set by previous member
+   *  method calls. Send all set headers, post data and user authentication data.
+   *  Returns a file handle on success, or false on failure.
+   * @method fopen
+   * @param string url
+   * @return mixed filehandle on success, FALSE on failure
+   */
+  function fopen ($url) {
+    $debug = false;
+    $this->lastResponse = Array ();
+
+    preg_match ("~([a-z]*://)?([^:^/]*)(:([0-9]{1,5}))?(/.*)?~i", $url, $matches);
+    if ($debug) var_dump ($matches);
+    $protocol = $matches[1];
+    $server = $matches[2];
+    $port = $matches[4];
+    $path = $matches[5];
+    if ($port != "") {
+       $this->setPort ($port);
+    }
+    if ($path == "") $path = "/";
+    $socket = false;
+    $socket = fsockopen ($server, $this->port);
+    if ($socket) {
+       $this->headerLines["Host"] = $server;
+       if ($this->authUser != "" AND $this->authPass != "") {
+         $headers["Authorization"] =
+		 "Basic ".base64_encode ($this->authUser.":".$this->authPass);
+       }
+       if (count ($this->postData) == 0) {
+	    $request = "GET $path HTTP/1.0\r\n";
+       } else {
+        $request = "POST $path HTTP/1.0\r\n";
+       }
+
+       if ($debug) echo $request;
+       fputs ($socket, $request);
+
+       if (count ($this->postData) > 0) {
+	    $PostStringArray = Array ();
+	    foreach ($this->postData AS $key => $value) {
+		 $PostStringArray[] = "$key=$value";
+	    }
+	    $PostString = join ("&", $PostStringArray);
+	    $this->headerLines["Content-Length"] = strlen ($PostString);
+       }
+
+       foreach ($this->headerLines AS $key => $value) {
+	    if ($debug) echo "$key: $value\n";
+	    fputs ($socket, "$key: $value\r\n");
+       }
+       if ($debug) echo "\n";
+       fputs ($socket, "\r\n");
+       if (count ($this->postData) > 0) {
+	    if ($debug) echo "$PostString";
+	    fputs ($socket, $PostString."\r\n");
+       }
+    } // end (if socket)
+
+    if ($debug) echo "\n";
+    if ($socket) {
+       $line = fgets ($socket, 1000);
+       if ($debug) echo $line;
+       $this->lastResponse[] = $line;
+       $status = substr ($line, 9, 3);
+       while (trim ($line = fgets ($socket, 1000)) != "") {
+	    if ($debug) echo "$line";
+	    $this->lastResponse[] = $line;
+	    if ($status == "401" AND strpos ($line, "WWW-Authenticate: Basic realm=\"")  === 0) {
+		 fclose ($socket);
+		 return FALSE;
+	    }
+       }
+    }
+    return $socket;
+  }
+
+  /** Make an file call to $url with the parameters set by previous member
+   *  method calls. Send all set headers, post data and user authentication data.
+   *  Returns the requested file as an array on success, or false on failure.
+   * @method file
+   * @param string url
+   * @return mixed array $file on success, FALSE on failure
+   */
+  function file ($url) {
+    $file = Array ();
+    $socket = $this->fopen ($url);
+    if ($socket) {
+      $file = Array ();
+      while (!feof ($socket)) {
+        $file[] = fgets ($socket, 10000);
+      }
+    } else {
+       return FALSE;
+    }
+    return $file;
+  }
+
+  /** Get the response headers from last request
+   * @method getLastResponseHeaders
+   * @return array
+   */
+  function getLastResponseHeaders () {
+    return $this->lastResponse;
+  }
+ }
+
+?>

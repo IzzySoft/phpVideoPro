@@ -1,4 +1,5 @@
 <?
+/* $Id$ */
 
 $base_url   = "/local/phpvideo/";
 // the root directory of phpVideoPro
@@ -26,7 +27,7 @@ $debug["log"]  = "EW";
 $database["host"]      = "linux";
 //$database["host"]      = "localhost";
 $database["database"]  = "video_demo";
-//$database["database"]  = "videopro";
+// $database["database"]  = "videopro";
 $database["user"]      = "guest";
 $database["password"]  = "";
 
@@ -35,7 +36,7 @@ $defaults["scolor"] = "Farbe"; // most movies today have more than two colors ;)
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
-$version    = "0.1.0";
+$version    = "0.1.1";
 $nav_script = $base_url . "inc/navcond.js";
 $max["actors"]         =  5;
 $max["categories"]     =  3;
@@ -52,5 +53,6 @@ $form["addon_filmlen"] = "SIZE=\"" . $max["filmlen_chars"] . "\" MAXLENGTH=\"" .
 $form["addon_src"]     = "SIZE=\"" . $max["srclen_chars"] . "\" MAXLENGTH=\"" . $max["srclen_chars"] . "\"";
 $form["addon_cass_id"] = "SIZE=\"4\" MAXLENGTH=\"4\"";
 $form["addon_part"]    = "SIZE=\"2\" MAXLENGTH=\"2\"";
+$form["addon_title"]   = "SIZE=\"50\" MAXLENGTH=\"60\"";
 
 ?>

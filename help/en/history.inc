@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.4.3 (2003)
+[text]
+<ul>
+ <li>Fixed problem in DB Setup for PSLabel tables: some MySQL versions
+     take "DEFAULT ''" as "DEFAULT NULL" which stands in contradiction to the
+     "NOT NULL" constraint.
+</ul>
+
+[title]
 0.4.2 (February 23, 2003)
 [text]
 <ul>

@@ -6,9 +6,9 @@ DROP TABLE IF EXISTS eps_templates;
 CREATE TABLE eps_templates (
   id smallint(6) NOT NULL default '0',
   type int(11) NOT NULL default '0',
-  description varchar(64) NOT NULL default '',
-  eps_filename varchar(255) NOT NULL default '',
-  ps_filename varchar(255) NOT NULL default '',
+  description varchar(64) NOT NULL,
+  eps_filename varchar(255) NOT NULL,
+  ps_filename varchar(255) NOT NULL,
   llx smallint(6) NOT NULL default '0',
   lly smallint(6) NOT NULL default '0',
   urx smallint(6) NOT NULL default '0',
@@ -52,8 +52,8 @@ INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx
 DROP TABLE IF EXISTS label_forms;
 CREATE TABLE label_forms (
   id tinyint(4) NOT NULL auto_increment,
-  vendor char(16) NOT NULL default '',
-  product char(32) NOT NULL default '',
+  vendor char(16) NOT NULL,
+  product char(32) NOT NULL,
   description char(48) default NULL,
   type int(11) NOT NULL default '0',
   unit_id int(11) NOT NULL default '0',
@@ -81,8 +81,8 @@ INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist
 DROP TABLE IF EXISTS label_type;
 CREATE TABLE label_type (
   id tinyint(4) NOT NULL auto_increment,
-  vendor char(16) NOT NULL default '',
-  product char(32) NOT NULL default '',
+  vendor char(16) NOT NULL,
+  product char(32) NOT NULL,
   description char(48) default NULL,
   unit_id int(11) NOT NULL default '0',
   h_dist float NOT NULL default '0',
@@ -109,7 +109,7 @@ INSERT INTO label_type (id, vendor, product, description, unit_id, h_dist, v_dis
 DROP TABLE IF EXISTS label_types;
 CREATE TABLE label_types (
   id smallint(6) NOT NULL default '0',
-  description varchar(64) NOT NULL default '',
+  description varchar(64) NOT NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM;
@@ -124,7 +124,7 @@ INSERT INTO label_types (id, description) VALUES (2,'VHS side label');
 DROP TABLE IF EXISTS printers;
 CREATE TABLE printers (
   id tinyint(4) NOT NULL default '0',
-  name varchar(32) NOT NULL default '',
+  name varchar(32) NOT NULL,
   unit_id tinyint(4) NOT NULL default '0',
   top_offset float NOT NULL default '0',
   left_offset float NOT NULL default '0',
@@ -142,7 +142,7 @@ INSERT INTO printers (id, name, unit_id, top_offset, left_offset) VALUES (2,'EPS
 DROP TABLE IF EXISTS sheets;
 CREATE TABLE sheets (
   id tinyint(4) NOT NULL auto_increment,
-  name char(16) NOT NULL default '',
+  name char(16) NOT NULL,
   unit_id int(11) NOT NULL default '0',
   width float NOT NULL default '0',
   length float NOT NULL default '0',
@@ -160,7 +160,7 @@ INSERT INTO sheets (id, name, unit_id, width, length) VALUES (1,'a4',3,21,29.7);
 DROP TABLE IF EXISTS units;
 CREATE TABLE units (
   id int(11) NOT NULL auto_increment,
-  unit char(8) NOT NULL default '',
+  unit char(8) NOT NULL,
   size float NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id),

@@ -31,11 +31,13 @@
                  . $pvp->common->centerstr(lang("length"),5) . $sep
 	         . $pvp->common->centerstr("LP",4);
    } else {
-     $listheader = lang("medium") . $sep
+     if ($outputtype=="html") $fullrow = "<TR><TD COLSPAN=\"5\">";
+     $listheader = $blockstart . $linestart
+                 . lang("medium") . $sep
                  . lang("title") . $sep
                  . lang("category") . " 2" . $sep
                  . lang("length") . $sep
-	         . "LP";
+	         . "LP" . $lineend;
    }
    for ($i=0;$i<$pagewidth;$i++) {
      $underline .= "-";
@@ -55,7 +57,7 @@
      }
      if ($recentcat != $movielist[$i][cat1]) {
        $recentcat = $movielist[$i][cat1];
-       $out .= "\n" . lang("category") . " $recentcat\n\n";
+       $out .= "\n" . $fullrow . lang("category") . " $recentcat\n\n" . $lineend;
        $k +=3;
      }
      if (strlen($movielist[$i][lp])) { $lp = lang("yes"); } else { $lp = lang("no"); }
@@ -69,13 +71,14 @@
        $cat    = $movielist[$i][cat2];
        $length = $movielist[$i][length];
      }
-     $line = $movielist[$i][mtype_short] . " "
+     $line = $linestart . $movielist[$i][mtype_short] . " "
            . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
            . $pvp->common->padzeros($movielist[$i][part],2) . $sep
 	   . $title . $sep
 	   . $cat . $sep
 	   . $length . $sep
-	   . $lp;
+	   . $lp . $lineend;
      $out .= "$line\n";
    }
+   $out .= $blockend;
 ?>

@@ -22,11 +22,12 @@
                  . $pvp->common->centerstr(lang("length"),5) . $sep
 	         . $pvp->common->centerstr("LP",4);
    } else {
-     $listheader = lang("medium") . $sep
+     $listheader = $blockstart . $linestart
+                 . lang("medium") . $sep
                  . lang("title") . $sep
                  . lang("category") . $sep
                  . lang("length") . $sep
-	         . "LP";
+	         . "LP" . $lineend;
    }
    for ($i=0;$i<$pagewidth;$i++) {
      $underline .= "-";
@@ -54,13 +55,14 @@
        $cat    = $movielist[$i][cat1];
        $length = $movielist[$i][length];
      }
-     $line = $movielist[$i][mtype_short] . " "
+     $line = $linestart . $movielist[$i][mtype_short] . " "
            . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
            . $pvp->common->padzeros($movielist[$i][part],2) . $sep
 	   . $title . $sep
 	   . $cat . $sep
 	   . $length . $sep
-	   . $lp;
+	   . $lp . $lineend;
      $out .= "$line\n";
    }
+   $out .= $blockend;
 ?>

@@ -39,8 +39,11 @@
    }
    $listtitle .= " (" . $pvp->common->formatDate(date('Y'),date('m'),date('d')) . ")";
    switch ($outputtype) {
-     case "csv" : $sep = "\t"; $align = FALSE; $multipage = FALSE; $ext = "csv"; break;
-     default    : $sep = " "; $align = TRUE; $multipage = TRUE; $ext = "txt"; break;
+     case "csv"  : $sep = "\t"; $align = FALSE; $multipage = FALSE; $ext = "csv"; break;
+     case "html" : $sep = "</TD><TD>"; $align = FALSE; $multipage = FALSE; $ext = "htm";
+                   $linestart="<TR><TD>"; $lineend="</TD></TR>";
+		   $blockstart="<TABLE>"; $blockend="</TABLE>"; break;
+     default     : $sep = " "; $align = TRUE; $multipage = TRUE; $ext = "txt"; break;
    }
    if ($align) $listtitle = $pvp->common->centerstr($listtitle,$pagewidth);
 
@@ -65,6 +68,7 @@
 	 . "<OPTION VALUE=\"title\">" . lang("medialist_alpha") . "</OPTION>"
 	 . "<OPTION VALUE=\"cat\">" . lang("catlist_alpha") . "</OPTION></SELECT>";
  $format = "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>"
+	 . "<OPTION VALUE=\"html\">HTML</OPTION>"
          . "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT>";
  $lines  = "<INPUT NAME=\"pagelength\" VALUE=\"$pagelength\" SIZE=\"3\">";
  $t->set_var("liste",$list);

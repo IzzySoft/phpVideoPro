@@ -5,11 +5,11 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
-      <INPUT TYPE="image" NAME="button_home" CLASS="imgbut" SRC="{tpl_dir}images/win_home.gif" STYLE="width:14;height:13;" onClick="window.location.href='index.php'"></TD>
+      <INPUT TYPE="image" NAME="button_home" CLASS="imgbut" SRC="{tpl_dir}images/win_home.gif" STYLE="width:14;height:13;" onClick="window.location.href='index.php'" TITLE="{btn_index}"></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
-      <INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{tpl_dir}images/win_back.gif" STYLE="width:14;height:13;" onClick="history.back()"></TD>
+      <INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{tpl_dir}images/win_back.gif" STYLE="width:14;height:13;" onClick="history.back()" TITLE="{btn_back}"></TD>
      <TD CLASS="wintitle" STYLE="vertical-align:middle;margin-right:3;"><DIV STYLE="width:18;">
-      <INPUT TYPE="image" NAME="button_close" CLASS="imgbut" SRC="{tpl_dir}images/win_close.gif" STYLE="width:14;height:13;" onClick="window.close()"></DIV></TD></TR>
+      <INPUT TYPE="image" NAME="button_close" CLASS="imgbut" SRC="{tpl_dir}images/win_close.gif" STYLE="width:14;height:13;" onClick="window.close()" TITLE="{btn_close}"></DIV></TD></TR>
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>

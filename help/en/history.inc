@@ -8,7 +8,7 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.1.4 (2001)</b><br>
+  <LI><b>0.1.4 (July 29, 2001)</b><br>
       <ul>
        <li>worked on the menue stuff. Menue should be "compatible"
            with most browsers. I've tested it successfully with
@@ -22,6 +22,7 @@
            current page
        <li>added list of actors, list of directors, list of composers
        <li>updated help system accordingly
+       <li>updated setup (and fixed a little bug there)
       </ul>
   <LI><b>0.1.3 (July 26, 2001)</b><br>
       <ul>

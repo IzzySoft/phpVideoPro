@@ -39,7 +39,7 @@ INSERT INTO tone VALUES ( '9', 'Dolby 6.1', '6.1');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.1.2');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.1.4');
 
 #
 # set default preferences

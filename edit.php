@@ -202,8 +202,7 @@
 ################################################################
 # Form Start
   $t = new Template($pvp->tpl_dir);
-  $t->set_file(array("edit"=>"edit.tpl","actors"=>"edit_actors.tpl"));
-#  $t->set_file(array("edit"=>"edit.tpl"));
+  $t->set_file(array("edit"=>"edit.tpl"));
   $t->set_var("form_name","entryform");
   $t->set_var("form_target",$PHP_SELF);
   switch ( strtolower($page_id) ) {
@@ -213,7 +212,7 @@
     default          : break;
   }
   $t->set_var("save_result",$save_result);
-#  $t->set_block("edit", "actors", "actorlist");
+  $t->set_block("edit","actorblock","actorlist");
 
   // actors block
   for ($i=1;$i<=$max["actors"];$i++) {
@@ -222,7 +221,7 @@
     $t->set_var("actor",form_input($name,$actor[$i][name],$form["addon_name"]));
     $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$form["addon_name"]));
     $t->set_var("actor_list",vis_actors($i));
-    $t->parse("actorlist","actors",TRUE);
+    $t->parse("actorlist","actorblock",TRUE);
   }
 
   // main block

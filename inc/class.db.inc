@@ -1015,6 +1015,64 @@
      return $movielist;
    }
 
+   /** Search for movies and return as array of movies (see get_movie)
+    * @class sql
+    * @method searchmovies
+    * @use searchmovievals
+    * @param optional string order column to order the list by
+    *  (title, lenght, year, date or cat)
+    * @param optional integer start (for use with LIMIT)
+    * @return array array of movies
+    * @see sql::get_movie()
+    * @version Since this is called via the nextmatch class, I found no way
+    *  yet to pass it an array, so we have to set it global.
+    */
+   function searchmovies($order="",$start="") {
+     GLOBAL $searchmovievals;
+     foreach ($searchmovievals as $key=>$val) {
+       ${$key} = $val;
+     }
+     for ($i=0;$i<count($mtype_id);++$i) {
+       if ($i==0) { $restrict .= "("; } else { $restrict .= " OR "; }
+       $restrict .= "v.mtype_id=".$mtype_id[$i]." ";
+     }
+     $ccount = count($cat_id);
+     for ($i=0;$i<$ccount;++$i) {
+       $cat = $cat_id[$i];
+       if ($i==0) $restrict .= ") AND (";
+       $restrict .= "v.cat1_id=$cat OR v.cat2_id=$cat OR v.cat3_id=$cat ";
+       if ($i+1<$ccount) $restrict .= " OR ";
+     }
+     $restrict .= ") AND v.title LIKE '%$title%' AND ";
+     switch ($ptype) {
+       case director :
+         $this->query("SELECT id FROM directors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+         while ( $this->next_record() ) {
+           $pids .= ",".$this->f('id');
+         }
+         $pids = substr($pids,1);
+         $restrict .= "director_id IN ($pids) AND"; break;
+       default       : 
+         $this->query("SELECT id FROM actors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+         while ( $this->next_record() ) {
+           $pids .= ",".$this->f('id');
+         }
+         $pids = substr($pids,1);
+         for ($i=1;$i<6;++$i) {
+           if ($i==1) $restrict .= "(";
+           $restrict .= "v.actor$i"."_id IN ($pids)";
+           if ($i<5) $restrict .= " OR ";
+         }
+     }
+     $restrict .= ") AND comment LIKE '%$comment%'";
+     if ($minlen) $restrict .= " AND length>$minlen";
+     if ($maxlen) $restrict .= " AND length<$maxlen";
+     if ($minfsk) $restrict .= " AND fsk>$minfsk";
+     if ($maxfsk) $restrict .= " AND fsk<$maxfsk";
+#     echo "<B>Order:</B> $order<BR><B>Start:</B> $start<BR><B>Restrict:</B> $restrict<BR>\n"; exit;
+     return $this->get_movielist($order,$restrict,$start);
+   }
+
    /** Get movie list for cat1 as array of movies (see get_movie)
     *  (wrapper to get_movielist)
     * @class sql

@@ -12,6 +12,8 @@
      version number). Updates from "ancient versions" do still work.
  <li>absolut taperest list was broken (fixed filters)
  <li>Bulgarian language file updated (thanx to Tsveti!)
+ <li>fixed wrong movie grouping in taperest list
+ <li>moved almost all SQL code into db.inc (lots of methods added/rewritten)
 </ul>
 
 [title]

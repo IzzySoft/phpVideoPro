@@ -777,6 +777,7 @@
     * @return boolean success
     */
    function add_movie($movie) {
+     GLOBAL $pvp;
      foreach ($movie as $key => $value) {
        ${$key} = $value;
      }
@@ -797,7 +798,14 @@
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',$commercials_id)";
-     return $this->dbquery($insert);
+     $success = $this->dbquery($insert);
+     if ( $pvp->common->medium_is_rw($mtype_id) ) {
+       $free = $this->get_mediaspace($cass_id);
+       if ($free=="") { // medium not yet in cass table
+         $this->dbquery("INSERT INTO cass (id,type,free) VALUES ($mtype_id,$space,$length");
+       }
+       $this->update_freetime($cass_id,$mtype_id);
+     }
    }
 
    ############################################################################

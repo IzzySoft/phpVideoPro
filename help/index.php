@@ -15,7 +15,6 @@
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include ("../inc/db.inc");
 include ("../inc/template.inc");
 // include("../inc/header.inc");
 ##############################################################################

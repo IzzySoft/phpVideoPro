@@ -2,13 +2,14 @@
 # /*  $Id$ */
 
 [title]
-0.2.2 (2001)
+0.2.2 (2002)
 [text]
 <ul>
  <li>edit.tpl caused probs with NS 4.x (almost fixed - NS 4.x too stupid)
  <li>insert a person (staff) into db failed if only name OR firstname were
      specified (fixed)
  <li>added support for VideoCD (VCD)
+ <li>some rework at the database functions/classes
 </ul>
 
 [title]

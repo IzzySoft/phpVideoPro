@@ -800,12 +800,10 @@
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',$commercials_id)";
      $success = $this->dbquery($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
-       $free = $this->get_mediaspace($cass_id);
-       if ($free=="") { // medium not yet in cass table
-         $this->dbquery("INSERT INTO cass (id,type,free) VALUES ($mtype_id,$space,$length");
-       }
+       $this->insert_medium($cass_id,$mtype_id,$space);
        $this->update_freetime($cass_id,$mtype_id);
      }
+     return $success;
    }
 
    ############################################################################
@@ -819,9 +817,41 @@
     * @return boolean success
     */
    function move_movie($id,$mtype_id,$cass_id,$part) {
+     GLOBAL $pvp;
+     if ( $pvp->common->medium_is_rw($mtype_id) ) {
+       $movie = $this->get_movie($id);
+       $space = $this->get_mediaspace($movie[cass_id]);
+     }
      $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
             . " WHERE id=$id";
-     return $this->dbquery($query);
+     $success = $this->dbquery($query);
+     if (is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
+     $this->update_freetime($cass_id);
+     if ( $pvp->common->medium_is_rw($movie[mtype_id]) && $movie[cass_id]!=$cass_id ) {
+       $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie[cass_id]." AND mtype_id=".$movie[mtype_id]);
+       if ( $this->next_record() ) {
+         $this->update_freetime($movie[cass_id],$movie[mtype_id]);
+       } else {
+         $this->dbquery("DELETE FROM cass WHERE id=".$movie[cass_id]);
+       }
+     }
+     return $success;
+   }
+
+   ############################################################################
+   /** Insert a medium into the media table (if not yet exists)
+    * @class sql
+    * @method insert_medium
+    * @param integer cass_id media id
+    * @param integer mtype_id media type id
+    * @param integer space complete space on media (media length)
+    */
+   function insert_medium($cass_id,$mtype_id,$space) {
+     $free = $this->get_mediaspace($cass_id);
+     if ($free=="") { // medium not yet in cass table
+       if (!$space) $space = 240;
+       $this->dbquery("INSERT INTO cass (id,type,free) VALUES ($cass_id,$space,0)");
+     }
    }
 
    ############################################################################

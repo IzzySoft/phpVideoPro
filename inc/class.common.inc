@@ -133,8 +133,7 @@ class common {
   }
 
   #==========================================[ text formatting functions ]===
-  /** Search a text block for URLs and make them clickable plus cater for the
-   *  [img],[imgr] and [href] tags
+  /** Search a text block for URLs & cater for the [img],[imgr] and [href] tags
    * @class common
    * @method make_clickable
    * @copyright initial code for function make_clickable taken from
@@ -156,11 +155,6 @@ class common {
     }
     $lines = split("\n",$data);
     while ( list ($key,$line) = each ($lines)) {
-      $line = eregi_replace("([ \t]|^)www\."," http://www.",$line);
-      $line = eregi_replace("([ \t]|^)ftp\."," ftp://ftp.",$line);
-      $line = eregi_replace("(http://[^ )\r\n]+)","[href]\\1[/href]",$line);
-      $line = eregi_replace("(https://[^ )\r\n]+)","[href]\\1[/href]",$line);
-      $line = eregi_replace("(ftp://[^ )\r\n]+)","[href]\\1[/href]",$line);
       if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
           $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG SRC=\"\\1\">",$matches[0][$i]);

@@ -18,11 +18,11 @@
  #=================================================[ Register global vars ]===
  $postit = array ("name","sname","id");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = FALSE;
  }
  $postit = array ("type","delete","edit","add");
  foreach ($postit as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = FALSE;
  }
  unset($postit);
 
@@ -30,7 +30,7 @@
  if (!$pvp->auth->admin) kickoff();
 
  #==================================================[ process the changes ]===
- if ($_POST["update"]) {
+ if (isset($_POST["update"])) {
    switch($type) {
      case "pict"  : $success = $db->set_pict($name,$sname,$id); break;
      case "color" : $success = $db->set_color($name,$sname,$id); break;
@@ -80,9 +80,9 @@
      default      :
    }
    $t->set_var("name_name",lang("name"));
-   $t->set_var("name",$item[name]);
+   $t->set_var("name",$item['name']);
    $t->set_var("sname_name",lang("sname"));
-   $t->set_var("sname",$item[sname]);
+   $t->set_var("sname",$item['sname']);
    $t->set_var("type",$type);
    $t->set_var("id",$edit);
    $t->set_var("add",lang("update"));
@@ -133,14 +133,15 @@
    $picts = $db->get_pict();
    $pictcount = count($picts);
    for ($i=0;$i<$pictcount;++$i) {
-     $t->set_var("item_name",$picts[$i][name]);
-     $t->set_var("item_sname",$picts[$i][sname]);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=pict&edit=" .$picts[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=pict&delete=".$picts[$i][id]);
+     $t->set_var("item_name",$picts[$i]['name']);
+     $t->set_var("item_sname",$picts[$i]['sname']);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=pict&edit=" .$picts[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=pict&delete=".$picts[$i]['id']);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
-     $t->parse("screen","screenitemblock",TRUE);
+     if ($i) $t->parse("screen","screenitemblock",TRUE);
+       else $t->parse("screen","screenitemblock");
    }
    $t->set_var("screen_title",lang("screen"));
    $t->set_var("screen_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=pict",lang("add_entry")));
@@ -149,14 +150,15 @@
    $colors = $db->get_color();
    $colorcount = count($colors);
    for ($i=0;$i<$colorcount;++$i) {
-     $t->set_var("item_name",$colors[$i][name]);
-     $t->set_var("item_sname",$colors[$i][sname]);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=color&edit=" .$colors[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=color&delete=".$colors[$i][id]);
+     $t->set_var("item_name",$colors[$i]['name']);
+     $t->set_var("item_sname",$colors[$i]['sname']);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=color&edit=" .$colors[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=color&delete=".$colors[$i]['id']);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
-     $t->parse("color","coloritemblock",TRUE);
+     if ($i) $t->parse("color","coloritemblock",TRUE);
+       else $t->parse("color","coloritemblock");
    }
    $t->set_var("color_title",lang("picture"));
    $t->set_var("color_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=color",lang("add_entry")));
@@ -165,14 +167,15 @@
    $mtypes = $db->get_mtypes();
    $mtypecount = count($mtypes);
    for ($i=0;$i<$mtypecount;++$i) {
-     $t->set_var("item_name",$mtypes[$i][name]);
-     $t->set_var("item_sname",$mtypes[$i][sname]);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=mtype&edit=" .$mtypes[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=mtype&delete=".$mtypes[$i][id]);
+     $t->set_var("item_name",$mtypes[$i]['name']);
+     $t->set_var("item_sname",$mtypes[$i]['sname']);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=mtype&edit=" .$mtypes[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=mtype&delete=".$mtypes[$i]['id']);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
-     $t->parse("mtype","mtypeitemblock",TRUE);
+     if ($i) $t->parse("mtype","mtypeitemblock",TRUE);
+       else $t->parse("mtype","mtypeitemblock");
    }
    $t->set_var("mtype_title",lang("mediatype"));
    $t->set_var("mtype_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=mtype",lang("add_entry")));
@@ -181,14 +184,15 @@
    $tones = $db->get_tone();
    $tonecount = count($tones);
    for ($i=0;$i<$tonecount;++$i) {
-     $t->set_var("item_name",$tones[$i][name]);
-     $t->set_var("item_sname",$tones[$i][sname]);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=tone&edit=" .$tones[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=tone&delete=".$tones[$i][id]);
+     $t->set_var("item_name",$tones[$i]['name']);
+     $t->set_var("item_sname",$tones[$i]['sname']);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=tone&edit=" .$tones[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=tone&delete=".$tones[$i]['id']);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
-     $t->parse("tone","toneitemblock",TRUE);
+     if ($i) $t->parse("tone","toneitemblock",TRUE);
+       else $t->parse("tone","toneitemblock");
    }
    $t->set_var("tone_title",lang("tone"));
    $t->set_var("tone_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=tone",lang("add_entry")));
@@ -212,8 +216,10 @@
 
  $t->set_var("listtitle",lang("admin_movietech"));
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
+ if (!isset($save_result)) $save_result = "";
  $t->set_var("save_result",$save_result);
 
+ $hidden = "";
  if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
  $t->pparse("out","template");

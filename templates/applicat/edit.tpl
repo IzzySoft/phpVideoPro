@@ -2,6 +2,7 @@
  ul {margin-left: 5; padding-left: 10px; margin-top: 0; margin-bottom:0; padding-top:0; padding-bottom:0;}
  li {margin-top: 0; margin-bottom:0;}
 --></style>
+{js}
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
@@ -35,7 +36,7 @@
  </COLGROUP>
  <TR><TH ColSpan="2">
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-     <TR><TH STYLE="width:22px;vertical-align:middle;">{previous}</TH><TH WIDTH="80%" STYLE="text-align:center"> {title}</TH>
+     <TR><TH STYLE="width:22px;vertical-align:middle;">{previous}</TH><TH WIDTH="80%" STYLE="text-align:center"> {title} {imdb}</TH>
          <TH STYLE="width:22px;vertical-align:middle;text-align:right">{next}</TH></TR>
    </TABLE>
  <TR CLASS="content">

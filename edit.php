@@ -49,6 +49,18 @@
    kickoff(); // kick-off unauthorized visitors
  }
 
+ #===========================================[ JavaScript for IMDB LookUp ]===
+ if ($edit) {
+   $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function lookup_imdb() {
+     param = '';
+     if (document.movieform.title.value != '') { param = '?name='+document.movieform.title.value; }
+     url = '".$base_url."imdbsearch.php'+param;
+     imdb=eval(\"window.open(url,'imdb','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=yes,scrollbars=yes,copyhistory=no,width=800,height=600')\");
+   }
+//--></SCRIPT>";
+ }
+
  #=========================================================[ Helper Funcs ]===
  function vis_actors($num) {
    GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
@@ -208,7 +220,7 @@
 <?
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("edit"=>"edit.tpl"));
-  $t->set_var("form_name","entryform");
+  $t->set_var("form_name","movieform");
   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
   switch ( strtolower($page_id) ) {
     case "edit"      : $t->set_var("listtitle",lang("edit_entry",$movie['mtype_short']." ".$nr)); break;
@@ -320,8 +332,12 @@ EndHiddenFields;
     $formAddon = $form["addon_title"];
   }
   if (!isset($title)) $title = "";
-  $t->set_var("title","<$dinput NAME='title' VALUE='$title' " . $formAddon . ">");
-
+  $mtitle = "<$dinput NAME='title' VALUE='$title' " . $formAddon . ">";
+  $t->set_var("title",$mtitle);
+  if ($edit) {
+    $t->set_var("imdb","<IMG SRC='".$base_url."images/imdb_link.gif' BORDER='0' ALT='IMDB Lookup' onClick='lookup_imdb()' ALIGN='middle'>");
+    $t->set_var("js",$js);
+  }
   #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));
   if ($mdisktype[0]->rc) {

@@ -28,7 +28,7 @@
           . "actor5_id='$act5_id',lp='$lp',music_list='$music_list',director_list='$director_list'"
           . " WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'";
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
- if ( $db->query($update) ) {
+ if ( dbquery($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
    $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
  } else {
@@ -39,13 +39,13 @@
  # updating free time on media for Recorded Video Tapes
  $query = "SELECT sname FROM mtypes WHERE id='$mtype_id'";
  debug("S",$colors["ok"] . "$query</Font><BR>\n");
- $db->query($query);
+ dbquery($query);
  if ( !$db->next_record() ) {
    debug("E",$colors["err"] . "Could not obtain media type for mtype_id '$mtype_id'!</Font><BR>\n");
  } elseif ( strtolower($db->f('sname'))=="rvt" ) { // calc free space only for recorded video tapes
    $query = "SELECT type FROM cass WHERE id='$cass_id'";
    debug("S",$colors["ok"] . "$query</Font><BR>\n");
-   $db->query($query);
+   dbquery($query);
    if ( !$db->next_record() ) {
      debug("E",$colors["err"] . "Could not obtain media info for cass_id '$cass_id'!</Font><BR>\n");
    } else {
@@ -53,7 +53,7 @@
      if ( $media_length<$min["media_size"] ) debug("W",$colors["err"] . "Invalid Media size '$media_length' (should be at least '" . $min["media_size"] . "')!</Font><BR>\n");
      $query = "SELECT length,lp FROM video WHERE cass_id='$cass_id' AND mtype_id='$mtype_id'";
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
-     $db->query($query);
+     dbquery($query);
      $i=0;
      while ( $db->next_record() ) {
        $i++;
@@ -64,7 +64,7 @@
      if ($i==0) debug("W",$colors["err"] . "No items found on media '$cass_id', so tape must be empty. If so, you'ld better delete it instead of updating without contents. Otherwise, there may be a problem!</Font><BR>\n");
      $query = "UPDATE cass SET free='$media_length' WHERE id='$cass_id'";
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
-     $db->query($query);
+     dbquery($query);
    }
  }
  

@@ -49,7 +49,7 @@
   for ($i=1;$i<=count($mlist);$i++) {
     $query = "SELECT v.title,m.sname,c.name FROM video v,mtypes m,cat c WHERE cass_id='" . $mlist[$i]["id"] . "' AND v.mtype_id=m.id AND v.cat1_id=c.id AND v.mtype_id IN ($rw_media)";
     debug("S","<TR><TD colspan=4>" . $colors["ok"] . "$query</Font></TD></TR>\n");
-    $db->query($query);
+    dbquery($query);
     $k = 0;
     while ( $db->next_record() ) {
       $k++;

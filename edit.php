@@ -53,13 +53,12 @@
  function vis_actors($num) {
    GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
    $visible = "vis_actor" . $num;
-   $output  = "";
    if ($edit) {
-     $output .= "<INPUT TYPE='checkbox' NAME='vis_actor" . $num . "' VALUE='1' class='checkbox'";
+     $output = "<INPUT TYPE='checkbox' NAME='vis_actor" . $num . "' VALUE='1' class='checkbox'";
      if (${$visible}) $output .= " CHECKED";
      $output .= ">";
    } else {
-     $output .= "<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='";
+     $output = "<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='";
      if (${$visible}) { $output .= lang("yes") ."'>"; } else { $output .= lang("no") . "'>"; }
      $output .= "<INPUT TYPE='hidden' NAME='" . ${$visible} ."' VALUE='${$visible}'>";
    }
@@ -242,7 +241,8 @@
       $t->set_var("actor_f",form_input($fname,"&nbsp;",$formAddon));
       $t->set_var("actor_list","<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='&nbsp;'");
     }
-    $t->parse("actorlist","actorblock",TRUE);
+    if ($i>1) $t->parse("actorlist","actorblock",TRUE);
+      else  $t->parse("actorlist","actorblock");
   }
 
   // main block

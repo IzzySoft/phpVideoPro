@@ -174,6 +174,43 @@ CREATE TABLE video (
 CREATE TABLE preferences (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   value varchar(30),
+   value text,
    PRIMARY KEY (id)
 );
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_system' (system settings)
+#
+
+CREATE TABLE pvp_config (
+   id int(5) NOT NULL auto_increment,
+   name varchar(30) NOT NULL,
+   value text,
+   PRIMARY KEY (id)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'lang' (translations)
+#
+
+CREATE TABLE lang (
+  message_id varchar(150) DEFAULT '' NOT NULL,
+  lang varchar(5) DEFAULT '' NOT NULL,
+  content text NOT NULL,
+  PRIMARY KEY (message_id,lang)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'languages' (supported languages)
+#
+
+CREATE TABLE languages (
+  lang_id char(2) DEFAULT '' NOT NULL,
+  lang_name varchar(50) DEFAULT '' NOT NULL,
+  available char(3) DEFAULT 'No' NOT NULL,
+  PRIMARY KEY (lang_id)
+);
+

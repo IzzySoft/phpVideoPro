@@ -46,6 +46,7 @@
  decided not to backup at all), select the version you are upgrading from:</P>
 <OL>
  <LI><A HREF="<? echo $PHP_SELF ?>?oldversion=0.1.0">v0.1.0</A>
+ <LI><A HREF="<? echo $PHP_SELF ?>?oldversion=0.1.1">v0.1.1</A>
 </OL><?
   } else {
     echo "<UL>\n";
@@ -54,7 +55,8 @@
     # Get SQL statements from their files and execute them
     switch ($oldversion) {
       case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
-      case "0.1.1"    : break;
+      case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
+                        queryf("lang_en.sql","Activation of English language support");
       default         : break;
     }
     echo "</UL>\n";

@@ -1,56 +1,52 @@
+# ========================================================
+# Updating Database for phpVideoPro from v0.1.0 to v0.1.1
+# ========================================================
+
+# --------------------------------------------------------
 #
-# Data for table 'colors'
+# Table structure for table 'pvp_system' (system settings)
 #
 
-INSERT INTO colors VALUES ( '1', 's/w', 's/w');
-INSERT INTO colors VALUES ( '2', 'Farbe', 'color');
-INSERT INTO colors VALUES ( '3', '3D', '3d');
+CREATE TABLE pvp_config (
+   id int(5) NOT NULL auto_increment,
+   name varchar(30) NOT NULL,
+   value text,
+   PRIMARY KEY (id)
+);
 
-#
-# Data for table 'mtypes'
-#
-
-INSERT INTO mtypes VALUES ( '1', 'Recorded Video Tape', 'RVT');
-INSERT INTO mtypes VALUES ( '2', 'Original Video Tape', 'OVT');
-INSERT INTO mtypes VALUES ( '3', 'Digital Versatile Disk', 'DVD');
-
-#
-# Data for table 'pict'
-#
-
-INSERT INTO pict VALUES ( '1', '4:3', '4-3');
-INSERT INTO pict VALUES ( '2', '16:9', '16-9');
-
-#
-# Data for table 'tone'
-#
-
-INSERT INTO tone VALUES ( '1', 'Mono', '1.0');
-INSERT INTO tone VALUES ( '2', 'Stereo', '2.0');
-INSERT INTO tone VALUES ( '3', '2-Kanal', '2K');
-INSERT INTO tone VALUES ( '4', 'Dolby Surround', '3.0');
-INSERT INTO tone VALUES ( '5', 'Dolby 4.0', '4.0');
-INSERT INTO tone VALUES ( '6', 'Dolby 5.0', '5.0');
-INSERT INTO tone VALUES ( '7', 'Dolby 5.1', '5.1');
-INSERT INTO tone VALUES ( '8', 'Dolby 6.0', '6.0');
-INSERT INTO tone VALUES ( '9', 'Dolby 6.1', '6.1');
-
-#
 # initial content of table pvp_system
-#
-
 INSERT INTO pvp_config (name,value) VALUES ('version','0.1.2');
 
+# --------------------------------------------------------
 #
-# default language setting in preferences
+# Table structure for table 'lang' (translations)
 #
 
+CREATE TABLE lang (
+  message_id varchar(150) DEFAULT '' NOT NULL,
+  lang varchar(5) DEFAULT '' NOT NULL,
+  content text NOT NULL,
+  PRIMARY KEY (message_id,lang)
+);
+
+# initial content of table lang contained in lang_*.sql files
+
+# update language in preferences
 INSERT INTO preferences (name,value) VALUES ('lang','en');
 
+# --------------------------------------------------------
 #
-# list of languages and their keys
+# Table structure for table 'languages' (supported languages)
 #
 
+CREATE TABLE languages (
+  lang_id char(2) DEFAULT '' NOT NULL,
+  lang_name varchar(50) DEFAULT '' NOT NULL,
+  available char(3) DEFAULT 'No' NOT NULL,
+  PRIMARY KEY (lang_id)
+);
+
+# table content
 INSERT INTO languages VALUES ('aa','Afar','No');
 INSERT INTO languages VALUES ('ab','Abkhazian','No');
 INSERT INTO languages VALUES ('af','Afrikaans','No');

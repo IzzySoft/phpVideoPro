@@ -13,7 +13,7 @@
  /* $Id$ */
 
 # $page_id = "admin_orphans";
- include("inc/includes.inc");
+ include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
 
  $t = new Template($pvp->tpl_dir);

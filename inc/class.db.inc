@@ -416,16 +416,21 @@
    /** remove a session from DB
     * @class sql
     * @method remove_session
-    * @param string sess_id session identifier
+    * @param optional string sess_id session identifier
     * @param optional integer days purge older than $days (give empty sess_id for this)
     * @return boolean success
+    * @version if called without parameters, all ended sessions are removed
     */
-   function remove_session($id,$days="") {
+   function remove_session($id="",$days="") {
      if ($days) {
        $pdate = time() - ($days * 86400);
-       return $this->query("DELETE FROM pvp_sessions WHERE dla<'$pdate'");
+       $query = "DELETE FROM pvp_sessions WHERE dla<'$pdate'";
+     } elseif ($id) {
+       $query = "DELETE FROM pvp_sessions WHERE id='$id'";
+     } else {
+       $query = "DELETE FROM pvp_sessions WHERE ended IS NOT NULL";
      }
-     return $this->query("DELETE FROM pvp_sessions WHERE id='$id'");
+     return $this->query($query);
    }
 
    ############################################################################

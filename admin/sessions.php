@@ -21,6 +21,7 @@
 
  if ($delete) $db->remove_session($delete);
  if ($days)   $db->remove_session("",$days);
+ if ($ended)  $db->remove_session();
 
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"admin_sessions.tpl"));
@@ -42,14 +43,15 @@
    $t->set_var("sess_ip",$list[$i][ip]);
    $t->set_var("sess_user",$list[$i][user]);
    $t->set_var("sess_start",todate($list[$i][started]));
-   $t->set_var("sess_dla",$list[$i][dla]);
-   $t->set_var("sess_end",$list[$i][end]);
+   $t->set_var("sess_dla",todate($list[$i][dla]));
+   if ($list[$i][ended]) { $sEnd = todate($list[$i][ended]); } else { $sEnd = "&nbsp;"; }
+   $t->set_var("sess_end",$sEnd);
    $del = $pvp->link->linkurl($PHP_SELF."?delete=".$list[$i][sess_id],lang("delete"));
    $t->set_var("sess_action",$del);
    $t->parse("item","itemblock",TRUE);
  }
- $del = lang("delete_old_session","days");
- $t->set_var("del_old_sess",$del);
+ $t->set_var("old_sess",lang("old_sessions","days"));
+ $t->set_var("ended_sess",lang("ended_sessions"));
  $t->set_var("head_sess_id",lang("sess_id"));
  $t->set_var("head_sess_ip",lang("sess_ip"));
  $t->set_var("head_sess_user",lang("user"));
@@ -57,7 +59,7 @@
  $t->set_var("head_sess_dla",lang("sess_dla"));
  $t->set_var("head_sess_end",lang("sess_end"));
  $t->set_var("head_sess_action","");
- $t->set_var("submit",lang("submit"));
+ $t->set_var("submit",lang("delete"));
  $t->set_var("first",$nextmatch->first);
  $t->set_var("left",$nextmatch->left);
  $t->set_var("right",$nextmatch->right);

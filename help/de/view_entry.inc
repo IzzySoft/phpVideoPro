@@ -35,5 +35,25 @@ Informationen. D.h., wir sind weder für diese Informationen verantwortlich,
 noch werden wir sie in irgendeiner Weise verändern :-) Wir dachten uns lediglich,
 es wäre nett, diese auf Mausklick mit verfügbar zu haben.
 
+[title]
+Druck von Etiketten
+
+[text]
+Die mit "*print_label#" bezeichnete Auswahl-Box ermöglicht den Druck eines
+Etiketts für das ausgewählte Medium. Es listet alle verfügbaren Vorlagen auf
+und startet die Anzeige eines Etiketts für das gesamte Medium (also eines,
+welches Titel und Laufzeit aller auf dem Medium verfügbaren Filme enthält).
+Derzeit (v0.2.4) ist die maximale Anzahl der Filme, die auf dem Etikett
+abgebildet werden, auf 4 beschränkt - dies wird ggf. später konfigurierbar
+werden.
+
+[text]
+Um selbsterstellte Etikett-Vorlagen zu verwenden, sind diese einfach in das
+Verzeichnis "labels/" zu kopieren. Eine ".config" Datei wird zwingend benötigt;
+diese enthält die notwendigen Angaben über Größe und Position der einzelnen
+Felder. Ist darüber hinaus eine ".png" Datei gleichen Namens vorhanden, wird
+diese dem Etikett zugrunde gelegt - andernfalls wird ein leeres (weißes)
+Etikett erstellt (und natürlich beschriftet).
+
 [eof]
 

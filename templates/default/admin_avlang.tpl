@@ -22,7 +22,7 @@
      <TD><DIV ALIGN="center"><IMG SRC="{tpl_dir}images/{lang_locale}" ALT="{alt_lang_locale}"></DIV></TD>
      <TD><DIV ALIGN="center"><IMG SRC="{tpl_dir}images/{lang_audio}" ALT="{alt_lang_audio}"></DIV></TD>
      <TD><DIV ALIGN="center"><IMG SRC="{tpl_dir}images/{lang_subtitle}" ALT="{alt_lang_subtitle}"></DIV></TD>
-     <TD><DIV ALIGN="center"><A HREF="{lang_edit}"><IMG SRC="{tpl_dir}images/edit.png" ALT="Edit" BORDER="0"></A></DIV></TD></TR>
+     <TD><DIV ALIGN="center"><A HREF="{lang_edit}"><IMG SRC="{tpl_dir}images/edit.gif" ALT="Edit" BORDER="0"></A></DIV></TD></TR>
 <!-- END langblock -->
 </TABLE>
 <!-- END listblock -->

@@ -39,7 +39,7 @@
     ><? echo lang("help") ?></a>
 <?
 if ($sess_id) {
- $login_info = lang("user").": ".$pvp->auth->user->login;
+ $login_info = lang("user").": ".$pvp->link->linkurl($base_url."admin/useredit.php?id=".$pvp->auth->user_id,$pvp->auth->user->login);
 } else {
  $login_info = lang("not_logged_in");
 }?>

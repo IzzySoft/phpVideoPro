@@ -14,7 +14,9 @@
  <li>moved some CSS and JavaScript definitions to external files
  <li>fixed some problems concerning template sets
  <li>added new template set: <I>Applicat</I> should be more user friendly
-     by e.g. offering short-keys to some menu items like context help and logoff
+     by e.g. offering short-keys to some menu items like context help, initial
+     page and logoff
+ <li>menu bar now contains login info (either logged-in user or not-logged-in info)
 </ul>
 
 [title]

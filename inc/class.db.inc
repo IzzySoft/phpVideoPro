@@ -1238,10 +1238,22 @@
    /** Get last movie numbers for each media type
     * @class sql
     * @method get_lastmovienum
-    * @return array lastnum (i:mtype, i:mtype_id, i:cass_id, i:part, i:entry;
-    *  where i:entry = "mtype cass_id-part")
+    * @param optional integer mtype_id
+    * @param optional integer cass_id
+    * @return mixed lastnum
+    *  array lastnum if called w/o params (i:mtype, i:mtype_id, i:cass_id,
+    *  i:part, i:entry; where i:entry = "mtype cass_id-part")
+    *  integer part if called w/ both params
     */
-   function get_lastmovienum() {
+   function get_lastmovienum($mtype_id="",$cass_id="") {
+     if ($mtype_id && $cass_id) {
+       $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
+       if ( $this->next_record() ) {
+         return $this->f('max_part');
+       } else {
+         return 0;
+       }
+     }
      $mtypes = $this->get_mtypes();
      for ($i=0;$i<count($mtypes);$i++) {
        $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);

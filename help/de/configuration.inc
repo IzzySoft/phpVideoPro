@@ -96,5 +96,21 @@ von Seite zu Seite differieren. Dies liegt daran, dass hier die "Häppchen-Größe"
 auf die Anzahl der Personen angewendet wird. Diese können aber durchaus auch als
 "nicht anzuzeigen" erfaßt sein (Option "*in_list#" im "*edit#" Formular).
 
+[text]
+<b>*lines_per_page#:</b> Diese Angabe dient den Vorbereitungen für den
+Listendruck und gibt an, wie viele Zeilen (reinen ASCII) Textes auf ein Blatt
+Papier passen. Einmal an dieser Stelle festgelegt, wird dieser Wert bei jedem
+Aufruf des Menüpunktes "*listgen#" (siehe <A HREF="{PHP_SELF}?topic=listgen">dort</A>)
+als Standard vorgegeben, kann dort jedoch auch jedesmal angepasst werden.
+
+[text]
+<b>*date_format#:</b> In welchem Format sollen Datumsangaben präsentiert werden.
+Dies ist erst seit phpVideoPro v0.2.6 konfigurierbar; bis zur v0.3.0 sollten
+jedoch alle Menüs, Formulare und Listen entsprechen angepasst sein. Sollte
+dennoch ein Punkt vergessen worden sein, bitte ich um einen kurzen Hinweis
+(ich würde an dieser Stelle ja ein kostenloses Update als Preis anbieten - aber
+angesichts der Lizenz dieses Produktes nähme das eh niemand ernst :)
+
+
 [eof]
 

@@ -51,6 +51,7 @@
    li("media_change");
    li("change_rc");
    li("disktype_change");
+   li("admin_avlang");
   headline("howto");
    li("howto_lang");
    li("howto_help");

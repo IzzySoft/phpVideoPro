@@ -103,8 +103,9 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"listgen.tpl"));
  $t->set_block("list","definitionblock","definitionlist");
- $list   = "<SELECT NAME=\"order\"><OPTION VALUE=\"num\">NumList</OPTION>"
-         . "<OPTION VALUE=\"title\">AlphaList</OPTION></SELECT>";
+ $list   = "<SELECT NAME=\"order\">"
+         . "<OPTION VALUE=\"num\">" . lang("medialist_num"). "</OPTION>"
+	 . "<OPTION VALUE=\"title\">" . lang("medialist_alpha") . "</OPTION></SELECT>";
  $format = "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>"
          . "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT>";
  $lines  = "<INPUT NAME=\"pagelength\" VALUE=\"$pagelength\" SIZE=\"3\">";

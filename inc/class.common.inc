@@ -214,7 +214,7 @@ class common {
    * @class common
    * @method safehtml
    * @param string string string to clean up
-   * @param optional string allowed tags to permit (defaults to "block|pre|br|b|i|p|ul|ol|u|center|hr")
+   * @param optional string allowed tags to permit (defaults to "b|i|u|center")
    * @param optional boolean addstring add $allowed to the defaults (TRUE) or replace (FALSE)?
    * @param optional string keep tags to keep entirely intact (needed for e.g. "a|img"; default: "")
    * @return string cleaned string
@@ -223,7 +223,7 @@ class common {
    *  other non-allowed tags are removed, but the enclosed text is kept intact.
    */
   function safehtml($str,$allowed="",$add=FALSE,$keep="") {
-    if ($allowed==="") $allowed = "block|pre|br|b|i|p|ul|ol|u|center|hr";
+    if ($allowed==="") $allowed = "b|i|u|center";
     if ($keep) {
       if ($allowed) { $ignored = $allowed . "|" . $keep; } else { $ignored = $keep; }
     } else { $ignored = $allowed; }
@@ -234,6 +234,29 @@ class common {
     $str = preg_replace("/<((?!\/?($ignored)\b)[^>]*>)/xis", "", $str);
     $str = preg_replace("/<($allowed).*?>/i", "<\\1>", $str);
     return $str;
+  }
+
+  /** remove unwanted HTML tags from input fields (wrapper to safehtml())
+   * @class common
+   * @method safeinput
+   * @param string string string to clean up
+   * @return string cleaned string
+   * @see safehtml() for details
+   */
+  function safeinput($str) {
+    return $this->safehtml($str);
+  }
+
+  /** remove unwanted HTML tags from textareas. This wrapper to safehtml()
+   *  allows some more tags that may be needed for formatting issues
+   * @class common
+   * @method safetextarea
+   * @param string string string to clean up
+   * @return string cleaned string
+   * @see safehtml() for details
+   */
+  function safetextarea($str) {
+    return $this->safehtml($str,"block|pre|br|hr|p",TRUE,"ul|ol|li");
   }
 
    #============================================[ file system functions ]===

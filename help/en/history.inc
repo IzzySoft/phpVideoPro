@@ -14,6 +14,8 @@
      anymore (at least Opera does not :)
  <li>added site info (the "site" variable in config.inc) - that's what's now
      displayed within the title bar of your browser behind the "@" sign.
+ <li>view/edit entry screens now show the complete movie number (including the
+     media type) in title bar and headline, plus the form looks a bit better now
 </ul>
 
 [title]

@@ -61,4 +61,6 @@
 </TABLE>
 <!-- END editblock -->
 </FORM>
+<!-- BEGIN mlinkblock -->
 <DIV STYLE="margin:3;text-align:center"><SPAN CLASS="virtual_button">{admin_avlang}</SPAN></DIV>
+<!-- END mlinkblock -->

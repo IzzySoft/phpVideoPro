@@ -78,13 +78,16 @@
  <INPUT TYPE="hidden" NAME="id" VALUE="{id}">
 </TABLE>
 </DIV>
+</TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD><DIV STYLE="margin:3;text-align:center"><INPUT TYPE="submit" CLASS="submit" NAME="update" VALUE="{add}" CLASS="techinput"></DIV></TR>
 </FORM>
 <!-- END editblock -->
 
-<DIV STYLE="margin:3;text-align:center"><SPAN CLASS="virtual_button">{admin_avlang}</SPAN></DIV>
+<!-- BEGIN mlinkblock -->
+<TR><TD><DIV STYLE="margin:3;text-align:center"><SPAN CLASS="virtual_button">{admin_avlang}</SPAN></DIV></TD></TR>
+<!-- END mlinkblock -->
 </TABLE>
 </DIV>
 </TD></TR></TABLE>

@@ -76,15 +76,12 @@
     echo $field;
   }
   
+  function name_sep($name,$fname) {
+    if ( ( strlen(trim($name)) ) && ( strlen(trim($fname)) ) ) echo ",&nbsp;";
+    if ( !( strlen(trim($name)) ) || !( strlen(trim($fname)) ) ) echo "&nbsp;";
+  }
+  
 ?>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
- <tr> 
-  <td width="7"><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="7" height="24"></td>
-  <td background="<? echo $base_url ?>images/menu_bar_bg.gif" width="100%">&nbsp;</td>
-  <td width="9"><img src="<? echo $base_url ?>images/menu_bar_right.gif" width="9" height="24"></td>
- </tr>
-</table>
 
 <? if ($save) { include("inc/save.inc"); exit; } ?>
 
@@ -174,85 +171,63 @@
   } ?></TD>
   <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
-  <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<$input NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
-  <TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); echo "&nbsp;"; form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD></TR>
+  <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
+  <TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); name_sep($director_name,$director_fname); form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD></TR>
  <TR>
   <TD>Length</TD><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD>
-  <TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); echo "&nbsp;"; form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD></TR>
+  <TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); name_sep($composer_name,$composer_fname); form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD></TR>
  <TR>
   <TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD>
   <TD>Year</TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
  <TR>
-  <TD>Tone</TD><TD><?
-  if ($edit) {
-    echo "<SELECT NAME=\"tone_id\">";
-    for ($i=0;$i<count($ttypes);$i++) {
-      echo "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
-      if ($ttypes[$i][name]==$tone) echo  "SELECTED";
-      echo ">" . $ttypes[$i][name] . " </OPTION>";
-    }
-    echo "</SELECT>";
-  } else {
-    echo "<$input NAME=\"tone\" VALUE=\"$tone\">";
-  } ?></TD>
-  <TD>Category 1</TD><TD><?
-  if ($edit) {
-    echo "<SELECT NAME=\"cat1_id\">";
-    for ($i=0;$i<count($cats);$i++) {
-      echo "<OPTION VALUE=\"" . $cats[$i][id] . "\"";
-      if ($cats[$i][name]==$cat[1]) echo " SELECTED";
-      echo ">" . $cats[$i][name] . " </OPTION>";
-    }
-    echo "</SELECT>";
-  } else {
-    echo "<$input NAME=\"cat1\" VALUE=\"" . $cat[1] . "\">";
-  }
-  ?></TD></TR>
- <TR>
-  <TD>Picture</TD><TD><?
-  if ($edit) {
-    echo "<SELECT NAME=\"color_id\">";
-    for ($i=0;$i<count($colors);$i++) {
-      echo "<OPTION VALUE=\"" . $colors[$i][id] . "\"";
-      if ($colors[$i][name]==$color) echo " SELECTED";
-      echo ">" . $colors[$i][name] . " </OPTION>";
-    }
-    echo "</SELECT>";
-  } else {
-    echo "<$input NAME=\"color\" VALUE=\"$color\">";
-  }
-  ?></TD>
-  <TD>Category 2</TD><TD><?
-  if ($edit) {
-    echo "<SELECT NAME=\"cat2_id\"><OPTION VALUE=\"-1\">- None -</OPTION>";
-    for ($i=0;$i<count($cats);$i++) {
-      echo "<OPTION VALUE=\"" . $cats[$i][id] . "\"";
-      if ($cats[$i][name]==$cat[2]) echo " SELECTED";
-      echo ">" . $cats[$i][name] . " </OPTION>";
-    }
-    echo "</SELECT>";
-  } else {
-    echo "<$input NAME=\"cat2\" VALUE=\"" . $cat[2] . "\">";
-  }
-  ?></TD></TR>
- <TR>
   <TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD>
-  <TD>Category 3</TD><TD><?
-  if ($edit) {
-    echo "<SELECT NAME=\"cat3_id\"><OPTION VALUE=\"-1\">- None -</OPTION>";
-    for ($i=0;$i<count($cats);$i++) {
-      echo "<OPTION VALUE=\"" . $cats[$i][id] . "\"";
-      if ($cats[$i][name]==$cat[3]) echo " SELECTED";
-      echo ">" . $cats[$i][name] . " </OPTION>";
+  <TD>Category 1-2-3</TD><TD><?
+  for ($i=1;$i<=$max["categories"];$i++) {
+   if ($edit) {
+    echo "<SELECT NAME=\"cat" . $i . "_id\">";
+    if ($i > 1) echo "<OPTION VALUE=\"-1\">- None -</OPTION>";
+    for ($k=0;$k<count($cats);$k++) {
+      echo "<OPTION VALUE=\"" . $cats[$k][id] . "\"";
+      if ($cats[$k][name]==$cat[$i]) echo " SELECTED";
+      echo ">" . $cats[$k][name] . " </OPTION>";
     }
     echo "</SELECT>";
-  } else {
-    echo "<$input NAME=\"cat3\" VALUE=\"" . $cat[3] . "\">";
+   } else {
+    echo "<$input NAME=\"cat" . $i . "\" VALUE=\"";
+    if ( trim($cat[$i])=="" ) { echo "- None -"; } else { echo $cat[$i]; }
+    echo "\">";
+   }
+   if ( $i<$max["categories"] ) echo "&nbsp;-&nbsp;";
   }
   ?></TD></TR>
  <TR>
   <TD ColSpan=2>
-   <Table Width=100%>
+   <Table Width=100% Border=0>
+    <TR><TD WIDTH=30%>Tone</TD><TD><?
+    if ($edit) {
+      echo "<SELECT NAME=\"tone_id\">";
+      for ($i=0;$i<count($ttypes);$i++) {
+        echo "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
+        if ($ttypes[$i][name]==$tone) echo  "SELECTED";
+        echo ">" . $ttypes[$i][name] . " </OPTION>";
+      }
+      echo "</SELECT>";
+    } else {
+      echo "<$input NAME=\"tone\" VALUE=\"$tone\">";
+    } ?></TD></TR>
+    <TR><TD>Picture</TD><TD><?
+    if ($edit) {
+      echo "<SELECT NAME=\"color_id\">";
+      for ($i=0;$i<count($colors);$i++) {
+        echo "<OPTION VALUE=\"" . $colors[$i][id] . "\"";
+        if ($colors[$i][name]==$color) echo " SELECTED";
+        echo ">" . $colors[$i][name] . " </OPTION>";
+      }
+      echo "</SELECT>";
+    } else {
+      echo "<$input NAME=\"color\" VALUE=\"$color\">";
+    }
+    ?></TD></TR>
     <TR><TD Width=40%>Screen</TD><TD Width=60%><?
     if ($edit) {
       echo "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">unknown</OPTION>";
@@ -283,14 +258,17 @@
    </Table>
   </TD>
   </TR>
- <TR><TH ColSpan=4 Align=Center><HR>Comments<HR></TH></TR>
- <TR><TD ColSpan=4><?
- if ($edit) {
-   echo "<CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></CENTER>";
- } else {
-   echo $comment;
- }
- ?></TD></TR>
+ <TR><TD ColSpan=4 Align=Center>
+   <TABLE WIDTH="100%" BORDER="0">
+     <TR><TH><HR>Comments<HR></TH></TR>
+     <TR><TD><?
+     if ($edit) {
+       echo "<CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></CENTER>";
+     } else {
+       echo $comment;
+     }
+     ?></TD></TR>
+   </TABLE>
  <TR><TD ColSpan=4>
    <INPUT TYPE="hidden" NAME="nr" VALUE="<?php echo $nr ?>">
    <Table Width="100%"><? if ($edit) { ?>

@@ -1525,7 +1525,7 @@
          $this->next_record();
 	 $item = $this->f('item');
 	 $rank = "rank_" . $value["name"] . "_" . $i;
-	 if (!strlen( trim($item) )) $item = lang("unknown");
+	 if (!strlen( trim($item) )) --$i; // remove the "unknowns"
 	 $stats[$rank] =  "$item (" . $this->f('rank') . ")";
        }
      }

@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.4.1 (2003)
+[text]
+<ul>
+ <li>removed the "unknown" entries from the ranking list on the statistics page
+</ul>
+
+[title]
 0.4.0 (November 20, 2002)
 [text]
 <ul>

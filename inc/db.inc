@@ -646,11 +646,11 @@
        case "length" : $orderby = "v.length,v.mtype_id DESC,v.cass_id"; break;
        case "year"   : $orderby = "v.year,v.mtype_id DESC,v.cass_id"; break;
        case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.cass_id"; break;
-       case "cat"    : $orderby = "c.name,v.mtype_id DESC,v.cass_id"; break;
+       case "cat"    : $orderby = "v.cat1_id,v.mtype_id DESC,v.cass_id"; break;
        default       : $orderby = "v.mtype_id DESC,v.cass_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
-     $query = "SELECT id FROM video v";
+     $query = "SELECT DISTINCT v.id FROM video v,cat c";
      if (strlen($filter)) {
        if (strlen($where)) {
          $where .= " AND $filter";

@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>movie title button now also links to IMDB information (as names do)
+ <li>movielist: order by category didn't work. Fixed.
 </ul>
 
 [title]

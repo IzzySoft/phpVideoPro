@@ -12,11 +12,23 @@
 
  /* $Id$ */
 
+ /** Class to create labels for your media
+  * @package Api
+  * @class label
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  */
  class label {
 
    VAR $width, $height, $textcolor, $font, $color, $maxlines, $label,
        $nr_coord, $main_coord, $symb_coord, $mm_conv, $entry, $titleline;
 
+   /** Constructor: initializes with config values, then calls all
+    *  necessary (private) functions to create the label.
+    * @constructor label
+    * @param string config base name of config file to use (without path and
+    *  extension)
+    */
    function label($config) {
      GLOBAL $base_path;
      $config = $base_path . "labels/$config";
@@ -204,6 +216,59 @@
    function destroy() {
      ImageDestroy( $this->label() );
    }
+
+ /** Label width
+  * @class label
+  * @attribute integer width
+  */
+ /** Label height
+  * @class label
+  * @attribute integer height
+  */
+ /** Color used for the font
+  * @class label
+  * @attribute string textcolor
+  */
+ /** Font to use
+  * @class label
+  * @attribute integer font font number as used by PHPs imaging methods
+  */
+ /** Available colors
+  * @class label
+  * @attribute array color available colors to be addressed by their names
+  */
+ /** Max text lines to fit on a label
+  * @class label
+  * @attribute integer maxlines
+  */
+ /** Label handler
+  * @class label
+  * @attribute mixed label
+  */
+ /** Coordinates of media number
+  * @class label
+  * @attribute string nr_coord
+  */
+ /** Coordinates of label main field
+  * @class label
+  * @attribute string main_coord
+  */
+ /** Coordinates of (category) symbol
+  * @class label
+  * @attribute string symb_coord
+  */
+ /** Conversion unit (points to millimeters)
+  * @class label
+  * @attribute integer mm_conv
+  */
+ /** Label text template
+  * @class label
+  * @attribute array entry
+  */
+ /** Titleline (to be printed bold)
+  * @class label
+  * @attribute integer titleline
+  */
 
  } // end class label
 

@@ -256,7 +256,7 @@
      if ( $this->next_record() ) {
        $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
      } else {
-       $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value'");
+       $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value')");
      }
    }
 

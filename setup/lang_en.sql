@@ -364,3 +364,4 @@ INSERT INTO lang VALUES('disktype_add_failed','en','Sorry, I could not add the n
 INSERT INTO lang VALUES('disktype_update_failed','en','Sorry, I could not update following disk type #s: %1');
 INSERT INTO lang VALUES('admin_movietech','en','Edit Movie technical data');
 INSERT INTO lang VALUES('confirm_delete','en','Do you really want to delete this record?');
+INSERT INTO lang VALUES('movies_left_reference','en','This entry cannot be deleted: There are movies in DB referencing it.');

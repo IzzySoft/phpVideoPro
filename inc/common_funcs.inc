@@ -157,8 +157,8 @@
  function translate($key,$vars=FALSE) {
    if (empty($key)) return $key;
    GLOBAL $translations;
-   $trans = $translations[strtolower($key)];
-   if (!$trans) $trans = $key;
+   if (isset($translations[strtolower($key)])) $trans = $translations[strtolower($key)];
+   if (!isset($trans)) $trans = $key;
    if (!$vars) $vars=array();
    $ndx = 1;
    while ( list($k,$v)=each($vars) ) {

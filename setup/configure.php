@@ -55,8 +55,8 @@ if ( isset($update) ) {
     for ($i=0;$i<count($mtypes);$i++) {
       $id    = $mtypes[$i]['id'];
       $mtype = "mtype_".$id;
-      if (${$mtype}) {
-        if (strlen($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
+      if (isset(${$mtype})) {
+        if (isset($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
       }
     }
     $db->set_config("rw_media",$rw_media);
@@ -86,7 +86,7 @@ if ( isset($update) ) {
     }
   }
   #-----------------------------[ get available language files ]---
-  if ($_POST["scan_langfile"]) {
+  if (isset($_POST["scan_langfile"]) && $_POST["scan_langfile"]) {
     chdir("$base_path/setup");
     $handle=opendir (".");
     while (false !== ($file = readdir ($handle))) {

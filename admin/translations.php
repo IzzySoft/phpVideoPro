@@ -43,6 +43,7 @@
    $t->set_var("sel_lang_title",lang("sel_target_lang"));
    $t->set_var("sel_lang",$sel_lang);
    $t->parse("emptylist","emptyblock");
+   $t->set_var("submitname",lang("sellang"));
    $t->set_var("submit",lang("submit"));
    include("../inc/header.inc");
    $t->pparse("out","list");
@@ -85,7 +86,7 @@
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount -1;$i++) {
    $msgid  = $list["xlist"][$i];
-   if ($submit) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
+   if ($update) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
    $orig   = $list["$msgid"];
    $target = $db->get_singletrans($targetlang,"",$msgid);
 #   if ($target[$msgid]) $target[$msgid] = htmlentities($target[$msgid]);
@@ -98,7 +99,7 @@
    $t->set_var("sample","");
    $t->parse("mdatalist","mdatablock",TRUE);
  }
- if ($submit) $db->lang_available($targetlang,1);
+ if ($update) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
  $t->set_var("charset","$charset,iso-8859-1");
@@ -106,6 +107,7 @@
  $t->set_var("orig",lang("orig_trans","en"));
  $t->set_var("trans",lang("target_trans",$targetlang));
  $t->set_var("sample",lang("trans_sample"));
+ $t->set_var("submitname","update");
  $t->set_var("submit",lang("update"));
  $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
  $t->set_var("hidden",$hidden);

@@ -25,7 +25,7 @@
    <TR><TH COLSPAN="2">{sel_lang_title}</TH><TD COLSPAN="2"><DIV ALIGN="center">{sel_lang}</DIV></TD></TR>
    <!-- END emptyblock -->
    <TR><TH COLSPAN="2"><DIV ALIGN="center">{save}</DIV></TH>
-       <TH COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TH>
+       <TH COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="{submit_name}" VALUE="{submit}"></DIV></TH>
    </TR>
   </Table>
  </TD></TR>

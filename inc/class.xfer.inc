@@ -35,6 +35,7 @@
   }
 
  #====================================================[ Helpers (private!) ]===
+ #--------------------------------------------------------[ Initialization ]---
   /** Initialize data arrays for imports
    * @class xfer
    * @method private initImport
@@ -66,6 +67,7 @@
     $this->items = 0;
   }
 
+ #-----------------------------------------------------[ Message Formating ]---
   /** Formating error message for display as save_result in form
    * @methode private errorMsg
    * @param string msg
@@ -84,6 +86,7 @@
     return "<SPAN CLASS='ok'>$msg</SPAN>";
   }
 
+ #-----------------------------------[ Import helper for Audio + Subtitles ]---
   /** Retrieve list of available languages for audio/subtitle
    * @class xfer
    * @method private mkavlang
@@ -118,6 +121,7 @@
      return $mtype;
    }
 
+ #--------------------------------------------------------[ File Functions ]---
   /** Read a file from disk.
    *  On errors, the formated error message is stored in xfer::readErr
    * @method private fileRead
@@ -155,6 +159,23 @@
     return TRUE;
   }
 
+  /** Send the (encoded) data from xfer::list for download to the browser and
+   *  reset the list
+   * @method private fileSend
+   * @param string filename filename to offer for d/l
+   * @param string type DataType ("Movie","SysConf")
+   */
+  function fileSend($filename,$type) {
+    header("content-type: application/octet-stream");
+    header("Content-Disposition: attachment; filename=$filename");
+    $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
+    if ($this->compress) echo gzencode($this->list);
+      else echo $this->list;
+    $this->list  = "";
+    $this->items = 0;
+  }
+
+ #----------------------------------------------------------------[ Movies ]---
   /** Store movies from xfer::data into DB.
    *  How many movies could not be imported is stored to xfer::errors,
    *  error details are stored in (appended to) xfer::report
@@ -245,6 +266,7 @@
     }
   }
 
+ #---------------------------------------------------------------[ SysConf ]---
   /** Update system config and default preferences from backup file.
    *  Possible errors are logged to xfer::report, plus xfer::errors is
    *  incremented
@@ -319,20 +341,17 @@
     ++$this->items;
   }
 
-  /** Send the (encoded) data from xfer::list for download to the browser and
-   *  reset the list
-   * @method private fileSend
-   * @param string filename filename to offer for d/l
-   * @param string type DataType ("Movie","SysConf")
+ #------------------------------------------------------------[ Categories ]---
+  /** Retrieve Categories from DB and store them into xfer::list
+   * @method private catGet
    */
-  function fileSend($filename,$type) {
-    header("content-type: application/octet-stream");
-    header("Content-Disposition: attachment; filename=$filename");
-    $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
-    if ($this->compress) echo gzencode($this->list);
-      else echo $this->list;
-    $this->list  = "";
-    $this->items = 0;
+  function catGet() {
+    GLOBAL $db;
+    $cats = $db->get_category();
+    $ccount = count($cats);
+    for ($i=0;$i<$ccount;++$i,++$this->items) {
+      $this->list .= urlencode(serialize($cats[$i]))."\n";
+    }
   }
 
  #================================================[ Configuration (public) ]===
@@ -405,6 +424,7 @@
     $stamp = date('ymd');
     switch ($mode) {
       case "SysConf": $this->configGet(); $name="sysconf"; break;
+      case "Cats"   : $this->catGet(); $name="cats"; break;
       case "Movie"  :
       default       :
         if ($id) { $this->movieGet($id);

@@ -41,19 +41,13 @@
  #=======================================================[ run the backup ]===
  if ($_POST["backup"]) {
    $stamp = date('ymd'); // to generate a unique filename
- #---------------------------------------------[ Movies only (PVP format) ]---
-   if ($_POST["btype"]=="movieint") {
-     $xfer = new xfer("export");
-     if ($_POST["compress"]) $xfer->compressionOn();
-     $xfer->fileExport("Movie");
-     exit;
-   }
- #----------------------------------------------[ Sys Config (PVP format) ]---
-   if ($_POST["btype"]=="sysconf") {
-     $xfer = new xfer("export");
-     if ($_POST["compress"]) $xfer->compressionOn();
-     $xfer->fileExport("SysConf");
-     exit;
+   $xfer = new xfer("export");
+   if ($_POST["compress"]) $xfer->compressionOn();
+   switch ($_POST["btype"]) {
+     case "movieint" : $xfer->fileExport("Movie"); exit; break;
+     case "sysconf"  : $xfer->fileExport("SysConf"); exit; break;
+     case "cats"     : $xfer->fileExport("Cats"); exit; break;
+     default         : break;
    }
  #--------------------------------------[ Complete DB backup (SQL format) ]---
    if ($_POST["compress"]) { fhead("pvp-$stamp.sql.gz"); }
@@ -105,6 +99,7 @@
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CLASS='checkbox'>".lang("backup_db_complete")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='cats' CLASS='checkbox'>".lang("backup_db_cats")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='sysconf' CLASS='checkbox'>".lang("backup_db_sysconf")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);

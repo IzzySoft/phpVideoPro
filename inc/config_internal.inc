@@ -119,6 +119,7 @@
   if ( isset($pre) ) $version .= $pre;
   $charset = 'utf-8';
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
+  $pvp->tpl_url = $base_url . "templates/" . $pvp->preferences->get("template");
   $pvp->pstpl_dir = $base_path . "pslabels";
   $pvp->backup_dir = $backup_path;
   $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");

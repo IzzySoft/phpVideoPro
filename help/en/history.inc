@@ -12,8 +12,15 @@
  <li>added phpVideoPro internal format to the backup page. This should a)
      solve the restore problems with PostgreSQL (sequences are not considered
      by current backup) and b) be compatible amongst all (even future) supported
-     databases. Only disadvantage: we have no restore yet *grin* - next2come.
+     databases.
  <li>added optional compression to all backup types
+ <li>added restore functionality (see backup page). As for now, this presumes
+     identical structure concerning the technical data to work correctly, i.e.
+     the target database must not have any disktypes, categories etc. dropped
+     or the order (id) changed. Moreover, at this stage you must chose to drop
+     all old data before doing a restore - otherwise you will only bump into
+     error messages (due to duplicate MediaNrs). So a complete database backup
+     using the databases own tools (pg_dump, mysql_dump) is still recommended.
 </ul>
 
 [title]

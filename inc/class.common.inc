@@ -251,6 +251,20 @@ class common {
     return $ar1;
   }
 
+   #===================================================[ misc functions ]===
+  /** check wether a medium is (re)writeable (as e.g. RVT) or not (e.g. DVD)
+   * @class common
+   * @method medium_is_rw
+   * @param integer id mtype_id
+   * @return boolean TRUE if medium is writeable
+   */
+  function medium_is_rw($id) {
+    GLOBAL $rw_media;
+    $rw = explode(",",$rw_media);
+    if ( in_array($id,$rw) ) return TRUE;
+    return FALSE;
+  }
+
  } // end class common
  
 ?>

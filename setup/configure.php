@@ -43,6 +43,8 @@ if ( isset($update) ) {
   $pvp->preferences->set("template",$_POST["template_set"]);
   $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
   $pvp->preferences->set("imdb_url2",$_POST["imdb_url2"]);
+  if (!isset($_POST["imdb_txwin_autoclose"])) $_POST["imdb_txwin_autoclose"] = 0;
+  $pvp->preferences->set("imdb_txwin_autoclose",$_POST["imdb_txwin_autoclose"]);
   $pvp->preferences->set("page_length",$_POST["cpage_length"]);
   $pvp->preferences->set("display_limit",$_POST["cdisplay_limit"]);
   $pvp->preferences->set("date_format",$_POST["cdate_format"]);
@@ -129,6 +131,7 @@ $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
 for ($i=0;$i<$count;++$i) {
   ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
 }
+$imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $cdisplay_limit = $pvp->preferences->get("display_limit");
 $cpage_length   = $pvp->preferences->get("page_length");
 $cdate_format   = $pvp->preferences->get("date_format");
@@ -399,7 +402,7 @@ if ($admin) {
 }
 
 #------------------------------------------[ setup block 5: imdb defaults ]---
-$t->set_var("list_head","IMDB");
+$t->set_var("list_head","IMDB <IMG SRC='".$pvp->tpl_url."/images/info.gif' BORDER='0'>");
 
 #--[ imdb_url ]--
 $t->set_var("item_name",lang("imdb_url"));
@@ -440,6 +443,17 @@ for ($i=0;$i<$count;++$i) {
   $select .= ">".lang($imdbtx["imdb_tx"][$i])."&nbsp;";
 }
 $t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ Auto-close TX window ]--
+$t->set_var("item_name",lang("imdb_txwin_autoclose"));
+$t->set_var("item_comment",lang("imdb_txwin_autoclose_comment"));
+$input = "<INPUT TYPE='radio' NAME='imdb_txwin_autoclose' VALUE='0'";
+if (!$imdb_txwin_autoclose) $input .= " CHECKED";
+$input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_txwin_autoclose' VALUE='1'";
+if ($imdb_txwin_autoclose) $input .= " CHECKED";
+$input .= ">".lang("yes");
+$t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);
 
 #--[ complete imdb block ]--

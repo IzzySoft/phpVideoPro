@@ -205,6 +205,8 @@ INSERT INTO lang VALUES ('imdb_tx_length','de','Filmlänge','');
 INSERT INTO lang VALUES ('imdb_tx_pg','de','FSK','');
 INSERT INTO lang VALUES ('imdb_tx_title','de','Filmtitel','');
 INSERT INTO lang VALUES ('imdb_tx_year','de','Jahr','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose','de','IMDB Suchfenster nach Datentransfer automatisch schließen?','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','de','Wenn die von der IMDB bezogenen Daten in das Bearbeitungsformular von phpVideoPro übertragen wurden, wird das Suchfenster nicht länger benötigt. Bei Bedarf kann es jedoch z.B. als Referenz geöffnet bleiben.','');
 INSERT INTO lang VALUES ('imdb_url','de','Zu verwendende IMDB Site','');
 INSERT INTO lang VALUES ('imdb_url2','de','Alternative IMDB Site','');
 INSERT INTO lang VALUES ('imdb_url2_comment','de','Obwohl es lokalisierte Versionen der IMDB gibt (z.B. german.imdb.com), sind die eigentlichen Filmdaten dort nicht in die jeweilige Landessprache übersetzt worden - sondern lediglich die \"Bedienelemente\" der Webseiten. Das macht das Parsen nach den benötigten Daten komplizierter (ohne das das Ergebnis den Aufwand rechtfertigen könnte), weshalb phpVideoPro hierfür eine <b><i>Englische</i></b> IMDB-Site benötigt, die hier auszuwählen ist. Allerdings funktioniert bei der lokalisierten Site auch die Suche nach einem Filmtitel in der Landessprache: für die Suche empfiehlt sich daher die lokalisierte Version.','');

@@ -16,6 +16,7 @@
  <li>added backup/restore for categories
  <li>updated Dutch translations (Thanx to Ron Dekker)
  <li>cancel on editing a new entry lead to page with an "empty entry". Fixed.
+ <li>added "baloon-help" to the title buttons of the Applicat template set
 </ul>
 
 [title]

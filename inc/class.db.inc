@@ -814,8 +814,9 @@
     * @return mixed either id (integer) or array of IDs
     */
    function get_movieid($mtype_id,$cass_id,$part="") {
-     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id ORDER BY part";
+     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
      if ($part=="") {
+       $query .= " ORDER BY part";
        $this->query($query);
        while( $this->next_record() ) {
          $id[] = $this->f('id');

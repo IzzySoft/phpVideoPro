@@ -32,6 +32,7 @@
        $user_id = $user->id;
      }
      $this->user = $db->get_users($user_id);
+     $this->user_id = $user_id;
      $this->admin  = $this->user->admin;
      $this->browse = $this->user->browse;
      $this->add    = $this->user->add;
@@ -57,9 +58,13 @@
 
  $pvp->auth = new auth();
 
- /** User information (privileges etc.)
+ /** User information (login)
   * @class auth
   * @attribute object user
+  */
+ /** User information (user ID)
+  * @class auth
+  * @attribute object user_id
   */
  /** Privileges for the actual user: admin
   * @class auth

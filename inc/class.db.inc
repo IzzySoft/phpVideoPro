@@ -724,6 +724,18 @@
      return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
    }
 
+   /** Get movie list for cat1..cat3 as array of movies (see get_movie)
+    *  (wrapper to get_movielist)
+    * @class sql
+    * @method get_moviecatlist3
+    * @param integer cat_id ID of category to get movies for
+    * @return array array of movies
+    * @see sql::get_movielist(), sql::get_movie()
+    */
+   function get_moviecatlist3($cat) {
+     return $this->get_movielist("$cat1_id,title","cat1_id=$cat OR cat2_id=$cat OR cat3_id=$cat");
+   }
+
    /** Get movie list by staff member as array of movies (see get_movie)
     * @class sql
     * @method get_movienamelist

@@ -17,7 +17,6 @@ $runupdate = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include("../templates/default/default.css");
 $db->Host     = $database["host"];
 $db->Database = $database["database"];
 $db->User     = $database["user"];
@@ -48,7 +47,9 @@ function get_version() {
 
 #====================================================[ Output page intro ]===
 echo "<HTML><HEAD>\n";
-echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-15\">\n";
+echo " <META http-equiv='Content-Type' content='text/html; charset=utf-8'>\n";
+echo " <LINK HREF='../templates/default/default.css' rel='stylesheet' type='text/css'>\n";
+
 $title = "phpVideoPro: ";
 if ( !isset($oldversion) ){
   $title .= "Updating the Database";
@@ -157,11 +158,11 @@ $pvp->preferences->admin();
   }
   echo "</UL><DIV ALIGN='center'>\n";
   if ($final) echo "$final<br>\n";
-  if ($commenturl)
+  if (isset($commenturl))
     echo "<P>If you want to automatically update your movie comments with the "
        . "[url] tags introduced by v0.4.5 (see history for details), please "
        . "follow <A HREF='commenturl.php'>this link</A>.</P>\n";
-  if ($db2utf8) {
+  if (isset($db2utf8)) {
    echo "<P ALIGN='justify'>At this stage we need to convert all database content to the "
        ."UTF-8 character set. Please follow <a href='db2utf8.php'>this link</a> "
        ."now for this process. You only need to do this once, and you will be "

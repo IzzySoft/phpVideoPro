@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -17,7 +17,6 @@ $pvpinstall = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include("../templates/default/default.css");
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
 #====================================================[ Output page intro ]===
@@ -25,7 +24,8 @@ $title = "phpVideoPro: Setting up the Database";
 ?>
 <HTML><HEAD>
  <TITLE><?=$title?></TITLE>
- <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+ <META http-equiv='Content-Type' content='text/html; charset=utf-8'>
+ <LINK HREF='../templates/default/default.css' rel='stylesheet' type='text/css'>
 </HEAD>
 <BODY>
 <H2 ALIGN=CENTER><?=$title?></H2>

@@ -13,13 +13,13 @@
  /* $Id$ */
 
  include ("../inc/config.inc");
- include("../templates/default/default.css");
  $title = "phpVideoPro Setup";
 
 ?>
 <HTML><HEAD>
  <TITLE><?=$title?></TITLE>
- <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+ <META http-equiv='Content-Type' content='text/html; charset=utf-8'>
+ <LINK HREF='../templates/default/default.css' rel='stylesheet' type='text/css'>
 </HEAD>
 <BODY>
 <H1 ALIGN=CENTER><?=$title?></H1>

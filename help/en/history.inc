@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.5.2 (2003)
+[text]
+<ul>
+ <li>finally fixed the menu for NS4 again
+</ul>
+
+[title]
 0.5.1 (July 4, 2003)
 [text]
 <ul>

@@ -211,8 +211,8 @@ CREATE TABLE pvp_config (
 #
 
 CREATE TABLE lang (
-  message_id varchar(150) DEFAULT '' NOT NULL,
-  lang varchar(5) DEFAULT '' NOT NULL,
+  message_id varchar(150) NOT NULL,
+  lang varchar(5) NOT NULL,
   content text NOT NULL,
   PRIMARY KEY (message_id,lang)
 );

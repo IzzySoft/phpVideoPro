@@ -199,23 +199,25 @@
    omf.country.value = dmf.country.value;
    omf.year.value    = dmf.year.value;
    omf.comment.value = dmf.comment.value;
-   omf.cat1_id.value = dmf.cat1_id.value;
-   omf.cat2_id.value = dmf.cat2_id.value;
-   omf.cat3_id.value = dmf.cat3_id.value;
+   for (i=0;i<omf.cat1_id.length;++i) {
+     if (omf.cat1_id.options[i].value==dmf.cat1_id.value) { omf.cat1_id.options[i].selected=1; }
+     if (omf.cat2_id.options[i].value==dmf.cat2_id.value) { omf.cat2_id.options[i].selected=1; }
+     if (omf.cat3_id.options[i].value==dmf.cat3_id.value) { omf.cat3_id.options[i].selected=1; }
+   }
    name = dmf.directors.value;
    omf.director_name.value  = name_split(dmf.directors.value);
    omf.director_fname.value = fname_split(dmf.directors.value);
-   if (dmf.directors.value != '') omf.director_list.click();
+   if (dmf.directors.value != '') omf.director_list.checked=1;
    k = 1;
    for (i=0;i<dmf.actors.length;++i) {
      if (dmf.actors.options[i].selected) {
        curr  = dmf.actors.options[i].text;
        switch(k) {
-         case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.click(); break;
-         case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.click(); break;
-         case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.click(); break;
-         case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.click(); break;
-         case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.click(); break;
+         case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.checked=1; break;
+         case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.checked=1; break;
+         case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.checked=1; break;
+         case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.checked=1; break;
+         case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.checked=1; break;
          default: break;
        }
        ++k;

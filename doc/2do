@@ -12,6 +12,8 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
+- making deletion of empty media (on deletion of last movie) optional (right
+  now a medium is automatically deleted with the last movie on it)
 
 coming *next*:
 - manage preferences via cookies, taking defaults from DB

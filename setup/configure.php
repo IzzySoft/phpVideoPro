@@ -118,10 +118,9 @@ $site_info      = $db->get_config("site");
 #==========================================[ get available template sets ]===
 chdir("$base_path/templates");
 $handle=opendir (".");
-$i = 0;
 while (false !== ($file = readdir ($handle))) {
  if ( in_array (strtolower($file), array("cvs",".","..")) ) continue;
- if ( is_dir($file) ) $tpldir[$i] = $file;
+ if ( is_dir($file) ) $tpldir[] = $file;
 }
 closedir($handle);
 chdir("$base_path/setup");
@@ -369,7 +368,7 @@ $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 $t->set_var("item_name",lang("template_set"));
 $t->set_var("item_comment","");
 $select  = "<SELECT NAME=\"template_set\">";
-for ($i=0;$i<count($tpldir);$i++) {
+for ($i=0;$i<count($tpldir);++$i) {
   $select .= "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
   if ($tpldir[$i] == $template_set) $select .= " SELECTED";
   $select .= ">" . ucfirst($tpldir[$i]) . "</OPTION>";

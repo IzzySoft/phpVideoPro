@@ -1978,6 +1978,21 @@
      return "";
    }
 
+   /** Obtain disktype of a given medium
+    * @method public disktypeGetForMedia
+    * @param integer mtype_id Media Type ID
+    * @param integer media_id Media ID (alias cass_id)
+    * @return integer disktype_id
+    */
+   function disktypeGetForMedia($mtype_id,$media_id) {
+     if (empty($mtype_id) || empty($media_id)) return 0;
+     $media_id = (int) $media_id;
+     $this->dbquery("SELECT disks_id FROM cass WHERE mtype_id=$mtype_id AND id=$media_id");
+     if (!$this->num_rows()) return 0;
+     $this->next_record();
+     return $this->f('disks_id');
+   }
+
    /** Delete a disktype from table disks
     * @class sql
     * @method delete_disktype

@@ -13,6 +13,8 @@
        <li>updated help files
        <li>enhanced stylesheet: added table background color (adjustable
            via the configuration screen)
+       <li>fixed a template parse bug in filter menue
+       <li>some cosmetical fixes on view/edit and filter screen
       </ul>
   <LI><b>0.1.5 (August 5, 2001)</b><br>
       alpha-release "camouflage":

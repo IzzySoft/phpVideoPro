@@ -22,7 +22,7 @@
     </TABLE></TD>
   </TR>
  </TABLE>
- <TABLE Width="90%" Align="Center" Border="0">
+ <TABLE Width="90%" Align="Center" Border="0" class="navtable">
   <TR>
    <TD><P ALIGN="left"><INPUT TYPE="submit" NAME="reset" VALUE="Reset"></P></TD>
    <TD><P ALIGN="right"><INPUT TYPE="submit" NAME="save" VALUE="Save"></P></TD>

@@ -5,28 +5,28 @@
 <Table Width="90%" Align="Center" Border="1">
  <TR><TH ColSpan=4>{title}</TH></TR>
  <TR>
-  <TD Width=20%>{mtype_name}</TD><TD Width=30%>{mtype}</TD>
-  <TD Width=20%>{country_name}</TD><TD Width=30%>{country}</TD></TR>
+  <TD Width=20%>{mtype_name}</TD><TD Width=30%>&nbsp;{mtype}</TD>
+  <TD Width=20%>{country_name}</TD><TD Width=30%>&nbsp;{country}</TD></TR>
  <TR>
-  <TD Width=20%>{medianr_name}</TD><TD Width=30%>{medianr}</TD>
-  <TD>{year_name}</TD><TD>{year}</TD></TR>
+  <TD Width=20%>{medianr_name}</TD><TD Width=30%>&nbsp;{medianr}</TD>
+  <TD>{year_name}</TD><TD>&nbsp;{year}</TD></TR>
  <TR>
   <TD>{length_name}</TD>
   <TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0>
-       <TR><TD>{length}</TD>
+       <TR><TD>&nbsp;{length}</TD>
        <TD>{longplay_name}:&nbsp;{longplay}</TD></TR></TABLE>
-  <TD>{category_name}</TD><TD>{category}</TD></TR>
+  <TD>{category_name}</TD><TD>&nbsp;{category}</TD></TR>
  <TR>
   <TD ColSpan=2>
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>
-    <TR><TD>{mlength_free_name}</TD><TD>{mlength_free}</TD></TR>
-    <TR><TD>{date_name}</TD><TD>{date}</TD></TR>
+    <TR><TD>{mlength_free_name}</TD><TD>&nbsp;{mlength_free}</TD></TR>
+    <TR><TD>{date_name}</TD><TD>&nbsp;{date}</TD></TR>
     <TR><TD ColSpan="2"><HR></TD></TR>
-    <TR><TD WIDTH=30%>{tone_name}</TD><TD>{tone}</TD></TR>
-    <TR><TD>{picture_name}</TD><TD>{picture}</TD></TR>
-    <TR><TD Width=40%>{screen_name}</TD><TD Width=60%>{screen}</TD></TR>
-    <TR><TD Width=40%>{source_name}</TD><TD Width=60%>{source}</TD></TR>
-    <TR><TD>{fsk_name}</TD><TD>{fsk}</TD></TR>
+    <TR><TD WIDTH=30%>{tone_name}</TD><TD>&nbsp;{tone}</TD></TR>
+    <TR><TD>{picture_name}</TD><TD>&nbsp;{picture}</TD></TR>
+    <TR><TD Width=40%>{screen_name}</TD><TD Width=60%>&nbsp;{screen}</TD></TR>
+    <TR><TD Width=40%>{source_name}</TD><TD Width=60%>&nbsp;{source}</TD></TR>
+    <TR><TD>{fsk_name}</TD><TD>&nbsp;{fsk}</TD></TR>
    </Table></TD>
   <TD ColSpan=2>
    <Table Width=100%>

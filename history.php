@@ -14,7 +14,7 @@
  <TR><TD><UL>
   <LI><b>0.1.1 (July 2001)</b><br>
       <ul>
-       <li>
+       <li>(un)setting of filters now implemented
       </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works

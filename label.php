@@ -19,14 +19,8 @@
  ############################################################################
  # create exactly one label and send it as image
  if ($cass_id) { // we directly go to create one label
-   if (!$template) $template = "default"; 
-   $query = "SELECT id FROM video"
-          . " WHERE cass_id=$cass_id AND mtype_id=$mtype_id";
-   $db->dbquery($query);
-   while ( $db->next_record() ) {
-     $id[] = $db->f('id');
-   }
-
+   if (!$template) $template = "default";
+   $id = $db->get_movieid($mtype_id,$cass_id);
    $label  = new label($template);
    $text   = $label->make_text($id);
    $label->write($cass_id,$text);

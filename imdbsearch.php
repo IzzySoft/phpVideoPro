@@ -62,6 +62,7 @@
    $movie->usecache   = $usecache;
    $movie->storecache = $usecache;
    $movie->setid ($movieid);
+   $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
    $t->set_var("mtitle",$movie->title());
    $t->set_var("nyear",lang("year"));
    $t->set_var("myear",$movie->year());
@@ -137,10 +138,14 @@
     $t->parse("acatlist","acatblock",$open);
     $open = TRUE;
    }
+   #-=[ Misc stuff - maybe for the future ]=-
 #   $col = $movie->colors(); // what to do with them?
 #   $snd = $movie->sound();  // does not match our formats
 #   $t->set_var("mtagline",$movie->tagline());
 #   $tag = $movie->taglines(); // array again - do we need this?
+#   $wrt = $movie->writing(); // writing credits - array 0..n like director
+#   $prod = $movie->producer(); // same as $wrt
+   #-=[ Directors ]=-
    $t->set_var("ndir_name",lang("director"));
    $dir = $movie->director(); // array again - need to select
    $cc = count($dir); $open = FALSE;
@@ -153,8 +158,7 @@
    $t->set_var("dir_name","");
    $t->set_var("dsel","");
    $t->parse("dirlist","dirblock",$open);
-#   $wrt = $movie->writing(); // writing credits - array 0..n like director
-#   $prod = $movie->producer(); // same as $wrt
+   #-=[ Actors ]=-
    $cast = $movie->cast(); // here come the actors
    $cc = count($cast);
    $open = FALSE;
@@ -165,6 +169,7 @@
      $t->parse("actlist","actblock",$open);
      $open = TRUE;
    }
+   #-=[ Plot = Comments ]=-
    $plot = $movie->plot(); $cc = count($plot);
    if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
      else $comment = "";

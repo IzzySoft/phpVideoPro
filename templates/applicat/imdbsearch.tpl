@@ -29,6 +29,7 @@
 <!-- END resultblock -->
 
 <!-- BEGIN movieblock -->
+<FORM NAME="movieform" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{mtitle}</DIV></TH></TR>
  <TR><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>
@@ -39,7 +40,7 @@
     <OPTION VALUE="pgval">{mpg}</OPTION>
  <!-- END pgblock -->
    </SELECT></TD></TR>
- <TR><TD><B>{nruntime}:</B></TD><TD>{mruntime} min</TD></TR>
+ <TR><TD><B>{nruntime}:</B></TD><TD><INPUT NAME="runtime" CLASS="yesnoinput" VALUE="{mruntime}"> min</TD></TR>
  <TR><TD><B>{ngenre}:</B></TD><TD>{mgenre}<BR>
  <!-- BEGIN acatblock -->
    <SELECT NAME="cat">
@@ -62,8 +63,9 @@
  <!-- END actblock -->
   </SELECT>
  </TD></TR>
- <TR><TD COLSPAN="2"><P ALIGN="justify">{mfoto_pic}{mcomment}</P></TD></TR>
+ <TR><TD>{mfoto_pic}</TD><TD><TEXTAREA ROWS="10" COLS="100" NAME="comment">{mcomment}</TEXTAREA></TD></TR>
 </TABLE>
+</FORM>
 <!-- END movieblock -->
 
 </TD></TR></TABLE>

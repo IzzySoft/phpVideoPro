@@ -41,7 +41,7 @@
  <TR><TD><B>{npg}:</B></TD>
    <TD><SELECT NAME="pg">
  <!-- BEGIN pgblock -->
-    <OPTION VALUE="pgval">{mpg}</OPTION>
+    <OPTION VALUE="{pgval}">{mpg}</OPTION>
  <!-- END pgblock -->
    </SELECT></TD></TR>
  <TR><TD><B>{nruntime}:</B></TD><TD><INPUT NAME="runtime" CLASS="yesnoinput" VALUE="{mruntime}"> min</TD></TR>

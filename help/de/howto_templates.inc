@@ -33,5 +33,11 @@ Vorgehensweise:
      erkannt und zur Auswahl angeboten.
 </OL>
 
-[eof]
+[text]
+Wird JavaScript Code auf allen Seiten benötigt, so kann dieser in zwei speziellen
+Dateien untergebracht werden. Eine Datei namens <I>top.js</I> wird, sofern sie
+im Verzeichnis des Template-Sets vorhanden ist, in den HTML Header jeder Seite
+eingebunden. Gleiches gilt für eine <I>foot.js</I>, die entsprechend am Ende
+der Seiten verankert wird.
 
+[eof]

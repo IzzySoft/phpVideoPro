@@ -25,5 +25,11 @@ subdir and copying/editing or creating files:
      will be found automagically.
 </OL>
 
-[eof]
+[text]
+If your new template set needs some JavaScript code to be present for all pages,
+there are two special files that can be used: if there's a file called <I>top.js</I>
+present in the templates directory, it will be linked into the page header. A
+file named <I>foot.js</I> in the same place will be linked to the end of each
+page.
 
+[eof]

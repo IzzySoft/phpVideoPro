@@ -14,7 +14,7 @@
 
  $page_id = "backup_db";
  if ($backup) $silent = 1;
- include("inc/includes.inc");
+ include(dirname(__FILE__) . "/../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
 
  function fhead($filename) {

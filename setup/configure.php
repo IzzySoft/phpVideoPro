@@ -40,19 +40,19 @@ if ($menue) {
     $colors["th_background"]    = $th_background;
     $colors["ok"]               = $color_ok;
     $colors["err"]              = $color_err;
-    dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
-    dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
-    dbquery("UPDATE preferences SET value='$display_limit' WHERE name='display_limit'");
-    dbquery("UPDATE preferences SET value='$page_length' WHERE name='page_length'");
-    dbquery("UPDATE preferences SET value='$date_format' WHERE name='date_format'");
+    $pvp->preferences->set("lang",$default_lang);
+    $pvp->preferences->set("template",$template_set);
+    $pvp->preferences->set("display_limit",$display_limit);
+    $pvp->preferences->set("page_length",$page_length);
+    $pvp->preferences->set("date_format",$date_format);
     $colorcode = rawurlencode( serialize($colors) );
-    dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
+    $pvp->preferences->set("colors",$colorcode);
     if ($install_lang && $install_lang != "-") {
       $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
       queryf($sql_file,"Installation of additional language file",1);
     }
     if ($refresh_lang && $refresh_lang != "-") {
-      dbquery("DELETE FROM lang WHERE lang='$refresh_lang'");
+      $db->delete_translations($refresh_lang);
       $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
       queryf($sql_file,"Refresh of language phrases",1);
     }
@@ -63,7 +63,7 @@ if ($menue) {
       while (false !== ($file = readdir ($handle))) {
         if ( substr($file,0,5) != "lang_" || substr($file,7) != ".sql") continue;
         $flang = substr($file,5,2);
-        dbquery("UPDATE languages SET available='yes' WHERE lang_id='$flang'");
+	$db->lang_available($flang);
       }
       closedir($handle);
     }
@@ -73,33 +73,13 @@ if ($menue) {
     exit;
   }
 
-  #---------------------------------[ get available languages ]---
-  dbquery("SELECT lang_id,lang_name,available FROM languages WHERE available='yes'");
-  $i = 0;
-  while ( $db->next_record() ) {
-    $lang_avail[$i]["id"]   = $db->f('lang_id');
-    $lang_avail[$i]["name"] = $db->f('lang_name');
+  #-------------------------------------------[ get languages ]---
+  $lang_avail = $db->get_languages(1);
+  for ($i=0;$i<count($lang_avail);$i++) {
     $lang[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
-    $i++;
   }
-
-  #-------------------------------[ get unavailable languages ]---
-  if ($scan_langfile) {
-    dbquery("SELECT lang_id,lang_name,available FROM languages WHERE available='no'");
-    $i = 0;
-    while ( $db->next_record() ) {
-      $lang_unavail[$i]["id"]   = $db->f('lang_id');
-      $i++;
-    }
-  }
-
-  #---------------------------------[ get installed languages ]---
-  dbquery("SELECT distinct lang FROM lang");
-  $i = 0;
-  while ( $db->next_record() ) {
-    $lang_installed[$i] = $db->f('lang');
-    $i++;
-  }
+  if ($scan_langfile) $lang_unavail = $db->get_languages(0);
+  $lang_installed = $db->get_installedlang();
 
   #-----------------------------------------[ get preferences ]---
   $lang_preferred = $pvp->preferences->lang;

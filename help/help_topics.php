@@ -29,6 +29,7 @@
     li("music",2);
     li("taperest_absolute",2);
     li("taperest_filtered",2);
+    li("stats",2);
    li("print");
     li("label",2);
     li("listgen",2);

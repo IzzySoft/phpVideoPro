@@ -8,6 +8,7 @@
  <li>updated Dutch translations (Thanx to Ron Dekker)
  <li>hopefully fixed all of the PHP notices (due to uninitialized vars etc.)
  <li>added ALT tags to most images (where missing)
+ <li>some more changes to make generated code more HTML 4.01 compliant
 </ul>
 
 [title]

@@ -185,7 +185,11 @@
     if ($page_id == "view_entry") { // set imdb info url for actor
       $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($actor[$i][fname],$actor[$i][name],"actors");
     } else { $formAddon = $form["addon_name"]; }
-    $t->set_var("actor_name",lang("actor") . " $i");
+    if ($i==1) {
+      $t->set_var("actor_name",lang("actors"));
+    } else {
+      $t->set_var("actor_name","&nbsp;");
+    }
     if ( $edit || strlen($actor[$i][name] . $actor[$i][fname]) ) {
       $t->set_var("actor",form_input($name,$actor[$i][name],$formAddon));
       $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));

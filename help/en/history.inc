@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.2.7 (July 2002)
+[text]
+<ul>
+ <li>updated German and English help files to reflect latest changes. Still need
+     people who do the same for the other languages already available with
+     phpVideoPro.
+</ul>
+
+[title]
 0.2.6 (June 26, 2002)
 [text]
 <ul>

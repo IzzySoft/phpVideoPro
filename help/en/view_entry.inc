@@ -46,7 +46,7 @@ To create your own labels, simply put them into the "labels/" directory. The
 .config file is needed always and describes the size of the labels plus the
 size and position of the contained areas. If a .png file with the same name
 exists, it will be used - otherwise a plain (white) template is created (and
-labeled, of course).
+labeled, of course). For details, see <A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>.
 
 [eof]
 

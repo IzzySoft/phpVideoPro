@@ -53,7 +53,8 @@ Verzeichnis "labels/" zu kopieren. Eine ".config" Datei wird zwingend benötigt;
 diese enthält die notwendigen Angaben über Größe und Position der einzelnen
 Felder. Ist darüber hinaus eine ".png" Datei gleichen Namens vorhanden, wird
 diese dem Etikett zugrunde gelegt - andernfalls wird ein leeres (weißes)
-Etikett erstellt (und natürlich beschriftet).
+Etikett erstellt (und natürlich beschriftet). Details sind der Seite
+<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A> zu entnehmen.
 
 [eof]
 

@@ -54,19 +54,20 @@ $db->User     = $database["user"];
 $db->Password = $database["password"];
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
-$db->query("SELECT value FROM preferences WHERE name='colors'");
-$db->next_record();
-$colors   = unserialize ( rawurldecode( $db->f('value') ) );
-$colors["ok"]  = "<FONT COLOR=\"" . $colors["ok"] . "\">";
-$colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
-$db->query("SELECT value FROM pvp_config WHERE name='version'");
-$db->next_record();
-$version  = $db->f('value');
-$pre      = "p7";
-if ($pre) $version .= $pre;
-if ($runupdate) {
+if (!$pvpinstall) {
+ $db->query("SELECT value FROM preferences WHERE name='colors'");
+ $db->next_record();
+ $colors   = unserialize ( rawurldecode( $db->f('value') ) );
+ $colors["ok"]  = "<FONT COLOR=\"" . $colors["ok"] . "\">";
+ $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
+ $db->query("SELECT value FROM pvp_config WHERE name='version'");
+ $db->next_record();
+ $version  = $db->f('value');
+ $pre      = "p7";
+ if ($pre) $version .= $pre;
+ if ($runupdate) {
   $charset = 'iso-8859-1';
-} else {
+ } else {
   $db->query("SELECT value FROM preferences WHERE name='lang'");
   $db->next_record();
   $plang  = $db->f('value');
@@ -75,11 +76,11 @@ if ($runupdate) {
   $charset  = $db->f('charset');
   if (!strlen($charset)) $charset = 'iso-8859-1';
   unset ($plang);
+ }
+ $db->query("SELECT value FROM preferences WHERE name='template'");
+ $db->next_record();
+ $pvp->tpl_dir = $base_path . "templates/" . $db->f('value');
 }
-$db->query("SELECT value FROM preferences WHERE name='template'");
-$db->next_record();
-$pvp->tpl_dir = $base_path . "templates/" . $db->f('value');
-
 #--------------------------------------------------[ debug settings ]---
 // which actions to log. Empty string turns off debug feature. Otherwise each letter
 // represents an action to debug:

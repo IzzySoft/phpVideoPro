@@ -69,7 +69,7 @@
  <!-- END actblock -->
   </SELECT>
  </TD></TR>
- <TR><TD>{mfoto_pic}</TD><TD><TEXTAREA ROWS="10" COLS="95" NAME="comment">{mcomment}</TEXTAREA></TD></TR>
+ <TR><TD>{mfoto_pic}</TD><TD><TEXTAREA ROWS="10" COLS="92" NAME="comment">{mcomment}</TEXTAREA></TD></TR>
  <TR><TD COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="button" NAME="transfer" VALUE="{btransfer}" onClick="transfer_data();"></DIV></TD></TR>
 </TABLE>
 </FORM>

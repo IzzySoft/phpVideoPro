@@ -43,7 +43,6 @@ if ($menue) {
     $colors["ok"]               = $color_ok;
     $colors["err"]              = $color_err;
     dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
-    dbquery("UPDATE preferences SET value='$new_charset' WHERE name='charset'");
     dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
     $colorcode = rawurlencode( serialize($colors) );
     dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
@@ -115,14 +114,6 @@ if ($menue) {
     $colors   = unserialize ( rawurldecode( $db->f('value') ) );
   } else {
     debug("E","No colors in db?!?");
-  }
-
-  #----------------------------------[ get configured charset ]---
-  dbquery("SELECT value FROM preferences WHERE name='charset'");
-  if ( $db->next_record() ) {
-    $charset = $db->f('value');
-  } else {
-    debug("E","No charset in db?!?");
   }
 
   #---------------------------------------[ get user template ]---
@@ -226,12 +217,6 @@ if ($menue) {
   }
   $select .= "</SELECT>";
   $t->set_var("item_input",$select);
-  $t->parse("item","itemblock",TRUE);
-
-  # charset to use
-  $t->set_var("item_name",lang("use_charset"));
-  $t->set_var("item_comment",lang("use_charset_comment"));
-  $t->set_var("item_input","<INPUT SIZE=10 NAME=\"new_charset\" VALUE=\"$charset\">");
   $t->parse("item","itemblock",TRUE);
 
   # complete language block

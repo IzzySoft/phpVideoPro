@@ -49,17 +49,6 @@ gelöschte Englische Sprache) zurückzuführen sein, erbitte ich eine
 <A HREF="mailto:izzysoft@qumran.org">Nachricht</A> an mich, damit ich den
 Fehler beheben kann!
 
-[text]
-<b>*use_charset#</b>: dies Beeinflußt die Darstellung insbesondere von
-Sonderzeichen (wie etwa den deutschen Umlauten) und sollte daher nur geändert
-werden, wenn man wirklich weiß, was man tut :) Nötig kann dies z.B. werden,
-wenn man als "Primärsprache" Französisch wählt und eine Sprachdatei erstellt,
-die wiederum über andere Sonderzeichen verfügt (in diesem Fall wäre ich
-natürlich an dieser Datei ebenfalls interessiert, um sie ggf. der nächsten
-Release mit bei zu fügen!). Eine falsche Einstellung kann zu einer etwas
-verwirrenden Anzeige führen (und bei der Datenerfassung auch Langzeit-Wirkung
-haben), ist aber ansonsten nicht tragisch.
-
 [title]
 *colors#
 

@@ -46,16 +46,6 @@ removed the English phrases from the db manually ;) - please drop
 <A HREF="mailto:izzysoft@qumran.org">me</A> a note, quoting the missing phrase
 and where the error occured.
 
-[text]
-<b>*use_charset#</b>: since this affects the entire display, you should only
-change this setting if you now what you are doing. On the other hand, you can't
-do any harm with it - just the text displayed may look a bit strange if you
-entered some weird setting, and data stored into the database using this wrong
-setting may show some long-term effects.<br>
-But if you created a new language file containing special characters, this is
-the switch for you to get them displayed. Since I never had the need for it,
-I'ld be interested in the results.
-
 [title]
 *colors#
 

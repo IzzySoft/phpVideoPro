@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.7 (2004)
+0.6.7 (October 26, 2004)
 [text]
 <ul>
  <li>first/last entry was broken if first/last mtype contained no media

@@ -8,6 +8,8 @@
  <li>updated German and English help files to reflect latest changes. Still need
      people who do the same for the other languages already available with
      phpVideoPro.
+ <li>removed obsolet SQL update files in setup/ (which just increased the
+     version number). Updates from "ancient versions" do still work.
 </ul>
 
 [title]

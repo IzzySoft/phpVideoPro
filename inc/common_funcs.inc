@@ -28,7 +28,7 @@
  # format and display an error message for unrecoverable error
  function display_error($error) {
    GLOBAL $colors;
-   echo $colors["err"] . "<H2 ALIGN=CENTER>WARNING</H2></Font>\n";
+   echo $colors["err"] . "<H2 ALIGN=CENTER>" . strtoupper(lang("warning")) . "</H2></Font>\n";
    echo "<Table Width=90% Align=Center>\n <TR><TD>";
    echo "<P ALIGN=JUSTIFY>$error</P>\n";
    echo " </TD></TR></TABLE>\n</BODY></HTML>";
@@ -51,15 +51,9 @@
    } elseif ($correct) { $correct = is_num($month . $day . $year) && ($month<13) && ($day<32) && ($year>1900); }
    if ( !(trim($date)=="" || trim($date)=="0000-00-00") ) {
      if ( !$correct ) {
-       $error = "The date of aquiration you specified (\"$date\") is invalid. When "
-              . "entering a date here, please follow the syntax \"YYYY-MM-DD\", where "
-              . "\"YYYY\" stands for the year (four-digit), \"MM\" for the month "
-              . "and \"DD\" for the day (both two-digit). If you want no date in here, "
-              . "just leave this field blank (or set it to \"0000-00-00\"). ";
-       if (!$exact) $error .= "If you do not know the exact date, but - for example - "
-              . "only that you aquired it in the year 2000, substitute zeros for the "
-              . "unknown data - in our example the date should look like \"2000-00-00\". ";
-       $error .= "<BR><BR>Please hit the \"Back\" button of your browser and correct your input.";
+       $error = lang("wrong_date",lang("of_aquiration"),$date);
+       if (!$exact) $error .= " " . lang("incomplete_date");
+       $error .= "<BR><BR>" . lang("hit_back_to_correct");
      display_error($error);
      exit;
      }

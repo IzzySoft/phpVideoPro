@@ -13,6 +13,7 @@
 <Table Width=90% Align=Center>
  <TR><TD><UL>
   <LI><b>0.1.2 (July 2001)</b><br>
+      alpha release "freedom":
       <ul>
        <li>taperest list showed up wrong media names (and movie titles):
            Media Type specification in sql statement was incomplete :)
@@ -28,7 +29,7 @@
        <li>started "internationalization process" by making the pages
            using the translation code (and adding required translations
            to lang_en.sql and lang_de.sql). (Hopefully) finnished for
-           medialist, taperest, filter settings.
+           most pages (tell me if I forgot something :).
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

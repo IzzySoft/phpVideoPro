@@ -52,6 +52,15 @@ INSERT INTO lang VALUES('create','de','Erstellen');
 INSERT INTO lang VALUES('update','de','Aktualisieren');
 INSERT INTO lang VALUES('edit','de','Bearbeiten');
 INSERT INTO lang VALUES('delete','de','Löschen');
+INSERT INTO lang VALUES('invalid_media_nr','de','Die angegebene MediaNr ist entweder unvollständig oder ungültig. Es muß eine <b>Zahl</b> in <b>beiden</b> MediaNr Feldern eingegeben werden.');
+INSERT INTO lang VALUES('warning','de','Warnung');
+INSERT INTO lang VALUES('of_aquiration','de','der Aufnahme');
+INSERT INTO lang VALUES('wrong_date','de','Das angegebene Datum %1 (%2) ist ungültig. Das anzugebende Datum muß dem Schema "JJJJ-MM-DD" folgen, wobei "JJJJ" (vier Ziffern) für das Jahr, "MM" für den Monat (zwei Ziffern) und "DD" für den Tag (auch zwei Ziffern) steht. Soll an dieser Stelle <b>kein</b> Datum gespeichert werden, ist dieses Feld leer zu lassen (oder mit "0000-00-00" zu belegen).');
+INSERT INTO lang VALUES('incomplete_date','de','Ist das exakte Datum nicht bekannt (sondern z.B. nur die Jahreszahl "2000"), sind die unbekannten Werte durch Nullen zu ersetzen - im genannten Beispiel entspräche das der Eingabe "2000-00-00".');
+INSERT INTO lang VALUES('hit_back_to_correct','de','Bitte auf den "Zurück" Button des Browsers klicken, um die Eingabe zu korrigieren.');
+INSERT INTO lang VALUES('dupe_id_entered','de','Es existiert bereits ein Datensatz mit der angegebenen MediaNr in der Datenbank. Zur Korrektur der Eingabe bitte den "Zurück" Button des Browsers betätigen. Hinweis: direkt neben dem Eingabefeld für die MediaNr befindet sich eine Auswahlbox. Diese gibt die höchste vergebene ID für jedes Medium an. Normalerweise ist es eine gute Idee, für ein neues Medium die erste (vierstellige) Zahl, bzw. für einen neuen Film auf dem gleichen Medium die zweite (zweistellige) Zahl um 1 zu erhöhen.');
+INSERT INTO lang VALUES('create_success','de','Datensatz erfolgreich erstellt');
+INSERT INTO lang VALUES('update_failed','de','Datensatz konnte nicht aktualisiert werden');
 
 # when finished, activate language
 UPDATE languages SET available='Yes' WHERE lang_id='de';

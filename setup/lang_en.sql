@@ -53,6 +53,15 @@ INSERT INTO lang VALUES('create','en','Create');
 INSERT INTO lang VALUES('update','en','Update');
 INSERT INTO lang VALUES('edit','en','Edit');
 INSERT INTO lang VALUES('delete','en','Delete');
+INSERT INTO lang VALUES('invalid_media_nr','en','The MediaNr you specified is either incomplete or invalid. You must specify a <b>number</b> in <b>both</b> MediaNr fields.');
+INSERT INTO lang VALUES('warning','en','warning');
+INSERT INTO lang VALUES('of_aquiration','en','of aquiration');
+INSERT INTO lang VALUES('wrong_date','en','The date %1 you specified (%2) is invalid. When entering a date here, please follow the syntax "YYYY-MM-DD", where "YYYY" stands for the year (four-digit), "MM" for the month and "DD" for the day (both two-digit). If you want no date in here, just leave this field blank (or set it to "0000-00-00").');
+INSERT INTO lang VALUES('incomplete_date','en','If you do not know the exact date, but - for example - only that you aquired it in the year 2000, substitute zeros for the unknown data - in our example the date should look like "2000-00-00".');
+INSERT INTO lang VALUES('dupe_id_entered','en','There is already an entry in the database for the entered media ID. Please hit the "Back" button of your browser and correct your input. Hint: There is a Select-Box next to the input box you specified the media number in. This select box tells you the highest existing movie id. Normally it is a good choice for a new media to increase the first (four-digit) number by one, or for a new movie on the same media, increase the second (two-digit) number by one.');
+INSERT INTO lang VALUES('create_success','en','Entry created successfully');
+INSERT INTO lang VALUES('update_failed','en','Failed to update entry');
+
 
 
 # when finished, activate language

@@ -13,8 +13,7 @@
  ##############################################################################
  # check wether a valid media number can be constructed from user input
  if ( $mtype_id<1 || trim($cass_id)=="" || trim($part)=="" || !((int)$cass_id) || !((int)$part) ) {
-   $error = "The MediaNr you specified is either incomplete or invalid. "
-         . "You must specify a <b>number</b> in <b>both</b> MediaNr fields.</P>\n";
+   $error = lang("invalid_media_nr") . "</P>\n";
    display_error($error);
    exit;
  }
@@ -25,14 +24,7 @@
         . " WHERE mtype_id='$mtype_id' AND cass_id='$cass_id' AND part='$part'";
  dbquery($query);
  if ( $db->next_record() ) {
-   $error = "There is already an entry in the database for the "
-          . "entered media ID. Please hit the \"Back\" button of your browser "
-          . "and correct your input. Hint: There is a Select-Box next to the "
-          . "input box you specified the media number in. This select box tells "
-          . "you the highest existing movie id. Normally it is a good choice for "
-          . "a new media to increase the first (four-digit) number by one, or for "
-          . "a new movie on the same media, increase the second (two-digit) number "
-          . "by one.";
+   $error = lang("dupe_id_entered");
    display_error($error);
    exit;
  }
@@ -60,9 +52,9 @@
           . "'$pict_id','$color_id','$fsk','$comment','$lp')";
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$insert</p></Font>");
  if ( dbquery($insert) ) {
-   $save_result = $colors["ok"] . "Entry created successfully.</Font><BR>\n";
+   $save_result = $colors["ok"] . lang("create_success") . ".</Font><BR>\n";
  } else {
-   $save_result = $colors["err"] . "Failed to update entry!</Font><BR>\n";
+   $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";
  };
  ##############################################################################
  # updating free time on media for Recorded Video Tapes

@@ -249,7 +249,7 @@
     * @return object translations (msgID = translation, xlist[] of msgIDs)
     */
    function get_singletrans($lang,$start="",$msg="") {
-     $query = "SELECT message_id,content FROM lang WHERE lang='$lang'";
+     $query = "SELECT message_id,content,comment FROM lang WHERE lang='$lang'";
      if ($msg) { $query .= " AND message_id='$msg'"; }
        else { $query .= " ORDER BY message_id"; }
      if ($start==="") { $this->dbquery($query); }
@@ -257,6 +257,7 @@
      while ( $this->next_record() ) {
        $msg = $this->f('message_id');
        $trans["$msg"] = stripslashes($this->f('content'));
+       $trans["xcomment"]["$msg"] = stripslashes($this->f('comment'));
        $list[] = $msg;
      }
      if ($totals) $trans[totals] = $totals;

@@ -6,7 +6,7 @@
   include("inc/config.inc");
   include("inc/header.inc");
 
-  echo "<H2 Align=Center>Filter Setup</H2>\n\n";
+  echo "<H2 Align=Center>" . lang("filter_setup") . "</H2>\n\n";
 
   ##############################################################################
   # create a dump of posted data for debugging purposes and send them to the
@@ -97,9 +97,9 @@
   function length() {
     GLOBAL $filter, $db, $form;
     echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>min:&nbsp;<INPUT NAME=\"length_min\"";
+    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"length_min\"";
     if ( isset($filter->length_min) ) echo " VALUE=\"" . $filter->length_min . "\"";
-    echo $form["addon_filmlen"] . "></TD><TD>max:&nbsp;<INPUT NAME=\"length_max\"";
+    echo $form["addon_filmlen"] . "></TD><TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"length_max\"";
     if ( isset($filter->length_max) ) echo " VALUE=\"" . $filter->length_max . "\"";
     echo $form["addon_filmlen"] . "></TD></TR></TABLE>";
   }
@@ -107,9 +107,9 @@
     GLOBAL $filter, $db;
     $addon = "SIZE=\"10\" MAXLENGTH=\"10\"";
     echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>min:&nbsp;<INPUT NAME=\"aquired_min\"";
+    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"aquired_min\"";
     if ( isset($filter->aquired_min) ) echo " VALUE=\"" . $filter->aquired_min . "\"";
-    echo "$addon></TD><TD>max:&nbsp;<INPUT NAME=\"aquired_max\"";
+    echo "$addon></TD><TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"aquired_max\"";
     if ( isset($filter->aquired_max) ) echo " VALUE=\"" . $filter->aquired_max . "\"";
     echo "$addon></TD></TR></TABLE>";
   }
@@ -130,12 +130,16 @@
     GLOBAL $filter, $db;
     echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
     dbquery("SELECT id,name FROM colors");
+    $i=0;
     while ( $db->next_record() ) {
-      $id   = $db->f('id');
-      $name = $db->f('name');
+      $id[$i]   = $db->f('id');
+      $name[$i] = $db->f('name');
+      $i++;
+    }
+    for ($k=0;$k<$i;$k++) {
       echo "<TD><INPUT TYPE=\"checkbox\" NAME=\"color_$id\"";
-      if ($filter->color->$id) echo " CHECKED";
-      echo ">&nbsp;$name</TD>";
+      if ($filter->color->$id[$k]) echo " CHECKED";
+      echo ">&nbsp;" . lang("$name[$k]") . "</TD>";
     }
     echo "</TR></TABLE>";
   }
@@ -167,10 +171,10 @@
   function fsk() {
     GLOBAL $filter, $db, $form;
     echo "<TABLE WIDTH=\"100%\" BORDER=\"0\"><TR>";
-    echo "<TD>min:&nbsp;<INPUT NAME=\"fsk_min\"";
+    echo "<TD>" . lang("min") . ":&nbsp;<INPUT NAME=\"fsk_min\"";
     if ( isset($filter->fsk_min) ) echo " VALUE=\"" . $filter->fsk_min . "\"";
     echo $form["addon_fsk"] . "></TD>";
-    echo "<TD>max:&nbsp;<INPUT NAME=\"fsk_max\"";
+    echo "<TD>" . lang("max") . ":&nbsp;<INPUT NAME=\"fsk_max\"";
     if ( isset($filter->fsk_max) ) echo " VALUE=\"" . $filter->fsk_max . "\"";
     echo $form["addon_fsk"] . "></TD>";
     echo "</TR></TABLE>";
@@ -243,22 +247,22 @@
  <TABLE Width="90%" Align="Center" Border="1">
   <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ !>
     <TABLE WIDTH="100%" BORDER="1">
-     <TR><TD WIDTH="15%">MediaType</TD><TD><? mtype() ?></TD></TR>
-     <TR><TD WIDTH="15%">Length</TD><TD><? length() ?></TD></TR>
-     <TR><TD WIDTH="15%">Aquired</TD><TD><? aquired() ?></TD></TR>
-     <TR><TD WIDTH="15%">Screen</TD><TD><? screen() ?></TD></TR>
-     <TR><TD WIDTH="15%">Picture</TD><TD><? picture() ?></TD></TR>
-     <TR><TD WIDTH="15%">Tone</TD><TD><? tone() ?></TD></TR>
-     <TR><TD WIDTH="15%">LongPlay</TD><TD><? longplay() ?></TD></TR>
-     <TR><TD WIDTH="15%">FSK</TD><TD><? fsk() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("mediatype") ?></TD><TD><? mtype() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("length") ?></TD><TD><? length() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("date_rec") ?></TD><TD><? aquired() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("screen") ?></TD><TD><? screen() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("picture") ?></TD><TD><? picture() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("tone") ?></TD><TD><? tone() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("longplay") ?></TD><TD><? longplay() ?></TD></TR>
+     <TR><TD WIDTH="15%"><? echo lang("fsk") ?></TD><TD><? fsk() ?></TD></TR>
     </TABLE></TD>
    <TD WIDTH="50%"><!-- ===================================== Right side ============ !>
     <TABLE WIDTH="100%" BORDER="1">
-     <TR><TD WIDTH="10%">Title</TD><TD COLSPAN="3"><? title() ?></TD></TR>
-     <TR><TD WIDTH="10%">Category</TD><TD WIDTH="40%"><? category() ?></TD>
-         <TD WIDTH="10%">Actor</TD><TD WIDTH="40%"><? actor() ?></TD></TR>
-     <TR><TD WIDTH="10%">Director</TD><TD WIDTH="40%"><? director() ?></TD>
-         <TD WIDTH="10%">Composer</TD><TD WIDTH="40%"><? composer() ?></TD></TR>
+     <TR><TD WIDTH="10%"><? echo lang("title") ?></TD><TD COLSPAN="3"><? title() ?></TD></TR>
+     <TR><TD WIDTH="10%"><? echo lang("category") ?></TD><TD WIDTH="40%"><? category() ?></TD>
+         <TD WIDTH="10%"><? echo lang("actor") ?></TD><TD WIDTH="40%"><? actor() ?></TD></TR>
+     <TR><TD WIDTH="10%"><? echo lang("director") ?></TD><TD WIDTH="40%"><? director() ?></TD>
+         <TD WIDTH="10%"><? echo lang("composer") ?></TD><TD WIDTH="40%"><? composer() ?></TD></TR>
     </TABLE></TD>
   </TR>
  </TABLE>

@@ -28,11 +28,11 @@
     $visible = "vis_actor" . $num;
     $output  = "";
     if ($edit) {
-      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"vis_actor" . $num . "\" VALUE=\"1\"";
+      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"vis_actor" . $num . "\" VALUE=\"1\" class=\"checkbox\"";
       if (${$visible}) $output .= " CHECKED";
       $output .= ">";
     } else {
-      $output .= "<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" VALUE=\"";
+      $output .= "<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" class=\"yesnobutton\" VALUE=\"";
       if (${$visible}) { $output .= lang("yes") ."\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"" . ${$visible} ."\" VALUE=\"${$visible}\">";
     }
@@ -43,11 +43,11 @@
     GLOBAL $edit;
     $output  = "";
     if ($edit) {
-      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"$name\" VALUE=\"1\"";
+      $output .= "<INPUT TYPE=\"checkbox\" NAME=\"$name\" VALUE=\"1\" class=\"checkbox\"";
       if ($list) $output .= " CHECKED";
       $output .= ">";
     } else {
-      $output .= "<INPUT TYPE=\"button\" NAME=\"$name\" VALUE=\"";
+      $output .= "<INPUT TYPE=\"button\" NAME=\"$name\" class=\"yesnobutton\" VALUE=\"";
       if ($list) { $output .= lang("yes") . "\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"$name\" VALUE=\"$list\">";
     }
@@ -285,11 +285,11 @@ EndHiddenFields;
   $t->set_var("longplay_name",lang("longplay"));
   $field = "<INPUT NAME=\"lp\"";
   if ($edit) { 
-    $field .= "TYPE=\"checkbox\" VALUE=\"1\"";
+    $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
     if ($lp) $field .= " CHECKED";
     $field .= ">";
   } else {
-    $field .= "TYPE=\"button\" VALUE=\"";
+    $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
     if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
   }
   $t->set_var("longplay",$field);
@@ -297,7 +297,7 @@ EndHiddenFields;
   $field = "";
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
-    $field .= "<SELECT NAME=\"cat" . $i . "_id\">";
+    $field .= "<SELECT NAME=\"cat" . $i . "_id\" class=\"catinput\">";
     if ($i > 1) $field .= "<OPTION VALUE=\"-1\">- None -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
       $field .= "<OPTION VALUE=\"" . $cats[$k][id] . "\"";
@@ -306,7 +306,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
    } else {
-    $field .= "<$input NAME=\"cat" . $i . "\" VALUE=\"";
+    $field .= "<$input NAME=\"cat" . $i . "\" class=\"catinput\" VALUE=\"";
     if ( trim($cat[$i])=="" ) { $field .= "- None -"; } else { $field .= $cat[$i]; }
     $field .= "\">";
    }
@@ -329,7 +329,7 @@ EndHiddenFields;
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
   if ($edit) {
-    $field = "<SELECT NAME=\"tone_id\">";
+    $field = "<SELECT NAME=\"tone_id\"" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($ttypes);$i++) {
       $field .= "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
       if ($ttypes[$i][name]==$tone) $field .=  "SELECTED";
@@ -337,12 +337,12 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"tone\" VALUE=\"$tone\">";
+    $field = "<$input NAME=\"tone\" VALUE=\"$tone\"" . $form["addon_tech"] . ">";
   }
   $t->set_var("tone",$field);
   $t->set_var("picture_name",lang("picture"));
   if ($edit) {
-    $field = "<SELECT NAME=\"color_id\">";
+    $field = "<SELECT NAME=\"color_id\"" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($scolors);$i++) {
       $field .= "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
       if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][id]==$defaults["scolor"]) ) $field .= " SELECTED";
@@ -350,12 +350,12 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"color\" VALUE=\"$color\">";
+    $field = "<$input NAME=\"color\" VALUE=\"$color\"" . $form["addon_tech"] . ">";
   }
   $t->set_var("picture",$field);
   $t->set_var("screen_name",lang("screen"));
   if ($edit) {
-    $field = "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
+    $field = "<SELECT NAME=\"pict_id\"" . $form["addon_tech"] . "><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
     for ($i=0;$i<count($picts);$i++) {
       $field .= "<OPTION VALUE=\"" . $picts[$i][id] . "\"";
       if ($picts[$i][name]==$pict_format) $field .=  "SELECTED";
@@ -363,7 +363,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\">";
+    $field = "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\"" . $form["addon_tech"] . ">";
   }
   $t->set_var("screen",$field);
   $t->set_var("source_name",lang("source"));

@@ -9,6 +9,7 @@
  <li>added IMDB support for staff members (view entry, click on name)
  <li>stafflist always displayed not_found (fixed)
  <li>added stylesheets for input and select boxes
+ <li>some design update on edit/view entry screen (w/o effect for NS 4.x :)
 </ul>
 
 [title]

@@ -175,8 +175,17 @@ Contents:
 
   Any bugs are not known to me - I didn't find any (or fixed them immediately),
   and nobody reported anything still open recently :)
+
   As for limitations: At least some versions of M$ Internet Explorer do have
   problems with the Hebrew support - but I don't know what to do about it...
+
+  One more limitation is regarding the (PS) Label system: it currently only
+  supports ISO-8859-1 (and -15) characters, thus labels may look funny if you
+  e.g. use Kyrillic letters with your movie descriptions. You are invited to
+  supply a solution to this: the reason is the font encoding (and dictionary)
+  within the PostScript templates. By supplying these blocks to us for other
+  encodings, we could make these parts variable within the templates, so it
+  should work for other encodings as well.
 
 ===============================================================================
 

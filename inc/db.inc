@@ -104,10 +104,8 @@
    } // end insert_person()
 
    ############################################################################
-   # read a file containing sql statements and execute the statements one-by-one
-   function get_sql($file) {
-     if ( !file_exists($file) ) return 0;
-     $array = file ($file);
+   # execute the statements in the passed $array one-by-one
+   function get_sql($array) {
      $sql   = ""; $ok = 1;
      for ($i=0;$i<count($array);$i++) {
        $pos  = strpos(" " . trim($array[$i]),"#");
@@ -125,14 +123,19 @@
    } // end get_sql()
 
    ############################################################################
-   # interface to get_sql()
+   # interface to get_sql(): reads a file into an array and passes it to get_sql()
    function queryf($file,$comment,$silent=0) {
      GLOBAL $colors;
      if ( !file_exists($file) ) {
        if (!$silent) echo $colors["err"] . " <li>$comment failed: missing SQL command file '$file', process stopped.</Font><BR>\n";
        exit;
      }
-     if ( $this->get_sql($file) ) {
+     $array = file ($file);
+     if ( !$array ) {
+       if (!$silent) echo $colors["err"] . " <li>$comment failed: we have no read permission for SQL command file '$file', process stopped.</Font><BR>\n";
+       exit;
+     }
+     if ( $this->get_sql($array) ) {
        if (!$silent) echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
      } else {
        if (!$silent) echo $colors["err"] . " <li>$comment failed, process stopped.</Font><BR>\n";

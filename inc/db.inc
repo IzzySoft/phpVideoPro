@@ -268,6 +268,23 @@
    }
 
    ############################################################################
+   # get movie ids
+   function get_movieid($mtype_id,$cass_id,$part="") {
+     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
+     if ($part=="") {
+       $this->query($query);
+       while( $this->next_record() ) {
+         $id[] = $this->f('id');
+       }
+       return $id;
+     } else {
+       $this->query($query . " AND part=$part");
+       $this->next_record();
+       return $this->f('id');
+     }
+   }
+
+   ############################################################################
    # get all data for a movie entry and return it as array
    function get_movie($id) {
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"

@@ -67,7 +67,7 @@
       default         : break;
     }
     $query .= " FROM video v, cat c, mtypes m";
-    $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id AND ("
+    $query .= " WHERE v.cat1_id=c.id AND v.mtype_id=m.id AND ("
             . getStaffClause($i);
     if ( strlen($filter) ) $query .= " AND ($filter)";
     $same_name = FALSE;

@@ -186,9 +186,15 @@
       $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($actor[$i][fname],$actor[$i][name],"actors");
     } else { $formAddon = $form["addon_name"]; }
     $t->set_var("actor_name",lang("actor") . " $i");
-    $t->set_var("actor",form_input($name,$actor[$i][name],$formAddon));
-    $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));
-    $t->set_var("actor_list",vis_actors($i));
+    if ( $edit || strlen($actor[$i][name] . $actor[$i][fname]) ) {
+      $t->set_var("actor",form_input($name,$actor[$i][name],$formAddon));
+      $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$formAddon));
+      $t->set_var("actor_list",vis_actors($i));
+    } else {
+      $t->set_var("actor","&nbsp;");
+      $t->set_var("actor_f","&nbsp;");
+      $t->set_var("actor_list","&nbsp;");
+    }
     $t->parse("actorlist","actorblock",TRUE);
   }
 

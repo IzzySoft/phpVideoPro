@@ -1,0 +1,79 @@
+<?php
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Administration: User Access Management                                    #
+ #############################################################################
+
+ /* $Id$ */
+
+ $page_id = "admin_useredit";
+ include("../inc/includes.inc");
+
+ #==================================================[ update user account ]===
+ if ($update) {
+   $user->id     = $id;
+   $user->login  = $login;
+   $user->comment= $comment;
+   $access = array("admin","browse","add","upd","del");
+   foreach ($access as $value) {
+     if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+   }
+   if ( !$db->set_user($user) ) $error .= ",".$user->id;
+   if ($error) {
+     $error = substr($error,1);
+     $save_result = $colors["err"] . lang("user_update_failed",$error) . "</Font><BR>\n";
+   } else {
+     $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+   }
+ #=================================================[ add new user account ]===
+ } elseif ($addnew) {
+ #==================================================[ delete user account ]===
+ } elseif ($delete) {
+ }
+
+ #=====================================================[ build input form ]===
+ $t = new Template($pvp->tpl_dir);
+ $t->set_file(array("template"=>"admin_useredit.tpl"));
+
+ $users = $db->get_users($id);
+ $t->set_var("user_id","<INPUT TYPE='hidden' NAME='id' VALUE='$id'>$id");
+ $t->set_var("login","<INPUT NAME='login' VALUE='".$users->login."'>");
+ $t->set_var("comment","<INPUT NAME='comment' VALUE='".$users->comment."'>");
+ $t->set_var("browse",$pvp->common->make_checkbox("browse",$users->browse));
+ $t->set_var("add",$pvp->common->make_checkbox("add",$users->add));
+ $t->set_var("upd",$pvp->common->make_checkbox("upd",$users->upd));
+ $t->set_var("del",$pvp->common->make_checkbox("del",$users->del));
+ $t->set_var("isadmin",$pvp->common->make_checkbox("admin",$users->admin));
+ $t->set_var("password","<INPUT TYPE='password' NAME='pwd1' MAXLENGTH='10'>");
+ $t->set_var("password2","<INPUT TYPE='password' NAME='pwd2' MAXLENGTH='10'>");
+
+ $t->set_var("listtitle",lang("admin_useredit"));
+ $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>");
+ $t->set_var("adduser","<INPUT TYPE='submit' NAME='addnew' VALUE='".lang("add_user")."'>");
+ $t->set_var("save_result",$save_result);
+ $t->set_var("head_users",lang("user"));
+ $t->set_var("head_access",lang("data_access"));
+ $t->set_var("head_admin",lang("admin"));
+ $t->set_var("head_actions",lang("actions"));
+ $t->set_var("head_id","ID");
+ $t->set_var("head_login",lang("login"));
+ $t->set_var("head_comment",lang("comments"));
+ $t->set_var("head_browse",lang("read_access"));
+ $t->set_var("head_add",lang("add_access"));
+ $t->set_var("head_upd",lang("upd_access"));
+ $t->set_var("head_del",lang("del_access"));
+ $t->set_var("head_isadmin",lang("admin_access"));
+ $t->set_var("head_password",lang("password"));
+ $t->set_var("head_password2",lang("password_retype"));
+ include("../inc/header.inc");
+ $t->pparse("out","template");
+
+ include("../inc/footer.inc");
+?>

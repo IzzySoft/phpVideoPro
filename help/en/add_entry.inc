@@ -1,5 +1,6 @@
-<? /* About */
+<? /* add_entry */
  ?>
+<? /* $Id$ */ ?>
 
 <H2 Align=Center>Add an entry</H2>
 

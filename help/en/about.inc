@@ -1,5 +1,6 @@
 <? /* About */
  ?>
+<? /* $Id$ */ ?>
 
 <H2 Align=Center>About phpVideoPro</H2>
 

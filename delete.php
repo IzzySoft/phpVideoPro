@@ -24,9 +24,9 @@
                      "yn"=>"delete_yn.tpl"));
   
   function kill($table,$id) {
-    GLOBAL $colors, $details;
+    GLOBAL $colors, $details, $db;
     $details .= " ";
-    if ( dbquery("DELETE FROM $table WHERE id=$id") ) {
+    if ( $db->delete_row($table,$id) ) {
       $details .= $colors["ok"] . lang("ok") . ".</Font><br>\n";
     } else {
       $details .= $colors["err"] . lang("not_ok") . "!</Font><br>\n";
@@ -47,66 +47,62 @@
     $t->pparse("out","yn");
   } else { // here comes the real delete!
     # first obtain some data
-    $query = "SELECT id,music_id,director_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id"
-           . " FROM video WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
-    dbquery($query);
-    if ( !$db->next_record() ) die ($colors["err"] . "Something strange happened - the entry was not found in db!</Font></BODY></HTML>");
-    $id = $db->f('id'); $music_id = $db->f('music_id'); $director_id = $db->f('director_id');
-    $actor_id[1] = $db->f('actor1_id'); $actor_id[2] = $db->f('actor2_id');
-    $actor_id[3] = $db->f('actor3_id'); $actor_id[4] = $db->f('actor4_id');
-    $actor_id[5] = $db->f('actor5_id');
+    $id    = $db->get_movieid($mtype_id,$cass_id,$part);
+    $movie = $db->get_movie($id);
+    if ( !is_array($movie) ) die ($colors["err"] . "Something strange happened - the entry was not found in db!</Font></BODY></HTML>");
+    $music_id = $movie[music_id]; $director_id = $movie[director_id];
+    $actor_id[1] = $movie[actor1_id]; $actor_id[2] = $movie[actor2_id];
+    $actor_id[3] = $movie[actor3_id]; $actor_id[4] = $movie[actor4_id];
+    $actor_id[5] = $movie[actor5_id];
     # now we have to check if any other links to director, composer and/or actors exist
-    dbquery("SELECT id FROM video WHERE music_id=$music_id AND id<>$id");
-    if ( !$db->next_record() ) {
-      dbquery("SELECT name,firstname FROM music WHERE id=$music_id");
-      $db->next_record();
-      $firstname = $db->f('firstname'); $name = $db->f('name');
-      $details = "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
-      kill("music",$music_id);
+    if ($director_id) { // ignore id# 0
+      $name = $db->get_director($director_id);
+      $rec  = $db->get_movienamelist("directors",$name);
+      if ( count($rec) < 2 ) {
+        $firstname = $name[firstname]; $name = $name[name];
+        $details = "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
+        kill("directors",$music_id);
+      }
     }
-    dbquery("SELECT id FROM video WHERE director_id=$director_id AND id<>$id");
-    if ( !$db->next_record() ) {
-      dbquery("SELECT name,firstname FROM directors WHERE id=$director_id");
-      $db->next_record();
-      $firstname = $db->f('firstname'); $name = $db->f('name');
-      $details .= "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
-      kill("directors",$director_id);
+    if ($music_id) { // ignore id# 0
+      $name = $db->get_music($music_id);
+      $rec  = $db->get_movienamelist("music",$name);
+      if ( count($rec) < 2 ) {
+        $firstname = $name[firstname]; $name = $name[name];
+        $details = "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
+        kill("music",$music_id);
+      }
     }
     for ($i=1;$i<6;$i++) {
       $aid = $actor_id[$i];
-      dbquery("SELECT id FROM video WHERE (actor1_id=$aid OR actor2_id=$aid"
-             . " OR actor3_id=$aid OR actor4_id=$aid OR actor5_id=$aid) AND id<>$id");
-      if ( !$db->next_record() ) {
-        dbquery("SELECT name,firstname FROM actors WHERE id=$aid");
-        $db->next_record();
-        $firstname = $db->f('firstname'); $name = $db->f('name');
-        $details .= "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
-        kill("actors",$aid);
+      if ($aid) { // ignore id #0
+        $name = $db->get_actor($aid);
+        $rec  = $db->get_movienamelist("actors",$name);
+        if ( count($rec) < 2 ) {
+          $firstname = $name[firstname]; $name = $name[name];
+          $details .= "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
+          kill("actors",$aid);
+        }
       }
     }
     # now we delete the movie entry from db
     $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
-    if ( dbquery("DELETE FROM video WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id") ) {
-      $details .= $colors["ok"] . lang("ok") . ".</Font><br>\n";
-    } else {
-      $details .= $colors["err"] . lang("not_ok") . "!</Font><br>\n";
-    }
+    kill("video",$id);
     # and finally we may have to correct the free space remaining on that medium
     if ( $mtype_id == 1 ) { // RVT
       $details .= "<li>" . lang("recalc_free"). ". ";
-      dbquery("SELECT type FROM cass WHERE id=$cass_id");
-      if ( $db->next_record() ) {
-        $time_left = $db->f('type');
-        dbquery("SELECT length,lp FROM video WHERE cass_id=$cass_id AND mtype_id=$mtype_id");
-        while ( $db->next_record() ) {
-          $lp = $db->f('lp');
-          if ($db->f('lp') ) {
-            $time_left -= $db->f('length') / 2;
+      $time_left = $db->get_mediaspace($cass_id);
+      if ( strlen($time_left) ) {
+        $list = $db->get_movieid($mtype_id,$cass_id);
+	for ($i=0;$i<count($list);$i++) {
+          $lp = $list[$i][lp];
+          if ( strlen($lp) ) {
+            $time_left -= $list[$i][length] / 2;
           } else {
-            $time_left -= $db->f('length');
+            $time_left -= $list[$i][length];
           }
         }
-        if ( dbquery("UPDATE cass SET free=$time_left WHERE id=$cass_id") ) {
+	if ( $db->update_freetime($cass_id,$time_left) ) {
           $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
         } else {
           $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";

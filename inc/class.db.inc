@@ -884,6 +884,10 @@
 	   $cat[$i][used] = $this->f('used');
 	 }
        }
+       if ($order=="") {
+         $compare = create_function('$a,$b','return strcmp($a[name],$b[name]);');
+         usort($cat,$compare); reset($cat);
+       }
        return $cat;
      }
    }

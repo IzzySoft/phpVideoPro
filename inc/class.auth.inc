@@ -16,7 +16,7 @@
   * @package Api
   * @class auth
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
  class auth {
 
@@ -25,7 +25,7 @@
     */
    function auth() {
      GLOBAL $pvp,$db;
-     if ($pvp->cookie->active) $sess_id = $pvp->cookie->get("sess_id");
+     if (isset($pvp->cookie) && $pvp->cookie->active) $sess_id = $pvp->cookie->get("sess_id");
      $user_id = $pvp->session->verify();
      if (!$user_id) { // guest account requested
        $user = $db->get_logindata("guest");

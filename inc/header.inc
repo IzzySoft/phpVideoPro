@@ -15,18 +15,23 @@
 header('Content-type: text/html; charset=$charset');
 
 $tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
-
+if (isset($pvp->preferences))
+  $contentlang = $pvp->preferences->get("lang");
+else
+  $contentlang = "en";
+if (!isset($pagename)) $pagename = "phpVideoPro";
 if ( !( (isset($silent)) && $silent) ) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <meta http-equiv="cache-control" content="no-cache">
- <meta http-equiv="content-language" content="<?=$pvp->preferences->get("lang")?>">
+ <meta http-equiv="content-language" content="<?=$contentlang?>">
  <Title><?=$pagename?></Title>
 <? 
  if ( file_exists($pvp->tpl_dir . "/top.js") )
    echo " <script type='text/javascript' language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
- if ( $page_id != "login" && $page_id != "imdbsearch" ) { ?>
+# if ( $page_id != "login" && $page_id != "imdbsearch" ) {
+ if ( !isset($nomenue) ) { ?>
  <script type='text/javascript' language='JavaScript'>//<!--
   function open_help(topic) {
     if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }

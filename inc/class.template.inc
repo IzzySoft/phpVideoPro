@@ -66,10 +66,12 @@ class Template {
       $this->set_var("home_link",$pvp->link->slink($base_url."index.php"));
       $this->set_var("search_link",$pvp->link->slink($base_url."search.php"));
     }
-    $this->set_var("home_title",lang("start_page"));
-    $this->set_var("search_title",lang("search_movie"));
-    $this->set_var("help_title",lang("help"));
-    $this->set_var("logoff_title",lang("login"));
+    if (function_exists("lang")) {
+      $this->set_var("home_title",lang("start_page"));
+      $this->set_var("search_title",lang("search_movie"));
+      $this->set_var("help_title",lang("help"));
+      $this->set_var("logoff_title",lang("login"));
+    }
   }
 
   /** Set a new template directory

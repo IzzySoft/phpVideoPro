@@ -19,6 +19,7 @@ class DB_Sql {
   var $Database = "";
   var $User     = "";
   var $Password = "";
+  var $Port     = "";
 
   var $Link_ID  = 0;
   var $Query_ID = 0;

@@ -213,7 +213,7 @@
        default  : $where = "";
      }
      $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where ORDER BY lang_name");
-     $i=0;
+     $i=0; $lang = array();
      while ( $this->next_record() ) {
        $lang[$i]["id"]   = $this->f('lang_id');
        $lang[$i]["name"] = $this->f('lang_name');
@@ -521,7 +521,7 @@
      GLOBAL $pvp;
      $query = "SELECT user_id FROM pvp_sessions "
             . "WHERE id='$id' AND ip='$ip' AND ended IS NULL";
-     if ($pvp->config->session_purgetime) {
+     if (isset($pvp->config->session_purgetime) && $pvp->config->session_purgetime) {
        $dla = time()-$pvp->config->session_purgetime;
        $query .= " AND dla>$dla";
      }
@@ -2497,21 +2497,30 @@
     * @param string file name of file containing the SQL code to execute
     * @param string comment description of the actions done by execute
     * @param optional boolean silent wether to (not) output advance information
+    * @return mixed string failure_reason (when $silent and error), else nothing
     */
    function queryf($file,$comment,$silent=0) {
      if ( !file_exists($file) ) {
-       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed: missing SQL command file '$file', process stopped.</SPAN><BR>\n";
+       $error = " <LI><SPAN CLASS='error'>$comment failed: missing SQL command file '$file', process stopped.</SPAN></LI>";
+       if ($silent) return $error;
+       else echo "$error<BR>\n";
        exit;
      }
      $array = file ($file);
      if ( !$array ) {
-       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed: we have no read permission for SQL command file '$file' (or this file is empty), process stopped.</SPAN><BR>\n";
+       $error = " <LI><SPAN CLASS='error'>$comment failed: we have no read permission for SQL command file '$file' (or this file is empty), process stopped.</SPAN></LI>";
+       if (!$silent) echo "$error<BR>\n";
+       else return $error;
        exit;
      }
      if ( $this->get_sql($array) ) {
-       if (!$silent) echo " <li><SPAN CLASS='ok'>$comment successful.</SPAN><BR>\n";
+       $error = " <LI><SPAN CLASS='ok'>$comment successful.</SPAN></LI>";
+       if (!$silent) echo "$error<BR>\n";
+       if ($silent) return TRUE;
      } else {
-       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed, process stopped.</SPAN><BR>\n";
+       $error = " <LI><SPAN CLASS='error'>$comment failed, process stopped.</SPAN></LI>";
+       if (!$silent) echo "$error<BR>\n";
+       else return $error;
        exit;
      }
    } // end query_f()

@@ -30,7 +30,10 @@
    */
   function link() {
     GLOBAL $pvp;
-    $this->imdb = $pvp->preferences->get("imdb_url");
+    if (isset($pvp->preferences))
+      $this->imdb = $pvp->preferences->get("imdb_url");
+    else
+      $this->imdb = "us.imdb.com";
   }
 
   /** Provide a link with session info, if necessary
@@ -41,7 +44,7 @@
    */
   function slink($target) {
     GLOBAL $pvp,$sess_id;
-    if (!$pvp->cookie->active) {
+    if (!isset($pvp->cookie) || !$pvp->cookie->active) {
       if (!$sess_id) $sess_id = $_REQUEST["sess_id"];
       $pos = strpos($target,"?");
       if ($pos) {

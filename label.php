@@ -60,7 +60,7 @@
      $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
    }
    for ($i=0;$i<$labels_pp;$i++) {
-     $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</OPTION>";
+     $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</SELECT>";
      $medianr = "<INPUT NAME=\"medianr_$i\"" . $form["addon_tech"] . ">";
      $label   = "<SELECT NAME=\"label_$i\">$labellist</SELECT>";
      $t->set_var("mtype",$mtype);

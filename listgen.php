@@ -19,6 +19,9 @@
  # create the list and sent it to the browser for d/l
  if ($outputtype) {
 
+   // disable time out - else long lists have no chance
+   set_time_limit(0);
+
    // title line for multi-page lists
    function listtitle($page,$pages) {
      GLOBAL $listtitle;

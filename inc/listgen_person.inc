@@ -20,8 +20,9 @@
    $namelist = $db->get_director("");
    uasort($namelist,"sort_names");
    reset($namelist);
+   $filter = get_filters();
    foreach ($namelist as $name) {
-     $m = $db->get_movienamelist("directors",$name[id]);
+     $m = $db->get_movienamelist("directors",$name,$filter);
      if (is_array($movielist)) {
        $movielist = array_merge($movielist,$m);
      } else {

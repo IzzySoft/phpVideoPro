@@ -407,27 +407,23 @@
 
    ############################################################################
    # get movie list for director as array of movies (see get_movie)
-   function get_movienamelist($table,$name_id) {
+   function get_movienamelist($table,$name,$filter="") {
      switch ($table) {
-       case "directors" : $join   = "LEFT JOIN directors d ON director_id=d.id";
-                          $fields = "d.name as dname,d.firstname as dfname";
-			  $restrict = "director_id=$name_id AND director_list=1";
+       case "directors" : $restrict = "v.director_id=$name[id] AND v.director_list=1";
+			  $type = "director_rev";
 			  break;
        default:
      }
-     $query = "SELECT title,length,cass_id,part,lp,"
+     if (strlen($filter)) $restrict .= " AND ($filter)";
+     $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,"
 	    . "mt.name as mtname,mt.sname as mtsname,"
-	    . "$fields,"
 	    . "cat1.name as cat1name "
-	    . "FROM video "
-	    . "LEFT JOIN mtypes mt ON mtype_id=mt.id "
-	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
-	    . "$join "
-	    . "WHERE $restrict";
+	    . "FROM video v, mtypes mt, cat cat1 "
+	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
+	    . "AND $restrict";
      $this->query($query);
      while ( $this->next_record() ) {
-       $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
-       $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
+       $movie[$type] = $name[reverse];
        $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
        $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
        $moviedetails = array("title","length","cass_id","part","lp");

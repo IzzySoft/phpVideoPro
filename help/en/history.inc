@@ -8,6 +8,7 @@
  <li>when forced to login (e.g. due to missing privileges), browser now is
      redirected to the original page on successful login
  <li>taperest list now serves best matches first (instead of most free)
+ <li>Italian language file updated (tnx to Jason!)
 </ul>
 
 [title]

@@ -57,8 +57,9 @@ if ($restore) {
   $cats     = queryf("categories.sql","Insertion of categories");
   $techdata = queryf("tech_data.sql","Insertion of technical data");
   $def_lang = queryf("lang_en.sql","Prepare default language");
+  $ps_lab   = queryf("pslabel." . $database["type"],"Set up PSLabel Tables");
 }
-$query_count = 4;
+$query_count = 5;
 
 #=========================================================[ Closing page ]===
 ?>

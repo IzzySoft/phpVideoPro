@@ -20,6 +20,7 @@
      existing entries ;)
  <li>some updates on the Applicat template set (minor fixes for Mozilla quirks)
  <li>added more (missing) descriptions for the translation editor
+ <li>brought the help pages (English and German) up-to-date
 </ul>
 
 [title]

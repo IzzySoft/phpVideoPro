@@ -85,6 +85,21 @@ CREATE TABLE mtypes (
 
 # --------------------------------------------------------
 #
+# Table structure for table 'mtypes'
+#
+CREATE TABLE disks (
+  id INT(3) NOT NULL auto_increment,
+  mtype_id INT(5) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  size VARCHAR(20),
+  lp INT(1) NOT NULL DEFAULT 0,
+  rc INT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (id)
+);
+
+
+# --------------------------------------------------------
+#
 # Table structure for table 'music'
 #
 

@@ -14,6 +14,7 @@
 
  $page_id = "login";
  include("inc/includes.inc");
+ if ($login_hint) $login_hint = lang("$login_hint");
  $t = new Template($pvp->tpl_dir);
 
  if ($submit) {

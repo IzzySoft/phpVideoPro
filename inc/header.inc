@@ -13,12 +13,13 @@
  /* $Id$ */
 
 header('Content-type: text/html; charset=$charset');
-####################################################[ turn off all caches ]###
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    # Date from the past
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); # up-to-date
-header("Cache-Control: no-store, no-cache, must-revalidate");  # HTTP/1.1
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");                          # HTTP/1.0
+if (!$pvp->config->cache_enable) { // turn off all caches
+  header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    # Date from the past
+  header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); # up-to-date
+  header("Cache-Control: no-store, no-cache, must-revalidate");  # HTTP/1.1
+  header("Cache-Control: post-check=0, pre-check=0", false);
+  header("Pragma: no-cache");                          # HTTP/1.0
+}
 
 $tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
 if (isset($pvp->preferences))

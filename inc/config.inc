@@ -15,12 +15,13 @@
  #==========================================================[ directories ]===
  $base_url   = "/local/phpvideo/"; # path relative to web server's DOCUMENT_ROOT
  $base_path  = "/srv/www/htdocs/qumran/local/phpvideo/"; # absolute file systems path
+ $backup_path= $base_path . "testdata"; # where to look for backup files
 
  #=============================================================[ database ]===
- $database["type"]      = "mysql";    # mysql|pgsql
+ $database["type"]      = "pgsql";    # mysql|pgsql
  $database["host"]      = "nebo";     # your hosts name
  $database["database"]  = "videopro"; # what database holds the tables
- $database["user"]      = "video";     # db user with at least following
+ $database["user"]      = "izzy";     # db user with at least following
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE
  $database["password"]  = "";  # this users password for the db

@@ -17,6 +17,18 @@
  include("inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
 
+ function fhead($filename) {
+   header("content-type: application/octet-stream");
+   header("Content-Disposition: attachment; filename=$filename");
+ }
+
+ function fout($str) {
+   GLOBAL $compress,$out;
+   $str .= "\n";
+   if ($compress) { $out .= $str; }
+   else { echo $str; }
+ }
+
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));
@@ -24,27 +36,22 @@
  $t->set_var("listtitle",lang("backup_db"));
 
  if ($backup) {
-   header("content-type: application/octet-stream");
    if ($btype=="movieint") {
-     header("Content-Disposition: attachment; filename=movies.pvp");
      $mlist  = $db->get_movie();
      $mcount = count($mlist);
-     if ($compress) { $out = "PVP Movie Backup: [$mcount] records\n"; }
-     else { echo "PVP Movie Backup: [$mcount] records\n"; }
+     fhead("movies.pvp");
+     fout("PVP Movie Backup: [$mcount] records");
      for ($i=0;$i<$mcount;++$i) {
-       if ($compress) {
-         $out .= serialize($mlist[$i])."\n";
-       } else {
-         echo serialize($mlist[$i])."\n";
-       }
+       fout( serialize($mlist[$i]) );
      }
      if ($compress) echo gzencode($out);
      exit;
    }
-   header("Content-Disposition: attachment; filename=pvp-backup.sql");
-   echo "######################################\n"
-      . "# Backup created by phpVideoPro v$version\n"
-      . "######################################\n\n";
+   if ($compress) { fhead("pvp-backup.sql.gz"); }
+   else { fhead("pvp-backup.sql"); }
+   fout("######################################");
+   fout("# Backup created by phpVideoPro v$version");
+   fout("######################################");
    switch ($btype) {
      case "movieint" : $tables = array(); break;
      case "moviedel" : $purge = TRUE;
@@ -62,8 +69,8 @@
      $name = $tables[$i]["table_name"];
      $meta = $db->metadata($name);
      $db->dbquery("SELECT * FROM $name");
-     echo "#\n\n# table '$name'\n#\n";
-     if ($purge) echo "DELETE FROM $name;\n";
+     fout("\n#\n# table '$name'\n#");
+     if ($purge) fout("DELETE FROM $name;");
      while ( $db->next_record() ) {
        $fieldcount = count($meta);
        $fields = $cols = "";
@@ -79,9 +86,10 @@
 	 }
        }
        $cols = str_replace("''","' '",$cols);
-       echo "INSERT INTO $name ($fields) VALUES ($cols);\n";
+       fout("INSERT INTO $name ($fields) VALUES ($cols);");
      }
    }
+   if ($compress) echo gzencode($out);
    exit;
  } else {
    #===============================================[ initial hints & form ]===

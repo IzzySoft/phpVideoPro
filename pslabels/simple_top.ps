@@ -1,5 +1,13 @@
 gsave
-0 1.75 inch translate
+% 0 1.75 inch translate
+0 label_height translate
+newpath
+0 0 moveto
+label_width 0 rlineto
+0 label_height neg rlineto
+label_width neg 0 rlineto
+% closepath stroke clip
+closepath clip
 
 /ID (Action) def
 
@@ -18,9 +26,13 @@ FG setgray
 0.2 inch -0.4 inch height dup add sub moveto
 
 <!-- BEGIN definitionblock -->
-gsave ({_title_}) show grestore
-gsave 2.7 inch 0 rmoveto ({_length_}) l-show grestore 
-0 height neg rmoveto
+({_title_})
+145     %% line length in points
+{ gsave show grestore
+0 height neg rmoveto }
+BreakIntoLines
+gsave 2.7 inch height rmoveto ({_length_}) l-show grestore 
+
 <!-- END definitionblock -->
 
 grestore

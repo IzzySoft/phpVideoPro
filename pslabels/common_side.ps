@@ -47,8 +47,11 @@ gsave
 %%  0 height neg rmoveto	% only in simple_side
 <!-- BEGIN definitionblock -->
   gsave
-    gsave ({_title_}) show grestore
-    ({_length_}) 11 cm 0 rmoveto l-show	% variablen einbauen !
+  ({_title_})
+  11 cm ( ... 8:88) stringwidth pop sub 
+  { gsave { show (...) show } { show } ifelse grestore }
+  TruncateLine
+  ({_length_}) 11 cm 0 rmoveto l-show	% variablen einbauen !
   grestore
   %% make a linefeed
   %%

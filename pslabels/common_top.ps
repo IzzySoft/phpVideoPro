@@ -1,5 +1,13 @@
 gsave
-0 1.75 inch translate
+% 0 1.75 inch translate
+0 label_height translate
+newpath
+0 0 moveto
+label_width 0 rlineto
+0 label_height neg rlineto
+label_width neg 0 rlineto
+% closepath stroke clip
+closepath clip
 
 /ID (Action) def
 
@@ -17,11 +25,42 @@ top-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
 FG setgray
 0.2 inch -0.5 inch height dup add sub moveto
 
+/LL 2.7 inch (8:88) stringwidth pop 10 add sub def
+/TTlines 0 def
+
 <!-- BEGIN definitionblock -->
-gsave ({_title_}) show grestore
-gsave 2.7 inch 0 rmoveto ({_length_}) l-show grestore 
-0 height neg rmoveto
+/lncount 0 def
+({_length_})
+({_title_})
+LL     %% line length in points
+{/lncount lncount 1 add def}
+BreakIntoLines
+lncount 1 add array astore %% one title broken up into several lines as one array
+/TTlines TTlines lncount add def
+
 <!-- END definitionblock -->
+/new_height 1.2 inch TTlines div def
+new_height fs_max ge { /new_height fs_max def } if
+top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
+%% loop over all strings on stack and print
+%% this_lines contains the number of titles
+/tcount 0 def
+/rcount this_lines def
+{
+  rcount -1 roll
+  /rcount rcount 1 sub def
+  /ary exch def
+  /title_length ary 0 get def
+  1 1 ary length 1 sub 
+    { 
+    ary exch get
+    gsave show grestore
+    0 height neg rmoveto
+    } for
+  title_length gsave 2.7 inch height rmoveto l-show grestore 
+  /tcount tcount 1 add def
+  tcount this_lines ge { exit } if
+} loop
 
 grestore
 

@@ -185,6 +185,101 @@ grestore
   end 
 } bind def
 
+%% A Simple Line Breaking Algorithm
+%%
+/wordbreak ( )  def	% constant used for word breaks (ASCII space)
+/BreakIntoLines
+ { /proc exch def 
+   /linewidth exch def 
+   /textstring exch def
+   /breakwidth wordbreak stringwidth pop def 
+   /curwidth 0 def   
+   /lastwordbreak 0 def   
+   /startchar 0 def   
+   /restoftext textstring def   
+   { restoftext wordbreak search 
+    {/nextword exch def pop 
+     /restoftext exch def 
+     /wordwidth nextword stringwidth pop def 
+     curwidth wordwidth add linewidth gt 
+      { textstring startchar 
+         lastwordbreak startchar sub 
+         getinterval proc 
+        /startchar lastwordbreak def 
+        /curwidth wordwidth breakwidth add def } 
+      { /curwidth curwidth wordwidth add 
+         breakwidth add def 
+      } ifelse 
+     /lastwordbreak lastwordbreak 
+       nextword length add 1 add def 
+     } 
+     { pop exit } 
+     ifelse 
+  } loop 
+  /lastchar textstring length def 
+  textstring startchar lastchar startchar sub 
+   getinterval proc 
+  } def
+
+%%%%%% example program 
+%%
+%%/Times-Roman findfont 16 scalefont setfont 
+%%/yline 650 def   
+%%(Now we have the opportunity to put some arbitrary\
+%%long text in here which will be split into lines)
+%%100 	%% Use a line width of 100 points. 
+%%{ 72 yline moveto show 
+%%/yline yline 18 sub def}
+%%BreakIntoLines 
+%%showpage
+%%%%
+
+%% A Simple Line Truncating Algorithm
+%%
+/wordbreak ( )  def	% constant used for word breaks (ASCII space)
+/TruncateLine
+ { /proc exch def 
+   /linewidth exch def 
+   /textstring exch def
+   /breakwidth wordbreak stringwidth pop def 
+   /curwidth 0 def   
+   /lastwordbreak 0 def   
+   /startchar 0 def   
+   /restoftext textstring def   
+   { restoftext wordbreak search 
+    {/nextword exch def pop 
+     /restoftext exch def 
+     /wordwidth nextword stringwidth pop def 
+     curwidth wordwidth add linewidth gt 
+      { textstring startchar 
+         lastwordbreak startchar sub 
+         getinterval true proc exit	% return truncated string
+      } 
+      { 
+         /curwidth curwidth wordwidth add 
+         breakwidth add def 
+      } ifelse 
+     /lastwordbreak lastwordbreak 
+       nextword length add 1 add def 
+     } 
+     { pop textstring false proc exit } % return unchanged string
+     ifelse 
+   } loop
+  } def
+
+%%%%%% example program 
+%%
+%%/Times-Roman findfont 16 scalefont setfont 
+%%/yline 650 def   
+%%(Now we have the opportunity to put some arbitrary\
+%%long text in here which will be split into lines)
+%%%(Short)
+%%250 (...) stringwidth pop sub	%% Use a line width of 100 points. 
+%%{ 72 yline moveto { show (...) show } { show } ifelse }
+%%TruncateLine
+%%showpage
+
+
 %%BeginSetup
 %%IncludeResource: font Symbol
 %%BeginResource: encoding ISO-8859-15Encoding

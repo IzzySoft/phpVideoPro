@@ -47,6 +47,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("default_movie_toneid",$movie_tone);
   $pvp->preferences->set("default_movie_colorid",$movie_color);
   $pvp->preferences->set("default_movie_onlabel",$onlabel_default);
+  $pvp->preferences->set("printer_id",$printer_id);
   $mtypes = $db->get_mtypes();
   if ($admin) {
     unset($rw_media);
@@ -118,6 +119,7 @@ $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
 $session_purgetime = $db->get_config("session_purgetime");
+$printer_id     = $pvp->preferences->get("printer_id");
 $site_info      = $db->get_config("site");
 
 #==========================================[ get available template sets ]===
@@ -391,11 +393,25 @@ if ($admin) {
 #---------------------------------------------[ setup block 5: misc stuff ]---
 $t->set_var("list_head",lang("general"));
 
+#--[ printer_id ]--
+$t->set_var("item_name",lang("printer"));
+$t->set_var("item_comment",lang("printer_comment"));
+$printers = $db->get_printer();
+$select = "<SELECT NAME='printer_id'>";
+for ($i=0;$i<count($printers);++$i) {
+  $select .= "<OPTION VALUE='" .$printers[$i]->id . "'";
+  if ($printer_id==$printers[$i]->id) $select .= " SELECTED";
+  $select .= ">" .$printers[$i]->name. "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock");
+
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));
 $t->set_var("item_comment",lang("display_limit_comment"));
 $t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
-$t->parse("item","itemblock");
+$t->parse("item","itemblock",TRUE);
 
 #--[ lines per page ]--
 $t->set_var("item_name",lang("lines_per_page"));

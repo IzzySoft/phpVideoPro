@@ -6,6 +6,7 @@
 # Configuration of Setup module
 #
   include ("../inc/config.inc");
+  include ("../inc/db_mysql.inc");
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;
@@ -80,16 +81,16 @@
       case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
                         queryf("lang_en.sql","Activation of English language support");
                         break;
-      default         : $final = "Hey - you're already running the latest db version, there's nothing I could update for you!";
+      default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }
     echo "</UL>\n";
     if ($final) echo "$final<br>\n";
+    echo "<P ALIGN=JUSTIFY>If everything went right, you can now proceed to the\n"
+        ." <a href=\"configure.php\">configuration</a> page.</p>\n";
   }
 
 ##################################################################
 # Closing page
 # ?>
-<P ALIGN=JUSTIFY>If everything went right, you can now proceed to the
- <a href="configure.php">configuration</a> page.</p>
 </TD></TR></TABLE>
 </BODY></HTML>

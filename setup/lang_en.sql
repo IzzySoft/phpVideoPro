@@ -63,6 +63,7 @@ INSERT INTO lang VALUES('create_success','en','Entry created successfully');
 INSERT INTO lang VALUES('update_failed','en','Failed to update entry');
 INSERT INTO lang VALUES('about','en','About');
 INSERT INTO lang VALUES('history','en','History');
+INSERT INTO lang VALUES('view','en','View');
 INSERT INTO lang VALUES('deleting_entry','en','Deleting entry %1');
 INSERT INTO lang VALUES('free_space_title','en','Free space on media');
 INSERT INTO lang VALUES('filter','en','Filter');
@@ -85,5 +86,6 @@ INSERT INTO lang VALUES('tapelist_update_failed','en','Failed updating tape list
 INSERT INTO lang VALUES('no_entry_in_tapelist','en','Failed - no entry found in tape list');
 INSERT INTO lang VALUES('finnished','en','Finnished');
 INSERT INTO lang VALUES('time_left','en','%1 minutes left');
+INSERT INTO lang VALUES('configuration','en','Configuration');
 
 

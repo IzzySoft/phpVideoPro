@@ -5,15 +5,23 @@
 ##################################################################
 # Configuration of Configuration module
 #
-$referer = substr(dirname($HTTP_REFERER),strlen(dirname($HTTP_REFERER))-6);
-if ($referer=="/setup" || $referer=="") {
+// $referer = substr(dirname($HTTP_REFERER),strlen(dirname($HTTP_REFERER))-6);
+// if ($referer=="/setup" || $referer=="") {
+if ($menue) {
+  $page_id = "configure";
+  if ($update) {
+    include ("inc/config.inc");
+    include ("inc/config_internal.inc");
+    include ("inc/common_funcs.inc");
+    include ("inc/sql_helpers.inc");
+  } else {
+    include ("inc/header.inc");
+  }
+} else {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
-} else {
-  include ("inc/header.inc");
-  $started = TRUE;
 }
 
 ##################################################################
@@ -31,7 +39,11 @@ if ($referer=="/setup" || $referer=="") {
     if ($install_lang && $install_lang != "-") {
       $sql_file = "lang_" . $install_lang . ".sql";
       queryf($sql_file,"Installation of additional language file",1);
-    }
+    }?>
+    <HTML><HEAD>
+      <meta http-equiv="refresh" content="0; URL=<? echo $PHP_SELF ?>">
+    </HEAD></HTML><?
+    exit;
   }
 
 ##################################################################
@@ -107,7 +119,7 @@ if ($referer=="/setup" || $referer=="") {
     <TD><SELECT NAME="default_lang"><?
   for ($i=0;$i<count($lang_installed);$i++) {
     echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-    if ( $lang_installed[$i]["id"]==$lang_preferred ) echo " SELECTED";
+    if ( $lang_installed[$i]==$lang_preferred ) echo " SELECTED";
     echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
   }
 ?></SELECT></TD></TR>
@@ -130,6 +142,6 @@ if ($referer=="/setup" || $referer=="") {
 # Closing page
 # ?>
 <TR><TD COLSPAN=2 ALIGN=CENTER><P><BR></P></TD></TR>
-<? if (!$started) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR><? } ?>
+<? if (!$menue) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR><? } ?>
 </TABLE>
 </BODY></HTML>

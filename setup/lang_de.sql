@@ -86,3 +86,4 @@ INSERT INTO lang VALUES('tapelist_update_failed','de','Liste mit verfügbarer Res
 INSERT INTO lang VALUES('no_entry_in_tapelist','de','Fehlgeschlagen - kein Eintrag in Restzeit-Liste');
 INSERT INTO lang VALUES('finnished','de','Fertig');
 INSERT INTO lang VALUES('time_left','de','%1 Minuten frei');
+INSERT INTO lang VALUES('configuration','de','Konfiguration');

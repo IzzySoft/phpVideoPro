@@ -39,7 +39,7 @@ $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
 $db->query("SELECT value FROM pvp_config WHERE name='version'");
 $db->next_record();
 $version  = $db->f('value');
-$pre      = "pre3";
+//$pre      = "pre3";
 if ($pre) $version .= $pre;
 $db->query("SELECT value FROM preferences WHERE name='charset'");
 $db->next_record();

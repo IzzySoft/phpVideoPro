@@ -9,6 +9,7 @@
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
     case "about"     : $pagename .= " [ " . lang("about") . " ]"; break;
+    case "configure" : $pagename .= " [ " . lang("configuration") . " ]"; break;
     case "delete"    : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
     case "edit"      : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
     case "filter"    : $pagename .= " [ " . lang("filter_setup") . " ]"; break;

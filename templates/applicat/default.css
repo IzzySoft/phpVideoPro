@@ -141,5 +141,10 @@
   .multiselect { height: 125; width: 180; }
   .tablink { color: #000000; }
   .navtable { background-color: #6699FF; }
+
+  .virtual_button {
+    border:1px solid #8888aa;
+    background-color: #dedede;
+  }
 //-->
 </style>

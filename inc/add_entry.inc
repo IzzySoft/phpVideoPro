@@ -60,6 +60,14 @@
    $movie[$id] = ${$ids}; $movie[$list] = ${$lists};
  }
 
+ for ($i=0;$i<SUBTITLES;++$i) {
+   $subts = "subtitle".$i;
+   $ats   = "audio_ts".$i;
+   if (!empty(${$subts}) && ${$subts}!="-") $movie[subtitle][] = ${$subts};
+   if (!empty(${$ats}) && ${$ats} != "-")   $movie[audio][] = ${$ats};
+   unset(${subts},${$ts});
+ }
+
  # add the movie to DB
  if ( $db->add_movie($movie) ) {
    $save_result = "<SPAN CLASS='ok'>" .lang("create_success"). ".</SPAN><BR>\n";

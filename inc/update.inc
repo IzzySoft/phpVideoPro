@@ -61,6 +61,17 @@
  foreach ($fields as $field) {
    ${$field} = $pvp->common->safeinput(${$field});
  }
+
+ for ($i=0;$i<SUBTITLES;++$i) {
+   $subts = "subtitle".$i;
+   $ats   = "audio_ts".$i;
+   if (!empty(${$subts}) && ${$subts}!="-") $subtitle .= ",".${$subts};
+   if (!empty(${$ats}) && ${$ats} != "-")   $audio_ts .= ",".${$ats};
+   unset(${subts},${$ts});
+ }
+ if (!empty($subtitle)) $subtitle .= ",";
+ if (!empty($audio_ts)) $audio_ts .= ",";
+
  $update  = "UPDATE video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"
@@ -68,7 +79,8 @@
           . "cat3_id=$cat3_id,pict_id=$pict_id,director_id=$dir_id,music_id=$mus_id,"
           . "actor1_id=$act1_id,actor2_id=$act2_id,actor3_id=$act3_id,actor4_id=$act4_id,"
           . "actor5_id=$act5_id,lp=$lp,music_list=$music_list,director_list=$director_list,"
-	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id"
+	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id,"
+          . "audio='$audio_ts',subtitle='$subtitle'"
           . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
  debug("S","<P CLASS='ok'><b>Executing Final Query:</b><br>$update</P>");
 # die($update);
@@ -79,6 +91,7 @@
    debug("E","<SPAN CLASS='error'>Query failed to execute!</SPAN>\n");
    $save_result = "<SPAN CLASS='error'>" . lang("update_failed") . "!</SPAN><BR>\n";
  };
+ unset ($subtitle,$audio_ts);
  ##############################################################################
  # updating free time on media for Recorded Video Tapes
  if ( $pvp->common->medium_is_rw($mtype_id) ) { // calc free space only for writable media

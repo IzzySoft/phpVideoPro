@@ -124,6 +124,30 @@
    ############################################################################
    # translations
    ############################################################################
+   /** Get languages available for audio/subtitle
+    * @class sql
+    * @method get_avlang
+    * @param string type ("audio"|"subtitle")
+    * @return array langs array 0..n of object (id=lang_id,name=translated langname)
+    */
+   function get_avlang($type) {
+     $this->query("SELECT lang_id FROM languages WHERE $type=1");
+     while ($this->next_record()) {
+       $lang[] = $this->f("lang_id");
+     }
+     $lc = count($lang);
+     for ($i=0;$i<$lc;++$i) {
+       $name[] = lang("lang_".$lang[$i]);
+     }
+     asort($name); reset($name); $i=0;
+     while ( list($key,$val) = each($name) ) {
+       $list[$i]->id   = $lang[$key];
+       $list[$i]->name = $name[$key];
+       ++$i;
+     }
+     return $list;
+   }
+
    /** Get installed languages (both available and unavailable)
     * @class sql
     * @method get_installedlang
@@ -1136,7 +1160,8 @@
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
-	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,comment,mtype_id,"
+	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,audio,subtitle,"
+            . "comment,mtype_id,"
 	    . "d.name as dname,d.firstname as dfname,"
 	    . "m.name as mname,m.firstname as mfname,"
 	    . "a1.name as a1name,a1.firstname as a1fname,"
@@ -1177,6 +1202,10 @@
        }
        $movie[title]   = stripslashes($movie[title]);
        $movie[source]  = stripslashes($movie[source]);
+       $taudio = $this->f("audio");
+       $tsubt = $this->f("subtitle");
+       $movie[audio]   = explode(",",substr($taudio,1,strlen($taudio)-2));
+       $movie[subtitle]= explode(",",substr($tsubt,1,strlen($tsubt)-2));
        $movie[comment] = stripslashes($movie[comment]);
        if (!$movie[length]) $movie[length] = 0;
        $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
@@ -1641,19 +1670,22 @@
        if (${$value} == "") ${$value} = "NULL";
      }
      if ($lp) { $lp = 1; } else { $lp = 0; }
+     $audio_ts = ",".implode(",",$movie[audio]).",";
+     $subtitle = ",".implode(",",$movie[subtitle]).",";
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
 	     . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,"
 	     . "actor4_list,actor5_list,tone_id,pict_id,color_id,fsk,comment,"
-	     . "lp,counter1,counter2,commercials_id) "
+	     . "lp,counter1,counter2,commercials_id,audio,subtitle) "
 	     . "VALUES ("
 	     . "$mtype_id,$cass_id,$part,'$title',$label,$length,'$aq_date','$source',"
 	     . "$director_id,$director_list,$music_id,$music_list,'$country',"
 	     . "$year,$cat1_id,$cat2_id,$cat3_id,$actor1_id,$actor2_id,"
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
-	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',$commercials_id)";
+	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',"
+             . "$commercials_id,'$audio_ts','$subtitle')";
      $success = $this->query($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $this->insert_medium($cass_id,$mtype_id,$space);

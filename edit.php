@@ -120,7 +120,7 @@
   // values:
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
-	      "commercials","tone","tone_id","color","disktype","rc");
+	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -494,6 +494,47 @@ EndHiddenFields;
   }
   $t->set_var("fsk_name",lang("fsk"));
   $t->set_var("fsk",form_input("fsk",$fsk,$form["addon_fsk"]));
+  $t->set_var("audio_name",lang("audio_ts"));
+  $t->set_var("subtitle_name",lang("subtitle"));
+  if ($edit) {
+    $audio_langs = $db->get_avlang("audio");
+    for ($i=0;$i<AUDIO_TS;++$i) {
+      $atsname = "audio_ts".$i;
+      $audio_ts .= "<SELECT NAME='$atsname'><OPTION VALUE='-'>-</OPTION>";
+      for ($k=0;$k<count($audio_langs);$k++) {
+        $audio_ts .= "<OPTION VALUE='".$audio_langs[$k]->id."'";
+        if ( $audio_langs[$k]->id == $audio[$i] ) $audio_ts .= " SELECTED";
+        $audio_ts .= ">".$audio_langs[$k]->name."</OPTION>";
+      }
+      $audio_ts .= "</SELECT>";
+    }
+    $t->set_var("audio",$audio_ts);
+    $audio_langs = $db->get_avlang("subtitle");
+    for ($i=0;$i<SUBTITLES;++$i) {
+      $atsname = "subtitle".$i;
+      $sub_ts .= "<SELECT NAME='$atsname'><OPTION VALUE='-'>-</OPTION>";
+      for ($k=0;$k<count($audio_langs);$k++) {
+        $sub_ts .= "<OPTION VALUE='".$audio_langs[$k]->id."'";
+        if ( $audio_langs[$k]->id == $subtitle[$i] ) $sub_ts .= " SELECTED";
+        $sub_ts .= ">".$audio_langs[$k]->name."</OPTION>";
+      }
+      $sub_ts .= "</SELECT>";
+    }
+    $t->set_var("subtitle",$sub_ts);
+  } else { // !$edit
+    for ($i=0;$i<count($audio);++$i) {
+      if (isset($audio[$i]) && !empty($audio[$i])) $audio_ts .= ", ".lang("lang_".$audio[$i]);
+    }
+    for ($i=0;$i<count($subtitle);++$i) {
+      if (isset($subtitle[$i]) && !empty($subtitle[$i])) $sub_ts .= ", ".lang("lang_".$subtitle[$i]);
+    }
+    if (isset($audio_ts) && !empty($audio_ts)) $audio_ts = substr($audio_ts,2);
+      else $audio_ts = "&nbsp;";
+    if (isset($sub_ts) && !empty($sub_ts)) $sub_ts = substr($sub_ts,2);
+      else $sub_ts = "&nbsp;";
+    $t->set_var("audio","<DIV CLASS='virtual_button'>$audio_ts</DIV>");
+    $t->set_var("subtitle","<DIV CLASS='virtual_button'>$sub_ts</DIV>");
+  }
   $t->set_var("staff_name",lang("staff"));
   $t->set_var("name_name",lang("name"));
   $t->set_var("firstname_name",lang("first_name"));

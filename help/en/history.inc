@@ -7,6 +7,7 @@
 <ul>
  <li>some code cleanup: made it more strict to prevent some "notices" (aka
      "unimportant warnings") from PHP
+ <li>added fields for audio and subtitle tracks
 </ul>
 
 [title]

@@ -55,6 +55,8 @@
     <TR><TD>{screen_name}</TD><TD>{screen}</TD></TR>
     <TR><TD>{source_name}</TD><TD>{source}</TD></TR>
     <TR><TD>{fsk_name}</TD><TD>{fsk}</TD></TR>
+    <TR><TD>{audio_name}</TD><TD>{audio}</TD></TR>
+    <TR><TD>{subtitle_name}</TD><TD>{subtitle}</TD></TR>
    </TABLE>
   </TD>
   <TD>

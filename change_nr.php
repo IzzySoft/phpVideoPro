@@ -19,11 +19,11 @@
  $details = array ("copy","change","old_mtype","old_cass_id","old_part",
                    "new_mtype","new_cass_id","new_part","cancel");
  foreach ($details as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var];
  }
  $details = array ("mtype_id","cass_id","part","id");
  foreach ($details as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var];
  }
 
  #=========================================================[ Helper Funcs ]===
@@ -35,12 +35,12 @@
 
 
  #==================================================[ Check authorization ]===
- if ( ($copy && !$pvp->auth->add) || ($change && !$pvp->auth->update) ) {
+ if ( (isset($copy) && !$pvp->auth->add) || (isset($change) && !$pvp->auth->update) ) {
    kickoff();
  }
 
  #==================[ On submit: Do the changes & re-route to edit screen ]===
- if ( $copy || $change ) {
+ if ( isset($copy) || isset($change) ) {
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
      header('Content-type: text/html; charset=utf-8');
@@ -57,15 +57,15 @@
    include("inc/header.inc");
  }
 
- if ( $change ) {
+ if ( isset($change) ) {
    $db->move_movie($movie_id,$new_mtype,$new_cass_id,$new_part);
    $new_nr = make_nr($new_cass_id,$new_part);
    header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));
- } elseif ( $copy ) {
-   $movie[space]    = $db->get_mediaspace($movie[cass_id],$movie[mtype_id]);
-   $movie[mtype_id] = $new_mtype;
-   $movie[cass_id]  = $new_cass_id;
-   $movie[part]     = $new_part;
+ } elseif ( isset($copy) ) {
+   $movie[space]    = $db->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
+   $movie['mtype_id'] = $new_mtype;
+   $movie['cass_id']  = $new_cass_id;
+   $movie['part']     = $new_part;
    if ( !$movie[lp] ) $movie[lp] = 0;
    $db->add_movie($movie);
    $new_nr = make_nr($new_cass_id,$new_part);
@@ -78,18 +78,18 @@
 
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_nr.tpl"));
- $t->set_var("listtitle",lang("change_nr",$movie[mtype_short]. " " .$movie[cass_id]. "-" .$movie[part]));
+ $t->set_var("listtitle",lang("change_nr",$movie['mtype_short']. " " .$movie['cass_id']. "-" .$movie['part']));
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("latest",lang("highest_db_entries"));
  $t->set_var("latest_box",$pvp->common->make_lastnum_selectbox("lastnum"));
  $t->set_var("orig",lang("orig_medianr"));
- $t->set_var("o_mtype",$pvp->common->make_mtype_selectbox("old_mtype",$movie[mtype_id]));
- $t->set_var("o_medianr","<INPUT NAME='old_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie[cass_id]."'>");
- $t->set_var("o_part","<INPUT NAME='old_part' ".$form["addon_part"]." VALUE='".$movie[part]."'>");
+ $t->set_var("o_mtype",$pvp->common->make_mtype_selectbox("old_mtype",$movie['mtype_id']));
+ $t->set_var("o_medianr","<INPUT NAME='old_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."'>");
+ $t->set_var("o_part","<INPUT NAME='old_part' ".$form["addon_part"]." VALUE='".$movie['part']."'>");
  $t->set_var("new",lang("new_medianr"));
- $t->set_var("n_mtype",$pvp->common->make_mtype_selectbox("new_mtype",$movie[mtype_id]));
- $t->set_var("n_medianr","<INPUT NAME='new_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie[cass_id]."'>");
- $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie[part]."'>");
+ $t->set_var("n_mtype",$pvp->common->make_mtype_selectbox("new_mtype",$movie['mtype_id']));
+ $t->set_var("n_medianr","<INPUT NAME='new_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."'>");
+ $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie['part']."'>");
  $t->set_var("cancel","<INPUT TYPE='cancel' NAME='cancel' VALUE='".lang("cancel")."'>");
  $t->set_var("copy","<INPUT CLASS='submit' TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
  $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";

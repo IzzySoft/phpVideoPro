@@ -329,8 +329,9 @@ EndHiddenFields;
       }
     } else {
       if ( is_array($rc) ) {
+        $rcname = "";
         for ($i=0;$i<7;++$i) {
-          if ($rc[$i]) $rcname .= "<INPUT TYPE='button' NAME='rc' VALUE='$i' CLASS='yesnobutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
+          if (isset($rc[$i]) && $rc[$i]) $rcname .= "<INPUT TYPE='button' NAME='rc' VALUE='$i' CLASS='yesnobutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
         }
       }
       if (!$rcname) $rcname  = "<INPUT TYPE='button' NAME='rc' VALUE='".lang("unknown")."' CLASS='techbutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";

@@ -429,8 +429,8 @@ class common {
     $select = "<SELECT NAME='$name'>";
     $mtypes = $db->get_mtypes();
     for ($i=0;$i<count($mtypes);++$i) {
-      $select .= "<OPTION VALUE='" . $mtypes[$i][id] . "'";
-      if ( $mtypes[$i][id] == $selected ) $select .= " SELECTED";
+      $select .= "<OPTION VALUE='" . $mtypes[$i]['id'] . "'";
+      if ( $mtypes[$i]['id'] == $selected ) $select .= " SELECTED";
       $select .= ">" . $mtypes[$i][$type] . "</OPTION>";
     }
     $select .= "</SELECT>";
@@ -448,7 +448,7 @@ class common {
     $select = "<SELECT NAME='$name'>";
     $lastnum = $db->get_lastmovienum();
     for ($i=0;$i<count($lastnum);++$i) {
-      $select .= "<OPTION>" . $lastnum[$i][entry] . "</OPTION>";
+      $select .= "<OPTION>" . $lastnum[$i]['entry'] . "</OPTION>";
     }
     $select .= "</SELECT>";
     return $select;

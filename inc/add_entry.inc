@@ -42,6 +42,14 @@
  }
 
  ##############################################################################
+ # check if "fsk" (= pg, parental guide) is integer
+ if ( !$valid->num($fsk) ) {
+   $error = lang("invalid_fsk") . "</P>\n";
+   display_error($error);
+   exit;
+ }
+
+ ##############################################################################
  # check wether the specified date is valid
  check_date($recdate,0);
 

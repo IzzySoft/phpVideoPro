@@ -17,14 +17,14 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- $add    = $_GET["add"];
- $remove = $_GET["remove"];
- $edit   = $_REQUEST["edit"];
- $start  = $_REQUEST["start"];
- $submit = $_POST["submit"];
+ if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
+ if (isset($_GET["remove"])) $remove = $_GET["remove"]; else $remove = FALSE;
+ if (isset($_REQUEST["edit"])) $edit = $_REQUEST["edit"]; else $edit = FALSE;
+ if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_POST["submit"])) $submit = $_POST["submit"]; else $submit = FALSE;
  $postit = array ("desc","type_id","eps_file","ps_file","llx","lly","urx","ury");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
  }
  unset($postit);
 
@@ -32,7 +32,6 @@
  if (!$pvp->auth->admin) kickoff();
 
  #--------------------------------------------------[ initialize template ]---
- if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
  $t = new Template($pvp->tpl_dir);
@@ -80,7 +79,7 @@
  }
 
  function make_input($name,$value,$desc="",$type="techinput") {
-   if ($desc) $input = "<b>$desc:</b> ";
+   if ($desc) $input = "<b>$desc:</b> "; else $input = "";
    $input .= "<INPUT NAME='$name' VALUE='$value' CLASS='$type'>";
    return $input;
  }
@@ -103,6 +102,7 @@
  include("../inc/header.inc");
  #===========================[ create the edit form for a single template ]===
  if ($edit || $add || $submit) {
+   if (!isset($ps)) $ps[0]->desc = $ps[0]->type_id = $ps[0]->eps_file = $ps[0]->ps_file = $ps[0]->llx = $ps[0]->lly = $ps[0]->urx = $ps[0]->ury = "";
    $t->set_var("desc",make_input("desc",$ps[0]->desc,lang("name")));
    $t->set_var("type",type_select("type_id",$ps[0]->type_id,lang("pstpl_type")));
    $t->set_var("gfx_file",make_input("eps_file",$ps[0]->eps_file,lang("graphic_file")));
@@ -138,7 +138,8 @@
      $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
      $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?remove=".$list[$i]->id);
      $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
-     $t->parse("item","itemblock",TRUE);
+     if ($i) $t->parse("item","itemblock",TRUE);
+       else $t->parse("item","itemblock");
    }
    $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=1",lang("add_entry")));
    $t->set_var("head_desc",lang("pstpl_name"));

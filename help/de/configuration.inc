@@ -181,6 +181,27 @@ des Gast-Kontos.
 *general#
 
 [text]
+<b>*printer#:</b> Um eine exakte Positionierung der Etiketten auf den zu
+verwendenden Label-Sheets gewährleisten zu können, müssen die genauen
+Seitenränder des zu verwendenden Druckers bekannt sein. Ist der gewünschte
+Drucker in der Liste nicht enthalten, kann zunächst einer der vorhandenen
+"getestet" werden: manche Drucker sind bezüglich Ihrer "Rand-Einstellungen"
+kompatibel (so viele Möglichkeiten gibt es ja auch nicht). Ist ein "kompatibler"
+Drucker dabei, wäre eine Nachricht an <A HREF="mailto:izzysoft@qumran.org">mich</A>
+hilfreich mit Angabe des genutzten und des ausgewählten Druckers. Zukünftige
+Versionen von phpVideoPro könnten dann eine "Drucker-Kompatibilitäts-Liste"
+enthalten.<BR>
+Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Übel ein neuer
+Drucker in die Datenbank eingetragen werden. Erfahrene Anwender können hierzu
+die Tabelle "printers" anpassen: entscheidend sind hier lediglich die Einträge
+in den Spalten "top_offset" und "left_offset" (vielleicht erstelle ich ja mal
+ein FrontEnd hierfür ;). <b><i>ACHTUNG:</i></b> an dieser Tabelle vorgenommene
+Änderungen können beim nächsten Update verloren gehen! Ist daher die korrekte
+Einstellung gefunden, diese bitte mit zugehörigem Drucker-Namen an
+<A HREF="mailto:izzysoft@qumran.org">mich</A> schicken, damit sie permanenten
+Eingang in die Liste finden!
+
+[text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
 z.B. unter dem Menüpunkt "*medialist#" zu finden, stets in voller Länge, d.h.
 mit allen Datensätzen an. Bei umfangreichen Datensammlungen führte dies nicht

@@ -299,3 +299,6 @@ INSERT INTO lang VALUES('printer_comment','de','Für den Druck auf Formularen (wi
 INSERT INTO lang VALUES('session_expired','de','Die Session ist nicht länger gültig - eine erneute Anmeldung ist nötig.');
 INSERT INTO lang VALUES('search','de','Suchen');
 INSERT INTO lang VALUES('search_movie','de','Filmsuche');
+INSERT INTO lang VALUES('backup_db_complete','de','Vollständiges Backup der Datenbank (incl. technischer Daten)');
+INSERT INTO lang VALUES('backup_db_movies','de','Nur Film-relevante Daten sichern (Film, Schauspieler etc.)');
+INSERT INTO lang VALUES('backup_db_moviedel','de','Nur Film-relevante Daten sichern; zusätzlich vor dem Einfügen der "neuen" (gesicherten) Daten alte Daten zum Löschen markieren');

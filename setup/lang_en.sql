@@ -309,3 +309,6 @@ INSERT INTO lang VALUES('session_expired','en','Your session has expired - pleas
 INSERT INTO lang VALUES('pslabel','en','PS Label');
 INSERT INTO lang VALUES('search','en','Search');
 INSERT INTO lang VALUES('search_movie','en','MovieSearch');
+INSERT INTO lang VALUES('backup_db_complete','en','Backup the complete Database (incl. technical data and preferences)');
+INSERT INTO lang VALUES('backup_db_movies','en','Backup movie relevant data only (movies, actors etc.)');
+INSERT INTO lang VALUES('backup_db_moviedel','en','Backup movie relevant data only and insert a delete statement for old data prior to the insert statements for new (backup\'d) data');

@@ -11,6 +11,11 @@ INSERT INTO lang VALUES('year','de','Jahr');
 INSERT INTO lang VALUES('date_rec','de','Aufnahmedatum');
 INSERT INTO lang VALUES('category','de','Kategorie');
 INSERT INTO lang VALUES('medialist','de','Medienliste');
+INSERT INTO lang VALUES('enter_min_free','de','Mindestgröße des freien Platzes in Minuten:');
+INSERT INTO lang VALUES('display','de','Anzeigen');
+INSERT INTO lang VALUES('free_space_on_media','de','Auf folgenden Medien sind noch mindestens %1 Minuten frei:');
+INSERT INTO lang VALUES('free','de','Frei');
+INSERT INTO lang VALUES('content','de','Inhalt');
 
 
 # when finished, activate language

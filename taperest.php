@@ -1,4 +1,5 @@
 <? /* Taperest (free space on tapes) */
+   /* $Id$ */
 
   $page_id = "taperest";
   include("inc/config.inc");
@@ -9,9 +10,9 @@
     <FORM NAME="space" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
       <INPUT TYPE="hidden" NAME="usefilter" VALUE="<? echo $usefilter ?>">
       <TABLE WIDTH="70%" ALIGN="center">
-        <TR><TD>Enter minimum of free space on medium to display:</TD>
+        <TR><TD><? echo lang("enter_min_free") ?></TD>
             <TD><INPUT NAME="minfree"></TD>
-            <TD><INPUT TYPE="submit" NAME="getrest" VALUE="Display"></TR>
+            <TD><INPUT TYPE="submit" NAME="getrest" VALUE="<? echo lang("display") ?>"></TR>
       </TABLE>
     </FORM> <?
     exit;
@@ -33,12 +34,11 @@
     $mlist[$i]["id"]   = $db->f('id');
     $mlist[$i]["free"] = $db->f('free');
   }
-?>
 
-<H2 Align=Center>Free space on media</H2>
-
-<Table Witdh=90% Align=Center Border=1>
- <TR><TH>Medium</TH><TH>Nr</TH><TH>Free</TH><TH>Contains</TH><TR><?
+  echo "<H2 ALIGN=\"center\">" . lang("free_space_on_media",$minfree) . "</H2>\n";
+  echo "<TABLE ALIGN=\"center\" BORDER=\"1\">\n";
+  echo " <TR><TH>" . lang("medium") . "</TH><TH>" . lang("nr")
+       . "</TH><TH>" . lang ("free") . "</TH><TH>" . lang("content") . "</TH></TR>\n";
 
   for ($i=1;$i<=count($mlist);$i++) {
     $query = "SELECT v.title,m.sname,c.name FROM video v,mtypes m,cat c WHERE cass_id='" . $mlist[$i]["id"] . "' AND v.mtype_id=m.id AND v.cat1_id=c.id AND v.mtype_id IN ($rw_media)";

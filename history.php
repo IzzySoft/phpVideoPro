@@ -25,6 +25,10 @@
            easier (for now we can determine the previously installed
            version easily) and as well prepares the way to some better
            setup tool at some future point
+       <li>started "internationalization process" by making the pages
+           using the translation code (and adding required translations
+           to lang_en.sql and lang_de.sql). (Hopefully) finnished for
+           medialist, taperest.
       </ul>
   <LI><b>0.1.1 (July 4, 2001)</b><br>
       alpha release "independence day":

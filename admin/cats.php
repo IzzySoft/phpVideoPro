@@ -86,8 +86,11 @@
   $t->set_var("cat_name",make_input("new_name",""));
   $t->set_var("cat_trans",make_input("new_trans",""));
   $t->parse("cats","catblock",TRUE);
-  $t->set_var("lines",$catcount);
-
+#  $t->set_var("lines",$catcount);
+  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$catcount'>";
+  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+  $t->set_var("hidden",$hidden);
+      
   include( dirname(__FILE__) . "/../inc/header.inc");
   $t->pparse("out","template");
 

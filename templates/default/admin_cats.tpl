@@ -10,7 +10,7 @@
      <TD><DIV ALIGN="center">{cat_name}</DIV></TD>
      <TD><DIV ALIGN="center">{cat_trans}</DIV></TD></TR>
 <!-- END catblock -->
- <TR><TD COLSPAN="3"><INPUT TYPE='hidden' NAME='lines' VALUE='{lines}'></TD></TR>
+ <TR><TD COLSPAN="3">{hidden}</TD></TR>
  <TR><TH COLSPAN="3"><DIV ALIGN="center">{update}</DIV></TH></TR>
 </TABLE>
 </FORM>

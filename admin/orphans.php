@@ -58,6 +58,6 @@
  $t->set_var("listtitle",lang("admin_orphans"));
  $t->pparse("out","template");
 
- include("inc/footer.inc");
+ include("../inc/footer.inc");
 
 ?>

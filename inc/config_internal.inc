@@ -71,9 +71,8 @@
  if (!$pvpinstall) {
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;
-  $db->query("SELECT value FROM pvp_config WHERE name='version'");
-  $db->next_record();
-  $version  = $db->f('value');
+  $version  = $db->get_config("version");
+  $rw_media = $db->get_config("rw_media");
   if ($pre) $version .= $pre;
   if ($runupdate) {
    $charset = 'iso-8859-15';
@@ -86,7 +85,8 @@
    unset ($plang);
   }
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->template;
-  $pvp->preferences->remove_empty_media = $remove_empty; unset($remove_empty);
+  $pvp->preferences->remove_empty_media = $db->get_config("remove_empty_media");
+  $defaults["scolor"] = $pvp->preferences->default_movie_colorid;
  }
 
  #=======================================================[ debug settings ]===

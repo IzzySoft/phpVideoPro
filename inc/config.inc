@@ -28,11 +28,4 @@
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE
  $database["password"]  = "chumash";  # this users password for the db
-
- #============================================================[ technical ]===
- $rw_media   = "1";      # writeable media (comma separated). Available values:
-                         # 1 (RVT), 2 (OVT), 3 (VCD), 4 (DVD)
- $remove_empty = "1";    # wether to remove empty media from cass table
- $defaults["scolor"] = 2;# default color to use when adding a new movie to DB.
-                         # 1=b/w, 2=color, 3=3d - if you didn't change sth. :)
 ?>

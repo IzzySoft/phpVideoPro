@@ -273,6 +273,24 @@
    }
 
    ############################################################################
+   # configuration
+   ############################################################################
+   /** Get some config value
+    * @class sql
+    * @method get_config
+    * @param string name config var's name
+    * @return string value
+    */
+   function get_config($name) {
+     $this->query("SELECT value FROM pvp_config WHERE name='$name'");
+     if ( $this->next_record() ) {
+       return $this->f('value');
+     } else {
+       return "";
+     }
+   }
+
+   ############################################################################
    # people and their names
    ############################################################################
    /** Format a name's array (private! just an internal helper func)

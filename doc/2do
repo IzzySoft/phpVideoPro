@@ -16,7 +16,6 @@ coming *soon*:
   the mtype set with the imported movie, and then correctly increment the
   MediaNr while adding the movie. As with categories, new mediatypes should
   be added when needed.
-- help for the initial page is missing
 
 coming *next*:
 - PS template(s) for DVD covers

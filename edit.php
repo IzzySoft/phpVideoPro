@@ -531,7 +531,7 @@ EndHiddenFields;
   if ($edit) {
     $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS='5' COLS='120' NAME='comment'>$comment</TEXTAREA></DIV>");
   } else {
-    $t->set_var("comments",nl2br($pvp->common->make_clickable($comment)));
+    $t->set_var("comments",$pvp->common->nl2br($comment));
   }
   $hiddenfields .= "<INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";

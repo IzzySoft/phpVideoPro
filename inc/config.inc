@@ -18,10 +18,10 @@
  $backup_path= $base_path . "testdata"; # where to look for backup files
 
  #=============================================================[ database ]===
- $database["type"]      = "pgsql";    # mysql|pgsql
- $database["host"]      = "nebo";     # your hosts name
+ $database["type"]      = "mysql";    # mysql|pgsql
+ $database["host"]      = "localhost";     # your hosts name
  $database["database"]  = "videopro"; # what database holds the tables
- $database["user"]      = "izzy";     # db user with at least following
+ $database["user"]      = "video";     # db user with at least following
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE
  $database["password"]  = "";  # this users password for the db

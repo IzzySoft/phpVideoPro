@@ -1,5 +1,5 @@
 <style type="text/css"><!--
- ul {margin-left: 0; padding-left: 10px; margin-top: 0; margin-bottom:0; padding-top:0; padding-bottom:0;}
+ ul {margin-left: 5; padding-left: 10px; margin-top: 0; margin-bottom:0; padding-top:0; padding-bottom:0;}
  li {margin-top: 0; margin-bottom:0;}
 --></style>
 <H2 Align=Center>{listtitle}</H2>

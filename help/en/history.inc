@@ -11,6 +11,7 @@
  <li>added links to first and last movies on the "view entry" screen
  <li>on the "change disktype" page, submit button was outside the form (i.e.
      not working)
+ <li>minor changes to the formatting of the comments field when viewing an entry
 </ul>
 
 [title]

@@ -18,7 +18,6 @@
  if ( $change && !$pvp->auth->update) {
    kickoff(); // kick-off unauthorized visitors
  }
-
  if ( $change ) {
    if ($n_disktype) $db->set_disktype($cass_id,$mtype_id,$n_disktype);
    $rccount = count($rc);

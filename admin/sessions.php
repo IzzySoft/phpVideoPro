@@ -19,16 +19,16 @@
  #-------------------------------------------------[ Register global vars ]---
  $postit = array ("days","ended");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = 0;
  }
- $delete = $_GET["delete"];
  unset($postit);
+ if (isset($_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
+ if (isset($_GET["start"])) $start = $_GET["start"]; else $start = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
 
  #--------------------------------------------------[ initialize template ]---
- if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
  if ($delete) $db->remove_session($delete);
@@ -63,17 +63,18 @@
  #======================================================[ create the Form ]===
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount;$i++) {
-   $t->set_var("sess_id",$list[$i][sess_id]);
-   $t->set_var("sess_ip",$list[$i][ip]);
-   $t->set_var("sess_user",$list[$i][user]);
-   $t->set_var("sess_start",todate($list[$i][started]));
-   $t->set_var("sess_dla",todate($list[$i][dla]));
-   if ($list[$i][ended]) { $sEnd = todate($list[$i][ended]); } else { $sEnd = "&nbsp;"; }
+   $t->set_var("sess_id",$list[$i]['sess_id']);
+   $t->set_var("sess_ip",$list[$i]['ip']);
+   $t->set_var("sess_user",$list[$i]['user']);
+   $t->set_var("sess_start",todate($list[$i]['started']));
+   $t->set_var("sess_dla",todate($list[$i]['dla']));
+   if ($list[$i]['ended']) { $sEnd = todate($list[$i]['ended']); } else { $sEnd = "&nbsp;"; }
    $t->set_var("sess_end",$sEnd);
-   $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$list[$i][sess_id]);
+   $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$list[$i]['sess_id']);
    $del = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
    $t->set_var("sess_action",$del);
-   $t->parse("item","itemblock",TRUE);
+   if ($i) $t->parse("item","itemblock",TRUE);
+     else $t->parse("item","itemblock");
  }
  $t->set_var("old_sess",lang("old_sessions","days"));
  $t->set_var("ended_sess",lang("ended_sessions"));

@@ -187,6 +187,7 @@
        $s->name = $this->f("lang_name");
        $list[]  = $s;
      }
+     if (!isset($totals)) $totals = 0;
      $list["totals"] = $totals;
      if ($id) return $list[0];
      return $list;
@@ -220,6 +221,7 @@
      switch ($avail) {
        case "0" : $where = "WHERE available='no'"; break;
        case "1" : $where = "WHERE available='yes'"; break;
+       default  : $where = "";
      }
      $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where ORDER BY lang_name");
      $i=0;
@@ -327,7 +329,7 @@
     * @param string lang language to retrieve for
     * @param optional integer start (for lim_query)
     * @param optional string msgID single translation to catch
-    * @return object translations (msgID = translation, xlist[] of msgIDs)
+    * @return array of object translations (msgID = translation, xlist[] of msgIDs)
     */
    function get_singletrans($lang,$start="",$msg="") {
      $query = "SELECT message_id,content,comment FROM lang WHERE lang='$lang'";
@@ -341,9 +343,10 @@
        $trans["xcomment"]["$msg"] = stripslashes($this->f('comment'));
        $list[] = $msg;
      }
-     if ($totals) $trans['totals'] = $totals;
-     $trans["xlist"] = $list;
-     return $trans;
+     if (isset($totals)) $trans['totals'] = $totals;
+     if (isset($list)) $trans["xlist"] = $list;
+     if (isset($trans)) return $trans;
+     return array();
    }
 
    ############################################################################
@@ -701,7 +704,6 @@
     */
    function del_user($id) {
      $this->dbquery("DELETE FROM pvp_users WHERE id=$id");
-     $this->dbquery($query);
      if ( $this->affected_rows() < 0 ) return FALSE;
      return TRUE;
    }
@@ -829,7 +831,7 @@
     *  entry in one of the staff tables, but the video table doesn't refer to them
     * @class sql
     * @method get_orphaned_staff
-    * @return mixed array of orphanes or FALSE
+    * @return array of orphanes
     * @version the array has the format array[$i]->$item, where $item is one of
     *  stafftype,id,name,firstname - id being the PK to the staff table
     */
@@ -859,7 +861,8 @@
      while ( $this->next_record() ) {
        $orphan[] = $this->setup_orphan("actor",$this->f('id'),$this->f('name'),$this->f('firstname'));
      }
-     return $orphan;
+     if (isset($orphan)) return $orphan;
+     return array();
    }
 
    /** Delete an actor from DB
@@ -931,7 +934,7 @@
 	   $catID = $cat[$i]['id'];
 	   $this->dbquery("SELECT COUNT(*) AS used FROM video WHERE cat1_id='$catID' OR cat2_id='$catID' OR cat3_id='$catID'");
 	   $this->next_record();
-	   $cat[$i][used] = $this->f('used');
+	   $cat[$i]['used'] = $this->f('used');
 	 }
        }
        if ($order=="") {
@@ -2885,7 +2888,7 @@
      $tpl->ury = $this->f('ury');
      $template[] = $tpl;
    }
-   if ($totals) $template['totals'] = $totals;
+   if (isset($totals)) $template['totals'] = $totals;
    return $template;
  }
 

@@ -20,7 +20,7 @@
  $t->set_file(array("template"=>"admin_orphans.tpl"));
  $t->set_block("template","itemblock","item");
 
- if ($_POST["delete"]) {
+ if (isset($_POST["delete"])) {
   $t->set_var("button","");
  } else {
   $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
@@ -47,12 +47,12 @@
   }
   $details .= "<br>\n";
  }
- if (!$details) {
+ if (!isset($details)) {
    $details = lang("no_orphans_found");
    $t->set_var("button","");
  }
 
- if ($delete && $orphans) {
+ if (isset($delete) && $orphans) {
    $t->set_var("title",lang("delete_orphans",$orphans));
  } else {
    $t->set_var("title",lang("orphans_found",$orphans));

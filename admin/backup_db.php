@@ -17,6 +17,7 @@
  include(dirname(__FILE__) . "/../inc/includes.inc");
  include("../inc/class.xfer.inc");
  if (!$pvp->auth->admin) kickoff();
+ $save_result = "";
 
  function fhead($filename) {
    header("content-type: application/octet-stream");
@@ -39,7 +40,7 @@
  $t->set_var("listtitle",lang("backup_db"));
 
  #=======================================================[ run the backup ]===
- if ($_POST["backup"]) {
+ if (isset($_POST["backup"])) {
    $stamp = date('ymd'); // to generate a unique filename
    $xfer = new xfer("export");
    if ($_POST["compress"]) $xfer->compressionOn();
@@ -84,7 +85,7 @@
    exit;
  } else {
  #======================================================[ run the restore ]===
-   if ($_POST["restore"]) { // restore data
+   if (isset($_POST["restore"])) { // restore data
      $xfer = new xfer("import");
      if ($_POST["compress"]) $xfer->compressionOn();
      $save_result = $xfer->fileImport($_POST["rfile"],$pvp->backup_dir,!$_POST["cleandb"]);
@@ -102,7 +103,7 @@
           . "<INPUT TYPE='radio' NAME='btype' VALUE='cats' CLASS='checkbox'>".lang("backup_db_cats")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='sysconf' CLASS='checkbox'>".lang("backup_db_sysconf")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'";
-   if ($_POST["compress"]) $radio .= " CHECKED";
+   if (isset($_POST["compress"])) $radio .= " CHECKED";
    $radio .= ">".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");
@@ -117,7 +118,7 @@
        }
        $select .= "</SELECT><BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox'";
-       if ($_POST["cleandb"]) $select .= " CHECKED";
+       if (isset($_POST["cleandb"])) $select .= " CHECKED";
        $select .= ">".lang("clean_restore")."<BR>";
      } else {
        $select = lang("no_backup_avail");

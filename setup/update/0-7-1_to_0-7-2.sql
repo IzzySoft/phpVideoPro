@@ -1,5 +1,5 @@
 # ========================================================
-# Updating Database for phpVideoPro from v0.6.6 to v0.7.0
+# Updating Database for phpVideoPro from v0.7.1 to v0.7.2
 # ========================================================
 
 # prepare default lang update
@@ -30,7 +30,8 @@ INSERT INTO preferences (name,value) VALUES ('imdb_tx_director','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');
 
+# Prepare refresh of language data
 DELETE FROM languages;
 
 # version update
-#UPDATE pvp_config SET value='0.7.2' WHERE name='version';
+UPDATE pvp_config SET value='0.7.2' WHERE name='version';

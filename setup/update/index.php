@@ -156,7 +156,7 @@ $pvp->preferences->admin();
     case "0.6.9"    :
     case "0.6.10"   :
     case "0.6.11"   : queryf("0-6-6_to_0-7-0.sql","Upgrade to v0.7.0");
-    case "0.7.0"    : queryf("0-7-0_to_0-7-1.sql","Upgrade to v0.7.1");
+    case "0.7.0"    :
     case "0.7.1"    : queryf("0-7-1_to_0-7-2.sql","Upgrade to v0.7.2");
                       $db->query("SELECT DISTINCT lang AS lang FROM lang");
                       while ($db->next_record()) $lav[] = $db->f('lang');

@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.6.8 (2004)
+[text]
+<ul>
+ <li>categories on the search and filter screen are now sorted by their
+     translated name instead of the internal name
+</ul>
+
+[title]
 0.6.7 (October 26, 2004)
 [text]
 <ul>

@@ -49,7 +49,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.2.5');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.2.6');
 
 #
 # set default preferences

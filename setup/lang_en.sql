@@ -530,5 +530,7 @@ INSERT INTO lang VALUES ('intro_usage_skip','en','<P>If you do not need this int
 INSERT INTO lang VALUES ('intro_usage_title','en','Introduction for new users','');
 INSERT INTO lang VALUES ('skip_intro','en','Skip the newbie intro?','Item on the preferences page');
 INSERT INTO lang VALUES ('skip_intro_comment','en','Whether to skip the introductional text on the initial page','Item on the preferences page');
-# INSERT INTO lang VALUES ('intro_usage','en','','');
+INSERT INTO lang VALUES ('xfer_unknown_filetype','en','This backup file type is not (yet) handled by phpVideoPro.','Error message on backup/restore');
+INSERT INTO lang VALUES ('xfer_wrong_mode','en','Program error: You are in the wrong mode for the requested operation. Required mode is "%1", actual mode is "%2". Please report this to the author with the details of the action performed.','Error message on backup/restore');
+INSERT INTO lang VALUES ('admin_required','en','This action requires admin privileges!','Error message when accessing an admin function without the required user privilege. Should never be displayed ;)');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

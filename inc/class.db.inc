@@ -390,6 +390,44 @@
      }
    }
 
+   /** Get list of registered sessions
+    * @class sql
+    * @method get_sessions
+    * @param optional integer start to limit queries
+    * @return array array of session objects (sess_id,ip,user,start,dla,end)
+    */
+   function get_sessions($start="") {
+     $query = "SELECT s.id AS sess_id,s.ip,s.started,s.dla,s.ended,u.login AS user"
+            . "  FROM pvp_sessions s,pvp_users u"
+	    . " WHERE s.user_id=u.id";
+     if ($start==="") { $this->dbquery($query); }
+       else { $totals = $this->lim_query($query,$start); }
+     $details = array("sess_id","ip","started","dla","ended","user");
+     while ( $this->next_record() ) {
+       foreach ($details as $var) {
+         $s[$var] = $this->f($var);
+       }
+       $list[] = $s;
+     }
+     if ($totals) $list[totals] = $totals;
+     return $list;
+   }
+
+   /** remove a session from DB
+    * @class sql
+    * @method remove_session
+    * @param string sess_id session identifier
+    * @param optional integer days purge older than $days (give empty sess_id for this)
+    * @return boolean success
+    */
+   function remove_session($id,$days="") {
+     if ($days) {
+       $pdate = time() - ($days * 86400);
+       return $this->query("DELETE FROM pvp_sessions WHERE dla<'$pdate'");
+     }
+     return $this->query("DELETE FROM pvp_sessions WHERE id='$id'");
+   }
+
    ############################################################################
    # User managment
    ############################################################################

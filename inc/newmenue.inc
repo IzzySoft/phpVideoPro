@@ -283,6 +283,7 @@ function getPageOffsetTop(el) {
  echo $pvp->link->linkurl($base_url."admin/printers.php",lang("admin_printers"),"class='menuItem'") ."\n";
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."admin/users.php",lang("admin_users"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/sessions.php",lang("admin_sessions"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/filters.php",lang("admin_filter"),"class='menuItem'") ."\n";
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."admin/orphans.php",lang("admin_orphans"),"class='menuItem'") ."\n";

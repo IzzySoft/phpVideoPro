@@ -58,12 +58,10 @@ $db->User     = $pvp->config->db->user     = $database["user"];
 $db->Password = $pvp->config->db->password = $database["password"];
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
+include (dirname(__FILE__) . "/class.preferences.inc");
+$pvp->preferences = new preferences;
+
 if (!$pvpinstall) {
- $db->query("SELECT value FROM preferences WHERE name='colors'");
- $db->next_record();
- $colors   = unserialize ( rawurldecode( $db->f('value') ) );
- $colors["ok"]  = "<FONT COLOR=\"" . $colors["ok"] . "\">";
- $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
  $db->query("SELECT value FROM pvp_config WHERE name='version'");
  $db->next_record();
  $version  = $db->f('value');
@@ -71,27 +69,14 @@ if (!$pvpinstall) {
  if ($runupdate) {
   $charset = 'iso-8859-1';
  } else {
-  $db->query("SELECT value FROM preferences WHERE name='lang'");
-  $db->next_record();
-  $plang  = $db->f('value');
+  $plang  = $pvp->preferences->lang;
   $db->query("SELECT charset FROM languages WHERE lang_id='$plang'");
   $db->next_record();
   $charset  = $db->f('charset');
   if (!strlen($charset)) $charset = 'iso-8859-1';
   unset ($plang);
  }
- $db->query("SELECT value FROM preferences WHERE name='template'");
- $db->next_record();
- $pvp->tpl_dir = $base_path . "templates/" . $db->f('value');
- $db->query("SELECT value FROM preferences WHERE name='display_limit'");
- $db->next_record();
- $pvp->preferences->display_limit = $db->f('value');
- $db->query("SELECT value FROM preferences WHERE name='date_format'");
- $db->next_record();
- $pvp->preferences->date_format = $db->f('value');
- $db->query("SELECT value FROM preferences WHERE name='page_length'");
- $db->next_record();
- $pvp->preferences->page_length = $db->f('value');
+ $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->template;
 }
 #--------------------------------------------------[ debug settings ]---
 // which actions to log. Empty string turns off debug feature. Otherwise each letter

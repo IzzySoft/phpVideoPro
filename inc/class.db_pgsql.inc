@@ -1,16 +1,16 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * DB class for PostgreSQL support: Taken from PHPLIB                        *
- * Copyright (c) 1998-2000 NetUSE AG                                         *
- *                    Boris Erdmann, Kristian Koehntopp                      *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # DB class for PostgreSQL support: Taken from PHPLIB                        #
+ # Copyright (c) 1998-2000 NetUSE AG                                         #
+ #                    Boris Erdmann, Kristian Koehntopp                      #
+ #############################################################################
 
  /* $Id$ */
 
@@ -207,7 +207,7 @@ class DB_Sql {
   }
   
   function halt($msg) {
-    printf("</td></tr></table><b>Database error:</b> %s<br>\n", $msg);
+    printf("</td></tr></table><P><BR></P><b>Database error:</b> %s<br>\n", $msg);
     printf("<b>PostgreSQL Error</b>: %s (%s)<br>\n",
       $this->Errno,
       $this->Error);

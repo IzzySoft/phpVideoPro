@@ -172,7 +172,7 @@ if ($admin) {
     $select .= "<OPTION VALUE=\"" . $lang_avail[$i]["id"] . "\">" . $lang_avail[$i]["name"] . "</OPTION>";
     $none = FALSE;
   }
-  if (!$none) $select .= "<OPTION VALUE=\"-\">-- " . lang("none") ." --</OPTION>";
+  if (!$none) $select .= "<OPTION VALUE=\"-\" SELECTED>-- " . lang("none") ." --</OPTION>";
   $select .= "</SELECT>";
   if ($none) $select = lang("no_add_lang");
   $t->set_var("item_input",$select);

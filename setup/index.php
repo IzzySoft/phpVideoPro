@@ -1,24 +1,24 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Setup Program                                                             *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Setup Program                                                             #
+ #############################################################################
 
  /* $Id$ */
 
   include ("../inc/config.inc");
-  
   $title = "phpVideoPro Setup";
+
 ?>
 <HTML><HEAD>
  <TITLE><? echo $title ?></TITLE>
- <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
 </HEAD>
 <BODY>
 <H1 ALIGN=CENTER><? echo $title ?></H1>

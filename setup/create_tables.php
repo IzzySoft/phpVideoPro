@@ -1,30 +1,27 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Create the database tables required for phpVideoPro                       *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Create the database tables required for phpVideoPro                       #
+ #############################################################################
 
  /* $Id$ */
 
-##################################################################
-# Configuration of Setup module
-#
-  $pvpinstall = 1;
-  include ("../inc/config.inc");
-  include ("../inc/config_internal.inc");
-  include ("../inc/common_funcs.inc");
-  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
+#========================================================[ initial setup ]===
+$pvpinstall = 1;
+include ("../inc/config.inc");
+include ("../inc/config_internal.inc");
+include ("../inc/common_funcs.inc");
+if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
-##################################################################
-# Output page intro
-# 
-  $title = "phpVideoPro: Setting up the Database"; ?>
+#====================================================[ Output page intro ]===
+$title = "phpVideoPro: Setting up the Database";
+?>
 <HTML><HEAD>
  <TITLE><? echo $title ?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -48,19 +45,16 @@
 <UL>
 <?
 
-##################################################################
-# Get SQL statements from their files and execute them
-#
-  $create_script = "create_tables." . $database["type"];
-  $tables   = queryf($create_script,"Creation of tables");
-  $cats     = queryf("categories.sql","Insertion of categories");
-  $techdata = queryf("tech_data.sql","Insertion of technical data");
-  $def_lang = queryf("lang_en.sql","Prepare default language");
-  $query_count = 4;
+#===================[ Get SQL statements from their files & execute them ]===
+$create_script = "create_tables." . $database["type"];
+$tables   = queryf($create_script,"Creation of tables");
+$cats     = queryf("categories.sql","Insertion of categories");
+$techdata = queryf("tech_data.sql","Insertion of technical data");
+$def_lang = queryf("lang_en.sql","Prepare default language");
+$query_count = 4;
 
-##################################################################
-# Closing page
-# ?>
+#=========================================================[ Closing page ]===
+?>
 </UL>
 <P ALIGN=JUSTIFY>Congratulations - if there are <? echo $query_count ?>
  lines stating "success", you've done it - the basic installation is complete!

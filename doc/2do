@@ -10,9 +10,17 @@ feature request list on my project page on sourceforge - or just write a mail
 to izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
+coming *before* 0.2.0:
+- template support for help pages
+- creation of missing German help files
+
+coming *around* 0.2.0 (not yet sure if before or after):
+- fields for counter settings (start/end of movie for old tape recorders
+  (feature request by user via sourceforge))
+- splitting date field into day-month-year
+
 coming *after* 0.2.0:
 - limit list display to user-definable amount of data sets
 - print lists function taking into account a user-definable page length
 - label creating and printing function
-- splitting date field into day-month-year
 - search function

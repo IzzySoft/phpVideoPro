@@ -6,7 +6,7 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.2.0 (August 2001)</b><br>
+  <LI><b>0.1.6 (August 14, 2001)</b><br>
       <ul>
        <li>updated help files
        <li>enhanced stylesheet: added table background color (adjustable
@@ -17,8 +17,11 @@
        <li>made some forgotten pages template driven
        <li>update from a version &lt; 0.1.4 to &gt; 0.1.4 did not
            work by a single step - one had to call the update page
-	   twice. fixed.
+           twice. fixed.
        <li>added language and template support to configuration screen
+       <li>updated help page design
+       <li>added some German help files
+       <li>added ToDo list to doc/ directory (doc/2do)
       </ul>
   <LI><b>0.1.5 (August 5, 2001)</b><br>
       alpha-release "camouflage":

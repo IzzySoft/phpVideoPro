@@ -3,4 +3,4 @@
 # ========================================================
 
 # version update
-UPDATE pvp_config SET value='0.2.0' WHERE name='version';
+UPDATE pvp_config SET value='0.1.6' WHERE name='version';

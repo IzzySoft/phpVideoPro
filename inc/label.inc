@@ -17,6 +17,8 @@
    VAR $width, $height, $vmidth, $textcolor, $font, $color, $maxlines, $label;
 
    function label($config) {
+     GLOBAL $base_path;
+     $config = $base_path . "labels/$config";
      include ($config . ".config");
      $this->colors();
      $this->maxlines = 4;
@@ -49,7 +51,6 @@
      }
      $this->make_transparent($im);
      $this->label = $im;
-     }
    } // end function copy_tpl()
 
    function create_new() { // create blank label without template image

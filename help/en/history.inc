@@ -5,8 +5,10 @@
 0.5.9 (2004)
 [text]
 <ul>
- <li>updated French language file
+ <li>updated French language file (supplied by Didier CLERC)
  <li>forgot to remove some debug code with the last release (edit menu)
+ <li>solved problem in category editor with category names containing single
+     quotes (patch supplied by Didier CLERC)
 </ul>
 
 [title]

@@ -1340,7 +1340,7 @@
     *  i:part, i:entry; where i:entry = "mtype cass_id-part")
     *  integer part if called w/ both params
     */
-   function get_lastmovienum($mtype_id="",$cass_id="") {
+   function get_lastmovienum($mtype_id=0,$cass_id=0) {
      if ($mtype_id && $cass_id) {
        $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
        if ( $this->next_record() ) {
@@ -1941,19 +1941,23 @@
          else { $ar = $id[$i]; }
      }
      $list  = implode (",",$ar); // idlist of visible staff members
-     $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
-     if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
-       else { $totals = $this->lim_query($query,$start); }
-     $i=0;
-     while ( $this->next_record() ) {
-       $stafflist[$i][id]   = $this->f('id');
-       $name[firstname]     = $this->f('firstname');
-       $name[name]          = $this->f('name');
-       $name[id]            = $stafflist[$i][id];
-       $stafflist[$i][name] = $this->format_name($name);
-       ++$i;
+     if ($list) {
+       $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
+       if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
+         else { $totals = $this->lim_query($query,$start); }
+       $i=0;
+       while ( $this->next_record() ) {
+         $stafflist[$i][id]   = $this->f('id');
+         $name[firstname]     = $this->f('firstname');
+         $name[name]          = $this->f('name');
+         $name[id]            = $stafflist[$i][id];
+         $stafflist[$i][name] = $this->format_name($name);
+         ++$i;
+       }
+       $stafflist[totals] = $totals;
+     } else {
+       $stafflist[totals] = 0;
      }
-     $stafflist[totals] = $totals;
      return $stafflist;
    }
 

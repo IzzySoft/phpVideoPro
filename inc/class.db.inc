@@ -981,10 +981,18 @@
        $this->dbquery($value["sql"]);
        for ($i=1;$i<4;++$i) {
          $this->next_record();
-	 $item = $this->f('item'); $rank = "rank_" . $value["name"] . "_" . $i;
+	 $item = $this->f('item');
+	 $rank = "rank_" . $value["name"] . "_" . $i;
 	 if (!strlen( trim($item) )) $item = lang("unknown");
 	 $stats[$rank] =  "$item (" . $this->f('rank') . ")";
        }
+     }
+     for ($i=1;$i<4;++$i) {
+       $rank  = "rank_country_" . $i;
+       $count = $rank . "_count";
+       $pos   = strpos($stats[$rank]," (");
+       $stats[$count] = substr($stats[$rank],$pos+2,strlen($stats[$rank])-($pos+3));
+       $stats[$rank]  = substr($stats[$rank],0,$pos);
      }
      $details = array ( array ("name"=>"director","func"=>"get_director"),
                         array ("name"=>"composer","func"=>"get_music"),
@@ -993,16 +1001,18 @@
      foreach($details as $value) {
        for ($i=1;$i<4;++$i) {
          $sperson = "rank_" . $value["name"] . "_" . $i;
+	 $count   = $sperson . "_count";
          $person  = $stats[$sperson];
          $pos = strpos($person," (");
          $person_id = substr($person,0,$pos);
-         $rank = substr($person,$pos);
+         $rank = substr($person,$pos+2,strlen($person)-($pos+3));
 	 $func = $value["func"];
          $name = $this->$func($person_id);
 	 switch($func) {
-	   case "get_category" : $stats[$sperson] = $name . $rank; break;
-	   default             : $stats[$sperson] = $name[fullname] . $rank; break;
+	   case "get_category" : $stats[$sperson] = $name; break;
+	   default             : $stats[$sperson] = $name[fullname]; break;
 	 }
+	 $stats[$count] = $rank;
        }
      }
      // actors is a bit complicated - we have to consider 5 fields...
@@ -1021,9 +1031,11 @@
      arsort($actors);
      $i = 1;
      foreach ($actors as $key=>$value) {
-       $name = $this->get_actor($key);
-       $act  = "rank_actor_" . $i;
-       $stats[$act] = $name[fullname] . " ($value)";
+       $name  = $this->get_actor($key);
+       $act   = "rank_actor_" . $i;
+       $count = $act . "_count";
+       $stats[$act]   = $name[fullname];
+       $stats[$count] = $value;
        ++$i;
        if ($i>3) break;
      }

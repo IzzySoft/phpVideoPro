@@ -45,7 +45,6 @@ INSERT INTO lang VALUES ('edit','sv','Redigera');
 INSERT INTO lang VALUES ('edit_entry','sv','Ändra notering %1');
 INSERT INTO lang VALUES ('enter_min_free','sv','Skriv in det minimala av ledigt utrymme att visa på media:');
 INSERT INTO lang VALUES ('farbe','sv','Färg');
-INSERT INTO lang VALUES ('feedback_err','sv','Feedback \"Misslyckades\"');
 INSERT INTO lang VALUES ('filter_setup','sv','Filter-inställningar');
 INSERT INTO lang VALUES ('finnished','sv','Färdig');
 INSERT INTO lang VALUES ('first_name','sv','Första namnet');

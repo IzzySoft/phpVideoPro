@@ -45,8 +45,6 @@ INSERT INTO lang VALUES ('edit','fr','Éditer');
 INSERT INTO lang VALUES ('edit_entry','fr','Edition de date %1');
 INSERT INTO lang VALUES ('enter_min_free','fr','La mince de place libre en minute:');
 INSERT INTO lang VALUES ('farbe','fr','Couleur');
-INSERT INTO lang VALUES ('feedback_err','fr','Negative Recherche');
-INSERT INTO lang VALUES ('feedback_ok','fr','Positive Recherche');
 INSERT INTO lang VALUES ('filter','fr','Filtre');
 INSERT INTO lang VALUES ('filter_setup','fr','Mode de chercher');
 INSERT INTO lang VALUES ('finnished','fr','Complet');

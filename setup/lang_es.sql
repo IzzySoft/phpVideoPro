@@ -152,8 +152,6 @@ INSERT INTO lang VALUES ('enter_min_free','es','Ingrese el espacio libre mínimo 
 INSERT INTO lang VALUES ('enter_new_medianr','es','Por favor ingrese el MediaNr para este %1.');
 INSERT INTO lang VALUES ('expire_cookies','es','Vida de los \"cookies\".');
 INSERT INTO lang VALUES ('expire_cookies_comment','es','¿Cuanto debe durar un \"cookie\" en el navegador (\"Browser\") del usuario?');
-INSERT INTO lang VALUES ('feedback_err','es','Fállo de Retrorespuesta ');
-INSERT INTO lang VALUES ('feedback_ok','es','Retrorespuesta \"OK\"');
 INSERT INTO lang VALUES ('filter','es','Filtro');
 INSERT INTO lang VALUES ('filter_setup','es','Configuración del Filtro');
 INSERT INTO lang VALUES ('finnished','es','Completado');

@@ -37,8 +37,6 @@ INSERT INTO lang VALUES ('edit','it','Modifica');
 INSERT INTO lang VALUES ('edit_entry','it','Modifica voce %1');
 INSERT INTO lang VALUES ('enter_min_free','it','Enter minimum of free space on medium to display:');
 INSERT INTO lang VALUES ('farbe','it','Colore');
-INSERT INTO lang VALUES ('feedback_err','it','Feedback \"Fallito\"');
-INSERT INTO lang VALUES ('feedback_ok','it','Feedback \"OK\"');
 INSERT INTO lang VALUES ('filter','it','Filtro');
 INSERT INTO lang VALUES ('filter_setup','it','Configurazione Filtri');
 INSERT INTO lang VALUES ('finnished','it','Finito');

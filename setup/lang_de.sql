@@ -156,8 +156,6 @@ INSERT INTO lang VALUES ('enter_new_medianr','de','Bitte MediaNr für den neuen D
 INSERT INTO lang VALUES ('expire_cookies','de','Haltbarkeitsdatum der Kekse');
 INSERT INTO lang VALUES ('expire_cookies_comment','de','Wie lange sollen die Cookies auf dem Rechner des Benutzers gespeichert bleiben?');
 INSERT INTO lang VALUES ('farbe','de','Farbe');
-INSERT INTO lang VALUES ('feedback_err','de','Negative Abfrage-Ergebnisse');
-INSERT INTO lang VALUES ('feedback_ok','de','Positive Abfrage-Ergebnisse');
 INSERT INTO lang VALUES ('finnished','de','Fertig');
 INSERT INTO lang VALUES ('first_name','de','Vorname');
 INSERT INTO lang VALUES ('free','de','Frei');

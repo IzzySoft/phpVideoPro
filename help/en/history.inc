@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.4 (Oktober/November 2002)
+0.3.4 (Oktober 2002)
 [text]
 <ul>
  <li>when deleting the last movie from a r/w medium, the empty medium is now
@@ -15,6 +15,8 @@
  <li>media capacity for (re)writable media is now editable. To use this
      feature, just click on the button for the remaining time ("*free#")
      when viewing an entry.
+ <li>categories can now be edited. However, you can't add or remove categories
+     yet - this features will be part of a future release.
 </ul>
 
 [title]

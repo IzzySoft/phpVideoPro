@@ -1,7 +1,8 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
-<TABLE WIDTH="*" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER=0" ALIGN="center"><TR><TD>
+<FORM NAME="admin_avlang" METHOD="post" ACTION="{formtarget}">
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -22,7 +23,6 @@
 <TABLE BORDER="0" WIDTH="100%">
   <TR><TD>{first}{left}</TD><TD><DIV STYLE="margin:3;text-align:center">{save_result}</DIV></TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
 </TABLE>
-<FORM NAME="admin_avlang" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
  <TR><TH><DIV ALIGN="center">{head_lang_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_lang_name}</DIV></TH>
@@ -44,7 +44,6 @@
 <!-- END listblock -->
 
 <!-- BEGIN editblock -->
-<FORM NAME="admin_avlang" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{lang_name} ({lang_id})</TH></TR>
  <TR><TH STYLE="vertical-align:middle">{head_lang_audio}</TH>
@@ -55,14 +54,14 @@
 </TABLE>
 <!-- END editblock -->
 
+</CENTER>
 </TD></TR>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 {hidden}
-</FORM>
-</CENTER>
 
 </TABLE>
+</FORM>
 </DIV>
 </TD></TR></TABLE>

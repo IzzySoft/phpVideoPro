@@ -17,10 +17,12 @@
    li("credits");
    li("history");
   headline("menues");
+   li("admin");
+    li("admin_cats",2);
+    li("backup_db",2);
    li("edit");
     li("add_entry",2);
     li("configuration",2);
-    li("admin_cats",2);
    li("filter");
     li("set_filter",2);
     li("unset_filter",2);

@@ -832,13 +832,16 @@
        if ( $this->next_record() ) {
          $this->update_freetime($movie[cass_id],$movie[mtype_id]);
        } else {
-         $this->dbquery("DELETE FROM cass WHERE id=".$movie[cass_id]);
+         $this->delete_medium($movie[cass_id],$movie[mtype_id]);
        }
      }
      return $success;
    }
-
+   
    ############################################################################
+   # Media Specific Stuff
+   ############################################################################
+
    /** Insert a medium into the media table (if not yet exists)
     * @class sql
     * @method insert_medium
@@ -854,7 +857,26 @@
      }
    }
 
-   ############################################################################
+   /** Delete a medium from the media table.
+    *  Removes the entry from cass table only if the medium is empty (or $force is set)
+    * @class sql
+    * @method delete_medium
+    * @param integer cass_id media id
+    * @param integer mtype_id media type id
+    * @param optional boolean force force deletion even if not empty (default: no)
+    * @return boolean wether deletion took place
+    */
+   function delete_medium($cass_id,$mtype_id,$force=FALSE) {
+     $this->dbquery("SELECT COUNT(id) as mcount FROM video WHERE cass_id=$cass_id AND mtype_id=$mtype_id");
+     $this->next_record();
+     if ( $this->f('mcount') < 1 ) $force = TRUE;
+     if ($force) {
+       $this->dbquery("DELETE FROM cass WHERE id=$cass_id");
+       return TRUE;
+     }
+     return FALSE;
+   }
+
    /** Get freetime of a given medium
     * @class sql
     * @method get_mediumfreetime
@@ -867,7 +889,6 @@
        else return "";
    }
 
-   ############################################################################
    /** Get space on a medium
     * @class sql
     * @method get_mediaspace
@@ -881,7 +902,6 @@
      return "";
    }
 
-   ############################################################################
    /** Update freetime on a medium. If $free is not specified, recalc freetime
     * @class sql
     * @method update_freetime
@@ -905,7 +925,6 @@
      return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id");
    }
 
-   ############################################################################
    /** Get list of free space on media. If $start is set, the result set is
     *  limited based on $pvp->preferences->limit
     * @class sql

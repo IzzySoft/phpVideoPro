@@ -55,7 +55,8 @@
      $rline .= $line;
    }
    echo " <LI>Updating comment for \"$title\"... ";
-   if ( $db->query("UPDATE video SET comment='$rline' WHERE id=$movie) ) {
+   $rline = addslashes($rline);
+   if ( $db->query("UPDATE video SET comment='$rline' WHERE id=$movie") ) {
      echo $colors["ok"] ."Success.</FONT></LI>\n"; ++$ucount;
    } else {
      echo $colors["err"] ."Failed!</FONT></LI>\n"; ++$fcount;

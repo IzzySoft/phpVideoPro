@@ -22,6 +22,7 @@ coming *next*:
 - PS template(s) for DVD covers
 - form(s) to edit label sheets (for PSLabels)
 - store user-based preferences into a different table if no cookies are used
+- the header of the search result list looks like being sortable but isn't
 
 coming *sometimes* (maybe):
 - movie language setting(s)

@@ -142,21 +142,43 @@ if ($menue) {
 ##################################################################
 # Output page intro
 # 
-  echo "<HTML><HEAD>\n";
-  echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
   $title = "phpVideoPro v$version: " . lang("configuration");
-  echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
-  echo "<H2 ALIGN=CENTER>$title</H2>\n";
-  echo "<TABLE ALIGN=CENTER WIDTH=90% BORDER=1>\n";
-  ?>
+  if (!$menue) {
+    echo "<HTML><HEAD>\n";
+    echo " <META http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
+    echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
+    include($base_path . "inc/template.inc");
+  }
+  $t = new Template($pvp->tpl_dir);
+  $t->set_file(array("config"=>"configure.tpl",
+                     "configEnd"=>"config_end.tpl"));
+  $t->set_block("config","listblock","list");
+  $t->set_block("listblock","itemblock","item");
 
-<FORM NAME="config_form" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
-<TR><TH><?=lang("language_settings")?>:</TH></TR>
-<TR><TD><TABLE WIDTH=100%>
- <TR><TD WIDTH=70%><b><?=lang("scan_new_lang_files")?></b><br><?=lang("scan_new_lang_comment")?></TD>
-    <TD WIDTH=30%><INPUT TYPE="checkbox" NAME="scan_langfile" VALUE="1"></TD></TR>
- <TR><TD WIDTH=70%><b><?=lang("select_add_lang")?>:</b><br><?=lang("select_add_lang_comment")?></TD>
-    <TD WIDTH=30%><?
+  # setup configEnd when invoked from Setup
+  if (!$menue) {
+    $t->set_var("pvp_start","<A HREF=\"../index.php\">" . lang("start_pvp") . "</A>");
+    $t->parse("config_end","configEnd");
+  } else {
+    $t->set_var("config_end","");
+  }
+
+  # generate the complete page  
+  $t->set_var("listtitle",$title);
+  $t->set_var("formtarget",$PHP_SELF);
+
+  # setup block 1: language stuff
+  $t->set_var("list_head",lang("language_settings"));
+
+  # scan for new language files?
+  $t->set_var("item_name",lang("scan_new_lang_files"));
+  $t->set_var("item_comment",lang("scan_new_lang_comment"));
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"scan_langfile\" VALUE=\"1\">");
+  $t->parse("item","itemblock");
+
+  # additional language to install?
+  $t->set_var("item_name",lang("select_add_lang"));
+  $t->set_var("item_comment",lang("select_add_lang_comment"));
   $select = "<SELECT NAME=\"install_lang\">";
   $none = TRUE;
   for ($i=0;$i<count($lang_avail);$i++) {
@@ -166,52 +188,98 @@ if ($menue) {
   }
   if (!$none) $select .= "<OPTION VALUE=\"-\">-- " . lang("none") ." --</OPTION>";
   $select .= "</SELECT>";
-?><? if ($none) { echo lang("no_add_lang"); } else { echo $select; } ?></TD></TR>
- <TR><TD><b><?=lang("refresh_lang")?>:</b><br><?=lang("refresh_lang_comment")?></TD>
-    <TD><SELECT NAME="refresh_lang"><?
-  echo "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
-  for ($i=0;$i<count($lang_installed);$i++) {
-    echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-    echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
-  }
-?></SELECT></TD></TR>
- <TR><TD><b><?=lang("select_primary_lang")?>:</b><br><?=lang("select_primary_lang_comment")?></TD>
-    <TD><SELECT NAME="default_lang"><?
-  for ($i=0;$i<count($lang_installed);$i++) {
-    echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-    if ( $lang_installed[$i]==$lang_preferred ) echo " SELECTED";
-    echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
-  }
-?></SELECT></TD></TR>
- <TR><TD><b><?=lang("use_charset")?>:</b><br><?=lang("use_charset_comment")?></TD>
-    <TD><INPUT SIZE=10 NAME="charset" VALUE="<? echo $charset ?>"></TD></TR>
-</TABLE></TD></TR>
-<TR><TH><?=lang("colors")?>:</TH></TR><TR><TD><TABLE WIDTH=100%>
- <TR><TD WIDTH=70%><b><?=lang("page_bg")?>:</b></TD>
-    <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="page_background" VALUE="<? echo $colors["page_background"] ?>"></TD></TR>
- <TR><TD WIDTH=70%><b><?=lang("table_bg")?>:</b></TD>
-    <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="table_background" VALUE="<? echo $colors["table_background"] ?>"></TD></TR>
- <TR><TD><b><?=lang("th_bg")?>:</b></TD>
-    <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="th_background" VALUE="<? echo $colors["th_background"] ?>"></TD></TR>
- <TR><TD><b><?=lang("feedback_ok")?>:</b></TD>
-    <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_ok" VALUE="<? echo $colors["ok"] ?>"></TD></TR>
- <TR><TD><b><?=lang("feedback_err")?>:</b></TD>
-    <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_err" VALUE="<? echo $colors["err"] ?>"></TD></TR>
- <TR><TD><b><?=lang("template_set")?>:</b></TD>
-    <TD><SELECT NAME="template_set"><?
- for ($i=0;$i<count($tpldir);$i++) {
-   echo "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
-   if ($tpldir[$i] == $template_set) echo " SELECTED";
-   echo ">" . ucfirst($tpldir[$i]) . "</OPTION>";
- } ?></SELECT></TD></TR>
-</TABLE></TD></TR>
-<TR><TD><DIV ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="<?=lang("update")?>"></DIV></TD></TR>
-</FORM>
-<?
+  if ($none) $select = lang("no_add_lang");
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
 
-##################################################################
-# Closing page
-# ?>
-<? if (!$menue) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php"><?=lang("start_pvp")?></A></TD></TR><? } ?>
-</TABLE>
-</BODY></HTML>
+  # refresh an installed language?
+  $t->set_var("item_name",lang("refresh_lang"));
+  $t->set_var("item_comment",lang("refresh_lang_comment"));
+  $select  = "<SELECT NAME=\"refresh_lang\">";
+  $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
+  for ($i=0;$i<count($lang_installed);$i++) {
+    $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
+    $select .= ">" . $lang[$lang_installed[$i]] . "</OPTION>";
+  }
+  $select .= "</SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  # select primary language
+  $t->set_var("item_name",lang("select_primary_lang"));
+  $t->set_var("item_comment",lang("select_primary_lang_comment"));
+  $select  = "<SELECT NAME=\"default_lang\">";
+  for ($i=0;$i<count($lang_installed);$i++) {
+    $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
+    if ( $lang_installed[$i]==$lang_preferred ) $select .= " SELECTED";
+    $select .= ">" . $lang[$lang_installed[$i]] . "</OPTION>";
+  }
+  $select .= "</SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  # charset to use
+  $t->set_var("item_name",lang("use_charset"));
+  $t->set_var("item_comment",lang("use_charset_comment"));
+  $t->set_var("item_input","<INPUT SIZE=10 NAME=\"charset\" VALUE=\"$charset\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # complete language block
+  $t->parse("list","listblock");
+
+  # setup block 2: color stuff
+  $t->set_var("list_head",lang("colors"));
+  $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
+
+  # page background
+  $t->set_var("item_name",lang("page_bg"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"page_background\" VALUE=\"" . $colors["page_background"] . "\">");
+  $t->parse("item","itemblock");
+
+  # table background
+  $t->set_var("item_name",lang("table_bg"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"table_background\" VALUE=\"" .  $colors["table_background"] . "\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # table header background
+  $t->set_var("item_name",lang("th_bg"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"th_background\" VALUE=\"" . $colors["th_background"] . "\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # feedback "ok"
+  $t->set_var("item_name",lang("feedback_ok"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"color_ok\" VALUE=\"" . $colors["ok"] . "\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # feedback "err"
+  $t->set_var("item_name",lang("feedback_err"));
+  $t->set_var("item_comment","");
+  $t->set_var("item_input",$color_input . " NAME=\"color_err\" VALUE=\"" . $colors["err"] . "\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # template set
+  $t->set_var("item_name",lang("template_set"));
+  $t->set_var("item_comment","");
+  $select  = "<SELECT NAME=\"template_set\">";
+  for ($i=0;$i<count($tpldir);$i++) {
+    $select .= "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
+    if ($tpldir[$i] == $template_set) $select .= " SELECTED";
+    $select .= ">" . ucfirst($tpldir[$i]) . "</OPTION>";
+  }
+  $select .= "</SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  # complete color block
+  $t->parse("list","listblock",TRUE);
+
+  # complete the whole thing
+  $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
+  $t->pparse("out","config");
+
+  include($base_path . "inc/footer.inc");
+?>

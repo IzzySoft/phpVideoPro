@@ -1,7 +1,8 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin" Style="table-layout:fixed"><TR><TD>
 <DIV STYLE="display:inline">
-<TABLE WIDTH="*" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER=0" ALIGN="center"><TR><TD>
+<FORM NAME="transform" METHOD="post" ACTION="{formtarget}" ACCEPT-CHARSET="{charset}">
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -18,8 +19,6 @@
 <TR><TD>
 
 <TABLE ALIGN="center" BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" STYLE="margin:3">
- <FORM NAME="transform" METHOD="post" ACTION="{formtarget}" ACCEPT-CHARSET="{charset}">
- {hidden}
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN=2><DIV STYLE="margin:3">
@@ -28,8 +27,8 @@
    <COLGROUP><COL WIDTH="150 pt"><COL WIDTH="3*"><COL WIDTH="380 pt"><COL WIDTH="3*"></COLGROUP>
    <TR><TH>{code}</TH>
        <TH>{orig}</TH>
-       <TH>{trans}</A></TH>
-       <TH>{sample}</A></TH>
+       <TH>{trans}</TH>
+       <TH>{sample}</TH>
    </TR>
    <!-- END mtitleblock -->
    <!-- BEGIN mdatablock -->
@@ -49,10 +48,11 @@
    <INPUT TYPE="submit" CLASS="submit" NAME="{submit_name}" VALUE="{submit}"><BR><BR>{save}</DIV></TD></TR>
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- </FORM>
 </TABLE>
 
+ {hidden}
 </TD></TR>
 </TABLE>
+</FORM>
 </DIV>
 </TD></TR></TABLE>

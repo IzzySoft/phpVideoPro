@@ -1,7 +1,7 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
-<TABLE WIDTH="*" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER=0" ALIGN="center"><TR><TD>
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -19,10 +19,9 @@
 
 <DIV STYLE="margin:3">
 <TABLE ALIGN="center" BORDER="1">
-   <TR CLASS="content"><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">{hidden}
-       <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{old_sess} <INPUT CLASS="submit" TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TD>
-       </FORM><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">{hidden}
-       <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{ended_sess} <INPUT CLASS="submit" TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></TD></FORM></TR>
+   <TR CLASS="content">
+       <TD NOWRAP WIDTH="50%"><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">{hidden}<DIV ALIGN="center">{old_sess} <INPUT CLASS="submit" TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></FORM></TD>
+       <TD NOWRAP WIDTH="50%"><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">{hidden}<DIV ALIGN="center">{ended_sess} <INPUT CLASS="submit" TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></FORM></TD></TR>
 </TABLE>
 <BR>
  <TABLE BORDER="0" WIDTH="100%">

@@ -200,7 +200,12 @@
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
 EndHiddenFields;
   }
-  $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $form["addon_title"] . ">");
+  if ($page_id == "view_entry") { // set imdb info url for title
+    $formAddon = $form["addon_title"] . $pvp->link->formImdbTitle($title);
+  } else {
+    $formAddon = $form["addon_title"];
+  }
+  $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $formAddon . ">");
   $t->set_var("mtype_name",lang("mediatype"));
   if ($new_entry) {
     $field = "<SELECT NAME=\"mtype_id\">";

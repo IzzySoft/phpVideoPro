@@ -1111,22 +1111,32 @@
     * @param integer media_nr number of current medium
     * @param integer part part number of current entry
     * @return object next entry: mtype_id, media_rn, part
-    * @todo does not handle holes on media (e.g. medium with 3 movies, #2
-    *  deleted) nor holes in media number (e.g. medium #5 deleted, but 6 exists)
     */
    function get_nextentry($mtype_id,$media_nr,$part) {
      $next->mtype_id = $mtype_id;
      $next->media_nr = $media_nr;
-     $next->part     = ++$part;
-     if ( $this->get_movieid($mtype_id,$media_nr,$next->part) ) {
+     $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part>$part");
+     if ($this->next_record()) {
+       $next->part = $this->f('part');
        return $next;
      }
-     $next->part = 1; ++$next->media_nr;
-     if ( $this->get_movieid($mtype_id,$next->media_nr,$next->part) )
+     $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id>$media_nr");
+     if ($this->next_record()) {
+       $next->media_nr = $this->f('medianr');
+       $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$next->media_nr);
+       $this->next_record();
+       $next->part = $this->f('part');
        return $next;
-     ++$next->mtype_id; $next->media_nr = 1;
-     if ( $this->get_movieid($next->mtype_id,$next->media_nr,$next->part) )
+     }
+     ++$next->mtype_id;
+     $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=".$next->mtype_id);
+     if ($this->next_record()) {
+       $next->media_nr = $this->f('medianr');
+       $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=".$next->mtype_id." AND cass_id=".$next->media_nr);
+       $this->next_record();
+       $next->part = $this->f('part');
        return $next;
+     }
      return FALSE;
    }
 

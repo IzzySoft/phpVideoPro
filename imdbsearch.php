@@ -12,12 +12,18 @@
 
  /* $Id$ */
 
+ #=========================================================[ General setup ]===
  $page_id = "imdbsearch";
+ $nomenue = 1;
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
  $usecache = FALSE;
  $autoclose = 1;
+ $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
+ for ($i=0;$i<$count;++$i) {
+  ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
+ }
 
  #========================================================[ Template setup ]===
  $t = new Template($pvp->tpl_dir);
@@ -61,35 +67,26 @@
  #==============================================[ Get movie data from IMDB ]===
    $movieid = $_REQUEST["mid"];
    $movie = new imdb ($movieid);
-   $movie->imdbsite="us.imdb.com"; // IMDB parse is fixed to English
+   $imdbsite = $pvp->preferences->get("imdb_url2");
+   $url  = explode("/",$imdbsite);
+   $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
    $movie->usecache   = $usecache;
    $movie->storecache = $usecache;
    $movie->setid ($movieid);
    $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
-   $t->set_var("mtitle",$movie->title());
-   $t->set_var("nyear",lang("year"));
-   $t->set_var("myear",$movie->year());
-   #-=[ Foto ]=-
-   if (($photo_url = $movie->photo_localurl() ) == FALSE) {
-     $photo_url = "";
-   } else {
-     $photo_url = substr($photo_url,strlen($base_url));
-#     $t->set_var("mfoto",$photo_url);
-     $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
+   #-=[ Title incl. Also Known As ]=-
+   $title  = "<SELECT NAME='title'>";
+   $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
+   foreach ( $movie->alsoknow() as $ak) {
+     $akatitle = $ak["title"];
+     if (!empty($ak["year"]))    $akatitle .= ": ".$ak["year"];
+     if (!empty($ak["country"])) $akatitle .= ", ".$ak["country"];
+     if (!empty($ak["comment"])) $akatitle .= " (".$ak["comment"].")";
+     $title .= "<OPTION VALUE='".$ak["title"]."'>$akatitle</OPTION>";
    }
-   #-=[ Also Known As ]=-
-#   $aka = "";
-#   foreach ( $movie->alsoknow() as $ak) {
-#     $aka .= $ak["title"].": ".$ak["year"].", ".$ak["country"]." (".$ak["comment"].")<BR>";
-#   }
-#   $t->set_var("maka",$aka);
-   #-=[ Length ]=-
-   $t->set_var("nruntime",lang("length"));
-   $t->set_var("mruntime",$movie->runtime());
-   #-=[ Ratings and Votings ]=-
-#   $t->set_var("mrating",$movie->rating());
-#   $t->set_var("mvotes",$movie->votes());
-#   $t->set_var("mlanguage",$movie->language());
+   $title .= "</SELECT>";
+   $t->set_var("mtitle",$title);
+   $t->set_var("title_chk",$pvp->common->make_checkbox("title_chk",$imdb_tx_title));
    #-=[ Country ]=-
    $acountry = $movie->country(); $cc = count($acountry); $country = "";
    for ($i=0;$i+1<$cc;++$i) {
@@ -98,6 +95,11 @@
    $country .= $acountry[$i];
    $t->set_var("ncountry",lang("country"));
    $t->set_var("mcountry",$country);
+   $t->set_var("country_chk",$pvp->common->make_checkbox("country_chk",$imdb_tx_country));
+   #-=[ Year ]=-
+   $t->set_var("nyear",lang("year"));
+   $t->set_var("myear",$movie->year());
+   $t->set_var("year_chk",$pvp->common->make_checkbox("year_chk",$imdb_tx_year));
    #-=[ FSK / PG ]=-
    $t->set_var("npg",lang("fsk"));
    $pga = $movie->mpaa(); $open = FALSE;
@@ -107,7 +109,13 @@
      $t->parse("pglist","pgblock",$open);
      $open = TRUE;
    }
+   $t->set_var("pg_chk",$pvp->common->make_checkbox("pg_chk",$imdb_tx_pg));
+   #-=[ Length ]=-
+   $t->set_var("nruntime",lang("length"));
+   $t->set_var("mruntime",$movie->runtime());
+   $t->set_var("length_chk",$pvp->common->make_checkbox("length_chk",$imdb_tx_length));
    #-=[ Categories ]=-
+   $cats = array();
    $t->set_var("ngenre",lang("categories"));
    $gen = $movie->genres(); // split up array and fit into template
    $cc = count($gen); $genre = "";
@@ -144,13 +152,7 @@
     $t->parse("acatlist","acatblock",$open);
     $open = TRUE;
    }
-   #-=[ Misc stuff - maybe for the future ]=-
-#   $col = $movie->colors(); // what to do with them?
-#   $snd = $movie->sound();  // does not match our formats
-#   $t->set_var("mtagline",$movie->tagline());
-#   $tag = $movie->taglines(); // array again - do we need this?
-#   $wrt = $movie->writing(); // writing credits - array 0..n like director
-#   $prod = $movie->producer(); // same as $wrt
+   $t->set_var("cat_chk",$pvp->common->make_checkbox("cat_chk",$imdb_tx_cat));
    #-=[ Directors ]=-
    $t->set_var("ndir_name",lang("director"));
    $dir = $movie->director(); // array again - need to select
@@ -164,6 +166,7 @@
    $t->set_var("dir_name","");
    $t->set_var("dsel","");
    $t->parse("dirlist","dirblock",$open);
+   $t->set_var("director_chk",$pvp->common->make_checkbox("director_chk",$imdb_tx_director));
    #-=[ Actors ]=-
    $cast = $movie->cast(); // here come the actors
    $cc = count($cast);
@@ -175,12 +178,33 @@
      $t->parse("actlist","actblock",$open);
      $open = TRUE;
    }
+   $t->set_var("actor_chk",$pvp->common->make_checkbox("actor_chk",$imdb_tx_actor));
+   #-=[ Ratings and Votings ]=-
+#   $t->set_var("mrating",$movie->rating());
+#   $t->set_var("mvotes",$movie->votes());
+#   $t->set_var("mlanguage",$movie->language());
+   #-=[ Misc stuff - maybe for the future ]=-
+#   $col = $movie->colors(); // what to do with them?
+#   $snd = $movie->sound();  // does not match our formats
+#   $t->set_var("mtagline",$movie->tagline());
+#   $tag = $movie->taglines(); // array again - do we need this?
+#   $wrt = $movie->writing(); // writing credits - array 0..n like director
+#   $prod = $movie->producer(); // same as $wrt
+   #-=[ Foto ]=-
+   if (($photo_url = $movie->photo_localurl() ) == FALSE) {
+     $photo_url = "";
+   } else {
+     $photo_url = substr($photo_url,strlen($base_url));
+#     $t->set_var("mfoto",$photo_url);
+     $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
+   }
    #-=[ Plot = Comments ]=-
    $plot = $movie->plot(); $cc = count($plot);
    if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
      else $comment = "";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
+   $t->set_var("comments_chk",$pvp->common->make_checkbox("comments_chk",$imdb_tx_comments));
    $t->set_var("btransfer",lang("imdb_transfer2edit"));
    $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
   function name_split(name) {
@@ -196,36 +220,42 @@
   function transfer_data() {
    omf = opener.document.movieform;
    dmf = document.movieform;
-   omf.title.value   = dmf.title.value;
-   omf.length.value  = dmf.runtime.value;
-   omf.country.value = dmf.country.value;
-   omf.year.value    = dmf.year.value;
-   omf.comment.value = dmf.comment.value;
-   for (i=0;i<omf.cat1_id.length;++i) {
-     if (omf.cat1_id.options[i].value==dmf.cat1_id.value) { omf.cat1_id.options[i].selected=1; }
-     if (omf.cat2_id.options[i].value==dmf.cat2_id.value) { omf.cat2_id.options[i].selected=1; }
-     if (omf.cat3_id.options[i].value==dmf.cat3_id.value) { omf.cat3_id.options[i].selected=1; }
-   }
-   name = dmf.directors.value;
-   omf.director_name.value  = name_split(dmf.directors.value);
-   omf.director_fname.value = fname_split(dmf.directors.value);
-   if (dmf.directors.value != '') omf.director_list.checked=1;
-   k = 1;
-   for (i=0;i<dmf.actors.length;++i) {
-     if (dmf.actors.options[i].selected) {
-       curr  = dmf.actors.options[i].text;
-       switch(k) {
-         case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.checked=1; break;
-         case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.checked=1; break;
-         case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.checked=1; break;
-         case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.checked=1; break;
-         case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.checked=1; break;
-         default: break;
-       }
-       ++k;
+   if (dmf.title_chk.checked)    omf.title.value   = dmf.title.value;
+   if (dmf.length_chk.checked)   omf.length.value  = dmf.runtime.value;
+   if (dmf.country_chk.checked)  omf.country.value = dmf.country.value;
+   if (dmf.year_chk.checked)     omf.year.value    = dmf.year.value;
+   if (dmf.comments_chk.checked) omf.comment.value = dmf.comment.value;
+   if (dmf.cat_chk.checked) {
+     for (i=0;i<omf.cat1_id.length;++i) {
+       if (omf.cat1_id.options[i].value==dmf.cat1_id.value) { omf.cat1_id.options[i].selected=1; }
+       if (omf.cat2_id.options[i].value==dmf.cat2_id.value) { omf.cat2_id.options[i].selected=1; }
+       if (omf.cat3_id.options[i].value==dmf.cat3_id.value) { omf.cat3_id.options[i].selected=1; }
      }
    }
-   omf.fsk.value = dmf.pg.value;
+   if (dmf.director_chk.checked) {
+     name = dmf.directors.value;
+     omf.director_name.value  = name_split(dmf.directors.value);
+     omf.director_fname.value = fname_split(dmf.directors.value);
+     if (dmf.directors.value != '') omf.director_list.checked=1;
+   }
+   if (dmf.actor_chk.checked) {
+     k = 1;
+     for (i=0;i<dmf.actors.length;++i) {
+       if (dmf.actors.options[i].selected) {
+         curr  = dmf.actors.options[i].text;
+         switch(k) {
+           case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.checked=1; break;
+           case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.checked=1; break;
+           case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.checked=1; break;
+           case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.checked=1; break;
+           case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.checked=1; break;
+           default: break;
+         }
+         ++k;
+       }
+     }
+   }
+   if (dmf.pg_chk.checked) omf.fsk.value = dmf.pg.value;
    if ($autoclose) self.close();
   }
 //--></SCRIPT>";

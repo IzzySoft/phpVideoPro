@@ -51,6 +51,7 @@ function helppage ($topic) {
  *  topic to the global content variable
  * @package Help
  * @function print_url
+ * @use content
  * @param string topic topic to be added
  */
 function print_url($topic) {
@@ -62,6 +63,7 @@ function print_url($topic) {
 /** Creating an sublevel item for the help index. Appends to the global content var.
  * @package Help
  * @function li
+ * @use content
  * @param string topic topic to be added to the list
  * @param optional integer level sublevel of this item (i.e. how much to indent).
  *  This defaults to "1"
@@ -77,6 +79,7 @@ function li($topic,$level=1) {
 /** Creating a headline (toplevel item). Appends to the global content var.
  * @package Help
  * @function headline
+ * @use content
  * @param string topic content of the headline to add
  * @param optional integer level sublevel (if any; see function li). Defaults to "0"
  */

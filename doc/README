@@ -97,6 +97,8 @@ Contents:
     (so if you change something here, you may "break" the program).
     Essential settings you <b>must</b> make sure to reflect your structures
     are:
+    - $site     : just for the title bar to identify your installation.
+      You could e.g. put your machine's or your organisation's name here
     - $base_url : the root directory of your phpVideoPro copy.
       make sure it has a leading slash (i.e. it has to be the complete
       path starting with your web servers document root) as well as a

@@ -19,8 +19,9 @@
   include($inc_path . "/class.link.inc");
   include($inc_path . "/class.template.inc");
   include($inc_path . "/class.validate.inc");
-  $pagename = "phpVideoPro v$version";
+  $pagename = "phpVideoPro v$version @ $site";
   switch ( strtolower($page_id) ) {
+    case ""              : break;
     case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
     case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;

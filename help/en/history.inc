@@ -12,6 +12,8 @@
  <li>some browsers (including Opera) always displayed cached copies when e.g.
      changing some values on the configuration page. They shouldn't do so
      anymore (at least Opera does not :)
+ <li>added site info (the "site" variable in config.inc) - that's what's now
+     displayed within the title bar of your browser behind the "@" sign.
 </ul>
 
 [title]

@@ -1,19 +1,37 @@
-<?
+<?php
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # User's configuration file - the only one for the user to edit!            #
+ #############################################################################
 
-/* $Id$ */
+ /* $Id$ */
 
-$base_url   = "/homes/izzy/software/pvp-demo/";
-// the root directory of phpVideoPro
-$base_path  = "/web/htdocs/homes/izzy/software/pvp-demo/";
+ #===============================================================[ common ]===
+ $site       = "Zion";    # what do you want to be displayed in the title bar?
 
-// database settings
-$database["type"]      = "mysql";  // mysql|pgsql
-$database["host"]      = "horeb";
-//$database["host"]      = "localhost";
-$database["database"]  = "video_demo";
-$database["user"]      = "guest";
-$database["password"]  = "";
+ #==========================================================[ directories ]===
+ $base_url   = "/local/phpvideo/";
+ # path relative to web server's DOCUMENT_ROOT
+ $base_path  = "/usr/src/local/cvs/website/local/phpvideo/"; # absolute file systems path
 
-// some default settings
-$defaults["scolor"] = 2; // 1=b/w, 2=color, 3=3d - if you didn't change sth. :)
+ #=============================================================[ database ]===
+ $database["type"]      = "mysql";    # mysql|pgsql
+ $database["host"]      = "zion";     # your hosts name
+ $database["database"]  = "videopro"; # what database holds the tables
+ $database["user"]      = "izzy";     # db user with at least following
+                                      # privileges on these tables:
+				      # SELECT,UPDATE,INSERT,DELETE
+ $database["password"]  = "chumash";  # this users password for the db
+
+ #============================================================[ technical ]===
+ $rw_media   = "1";      # writeable media (comma separated). Available values:
+                         # 1 (RVT), 2 (OVT), 3 (VCD), 4 (DVD)
+ $defaults["scolor"] = 2;# default color to use when adding a new movie to DB.
+                         # 1=b/w, 2=color, 3=3d - if you didn't change sth. :)
 ?>

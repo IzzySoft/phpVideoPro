@@ -712,6 +712,33 @@
    return $this->credits_producer;
   }
 
+  /** Obtain the composer(s) ("Original Music by...")
+   * @method composer
+   * @return array composer (array[0..n] of strings)
+   */
+  function composer () {
+   if ($this->credits_composer == "") {
+    if ($this->page["Credits"] == "") $this->openpage ("Credits");
+   }
+   $this->credits_composer = array();
+   $composer_rows = $this->get_table_rows($this->page["Credits"], "Original Music by");
+   for ( $i = 0; $i < count ($composer_rows); $i++){
+	$cels = $this->get_row_cels ($composer_rows[$i]);
+	if ( count ( $cels) > 2){
+		$wrt["imdb"] = $this->get_imdbname($cels[0]);
+		$wrt["name"] = strip_tags($cels[0]);
+		$role = strip_tags($cels[2]);
+		if ( $role == ""){
+			$wrt["role"] = NULL;
+		}else{
+			$wrt["role"] = $role;
+		}
+		$this->credits_composer[$i] = $wrt;
+	}
+   }
+   return $this->credits_composer;
+  }
+
   /** Get cover photo
    * @method photo
    * @return mixed photo (string url if found, FALSE otherwise)

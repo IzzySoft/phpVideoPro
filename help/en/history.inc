@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.3 (2003)
+0.4.3 (March 25, 2003)
 [text]
 <ul>
  <li>Fixed problem in DB Setup for PSLabel tables: some MySQL versions
@@ -17,7 +17,7 @@
  <li>With cookies enabled and user-defined preferences stored within cookies,
      the selected label configuration variable got overwritten by the cookies
      value (since both had the same name) when printing a label using the "old"
-     label system called from viewing an entry
+     label system called from the "*view_entry#" page
 </ul>
 
 [title]

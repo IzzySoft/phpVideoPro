@@ -187,6 +187,7 @@ CREATE TABLE video (
 );
 
 CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
+CREATE UNIQUE INDEX video_unique_medium_idx ON video(mtype_id,cass_id,part);
 
 # --------------------------------------------------------
 #

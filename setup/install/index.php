@@ -179,7 +179,7 @@
      case "mysql": $dbc->Database = "mysql";
                    $dbcrea = "CREATE DATABASE ".$database["database"];
                    $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"];
-                   if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"];
+                   if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"]."'";
                    break;
      case "pgsql": $dbc->Database = "template1";
                    $dbcrea = "CREATE DATABASE ".$database["database"]." WITH ENCODING 'UNICODE'";

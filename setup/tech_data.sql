@@ -58,9 +58,9 @@ INSERT INTO pvp_config (name,value) VALUES ('version','0.4.8');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','');
-INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
-INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','604000');
-INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','7200');
+INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','0');
+INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','0');
+INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
 
 #
 # set default preferences

@@ -61,7 +61,7 @@
       if ( count($rec) < 2 ) {
         $firstname = $name[firstname]; $name = $name[name];
         $details = "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
-        kill("directors",$music_id);
+        kill("directors",$director_id);
       }
     }
     if ($music_id) { // ignore id# 0

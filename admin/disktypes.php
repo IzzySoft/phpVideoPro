@@ -19,10 +19,10 @@
  $postit = array ("new_name","new_trans","new_id","new_mtype","new_size",
                   "new_lp","new_rc","lines");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
  }
  unset($postit);
- $delete = $_GET["delete"];
+ if (isset($_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
 
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();
@@ -34,7 +34,7 @@
      $save_result = "<SPAN CLASS='error'>".lang("disktype_contains_media")."<BR>";
      for ($i=0;$i<$mcount;++$i) {
        $mt = $db->get_mtypes("id=".$media[$i]->mtype_id);
-       $sname = $mt[0][sname];
+       $sname = $mt[0]['sname'];
        $save_result .= " '".$pvp->link->linkurl("/change_disktype.php?mtype_id=".$media[$i]->mtype_id."&cass_id=".$media[$i]->cass_id,"$sname ".$media[$i]->cass_id)."'";
      }
      $save_result .= "</SPAN><BR>";
@@ -43,29 +43,33 @@
    }
    header("Location: ".$_SERVER["PHP_SELF"]);
    exit;
- } elseif ($_POST["submit"]) {
+ } elseif (isset($_POST["submit"])) {
    for ($i=1;$i<=$lines;++$i) {
      $disk_id = "id_$i"; $mtype = "mtype_$i"; $name = "name_$i"; $size = "size_$i"; $lp = "lp_$i"; $rc = "rc_$i";
      if ( !strlen(trim($_POST[$name])) ) {
        die ( display_error(lang("disktype_name_empty",$_POST[$disk_id])) );
      } else {
-       if ( !$db->update_disktype($_POST[$disk_id],$_POST[$mtype],$_POST[$name],$_POST[$size],$_POST[$lp],$_POST[$rc]) )
-         $upd_err .= $_POST[$disk_id] . ",";
+       $postit = array("disk_id","mtype","name","size","lp","rc");
+       foreach ($postit as $var) {
+         if (isset($_POST[$$var])) $p[$var] = $_POST[$$var]; else $p[$var] = "";
+       }
+       if ( !$db->update_disktype($p["disk_id"],$p["mtype"],$p["name"],$p["size"],$p["lp"],$p["rc"]) )
+         $upd_err .= $p["disk_id"] . ",";
      }
    }
    if ( strlen(trim($new_name)) ) {
       if ( !$db->update_disktype($new_id,$new_mtype,$new_name,$new_size,$new_lp,$new_rc) )
         $add_err .= ${$disk_id} . ",";
    }
-   if ($add_err) {
+   if (isset($add_err)) {
      $add_err = substr($add_err,0,strlen($add_err)-1);
      $save_result = "<SPAN CLASS='error'>".lang("disktype_add_failed")."</SPAN><BR>";
    }
-   if ($upd_err) {
+   if (isset($upd_err)) {
      $upd_err = substr($upd_err,0,strlen($upd_err)-1);
      $save_result .= "<SPAN CLASS='error'>". lang("disktype_update_failed",$upd_err) . "</SPAN><BR>";
    }
-   if ( !($add_err || $upd_err) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
+   if ( !(isset($add_err) || isset($upd_err)) ) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
  }
  #-------------------------------------------------------[ build up page ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
@@ -75,6 +79,7 @@
  $t->set_block("template","diskblock","disks");
 
  $t->set_var("listtitle",lang("admin_disktypes"));
+ if (!isset($save_result)) $save_result = "";
  $t->set_var("save_result",$save_result);
  $t->set_var("head_disk_id","ID");
  $t->set_var("head_mtype",lang("mediatype"));
@@ -98,9 +103,9 @@
    GLOBAL $mtypes, $mcount;
    $input = "<SELECT NAME='$name'>";
    for ($i=0;$i<$mcount;++$i) {
-     $input .= "<OPTION VALUE='" .$mtypes[$i][id]. "'";
-     if ( $value==$mtypes[$i][id] ) $input .= " SELECTED";
-     $input .= ">" .$mtypes[$i][sname]. "</OPTION>";
+     $input .= "<OPTION VALUE='" .$mtypes[$i]['id']. "'";
+     if ( $value==$mtypes[$i]['id'] ) $input .= " SELECTED";
+     $input .= ">" .$mtypes[$i]['sname']. "</OPTION>";
    }
    $input .= "</SELECT>";
    return $input;
@@ -110,11 +115,12 @@
  $mcount = count($mtypes);
  $lines  = 0;
  for ($i=0;$i<$mcount;++$i) {
-   $dt = $db->get_disktypes($mtypes[$i][id]);
+   $dt = $db->get_disktypes($mtypes[$i]['id']);
    $dtcount = count($dt);
    for ($k=0;$k<$dtcount;++$k) {
+     if (!isset($dt[$k]->name)) continue;
      ++$lines;
-     $t->set_var("mtype",make_mtselect("mtype_$lines",$mtypes[$i][id]));
+     $t->set_var("mtype",make_mtselect("mtype_$lines",$mtypes[$i]['id']));
      $input = make_input("id_$lines",$dt[$k]->id,"button","yesnobutton");
      $input .= make_input("id_$lines",$dt[$k]->id,"hidden");
      $t->set_var("disk_id",$input);
@@ -131,12 +137,13 @@
      $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$dt[$k]->id);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("trash",$trash);
-     $t->parse("disks","diskblock",TRUE);
+     if ($lines > 1) $t->parse("disks","diskblock",TRUE);
+       else $t->parse("disks","diskblock");
    }
  }
  $t->set_var("mtype",make_mtselect("new_mtype",""));
  $input = make_input("new_id","?","button","yesnobutton");
- $t->set_var(disk_id,$input);
+ $t->set_var("disk_id",$input);
  $t->set_var("disk_name",make_input("new_name",""));
  $t->set_var("size",make_input("new_size",""));
  $input = "<INPUT TYPE='checkbox' NAME='new_lp' VALUE='1'>";

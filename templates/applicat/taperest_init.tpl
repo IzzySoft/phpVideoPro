@@ -23,7 +23,7 @@
   <DIV STYLE="margin:3">
   <TABLE WIDTH="400" ALIGN="center" BORDER="0">
     <TR CLASS="content"><TD>{min_free}</TD>
-      <TD><DIV ALIGN="right"><INPUT NAME="minfree" MAXLENGTH="4" CLASS="yesnobutton">&nbsp;</DIV></TD></TR>
+      <TD><DIV ALIGN="right"><INPUT NAME="minfree" MAXLENGTH="4" CLASS="yesnoinput">&nbsp;</DIV></TD></TR>
   </TABLE>
   </DIV>
 

@@ -52,7 +52,7 @@
  foreach ($fields as $value) {
    $movie[$value] = ${$value};
  }
- $movie[aq_date] = $recdate; $movie[source] = $src;
+ $movie[aq_date] = $recdate; $movie[source] = $src; $movie[space] = $mlength;
  $movie[director_id] = $dir_id; $movie[music_id] = $mus_id;
  for ($i=1;$i<6;++$i) {
    $id  = "actor".$i."_id"; $list = "actor".$i."_list";
@@ -66,10 +66,5 @@
  } else {
    $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";
  };
- ##############################################################################
- # updating free time on media for (Re)Writable Media
- if ( $pvp->common->medium_is_rw($mtype_id) ) { // calc free space only for writable media
-   $db->update_freetime($cass_id,$mtype_id);
- }
  
 ?>

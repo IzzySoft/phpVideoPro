@@ -255,13 +255,8 @@ EndHiddenFields;
   if ($new_entry) {
     $field  = "<INPUT TYPE='button' NAME='media_tname' VALUE='$media_tname' CLASS='catinput'>";
     $field .= "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>";
-    $next_part = 1; $last_part = 0;
-    for ($i=0;$i<count($lastnum);$i++) {
-      if ($lastnum[$i][cass_id]==$cass_id) {
-        $next_part = $lastnum[$i][$part] +1;
-        $last_part = $lastnum[$i][$part];
-      }
-    }
+    $last_part = $db->get_lastmovienum($mtype_id,$cass_id);
+    $next_part = $last_part +1;
   } else {
     $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id"). "'\">";
     $field .= "<INPUT TYPE='hidden' NAME='media_tname' VALUE='$media_tname'>";

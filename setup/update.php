@@ -127,7 +127,7 @@ $pvp->preferences->admin();
   echo "</UL><DIV ALIGN='center'>\n";
   if ($final) echo "$final<br>\n";
   echo "<P>If everything went right, you can now proceed to the\n"
-      ." <a href=\"configure.php\">configuration</a> page.</p></DIV>\n";
+      ." <a href=\"../admin/configure.php\">configuration</a> page.</p></DIV>\n";
 }
 
 #=========================================================[ Closing page ]===

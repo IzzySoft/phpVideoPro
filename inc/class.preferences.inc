@@ -35,6 +35,7 @@
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }
+    $this->lang = substr($this->lang,0,2); # Work around Konqueror Cookie bug
     $colors = $db->get_preferences('colors');
     if ($colors) {
       $colors = unserialize( rawurldecode($colors) );

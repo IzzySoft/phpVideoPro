@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- ##############################################################################
+ ##############################################################[ Debugging ]###
  /** output debug message depending on configured debug level
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
@@ -27,33 +27,7 @@
    echo $msg;
  }
 
- ##############################################################################
- /** preset empty (table) fields with a hard space (to enforce table borders)
-  * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
-  * @function check_empty
-  * @param string field field to check
-  */
- function check_empty(&$field) {
-   if ($field == "") $field = "&nbsp";
- }
-
- ##############################################################################
- /** check wether the string contains only digits (and nothing else)
-  * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
-  * @function is_num
-  * @param string var var to check
-  */
- function is_num($fvar) {
-   $regnum = "/\D/";
-   if (preg_match($regnum,$fvar)) return false;
-   return true;
- }
-
- ##############################################################################
+ #########################################################[ Error Handling ]###
  /** format and display an error message for unrecoverable error
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
@@ -69,7 +43,31 @@
    echo " </TD></TR></TABLE>\n</BODY></HTML>";
  }
 
- ##############################################################################
+ ###############################################################[ Checking ]###
+ /** preset empty (table) fields with a hard space (to enforce table borders)
+  * @package Api
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @function check_empty
+  * @param string field field to check
+  */
+ function check_empty(&$field) {
+   if ($field == "") $field = "&nbsp";
+ }
+
+ /** check wether the string contains only digits (and nothing else)
+  * @package Api
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @function is_num
+  * @param string var var to check
+  */
+ function is_num($fvar) {
+   $regnum = "/\D/";
+   if (preg_match($regnum,$fvar)) return false;
+   return true;
+ }
+
  /** check wether the specified date is valid
   *  if FALSE or 0 are supplied as second parameter to this function, exact
   *  comparision is disabled and relax mode activated. In relax mode, the date
@@ -102,7 +100,7 @@
    }
  }
 
- ##############################################################################
+ ################################################################[ Filters ]###
  /** get filter settings from db - real function moved to class preferences,
   *  so this is just a wrapper until the change is done in all files
   * @package Api
@@ -115,7 +113,7 @@
   return $pvp->preferences->get_filters();
  }
 
- ##############################################################################
+ ###########################################################[ Translations ]###
  /** get translation
   *  if no translation is found, the content of the passed param $key is returned instead
   * @package Api
@@ -136,7 +134,7 @@
  }
 
  # initiate the translations only once
- if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->get("lang") );
+ if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->lang );
 
  /** build the translations (helper func to function lang)
   * @package Api
@@ -159,6 +157,7 @@
    return $trans;
  }
 
+ ###########################################################[ (No-)Session ]###
  /** kick-off unauthorized visitor
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
@@ -170,6 +169,7 @@
    header("Location: $base_url"."login.php?login_hint=login_required");
    exit;
  }
+
  include (dirname(__FILE__) . "/class.common.inc");
  $pvp->common = new common;
 ?>

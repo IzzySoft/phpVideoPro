@@ -68,7 +68,7 @@
  $mtypes = $db->get_mtypes("id=$mtype_id");
  if ( !$mtypes[0][id] ) {
    debug("E",$colors["err"] . "Could not obtain media type for mtype_id '$mtype_id'!</Font><BR>\n");
- } elseif ( strtolower($db->f('sname'))=="rvt" ) { // calc free space only for recorded video tapes
+ } elseif ( strtolower($mtypes[0][sname])=="rvt" ) { // calc free space only for recorded video tapes
    $query = "SELECT type FROM cass WHERE id=$cass_id";
    debug("S",$colors["ok"] . "$query</Font><BR>\n");
    dbquery($query);

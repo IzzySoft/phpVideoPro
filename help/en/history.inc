@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>added menue item for d/l of latest version
+ <li>freetime update was broken - fixed.
 </ul>
 
 [title]

@@ -100,16 +100,25 @@
 
  ############################################################################
  # form to prompt user for input
- echo "<P><BR><BR></P><TABLE ALIGN=CENTER><FORM ACTION=\"$PHP_SELF\">";
- echo "<TR><TH>ListType</TH><TH>OutputType</TH><TH>LinesPerPage</TH></TR>";
- echo "<TR><TD><SELECT NAME=\"order\"><OPTION VALUE=\"num\">NumList</OPTION>";
- echo "<OPTION VALUE=\"title\">AlphaList</OPTION></SELECT></TD><TD>";
- echo "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>";
- echo "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT></TD><TD>";
- echo "<INPUT NAME=\"pagelength\" VALUE=\"$pagelength\" SIZE=\"3\"></TD></TR>";
- echo "<TR><TD COLSPAN=\"3\"><DIV ALIGN=\"center\">";
- echo "<INPUT TYPE=\"submit\" NAME=\"create\" VALUE=\"Go!\"></DIV></TD></TR>";
- echo "</FORM></TABLE>\n";
+ $t = new Template($pvp->tpl_dir);
+ $t->set_file(array("list"=>"listgen.tpl"));
+ $t->set_block("list","definitionblock","definitionlist");
+ $list   = "<SELECT NAME=\"order\"><OPTION VALUE=\"num\">NumList</OPTION>"
+         . "<OPTION VALUE=\"title\">AlphaList</OPTION></SELECT>";
+ $format = "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>"
+         . "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT>";
+ $lines  = "<INPUT NAME=\"pagelength\" VALUE=\"$pagelength\" SIZE=\"3\">";
+ $t->set_var("liste",$list);
+ $t->set_var("format",$format);
+ $t->set_var("lines",$lines);
+ $t->parse("definitionlist","definitionblock");
+ $t->set_var("liste",lang("list"));
+ $t->set_var("format",lang("format"));
+ $t->set_var("lines",lang("line_count"));
+ $t->set_var("listtitle",lang("listgen"));
+ $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("create",lang("create"));
+ $t->pparse("out","list");
 
  include("inc/footer.inc");
 

@@ -54,10 +54,24 @@
    ############################################################################
    # query db and provide debug output
    function dbquery($query) {
-     GLOBAL $db,$colors;
+     GLOBAL $colors;
      debug("S",$colors["ok"] . "$query</Font><BR>\n");
      $this->clean_query($query);
      if ( $this->query($query) ) return 1;
+     return 0;
+   }
+
+   ############################################################################
+   # query db using the LIMIT clause. returns count of TOTAL datasets found
+   # (i.e. UNLIMITED query result count). $query must NOT contain any limit
+   # clause!!!
+   function lim_query($query,$start=0) {
+     if ( $this->dbquery($query) ) {
+       $totals = $db->num_rows();
+       $this->limit($start);
+       $this->dbquery($query . $this->limit);
+       return $totals;
+     }
      return 0;
    }
 

@@ -108,66 +108,39 @@
   ##########################################################################
   # get all needed data from db (if not $new_entry ;)
  if (!$new_entry) {
-  $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
-           . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
-           . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
-           . "color_id,tone_id,pict_id,counter1,counter2,commercials_id"
-           . " FROM video"
-           . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
-  dbquery($query);
-  $db->next_record();
+  $id    = $db->get_movieid($mtype_id,$cass_id,$part);
+  $movie = $db->get_movie($id);
 
   // values:
-  $title = $db->f('title'); $length = $db->f('length'); $year = $db->f('year');
-  $recdate = $db->f('aq_date'); $src = $db->f('source'); $country = $db->f('country');
-  $vis_actor1 = $db->f('actor1_list'); $vis_actor2 = $db->f('actor2_list');
-  $vis_actor3 = $db->f('actor3_list'); $vis_actor4 = $db->f('actor4_list');
-  $vis_actor5 = $db->f('actor5_list');
-  $fsk = $db->f('fsk'); $comment = $db->f('comment'); $lp = $db->f('lp');
-  $counter1 = $db->f('counter1'); $counter2 = $db->f('counter2');
-  // helper:
-  $music_id  = $db->f('music_id'); $music_list = $db->f('music_list'); $cat1_id = $db->f('cat1_id');
-  $cat2_id = $db->f('cat2_id'); $cat3_id   = $db->f('cat3_id'); $actor1_id = $db->f('actor1_id');
-  $actor2_id = $db->f('actor2_id'); $actor3_id = $db->f('actor3_id'); $actor4_id = $db->f('actor4_id');
-  $actor5_id = $db->f('actor5_id'); $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
-  $director_id = $db->f('director_id'); $director_list = $db->f('director_list'); $pict_id = $db->f('pict_id');
-  $commercials_id = $db->f('commercials_id');
+  $title = $movie[title]; $length = $movie[length]; $year = $movie[year];
+  $recdate = $movie[aq_date]; $src = $movie[source]; $country = $movie[country];
+  $vis_actor1 = $movie[actor1_list]; $vis_actor2 = $movie[actor2_list];
+  $vis_actor3 = $movie[actor3_list]; $vis_actor4 = $movie[actor4_list];
+  $vis_actor5 = $movie[actor5_list]; $fsk = $movie[fsk]; $lp = $movie[lp];
+  $comment = $movie[comment]; $counter1 = $movie[counter1]; $counter2 = $movie[counter2];
+  $music_list = $movie[music_list]; $director_list = $movie[director_list];
+
   // sub-queries
   for ($i=1;$i<6;$i++) {
-    $act_id  = "actor" . $i . "_id";
-    $query   = "SELECT name,firstname FROM actors WHERE id=${$act_id}";
-    dbquery($query); $db->next_record();
-    $actor[$i][name]  = $db->f('name');
-    $actor[$i][fname] = $db->f('firstname');
+    $act_id  = "actor_$i";
+    $actor[$i][name]  = $movie[$act_id][name];
+    $actor[$i][fname] = $movie[$act_id][firstname];
   }
+  $director_name  = $movie[director_][name];
+  $director_fname = $movie[director_][firstname];
+  $composer_name  = $movie[music_][name];
+  $composer_fname = $movie[music_][firstname];
+
   $mtypes = $db->get_mtypes("id=$mtype_id");
   $mediatype = $mtypes[0][sname]; $media_tname = $mtypes[0][name];
-  dbquery("SELECT name,firstname FROM directors WHERE id=$director_id");
-  $db->next_record();
-  $director_name = $db->f('name'); $director_fname = $db->f('firstname');
-  dbquery("SELECT name,firstname FROM music WHERE id=$music_id");
-  $db->next_record();
-  $composer_name = $db->f('name'); $composer_fname = $db->f('firstname');
-  if (!$commercials_id) $commercials_id=0;
-  dbquery("SELECT name FROM commercials WHERE id=$commercials_id");
-  $db->next_record();
-  $commercials = lang($db->f('name'));
-  dbquery("SELECT name FROM tone WHERE id=$tone_id");
-  $db->next_record();
-  $tone = $db->f('name');
-  dbquery("SELECT name FROM colors WHERE id=$color_id");
-  $db->next_record();
-  $color = lang($db->f('name'));
-  dbquery("SELECT name FROM pict WHERE id=$pict_id");
-  $db->next_record();
-  $pict_format = $db->f('name');
-  $pict_format = trim($pict_format);
-  if (strlen($pict_format)<1) $pict_format = "unknown";
+  $commercials = $movie[commercials];
+  $tone = $movie[tone];
+  $color = $movie[color];
+  $pict_format = $movie[pict];
+
   for ($i=1;$i<4;$i++) {
-    $cat_nr  = "cat" . $i . "_id";
-    $query   = "SELECT name FROM cat WHERE id=${$cat_nr}";
-    dbquery($query); $db->next_record();
-    $cat[$i] = $db->f('name');
+    $cat_nr  = "cat$i";
+    $cat[$i] = $movie[$cat_nr];
   }
   $free = "0";
   if ($mediatype == "RVT") {

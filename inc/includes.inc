@@ -19,8 +19,8 @@
   include($inc_path . "/class.link.inc");
   include($inc_path . "/class.template.inc");
   include($inc_path . "/class.validate.inc");
-  include($inc_path . "/class.auth.inc");
   include($inc_path . "/class.session.inc");
+  include($inc_path . "/class.auth.inc");
   $pagename = "phpVideoPro v$version @ $site";
   switch ( strtolower($page_id) ) {
     case ""              : break;

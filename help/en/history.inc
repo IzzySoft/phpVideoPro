@@ -8,6 +8,10 @@
  <li>if no matching entry was found, stafflist screen was messed up. Fixed.
  <li>completed German help files
  <li>order by MediaNr in MediaList ignored part nr. fixed.
+ <li>reorganized sql statements in preparation of PostgreSQL support
+ <li>added documentation header to most files
+ <li>addition of language files for Norwegian, Polish and Dutch
+     (Thanx to Knut, Leszek and Tom!)
 </ul>
 
 [title]

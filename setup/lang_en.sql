@@ -130,3 +130,4 @@ INSERT INTO lang VALUES('hit_back_to_correct','en','Hit the "Back" button to cor
 INSERT INTO lang VALUES('goto_entry','en','Directly go to entry:');
 INSERT INTO lang VALUES('start_page','en','Initial page');
 INSERT INTO lang VALUES('invalid_fsk','en','The value entered for %1 is invalid. %1 means Parental Guide, i.e. the minimum age below that you should give nobody access to this movie.');
+INSERT INTO lang VALUES('counter_start_stop','en','Counter Start/Stop');

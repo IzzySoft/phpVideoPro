@@ -277,7 +277,7 @@ unset($id,$input);
 $pict = $db->get_tone();
 for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i][id];
-  $name   = $pict[$i][name];
+  $name   = lang($pict[$i][name]);
   $input .= "<INPUT TYPE='radio' NAME='movie_tone' VALUE='$id'";
   if ($pvp->preferences->get("default_movie_toneid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
@@ -292,7 +292,7 @@ unset($id,$input);
 $pict = $db->get_color();
 for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i][id];
-  $name   = $pict[$i][name];
+  $name   = lang($pict[$i][name]);
   $input .= "<INPUT TYPE='radio' NAME='movie_color' VALUE='$id'";
   if ($pvp->preferences->get("default_movie_colorid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }

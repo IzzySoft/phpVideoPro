@@ -16,7 +16,7 @@
  include("inc/includes.inc");
 
  #######################################################[ Display Results ]###
- if ($start||$submit) {
+ if ($start||$submit||$order) {
    include("inc/class.nextmatch.inc");
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"medialist.tpl"));
@@ -44,9 +44,14 @@
    }
    $query  = "\$db->searchmovies(\"$order\",$start)";
    $par = "?order=$order";
+   $scrits = "";
    foreach ($values as $key=>$val) {
      $par .= "&$key=$val";
+     $scrits .= "&$key=$val";
    }
+   $scrits = substr($scrits,1);
+   $t->set_var("ocrits","&$scrits");
+   $t->set_var("crits","?$scrits");
    $nextmatch = new nextmatch($query,$pvp->tpl_dir,$PHP_SELF.$par,$start);
    unset ($title); # messes up the movie list else
    include ("inc/movielist.inc");

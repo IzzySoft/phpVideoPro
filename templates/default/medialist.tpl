@@ -4,13 +4,13 @@
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN=2>
   <TABLE ALIGN=Center BORDER=1>
-   <TR><TH><A HREF="{scriptname}">{mtype}</A></TH>
-       <TH><A HREF="{scriptname}">{nr}</A></TH>
-       <TH><A HREF="{scriptname}?order=title">{title}</A></TH>
-       <TH><A HREF="{scriptname}?order=length">{length}</A></TH>
-       <TH><A HREF="{scriptname}?order=year">{year}</A></TH>
-       <TH><A HREF="{scriptname}?order=date">{date}</A></TH>
-       <TH><A HREF="{scriptname}?order=cat">{category}</A></TH>
+   <TR><TH><A HREF="{scriptname}{crits}">{mtype}</A></TH>
+       <TH><A HREF="{scriptname}{crits}">{nr}</A></TH>
+       <TH><A HREF="{scriptname}?order=title{ocrits}">{title}</A></TH>
+       <TH><A HREF="{scriptname}?order=length{ocrits}">{length}</A></TH>
+       <TH><A HREF="{scriptname}?order=year{ocrits}">{year}</A></TH>
+       <TH><A HREF="{scriptname}?order=date{ocrits}">{date}</A></TH>
+       <TH><A HREF="{scriptname}?order=cat{ocrits}">{category}</A></TH>
    </TR>
    <!-- BEGIN mdatablock -->
    <TR><TD>{mtype}</TD>

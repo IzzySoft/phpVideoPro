@@ -18,7 +18,6 @@
  if (!$pvp->auth->browse) kickoff();
  $filter = get_filters();
  if (!$start) $start = 0;
-# $targetlang = "de";
  include("../inc/class.nextmatch.inc");
 
  $t = new Template($pvp->tpl_dir);
@@ -98,8 +97,8 @@
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
  $t->set_var("code",lang("trans_code"));
- $t->set_var("orig",lang("orig_trans"));
- $t->set_var("trans",lang("target_trans"));
+ $t->set_var("orig",lang("orig_trans","en"));
+ $t->set_var("trans",lang("target_trans",$targetlang));
  $t->set_var("sample",lang("trans_sample"));
  $t->set_var("submit",lang("update"));
  $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
@@ -111,6 +110,7 @@
  $t->parse("mtitlelist","mtitleblock");
 
  include("../inc/header.inc");
+ $t->set_var("listtitle",lang($page_id));
  $t->pparse("out","list");
  include("../inc/footer.inc");
 

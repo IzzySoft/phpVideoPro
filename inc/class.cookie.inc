@@ -25,6 +25,12 @@
    /** Initialize the expiration time
     * @constructor cookie
     * @param integer expire expiration timestamp (unix time)
+    * @version the first try will always fail (for users who never visited
+    *  this installation), since there is no way to set a cookie and read it
+    *  back at the same time (cookies are sent in the HTML header). But this
+    *  is not important, since for the logon we first send the form (+ cookie),
+    *  and with the logon data we know the result (read cookie). Same applies
+    *  to guests and preferences (first empty form + cookie, then result + cookie).
     */
    function cookie($expire) {
      $this->expire = $expire;
@@ -38,15 +44,10 @@
    function check_cookie() {
      GLOBAL $pvp;
      if ($pvp->config->enable_cookies) {
-       $lang = $this->get("lang");
-       if (empty($lang)) {
-         $this->set("have_cookie","1");
-	 if ($this->get("have_cookie")=="1") {
-           $this->active = TRUE;
-	   $this->delete("have_cookie");
-	 } else {
-           $this->active = FALSE;
-	 }
+       $accept = $this->get("accept_cookies");
+       if (empty($accept)) { // if user accepts cookie we find out next time
+         $this->set("accept_cookies","1");
+         $this->active = FALSE;
        } else {
          $this->active = TRUE;
        }

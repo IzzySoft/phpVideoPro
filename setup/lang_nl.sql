@@ -1,7 +1,7 @@
 # ==========================================================
-# Dutch Language File created by phpVideoPro v0.6.8
+# Dutch Language File created by phpVideoPro v0.6.9
 # Original by Tom Albers (for v0.2)
-# revised and extensively updated by Ron Dekker (for v0.6.8)
+# revised and extensively updated by Ron Dekker (for v0.6.9)
 # ==========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='nl';
@@ -24,14 +24,17 @@ INSERT INTO lang VALUES ('admin_movietech','nl','Wijzig technische film gegevens
 INSERT INTO lang VALUES ('admin_orphans','nl','Verwijder wees items',' ');
 INSERT INTO lang VALUES ('admin_printers','nl','Wijzig printers',' ');
 INSERT INTO lang VALUES ('admin_pstemplates','nl','Wijzig PSLabel template',' ');
+INSERT INTO lang VALUES ('admin_required','nl','Voor deze actie heeft u admin rechten nodig!','');
 INSERT INTO lang VALUES ('admin_sessions','nl','Beheer sessies',' ');
 INSERT INTO lang VALUES ('admin_translations','nl','Wijzig vertaling',' ');
 INSERT INTO lang VALUES ('admin_useredit','nl','Wijzig gebruikers account',' ');
 INSERT INTO lang VALUES ('admin_users','nl','Beheer gebruikers accounts',' ');
 INSERT INTO lang VALUES ('back','nl','Terug',' ');
 INSERT INTO lang VALUES ('backup_compress','nl','Activeer compressie',' ');
+INSERT INTO lang VALUES ('backup_db_cats','nl','Backup categorieën','');
 INSERT INTO lang VALUES ('backup_db_complete','nl','Volledige database backup. (Incl. technische data en instellingen)',' ');
 INSERT INTO lang VALUES ('backup_db_movie_internal','nl','Backup alle films in phpVideoPro formaat',' ');
+INSERT INTO lang VALUES ('backup_db_sysconf','nl','Bakcup configuratie een standaardinstellingen','');
 INSERT INTO lang VALUES ('backup_file_corrupt','nl','Het geselecteerde backup bestand is beschadigd',' ');
 INSERT INTO lang VALUES ('backup_file_unreadable','nl','Geen leesrechten op het backup bestand (Controleer de rechten van het bestan\")',' ');
 INSERT INTO lang VALUES ('cancel','nl','Annuleer',' ');
@@ -64,6 +67,7 @@ INSERT INTO lang VALUES ('cat_monumental','nl','Monumentaal',' ');
 INSERT INTO lang VALUES ('cat_music','nl','Muziek',' ');
 INSERT INTO lang VALUES ('cat_musicmovie','nl','Muziekfilm',' ');
 INSERT INTO lang VALUES ('cat_nature','nl','Natuur',' ');
+INSERT INTO lang VALUES ('cat_party','nl','Feest','');
 INSERT INTO lang VALUES ('cat_problem','nl','Probleem',' ');
 INSERT INTO lang VALUES ('cat_spy','nl','Spionnenfilm',' ');
 INSERT INTO lang VALUES ('cat_trans_update_failed','nl','Update mislukt voor de vertaling van de volgende categorieën: %1',' ');
@@ -277,6 +281,7 @@ INSERT INTO lang VALUES ('refresh_lang_comment','nl','(Indien er een wijziging h
 INSERT INTO lang VALUES ('region_code','nl','RegioCode','');
 INSERT INTO lang VALUES ('remove_empty_media','nl','Verwijderen lege media','');
 INSERT INTO lang VALUES ('remove_empty_media_comment','nl','Moet media verwijderd worden als de laatste film verwijderd is?','');
+INSERT INTO lang VALUES ('restore_db_internal','nl','Restore van een PVP backupbestand','');
 INSERT INTO lang VALUES ('restore_db_movie_internal','nl','Terugzetten van films van een PVP backupbestand','');
 INSERT INTO lang VALUES ('rw_media','nl','Wijzigbare Media','');
 INSERT INTO lang VALUES ('rw_media_comment','nl','Media om vrije ruimte voor te reserveren, omdat u er op opgenomen hebt','');
@@ -349,5 +354,7 @@ INSERT INTO lang VALUES ('view_entry','nl','Bekijk item %1',' ');
 INSERT INTO lang VALUES ('warning','nl','waarschuwing',' ');
 INSERT INTO lang VALUES ('welcome','nl','Welkom bij phpVideoPro','');
 INSERT INTO lang VALUES ('wrong_date','nl','De datum %1 die je hebt opgegeven (%2) is ongeldig. De datum moet op de volgende manier  worden ingevoerd: \"JJJJ-MM-DD\"',' ');
+INSERT INTO lang VALUES ('xfer_unknown_filetype','nl','Dit backupbestandstype kan (nog) niet gebruikt worden door phpVideoPro.','');
+INSERT INTO lang VALUES ('xfer_wrong_mode','nl','Programma fout, u bent in de verkeerde mode voor de gewenste actie. Vereiste mode is \"%1\", huidige mode is \"%2\". Geef dit door aan de auteur tezame met de gegevens van de uitgevoerde actie.','');
 INSERT INTO lang VALUES ('year','nl','Jaar',' ');
 INSERT INTO lang VALUES ('yes','nl','Ja',' ');

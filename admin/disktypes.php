@@ -135,7 +135,7 @@
      $input .= ">";
      $t->set_var("rc",$input);
      $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$dt[$k]->id);
-     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
      $t->set_var("trash",$trash);
      if ($lines > 1) $t->parse("disks","diskblock",TRUE);
        else $t->parse("disks","diskblock");

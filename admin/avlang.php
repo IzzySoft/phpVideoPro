@@ -85,13 +85,18 @@
  $details = array ("id","name","charset");
  $yesno["no"]  = $yesno[0] = "not_ok.gif";
  $yesno["yes"] = $yesno[1] = "ok.gif";
+ $altyesno["no"]  = $altyesno[0] = lang("no");
+ $altyesno["yes"] = $altyesno[1] = lang("yes");
  for ($i=0;$i<$nextmatch->listcount -1;++$i) {
    foreach ($details as $var) {
      $t->set_var("lang_".$var,$list[$i]->$var);
    }
    $t->set_var("lang_locale",$yesno[strtolower($list[$i]->available)]);
+   $t->set_var("alt_lang_locale",$altyesno[strtolower($list[$i]->available)]);
    $t->set_var("lang_audio",$yesno[$list[$i]->audio]);
+   $t->set_var("alt_lang_audio",$altyesno[$list[$i]->audio]);
    $t->set_var("lang_subtitle",$yesno[$list[$i]->subtitle]);
+   $t->set_var("alt_lang_subtitle",$altyesno[$list[$i]->subtitle]);
    $t->set_var("lang_edit",$_SERVER["PHP_SELF"]."?edit=".$list[$i]->id."&start=$start");
    if ($i) $t->parse("detail","langblock",TRUE);
      else $t->parse("detail","langblock");

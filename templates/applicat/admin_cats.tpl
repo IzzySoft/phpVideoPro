@@ -1,7 +1,8 @@
 <BR>
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
-<TABLE WIDTH="*" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER=0" ALIGN="center"><TR><TD>
+<FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
+<TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
  <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2">{listtitle}</DIV></TD>
      <TD ALIGN="right" CLASS="wintitle" STYLE="vertical-align:middle;">
@@ -18,7 +19,6 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
  <TR><TH><DIV ALIGN="center">{head_cat_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_cat_name}</DIV></TH>
@@ -40,8 +40,8 @@
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD><DIV STYLE="margin:3;text-align:center">{update}</DIV></TR>
-</FORM>
 
 </TABLE>
+</FORM>
 </DIV>
 </TD></TR></TABLE>

@@ -354,3 +354,5 @@ INSERT INTO lang VALUES('orig_disktype','en','Original Disk Type');
 INSERT INTO lang VALUES('new_disktype','en','New Disk Type');
 INSERT INTO lang VALUES('disktype_change','en','Change Disk Type');
 INSERT INTO lang VALUES('region_code','en','RegionCode');
+INSERT INTO lang VALUES('change_rc','en','Change RegionCode');
+INSERT INTO lang VALUES('change_rc_for','en','Change RegionCode for %1');

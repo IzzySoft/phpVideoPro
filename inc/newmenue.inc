@@ -292,8 +292,9 @@ function getPageOffsetTop(el) {
 <?
  if ($pvp->auth->add) {
   echo $pvp->link->linkurl($base_url."new.php",lang("add_entry"),"class='menuItem'") ."\n";
-  echo "<div class='menuItemSep'></div>\n";
  }
+ echo $pvp->link->linkurl($base_url."search.php",lang("search_movie"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."configure.php",lang("preferences"),"class='menuItem'") ."\n";
 ?>
 </div>

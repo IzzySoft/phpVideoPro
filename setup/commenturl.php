@@ -7,7 +7,7 @@
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
- # Administration: Update comments that contain URLs with [href] tags        #
+ # Administration: Update comments that contain URLs with [url] tags         #
  #############################################################################
 
  /* $Id$ */
@@ -37,7 +37,7 @@
      continue;
    }
    if ( preg_match("/\[href\]\S+\[\/href\]/i",$data) ) {
-     echo " <LI>\"$title\" already seems to be up-to-date with the [href] tag.</LI>\n";
+     echo " <LI>\"$title\" already seems to be up-to-date with the [url] tag.</LI>\n";
      continue;
    }
    if ( preg_match("/\[img\]\S+\[\/img\]/i",$data) ) {
@@ -53,9 +53,9 @@
    while ( list ($key,$line) = each ($lines)) {
      $line = eregi_replace("([ \t]|^)www\."," http://www.",$line);
      $line = eregi_replace("([ \t]|^)ftp\."," ftp://ftp.",$line);
-     $line = eregi_replace("(http://[^ )\r\n]+)","[href]\\1[/href]",$line);
-     $line = eregi_replace("(https://[^ )\r\n]+)","[href]\\1[/href]",$line);
-     $line = eregi_replace("(ftp://[^ )\r\n]+)","[href]\\1[/href]",$line);
+     $line = eregi_replace("(http://[^ )\r\n]+)","[url]\\1[/url]",$line);
+     $line = eregi_replace("(https://[^ )\r\n]+)","[url]\\1[/url]",$line);
+     $line = eregi_replace("(ftp://[^ )\r\n]+)","[url]\\1[/url]",$line);
      $rline .= $line;
    }
    echo " <LI>Updating comment for \"$title\"... ";

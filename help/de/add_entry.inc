@@ -125,7 +125,7 @@ Schwarzwaldklinik :)
 
 [text]
 Hier können beliebige Kommentare zum Film erfasst werden. Einige spezielle Tags
-werden zur Unterstützung angeboten: so lassen sich [href]URLs[/href] verlinkbar
+werden zur Unterstützung angeboten: so lassen sich [url]URLs[/url] verlinkbar
 machen (sie werden dann in einem separaten Browser-Fenster geöffnet), sowie
 [img]Grafiken[/img] auch [imgr]rechtsbündig[/imgr] einbinden. Desweiteren ist
 die Verwendung einiger "normaler" HTML Tags für die Formatierung erlaubt: dies

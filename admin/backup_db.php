@@ -129,8 +129,10 @@
    $t->set_var("dright",$radio."<IMG WIDTH='10' BORDER='0' SRC='$space'>".$select);
    $haction = "<INPUT TYPE='submit' CLASS='submit' NAME='backup' VALUE='".lang("button_backup")."'>";
    $t->set_var("hleft",$haction);
+   $t->set_var("lhelp_icon",$pvp->link->linkhelp($page_id."#backup"));
    $haction = "<INPUT TYPE='submit' CLASS='submit' NAME='restore' VALUE='".lang("button_restore")."'>";
    $t->set_var("hright",$haction);
+   $t->set_var("rhelp_icon",$pvp->link->linkhelp($page_id."#restore"));
    $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
    $t->set_var("formtarget",$_SERVER["PHP_SELF"]);

@@ -1,5 +1,5 @@
 # ========================================================
-# Updating Database for phpVideoPro from v0.1.5 to v0.2.0
+# Updating Database for phpVideoPro from v0.1.5 to v0.1.6
 # ========================================================
 
 # version update

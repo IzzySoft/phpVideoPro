@@ -95,7 +95,23 @@
      switch($type) {
        case "pict"  : $success = $db->set_pict("","",$delete); break;
        case "color" : $success = $db->set_color("","",$delete); break;
-       case "mtype" : $success = $db->set_mtypes("","",$delete); break;
+       case "mtype" : 
+                      $lm  = $db->get_lastmovienum();
+                      $lmc = count($lm);
+                      for ($i=0;$i<$lmc;++$i) {
+                        if ($lm[$i][mtype_id] == $delete) {
+                          if ($lm[$i][cass_id] != "0000") $nodelete = TRUE;
+                          break;
+                        }
+                      }
+                      if ($nodelete) {
+                        echo "<SCRIPT LANGUAGE='JavaScript'>alert('"
+                             .lang("movies_left_reference")."');</SCRIPT>";
+                        $success = FALSE;
+                      } else {
+                        $success = $db->set_mtypes("","",$delete);
+                      }
+                      break;
        case "tone"  : $success = $db->set_tone("","",$delete); break;
        default      :
      }

@@ -921,8 +921,8 @@
        while ( $this->next_record() ) {
          $cat[$i]['id']   = $this->f('id');
          $cat[$i]['name'] = lang($this->f('name'));
-	 $cat[$i][internal] = $this->f('name');
-	 $cat[$i][enabled] = $this->f('enabled');
+	 $cat[$i]['internal'] = $this->f('name');
+	 $cat[$i]['enabled'] = $this->f('enabled');
 	 ++$i;
        }
        if ($inUse) {
@@ -1968,7 +1968,8 @@
        $type->rc   = $this->f('rc');
        $types[]    = $type;
      }
-     return $types;
+     if (isset($types)) return $types;
+     return "";
    }
 
    /** Delete a disktype from table disks

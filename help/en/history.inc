@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.6.3 (2004)
+[text]
+<ul>
+ <li>search function crashed if searched for a non-existing staff member - fixed.
+</ul>
+
+[title]
 0.6.2 (June 1, 2004)
 [text]
 <ul>

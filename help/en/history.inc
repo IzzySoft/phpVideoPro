@@ -7,6 +7,7 @@
 <ul>
  <li>first-time installation failed: we tried to read from tables which
      did not yet exist
+ <li>started adding comments for javadoc style api doc generation
 </ul>
 
 [title]

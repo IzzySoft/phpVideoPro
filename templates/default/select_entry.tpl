@@ -1,4 +1,4 @@
-<BR><DIV ALIGN="right"><FONT SIZE="-1">{login_info}</FONT></DIV>
+<BR><DIV ALIGN="right"><FONT SIZE="-1">{login_info}&nbsp;&nbsp;</FONT></DIV>
 <H2><DIV ALIGN="center">{goto_entry}</DIV></H2>
  <FORM NAME="space" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center">

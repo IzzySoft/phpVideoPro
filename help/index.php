@@ -19,6 +19,7 @@ include ("../inc/common_funcs.inc");
 require_once ("../inc/class.faq.inc");
 $translations = $db->get_translations( $pvp->preferences->get("lang") );
 if (isset($_GET["topic"])) $topic    = $_GET["topic"]; else $topic = "";
+if (isset($_GET["ref"]))   $ref      = $_GET["ref"]; else $ref="";
 if (isset($_GET["force_en"])) $force_en = $_GET["force_en"]; else $force_en = FALSE;
 if ( !ini_get("register_globals") ) $PHP_SELF = $_SERVER["PHP_SELF"];
 
@@ -130,6 +131,7 @@ $pm->set_nav("btn_index",lang("index"));
 $pm->set_nav("btn_back",lang("back"));
 $pm->set_nav("btn_close",lang("close"));
 if ($topic) { // display specific help page
+  if ($pos = strpos($topic,"#")) $topic = substr($topic,0,$pos);
   $help = helppage($topic);
   if ( !$help->file ) {
     $lang = $pvp->preferences->get("lang");

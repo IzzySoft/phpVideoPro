@@ -23,7 +23,7 @@
      include ($config . ".config");
      $this->colors();
      $this->mm_conv = 3.42;
-     $this->maxlines = 4;
+     $this->maxlines = $maxlines;
      $this->width  = $width * $this->mm_conv;
      $this->height = $height * $this->mm_conv;
      $this->nr_coord   = $this->convert_coord($nr_coord);
@@ -109,15 +109,15 @@
        if ($tfont < $font) $font = $tfont;
      }
      ++$font;
-     for ($i=0;$i<count($text);$i++) { // now position the text
+     for ($i=0;$i<count($text);$i++) { // now align the text
        $x[$i] = $this->get_textpos($text[$i],$field,$font);
      }
      $vmidth = ceil($field[3] - $field[1]) / 2;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
-     $y = $vmidth - (imagefontheight($font) * $lines / 2);
+     $y = $vmidth - (imagefontheight($font) * $lines / 2) + $field[1];
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
-     for ($i=0;$i<count($text),$i<4;$i++) {
+     for ($i=0;$i<$lines;$i++) {
        imagestring($this->label, $font, $x[$i], $y, "$text[$i]", $color);
        $y += imagefontheight($font);
      }

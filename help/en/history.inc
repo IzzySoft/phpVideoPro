@@ -7,6 +7,9 @@
 <ul>
  <li>made label configs based on defaults by including default configs
      to ease modification of label sets
+ <li>fixed vertical align of text on label
+ <li>max number of lines to fit on label now configurable with the label's
+     config
 </ul>
 
 [title]

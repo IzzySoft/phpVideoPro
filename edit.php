@@ -22,6 +22,18 @@
     exit;
   } else { $page_id = "view_entry"; }
   include("inc/header.inc");
+?>
+ <script language="JavaScript"><!--
+   function label() {
+     if (document.entryform.labelconf.value != "-") {
+       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&template="?>' + document.entryform.labelconf.value;
+       var pos = (screen.width/2)-400;
+       campus  = eval("window.open(url,'<?=lang("print_label")?>','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
+     }
+   }
+ //-->
+ </script>
+<?php
 
   function vis_actors($num) {
     GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
@@ -446,9 +458,16 @@ EndHiddenFields;
     $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
     $t->set_var("print_label","&nbsp;");
   } else {
+    $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
+    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label()\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
+    for ($i=0;$i<count($labels);$i++) {
+      $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
+      $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
+    }
+    $labellist .= "</SELECT>";
     $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"edit\" VALUE=\""   . lang("edit")   . "\">");
     $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"delete\" VALUE=\"" . lang("delete") . "\">");
-    $t->set_var("print_label","<A HREF=\"" . $base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id\" TARGET=\"_blank\">Label</A>");
+    $t->set_var("print_label","$labellist");
   }
   $t->pparse("out","edit");
 

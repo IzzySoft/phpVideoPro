@@ -64,8 +64,8 @@
       <LI>create the database with the name you specified in inc/config.inc as
           $database["database"] on the host you configured there. Make sure the
           configured user has at least following privileges for this database:
-          Select, Insert, Update, Delete, Create. For future versions (updates),
-          the privileges Alter, Drop and References may also be needed.</LI>
+          Select, Insert, Update, Delete, Create. For installation/updates,
+          the privileges Alter, Drop, Index and References may also be needed.</LI>
      </OL></DIV></TD></TR>
  <TR><TH>Create the tables</TH></TR>
  <TR><TD><DIV ALIGN=justify>If all above mentioned requirements pre-requisites

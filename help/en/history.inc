@@ -8,7 +8,8 @@
  <li>some work on the edit/view entry screen to get more info without scrolling
  <li>outsourced the backup/restore functionality from admin/backup_db.php to
      the new xfer class so we can use it from other places, too
- <li>added system data (config &amp; default preferences) to backup/restore page
+ <li>added system data (config, default preferences &amp; printers) to
+     backup/restore page
  <li>on a forced login (e.g. due to session timeout or missing privileges) the
      redirection to the originally requested page did still not work with
      register_globals=off - fixed.

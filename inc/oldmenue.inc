@@ -11,6 +11,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$pvp->link->slink($base_url.'admin/cats.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_translations")?>", "<?=$pvp->link->slink($base_url.'admin/translations.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_printers")?>", "<?=$pvp->link->slink($base_url.'admin/printers.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_filter")?>", "<?=$pvp->link->slink($base_url.'admin/filters.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$pvp->link->slink($base_url.'admin/orphans.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$pvp->link->slink($base_url.'admin/backup_db.php')?>"));

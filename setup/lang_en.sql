@@ -118,8 +118,6 @@ INSERT INTO lang VALUES('refresh_lang_comment','en','(re-insert phrases from lan
 INSERT INTO lang VALUES('none','en','None');
 INSERT INTO lang VALUES('select_primary_lang','en','Select primary language');
 INSERT INTO lang VALUES('select_primary_lang_comment','en','(for missing phrases, there will always be a fall-back to English)');
-INSERT INTO lang VALUES('use_charset','en','CharSet to use');
-INSERT INTO lang VALUES('use_charset_comment','en','(this is important for character encoding)');
 INSERT INTO lang VALUES('colors','en','Colors');
 INSERT INTO lang VALUES('page_bg','en','Page Background');
 INSERT INTO lang VALUES('table_bg','en','Table Background');

@@ -119,8 +119,6 @@ INSERT INTO lang VALUES('refresh_lang_comment','de','(alte Übersetzungen löschen
 INSERT INTO lang VALUES('none','de','Keine');
 INSERT INTO lang VALUES('select_primary_lang','de','Primäre Sprache auswählen');
 INSERT INTO lang VALUES('select_primary_lang_comment','de','(Bei fehlenden Übersetzungen erfolgt ein Fall-Back zur Englischen Sprache)');
-INSERT INTO lang VALUES('use_charset','de','Zu verwendendes CharSet');
-INSERT INTO lang VALUES('use_charset_comment','de','(wichtig für die Darstellung von Umlauten und Sonderzeichen)');
 INSERT INTO lang VALUES('colors','de','Farben');
 INSERT INTO lang VALUES('page_bg','de','Seiten-Hintergrund');
 INSERT INTO lang VALUES('table_bg','de','Tabellen-Hintergrund');

@@ -823,7 +823,8 @@
        default       : $orderby = "v.mtype_id DESC,v.cass_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
-     $query = "SELECT DISTINCT v.id FROM video v,cat c";
+#     $query = "SELECT DISTINCT v.id FROM video v,cat c";
+     $query = "SELECT v.id FROM video v";
      if (strlen($filter)) {
        if (strlen($where)) {
          $where .= " AND $filter";

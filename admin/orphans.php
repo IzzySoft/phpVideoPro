@@ -45,7 +45,10 @@
   }
   $details .= "<br>\n";
  }
- if (!$details) $details = lang("no_orphans_found");
+ if (!$details) {
+   $details = lang("no_orphans_found");
+   $t->set_var("button","");
+ }
 
  if ($delete && $orphans) {
    $t->set_var("title",lang("delete_orphans",$orphans));

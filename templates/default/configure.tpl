@@ -13,6 +13,6 @@
   {sess_id}
 <!-- END listblock -->
  <TR><TD><DIV ALIGN=CENTER>{update}</DIV></TD></TR>
-</FORM>
 {config_end}
 </TABLE>
+</FORM>

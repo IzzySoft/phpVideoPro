@@ -14,6 +14,6 @@
  <TR ALIGN="center"><TD><DIV ALIGN="center">{fsk_name}</DIV></TD><TD><DIV ALIGN="center">{fsk_min} - {fsk_max}</DIV></TD></TR>
  <TR ALIGN="center"><TH COLSPAN="2"><INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></TH></TR>
 </TABLE>
+{hidden}
 </FORM>
 <!-- resultblock = medialist.tpl -->
-{hidden}

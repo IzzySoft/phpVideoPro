@@ -1,6 +1,6 @@
 <H2 Align=Center>{listtitle}</H2>
+<FORM NAME="transform" METHOD="post" ACTION="{formtarget}" ACCEPT-CHARSET="{charset}">
 <TABLE ALIGN="center" BORDER="0" WIDTH="95%">
- <FORM NAME="transform" METHOD="post" ACTION="{formtarget}" ACCEPT-CHARSET="{charset}">
  {hidden}
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
@@ -31,5 +31,5 @@
  </TD></TR>
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- </FORM>
 </TABLE>
+ </FORM>

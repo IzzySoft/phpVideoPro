@@ -34,18 +34,9 @@
  <LI>make sure your PHP has MySQL support built in! (if requirements
      1, 2 and 4 are met, click <A HREF="phpinfo.php">here</A> to see what
      features are supported by your PHP setup)
- <LI>point your browser to this page via http (so that this page is parsed
-     by PHP). Due to JavaScript problems caused by the menue used for now,
-     there are problems with some browsers. So I found following products
-     not working properly with it: Konqueror, Opera, Mozilla, and probably
-     all other Gecko-based browsers as well (Netscape 6). However, Netscape
-     4.7x seems to work fine, and M$ Internet Exploder will probably do this
-     job as well. But if you happen to know some good replacement for the
-     menue that works with all browsers (and is so nice and easy to handle
-     as the one used for now), please tell me - and I'll replace it!<br>
-     However, since this setup programm does not make any use of the menu,
-     any browser will work for this :)
 </OL>
+<P ALIGN=JUSTIFY>Guess your system meets these requirements - otherwise you
+ wouldn't read this page, would you?</P>
 
 <H3 ALIGN=CENTER>Pre-Requisites</H3>
 <P ALIGN=JUSTIFY>If this requirements are met, we can start setting up
@@ -54,6 +45,8 @@
  <LI>edit inc/config.inc to reflect your structures. There are not many
      settings you <b>must</b> check, so this is done fast:
      <ul>
+      <li>$site     : just the name for your running copy. It's only used to
+          be displayed in the title bar for now.
       <li>$base_url : the root directory of your phpVideoPro copy.
           make sure it has a leading slash (i.e. it has to be the complete
           path starting with your web servers document root) as well as a
@@ -78,6 +71,6 @@
  and fill them with initial data (such as categories, sound types etc).
  With some luck (*grin*) you'll get no error message, and have the database
  ready to start with phpVideoPro then. So, if everything worked fine, you
- <b>then</b> can point your browser to phpVideoPro's <A HREF="../">start screen</A>.
- Good luck - and enjoy!</P>
+ <b>then</b> can point your browser to phpVideoPro's <A HREF="../index.php">start
+ screen</A>. Good luck - and enjoy!</P>
 </BODY></HTML>

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.6 (June 2002)
+0.2.6 (June 26, 2002)
 [text]
 <ul>
  <li>added list printing functionality. Right now, it prepares the lists for

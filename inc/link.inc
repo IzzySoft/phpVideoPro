@@ -1,6 +1,6 @@
 <?php
  /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
  * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
  * http://www.qumran.org/homes/izzy/                                         *
  * --------------------------------------------------------------------------*
@@ -12,16 +12,36 @@
 
  /* $Id$ */
 
+ /** Link to Internet Movie DataBase (IMDB)
+  * @package Api
+  * @class link
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  */
+ /** Base URL of the IMDB
+  * @class link
+  * @attribute string imdb
+  */
  class link {
   var $imdb;
-  
+
+  /** Constructor: initialize base URL
+   * @constructor link
+   */
   function link() {
     $this->imdb = "http://us.imdb.com/";
   }
 
   ############################################################################
   # IMDB link creation
-  // create url string to a persons entry in imdb
+  /** Create url string to a persons entry in imdb
+   * @class link
+   * @method ImdbPerson
+   * @param string fname first name
+   * @param string name family name
+   * @param string occupation actor, director or what else
+   * @return string link link to detailled information in IMDB
+   */
   function ImdbPerson($fname,$name,$occupation) {
     if (strlen(trim($name))) {
       $imdb = $this->imdb . "Nsearch?name=";
@@ -33,7 +53,15 @@
     } else { return ""; }
   } // end function ImdbPerson
 
-  // create form addon (to button) for link to a persons entry in imdb
+  /** create form addon (to button) for link to a persons entry in imdb
+   * @class link
+   * @method formImdbPerson
+   * @param string fname first name
+   * @param string name family name
+   * @param string occupation actor, director or what else
+   * @return string addon JavaScript handler for button to open new window
+   *  with IMDB information
+   */
   function formImdbPerson($fname,$name,$occupation) {
     $imdb = $this->ImdbPerson($fname,$name,$occupation);
     if (strlen($imdb)) {

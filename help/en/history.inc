@@ -2,7 +2,14 @@
 # /*  $Id$ */
 
 [title]
-0.2.0 (September 2001)
+0.2.1 (2001)
+[text]
+<ul>
+ <li>made urls in commentfield (view entry) clickable
+</ul>
+
+[title]
+0.2.0 (September 23, 2001)
 [text]
 <ul>
  <li>if no matching entry was found, stafflist screen was messed up. Fixed.

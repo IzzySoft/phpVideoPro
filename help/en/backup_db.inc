@@ -5,49 +5,56 @@
 *preferences#
 
 [text]
-There are two types of backups possible: a full database backup
-("*backup_db_complete#") will backup the entire database of phpVideoPro, i.e.
-all data from all tables. The structure will <b><i>not</i></b> be backed up --
-there's no need for since the structure is kept in the installation scripts.
+There are different types of backups possible:<ul>
+ <li><b><i>"*backup_db_complete#"</i></b> will backup the entire database of
+     phpVideoPro, i.e. all data from all tables and store the SQL statements
+     in a <code>*.sql</code> file. The structure will <b><i>not</i></b> be
+     backed up -- there is no need for since the structure is kept in the
+     installation scripts.</li>
+ <li><b><i>"*backup_db_movie_internal#"</i></b> will only backup the data you
+     entered for your movies, i.e. the actors, directors, comments etc.</li>
+ <li><b><i>"*backup_db_sysconf#"</i></b> backs up all data you maintain via
+     the menu <i>*admin# -&gt; *configuration#</i>, i.e. the system
+     configuration and default preferences.</li>
+</ul>
+
 [text]
-A second backup type is to save the movie relevant data only
-("*backup_db_movie_internal#"). This will only backup the data you entered for
-your movies, i.e. the actors, directors, comments etc..
-[text]
-While the first type will result in a plain SQL command file, the latter will
-store the data in a phpVideoPro internal format. This way it is possible to
-even transfer data between different database types, e.g. to migrate from
+While the first type, as mentioned, will result in a plain SQL command
+(<code>*.sql</code>) file, the other backups are storing their data in a
+phpVideoPro internal format (<code>*.pvp</code> files). This way it is possible
+to even transfer data between different database types, e.g. to migrate from
 PostgreSQL to MySQL or vice versa. For this type of data, the interface also
-offers a "Restore" command ("*restore_db_movie_internal#").
+offers a "Restore" command (<i>"*restore_db_internal#"</i>).
 
 [title]
 Backup
 
 [text]
-Chose the type of backup you want to create. The checkbox "*backup_compress#"
+Chose the type of backup you want to create. The checkbox <i>"*backup_compress#"</i>
 tells phpVideoPro to compress the output file. This will only work if your
 installation of PHP is compiled with <code>gzip</code> support. If this is not
 the case, you will see an error when you try to enable it.
 
 [text]
-After having pressed the "*button_backup#" button, your browser will prompt
-you for a location to save the backup file to. Until then, it may take a while,
-depending on the size of your database.
+After having pressed the <i>"*button_backup#"</i> button, your browser will
+prompt you for a location to save the backup file to. Until then, it may take a
+while, depending on the size of your database and the type of backup chosen.
 
 [title]
-Restore (movies)
+Restore from a <code>*.pvp</code> backup
 
 [text]
-To restore a movie backup, you first must place the backup file in the
-directory you configured in the <code>inc/config.inc</code> file. Keep the files
-extension to "<code>.pvp</code>" and make sure it is readable by your web server.
-When you then load the page, the file should show up in the selection box: just
-select it, press the "*button_restore#" button and wait until the restore
-process is finnished (you will see the result just below the page title then).
+To restore from a <code>*.pvp</code> backup, you first must place the backup
+file in the directory you configured in the <code>inc/config.inc</code> file.
+Keep the files extension to "<code>.pvp</code>" and make sure it is readable by
+your web server. When you then load the page, the file should show up in the
+selection box: just select it, press the <i>"*button_restore#"</i> button and
+wait until the restore process is finnished (you will see the result just below
+the page title then).
 
 [text]
-phpVideoPro will automatically detect whether the backup file was compressed
-and care for de-compression in that case. The restore process will also detect
+phpVideoPro will automatically detect the backup type (movies/system config) and
+whether the backup file was compressed. For movies, it will also detect
 new categories automatically. This means, if you import a movie backup from a
 different installation, where new categories may have been added, phpVideoPro
 takes care for this fact, too. Whether a category is already available with
@@ -64,11 +71,16 @@ the translation later using the translation editor (see
 
 [text]
 Moreover, if any imported movie contains an audio or subtitle channel for a
-language you did not (yet) activate for audio/subtitle: don't worry -
+language you did not (yet) activate for audio/subtitle: do not worry -
 phpVideoPro takes care for that, too.
 
 [title]
 Replace or Append?
+
+[text]
+This checkbox only affects the restore of movies. If you restore a system
+config backup, the setting of "<i>*clean_restore#</i>" will not be considered
+at all.
 
 [text]
 If you "screwed up" your database and want to replace all entries, just check
@@ -92,19 +104,19 @@ Restore (full)
 
 [text]
 There are two ways to do the setup for backups created with the
-("*backup_db_complete#") option. You first have to create the target database,
-as always on a new installation. If you are done with this step, you can execute
-the sql file via your servers sql shell in the created database (or use any
-frontend to your database to do so, e.g. phpMyAdmin). Alternatively, you can
-let phpVideoPro do this:
+<i>"*backup_db_complete#"</i> option. You first have to create the target
+database, as always on a new installation. If you are done with this step, you
+can execute the sql file via your servers sql shell in the created database (or
+use any frontend to your database to do so, e.g. phpMyAdmin). Alternatively,
+you can let phpVideoPro do this:
 
 [text]
-Put the SQL file into the setup/ directory. Rename it to "restore.sql". Finally,
-act as if you where doing a fresh installation - just select "restore" instead
-of "create". That's it.
+Put the SQL file into the setup/ directory. Rename it to <code>restore.sql</code>.
+Finally, act as if you where doing a fresh installation - just select
+"<i>restore</i>" instead of "<i>create</i>". That's it.
 
 [title]
-Why is there no "Restore Database" menue item?
+Why is there no "<i>Restore Database</i>" menue item?
 
 [text]
 Easy to explain: of course I could put such an item there. But it wouldn't

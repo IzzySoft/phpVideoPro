@@ -2,23 +2,35 @@
 # /* $Id$ */
 
 [title]
-Einleitung
+*intro#
 
 [text]
-Über diesen Menüpunkt läßt sich ein neuer Eintrag in die Datenbank einfügen.
+Seit phpVideoPro v0.5.1, existiert dieser Menüpunkt für jeden konfigurierten
+Medientyp separat. Dieser Schritt war nötig, um den verschiedenen Features
+Rechnung zu tragen, die jeweils nur für einige der Medientypen verfügbar sind
+(wie z.B. Regionalcodes für DVDs, LongPlay für Kassetten etc.), und die Felder
+für Features, die vom gerade bearbeiteten Medium nicht unterstützt werden,
+auch gar nicht erst einzublenden.
+[text]
+Über diese Menüpunkte läßt sich nun ein neuer Eintrag in die Datenbank einfügen.
 Die meisten Felder dieses Formulars erklären sich selbst, und so soll an dieser
 Stelle nur auf die Punkte eingegangen werden, die aus meiner Sicht einer
 Erklärung bedürfen:
 
 [title]
-*mediatype#
+*medianr#
 
 [text]
-<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="Editieren eines Eintrages: Medientyp" ALIGN="LEFT" HSPACE="5" BORDER="1">
-Aus der Liste "*mediatype#" (im Bild rot markiert) läßt sich der gewünschte
-Medientyp auswählen. Während ich diese Box sicher nicht näher erklären muß,
-möchte ich an dieser Stelle jedoch auf zwei andere Dinge hinweisen: blau
-markiert sind die beiden Eingabefelder für die Medien-Nummer. Der erste
+Während der Medientyp nun bereits durch die Auswahl aus dem Menü bekannt ist,
+und die Nummer des physikalische Mediums durch den Prompt ermittelt wurde, ist
+hier nun lediglich noch die "logische" Nummer des Films auf dem Medium zu
+erfassen. Wie auch bereits bei dem erwähnten Prompt, wird auch hierfür die
+höchste vergebene Nummer aus der Datenbank ermittelt und mitgeteilt (hier durch
+den Button "*last_entry#"), und die Folgenummer als Vorschlag bereits
+vorgegeben. In der Regel sollten diese Angaben stimmen; im Bedarfsfall können
+sie freilich angepasst werden.
+[text]
+An dieser Stelle ein paar Worte zum Aufbau der *medianr#: Der erste
 (maximal vierstellige) Teil dieser Nummer bezeichnet (in Verbindung mit dem
 Medientyp) das Medium selbst (mit RVT 68 ließe sich also eindeutig die
 Videokassette Nummer 68 identifizieren), während der zweite (zweistellige) Teil
@@ -34,38 +46,22 @@ möglich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
 speichern. Wer die gleiche DVD also zweimal hat, muß ihr entweder zwei
 verschiedene Nummern geben - oder den entsprechenden Vermerk im Kommentarfeld
 unterbringen.
-[text]
-Und nun ein kleines "Gimmik": Wer erinnert sich schon daran, welches die
-nächste zu vergebende *medianr# ist, wenn er gerade ein neues Band aufgenommen
-oder eine neue DVD gekauft hat? Okay, bei guter Beschriftung kann man u.U. im
-Regal nachschauen - aber es geht auch wesentlich bequemer: die in der Abbildung
-grün markierte Box enthält eine Liste der jeweils höchsten vergebenen
-Mediennummern für jeden Medientyp, so daß man sich hier schnellstens informieren
-kann. Eine in dieser Auswahlbox ggf. getroffenen Auswahl hat jedoch keinerlei
-Bedeutung für die sodann gespeicherten Daten - das Feld wird vom
-Aktualisierungs- bzw. Speicherprozeß ignoriert.
-[text]
 
 [title]
-*date_rec#
+*disk_type# / *counter_start_stop#
 
 [text]
-Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch
-auf Tag-Monat-Jahr festgelegt ist. In einer der nächsten Versionen wird ggf.
-auch hierfür das im Konfigurationsmenü einstellbare Datumsformat Verwendung
-finden, um den verschiedenen Länderpräferenzen Rechnung zu tragen.
-
-[title]
-*counter_start_stop#
-
+Die Zähler-Einstellungen sind in erster Linie für Besitzer älterer Videorekorder
+interessant, welche noch nicht über eine Indexfunktion verfügen ( sie sind auch
+nur für Kassetten verfügbar): diese können hier die jeweiligen Zählerstände bei
+Beginn bzw. Ende der Aufzeichnung eintragen. Da das Format der Eintragungen in
+diesen Feldern jedoch nicht festgelegt ist (mit Ausnahme der Einschränkung auf
+maximal 10 Zeichen), kann es auch anderweitig benutzt werden (z.B. können auch
+die jeweiligen Zeiten von Rekordern mit Echtzeitzählwerk eingetragen werden).
 [text]
-Dieser Punkt ist in erster Linie für Besitzer älterer Videorekorder interessant,
-welche noch nicht über eine Indexfunktion verfügen: diese können hier die
-jeweiligen Zählerstände bei Beginn bzw. Ende der Aufzeichnung eintragen. Da das
-Format der Eintragungen in diesen Feldern jedoch nicht festgelegt ist (mit
-Ausnahme der Einschränkung auf maximal 10 Zeichen), kann es auch anderweitig
-benutzt werden (z.B. können auch die jeweiligen Zeiten von Rekordern mit
-Echtzeitzählwerk eingetragen werden).
+Für alle anderen Medien (DVD/VCD) kann an dieser Stelle der *disk_type#
+eingetragen werden. Details dazu finden sich auf
+<A HREF="{PHP_SELF}?topic=disktype_change">dieser Seite</A>.
 
 [title]
 *label#
@@ -74,6 +70,19 @@ Echtzeitzählwerk eingetragen werden).
 Ist dieses Kästchen markiert, erscheinen Daten zu diesem Film auf dem Etikett
 für dieses Medium - andernfalls werden diese bei Erstellung des Etiketts
 unterdrückt.
+
+[title]
+*region_code#
+
+[text]
+RegionalCodes sind ein DVD-spezifisches "Feature" (auf das wir auch liebend
+gern verzichten würden), daher taucht dieser Punkt auch nur für DVDs auf (es
+sei denn, jemand hat dieses "Feature" auch für einen anderen Medien-Typen
+freigeschaltet). Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte
+hier einfach keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes
+erscheint in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist
+lediglich die "0" auszuwählen, und für alle anderen die entsprechende(n)
+Checkbox(en).
 
 [title]
 *commercials#
@@ -86,7 +95,16 @@ Fall ist ("*no#"), oder ob sie während der Aufnahme von Hand entfernt wurden
 Möglichkeit, "*unknown#" auszuwählen.
 
 [title]
-Kategorien
+*date_rec#
+
+[text]
+Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch
+auf Tag-Monat-Jahr festgelegt ist. In einer der nächsten Versionen wird ggf.
+auch hierfür das im Konfigurationsmenü einstellbare Datumsformat Verwendung
+finden, um den verschiedenen Länderpräferenzen Rechnung zu tragen.
+
+[title]
+*categories#
 
 [text]
 Die in der ersten Box ausgewählte Kategorie wird als Hauptkategorie gewertet

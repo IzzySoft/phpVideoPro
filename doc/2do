@@ -20,6 +20,7 @@ coming *soon*:
   but by cookies->active (i.e. cookies_enabled && cookies_supported_by_browser)
 - more informative "welcome" page for new users (which optionally can be turned
   off by the users preferences for "advanced users")
+- categories on the "search movie" screen should be sorted BY TRANSLATION
 
 coming *next*:
 - PS template(s) for DVD covers

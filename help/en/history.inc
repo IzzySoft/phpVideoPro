@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.2.5 (2002)
+[text]
+<ul>
+ <li>made label configs based on defaults by including default configs
+     to ease modification of label sets
+</ul>
+
+[title]
 0.2.4 (June 12, 2002)
 [text]
 <ul>

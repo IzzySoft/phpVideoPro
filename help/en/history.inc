@@ -18,6 +18,7 @@
      media type) in title bar and headline, plus the form looks a bit better now
  <li>added prev/next buttons (next to the movie title) to the "view entry"
      form so you now can directly walk your collection
+ <li>addition and removal of categories is now implemented
 </ul>
 
 [title]

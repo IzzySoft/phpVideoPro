@@ -7,6 +7,7 @@
 <ul>
  <li>updated Dutch translations (Thanx to Ron Dekker)
  <li>hopefully fixed all of the PHP notices (due to uninitialized vars etc.)
+ <li>added ALT tags to most images (where missing)
 </ul>
 
 [title]

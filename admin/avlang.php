@@ -16,7 +16,11 @@
 # $page_id = "admin_avlang";
  include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
- $start = $_GET["start"];
+ if ( isset($_GET["start"]) ) {
+   $start = $_GET["start"];
+ } elseif ( isset($_POST["start"]) ) {
+   $start = $_POST["start"];
+ }
  $edit  = $_GET["edit"];
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
@@ -57,13 +61,24 @@
    $audio .= ">".lang("state_active");
    $t->set_var("lang_subtitle",$audio);
    $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>");
-   if (!$pvp->config->enable_cookies) $hidden = "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+   $hidden = "<INPUT TYPE='hidden' NAME='lang_id' VALUE='".$lang->id."'>";
+   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+   if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
    $t->set_var("hidden",$hidden);
    $t->parse("edit","editblock",TRUE);
    include("../inc/header.inc");
    $t->pparse("out","template");
    include("../inc/footer.inc");
    exit;
+ }
+
+ #====================================================[ process form input ]==
+ if ( isset($_POST["update"]) ) {
+   $success = @$db->set_avlang("$lang_id",$audio,"audio");
+   if ($success) $success = @$db->set_avlang("$lang_id",$subtitle,"subtitle");
+   if ($success) $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN>";
+     else $save_result = "<SPAN CLASS='error'>".lang("update_failed")."</SPAN>";
+   $t->set_var("save_result",$save_result);
  }
 
  #====================================[ get languages and setup variables ]===
@@ -81,7 +96,7 @@
    $t->set_var("lang_locale",$yesno[strtolower($list[$i]->available)]);
    $t->set_var("lang_audio",$yesno[$list[$i]->audio]);
    $t->set_var("lang_subtitle",$yesno[$list[$i]->subtitle]);
-   $t->set_var("lang_edit","$PHP_SELF"."?edit=".$list[$i]->id);
+   $t->set_var("lang_edit","$PHP_SELF"."?edit=".$list[$i]->id."&start=$start");
    $t->parse("detail","langblock",TRUE);
  }
 # if ($update) $db->lang_available($targetlang,1);

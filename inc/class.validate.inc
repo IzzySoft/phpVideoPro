@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Verification/Validation of values (e.g. User Input)                       *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Verification/Validation of values (e.g. User Input)                       #
+ #############################################################################
 
   /* $Id$ */
 
@@ -96,6 +96,23 @@
       if ($day   - $today[mday] < 0) return 1;
       if ($day   - $today[mday] > 0) return 3;
       return 2;
+    }
+
+    /** check wether a valid media number can be constructed from user input
+    * @class validate
+    * @method medianr
+    * @param integer mtype_id mtype_id
+    * @param mixed cass_id media id (integer or zero padded string)
+    * @param mixed part part id (integer or zero padded string)
+    * @return boolean TRUE if number is valid
+    */
+    function medianr($mtype_id,$cass_id,$part) {
+      if ( $mtype_id<1
+           || trim($cass_id)=="" || !$this->num($cass_id)
+	   || trim($part)=="" || !$this->num($part) ) {
+        return FALSE;
+      }
+      return TRUE;
     }
 
   } // end class validate

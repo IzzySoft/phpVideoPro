@@ -13,7 +13,8 @@
  $silent = TRUE;
  include("inc/header.inc");
  include("inc/label.inc");
- 
+
+ if (!$template) $template = "default"; 
  $query = "SELECT title,length FROM video"
         . " WHERE cass_id=$cass_id AND mtype_id=$mtype_id";
  $db->dbquery($query);
@@ -27,7 +28,7 @@
    ++$i;
  }
 
- $label  = new label("default");
+ $label  = new label($template);
  $label->write($cass_id,$text);
  $label->prn();
  $label->destroy();

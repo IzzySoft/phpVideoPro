@@ -208,6 +208,7 @@ if ($admin) {
   $select  = "<SELECT NAME=\"delete_lang\">";
   $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
   for ($i=0;$i<count($lang_installed);$i++) {
+    if ($lang_installed[$i]=="en") continue;
     $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
     $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
   }

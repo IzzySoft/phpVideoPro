@@ -12,16 +12,16 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- translation for categories missing
-- make menu template-driven
+- limit list display to user-definable amount of data sets
+- label creating and printing function
+- print lists function taking into account a user-definable page length
 
 coming *next*:
-- limit list display to user-definable amount of data sets
-- print lists function taking into account a user-definable page length
-- label creating and printing function
+- menue items for "change MediaNr" and "change MediaType"
+- translation for categories missing
+- make menu template-driven
 - search function
 - new database field: "lent to" (to find out where your media *really* are :)
-- menue items for "change MediaNr" and "change MediaType"
 - making categories editable (user-defined categories etc.)
 - overview "per tape" (should look equivalent to taperest)
 - adding *all* media types to cass table. This requires a new field

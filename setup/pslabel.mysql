@@ -75,49 +75,6 @@ INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist
 INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
 
 #
-# Table structure and data for 'label definition'
-#
-
-DROP TABLE IF EXISTS label_type;
-CREATE TABLE label_type (
-  id tinyint(4) NOT NULL auto_increment,
-  vendor char(16) NOT NULL,
-  product char(32) NOT NULL,
-  description char(48) default NULL,
-  unit_id int(11) NOT NULL default '0',
-  h_dist float NOT NULL default '0',
-  v_dist float NOT NULL default '0',
-  width float NOT NULL default '0',
-  heigth float NOT NULL default '0',
-  leftm float NOT NULL default '0',
-  topm float NOT NULL default '0',
-  cols tinyint(4) NOT NULL default '0',
-  rows tinyint(4) NOT NULL default '0',
-  sheet_id tinyint(4) NOT NULL default '0',
-  PRIMARY KEY  (id),
-  UNIQUE KEY id (id),
-  KEY id_2 (id)
-) TYPE=MyISAM COMMENT='label definition table';
-
-INSERT INTO label_type (id, vendor, product, description, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
-INSERT INTO label_type (id, vendor, product, description, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',3,14.73,2,14.73,2,3.13,1.84,1,13,1);
-
-#
-# Table structure and data for 'label types'
-#
-
-DROP TABLE IF EXISTS label_types;
-CREATE TABLE label_types (
-  id smallint(6) NOT NULL default '0',
-  description varchar(64) NOT NULL,
-  PRIMARY KEY  (id),
-  UNIQUE KEY id (id)
-) TYPE=MyISAM;
-
-INSERT INTO label_types (id, description) VALUES (1,'VHS top label');
-INSERT INTO label_types (id, description) VALUES (2,'VHS side label');
-
-#
 # Table structure and data for 'printer offset definition'
 #
 

@@ -71,44 +71,6 @@ INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist
 INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
 
 #
-# Table structure and data for 'label definition'
-#
-
-CREATE TABLE label_type (
-  id serial,
-  vendor char(16) NOT NULL default '',
-  product char(32) NOT NULL default '',
-  description char(48) default NULL,
-  unit_id numeric(11) NOT NULL default '0',
-  h_dist numeric NOT NULL default '0',
-  v_dist numeric NOT NULL default '0',
-  width numeric NOT NULL default '0',
-  heigth numeric NOT NULL default '0',
-  leftm numeric NOT NULL default '0',
-  topm numeric NOT NULL default '0',
-  cols numeric(4) NOT NULL default '0',
-  rows numeric(4) NOT NULL default '0',
-  sheet_id numeric(4) NOT NULL default '0',
-  PRIMARY KEY  (id)
-);
-
-INSERT INTO label_type (id, vendor, product, description, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
-INSERT INTO label_type (id, vendor, product, description, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',3,14.73,2,14.73,2,3.13,1.84,1,13,1);
-
-#
-# Table structure and data for 'label types'
-#
-
-CREATE TABLE label_types (
-  id numeric(6) NOT NULL default '0' UNIQUE,
-  description varchar(64) NOT NULL default '',
-  PRIMARY KEY  (id)
-);
-
-INSERT INTO label_types (id, description) VALUES (1,'VHS top label');
-INSERT INTO label_types (id, description) VALUES (2,'VHS side label');
-
-#
 # Table structure and data for 'printer offset definition'
 #
 

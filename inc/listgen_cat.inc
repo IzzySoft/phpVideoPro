@@ -33,7 +33,7 @@
    } else {
      $listheader = lang("medium") . $sep
                  . lang("title") . $sep
-                 . lang("category") . $sep
+                 . lang("category") . " 2" . $sep
                  . lang("length") . $sep
 	         . "LP";
    }
@@ -47,6 +47,7 @@
    if (!$multipage) $out = "$listheader\n";
    for ($i=0,$k=0;$i<$listlength;$i++,$k++) {
      if ($multipage && !($k % $pagelength)) { // new page
+       set_time_limit(0);
        ++$page;
        if ($i) $out .= "\x0C"; // no formfeed on the first page
        $out .= listtitle($page,$pages) . "\n";
@@ -65,7 +66,7 @@
        $lp     = $pvp->common->centerstr($lp,4);
      } else {
        $title  = $movielist[$i][title];
-       $cat    = $movielist[$i][cat1];
+       $cat    = $movielist[$i][cat2];
        $length = $movielist[$i][length];
      }
      $line = $movielist[$i][mtype_short] . " "

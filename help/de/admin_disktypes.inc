@@ -6,7 +6,7 @@
 *intro#
 
 [text]
-Die verschiedenen Dik-Typen unterstützen unterschiedliche Features (oder auch
+Die verschiedenen Disk-Typen unterstützen unterschiedliche Features (oder auch
 Limitierungen), und diese lassen sich auf dieser Seite zuordnen. Die Handhabung
 dieses Formulars ist äquivalent zu dem für die
 <A HREF="{PHP_SELF}?topic=admin_cats">Kategorien</A>): vorhandene Einträge

@@ -81,6 +81,9 @@ Contents:
     php.ini -- sorry for that, just discovered it today. If you don't want to
     use this setting for the whole site, please refer to the history on v0.4.2
     in the online help.
+    With v0.5.1, this should hopefully be fixed and worked around - but this
+    work-around is not yet approved. So if you have set register_globals=off,
+    please let me know if everything works fine without any changes!
 
 ===============================================================================
 

@@ -16,6 +16,7 @@
   *  (extends DB_Sql fom PHPLIB)
   * @package Api
   * @class sql
+  * @extends DB_Sql
   * @author Izzy (izzysoft@qumran.org)
   * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
   */
@@ -35,6 +36,8 @@
    }
 
    ############################################################################
+   # common stuff
+   ############################################################################
    /** setup sql clause to limit result set (depending on database type)
     * @class sql
     * @method limit
@@ -53,9 +56,12 @@
      return $this->limit;
    }
 
-   ############################################################################
-   # replace empty values within SQL queries by NULL statement to keep query
-   # syntactically correct
+   /** replace empty values within SQL queries by NULL statement to keep query
+    * syntactically correct
+    * @class sql
+    * @method clean_query
+    * @param string query query to clean
+    */
    function clean_query(&$query) {
      $query = str_replace ("''", "NULL", $query);
      $query = str_replace ("''", "NULL", $query);
@@ -70,7 +76,6 @@
      if (substr($query,strlen($query)-1)=="=") $query .= "NULL";
    } // end clean_query()
 
-   ############################################################################
    /** Query db and provide debug output
     * @class sql
     * @method dbquery
@@ -86,7 +91,6 @@
      return 0;
    }
 
-   ############################################################################
    /** Query db using the LIMIT clause. returns count of TOTAL datasets found
     *  (i.e. UNLIMITED query result count). $query must NOT contain any limit
     *  clause!!!
@@ -107,7 +111,6 @@
      return 0;
    }
 
-   ############################################################################
    /** Delete a complete row from a table
     * @class sql
     * @method delete_row
@@ -121,29 +124,7 @@
    }
 
    ############################################################################
-   /** Get all media types and return them as array
-    * @class sql
-    * @method get_mtypes
-    * @param optional string restrict WHERE clause
-    * @return array array of media types
-    */
-   function get_mtypes($restrict="") {
-     if ( strlen($restrict) ) {
-       $where = " WHERE $restrict";
-     } else {
-       $where = "";
-     }
-     $this->dbquery("SELECT id,name,sname FROM mtypes $where ORDER BY id");
-     $i = 0;
-     while ( $this->next_record() ) {
-       $mtypes[$i][id] = $this->f('id');
-       $mtypes[$i][sname] = $this->f('sname');
-       $mtypes[$i][name] = $this->f('name');
-       ++$i;
-     }
-     return $mtypes;
-   }
-
+   # translations
    ############################################################################
    /** Get installed languages (both available and unavailable)
     * @class sql
@@ -158,7 +139,6 @@
      return $lang;
    }
 
-   ############################################################################
    /** Get (un)available|all languages
     * @class sql
     * @method get_languages
@@ -180,7 +160,6 @@
      return $lang;
    }
 
-   ############################################################################
    /** Make a language (un)available
     * @class sql
     * @method lang_available
@@ -192,9 +171,6 @@
      else $this->dbquery("UPDATE languages SET available='no' WHERE lang_id='$lang'");
    }
 
-   ############################################################################
-   # translations
-   ############################################################################
    /** delete translations for a specific language
     * @class sql
     * @method delete_translations
@@ -249,6 +225,8 @@
    }
 
    ############################################################################
+   # preferences
+   ############################################################################
    /** Get preferences from DB (used by class preferences; use that class to
     *  obtain preference settings!)
     * @class sql
@@ -266,7 +244,6 @@
      }
    }
 
-   ############################################################################
    /** Set preferences in DB (if exist: update, otherwise insert)
     *  Used by class preferences: use that class to modify settings!
     * @class sql
@@ -284,7 +261,6 @@
      }
    }
 
-   ############################################################################
    /** Remove preferences from DB
     *  Used by class preferences: use that class to modify settings!
     * @class sql
@@ -296,6 +272,8 @@
      $this->dbquery("DELETE FROM preferences WHERE name='filter'");
    }
 
+   ############################################################################
+   # people and their names
    ############################################################################
    /** Format a name's array (private! just an internal helper func)
     * @class sql
@@ -319,7 +297,6 @@
      return $name;
    }
 
-   ############################################################################
    /** Get all data for a person and return it as array (privat! internal helper)
     * @class sql
     * @method get_person
@@ -352,7 +329,6 @@
      return $person;
    }
 
-   ############################################################################
    /** Get all data for an actor and return it as array (wrapper to get_person)
     * @class sql
     * @method get_actor
@@ -363,7 +339,6 @@
      return $this->get_person($id,"actors");
    }
 
-   ############################################################################
    /** Get all data for a director and return it as array (wrapper to get_person)
     * @class sql
     * @method get_director
@@ -374,7 +349,6 @@
      return $this->get_person($id,"directors");
    }
 
-   ############################################################################
    /** Get all data for a componist and return it as array (wrapper to get_person)
     * @class sql
     * @method get_music
@@ -445,6 +419,8 @@
    }
 
    ############################################################################
+   # technical data
+   ############################################################################
    /** Get audio/video data and return it as array (privat! internal helper)
     * @class sql
     * @method get_av
@@ -474,7 +450,6 @@
      return $av;
    }
 
-   ############################################################################
    /** Get all pict data and return it as array (wrapper to get_av)
     * @class sql
     * @method get_pict
@@ -485,7 +460,6 @@
      return $this->get_av($id,"pict");
    }
 
-   ############################################################################
    /** Get all color data and return it as array (wrapper to get_av)
     * @class sql
     * @method get_color
@@ -496,7 +470,6 @@
      return $this->get_av($id,"colors");
    }
 
-   ############################################################################
    /** Get all tone data and return it as array (wrapper to get_av)
     * @class sql
     * @method get_tone
@@ -507,7 +480,6 @@
      return $this->get_av($id,"tone");
    }
 
-   ############################################################################
    /** get data for commercials
     * @class sql
     * @method get_commercials
@@ -536,6 +508,8 @@
    }
 
    ############################################################################
+   # movie data
+   ############################################################################
    /** Get movie ids
     * @class sql
     * @method get_movieid
@@ -559,14 +533,14 @@
      }
    }
 
-   ############################################################################
    /** Get all data for a movie entry and return it as array
     * @class sql
     * @method get_movie
     * @param integer id movie id
     * @return array array with detailled movie information
     * @version array description:<pre>
-    *  Media data: mtype_id, mtype, mtype_short, cass_id, part
+    *  Media data: mtype_id, mtype, mtype_short, cass_id, part,
+    *              previous, next (see get_preventry/get_nextentry)
     *  Tech  data: color, color_short, color_id, tone, tone_short, tone_id,
     *              pict, pict_short, pict_id, commercials, commercials_id,
     *              lp
@@ -678,10 +652,11 @@
        $movie[commercials] = lang("unknown");
      }
      if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
+     $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
+     $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
      return $movie;
    }
 
-   ############################################################################
    /** Get movie list as array of movies (see get_movie)
     * @class sql
     * @method get_movielist
@@ -726,7 +701,6 @@
      return $movielist;
    }
 
-   ############################################################################
    /** Get movie list for cat1 as array of movies (see get_movie)
     *  (wrapper to get_movielist)
     * @class sql
@@ -739,7 +713,6 @@
      return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
    }
 
-   ############################################################################
    /** Get movie list by staff member as array of movies (see get_movie)
     * @class sql
     * @method get_movienamelist
@@ -793,7 +766,6 @@
      return $list;
    }
 
-   ############################################################################
    /** Get last movie numbers for each media type
     * @class sql
     * @method get_lastmovienum
@@ -820,7 +792,63 @@
      return $lastnum;
    }
 
-   ############################################################################
+   /** Get the next entry
+    * @class sql
+    * @method get_nextentry
+    * @param integer mtype_id media type id of current entry
+    * @param integer media_nr number of current medium
+    * @param integer part part number of current entry
+    * @return object next entry: mtype_id, media_rn, part
+    * @todo does not handle holes on media (e.g. medium with 3 movies, #2
+    *  deleted) nor holes in media number (e.g. medium #5 deleted, but 6 exists)
+    */
+   function get_nextentry($mtype_id,$media_nr,$part) {
+     $next->mtype_id = $mtype_id;
+     $next->media_nr = $media_nr;
+     $next->part     = ++$part;
+     if ( $this->get_movieid($mtype_id,$media_nr,$next->part) ) {
+       return $next;
+     }
+     $next->part = 1; ++$next->media_nr;
+     if ( $this->get_movieid($mtype_id,$next->media_nr,$next->part) )
+       return $next;
+     ++$next->mtype_id; $next->media_nr = 1;
+     if ( $this->get_movieid($next->mtype_id,$next->media_nr,$next->part) )
+       return $next;
+     return FALSE;
+   }
+
+   /** Get the previous entry
+    * @class sql
+    * @method get_preventry
+    * @param integer mtype_id media type id of current entry
+    * @param integer media_nr number of current medium
+    * @param integer part part number of current entry
+    * @return object next entry: mtype_id, media_rn, part
+    * @todo does not handle holes on media (e.g. medium with 3 movies, #2
+    *  deleted) nor holes in media number (e.g. medium #5 deleted, but 6 exists)
+    */
+   function get_preventry($mtype_id,$media_nr,$part) {
+     $prev->mtype_id = $mtype_id;
+     $prev->media_nr = $media_nr;
+     $prev->part     = --$part;
+     if ( $prev->part && $id=$this->get_movieid($mtype_id,$media_nr,$prev->part) )
+       return $prev;
+     --$prev->media_nr; $prev->part = 1;
+     if ( $this->get_movieid($mtype_id,$prev->media_nr,$prev->part) )
+       return $prev;
+     --$prev->mtype_id;
+     $last = $this->get_lastmovienum();
+     for ($i=0;$i<count($last);++$i) {
+       if ($last[$i][mtype_id]==$prev->mtype_id) {
+         $prev->part = $last[$i][part];
+	 $prev->media_nr = $last[$i][cass_id];
+	 return $prev;
+       }
+     }
+     return FALSE;
+   }
+
    /** Add a movie to DB
     * @class sql
     * @method add_movie
@@ -857,7 +885,6 @@
      return $success;
    }
 
-   ############################################################################
    /** Move a movie to a new place
     * @class sql
     * @method move_movie
@@ -892,6 +919,29 @@
    ############################################################################
    # Media Specific Stuff
    ############################################################################
+
+   /** Get all media types and return them as array
+    * @class sql
+    * @method get_mtypes
+    * @param optional string restrict WHERE clause
+    * @return array array of media types
+    */
+   function get_mtypes($restrict="") {
+     if ( strlen($restrict) ) {
+       $where = " WHERE $restrict";
+     } else {
+       $where = "";
+     }
+     $this->dbquery("SELECT id,name,sname FROM mtypes $where ORDER BY id");
+     $i = 0;
+     while ( $this->next_record() ) {
+       $mtypes[$i][id] = $this->f('id');
+       $mtypes[$i][sname] = $this->f('sname');
+       $mtypes[$i][name] = $this->f('name');
+       ++$i;
+     }
+     return $mtypes;
+   }
 
    /** Insert a medium into the media table (if not yet exists)
     * @class sql

@@ -14,6 +14,8 @@
 
 # $page_id = "dupes";
  include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
+
  include("inc/header.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"dupes.tpl"));

@@ -21,6 +21,9 @@
  $page_id = "media_change";
 
  include("inc/includes.inc");
+ if ( ($copy && !$pvp->auth->add) || ($change && !$pvp->auth->update) ) {
+   kickoff(); // kick-off unauthorized visitors
+ }
  if ( $copy || $change ) {
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";

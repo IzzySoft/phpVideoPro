@@ -446,7 +446,7 @@
      }
      if (strlen($filter)) $restrict .= " AND ($filter)";
      $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,v.year,v.aq_date,"
-	    . "mt.name as mtname,mt.sname as mtsname,"
+	    . "v.mtype_id,mt.name as mtname,mt.sname as mtsname,"
 	    . "cat1.name as cat1name "
 	    . "FROM video v, mtypes mt, cat cat1 "
 	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
@@ -459,7 +459,7 @@
        $movie[$firstname] = $name[firstname];
        $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
        $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
-       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date");
+       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }

@@ -13,12 +13,13 @@
  /* $Id$ */
 
  $page_id = "admin_printers";
+ $save_result = "";
  include( dirname(__FILE__) . "/../inc/includes.inc");
 
  #=================================================[ Register global vars ]===
  $postit = array ("new_name","new_unit","new_top","new_left","lines");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
  }
  unset($postit);
 
@@ -26,8 +27,9 @@
  if (!$pvp->auth->admin) kickoff();
 
  #========================================================[ process input ]===
- if ($_POST["submit"]) {
+ if (isset($_POST["submit"])) {
    for ($i=0;$i<$lines;++$i) {
+     $upd = "";
      $print_id = "print".$i."_id"; $print_name = "print".$i."_name";
      $print_unit = "print".$i."_unit"; $print_top = "print".$i."_top";
      $print_left = "print".$i."_left";
@@ -41,7 +43,7 @@
        }
      }
    }
-   if ($upd) {
+   if (!empty($upd)) {
      $upd = substr($upd,1);
      $save_result = "<SPAN CLASS='error'>".lang("printer_upd_failed",$upd)."</SPAN><BR>";
    } else {
@@ -91,9 +93,9 @@
    }
    $select = "<SELECT NAME='$name'>";
    for ($i=0;$i<$ucount;++$i) {
-     $select .= "<OPTION VALUE='".$units[$i][id]."'";
-     if ($units[$i][id]==$value) $select .= " SELECTED";
-     $select .= ">".$units[$i][unit]."</OPTION>";
+     $select .= "<OPTION VALUE='".$units[$i]['id']."'";
+     if ($units[$i]['id']==$value) $select .= " SELECTED";
+     $select .= ">".$units[$i]['unit']."</OPTION>";
    }
    $select .= "</SELECT>";
    return $select;
@@ -110,7 +112,8 @@
    $t->set_var("print_unit",make_unit($print_unit,$printers[$i]->unit_id));
    $t->set_var("print_top",make_input($print_top,$printers[$i]->top_offset));
    $t->set_var("print_left",make_input($print_left,$printers[$i]->left_offset));
-   $t->parse("item","itemblock",TRUE);
+   if ($i) $t->parse("item","itemblock",TRUE);
+     else $t->parse("item","itemblock");
  }
  $t->set_var("print_id",make_input("new_id","?","button").make_input("new_id","","hidden"));
  $t->set_var("print_name",make_input("new_name","","text","catinput"));

@@ -305,6 +305,51 @@
    }
 
    ############################################################################
+   # User managment
+   ############################################################################
+   /** Get all users
+    * @class sql
+    * @method get_userlist
+    * @return mixed array users (array of objects;
+    *  properties: id,login,pwd (md5 hash), admin,browse,ins,upd,del, comment)
+    *  or FALSE if no users in DB
+    */
+   function get_userlist() {
+     $this->query("SELECT id,login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users");
+     $i=0;
+     while ( $this->next_record() ) {
+       $users[$i]->id     = $this->f('id');
+       $users[$i]->login  = $this->f('login');
+       $users[$i]->pwd    = $this->f('pwd');
+       $users[$i]->admin  = $this->f('admin');
+       $users[$i]->browse = $this->f('browse');
+       $users[$i]->add    = $this->f('ins');
+       $users[$i]->upd    = $this->f('upd');
+       $users[$i]->del    = $this->f('del');
+       $users[$i]->comment= $this->f('comment');
+       ++$i;
+     }
+     if ($i) { return $users; } else { return FALSE; }
+   }
+
+   /** Update user
+    * @class sql
+    * @method set_user
+    * @param object user single user object (as defined as element of userlist array)
+    * @return boolean success
+    */
+   function set_user($user) {
+     $query = "UPDATE pvp_users SET login='".$user->login."',admin=".$user->admin
+            . ",browse=".$user->browse.",ins=".$user->add.",upd=".$user->upd
+	    . ",del=".$user->del.",comment='".$user->comment."'";
+     if (isset($user->pwd)) $query .= ",pwd='".md5($user->pwd)."'";
+     $query .= " WHERE id=".$user->id;
+     $this->dbquery($query);
+     if ( $this->affected_rows() < 0 ) return FALSE;
+     return TRUE;
+   }
+
+   ############################################################################
    # people and their names
    ############################################################################
    /** Format a name's array (private! just an internal helper func)

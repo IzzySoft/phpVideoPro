@@ -226,7 +226,7 @@ class Template {
    * @return boolean FALSE
    */
   function pparse($target, $handle, $append = false) {
-    print $this->parse($target, $handle, $append);
+    print $this->finish( $this->parse($target, $handle, $append) );
     return false;
   }
   
@@ -295,7 +295,7 @@ class Template {
   /** Finnish a block (handle unknowns)
    * @package Api
    * @class Template
-   * @method finnish
+   * @method finish
    * @param string str string to finish.
    * @return string finnished string (parsed template)
    */

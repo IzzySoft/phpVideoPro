@@ -12,12 +12,13 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- updating help files :)
 
 coming *next*:
-- search function
+- user accounts
 
 coming *sometimes* (maybe):
+- search function
+- form(s) to edit translations
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - overview "per tape" (should look equivalent to taperest)
 - new database field: "lent to" (to find out where your media *really* are :)

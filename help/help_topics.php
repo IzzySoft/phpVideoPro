@@ -29,10 +29,13 @@
     li("music",2);
     li("taperest_absolute",2);
     li("taperest_filtered",2);
+   li("print");
+    li("label",2);
   headline("other_pages");
    li("view_entry");
   headline("howto");
    li("howto_lang");
    li("howto_help");
    li("howto_templates");
+   li("howto_label");
 ?>

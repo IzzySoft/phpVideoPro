@@ -294,11 +294,19 @@
     * @class sql
     * @method get_preferences
     * @param string name preference name
+    * @param optional integer user_id
     * @return mixed setting of requested preference
     * @see preferences::filter
     */
-   function get_preferences($name) {
-     $this->query("SELECT value FROM preferences WHERE name='$name'");
+   function get_preferences($name,$user_id="") {
+     if ($user_id=="") {
+       $preftab  = "preferences";
+       $restrict = "";
+     } else {
+       $preftab  = "pvp_userprefs";
+       $restrict = "AND user_id=$user_id";
+     }
+     $this->query("SELECT value FROM $preftab WHERE name='$name' $restrict");
      if ( $this->next_record() ) {
        return $this->f('value');
      } else {
@@ -312,16 +320,26 @@
     * @method set_preferences
     * @param string name
     * @param mixed value
+    * @param optional integer user_id
     * @see preferences::filter
     */
-   function set_preferences($name,$value) {
+   function set_preferences($name,$value,$user_id="") {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
-     $this->query("SELECT value FROM preferences WHERE name='$name'");
-     if ( $this->next_record() ) {
-       $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
+     if ($user_id=="") {
+       $preftab  = "preferences";
+       $restrict = "";
+       $insert   = "INSERT INTO $preftab (name,value) VALUES ('$name','$value')";
      } else {
-       $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value')");
+       $preftab  = "pvp_userprefs";
+       $restrict = "AND user_id=$user_id";
+       $insert   = "INSERT INTO $preftab (user_id,name,value) VALUES ($user_id,'$name','$value')";
+     }
+     $this->query("SELECT value FROM $preftab WHERE name='$name' $restrict");
+     if ( $this->next_record() ) {
+       $this->dbquery("UPDATE $preftab SET value='$value' WHERE name='$name' $restrict");
+     } else {
+       $this->dbquery($insert);
      }
    }
 

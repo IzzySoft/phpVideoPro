@@ -20,9 +20,6 @@ coming *next*:
 coming *sometimes* (maybe):
 - movie language setting(s)
 - honour date format settings in all places
-- move colors for notifications directly to the stylesheets to make them
-  completely template dependant (and then move "template" selection to the
-  "common" block of the configuration screen and delete the "color" block)
 - add "sample-links" to translation editor
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - new database field: "lent to" (to find out where your media *really* are :)

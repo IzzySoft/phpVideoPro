@@ -8,7 +8,7 @@
  <li>added list printing functionality. Right now, it prepares the lists for
      either directly being printed (spartanic ASCII version) or exported to
      your favorite word processor / spread sheet for further processing
-     (CSV version)
+     (HTML and CSV version)
  <li>made date format configurable (right now just used with the list printing,
      everything else will follow)
  <li>added/updated some help pages

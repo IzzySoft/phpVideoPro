@@ -33,7 +33,7 @@
    </Table></TD>
   <TD ColSpan=2>
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>
-    <TR><TD><B>{staff_name}</B></TD><TD>{name_name}</TD><TD>{firstname_name}</TD><TD><DIV ALIGN="center">{inlist_name}</DIV></TD></TR>
+    <TR><TD><DIV ALIGN="center"><B>{staff_name}</B></DIV></TD><TD><DIV ALIGN="center">{name_name}</DIV></TD><TD><DIV ALIGN="center">{firstname_name}</DIV></TD><TD><DIV ALIGN="center">{inlist_name}</DIV></TD></TR>
     <TR><TD>{director_name}</TD><TD>{director}</TD><TD>{director_f}</TD><TD><div align=center>{director_list}</div></TD></TR>
     <TR><TD>{composer_name}</TD><TD>{composer}</TD><TD>{composer_f}</TD><TD><div align=center>{composer_list}</div></TD></TR>
     <TR><TD COLSPAN="4"><HR></TD></TR>

@@ -9,11 +9,11 @@
 <? if ($pvp->auth->admin) { ?>
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$base_url?>admin/cats.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_filter")?>", "<?=$base_url?>admin/filters.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$base_url?>admin/orphans.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$base_url?>admin/backup_db.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$base_url?>admin/configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$pvp->link->slink($base_url.'admin/cats.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_filter")?>", "<?=$pvp->link->slink($base_url.'admin/filters.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$pvp->link->slink($base_url.'admin/orphans.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$pvp->link->slink($base_url.'admin/backup_db.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$pvp->link->slink($base_url.'admin/configure.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
   myNavBar1.addMenu(dhtmlMenu);
@@ -23,32 +23,32 @@
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
   <? if ($pvp->auth->add) { ?>
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$base_url?>new.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$pvp->link->slink($base_url.'new.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   <? } ?>
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$base_url?>configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$pvp->link->slink($base_url.'configure.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("filter")?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("set_filter")?>", "<?=$base_url?>setfilter.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("unset_filter")?>", "<?=$base_url?>setfilter.php?reset=1"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("set_filter")?>", "<?=$pvp->link->slink($base_url.'setfilter.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("unset_filter")?>", "<?=$pvp->link->slink($base_url.'setfilter.php?reset=1')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(140, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("view")?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("start_page")?>", "<?=$base_url?>index.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("start_page")?>", "<?=$pvp->link->slink($base_url.'index.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$base_url?>medialist.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("actors")?>", "<?=$base_url?>stafflist.php?stafftype=actors"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("directors")?>", "<?=$base_url?>stafflist.php?stafftype=directors"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("composer")?>", "<?=$base_url?>stafflist.php?stafftype=music"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$pvp->link->slink($base_url?>medialist.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("actors")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=actors')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("directors")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=directors')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("composer")?>", "<?=$pvp->link->slink($base_url.'stafflist.php?stafftype=music')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_absolute")?>", "<?=$base_url?>taperest.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_filtered")?>", "<?=$base_url?>taperest.php?usefilter=1"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_absolute")?>", "<?=$pvp->link->slink($base_url.'taperest.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_filtered")?>", "<?=$pvp->link->slink($base_url.'taperest.php?usefilter=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes")?>", "<?=$base_url?>dupes.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$base_url?>stats.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes")?>", "<?=$pvp->link->slink($base_url.'dupes.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$pvp->link->slink($base_url.'stats.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);
@@ -57,8 +57,8 @@
 
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("print")?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?>", "<?=$base_url?>label.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("lists")?>", "<?=$base_url?>listgen.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?>", "<?=$pvp->link->slink($base_url.'label.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("lists")?>", "<?=$pvp->link->slink($base_url.'listgen.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);
@@ -86,7 +86,7 @@ if ($page_id) { ?>
 
     // Get width of window, need to account for scrollbar width in Netscape.
 
-    fullWidth = getWindowWidth() 
+    fullWidth = getWindowWidth()
       - (isMinNS4 && getWindowHeight() < getPageHeight() ? 16 : 0);
 
 //    myNavBar1.moveTo(10,36);

@@ -276,47 +276,57 @@ function getPageOffsetTop(el) {
 <!-- Tags for the drop down menus. -->
 
 <div id="adminMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>admin/cats.php"><?=lang("admin_cats") ?></a>
-<a class="menuItem" href="<?=$base_url ?>admin/users.php"><?=lang("admin_users") ?></a>
-<a class="menuItem" href="<?=$base_url ?>admin/filters.php"><?=lang("admin_filter") ?></a>
-<a class="menuItem" href="<?=$base_url ?>admin/orphans.php"><?=lang("admin_orphans") ?></a>
-<a class="menuItem" href="<?=$base_url ?>admin/backup_db.php"><?=lang("backup_db") ?></a>
-<a class="menuItem" href="<?=$base_url ?>admin/configure.php"><?=lang("configuration") ?></a>
-<div class="menuItemSep"></div>
+<?
+ echo $pvp->link->linkurl($base_url."admin/cats.php",lang("admin_cats"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/users.php",lang("admin_users"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/filters.php",lang("admin_filter"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/orphans.php",lang("admin_orphans"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/backup_db.php",lang("backup_db"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."admin/configure.php",lang("configuration"),"class='menuItem'") ."\n";
+?>
+<div class='menuItemSep'></div>
 <a class="menuItem" href="http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"><?=lang("dl_pvp_latest") ?></a>
 </div>
 
 <div id="editMenu" class="menu">
-<? if ($pvp->auth->add) { ?>
-<a class="menuItem" href="<?=$base_url ?>new.php"><?=lang("add_entry") ?></a>
-<div class="menuItemSep"></div>
-<? } ?>
-<a class="menuItem" href="<?=$base_url ?>configure.php"><?=lang("preferences") ?></a>
+<?
+ if ($pvp->auth->add) {
+  echo $pvp->link->linkurl($base_url."new.php",lang("add_entry"),"class='menuItem'") ."\n";
+  echo "<div class='menuItemSep'></div>\n";
+ }
+ echo $pvp->link->linkurl($base_url."configure.php",lang("preferences"),"class='menuItem'") ."\n";
+?>
 </div>
 
 <div id="filterMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("set_filter") ?></a>
-<a class="menuItem" href="<?=$base_url ?>setfilter.php?reset=1"><?=lang("unset_filter") ?></a>
+<?
+ echo $pvp->link->linkurl($base_url."setfilter.php",lang("set_filter"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."setfilter.php?reset=1",lang("unset_filter"),"class='menuItem'") ."\n";
+?>
 </div>
 
 <div id="viewMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>index.php"><?=lang("start_page") ?></a>
-<div class="menuItemSep"></div>
-<a class="menuItem" href="<?=$base_url ?>medialist.php"><?=lang("medialist") ?></a>
-<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=actors"><?=lang("actors") ?></a>
-<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=directors"><?=lang("directors") ?></a>
-<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=music"><?=lang("composer") ?></a>
-<div class="menuItemSep"></div>
-<a class="menuItem" href="<?=$base_url ?>taperest.php"><?=lang("taperest_absolute") ?></a>
-<a class="menuItem" href="<?=$base_url ?>taperest.php?usefilter=1"><?=lang("taperest_filtered") ?></a>
-<div class="menuItemSep"></div>
-<a class="menuItem" href="<?=$base_url ?>dupes.php"><?=lang("dupes") ?></a>
-<a class="menuItem" href="<?=$base_url ?>stats.php"><?=lang("db_stats") ?></a>
+<?
+ echo $pvp->link->linkurl($base_url."index.php",lang("start_page"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
+ echo $pvp->link->linkurl($base_url."medialist.php",lang("medialist"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."stafflist.php?stafftype=actors",lang("actors"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."stafflist.php?stafftype=directors",lang("directors"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."stafflist.php?stafftype=music",lang("composer"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
+ echo $pvp->link->linkurl($base_url."taperest.php",lang("taperest_absolute"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."taperest.php?usefilter=1",lang("taperest_filtered"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
+ echo $pvp->link->linkurl($base_url."dupes.php",lang("dupes"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."stats.php",lang("db_stats"),"class='menuItem'") ."\n";
+?>
 </div>
 
 <div id="printMenu" class="menu">
-<a class="menuItem" href="<?=$base_url ?>label.php"><?=lang("labels") ?></a>
-<a class="menuItem" href="<?=$base_url ?>listgen.php"><?=lang("lists") ?></a>
+<?
+ echo $pvp->link->linkurl($base_url."label.php",lang("labels"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."listgen.php",lang("lists"),"class='menuItem'") ."\n";
+?>
 </div>
 
 <div id="helpMenu" class="menu">

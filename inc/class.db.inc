@@ -1614,7 +1614,16 @@
          return $next;
        }
      }
-     ++$next->mtype_id;
+     $mts   = $this->get_mtypes();
+     $maxid = 0;
+     for ($i=0;$i<count($mts);++$i) {
+       $mtid = $mts[$i][id];
+       $mt[$mtid] = 1;
+       if ($mtid>$maxid) $maxid = $mtid;
+     }
+     do {
+       ++$next->mtype_id;
+     } while ( (!isset($mt[$next->mtype_id])) && ($next->mtype_id<$maxid) );
      $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=".$next->mtype_id);
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
@@ -1658,7 +1667,16 @@
          return $prev;
        }
      }
-     --$prev->mtype_id;
+     $mts   = $this->get_mtypes();
+     for ($i=0;$i<count($mts);++$i) {
+       $mtid = $mts[$i][id];
+       $mt[$mtid] = 1;
+       if (!isset($minid)) $minid = $mtid;
+         elseif ($mtid<$minid) $minid = $mtid;
+     }
+     do {
+       --$prev->mtype_id;
+     } while ( (!isset($mt[$prev->mtype_id])) && ($prev->mtype_id>$minid) );
      $last = $this->get_lastmovienum();
      for ($i=0;$i<count($last);++$i) {
        if ($last[$i][mtype_id]==$prev->mtype_id) {

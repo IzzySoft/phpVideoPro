@@ -19,6 +19,7 @@
  $labels_pp = 8; // how many labels per page
  include("inc/includes.inc");
  include("inc/class.label.inc");
+ $printer_id = $pvp->preferences->get("printer_id");
 
  #== Step 3 =====[ create a sheet of labels and output as PostScript ]===
 if (isset($create)) { // we have to create label sheet

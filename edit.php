@@ -341,7 +341,7 @@ EndHiddenFields;
   # Commercials
   $t->set_var("commercial_name",lang("commercials"));
   if ($edit) {
-    $field = "<SELECT NAME=\"commercials\" class=\"techinput\">";
+    $field = "<SELECT NAME=\"commercials_id\" class=\"techinput\">";
     for ($k=0;$k<count($comm);$k++) {
       $field .= "<OPTION VALUE=\"$comm_id[$k]\"";
       if ($commercials_id==$comm_id[$k]) $field .= " SELECTED";

@@ -2,7 +2,7 @@
 <? /* $Id$ */ ?>
 
 [title]
-*preferences#
+Backup
 
 [text]
 There are different types of backups possible:<ul>
@@ -13,6 +13,9 @@ There are different types of backups possible:<ul>
      installation scripts.</li>
  <li><b><i>"*backup_db_movie_internal#"</i></b> will only backup the data you
      entered for your movies, i.e. the actors, directors, comments etc.</li>
+ <li><b><i>"*backup_db_cats#"</i></b> generates a backup of all installed
+     categories, including all translations for the category names that are
+     available in your database.</li>
  <li><b><i>"*backup_db_sysconf#"</i></b> backs up all data you maintain via
      the menu <i>*admin# -&gt; *configuration#</i>, i.e. the system
      configuration and default preferences, plus the printers.</li>
@@ -26,22 +29,20 @@ to even transfer data between different database types, e.g. to migrate from
 PostgreSQL to MySQL or vice versa. For this type of data, the interface also
 offers a "Restore" command (<i>"*restore_db_internal#"</i>).
 
-[title]
-Backup
+[text]
+The checkbox <b><i>"*backup_compress#"</i></b> tells phpVideoPro to compress
+the output file. This will only work if your installation of PHP is compiled
+with <code>gzip</code> support. If this is not the case, you will see an error
+when you try to enable it.
 
 [text]
-Chose the type of backup you want to create. The checkbox <i>"*backup_compress#"</i>
-tells phpVideoPro to compress the output file. This will only work if your
-installation of PHP is compiled with <code>gzip</code> support. If this is not
-the case, you will see an error when you try to enable it.
-
-[text]
-After having pressed the <i>"*button_backup#"</i> button, your browser will
-prompt you for a location to save the backup file to. Until then, it may take a
-while, depending on the size of your database and the type of backup chosen.
+After you chose the backup type and pressed the <i>"*button_backup#"</i> button,
+your browser will prompt you for a location to save the backup file to. Until
+then, it may take a while, depending on the size of your database and the type
+of backup chosen.
 
 [title]
-Restore from a <code>*.pvp</code> backup
+Restore movies from a <code>*.pvp</code> backup
 
 [text]
 To restore from a <code>*.pvp</code> backup, you first must place the backup
@@ -74,19 +75,13 @@ Moreover, if any imported movie contains an audio or subtitle channel for a
 language you did not (yet) activate for audio/subtitle: do not worry -
 phpVideoPro takes care for that, too.
 
-[title]
-Replace or Append?
-
 [text]
-This checkbox only affects the restore of movies. If you restore a system
-config backup, the setting of "<i>*clean_restore#</i>" will not be considered
-at all.
-
-[text]
-If you "screwed up" your database and want to replace all entries, just check
-the "<i>*clean_restore#</i>" box. This will first remove all entries from the
-database, and then import the new data from your backup file. If you just want
-to import an entire database from a different machine as duplicate, do the same.
+If you check the "<b><i>*clean_restore#</i></b>" box, phpVideoPro first
+deletes all movies from the database and then applies the data from the backup.
+All data (e.g. MediaNr) from the backup will be taken to the DB as they are
+contained in the file. This is useful when you e.g. "screwed up" your database
+and want to restore it to a previous state, or when you want to copy (duplicate)
+a complete database to a new machine.
 
 [text]
 If you uncheck this box, all movies from the backup file will be <i><b>appended</b></i>
@@ -98,6 +93,26 @@ that, if you started with a fresh installation, all "gaps" in the *medianr#
 resulting from removed media will be closed, and you will start with a straight
 line from 1 to n without "gaps" (and, of course, with a lower "highest entry"
 number).
+
+[title]
+Restore categories from a <code>*.pvp</code> file
+
+[text]
+Categories contained in the backup, but not existing in the database, will be
+added to the database. There will be no changes made to their settings (e.g.
+if they should be used or not) at all. All translations for the category names
+that are contained in the backup will be written to the database - but only for
+the languages you have installed. If the "<i>*clean_restore#</i>" button is
+checked, already existing translations will be skipped (i.e. not replaced by
+the values from the backup).
+
+[title]
+Restore a system backup from a <code>*.pvp</code> file
+
+[text]
+When restoring a system config backup, the setting of "<i>*clean_restore#</i>"
+will not be considered at all. All settings from the backup will replace your
+settings in the database.
 
 [title]
 Restore (full)

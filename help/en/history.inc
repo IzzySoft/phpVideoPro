@@ -24,6 +24,8 @@
  <li>some "first-time-visitors" did not notice the menu bar and thus did not
      know how to navigate (which was the reason for the "initial newbie text").
      Now added a small icon to the start of the menu bar to draw the attention
+ <li>fixed a logic error in detecting whether user supports cookies which
+     resulted in a failure every 2nd try
 </ul>
 
 [title]

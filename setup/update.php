@@ -17,6 +17,7 @@ $runupdate = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
+include("css.inc");
 $db->Host     = $database["host"];
 $db->Database = $database["database"];
 $db->User     = $database["user"];
@@ -56,13 +57,14 @@ if ( !isset($oldversion) ){
 }
 echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
 echo "<H2 ALIGN=CENTER>$title</H2>\n";
-echo "<TABLE ALIGN=CENTER WIDTH=90%><TR><TD>\n";
+echo "<TABLE ALIGN='center' WIDTH='90%'>\n";
 
 #=====================================================[ Output user info ]===
 if ( !isset($oldversion) ) {
   $oldversion = get_version();
 ?>
-
+<TR><TH>Preamble</TH></TR>
+<TR><TD>
 <P ALIGN=JUSTIFY>This simple script will update your database from a previous
  version of phpVideoPro to the recent one. I strongly recommend you to backup
  your existing database before executing the script! Furthermore, please
@@ -79,6 +81,7 @@ if ( !isset($oldversion) ) {
 <?
 #========================================================[ Do the update ]===
 } else {
+  echo "<TR><TH>Updating...</TH></TR>\n<TR><TD>";
   $final = "";
   echo "<UL>\n";
 
@@ -111,10 +114,10 @@ if ( !isset($oldversion) ) {
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
-  echo "</UL>\n";
+  echo "</UL><DIV ALIGN='center'>\n";
   if ($final) echo "$final<br>\n";
-  echo "<P ALIGN=JUSTIFY>If everything went right, you can now proceed to the\n"
-      ." <a href=\"configure.php\">configuration</a> page.</p>\n";
+  echo "<P>If everything went right, you can now proceed to the\n"
+      ." <a href=\"configure.php\">configuration</a> page.</p></DIV>\n";
 }
 
 #=========================================================[ Closing page ]===

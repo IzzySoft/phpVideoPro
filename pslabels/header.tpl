@@ -41,6 +41,9 @@
 /label_cols { {_label_cols_} } bdef
 /label_rows { {_label_rows_} } bdef
 %%
+%% language adaptations for label text fields
+/lang_director { ({_lang_director_}) } bdef
+/lang_actor { ({_lang_actor_}) } bdef
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% ENDE VARAIBLER TEIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,6 +187,20 @@ grestore
     currentdict 
   end 
 } bind def
+
+%% Concatenate two strings and return result
+%% str1 str2 StrCat result
+%%
+/StrCat
+{
+  /Str2 exch def
+  /Str1 exch def
+  Str1 length Str2 length add string /Str3 exch def
+  Str3 0 Str1 putinterval
+  Str3 Str1 length Str2 putinterval
+  Str3
+} def
+
 
 %% A Simple Line Breaking Algorithm
 %%

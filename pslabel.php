@@ -51,6 +51,9 @@ if (isset($create)) { // we have to create label sheet
   $t->set_var("_label_cols_",$ltypes[label_cols]);
   $t->set_var("_label_rows_",$ltypes[label_rows]);
 
+  $t->set_var("_lang_director_",lang("director"));
+  $t->set_var("_lang_actor_",lang("actor"));
+
   $t->pparse("out","list");
 #
 # ps header generated, now come the labels
@@ -123,6 +126,23 @@ closepath clip \n",$eps_llx, $eps_lly, $eps_urx, $eps_ury);
   echo "%% FILE: $pvp->pstpl_dir/$eps_file[ps]\n";
 
   $pslabel =  file($pvp->pstpl_dir . "/" . $eps_file[ps]);
+### NEW
+  # get switches and values from ps template into this engine
+  # such as maximum number of text lines or maximum
+  # usable area size (x and y) for printing and line feed control
+  # maybe this should better go into the database as a property
+  # of the eps template
+  for ($lines=0;$lines<count($pslabel);$lines++) {
+    preg_match_all("/\{\!\S+\!\}/",$pslabel[$lines],$lswitches);
+    $matchcount = count($lswitches[0]);
+    for ($k=0;$k<$matchcount;$k++) { // replace placeholders
+      # make clean name of var for data base lookup
+      $var  = substr($lswitches[0][$k],2,strlen($lswitches[0][$k])-4);
+      # now lookup var in data base and get value in $rvar
+      # $rvar = 
+      }
+    }
+### END NEW
   $t = new Template($pvp->pstpl_dir);
   $t->set_file(array("label"=>$eps_file[ps]));
   $t->set_block("label","definitionblock","definitionlist");

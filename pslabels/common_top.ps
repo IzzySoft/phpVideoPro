@@ -30,18 +30,25 @@ FG setgray
 
 <!-- BEGIN definitionblock -->
 /lncount 0 def
-({_length_})
-({_title_})
+({_length_})	%% length
+({_director_})	%% director
+({_actors12_})	%% actors12
+({_actors35_})	%% actors35
+({_country_})	%% country
+({_year_})	%% year
+
+({_title_})	%% title
 LL     %% line length in points
 {/lncount lncount 1 add def}
 BreakIntoLines
-lncount 1 add array astore %% one title broken up into several lines as one array
+lncount 6 add array astore %% one title broken up into several lines as one array
 /TTlines TTlines lncount add def
 
 <!-- END definitionblock -->
+% /TTlines TTlines this_lines 4.5 mul 0.7 mul add def       %% 4 additional small lines per title
+/TTlines TTlines this_lines 2.5 mul 0.7 mul add def       %% 2 additional small lines per title
 /new_height 1.2 inch TTlines div def
 new_height fs_max ge { /new_height fs_max def } if
-top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
 %% loop over all strings on stack and print
 %% this_lines contains the number of titles
 /tcount 0 def
@@ -51,13 +58,56 @@ top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
   /rcount rcount 1 sub def
   /ary exch def
   /title_length ary 0 get def
-  1 1 ary length 1 sub 
+  /title_director ary 1 get def
+  /title_actors12 ary 2 get def
+  /title_actors35 ary 3 get def
+  /title_country ary 4 get def
+  /title_year ary 5 get def
+  top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
+  6 1 ary length 1 sub 
     { 
     ary exch get
-    gsave show grestore
-    0 height neg rmoveto
+    gsave 1.35 inch 0 rmoveto c-show grestore
+    0 new_height neg rmoveto
     } for
-  title_length gsave 2.7 inch height rmoveto l-show grestore 
+
+  top-font findfont new_height 0.6 mul scalefont setfont
+  gsave
+   1.35 inch 0 rmoveto
+   lang_director (: ) StrCat title_director StrCat c-show
+  grestore
+
+  gsave
+   1.35 inch new_height 0.7 mul neg rmoveto
+   lang_actor (: ) StrCat title_actors12 StrCat
+   2.7 inch (...) stringwidth pop sub
+   { { (...) StrCat } if c-show }
+   TruncateLine
+  grestore
+%  0 new_height 0.9 mul 2.5 mul neg rmoveto
+
+title_actors35 length 0 gt 
+{
+  gsave
+   1.35 inch new_height 0.7 mul 2 mul neg rmoveto
+   title_actors35
+   2.7 inch (...) stringwidth pop sub
+   { { (...) StrCat } if c-show }
+   TruncateLine
+  grestore
+  0 new_height 0.9 mul 3.5 mul neg rmoveto
+}
+{
+  0 new_height 0.9 mul 2.5 mul neg rmoveto
+}
+ifelse
+
+%  gsave
+%   1.35 inch new_height 0.7 mul 3 mul neg rmoveto
+%   title_country ( ) StrCat title_year StrCat c-show
+%  grestore
+%  0 new_height 0.9 mul 4.5 mul neg rmoveto
+
   /tcount tcount 1 add def
   tcount this_lines ge { exit } if
 } loop

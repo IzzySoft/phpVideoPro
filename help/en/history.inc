@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.1 (2001)
+0.2.1 (September 30, 2001)
 [text]
 <ul>
  <li>made urls in commentfield (view entry) clickable
@@ -12,7 +12,7 @@
  <li>some design update on edit/view entry screen (w/o effect for NS 4.x :)
  <li>added new fields for counter & commercials to edit/view entry page
  <li>help system displayed nonsense when topic not found (fixed)
- <li>added new help topic(s)
+ <li>added new help topic and updated some existing ones
 </ul>
 
 [title]

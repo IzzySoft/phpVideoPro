@@ -18,7 +18,8 @@ include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
 include ("../inc/class.template.inc");
 $translations = $db->get_translations( $pvp->preferences->get("lang") );
-$topic = $_GET["topic"];
+$topic    = $_GET["topic"];
+$force_en = $_GET["force_en"];
 
 #=============================================[ Get the needed parameters ]===
 /** Find the input file for the requested help topic

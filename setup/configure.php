@@ -16,13 +16,7 @@
 if ($menue) {
   $page_id = "configuration";
   if ($admin) $root = "../";
-#  if ($update) {
-#    include ($root . "inc/config.inc");
-#    include ($root . "inc/config_internal.inc");
-#    include ($root . "inc/common_funcs.inc");
-#  } else {
-    include ($root . "inc/includes.inc");
-#  }
+  include ($root . "inc/includes.inc");
 } else {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
@@ -37,8 +31,6 @@ if ($admin) {
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
   $url = $PHP_SELF;
-  $colors["ok"]               = $color_ok;
-  $colors["err"]              = $color_err;
   $pvp->preferences->set("lang",$default_lang);
   $pvp->preferences->set("template",$template_set);
   $pvp->preferences->set("display_limit",$cdisplay_limit);
@@ -82,8 +74,6 @@ if ( isset($update) ) {
       $db->delete_translations($delete_lang);
     }
   }
-  $colorcode = rawurlencode( serialize($colors) );
-  if ($admin) $pvp->preferences->set("colors",$colorcode);
   #-----------------------------[ get available language files ]---
   if ($scan_langfile) {
     chdir("$base_path/setup");
@@ -111,7 +101,6 @@ $lang_installed = $db->get_installedlang();
 
 #======================================================[ get preferences ]===
 $lang_preferred = $pvp->preferences->get("lang");
-$colors         = $pvp->preferences->get("colors");
 $template_set   = $pvp->preferences->get("template");
 $cdisplay_limit = $pvp->preferences->get("display_limit");
 $cpage_length   = $pvp->preferences->get("page_length");
@@ -236,44 +225,6 @@ if ($admin) {
 
 #--[ complete language block ]--
 $t->parse("list","listblock");
-
-#-------------------------------------------[ setup block 2: color stuff ]---
-$t->set_var("list_head",lang("colors"));
-$color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
-
-if ($admin) { // this color array has probs with cookies
-  #--[ feedback "ok" ]--
-  $t->set_var("item_name",lang("feedback_ok"));
-  $t->set_var("item_comment","");
-  $t->set_var("item_input",$color_input . " NAME=\"color_ok\" VALUE=\"" . $colors["ok"] . "\">");
-  $t->parse("item","itemblock");
-
-  #--[ feedback "err" ]--
-  $t->set_var("item_name",lang("feedback_err"));
-  $t->set_var("item_comment","");
-  $t->set_var("item_input",$color_input . " NAME=\"color_err\" VALUE=\"" . $colors["err"] . "\">");
-  $t->parse("item","itemblock",TRUE);
-}
-
-#--[ template set ]--
-$t->set_var("item_name",lang("template_set"));
-$t->set_var("item_comment","");
-$select  = "<SELECT NAME=\"template_set\">";
-for ($i=0;$i<count($tpldir);$i++) {
-  $select .= "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
-  if ($tpldir[$i] == $template_set) $select .= " SELECTED";
-  $select .= ">" . ucfirst($tpldir[$i]) . "</OPTION>";
-}
-$select .= "</SELECT>";
-$t->set_var("item_input",$select);
-if ($admin) {
-  $t->parse("item","itemblock",TRUE);
-} else {
-  $t->parse("item","itemblock");
-}
-
-#--[ complete color block ]--
-$t->parse("list","listblock",TRUE);
 
 #-----------------------------------------[ setup block 3: movies & media ]---
 $t->set_var("list_head",lang("config_media"));
@@ -410,6 +361,20 @@ if ($admin) {
 
 #---------------------------------------------[ setup block 5: misc stuff ]---
 $t->set_var("list_head",lang("general"));
+$color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
+
+#--[ template set ]--
+$t->set_var("item_name",lang("template_set"));
+$t->set_var("item_comment","");
+$select  = "<SELECT NAME=\"template_set\">";
+for ($i=0;$i<count($tpldir);$i++) {
+  $select .= "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
+  if ($tpldir[$i] == $template_set) $select .= " SELECTED";
+  $select .= ">" . ucfirst($tpldir[$i]) . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock");
 
 #--[ printer_id ]--
 $t->set_var("item_name",lang("printer"));
@@ -423,7 +388,7 @@ for ($i=0;$i<count($printers);++$i) {
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
-$t->parse("item","itemblock");
+$t->parse("item","itemblock",TRUE);
 
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));

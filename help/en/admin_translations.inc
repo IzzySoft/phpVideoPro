@@ -64,6 +64,11 @@ page using the control elements you already might now from various other screens
 e.g. from the "*medialist#", make sure to save any changes/additions you've
 made here using the "*update#" button.
 
+[text]
+One more word: you must <b><i>not</i></b> add a translation if it is the same
+as the English phrase displayed in the "*orig_trans#" column -- if there's no
+translation found for your language, that value is used either.
+
 [title]
 Finnished editing?
 

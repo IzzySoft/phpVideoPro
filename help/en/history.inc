@@ -18,6 +18,7 @@
      part/media numbers) are now handled as expected. Up to now, we considered
      the "end of the world" instead and jumped to the previous/next medium resp.
      media type when hitting a gap ;)
+ <li>Spanish language support added - thanks to Pablo!
 </ul>
 
 [title]

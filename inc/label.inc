@@ -15,7 +15,7 @@
  class label {
 
    VAR $width, $height, $textcolor, $font, $color, $maxlines, $label,
-       $nr_coord, $main_coord, $symb_coord, $mm_conv, $entry;
+       $nr_coord, $main_coord, $symb_coord, $mm_conv, $entry, $titleline;
 
    function label($config) {
      GLOBAL $base_path;
@@ -117,23 +117,31 @@
    # write text to a label field
    function write_text($text,$field) {
      $font = $this->font;
-     for ($i=0;$i<count($text);$i++) { // find longest line
+     for ($i=0;$i<count($text),$font>0;$i++) { // find longest line
        $tfont = $font;
        $x[$i] = $this->get_textpos($text[$i],$field,&$tfont);
        if ($tfont < $font) $font = $tfont;
      }
      ++$font;
-     for ($i=0;$i<count($text);$i++) { // now align the text
-       $x[$i] = $this->get_textpos($text[$i],$field,$font);
-     }
      $vmidth = ceil($field[3] - $field[1]) / 2;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
      $y = $vmidth - (imagefontheight($font) * $lines / 2) + $field[1];
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
+     $movielines = count($this->entry);
      for ($i=0;$i<$lines;$i++) {
-       imagestring($this->label, $font, $x[$i], $y, "$text[$i]", $color);
-       $y += imagefontheight($font);
+       $mod = $i % $movielines;
+       if ($i % $movielines == $this->titleline) {
+         if ($font < 5) { 
+           $usefont = $font +1;
+           $x[$i] = $this->get_textpos($text[$i],$field,$usefont);
+	 }
+       } else {
+         $usefont = $font;
+         $x[$i] = $this->get_textpos($text[$i],$field,$font);
+       }
+       imagestring($this->label, $usefont, $x[$i], $y, "$text[$i]", $color);
+       $y += imagefontheight($usefont);
      }
    }
 
@@ -156,6 +164,10 @@
      for ($i=0;$i<$moviecount;$i++) {
        $movie = $db->get_movie($movies[$i]);
        for ($lines=0;$lines<count($this->entry);$lines++) {
+         if ( substr($this->entry[$lines],0,1) == "*" ) {
+	   $this->entry[$lines] = substr($this->entry[$lines],1);
+	   $this->titleline = $lines;
+	 }
          preg_match_all("/\{\S+\}/",$this->entry[$lines],$matches);
          $matchcount = count($matches[0]);
          $ttext = $this->entry[$lines];

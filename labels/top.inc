@@ -12,7 +12,7 @@ $symb_coord = "64,0,80,15";  # symbol field for genre symbol
 
 # what information should be displayed on the label (per movie)
 # we want multiple lines, so we use an array:
-$entry[] = "{title}";
+$entry[] = "*{title}";
 $entry[] = "{country} {year}";
 $entry[] = "Regie: {director}";
 $entry[] = "Darsteller: {actors12}";

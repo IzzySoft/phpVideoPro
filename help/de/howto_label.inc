@@ -44,8 +44,10 @@ Symbol - naja, letzteres wird derzeit noch nicht von phpVideoPro erstellt.<br>
 gewünscht wird) oder ein Array von Strings. Die Strings können aus einfachem
 Text bestehen, aber auch (durch geschweifte Klammern begrenzte) Variablen
 enthalten, die sodann durch die Filmdaten ersetzt werden. Eine Liste hierfür
-verfügbarer Variablen findet sich im nächsten Absatz.
-<br>
+verfügbarer Variablen findet sich im nächsten Block.<br>
+Um eine Zeile des Datensatzes als "Überschrift" zu markieren, ist als erstes
+Zeichen der Zeile ein "*" zu verwenden. Diese Zeile verwendet dann einen anderen
+(größeren) Font.<br>
 
 [title]
 Variablen für den Eintrag des Etiketts (entry)

@@ -44,8 +44,10 @@ phpVideoPro itself.<br>
 <b>entry</b>: this is either a string (if you just need one line of text per
 movie, e.g. for VideoTapes side labels) or an array. You can place plain text
 in it (will stay the same on all labels), plus use variables to be replaced
-by the movie's data. Variables are to be marked by curly braces. Below is a list
-of available variables.<br>
+by the movie's data. Variables are to be marked by curly braces. The next
+block contains a list of available variables.<br>
+You can mark one line of the array to hold the title, i.e. using a font
+different from the other lines, by making its first character a "*".<br>
 
 [title]
 Variables that may be used in the "entry" variable

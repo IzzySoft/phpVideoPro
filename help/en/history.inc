@@ -7,6 +7,7 @@
 <ul>
  <li>added managment (i.e. search for and deletion of) orphaned entries in/from
      the staff tables
+ <li>added database backup (humm, time for a separate admin menue, huh?)
 </ul>
 
 [title]

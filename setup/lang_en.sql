@@ -239,3 +239,5 @@ INSERT INTO lang VALUES('desc_admin_orphans','en','"Orphaned entries" are data w
 INSERT INTO lang VALUES('orphans_found','en','Found %1 orphan(s):');
 INSERT INTO lang VALUES('no_orphans_found','en','Congratulations! You seem to have no skeletons in your closet (any more?).');
 INSERT INTO lang VALUES('delete_orphans','en','Deleting %1 orphan(s):');
+INSERT INTO lang VALUES('backup_db','en','Database Backup');
+INSERT INTO lang VALUES('desc_backup_db','en','It\'s always a good idea to have a backup at hand. Via this form, all your data you saved into the database are extracted, and a SQL command file is created. You can use this file at any time to fill an empty database with (good e.g. for duplication). Just make sure to not use a backup from a never version with an older version of phpVideoPro - this can lead to trouble!<BR><BR><DIV ALIGN="center"><B>Would you like to create the script now?</B></DIV>');

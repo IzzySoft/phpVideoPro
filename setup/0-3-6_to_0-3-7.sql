@@ -7,6 +7,7 @@ INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','');
 INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
+INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 
 # should title appear on labels
 ALTER TABLE video ADD label INT( 1 ) DEFAULT '1' NOT NULL AFTER title;

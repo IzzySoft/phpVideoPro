@@ -246,3 +246,5 @@ INSERT INTO lang VALUES('remove_empty_media_comment','de','Sollen Medien aus der
 INSERT INTO lang VALUES('movie_color_default','de','Default Farbformat eines Films');
 INSERT INTO lang VALUES('movie_color_default_comment','de','Wenn ein neuer Eintrag angelegt wird, ist dies die Voreinstellung für das Default Farbformat.');
 INSERT INTO lang VALUES('site_info_comment','de','für die Anzeige in der Titelbar');
+INSERT INTO lang VALUES('movie_onlabel_default','de','Defaulteinstellung Etiketten-Info');
+INSERT INTO lang VALUES('movie_onlabel_default_comment','de','Defaulteinstellung für neue Einträge: Sollen Informationen für diesen Film auf Etiketten für dieses Medium erscheinen?');

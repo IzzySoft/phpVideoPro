@@ -40,6 +40,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("page_length",$page_length);
   $pvp->preferences->set("date_format",$date_format);
   $pvp->preferences->set("default_movie_colorid",$movie_color);
+  $pvp->preferences->set("default_movie_onlabel",$onlabel_default);
   $mtypes = $db->get_mtypes();
   if ($admin) {
     unset($rw_media);
@@ -99,6 +100,7 @@ $display_limit  = $pvp->preferences->display_limit;
 $page_length    = $pvp->preferences->page_length;
 $date_format    = $pvp->preferences->date_format;
 $movie_color    = $pvp->preferences->default_movie_colorid;
+$onlabel_default= $pvp->preferences->default_movie_onlabel;
 $remove_media   = $db->get_config("remove_empty_media");
 $site_info      = $db->get_config("site");
 
@@ -260,6 +262,16 @@ if ($admin) {
   }
   $t->parse("item","itemblock",TRUE);
 }
+
+#--[ default_movie_onlabel ]--
+$t->set_var("item_name",lang("movie_onlabel_default"));
+$t->set_var("item_comment",lang("movie_onlabel_default_comment"));
+if ($onlabel_default) {
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\" CHECKED>");
+} else {
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\">");
+}
+$t->parse("item","itemblock",TRUE);
 
 #--[ movie_color_default ]--
 $t->set_var("item_name",lang("movie_color_default"));

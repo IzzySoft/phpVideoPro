@@ -1591,7 +1591,7 @@
          if ($rc[$i]) $rcs .= $i . ",";
        }
      } else {
-       return TRUE;
+       $rcs = "";
      }
      $this->dbquery("SELECT id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();

@@ -13,7 +13,7 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]==
-# $page_id = "admin_avlang";
+ $page_id = "admin_avlang";
  include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
  if ( isset($_GET["start"]) ) {

@@ -82,7 +82,10 @@
     GLOBAL $pvp;
     if ($pvp->config->enable_cookies && !$this->admin) {
       $pref = $pvp->cookie->get($name);
-      if (strlen($pref)) { return($pref); } else { return $this->$name; }
+      if (strlen($pref)) {
+        if ($name=="lang") $pref = substr($pref,0,2);
+        return($pref); 
+      } else { return $this->$name; }
     } else {
       return $this->$name;
     }

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.7 (2004)
+0.5.7 (January 28, 2004)
 [text]
 <ul>
  <li>some adjustments (and fixes) to the PostgreSQL code

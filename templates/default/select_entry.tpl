@@ -1,4 +1,5 @@
-<H2><DIV ALIGN=CENTER>{goto_entry}</DIV></H2>
+<BR><DIV ALIGN="right"><FONT SIZE="-1">{login_info}</FONT></DIV>
+<H2><DIV ALIGN="center">{goto_entry}</DIV></H2>
  <FORM NAME="space" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center">
     <TR><TD COLSPAN=3>&nbsp;</TD></TR>

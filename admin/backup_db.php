@@ -37,6 +37,7 @@
  $t->set_block("itemblock","descblock","desc");
  $t->set_var("listtitle",lang("backup_db"));
 
+ #=======================================================[ run the backup ]===
  if ($backup) {
    if ($btype=="movieint") {
      $mlist  = $db->get_movieids_all();
@@ -95,6 +96,7 @@
    if ($compress) echo gzencode($out);
    exit;
  } else {
+ #======================================================[ run the restore ]===
    if ($restore) { // restore data
      if (!empty($rfile)) {
        if (file_exists($pvp->backup_dir."/$rfile")) {
@@ -108,6 +110,11 @@
          }
          if (!$imp->errors) {
            if ($cleandb) $db->drop_all_movies();
+	   $tcatlist = $db->get_category();
+	   $catcount = count($tcatlist);
+	   for ($i=0;$i<$catcount;++$i) {
+	     $catlist[$tcatlist[$i][internal]] = $tcatlist[$i][id];
+	   }
            $data = explode("\n",$data);
            $mcount = count($data);
            $imp->records = $mcount -2;
@@ -119,6 +126,16 @@
                $pset = "actor_$k"; $pid = "actor$k"."_id";
                if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset][name],$movie[$pset][firstname],"actors",TRUE);
              }
+	     for ($k=1;$k<4;++$k) { // add new cats if necessary
+	       $tcat = "cat$k"."int"; $tcatid = "cat$k"."_id";
+               if (!empty($movie[$tcat]) && !$catlist[$movie[$tcat]]>0) {
+	         $db->add_category($movie[$tcat]);
+		 $db->set_translation($movie[$tcat],$movie["cat$k"],"en");
+		 $movie[$tcatid] = $db->get_category_id($movie[$tcat]);
+		 $report .= "<li>added category '".$movie[$tcat]."' (".$movie["cat$k"].")";
+	       }
+	     }
+	     # if (!$cleandb) insert check for the MediaNr HERE *!*
              if (!$db->add_movie($movie)) ++$imp->errors;
            }
            if ($imp->errors) {
@@ -141,8 +158,6 @@
    $t->set_var("title",lang("preferences"));
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CLASS='checkbox'>".lang("backup_db_complete")."<BR>"
-#          . "<INPUT TYPE='radio' NAME='btype' VALUE='movies' CLASS='checkbox'>".lang("backup_db_movies")."<BR>"
-#          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel' CLASS='checkbox'>".lang("backup_db_moviedel")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);
@@ -170,11 +185,6 @@
    $t->set_var("hright",$haction);
    $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
-#   $t->set_var("settings","");
-#   $t->set_var("title",lang("backup_db_runscript"));
-#   $t->set_var("details","");
-#   $t->parse("item","itemblock",TRUE);
-#   $t->set_var("button","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
    $t->set_var("save_result",$save_result);
    if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");

@@ -15,7 +15,7 @@ plan to record something in "LongPlay" mode, you may double the amount of free
 time displayed.
 [text]
 Now here are two menue items for tape rest: <b>filtered</b> means, only media
-containing at least one movie matching the <A HREF="{PHP_SELF}?topic=set_filter">filter
+containing at least one movie matching the <A HREF="{PHP_SELF}?topic=filter">filter
 rules</A> are displayed, while <b>absolute</b> ignores the filter settings.
 
 [eof]

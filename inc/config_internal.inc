@@ -58,22 +58,30 @@
  $max["name_chars"]     = 30;
  $max["country_chars"]  = 30;
  $max["filmlen_chars"]  =  3;
- $max["srclen_chars"]   = 15;
+ $max["srclen_chars"]   = 25;
  $min["media_size"]     = 10; // min length of recordable media in minutes
  $form["addon_country"] = "SIZE='30' MAXLENGTH='" . $max["country_chars"] . "'";
- $form["addon_name"]    = "SIZE='30' MAXLENGTH='" . $max["name_chars"] . "' class='nameinput'";
+# $form["addon_name"]    = "SIZE='30' MAXLENGTH='" . $max["name_chars"] . "' class='nameinput'";
+ $form["addon_name"]    = "SIZE='30' MAXLENGTH='" . $max["name_chars"] . "'";
  $form["addon_year"]    = "SIZE='4' MAXLENGTH='4'";
  $form["addon_month"]   = "SIZE='2' MAXLENGTH='2'";
  $form["addon_day"]     = $form["addon_month"];
  $form["addon_fsk"]     = "SIZE='2' MAXLENGTH='2'";
  $form["addon_filmlen"] = "SIZE='" . $max["filmlen_chars"] . "' MAXLENGTH='" . $max["filmlen_chars"] . "'";
- $form["addon_src"]     = "SIZE='" . $max["srclen_chars"] . "' MAXLENGTH='" . $max["srclen_chars"] . "' class='techinput'";
+ $form["addon_src"]     = "SIZE='" . $max["srclen_chars"] . "' MAXLENGTH='" . $max["srclen_chars"] . "' class='catinput'";
  $form["addon_cass_id"] = "SIZE='4' MAXLENGTH='4'";
  $form["addon_part"]    = "SIZE='2' MAXLENGTH='2'";
  $form["addon_title"]   = "SIZE='50' MAXLENGTH='60'";
  $form["addon_tech"]    = "class='techinput'";
- define("AUDIO_TS",6);  // max audio tracks for a movie
- define("SUBTITLES",9); // max subtitle tracks for a movie
+ define("COUNTRY_LEN",30);
+ define("CAT_BTN_WID",180);
+ define("MOVIELEN_LEN",3); // max chars for movie length
+ define("YN_WIDTH",40);   // width of Yes/No buttons
+ define("SRC_LEN",25);    // max chars for source
+ define("TECH_BTN_WID",120); // width for the virtual button of e.g. source
+ define("FSK_LEN",2);     // max digits for FSK
+ define("AUDIO_TS",6);    // max audio tracks for a movie
+ define("SUBTITLES",9);   // max subtitle tracks for a movie
 
  #=============================================[ read preferences from DB ]===
  $pvp->config->db->type = strtolower($database["type"]);

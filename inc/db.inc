@@ -158,6 +158,7 @@
      if ($id) {
        $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
        if ( $this->next_record() ) {
+         $person[id]   = trim($id);
          $person[name] = $this->f('name');
          $person[firstname] = $this->f('firstname');
 	 $person = $this->format_name($person);
@@ -169,13 +170,9 @@
        $i=0;
        while ( $this->next_record() ) {
          $person[$i][id]   = trim($this->f('id'));
-         $person[$i][name] = trim($this->f('name'));
-         $person[$i][firstname] = trim($this->f('firstname'));
-         if (strlen($person[$i][fullname])) {
-           $person[$i][fullname] .= " " . $person[$i][name];
-         } else {
-           $person[$i][fullname] .= $person[$i][name];
-         }
+         $person[$i][name] = $this->f('name');
+         $person[$i][firstname] = $this->f('firstname');
+	 $person[$i] = $this->format_name($person[$i]);
 	 ++$i;
        }
      }

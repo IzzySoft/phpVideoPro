@@ -77,13 +77,14 @@
  $db->User     = $pvp->config->db->user     = $database["user"];
  $db->Password = $pvp->config->db->password = $database["password"];
 
- if (!is_set($pvpinstall)) {
+ if (!isset($pvpinstall)) {
   $pvp->config->enable_cookies = $db->get_config("enable_cookies");
   $pvp->config->expire_cookies = $db->get_config("expire_cookies");
   $pvp->config->session_purgetime = $db->get_config("session_purgetime");
   include (dirname(__FILE__) . "/class.cookie.inc");
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;
+  $db->limit();
   $site     = $db->get_config("site");
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");

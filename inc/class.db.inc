@@ -32,7 +32,6 @@
     */
    function sql() { // init
      $this->DB_Sql(); // constructor of base class needs explicit call
-     $this->limit();
    }
 
    ############################################################################

@@ -77,7 +77,7 @@
     */
    function get($name) {
      GLOBAL $_COOKIE;
-     if (is_set($_COOKIE["$name"])) return $_COOKIE["$name"];
+     if (isset($_COOKIE["$name"])) return $_COOKIE["$name"];
      return "";
    }
 

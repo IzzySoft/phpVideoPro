@@ -16,7 +16,7 @@ header('Content-type: text/html; charset=$charset');
 
 $tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
 
-if (!is_set($silent)) {
+if (!isset($silent)) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">

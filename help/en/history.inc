@@ -9,13 +9,15 @@
      take "DEFAULT ''" as "DEFAULT NULL" which stands in contradiction to the
      "NOT NULL" constraint.
  <li>Fixed a problem with Cookies: if you use phpMyAdmin on the same server
-     as phpVideoPro, the first was overwriting the "lang" cookie of the latter,
-     which caused the latter to have Bulgarian used regardless of your settings
-     (if you have all languages installed). Now we set the path with the cookies.
-     Note: if you use both applications, at least with Konqeror you may have to
-     delete phpMyAdmins Cookie first since phpVideoPro can't overwrite it.
-     Seems that multiple apps on the same domain can't use cookies with the
-     same name?
+     as phpVideoPro, the first was overwriting the "lang" cookie of the latter
+     when using Konqueror as browser (at least verified with Konqueror 3.0.4).
+     This does still happen with the mentioned version of Konqueror since it
+     ignores the cookie path setting, but now should not happen anymore with
+     any browser that does <b>not</b> ignore the cookies path.
+ <li>With cookies enabled and user-defined preferences stored within cookies,
+     the selected label configuration variable got overwritten by the cookies
+     value (since both had the same name) when printing a label using the "old"
+     label system called from viewing an entry
 </ul>
 
 [title]

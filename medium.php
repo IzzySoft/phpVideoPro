@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                               (c) 200-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -27,6 +27,7 @@
  $t->set_var("listtitle",lang("medium_overview",$medium));
  $t->set_var("techdata",lang("techdata"));
  $t->set_var("moviedata",lang("movies"));
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
 
  function techbutton ($name,$value,$onclick="") {
    GLOBAL $pvp;

@@ -24,3 +24,4 @@ coming *after* 0.2.0:
 - print lists function taking into account a user-definable page length
 - label creating and printing function
 - search function
+- new database field: "lent to" (to find out where your media *really* are :)

@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.6.0
+# German Language File created by phpVideoPro v0.6.5
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -12,6 +12,7 @@ INSERT INTO lang VALUES ('add_access','de','Darf Datensätze hinzufügen','');
 INSERT INTO lang VALUES ('add_entry','de','Neuer Datensatz','');
 INSERT INTO lang VALUES ('add_user','de','Benutzer hinzufügen','');
 INSERT INTO lang VALUES ('admin_access','de','Ist Administrator','');
+INSERT INTO lang VALUES ('admin_avlang','de','Für Tonspuren und Untertitel verfügbare Sprachen bearbeiten','');
 INSERT INTO lang VALUES ('admin_cats','de','Administration der Kategorien','');
 INSERT INTO lang VALUES ('admin_disktypes','de','Disk-Typen bearbeiten','');
 INSERT INTO lang VALUES ('admin_filter','de','Default Filtereinstellung','');
@@ -24,7 +25,6 @@ INSERT INTO lang VALUES ('admin_translations','de','Übersetzungen bearbeiten','
 INSERT INTO lang VALUES ('admin_useredit','de','Bearbeite Benutzerkonto','');
 INSERT INTO lang VALUES ('admin_users','de','Benutzerverwaltung','');
 INSERT INTO lang VALUES ('audio_ts','de','Tonspur','');
-INSERT INTO lang VALUES ('subtitle','de','Untertitel','');
 INSERT INTO lang VALUES ('back','de','Zurück','');
 INSERT INTO lang VALUES ('backup_compress','de','Daten komprimieren?','');
 INSERT INTO lang VALUES ('backup_db','de','Datenbank Backup','');
@@ -191,6 +191,7 @@ INSERT INTO lang VALUES ('is_rw','de','überschreibbar','');
 INSERT INTO lang VALUES ('label','de','Etikett','');
 INSERT INTO lang VALUES ('labels','de','Etiketten','');
 INSERT INTO lang VALUES ('labeltype','de','Labeltyp','');
+INSERT INTO lang VALUES ('language_settings','de','Spracheinstellungen','');
 INSERT INTO lang VALUES ('lang_ab','de','Abchasisch','language name');
 INSERT INTO lang VALUES ('lang_am','de','Amharisch','language name');
 INSERT INTO lang VALUES ('lang_ar','de','Arabisch','language name');
@@ -291,7 +292,6 @@ INSERT INTO lang VALUES ('lang_uz','de','Usbekisch','language name');
 INSERT INTO lang VALUES ('lang_vi','de','Vietnamesisch','language name');
 INSERT INTO lang VALUES ('lang_yo','de','Joruba','language name');
 INSERT INTO lang VALUES ('lang_zh','de','Chinesisch','language name');
-INSERT INTO lang VALUES ('language_settings','de','Spracheinstellungen','');
 INSERT INTO lang VALUES ('last_entry','de','Letzter Eintrag','');
 INSERT INTO lang VALUES ('last_medianr','de','Höchste für diesen MedienTyp vergebene Nummer:','');
 INSERT INTO lang VALUES ('layout_label','de','Layout wählen','');
@@ -303,6 +303,7 @@ INSERT INTO lang VALUES ('line_count','de','Zeilen','');
 INSERT INTO lang VALUES ('list','de','Liste','');
 INSERT INTO lang VALUES ('listgen','de','Listengenerator','');
 INSERT INTO lang VALUES ('lists','de','Listen','');
+INSERT INTO lang VALUES ('locale','de','Lokale','');
 INSERT INTO lang VALUES ('login_failed','de','Anmeldung fehlgeschlagen. Entweder liegt ein Tippfehler beim Passwort vor, oder das angegebene Konto existiert nicht.<P />','');
 INSERT INTO lang VALUES ('login_required','de','Der gewünschte Vorgang kann aufgrund mangelnder Berechtigungen nicht durchgeführt werden. Eine erneute Anmeldung mit einem entsprechenden Konto kann dies Problem lösen.','');
 INSERT INTO lang VALUES ('logout_user','de','Angemeldet als \"%1\". <A HREF=\"%2\">Abmelden</a>','');
@@ -405,6 +406,7 @@ INSERT INTO lang VALUES ('stats','de','Statistiken','');
 INSERT INTO lang VALUES ('stat_categories','de','Kategorien (benutzt/alle)','');
 INSERT INTO lang VALUES ('stat_counts','de','Summen','');
 INSERT INTO lang VALUES ('submit','de','Absenden','');
+INSERT INTO lang VALUES ('subtitle','de','Untertitel','');
 INSERT INTO lang VALUES ('sure_to_delete','de','Alle Daten für %1 werden gelöscht! Fortfahren','');
 INSERT INTO lang VALUES ('tapelist_update_failed','de','Liste mit verfügbarer Restzeit konnte nicht aktualisiert werden','');
 INSERT INTO lang VALUES ('taperest','de','Restzeitverwaltung','');

@@ -38,16 +38,18 @@
                   break;
  }
 
- #=====================[ sort namelist and retireve movie data per person ]===   
- uasort($namelist,"sort_names");
- reset($namelist);
- $filter = get_filters();
- foreach ($namelist as $name) {
-   $m = $db->get_movienamelist($table,$name,$filter);
-   if (is_array($movielist)) {
-     $movielist = array_merge($movielist,$m);
-   } else {
-     $movielist = $m;
+ #=====================[ sort namelist and retrieve movie data per person ]===   
+ if (is_array($namelist)) {
+   uasort($namelist,"sort_names");
+   reset($namelist);
+   $filter = get_filters();
+   foreach ($namelist as $name) {
+     $m = $db->get_movienamelist($table,$name,$filter);
+     if (is_array($movielist)) {
+       $movielist = array_merge($movielist,$m);
+     } else {
+       $movielist = $m;
+     }
    }
  }
  $listlength = count($movielist);
@@ -83,13 +85,11 @@
      $out .= listtitle($page,$pages) . "\n";
      $out .= "\n$listheader\n$underline\n";
    }
-#   if (strlen($movielist[$i][lp])) { $lp = lang("yes"); } else { $lp = lang("no"); }
    if ($align) {
      $title  = $pvp->common->fillblanks($movielist[$i][title],36);
      $cat    = $pvp->common->centerstr($movielist[$i][cat1],15);
      $length = $pvp->common->padblanks($movielist[$i][length],5);
      $name   = $pvp->common->fillblanks($movielist[$i][$revname],25);
-#     $lp     = $pvp->common->centerstr($lp,4);
    } else {
      $title  = $movielist[$i][title];
      $cat    = $movielist[$i][cat1];
@@ -100,7 +100,6 @@
          . $title . $sep
          . $cat . $sep
          . $length . $sep
-#         . $lp . $sep
          . $movielist[$i][mtype_short] . " "
          . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
          . $pvp->common->padzeros($movielist[$i][part],2)

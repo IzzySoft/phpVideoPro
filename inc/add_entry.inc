@@ -14,24 +14,12 @@
 
  # check wether a valid media number can be constructed from user input
  if ( !$valid->medianr($mtype_id,$cass_id,$part) ) {
-   $error = lang("invalid_media_nr") . "</P>\n";
-   display_error($error);
-   exit;
- }
-
- # check wether there already is an entry with the given Movie ID
- if ( $db->get_movieid($mtype_id,$cass_id,$part) ) {
-   $error = lang("dupe_id_entered");
-   display_error($error);
-   exit;
+   die ( display_error ( lang("invalid_media_nr") . "</P>\n") );
  }
 
  # check if "fsk" (= pg, parental guide) is integer
  if ( !$valid->num($fsk) ) {
-   $error = lang("fsk");
-   $error = lang("invalid_fsk",$error) . "</P>\n";
-   display_error($error);
-   exit;
+   die ( display_error( lang("invalid_fsk",$fsk) . "</P>\n") );
  }
 
  # check wether the specified date is valid
@@ -56,16 +44,24 @@
    if (!$$field) $$field = 0;
  }
 
- $insert  = "INSERT INTO video (mtype_id,cass_id,part,title,length,aq_date,source,director_id,director_list,"
-          . "music_id,music_list,country,year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
-          . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"
-          . "pict_id,color_id,fsk,comment,lp,counter1,counter2,commercials_id) "
-          . "VALUES ("
-          . "$mtype_id,$cass_id,$part,'$title',$length,'$recdate','$src',$dir_id,$director_list,"
-          . "$mus_id,$music_list,'$country',$year,$cat1_id,$cat2_id,$cat3_id,$act1_id,$act2_id,$act3_id,"
-          . "$act4_id,$act5_id,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5,$tone_id,"
-          . "$pict_id,$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',$commercials_id)";
- if ( dbquery($insert) ) {
+ # prepare the movie array
+ $fields = array("mtype_id","cass_id","part","title","length","country","year",
+                 "cat1_id","cat2_id","cat3_id","director_list","music_list",
+		 "tone_id","pict_id","color_id","fsk","comment","lp",
+		 "counter1","counter2","commercials_id");
+ foreach ($fields as $value) {
+   $movie[$value] = ${$value};
+ }
+ $movie[aq_date] = $recdate; $movie[source] = $src;
+ $movie[director_id] = $dir_id; $movie[music_id] = $mus_id;
+ for ($i=1;$i<6;++$i) {
+   $id  = "actor".$i."_id"; $list = "actor".$i."_list";
+   $ids = "act".$i."_id";  $lists = "vis_actor".$i;
+   $movie[$id] = ${$ids}; $movie[$list] = ${$lists};
+ }
+
+ # add the movie to DB
+ if ( $db->add_movie($movie) ) {
    $save_result = $colors["ok"] . lang("create_success") . ".</Font><BR>\n";
  } else {
    $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";

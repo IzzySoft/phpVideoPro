@@ -39,6 +39,12 @@
     <OPTION VALUE="{dir_name}"{dsel}>{dir_name}</OPTION>
  <!-- END dirblock -->
    </SELECT></TD></TR>
+ <TR><TD>{music_chk}</TD><TD><B>{nmus_name}:</B></TD>
+   <TD><SELECT NAME="music">
+ <!-- BEGIN musblock -->
+    <OPTION VALUE="{mus_name}"{dsel}>{mus_name}</OPTION>
+ <!-- END musblock -->
+   </SELECT></TD></TR>
  <TR><TD>{actor_chk}</TD><TD><B>{actors}:</B></TD>
    <TD><SELECT NAME="actors" SIZE="7" MULTIPLE CLASS="multiselect">
  <!-- BEGIN actblock -->

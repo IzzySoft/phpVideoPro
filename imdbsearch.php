@@ -18,7 +18,7 @@
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
- $usecache = FALSE;
+ $usecache = TRUE;
  $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
  for ($i=0;$i<$count;++$i) {
@@ -36,6 +36,7 @@
  $t->set_block("movieblock","acatblock","acatlist");
  $t->set_block("acatblock","catblock","catlist");
  $t->set_block("movieblock","dirblock","dirlist");
+ $t->set_block("movieblock","musblock","muslist");
  $t->set_block("movieblock","actblock","actlist");
 
  $t->set_block("template","queryblock","query");
@@ -163,10 +164,19 @@
     $t->parse("dirlist","dirblock",$open);
     $open = TRUE;
    }
-   $t->set_var("dir_name","");
-   $t->set_var("dsel","");
-   $t->parse("dirlist","dirblock",$open);
    $t->set_var("director_chk",$pvp->common->make_checkbox("director_chk",$imdb_tx_director));
+   #-=[ Composer ]=-
+   $t->set_var("nmus_name",lang("composer"));
+   $music = $movie->composer();
+   $cc = count($music);
+   $open = FALSE;
+   for ($i=0;$i<$cc;++$i) {
+    $t->set_var("mus_name",$music[$i]["name"]); // we also have "imdb"
+    if ($i==0) $t->set_var("dsel"," SELECTED"); else $t->set_var("dsel","");
+    $t->parse("muslist","musblock",$open);
+    $open = TRUE;
+   }
+   $t->set_var("music_chk",$pvp->common->make_checkbox("music_chk",$imdb_tx_director));
    #-=[ Actors ]=-
    $cast = $movie->cast(); // here come the actors
    $cc = count($cast);
@@ -238,6 +248,12 @@
      omf.director_name.value  = name_split(dmf.directors.value);
      omf.director_fname.value = fname_split(dmf.directors.value);
      if (dmf.directors.value != '') omf.director_list.checked=1;
+   }
+   if (dmf.music_chk.checked) {
+     name = dmf.music.value;
+     omf.composer_name.value  = name_split(dmf.music.value);
+     omf.composer_fname.value = fname_split(dmf.music.value);
+     if (dmf.music.value != '') omf.music_list.checked=1;
    }
    if (dmf.actor_chk.checked) {
      k = 1;

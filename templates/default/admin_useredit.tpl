@@ -24,5 +24,6 @@
  <TR><TH><DIV ALIGN="center">{update}</DIV></TH>
      <TH><DIV ALIGN="center">{adduser}</DIV></TH></TR>
 </TABLE></TD></TR>
+{hidden}
 </TABLE>
 </FORM>

@@ -87,6 +87,7 @@
      $t->set_var("yes",lang("yes"));
      $t->set_var("no",lang("no"));
      $t->set_var("delete_yn",$colors["err"].lang("confirm_userdeletion",$user->login,$user->comment)."</FONT>");
+     if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
      include("../inc/header.inc");
      $t->pparse("out","template");
      exit;
@@ -110,7 +111,7 @@
 
  $t->set_var("listtitle",lang("admin_useredit"));
  $t->set_var("formtarget",$PHP_SELF);
- $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>");
+ if ($id) $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>");
  $t->set_var("adduser","<INPUT TYPE='submit' NAME='adduser' VALUE='".lang("add_user")."'>");
  $t->set_var("save_result",$save_result);
  $t->set_var("head_users",lang("user"));
@@ -127,6 +128,7 @@
  $t->set_var("head_isadmin",lang("admin_access"));
  $t->set_var("head_password",lang("password"));
  $t->set_var("head_password2",lang("password_retype"));
+ if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
  include("../inc/header.inc");
  $t->pparse("out","template");
 

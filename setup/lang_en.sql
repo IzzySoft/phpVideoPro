@@ -370,3 +370,12 @@ INSERT INTO lang VALUES('disktype_contains_media','en','This disktype cannot be 
 INSERT INTO lang VALUES('reset','en','Reset','Button description');
 INSERT INTO lang VALUES('confirm_prilang','en','Do you really want to change the default primary language for ALL (new) users?','Confirmation on changing the primary language in the admin-&gt;configuration menu');
 INSERT INTO lang VALUES('backup_db_movie_internal','en','Backup all movies using the phpVideoPro internal format','');
+INSERT INTO lang VALUES('backup_compress','en','Enable compression?','Backup page: whether to compress the backup data');
+INSERT INTO lang VALUES('invalid_backup_dir','en','The configured Backup directory does not exist.','Hint displayed when trying to restore data from a file (this file has to be placed in the Backup directory for restore)');
+INSERT INTO lang VALUES('button_backup','en','Backup','Button description to start the Backup');
+INSERT INTO lang VALUES('button_restore','en','Restore','Button description for restore start');
+INSERT INTO lang VALUES('restore_db_movie_internal','en','Restore movies from a PVP backup file','Action on the Backup/Restore page');
+INSERT INTO lang VALUES('no_backup_avail','en','No Backup file available to restore from.','Hint on the Backup/Restore page');
+INSERT INTO lang VALUES('no_restore_file','en','Sorry: the selected file does no longer exist!','Hint on the Backup/Restore page');
+INSERT INTO lang VALUES('imp_errors','en','Import of %2 records finnished with %1 errors.','Result message after import');
+INSERT INTO lang VALUES('imp_success','en','Import of %1 records successfully completed.','Result message after import');

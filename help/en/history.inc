@@ -19,6 +19,7 @@
  <li>menu bar now contains login info (either logged-in user or not-logged-in info)
  <li>movie backup files created via the admin-&gt;backup menu will now have the
      backup date in their names for easier handling
+ <li>fixed the problem with redirect not working on forced login (hopefully)
 </ul>
 
 [title]

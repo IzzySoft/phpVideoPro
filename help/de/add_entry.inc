@@ -126,7 +126,7 @@ konfigurierbar ist. Das entsprechende Formular findet sich im Administrationsmen
 Die in der ersten Box ausgewählte Kategorie wird als Hauptkategorie gewertet
 und taucht in den Listen zusammen mit den wichtigsten Eckdaten des jeweiligen
 Filmes auf. Unabhängig davon werden jedoch bei Suchen bzw. bei gesetzten
-<A HREF="{PHP_SELF}?topic=set_filter">Filtern</A> auch die anderen beiden
+<A HREF="{PHP_SELF}?topic=filter">Filtern</A> auch die anderen beiden
 (Unter-) Kategorien berücksichtigt.
 
 [title]
@@ -141,7 +141,7 @@ von phpVideoPro beeinflußt. Auf der
 habe ich bereits einige Einträge gesehen, die sowohl im Namen als auch im
 Vornamen vollständige Namen (also Vor- und Nachname) enthielten. Sucht man nun
 aber nach einem bestimmten Darsteller, treten entsprechende Schwierigkeiten auf,
-wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=set_filter">Filters</A>
+wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=filter">Filters</A>
 feststellen lassen wird.
 
 [text]

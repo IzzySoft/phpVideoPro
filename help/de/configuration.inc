@@ -105,6 +105,15 @@ die Restzeit-Suche nicht mehr zur Verfügung) - andernfalls wird für die
 Restzeit-Suche die gesamte Kapazität des Mediums berücksichtigt.
 
 [text]
+<b>*movie_onlabel_default#:</b> Wenn jemand die letzten 10..20 Minuten seiner
+Videokassetten gern mit ein paar VideoClips von MTV füllt, möchte er diese
+Clips nicht unbedingt auch auf dem Label stehen haben - sonst könnten diese
+Label teilweise recht unübersichtlich werden. Daher läßt sich für jeden Eintrag
+einstellen, ob dessen Informationen bei Generierung eines Labels für das
+betreffende Medium eingeschlossen werden sollen. Hier läßt sich festlegen, wie
+die Einstellung für neue Einträge vorbelegt sein soll.
+
+[text]
 <b>*movie_color_default#:</b> Heutzutage werden die meisten Filme in Farbe
 ausgestrahlt - daher ist es natürlich auch sinnvoll, wenn dies die
 Voreinstellung für neue Einträge ist. Andernfalls mag es unter den Anwendern

@@ -69,6 +69,33 @@
     } else { return ""; }
   } // end function formImdbPerson
 
+  /** Create url string to a titles entry in imdb
+   * @class link
+   * @method ImdbTitle
+   * @param string title movie title
+   * @return string link link to detailled information in IMDB
+   */
+  function ImdbTitle($title) {
+    if (strlen(trim($title))) {
+      $imdb = $this->imdb . "Tsearch?title=" . urlencode($title);
+      return $imdb;
+    } else { return ""; }
+  } // end function ImdbTitle
+
+  /** create form addon (to button) for link to a titles entry in imdb
+   * @class link
+   * @method formImdbTitle
+   * @param string title movie title
+   * @return string addon JavaScript handler for button to open new window
+   *  with IMDB information
+   */
+  function formImdbTitle($title) {
+    $imdb = $this->ImdbTitle($title);
+    if (strlen($imdb)) {
+      return " onClick=window.open(\"$imdb\",\"imdb\")";
+    } else { return ""; }
+  } // end function formImdbTitle
+
  } // end class link
 
  $pvp->link = new link;

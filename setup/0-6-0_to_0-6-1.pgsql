@@ -5,7 +5,7 @@
 # create the options table
 CREATE TABLE pvp_options (
   id serial,
-  name varchar(30) NOT NULL default '',
+  name varchar(30) NOT NULL,
   value text,
   PRIMARY KEY  (id)
 );

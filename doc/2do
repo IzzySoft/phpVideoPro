@@ -18,6 +18,7 @@ coming *soon*:
   the possibility to "order by rating")
 - replace "\" with "/" when creating links (in case the server runs in Windows)
 - lock tables during backup/restore
+- take care for orphaned (IMDB) images
 
 coming *next*:
 - PS template(s) for DVD covers
@@ -28,6 +29,8 @@ coming *next*:
   information from the PHP code into the template
 - add Audio/Subtitle to filter settings
 - add optional "Bubble Help" (via HTML "TITLE" attribute)
+- support for file-based formats like DivX, including play controls
+  (links to start external Shell scripts, *.Cmd files or the like)
 
 coming *sometimes* (maybe):
 - honour date format settings in all places

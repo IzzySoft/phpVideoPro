@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.7.4 (2005)
+[text]
+<ul>
+ <li>Fixed a typo in the setup wizzard (SQL syntax on Grant)
+</ul>
+
+[title]
 0.7.3 (January 7, 2005)
 [text]
 <ul>

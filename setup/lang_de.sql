@@ -197,6 +197,7 @@ INSERT INTO lang VALUES ('imdb_tx_actor','de','Schauspieler','');
 INSERT INTO lang VALUES ('imdb_tx_cat','de','Kategorien','');
 INSERT INTO lang VALUES ('imdb_tx_comment','de','phpVideoPro bietet die Möglichkeit, beim Anlegen eines neuen bzw. editieren eines existenten Datensatzes für einen Film Daten aus der IMDB abzurufen und zu übernehmen. Hier kann festgelegt werden, welche Daten standardmäßig übernommen werden sollen.','');
 INSERT INTO lang VALUES ('imdb_tx_comments','de','Kommentar','');
+INSERT INTO lang VALUES ('imdb_tx_country','de','Land','');
 INSERT INTO lang VALUES ('imdb_tx_director','de','Regisseur','');
 INSERT INTO lang VALUES ('imdb_tx_length','de','Filmlänge','');
 INSERT INTO lang VALUES ('imdb_tx_pg','de','FSK','');

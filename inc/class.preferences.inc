@@ -36,7 +36,6 @@
       $this->$var = $db->get_preferences($var);
     }
     $this->filter = $this->get_filters();
-#    echo "<P><BR><BR>UserID: '".$pvp->auth->user_id."'</P>\n";
   }
 
   ############################################################################

@@ -107,11 +107,11 @@
    $t->set_var("type",type_select("type_id",$ps[0]->type_id,lang("pstpl_type")));
    $t->set_var("gfx_file",make_input("eps_file",$ps[0]->eps_file,lang("graphic_file")));
    $t->set_var("dsn_file",make_input("ps_file",$ps[0]->ps_file,lang("template_file")));
-   $ll = "<b>".lang("lower_left_corner").": </b>".make_input("llx",$ps[0]->llx,"","yesnobutton")
-       . " / ".make_input("lly",$ps[0]->lly,"","yesnobutton");
+   $ll = "<b>".lang("lower_left_corner").": </b>".make_input("llx",$ps[0]->llx,"","yesnoinput")
+       . " / ".make_input("lly",$ps[0]->lly,"","yesnoinput");
    $t->set_var("lower_left",$ll);
-   $ur = "<b>".lang("upper_right_corner").": </b>".make_input("urx",$ps[0]->urx,"","yesnobutton")
-       . " / ".make_input("ury",$ps[0]->ury,"","yesnobutton");
+   $ur = "<b>".lang("upper_right_corner").": </b>".make_input("urx",$ps[0]->urx,"","yesnoinput")
+       . " / ".make_input("ury",$ps[0]->ury,"","yesnoinput");
    $t->set_var("upper_right",$ur);
    $t->parse("edps","editblock");
  } else {

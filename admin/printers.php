@@ -73,10 +73,10 @@
  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("update")."'>");
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
- function make_input($name,$value,$type="text",$class="yesnobutton") {
+ function make_input($name,$value,$type="text",$class="yesnoinput") {
    switch($type) {
      case "hidden" : $input = "<INPUT TYPE='hidden' NAME='$name' VALUE='$value'>"; break;
-     case "button" : $input = "<INPUT TYPE='button' NAME='$name' VALUE='$value' CLASS='yesnobutton'>"; break;
+     case "button" : $input = "<INPUT TYPE='button' NAME='$name' VALUE='$value' CLASS='yesnoinput'>"; break;
      default       : $input = "<INPUT NAME='$name' VALUE='$value' CLASS='$class'>"; break;
    }
    return $input;

@@ -228,3 +228,7 @@ INSERT INTO lang VALUES('medium_deleted','en','No more movies on this medium - m
 INSERT INTO lang VALUES('medium_not_deleted','en','Still movies on this medium - medium not removed');
 INSERT INTO lang VALUES('change_media_length','en','Change Media Length');
 INSERT INTO lang VALUES('change_media_length_for','en','Please enter the capacity for %1');
+INSERT INTO lang VALUES('admin_cats','en','Administrate Categories');
+INSERT INTO lang VALUES('cat_internal_name','en','Handle');
+INSERT INTO lang VALUES('cat_update_failed','en','Updating failed for the following categories: %1');
+INSERT INTO lang VALUES('cat_trans_update_failed','en','Updating failed for the translations of the following categories: %1');

@@ -16,6 +16,7 @@
        <li>action processed (e.g. "editing entry RVT 0089-02") is now
            displayed in the browsers title bar
        <li>free time on media list now working
+       <li>free time on media was not updated when updating an entry. fixed.
       </ul>
   <LI><b>0.0.2 (June 24, 2001)</b><br>
       database completely reworked and restructured to what I felt to be

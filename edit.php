@@ -276,6 +276,7 @@
     <TR><TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); ?></TD>
         <TD><? form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD>
         <TD><? echo vis_staff('music_list',$music_list); ?></TD></TR>
+    <TR><TD COLSPAN="4"><HR></TD></TR>
     <?php for ($i=1;$i<=$max["actors"];$i++) {
       $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
       echo "<TR><TD>Actor $i</TD><TD>";

@@ -109,5 +109,38 @@
    debug("E",$colors["err"] . "Query failed to execute!</Font>\n");
    $save_result = $colors["err"] . "Failed to update entry!</Font><BR>\n";
  };
+ ##############################################################################
+ # updating free time on media for Recorded Video Tapes
+ $query = "SELECT sname FROM mtypes WHERE id='$mtype_id'";
+ debug("S",$colors["ok"] . "$query</Font><BR>\n");
+ $db->query($query);
+ if ( !$db->next_record() ) {
+   debug("E",$colors["err"] . "Could not obtain media type for mtype_id '$mtype_id'!</Font><BR>\n");
+ } elseif ( strtolower($db->f('sname'))=="rvt" ) { // calc free space only for recorded video tapes
+   $query = "SELECT type FROM cass WHERE id='$cass_id'";
+   debug("S",$colors["ok"] . "$query</Font><BR>\n");
+   $db->query($query);
+   if ( !$db->next_record() ) {
+     debug("E",$colors["err"] . "Could not obtain media info for cass_id '$cass_id'!</Font><BR>\n");
+   } else {
+     $media_length = $db->f('type');
+     if ( $media_length<$min["media_size"] ) debug("W",$colors["err"] . "Invalid Media size '$media_length' (should be at least '" . $min["media_size"] . "')!</Font><BR>\n");
+     $query = "SELECT length,lp FROM video WHERE cass_id='$cass_id'";
+     debug("S",$colors["ok"] . "$query</Font><BR>\n");
+     $db->query($query);
+     $i=0;
+     while ( $db->next_record() ) {
+       $i++;
+       $mlength = $db->f('length');
+       if ( $db->f('lp') ) $mlength /= 2;
+       $media_length -= $mlength;
+     }
+     if ($i==0) debug("W",$colors["err"] . "No items found on media '$cass_id', so tape must be empty. If so, you'ld better delete it instead of updating without contents. Otherwise, there may be a problem!</Font><BR>\n");
+     $query = "UPDATE cass SET free='$media_length' WHERE id='$cass_id'";
+     debug("S",$colors["ok"] . "$query</Font><BR>\n");
+     $db->query($query);
+   }
+ }
+ 
 // $edit=1;
 ?>

@@ -12,6 +12,8 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *around* 0.2.0 (not yet sure if before or after):
+- making out-sourcing of security relevant files (inc/*) possible
+  (to e.g. put those files outside the web tree)
 - translation for color codes missing ("s/w","farbe","3d")
 - setup: check for existence and readability of SQL files before execution
 - fields for counter settings (start/end of movie for old tape recorders

@@ -45,16 +45,6 @@ feil (ved at du f.eks. har manuelt fjernet de engelske frasene fra databasen ;) 
 vil det vµre fint om du kan gi <A HREF="mailto:izzysoft@qumran.org">meg</a>
 beskjed om dette, og referer til den manglende frasen og hvor feilen har oppst†tt.
 
-[text]
-<b>*use_charset#</b>: da dette p†virker hele utseende av skjermen, b°r du kun
-modifisere dette dersom du vet hva du gj°r. Til gjengjeld kan du ikke gj°re noe
-skade ved dette - du vil kun gj°re teksten litt merkelig dersom du velger en rar
-opsjon, og data lagret i databasen under bruk av en ukorrekt opsjon kan ha effekt
-over lang tid.<br>
-Men dersom du laget en ny spr†kfil som inneholder spesielle bokstaver, kan du
-benytte denne opsjonen til † vise dem korrekt. Da jeg ikke har benyttet dette er
-jeg interesert i † f† vite om resultene.
-
 [title]
 *colors#
 

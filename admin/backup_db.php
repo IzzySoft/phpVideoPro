@@ -135,7 +135,7 @@
            }
          }
          if (!$imp->errors) {
-           if ($cleandb) $db->drop_all_movies();
+           if ($_POST["cleandb"]) $db->drop_all_movies();
            $avl = mkavlang($db->get_avlang("audio"));
            $sub = mkavlang($db->get_avlang("subtitle"));
            $mtypes = mk_mtypes();

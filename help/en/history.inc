@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.12 (2004)
+0.7.0 (December 1, 2004)
 [text]
 <ul>
  <li>fixed some more "PHP notices" (add/delete/move entries)
@@ -10,11 +10,10 @@
  <li>Italian and French translations now up-to-date - thanks to Lorenzo and Didier
  <li>Update from &lt; v0.6.1 as well as fresh install was broken for
      PostgreSQL - fixed (thanks to Didier)
- <li>language names are now displayed using their native names and spelling - so
-     if somebody accidentally changed the "prefered language" it should be
-     easier to find "the way back" to a language he can read ;) Only concerns
-     the language selection (users primary language) - admins should have a
-     chance without knowing all the languages (but English).
+ <li>language names are now displayed using their native names and spelling
+     (translation still given in brackets) - so if somebody accidentally changed
+     the "prefered language" it should be easier to find "the way back" to a
+     language he can read ;)
 </ul>
 
 [title]

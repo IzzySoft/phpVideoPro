@@ -16,6 +16,7 @@ coming *soon*:
   for transfer, similiar to a "partial backup"
 - movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
   the possibility to "order by rating")
+- import movie data from IMDB
 
 coming *next*:
 - PS template(s) for DVD covers

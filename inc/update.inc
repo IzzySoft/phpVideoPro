@@ -1,17 +1,21 @@
 <?
  $dmsg = "";
+ ##############################################################################
+ # check wether a given person exists in the db and aquire his/her id. If not
+ # found in db, insert him/her first
  function insert_person($person,$query,$sub_query,$name="",$fname="") {
    GLOBAL $db,$dmsg,$colors;
    if ( strlen( trim($name . $fname) ) < 1) {
      $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
-    return "";
+    return 0;
    }
+   $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . "</Font>";
    $db->query($query);
    if ( $db->next_record() ) {
      $id = $db->f('id');
-     $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . " (Got: '$id')</Font>\n";
+     $dmsg  .= " (Got: '$id')</Font>\n";
    } else {
-     $dmsg  .= $colors["err"] . " <li>" . stripslashes($query) . " ($person not found in db! Trying to insert...)</Font><BR>\n";
+     $dmsg  .= "<BR>" . $colors["err"] . "$person not found in db! Trying to insert...</Font><BR>\n";
      if ( $db->query($sub_query) ) {
        $db->query($query);
        if ( $db->next_record() ) {
@@ -26,12 +30,17 @@
    }
    return $id;
  }
- // *** creating data dump ***
+ ##############################################################################
+ # create a dump of posted data for debugging purposes and send them to the
+ # debug output function
  $ddump = "Saving data:<p>\n<ul>"
     . " <li>Title: '$title'"
-    . " <li>MediaType: '$media_tid'"
+    . " <li>MediaType: '$media_tname'"
+    . " <li>MTypeID: '$mtype_id'"
     . " <li>Country: '$country'"
     . " <li>MediaNr: '$nr'"
+    . " <li>Cass_ID: '$cass_id'"
+    . " <li>Part: '$part'"
     . " <li>Director: '$director_name, $director_fname'"
     . " <li>Length: '$length'"
     . " <li>Composer: '$composer_name, $composer_fname'"
@@ -58,6 +67,10 @@
     . " <li>Comment: '$comment'"
     . "</ul>";
  debug("V",$ddump);
+ ##############################################################################
+ # prepare for db update: check wether all given actors/director etc. are in db
+ # and obtain their IDs, construct the SQL update statement as well as debug
+ # output, and finally do the update
  $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
  $dmsg     .= "<ul>\n";
  $query     = "SELECT id FROM directors WHERE name='$director_name' AND firstname='$director_fname'";
@@ -80,18 +93,20 @@
  if ($cat2_id < 0) $cat2_id="";
  if ($cat3_id < 0) $cat3_id="";
  if ($pict_id < 0) $pict_id="";
- $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
  $update  = "UPDATE video SET title='$title',country='$country',length='$length',year='$year',tone_id='$tone_id',"
           . "color_id='$color_id',aq_date='$recdate',source='$src',fsk='$fsk',comment='$comment',"
           . "actor1_list='$vis_actor1',actor2_list='$vis_actor2',actor3_list='$vis_actor3',"
           . "actor4_list='$vis_actor4',actor5_list='$vis_actor5',cat1_id='$cat1_id',cat2_id='$cat2_id',"
           . "cat3_id='$cat3_id',pict_id='$pict_id',director_id='$dir_id',music_id='$mus_id',"
           . "actor1_id='$act1_id',actor2_id='$act2_id',actor3_id='$act3_id',actor4_id='$act4_id',"
-          . "actor5_id='$act5_id',mtype_id='$media_tid' WHERE cass_id='$cass_id' AND part='$part'";
+          . "actor5_id='$act5_id' WHERE cass_id='$cass_id' AND part='$part'";
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
  if ( $db->query($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
+   $save_result = $colors["ok"] . "Entry updated successfully.</Font><BR>\n";
  } else {
    debug("E",$colors["err"] . "Query failed to execute!</Font>\n");
+   $save_result = $colors["err"] . "Failed to update entry!</Font><BR>\n";
  };
+// $edit=1;
 ?>

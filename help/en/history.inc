@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.6.9 (2004)
+[text]
+<ul>
+ <li>some work on the edit/view entry screen to get more info without scrolling
+</ul>
+
+[title]
 0.6.8 (October 31, 2004)
 [text]
 <ul>

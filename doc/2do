@@ -22,6 +22,8 @@ coming *next*:
 - form(s) to edit label sheets (for PSLabels)
 - settings for NTSC/PAL
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
+- separate the view_entry template from the edit template to move all formating
+  information from the PHP code into the template
 
 coming *sometimes* (maybe):
 - honour date format settings in all places

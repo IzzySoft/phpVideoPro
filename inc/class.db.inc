@@ -1204,6 +1204,7 @@
    function get_movieid($mtype_id,$cass_id,$part="") {
      $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
      if ($part=="") {
+       $id = array();
        $query .= " ORDER BY part";
        $this->query($query);
        while( $this->next_record() ) {
@@ -1397,7 +1398,7 @@
      if ($restrict) $where = " WHERE $restrict";
      $query = "SELECT v.id FROM video v";
      if (strlen($filter)) {
-       if (strlen($where)) {
+       if (isset($where)) {
          $where .= " AND $filter";
        } else {
          $where = " WHERE $filter";
@@ -1577,7 +1578,7 @@
        $movie[$lastname]  = $name['name'];
        $movie[$firstname] = $name['firstname'];
        $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
-       $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
+       $movie['cat1'] = lang($this->f('cat1name'));
        $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
@@ -2261,7 +2262,7 @@
      while ( $this->next_record() ) {
        $freelist[$i]['id']       = $this->f('id');
        $freelist[$i]['mtype_id'] = $this->f('mtype_id');
-       $freelist[$i][free]       = $this->f('free');
+       $freelist[$i]['free']       = $this->f('free');
        ++$i;
      }
      $freelist['totals'] = $totals;
@@ -2426,18 +2427,18 @@
        $stats[$item] = $this->f("$item");
      }
      $this->dbquery("SELECT DISTINCT mtype_id,cass_id FROM video");
-     $stats[media] = $this->num_rows();
+     $stats['media'] = $this->num_rows();
      $mt = $this->get_mtypes();
      $ct = count($mt);
      for ($i=0;$i<$ct;++$i) {
        $this->dbquery("SELECT DISTINCT cass_id FROM video WHERE mtype_id=".$mt[$i]['id']);
-       $ms[mcount] = $this->num_rows();
+       $ms['mcount'] = $this->num_rows();
        $ms['name']  = $mt[$i]['name'];
        $ms['sname'] = $mt[$i]['sname'];
-       $stats[smedia][] = $ms;
+       $stats['smedia'][] = $ms;
      }
      $this->dbquery("SELECT DISTINCT country FROM video");
-     $stats[countries] = $this->num_rows();
+     $stats['countries'] = $this->num_rows();
      for ($i=1;$i<4;++$i) {
        $cat = "cat" . $i . "_id";
        $this->dbquery("SELECT DISTINCT $cat FROM video");
@@ -2447,7 +2448,7 @@
        if (is_array(${$cat})) ${$cat} = array_flip(${$cat});
      }
      $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
-     $stats[cats_used] = count($cats);
+     $stats['cats_used'] = count($cats);
      // ===[ ranks ]===
      $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
 		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
@@ -2669,9 +2670,9 @@
      $this->query("SELECT id,unit,size FROM units");
      $i=0;
      while ( $this->next_record() ) {
-       $units[$i]['id']   = $this->f('id');
-       $units[$i][unit] = $this->f('unit');
-       $units[$i][factor] = $this->f('size');
+       $units[$i]['id']     = $this->f('id');
+       $units[$i]['unit']   = $this->f('unit');
+       $units[$i]['factor'] = $this->f('size');
        ++$i;
      }
    return $units;
@@ -2686,9 +2687,9 @@
      $this->query("SELECT id,vendor,product FROM label_forms");
      $i=0;
      while ( $this->next_record() ) {
-       $label_forms[$i][product] = $this->f('product');
-       $label_forms[$i][vendor] = $this->f('vendor');
-       $label_forms[$i]['id']   = $this->f('id');
+       $label_forms[$i]['product'] = $this->f('product');
+       $label_forms[$i]['vendor']  = $this->f('vendor');
+       $label_forms[$i]['id']      = $this->f('id');
        ++$i;
      }
    return $label_forms;
@@ -2703,9 +2704,9 @@
      $query="SELECT rows,cols,type FROM label_forms WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[rows] = $this->f('rows');
-         $lsheet[cols] = $this->f('cols');
-         $lsheet[type] = $this->f('type');
+         $lsheet['rows'] = $this->f('rows');
+         $lsheet['cols'] = $this->f('cols');
+         $lsheet['type'] = $this->f('type');
          return $lsheet;
        }
      }
@@ -2725,14 +2726,14 @@
      FROM label_forms WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[label_rows] = $this->f('rows');
-         $lsheet[label_cols] = $this->f('cols');
-         $lsheet[label_hdist] = $this->f('h_dist');
-         $lsheet[label_vdist] = $this->f('v_dist');
-         $lsheet[label_width] = $this->f('width');
-         $lsheet[label_heigth] = $this->f('heigth');
-         $lsheet[left_margin] = $this->f('leftm');
-         $lsheet[top_margin] = $this->f('topm');
+         $lsheet['label_rows']  = $this->f('rows');
+         $lsheet['label_cols']  = $this->f('cols');
+         $lsheet['label_hdist'] = $this->f('h_dist');
+         $lsheet['label_vdist'] = $this->f('v_dist');
+         $lsheet['label_width'] = $this->f('width');
+         $lsheet['label_heigth'] = $this->f('heigth');
+         $lsheet['left_margin'] = $this->f('leftm');
+         $lsheet['top_margin']  = $this->f('topm');
          $label_unit_id = $this->f('unit_id');
          $lsheet_sheet_id = $this->f('sheet_id');
 	 $stat++;
@@ -2743,7 +2744,7 @@
      $query="SELECT size FROM units WHERE id=$label_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[label_unit_size] = $this->f('size');
+         $lsheet['label_unit_size'] = $this->f('size');
          $stat++;
        }
        $stat++;
@@ -2753,18 +2754,18 @@
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $sheet_unit_id = $this->f('unit_id');
-	 $lsheet[sheet_papersize] = $this->f('name');
-	 $lsheet[sheet_length] = $this->f('length');
-	 $lsheet[sheet_width] = $this->f('width');
-         $stat++;
+	 $lsheet['sheet_papersize'] = $this->f('name');
+	 $lsheet['sheet_length']    = $this->f('length');
+	 $lsheet['sheet_width']     = $this->f('width');
+         ++$stat;
        }
-       $stat++;
+       ++$stat;
      }
 
      $query="SELECT size FROM units WHERE id=$sheet_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[sheet_unit_size] = $this->f('size');
+         $lsheet['sheet_unit_size'] = $this->f('size');
          $stat++;
        }
        $stat++;
@@ -2774,21 +2775,21 @@
      FROM printers WHERE id=$printer_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[pr_left] = $this->f('left_offset');
-         $lsheet[pr_top] = $this->f('top_offset');
+         $lsheet['pr_left'] = $this->f('left_offset');
+         $lsheet['pr_top'] = $this->f('top_offset');
          $printer_unit_id = $this->f('unit_id');
-         $stat++;
+         ++$stat;
        }
-       $stat++;
+       ++$stat;
      }
 
      $query="SELECT size FROM units WHERE id=$printer_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $lsheet[pr_unit_size] = $this->f('size');
-         $stat++;
+         $lsheet['pr_unit_size'] = $this->f('size');
+         ++$stat;
        }
-       $stat++;
+       ++$stat;
      }
 
      if ($stat) return $lsheet;
@@ -2806,7 +2807,7 @@
        $i=0;
      while ( $this->next_record() ) {
          $eps_template[$i]['id'] = $this->f('id');
-         $eps_template[$i][description] = $this->f('description');
+         $eps_template[$i]['description'] = $this->f('description');
          ++$i;
        }
        return $eps_template;
@@ -2824,12 +2825,12 @@
      FROM eps_templates WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
-         $eps_image[eps] = $this->f('eps_filename');
-         $eps_image[ps] = $this->f('ps_filename');
-         $eps_image[llx] = $this->f('llx');
-         $eps_image[lly] = $this->f('lly');
-         $eps_image[urx] = $this->f('urx');
-         $eps_image[ury] = $this->f('ury');
+         $eps_image['eps'] = $this->f('eps_filename');
+         $eps_image['ps']  = $this->f('ps_filename');
+         $eps_image['llx'] = $this->f('llx');
+         $eps_image['lly'] = $this->f('lly');
+         $eps_image['urx'] = $this->f('urx');
+         $eps_image['ury'] = $this->f('ury');
        }
        return $eps_image;
      }

@@ -159,6 +159,13 @@ Contents:
   change configuration issues. Make sure to enable cookies in this form,
   otherwise the edit->preferences use the database as storage instead.
 
+  With v0.4.1, the multi-user capatibilities of phpVideoPro grew a lot. Now it
+  contains a complete user management, including "permissions". By default, two
+  users are created: admin (pwd: video) and guest (no pwd), and the guest
+  account is strong limited (r/o) while the admin account has full access. You
+  may want to login as admin first and adjust these settings (via the admin
+  menue), and/or create new accounts. Make sure to change the admin pwd soon :)
+
 ===============================================================================
 
 7.) Known bugs / limitations

@@ -38,8 +38,7 @@
    # common stuff
    ############################################################################
    /** setup sql clause to limit result set (depending on database type)
-    * @class sql
-    * @method limit
+    * @method private limit
     * @param optional integer start
     * @return string limit SQL limit clause for the configured database type
     */
@@ -57,8 +56,7 @@
 
    /** replace empty values within SQL queries by NULL statement to keep query
     * syntactically correct
-    * @class sql
-    * @method clean_query
+    * @method private clean_query
     * @param string query query to clean
     */
    function clean_query(&$query) {
@@ -76,8 +74,6 @@
    } // end clean_query()
 
    /** do a query on the db and provide debug output
-    * @class sql
-    * @package Api
     * @method dbquery
     * @param string query SQL statement to execute
     * *variable array colors
@@ -93,8 +89,7 @@
    /** Query db using the LIMIT clause. returns count of TOTAL datasets found
     *  (i.e. UNLIMITED query result count). $query must NOT contain any limit
     *  clause!!!
-    * @class sql
-    * @method lim_query
+    * @method private lim_query
     * @param string query SQL statement to execute
     * @param optional integer start
     * @return integer totals (result set count)
@@ -111,8 +106,7 @@
    }
 
    /** Delete a complete row from a table
-    * @class sql
-    * @method delete_row
+    * @method private delete_row
     * @param string table table name
     * @param string id row id(s) to delete (multiple IDs must be separated by
     *  commata; row id is the value of the id column)
@@ -126,7 +120,6 @@
    # translations
    ############################################################################
    /** Get languages available for audio/subtitle
-    * @class sql
     * @method get_avlang
     * @param string type ("audio"|"subtitle")
     * @return array langs array 0..n of object (id=lang_id,name=translated langname)
@@ -150,7 +143,6 @@
    }
 
    /** (Un)Set enabled flag for audio or subtitle
-    * @class sql
     * @method set_avlang
     * @param string lang_id language key like "de" or "en"
     * @param integer flag 0=disable, 1=enable
@@ -165,7 +157,6 @@
    }
 
    /** Get list of all languages with all available settings from language table
-    * @class sql
     * @method get_langlist
     * @param optional string id lang_id
     * @param optional integer start for limited queries
@@ -194,7 +185,6 @@
    }
 
    /** Get installed languages (both available and unavailable)
-    * @class sql
     * @method get_installedlang
     * @return array language names (lang)
     */
@@ -212,7 +202,6 @@
    }
 
    /** Get (un)available|all languages
-    * @class sql
     * @method get_languages
     * @param optional integer avail available (1) or unavailable(0); default: both
     * @return array languages (id,name, charset, avail)
@@ -240,7 +229,6 @@
    }
 
    /** Make a language (un)available
-    * @class sql
     * @method lang_available
     * @param string lang language id
     * @param optional integer avail defaults to "1"
@@ -251,7 +239,6 @@
    }
 
    /** delete translations for a specific language
-    * @class sql
     * @method delete_translations
     * @param string lang language id
     */
@@ -260,7 +247,6 @@
    }
 
    /** Get all translations and return them as array
-    * @class sql
     * @method get_translations
     * @param string pref_lang language id of preferred language
     * @return array translations (msg_id:=trans(msg_id))
@@ -299,7 +285,6 @@
    /** Set a translation: if $trans is empty, translation for the specified
     *  language and message $id will be removed. Otherwise the new translation
     *  will be updated or inserted
-    * @class sql
     * @method set_translation
     * @param string id translation identifier
     * @param string trans translated string
@@ -324,7 +309,6 @@
    }
 
    /** Get translations for the specified language only (for admin)
-    * @class sql
     * @method get_singletrans
     * @param string lang language to retrieve for
     * @param optional integer start (for lim_query)
@@ -353,7 +337,6 @@
    # options
    ############################################################################
    /** Get list of options
-    * @class sql
     * @method get_options
     * @param optional string name name of option to retrieve values for
     * @return array array of option arrays ($list['name'][$i]=value)
@@ -375,7 +358,6 @@
    ############################################################################
    /** Get preferences from DB (used by class preferences; use that class to
     *  obtain preference settings!)
-    * @class sql
     * @method get_preferences
     * @param string name preference name
     * @param optional integer user_id
@@ -419,7 +401,6 @@
 
    /** Set preferences in DB (if exist: update, otherwise insert)
     *  Used by class preferences: use that class to modify settings!
-    * @class sql
     * @method set_preferences
     * @param string name
     * @param mixed value
@@ -449,7 +430,6 @@
 
    /** Remove preferences from DB
     *  Used by class preferences: use that class to modify settings!
-    * @class sql
     * @method unset_preferences
     * @param string name
     * @see preferences::filter
@@ -462,7 +442,6 @@
    # configuration
    ############################################################################
    /** Get some config value
-    * @class sql
     * @method get_config
     * @param string name config vars name
     * @return string value
@@ -477,7 +456,6 @@
    }
 
    /** Get all data from configuration table
-    * @class sql
     * @method get_config_all
     * @return array (name=>value)
     */
@@ -491,7 +469,6 @@
    }
 
    /** Set some config value
-    * @class sql
     * @method set_config
     * @param string name config vars name
     * @return integer success return value from sql::dbquery on update/insert
@@ -511,7 +488,6 @@
    # Session managment
    ############################################################################
    /** Create a session
-    * @class sql
     * @method create_session
     * @param string id session-id
     * @param string ip remote-ip
@@ -526,7 +502,6 @@
    }
 
    /** End a session
-    * @class sql
     * @method end_session
     * @param string sess_id
     * @param string ip
@@ -537,11 +512,10 @@
    }
 
    /** Verify (and update) a session
-    * @class sql
     * @method verify_session
     * @param string id session-id
     * @param string ip remote-ip
-    * @return integer user-id
+    * @return mixed integer user-id or FALSE
     */
    function verify_session($id,$ip) {
      GLOBAL $pvp;
@@ -562,7 +536,6 @@
    }
 
    /** Get list of registered sessions
-    * @class sql
     * @method get_sessions
     * @param optional integer start to limit queries
     * @return array array of session objects (sess_id,ip,user,start,dla,end)
@@ -585,7 +558,6 @@
    }
 
    /** remove a session from DB
-    * @class sql
     * @method remove_session
     * @param optional string sess_id session identifier
     * @param optional integer days purge older than $days (give empty sess_id for this)
@@ -608,7 +580,6 @@
    # User managment
    ############################################################################
    /** Get users
-    * @class sql
     * @method get_users
     * @param optional integer user_id
     * @return mixed array users (array of objects;
@@ -639,7 +610,6 @@
    }
 
    /** Get login data
-    * @class sql
     * @method get_logindata
     * @param string login user login
     * @return object user (properties: id,passwd)
@@ -656,7 +626,6 @@
    }
 
    /** Update user record
-    * @class sql
     * @method set_user
     * @param object user single user object (as defined as element of userlist array)
     * @return boolean success
@@ -676,7 +645,6 @@
    }
 
    /** Add user
-    * @class sql
     * @method add_user
     * @param object user single user object (as defined as element of userlist array)
     * @return boolean success
@@ -697,7 +665,6 @@
    }
 
    /** Delete user
-    * @class sql
     * @method del_user
     * @param integer id id of user to delete
     * @return boolean success
@@ -711,9 +678,8 @@
    ############################################################################
    # people and their names
    ############################################################################
-   /** Format a names array (private! just an internal helper func)
-    * @class sql
-    * @method format_name
+   /** Format a names array
+    * @method private format_name
     * @param array name
     * return array name
     */
@@ -733,9 +699,8 @@
      return $name;
    }
 
-   /** Get all data for a person and return it as array (privat! internal helper)
-    * @class sql
-    * @method get_person
+   /** Get all data for a person and return it as array
+    * @method private get_person
     * @param integer id person id
     * @param string table tablename (actors, directors, etc)
     * @return array person data (formatted by sql::format_name)
@@ -766,7 +731,6 @@
    }
 
    /** Get all data for an actor and return it as array (wrapper to get_person)
-    * @class sql
     * @method get_actor
     * @param integer id actor id
     * @return array actor data (formatted by format_name)
@@ -776,7 +740,6 @@
    }
 
    /** Get all data for a director and return it as array (wrapper to get_person)
-    * @class sql
     * @method get_director
     * @param integer id director id
     * @return array director data (formatted by format_name)
@@ -786,7 +749,6 @@
    }
 
    /** Get all data for a componist and return it as array (wrapper to get_person)
-    * @class sql
     * @method get_music
     * @param integer id componist's id
     * @return array componist's data (formatted by format_name)
@@ -796,7 +758,6 @@
    }
 
    /** Get distinct staff ids from video table and return them as array
-    * @class sql
     * @method get_distinct_staffids
     * @param string field name of id field to search
     * @return array array of ids
@@ -810,8 +771,7 @@
    }
 
    /** Setup the orphans array (helper to get_orphaned_staff)
-    * @class sql
-    * @method setup_orphan
+    * @method private setup_orphan
     * @param string stafftype stafftype (director,composer,actor)
     * @param integer id PK to stafftype's table
     * @param string name name of orphaned staff member
@@ -829,7 +789,6 @@
 
    /** Search the database for orphaned staff members. I.e. people who have an
     *  entry in one of the staff tables, but the video table doesn't refer to them
-    * @class sql
     * @method get_orphaned_staff
     * @return array of orphanes
     * @version the array has the format array[$i]->$item, where $item is one of
@@ -866,7 +825,6 @@
    }
 
    /** Delete an actor from DB
-    * @class sql
     * @method delete_actor
     * @param mixed id either integer (id) or string (comma separated list of ids)
     * @return boolean success
@@ -876,7 +834,6 @@
    }
 
    /** Delete an director from DB
-    * @class sql
     * @method delete_director
     * @param mixed id either integer (id) or string (comma separated list of ids)
     * @return boolean success
@@ -886,7 +843,6 @@
    }
 
    /** Delete an composer from DB
-    * @class sql
     * @method delete_composer
     * @param mixed id either integer (id) or string (comma separated list of ids)
     * @return boolean success
@@ -899,7 +855,6 @@
    # categories
    ############################################################################
    /** Get a category's data
-    * @class sql
     * @method get_category
     * @param optional integer id category id
     * @param optional string order subclause for ORDER BY
@@ -946,7 +901,6 @@
    }
 
    /** get category ID by categories internal name
-    * @class sql
     * @method get_category_id
     * @param string iname internal name of category
     * @return integer cat_id
@@ -962,7 +916,6 @@
    }
 
    /** update a category
-    * @class sql
     * @method update_category
     * @param integer id category's id
     * @param string name category's name
@@ -981,7 +934,6 @@
    }
 
    /** add a category
-    * @class sql
     * @method add_category
     * @param string name
     * @return boolean success
@@ -994,7 +946,6 @@
    }
 
    /** remove a category
-    * @class sql
     * @method delete_category
     * @param integer id category ID (PK of table)
     * @return boolean success
@@ -1007,9 +958,8 @@
    ############################################################################
    # technical data
    ############################################################################
-   /** Get audio/video data and return it as array (privat! internal helper)
-    * @class sql
-    * @method get_av
+   /** Get audio/video data and return it as array
+    * @method private get_av
     * @param integer id ID of required data set
     * @param string table table name
     * @return array av (name,sname if id!="", i:id,i:name,i:sname otherwise)
@@ -1037,8 +987,7 @@
    }
 
    /** update technical audio/video data
-    * @class sql
-    * @method set_av
+    * @method private set_av
     * @param string table
     * @param string name
     * @param string sname
@@ -1062,7 +1011,6 @@
    }
 
    /** Get all pict data and return it as array (wrapper to get_av)
-    * @class sql
     * @method get_pict
     * @param optional integer id
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
@@ -1072,7 +1020,6 @@
    }
 
    /** update pict data (wrapper to set_av)
-    * @class sql
     * @method set_pict
     * @param string name
     * @param string sname
@@ -1084,7 +1031,6 @@
    }
 
    /** Get all color data and return it as array (wrapper to get_av)
-    * @class sql
     * @method get_color
     * @param optional integer id
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
@@ -1094,7 +1040,6 @@
    }
 
    /** update color data (wrapper to set_av)
-    * @class sql
     * @method set_color
     * @param string name
     * @param string sname
@@ -1106,7 +1051,6 @@
    }
 
    /** Get all tone data and return it as array (wrapper to get_av)
-    * @class sql
     * @method get_tone
     * @param optional integer id
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
@@ -1116,7 +1060,6 @@
    }
 
    /** update tone data (wrapper to set_av)
-    * @class sql
     * @method set_tone
     * @param string name
     * @param string sname
@@ -1128,7 +1071,6 @@
    }
 
    /** get data for commercials
-    * @class sql
     * @method get_commercials
     * @param optional integer id
     * @return mixed (name if id!="", array of i:id,i:name otherwise)
@@ -1155,7 +1097,6 @@
    }
 
    /** check tech tables for movie references
-    * @class sql
     * @method check_movietechref
     * @param string table
     * @param integer id
@@ -1183,7 +1124,6 @@
    ############################################################################
    /** Drop (delete) all movie data
     *  this is used to clean the db before doing a movie restore
-    * @class sql
     * @method drop_all_movies
     * @return boolean success
     */
@@ -1197,7 +1137,6 @@
    }
 
    /** Get movie ids
-    * @class sql
     * @method get_movieid
     * @param integer mtype_id media type id
     * @param integer cass_id media number
@@ -1223,7 +1162,6 @@
 
    /** Retrieve a list of all movie ids (unfiltered)
     *  Needed for the backup procedure
-    * @class sql
     * @method get_movieids_all
     * @return array id_list
     */
@@ -1237,7 +1175,6 @@
    }
 
    /** Get all data for a movie entry and return it as array
-    * @class sql
     * @method get_movie
     * @param integer id movie id
     * @return array array with detailled movie information
@@ -1379,7 +1316,6 @@
    }
 
    /** Get movie list as array of movies (see get_movie)
-    * @class sql
     * @method get_movielist
     * @param optional string order column to order the list by
     *  (title, lenght, year, date or cat)
@@ -1424,7 +1360,6 @@
    }
 
    /** Search for movies and return as array of movies (see get_movie)
-    * @class sql
     * @method searchmovies
     * @param optional string order column to order the list by
     *  (title, lenght, year, date or cat)
@@ -1517,7 +1452,6 @@
 
    /** Get movie list for cat1 as array of movies (see get_movie)
     *  (wrapper to get_movielist)
-    * @class sql
     * @method get_moviecatlist
     * @param integer cat_id ID of category to get movies for
     * @return array array of movies
@@ -1529,7 +1463,6 @@
 
    /** Get movie list for cat1..cat3 as array of movies (see get_movie)
     *  (wrapper to get_movielist)
-    * @class sql
     * @method get_moviecatlist3
     * @param integer cat_id ID of category to get movies for
     * @return array array of movies
@@ -1540,7 +1473,6 @@
    }
 
    /** Get movie list by staff member as array of movies (see get_movie)
-    * @class sql
     * @method get_movienamelist
     * @param string table table name for staff member
     * @param array name name as formatted by sql::format_name()
@@ -1594,7 +1526,6 @@
    }
 
    /** Get first movie numbers for each media type
-    * @class sql
     * @method get_firstmovienum
     * @param optional integer mtype_id
     * @param optional integer cass_id
@@ -1632,7 +1563,6 @@
    }
 
    /** Get last movie numbers for each media type
-    * @class sql
     * @method get_lastmovienum
     * @param optional integer mtype_id
     * @param optional integer cass_id
@@ -1679,7 +1609,6 @@
    }
 
    /** Get the next entry
-    * @class sql
     * @method get_nextentry
     * @param integer mtype_id media type id of current entry
     * @param integer media_nr number of current medium
@@ -1729,7 +1658,6 @@
    }
 
    /** Get the previous entry
-    * @class sql
     * @method get_preventry
     * @param integer mtype_id media type id of current entry
     * @param integer media_nr number of current medium
@@ -1780,7 +1708,6 @@
    }
 
    /** Add a movie to DB
-    * @class sql
     * @method add_movie
     * @param array movie movie array (for desc see get_movie)
     * @return boolean success
@@ -1852,7 +1779,6 @@
    }
 
    /** Move a movie to a new place
-    * @class sql
     * @method move_movie
     * @param integer id movie id
     * @param integer mtype_id media type id
@@ -1893,7 +1819,6 @@
    }
 
    /** Get a list of duplicate titles
-    * @class sql
     * @method get_dupetitles
     * @return array array of titles:
     *  array[$i]['title']; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
@@ -1935,7 +1860,6 @@
    ############################################################################
 
    /** Obtain all media numbers that have a certain disk type assigned
-    * @class sql
     * @method get_mediaForDisktype
     * @param integer id disktype-ID
     * @return array media (array of objects w/ properties mtype_id, cass_id)
@@ -1951,7 +1875,6 @@
    }
 
    /** Obtain all disk type for a given media type
-    * @class sql
     * @method get_disktypes
     * @param integer mtype_id Media Type ID
     * @param optional integer id ID for a specific entry
@@ -1999,7 +1922,6 @@
    }
 
    /** Delete a disktype from table disks
-    * @class sql
     * @method delete_disktype
     * @param integer id
     * @return boolean success
@@ -2013,7 +1935,6 @@
    }
 
    /** Update a disktype in table disks
-    * @class sql
     * @method update_disktype
     * @param integer id
     * @param integer mtype_id
@@ -2036,7 +1957,6 @@
    }
 
    /** Get a specific disktype id
-    * @class sql
     * @method get_disktype_id
     * @param integer mtype_id
     * @param integer cass_id
@@ -2049,7 +1969,6 @@
    }
 
    /** Set disktype for a medium
-    * @class sql
     * @method set_disktype
     * @param integer cass_id
     * @param integer mtype_id
@@ -2067,7 +1986,6 @@
    }
 
    /** Set region code(s) for a specific medium
-    * @class sql
     * @method set_rc
     * @param integer mtype_id
     * @param integer cass_id
@@ -2093,7 +2011,6 @@
    }
 
    /** Retrieve region code for a given medium
-    * @class sql
     * @method get_rc
     * @param integer mtype_id
     * @param integer cass_id
@@ -2114,7 +2031,6 @@
    }
 
    /** Get all media types and return them as array
-    * @class sql
     * @method get_mtypes
     * @param optional string restrict WHERE clause
     * @return array array of media types (i:id, i:sname, i:name)
@@ -2137,7 +2053,6 @@
    }
 
    /** update mtype data (wrapper to set_av)
-    * @class sql
     * @method set_mtypes
     * @param string name
     * @param string sname
@@ -2149,7 +2064,6 @@
    }
 
    /** Insert a medium into the media table (if not yet exists)
-    * @class sql
     * @method insert_medium
     * @param integer cass_id media id
     * @param integer mtype_id media type id
@@ -2165,7 +2079,6 @@
 
    /** Delete a medium from the media table.
     *  Removes the entry from cass table only if the medium is empty (or $force is set)
-    * @class sql
     * @method delete_medium
     * @param integer cass_id media id
     * @param integer mtype_id media type id
@@ -2184,7 +2097,6 @@
    }
 
    /** Get freetime of a given medium
-    * @class sql
     * @method get_mediumfreetime
     * @param integer id media id
     * @param integer mtype_id media type id
@@ -2197,7 +2109,6 @@
    }
 
    /** Get space on a medium
-    * @class sql
     * @method get_mediaspace
     * @param integer id media id
     * @param integer mtype_id media type id
@@ -2211,7 +2122,6 @@
    }
 
    /** Set space on a medium
-    * @class sql
     * @method set_mediaspace
     * @param integer id media id
     * @param integer mtype_id media type id
@@ -2234,7 +2144,6 @@
    }
 
    /** Update freetime on a medium. If $free is not specified, recalc freetime
-    * @class sql
     * @method update_freetime
     * @param integer id media id
     * @param optional integer mtype_id media type id (defaults to 1)
@@ -2262,7 +2171,6 @@
 
    /** Get list of free space on media. If $start is set, the result set is
     *  limited based on $pvp->preferences->limit
-    * @class sql
     * @method get_freelist
     * @param integer minfree min amount of freetime to display
     * @param optional string filter filter restriction to apply
@@ -2297,7 +2205,6 @@
    ############################################################################
    /** Get list of "visible" staff members If $start is set, the result set is
     *  limited based on $pvp->preferences->limit
-    * @class sql
     * @method get_visstafflist
     * @param string stafftype wether it is music, directors or actors
     * @param optional string filter filter restrictions
@@ -2351,9 +2258,8 @@
 
    ############################################################################
    /** Check wether a given person exists in the db and aquire his/her id. If not
-    *  found in db, insert him/her first (privat! internal helper func)
-    * @class sql
-    * @method insert_person
+    *  found in db, insert him/her first
+    * @method private insert_person
     * @param string person stafftype
     * @param string query SQL query for SELECT statement
     * @param string sub_query SQL query for INSERT statement
@@ -2432,7 +2338,6 @@
 
    ############################################################################
    /** Gather statistic informations from the database
-    * @class sql
     * @method get_stats
     * @return array stats
     */
@@ -2556,7 +2461,6 @@
 
    ############################################################################
    /** Execute the statements in the passed $array one-by-one, ignore comments
-    * @class sql
     * @method get_sql
     * @param array sql_array each line containing SQL code
     * @return boolean success
@@ -2589,7 +2493,6 @@
    ############################################################################
    /** Interface to get_sql(): reads a file into an array and passes it to
     *  get_sql()
-    * @class sql
     * @method queryf
     * @param string file name of file containing the SQL code to execute
     * @param string comment description of the actions done by execute
@@ -2618,7 +2521,6 @@
  ############################################################################
 
  /** get printer specifics
-  * @class sql
   * @method get_printer
   * @param optional integer id
   * @return mixed (array of object(s) with printer specifics)
@@ -2659,7 +2561,6 @@
  }
 
  /** set printer specifics
-  * @class sql
   * @method set_printer
   * @param optional integer id printerID (if not set, new printer will be added)
   * @param optional string name printer name (if not set, printer will be deleted)
@@ -2687,7 +2588,6 @@
  }
 
  /** get available units
-  * @class sql
   * @method get_units
   * @return mixed (array of id,unit,factor)
   */
@@ -2704,7 +2604,6 @@
   }
 
  /** get available label forms
-  * @class sql
   * @method get_label_forms
   * @return mixed (array of i:id,i:vendor,i:product)
   */
@@ -2721,7 +2620,6 @@
   }
 
  /** get number of rows and columns on sheet for $id
-  * @class sql
   * @method get_lsheet
   * @return mixed (rows,cols)
   */
@@ -2739,7 +2637,6 @@
   }
 
  /** get all print format relevant infos for label form $id
-  * @class sql
   * @method get_lsheet_info
   * @return mixed ()
   */
@@ -2822,7 +2719,6 @@
   }
 
  /** get eps template description for $type
-  * @class sql
   * @method get_epstemplates
   * @return mixed (id,description)
   */
@@ -2841,7 +2737,6 @@
   }
 
  /** get eps image reference for $id
-  * @class sql
   * @method get_epsimage
   * @return mixed (eps_file,ps_file,llx,lly,urx,ury)
   */
@@ -2863,7 +2758,6 @@
   }
 
  /** get eps template types
-  * @class sql
   * @method get_labeltypes
   * @return array labeltypes array of objects
   */
@@ -2880,7 +2774,6 @@
  }
 
  /** get complete eps template description list
-  * @class sql
   * @method get_pstemplates
   * @param optional integer id eps template id
   * @param optional integer start for limit queries
@@ -2913,7 +2806,6 @@
  }
 
  /** set ps template details
-  * @class sql
   * @method set_pstemplate
   * @param mixed pstemplate integer id to delete or object to update
   * @return boolean success

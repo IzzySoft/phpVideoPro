@@ -67,12 +67,14 @@
    $lcount = count($langs);
    for($i=0;$i<$lcount;++$i) {
      if ($langs[$i]["id"] == $targetlang) {
-       $tlang = $langs[$i]["name"];
+#       $tlang = $langs[$i]["name"];
+       $tl = $db->get_singletrans("en","","lang_".$langs[$i]["id"]);
+       $tlang = $tl["lang_".$langs[$i]["id"]];
        $tchar = $langs[$i]["charset"];
        break;
      }
    }
-   if (!$tchar) $tchar = "iso-8859-15";
+   if (!$tchar) $tchar = "utf-8";
    $trans = $db->get_singletrans($targetlang);
    $totals = count($trans["xlist"]);
    $sql   = "# ========================================================\n"

@@ -33,9 +33,12 @@
 
  $t->set_file(array("template"=>"backup_db.tpl"));
  $t->set_block("template","itemblock","item");
+ $t->set_block("itemblock","settingsblock","settings");
+ $t->set_block("itemblock","descblock","desc");
  $t->set_var("listtitle",lang("backup_db"));
 
  if ($backup) {
+   if ($btype=="removieint") die(lang("not_yet_implemented"));
    if ($btype=="movieint") {
      $mlist  = $db->get_movie();
      $mcount = count($mlist);
@@ -95,6 +98,8 @@
    #===============================================[ initial hints & form ]===
    $t->set_var("title",lang("intro"));
    $t->set_var("details",lang("desc_backup_db"));
+   $t->set_var("settings","");
+   $t->parse("desc","descblock");
    $t->parse("item","itemblock");
    $t->set_var("title",lang("preferences"));
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
@@ -103,8 +108,15 @@
           . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint'>".lang("backup_db_movie_internal")."<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
-   $t->set_var("details",$radio);
+   $t->set_var("dleft",$radio);
+   $t->set_var("desc","");
+   $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='removieint'>".lang("restore_db_movie_internal");
+   $t->set_var("dright",$radio);
+   $t->set_var("hleft",lang("backup"));
+   $t->set_var("hright",lang("restore"));
+   $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
+   $t->set_var("settings","");
    $t->set_var("title",lang("backup_db_runscript"));
    $t->set_var("details","");
    $t->parse("item","itemblock",TRUE);

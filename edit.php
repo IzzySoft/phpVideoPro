@@ -275,8 +275,7 @@ EndHiddenFields;
         if ($i<6) $rcname .= "&nbsp;";
       }
     } else {
-      $rccount = count($rc);
-      if ( !$rccount ) {
+      if ( !is_array($rc) ) {
         $rcname  = form_input("rc",lang("unknown"),"CLASS='techinput'");
       } else {
         for ($i=0;$i<7;++$i) {

@@ -1571,6 +1571,7 @@
      $this->dbquery("SELECT rc FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      $rcs = $this->f('rc');
+     if (!$rcs) return "";
      $rcs = substr( $rcs,1,strlen($rcs)-2 );
      $rct  = explode(",",$rcs);
      $rccount = count($rct);

@@ -14,7 +14,6 @@
 
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
-# if (!$pvp->auth->admin) kickoff();
  if (!$pvp->auth->admin) $id = $pvp->auth->user_id;
 
  $t = new Template($pvp->tpl_dir);
@@ -133,7 +132,9 @@
  $t->set_var("listtitle",lang("admin_useredit"));
  $t->set_var("formtarget",$PHP_SELF);
  if ($id) $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='update' VALUE='".lang("update")."'>");
- $t->set_var("adduser","<INPUT TYPE='submit' CLASS='submit' NAME='adduser' VALUE='".lang("add_user")."'>");
+ if ($pvp->auth->admin) {
+   $t->set_var("adduser","<INPUT TYPE='submit' CLASS='submit' NAME='adduser' VALUE='".lang("add_user")."'>");
+ }
  $t->set_var("save_result",$save_result);
  $t->set_var("head_users",lang("user"));
  $t->set_var("head_access",lang("data_access"));

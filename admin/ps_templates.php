@@ -100,6 +100,17 @@
  } else {
 
  #==================================================[ display initial list ]==
+?>
+<SCRIPT LANGUAGE="JavaScript">
+ function delconfirm(url) {
+  check = confirm("<?=lang("confirm_delete")?>");
+  if (check == true) window.location.href=url;
+ }
+</SCRIPT>
+<?
+   $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+   $edit_img  = $tpl_dir . "/images/edit.png";
+   $trash_img = $tpl_dir . "/images/trash.png";
    $query = "\$db->get_pstemplates(\"\",$start)";
    $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF,$start);
    $list = $nextmatch->list;
@@ -107,8 +118,9 @@
      $t->set_var("id",$list[$i]->id);
      $t->set_var("desc",$list[$i]->desc);
      $t->set_var("type",$list[$i]->type_desc);
-     $t->set_var("edit",$pvp->link->linkurl($PHP_SELF."?edit=".$list[$i]->id,lang("edit")));
-     $t->set_var("remove",$pvp->link->linkurl($PHP_SELF."?remove=".$list[$i]->id,lang("delete")));
+     $t->set_var("edit",$pvp->link->linkurl($PHP_SELF."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
+     $url = $pvp->link->slink($PHP_SELF."?remove=".$list[$i]->id);
+     $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
      $t->parse("item","itemblock",TRUE);
    }
    $t->set_var("add",$pvp->link->linkurl($PHP_SELF."?add=1",lang("add_entry")));

@@ -219,6 +219,15 @@
   }
 
   // main block
+  #---[ Obtain disktype data ]---
+  if ($edit) {
+    $disktypes = $db->get_disktypes($mtype_id);
+    $dtcount   = count($disktypes);
+  } elseif ($disktype) {
+    $disktypes = $db->get_disktypes($mtype_id,$disktype);
+    $dtcount   = count($disktypes);
+  }
+  
   #---[ navigation and title ]---
   if ($page_id == "view_entry") {
     $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
@@ -279,25 +288,23 @@ EndHiddenFields;
   $t->set_var("year",form_input("year",$year,$form["addon_year"]));
   $t->set_var("length_name",lang("length"));
   $t->set_var("length",form_input("length",$length,$form["addon_filmlen"]) . " " . lang("min"));
-  $t->set_var("longplay_name",lang("longplay"));
-  $field = "<INPUT NAME=\"lp\"";
-  if ($edit) { 
-    $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
-    if ($lp) $field .= " CHECKED";
-    $field .= ">";
+  if ($disktype[0]->lp || !$dtcount) {
+    $t->set_var("longplay_name",lang("longplay"));
+    $field = "<INPUT NAME=\"lp\"";
+    if ($edit) { 
+      $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
+      if ($lp) $field .= " CHECKED";
+      $field .= ">";
+    } else {
+      $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
+      if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+    }
   } else {
-    $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
-    if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+    $t->set_var("longplay_name","");
+    $field = "<INPUT TYPE='hidden' NAME='lp' VALUE='0'>";
   }
   $t->set_var("longplay",$field);
   #---[ Counter settings ]---
-  if ($edit) {
-    $disktypes = $db->get_disktypes($mtype_id);
-    $dtcount   = count($disktypes);
-  } elseif ($disktype) {
-    $disktypes = $db->get_disktypes($mtype_id,$disktype);
-    $dtcount   = count($disktypes);
-  }
   if ($dtcount) {
     $t->set_var("counter_name",lang("disk_type"));
     if ($new_entry) {

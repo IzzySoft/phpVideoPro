@@ -349,3 +349,7 @@ INSERT INTO lang VALUES('ended_sessions','en','Ended Sessions');
 INSERT INTO lang VALUES('new_movie_on','en','New %1');
 INSERT INTO lang VALUES('last_entry','en','Last entry');
 INSERT INTO lang VALUES('disk_type','en','Disk Type');
+INSERT INTO lang VALUES('change_disktype','en','Change Disk Type for %1');
+INSERT INTO lang VALUES('orig_disktype','en','Original Disk Type');
+INSERT INTO lang VALUES('new_disktype','en','New Disk Type');
+INSERT INTO lang VALUES('disktype_change','en','Change Disk Type');

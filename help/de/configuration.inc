@@ -83,27 +83,6 @@ gelöschte Englische Sprache) zurückzuführen sein, erbitte ich eine
 Fehler beheben kann!
 
 [title]
-*colors#
-
-[text]
-<b>*feedback_ok# / *feedback_err#:</b> Im Unterschied zum vorigen Punkt werden
-diese Einstellungen in kein StyleSheet eingepaßt. Sie dienen Rückmeldungen vom
-System, z.B. bei Aktualisierungen der Datenbank, um den jeweiligen Status
-sofort erfaßbar zu machen. "*feedback_ok#" meint hier also die Textfarbe für
-eine positive Rückmeldung, während "*feedback_err#" die Textfarbe für eine
-Fehlermeldung darstellt.
-
-[text]
-<b>*template_set#:</b> Seit Version 0.1.5 basiert phpVideoPro auf Templates
-(das Design betreffend). Als Autor habe ich lediglich ein einziges Set solcher
-Templates der Distribution beigefügt; sobald jedoch weitere Templatesets
-verfügbar sind (d.h., sobald jemand ein solches erstellt und mir zugeschickt
-hat - ich selber werde wahrscheinlich zumindest in absehbarer Zeit kein
-weiteres erstellen :), lassen diese sich hier auswählen, und phpVideoPro erhält
-auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
-XMMS bzw. WinAmp bekannt sein dürften).
-
-[title]
 *config_media#
 
 [text]
@@ -193,6 +172,16 @@ des Gast-Kontos.
 
 [title]
 *general#
+
+[text]
+<b>*template_set#:</b> Seit Version 0.1.5 basiert phpVideoPro auf Templates
+(das Design betreffend). Als Autor habe ich lediglich ein einziges Set solcher
+Templates der Distribution beigefügt; sobald jedoch weitere Templatesets
+verfügbar sind (d.h., sobald jemand ein solches erstellt und mir zugeschickt
+hat - ich selber werde wahrscheinlich zumindest in absehbarer Zeit kein
+weiteres erstellen :), lassen diese sich hier auswählen, und phpVideoPro erhält
+auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
+XMMS bzw. WinAmp bekannt sein dürften).
 
 [text]
 <b>*printer#:</b> Um eine exakte Positionierung der Etiketten auf den zu

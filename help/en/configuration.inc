@@ -70,23 +70,6 @@ removed the English phrases from the db manually ;) - please drop
 and where the error occured.
 
 [title]
-*colors#
-
-[text]
-<b>*feedback_ok# / *feedback_err#:</b> These settings are not rendered into
-any stylesheet. They are used for system responses on user request, i.e.
-statements like "entry created successfully" when creating a new entry in the
-database, or "Error &lt;some description&gt;" when something went wrong, to
-emphasize these messages in context to the regular form data they are displayed
-with.
-
-[text]
-<b>*template_set#:</b> starting with v0.1.5, phpVideoPro is based on templates.
-I (the author) just provided an initial template set; but as soon as there are
-additional template sets available (which will only happen when <b>YOU</b>
-write them - I'm not a good designer), this is the place to make your choice.
-
-[title]
 *config_media#
 
 [text]
@@ -163,6 +146,12 @@ cookies. After the timeout, the session falls back into guest mode.
 
 [title]
 *general#
+
+[text]
+<b>*template_set#:</b> starting with v0.1.5, phpVideoPro is based on templates.
+I (the author) just provided an initial template set; but as soon as there are
+additional template sets available (which will only happen when <b>YOU</b>
+write them - I'm not a good designer), this is the place to make your choice.
 
 [text]
 <b>*printer#:</b> To guarantee the exact position of generated labels on the

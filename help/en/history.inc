@@ -13,6 +13,8 @@
      that is still referenced by some media, it will not be deleted anymore.
      Instead, you will be presented with a list of these media and now can
      decide to change them and delete the disk type afterwards.
+ <li>color settings have been moved to stylesheet and thus are now completely
+     template dependant
 </ul>
 
 [title]

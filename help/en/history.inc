@@ -13,6 +13,7 @@
      solve the restore problems with PostgreSQL (sequences are not considered
      by current backup) and b) be compatible amongst all (even future) supported
      databases. Only disadvantage: we have no restore yet *grin* - next2come.
+ <li>added optional compression to all backup types
 </ul>
 
 [title]

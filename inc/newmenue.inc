@@ -9,33 +9,33 @@
 <img src="<?=$base_url?>images/menu_arrow.gif" border="0" alt="&gt;" align="left" style="margin-left:0px">
 <? if ($pvp->auth->admin) { ?>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'adminMenu');"
     onmouseover="buttonMouseover(this, 'adminMenu');"
     ><? echo lang("admin") ?></a>
 <? } ?>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'editMenu');"
     onmouseover="buttonMouseover(this, 'editMenu');"
     ><? echo lang("edit") ?></a>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'filterMenu');"
     onmouseover="buttonMouseover(this, 'filterMenu');"
     ><? echo lang("filter") ?></a>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'viewMenu');"
     onmouseover="buttonMouseover(this, 'viewMenu');"
     ><? echo lang("view") ?></a>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'printMenu');"
     onmouseover="buttonMouseover(this, 'printMenu');"
     ><? echo lang("print") ?></a>
  <a class="menuButton"
-    href=""
+    href="#"
     onclick="return buttonClick(this, 'helpMenu');"
     onmouseover="buttonMouseover(this, 'helpMenu');"
     ><? echo lang("help") ?></a>

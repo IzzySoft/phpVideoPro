@@ -35,6 +35,6 @@
  <TR><TH><DIV ALIGN="center">{update}</DIV></TH>
      <TH><DIV ALIGN="center">{adduser}</DIV></TH></TR>
 </TABLE></TD></TR>
-<INPUT TYPE='hidden' NAME='lines' VALUE='{lines}'>
+{hidden}
 </TABLE>
 </FORM>

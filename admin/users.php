@@ -53,15 +53,15 @@
    $t->set_var("upd",$pvp->common->make_checkbox("upd_".$users[$i]->id,$users[$i]->upd));
    $t->set_var("del",$pvp->common->make_checkbox("del_".$users[$i]->id,$users[$i]->del));
    $t->set_var("isadmin",$pvp->common->make_checkbox("admin_".$users[$i]->id,$users[$i]->admin));
-   $t->set_var("edit","<A HREF='useredit.php?id=".$users[$i]->id."'>".lang("edit")."</A>");
-   $t->set_var("delete","<A HREF='useredit.php?delete=".$users[$i]->id."'>".lang("delete")."</A>");
+   $t->set_var("edit",$pvp->link->linkurl("useredit.php?id=".$users[$i]->id,lang("edit")));
+   $t->set_var("delete",$pvp->link->linkurl("useredit.php?delete=".$users[$i]->id,lang("delete")));
    $t->parse("item","itemblock",TRUE);
  }
 
  $t->set_var("listtitle",lang("admin_users"));
  $t->set_var("formtarget",$PHP_SELF);
  $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE=".lang("update").">");
- $t->set_var("adduser","<A HREF='useredit.php?addnew=1'>".lang("add_user")."</A>");
+ $t->set_var("adduser",$pvp->link->linkurl("useredit.php?addnew=1",lang("add_user")));
  $t->set_var("save_result",$save_result);
  $t->set_var("head_users",lang("user"));
  $t->set_var("head_access",lang("data_access"));
@@ -77,7 +77,9 @@
  $t->set_var("head_isadmin",lang("admin_access_short"));
  $t->set_var("head_edit",lang("edit"));
  $t->set_var("head_delete",lang("delete"));
- $t->set_var("lines",$usercount);
+ $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$usercount'>";
+ if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ $t->set_var("hidden",$hidden);
  include("../inc/header.inc");
  $t->pparse("out","template");
 

@@ -7,6 +7,7 @@
 <ul>
  <li>on a new installation, the pvp_options table (introduced with v0.6.1) was
      not created
+ <li>unused categories can now be disabled (hidden)
 </ul>
 
 [title]

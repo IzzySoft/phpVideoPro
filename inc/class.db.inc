@@ -1134,10 +1134,12 @@
      $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=".$next->mtype_id);
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
-       $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=".$next->mtype_id." AND cass_id=".$next->media_nr);
-       $this->next_record();
-       $next->part = $this->f('part');
-       return $next;
+       if ($next->media_nr) {
+         $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=".$next->mtype_id." AND cass_id=".$next->media_nr);
+         $this->next_record();
+         $next->part = $this->f('part');
+         return $next;
+       }
      }
      return FALSE;
    }

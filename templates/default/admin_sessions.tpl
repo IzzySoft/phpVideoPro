@@ -1,8 +1,13 @@
 <H2 ALIGN="center">{listtitle}</H2>
-<FORM NAME="admin_sessions" METHOD="post" ACTION="{formtarget}">
+<TABLE ALIGN="center" BORDER="1">
+   <TR><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">
+       <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{old_sess} <INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TD>
+       </FORM><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">
+       <TD NOWRAP WIDTH="50%"><DIV ALIGN="center">{ended_sess} <INPUT TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></TD></FORM></TR>
+</TABLE>
+<BR>
 <TABLE ALIGN="center" BORDER="1">
  <TR><TD COLSPAN="7"><TABLE BORDER="0" WIDTH="100%">
-   <TR><TD COLSPAN="2"><DIV ALIGN="center">{del_old_sess} <INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV><BR>&nbsp;</TD></TR>
    <TR><TD>{first}{left}</TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  </TABLE></TD></TR>
  <TR><TH><DIV ALIGN="center">{head_sess_id}</DIV></TH>
@@ -25,4 +30,3 @@
    <TR><TD>{first}{left}</TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  </TABLE></TD></TR>
 </TABLE>
-</FORM>

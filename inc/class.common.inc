@@ -216,7 +216,7 @@ class common {
    *  Whether to automatically run the tagreplace (default: TRUE)
    * @param optional boolean br Replace ALL nl with BR? (default: FALSE)
    * @return string formated input
-   * @comment based on the enhanced autop() function by Photo Matt
+   * @version based on the enhanced autop() function by Photo Matt
    *  (see http://photomatt.net/scripts.php/autop)
    */
   function nl2br($pee, $tagreplace=1, $br=0) {

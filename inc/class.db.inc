@@ -75,11 +75,12 @@
      if (substr($query,strlen($query)-1)=="=") $query .= "NULL";
    } // end clean_query()
 
-   /** Query db and provide debug output
+   /** do a query on the db and provide debug output
     * @class sql
+    * @package Api
     * @method dbquery
-    * *variable array colors
     * @param string query SQL statement to execute
+    * *variable array colors
     * @return boolean success
     */
    function dbquery($query) {
@@ -166,7 +167,7 @@
    /** Get list of all languages with all available settings from language table
     * @class sql
     * @method get_langlist
-    * @param optional id lang_id
+    * @param optional string id lang_id
     * @param optional integer start for limited queries
     * @return mixed array [0..n] of objects (id,name,charset,available,audio,subtitle)
     *  or just one object if id is passed
@@ -1370,7 +1371,6 @@
    /** Search for movies and return as array of movies (see get_movie)
     * @class sql
     * @method searchmovies
-    * @use searchmovievals
     * @param optional string order column to order the list by
     *  (title, lenght, year, date or cat)
     * @param optional integer start (for use with LIMIT)
@@ -1378,6 +1378,7 @@
     * @see sql::get_movie()
     * @version Since this is called via the nextmatch class, I found no way
     *  yet to pass it an array, so we have to set it global.
+    *  * use searchmovievals
     */
    function searchmovies($order="",$start="") {
      GLOBAL $searchmovievals;

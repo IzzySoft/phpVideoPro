@@ -49,9 +49,8 @@ class DB_Sql {
   var $Query_ID = 0;
   
 
-  /** constructor
+  /** Initialization
    * @package Api
-   * @class DB_Sql
    * @constructor DB_Sql
    * @param optional string query query to run
    */
@@ -506,13 +505,6 @@ class DB_Sql {
  * @class DB_Sql
  * @attribute boolean $Debug
  */
-/** How to handle severe errors. Defaults to "yes". Possible values:
- *  "yes" (halt with message), "no" (ignore errors quietly), "report"
- *  (ignore errror, but spit a warning)
- * @package Api
- * @class DB_Sql
- * @attribute string $Halt_On_Error = "yes";
- */
 /** Error reporting - error number
  * @package Api
  * @class DB_Sql
@@ -522,6 +514,13 @@ class DB_Sql {
  * @package Api
  * @class DB_Sql
  * @attribute string $Error
+ */
+/* how to handle severe errors. Defaults to "yes". Possible values:
+ *  "yes" (halt with message), "no" (ignore errors quietly), "report"
+ *  (ignore errror, but spit a warning)
+ * @package Api
+ * @class DB_Sql
+ * @attribute string Halt_On_Error = "yes";
  */
 
 } // end class DB_Sql

@@ -248,17 +248,17 @@
   * @class label
   * @attribute integer height
   */
- /** Color used for the font
-  * @class label
-  * @attribute string textcolor
-  */
- /** Font to use
+ /* Font to use
   * @class label
   * @attribute integer font font number as used by PHPs imaging methods
   */
- /** Available colors
+ /* Available colors
   * @class label
   * @attribute array color available colors to be addressed by their names
+  */
+ /** Color used for the font
+  * @class label
+  * @attribute string textcolor
   */
  /** Max text lines to fit on a label
   * @class label

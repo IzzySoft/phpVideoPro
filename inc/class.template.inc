@@ -48,9 +48,8 @@ class Template {
 
 
   #############################################################################
-  /** Constructor
+  /** Initialization
    * @package Api
-   * @class Template
    * @constructor Template
    * @param optional string root template directory
    * @param optional string unknowns how to handle unknown variables (remove/comment/keep)

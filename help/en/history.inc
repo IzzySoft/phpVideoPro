@@ -15,6 +15,7 @@
      register_globals=off - fixed.
  <li>added backup/restore for categories
  <li>updated Dutch translations (Thanx to Ron Dekker)
+ <li>cancel on editing a new entry lead to page with an "empty entry". Fixed.
 </ul>
 
 [title]

@@ -20,7 +20,7 @@ INSERT INTO cat VALUES ( '15', 'cat_camera');
 INSERT INTO cat VALUES ( '16', 'cat_catastrophe');
 INSERT INTO cat VALUES ( '17', 'cat_children');
 INSERT INTO cat VALUES ( '18', 'cat_comedy');
-INSERT INTO cat VALUES ( '19', 'cat_conzert');
+INSERT INTO cat VALUES ( '19', 'cat_concert');
 INSERT INTO cat VALUES ( '20', 'cat_war');
 INSERT INTO cat VALUES ( '21', 'cat_crime');
 INSERT INTO cat VALUES ( '22', 'cat_love');

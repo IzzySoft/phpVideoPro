@@ -145,6 +145,43 @@ sessions after a specified interval of user inactivity. This only affects the
 logged-in session, not the personal configuration the user stored within his/her
 cookies. After the timeout, the session falls back into guest mode.
 
+[title|1|imdb]
+IMDB
+
+[text]
+<b>*imdb_url#:</b> You can lookup additional data for a selected movie (or staff
+member) by clicking on its title (or name) button when viewing the movies entry.
+Since the movie title for the same movie differs in different languages, and you
+probably will not always have the "original" name of the movie in the title
+but the one corresponding to the language version, you may quite often need to
+search the IMDB manually. By selecting a better matching IMDB site here, chances
+increase for a hit on the first click: if you e.g. have the German movie name
+in the title in most cases, you should select the German site of the IMDB here
+to reach this goal.<br>
+Unfortunately, not all countries have their own IMDB site yet. The ones I know
+are available as options. If there are other sites available <i>you</i> know of,
+just drop me a note and I will add them asap!
+
+[text]
+<b>*imdb_url2#:</b> As nice as the fact of having localized IMDB sites is: Along
+with the big advantage of being able to search for the movie title in the
+countries language, there is a rub in it. All they translated (for now) is the
+users interface - while the content seems to be exactly the same throughout all
+IMDB instances. So if we would go to retrieve the details from the localized
+IMDB instance, our parser had to be aware of all language variants for the
+tokens we need to identify - without us being rewarded with language specific
+information for this effort. Hence, once we got the ID for the movie in question,
+phpVideoPro switches to an English site to retrieve the details.
+[text]
+This means of course, that you should be sure to select an <b><i>English</i></b>
+site here - whether that is located in the UK or US, I leave up to you.
+
+[text]
+<b>*imdb_tx#:</b> These are only the <b><i>Defaults</i></b> for the setting of
+the checkboxes on the <A HREF="{PHP_SELF}?topic=imdbsearch">IMDB details</A>
+page. Which data are really transfered, you still can decide there by
+en/disabling the checkboxes manually.
+
 [title]
 *general#
 

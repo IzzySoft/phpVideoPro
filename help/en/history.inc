@@ -8,6 +8,7 @@
  <li>some work on the edit/view entry screen to get more info without scrolling
  <li>outsourced the backup/restore functionality from admin/backup_db.php to
      the new xfer class so we can use it from other places, too
+ <li>added system data (config &amp; default preferences) to backup/restore page
 </ul>
 
 [title]

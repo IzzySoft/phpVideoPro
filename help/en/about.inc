@@ -6,7 +6,7 @@ Intro
 
 [text]
 If you've got too many DVDs and video tapes to handle, then you need a better
-system! That's exactly why  phpVideoPro  was created. This program is all you'll
+system! That's exactly why  phpVideoPro  was created. This program is all you
 need to get your huge collection under control. It puts your information at your
 fingertips.
 
@@ -29,9 +29,9 @@ Features
 The program allows you to add and change entries as needed. PhpVideoPro can be
 configured to display your catalogue at will. You can view your items in a list
 containing all of your entries or you can request the program to display a list
-of available free space on your homemade video tapes. You can decide to view
-details on a specified entry, or display a list of all movies with a certain
-actor - just to mention a few examples.
+of available free space on your homemade video tapes. You can view details of a
+specified entry, or display a list of all movies with a certain actor - just to
+mention a few examples.
 [text]
 So you can keep track of what is what and what you're looking to add to your
 closet of treasures! The filter functions help to sort through your catalogue

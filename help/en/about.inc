@@ -6,7 +6,7 @@ Intro
 
 [text]
 If you've got too many DVDs and video tapes to handle, then you need a better
-system! That's exactly why  phpVideoPro  was created. This program is all you
+system! That's exactly why phpVideoPro was created. This program is all you
 need to get your huge collection under control. It puts your information at your
 fingertips.
 
@@ -14,11 +14,11 @@ fingertips.
 History
 
 [text]
-PhpVideoPro was inspired by Bernd Rickers' VideoPro, which is available in a
+phpVideoPro was inspired by Bernd Rickers' VideoPro, which is available in a
 DOS-based clipper application (latest release in 1994) as well as in a Windows
 version (starting from about 1993 - this is now known as Video-5, see
 <A HREF="http://www.bernd.rickers.de.vu/" TARGET="_blank">Bernd's Homepage</A>
-for details). PhpVideoPro was designed using PHP because of the cross-platform
+for details). phpVideoPro was designed using PHP because of the cross-platform
 abilities and the added plus of having your information available anywhere at
 anytime. 
 
@@ -26,23 +26,31 @@ anytime.
 Features
 
 [text]
-The program allows you to add and change entries as needed. PhpVideoPro can be
+The program allows you to add and change entries as needed. phpVideoPro can be
 configured to display your catalogue at will. You can view your items in a list
 containing all of your entries or you can request the program to display a list
 of available free space on your homemade video tapes. You can view details of a
-specified entry, or display a list of all movies with a certain actor - just to
-mention a few examples.
+specified entry, or display a list of all movies with a certain actor. Moreover,
+you can have phpVideoPro printing labels for your media - just to mention a few
+examples.
 [text]
 So you can keep track of what is what and what you're looking to add to your
 closet of treasures! The filter functions help to sort through your catalogue
 by creating subsets and finding special entries within your ever-growing
-collection.
+collection, while the statistics page tells you how much it has already grown.
+[text]
+phpVideoPro is widely configurable. Making use of templates in a lot of places,
+it allows you to adjust its look and feel without any PHP knowledge (some HTML
+knowledge is needed for this, however), or to create your own label design.
+You can even have phpVideoPro talking to you in your own language (if it not
+already does) by making a special language file (don't forget to send it to the
+author afterwards to have it included with future versions of phpVideoPro).
 [text]
 While you may have enough tapes and DVDs to open up your own version of
 Blockbuster, phpVideoPro wasn't designed to cater to video shops. The current
 release wasn't made to log multiple copies of the same item. The program does,
-however, distinguish between DVDs, original videotapes, and the tapes you
-recorded yourself. More to come.
+however, distinguish between DVDs, VideoCDs, original videotapes, and the tapes
+you recorded yourself. More to come.
 
 [title]
 Future
@@ -56,7 +64,7 @@ that there will always be a fresh release available within the next few weeks!
 So I close with my standard disclaimer: "This is only a hobby, I can't promise
 anything - I just ask you to stay tuned..."
 [text]
-<div align=right>Itzchak Rehberg, September 2001</div>
+<div align=right>Itzchak Rehberg, October 2002</div>
 
 [eof]
 

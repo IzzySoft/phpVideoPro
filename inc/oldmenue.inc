@@ -6,6 +6,7 @@
   //define menu items (first parameter of NavBarMenu specifies main category width, second specifies sub category width in pixels)
   //add more menus simply by adding more "blocks" of same code below
 
+<? if ($pvp->auth->admin) { ?>
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$base_url?>admin/cats.php"));
@@ -17,10 +18,14 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
   myNavBar1.addMenu(dhtmlMenu);
 
+<? } ?>
+
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
+  <? if ($pvp->auth->add) { ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$base_url?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  <? } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$base_url?>configure.php"));
   myNavBar1.addMenu(dhtmlMenu);
 

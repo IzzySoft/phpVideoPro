@@ -239,11 +239,13 @@ function getPageOffsetTop(el) {
 <!-- Tags for the menu bar. -->
 
 <div id="menuBar">
+<? if ($pvp->auth->admin) { ?>
  <a class="menuButton"
     href=""
     onclick="return buttonClick(this, 'adminMenu');"
     onmouseover="buttonMouseover(this, 'adminMenu');"
     ><? echo lang("admin") ?></a>
+<? } ?>
  <a class="menuButton"
     href=""
     onclick="return buttonClick(this, 'editMenu');"
@@ -275,6 +277,7 @@ function getPageOffsetTop(el) {
 
 <div id="adminMenu" class="menu">
 <a class="menuItem" href="<?=$base_url ?>admin/cats.php"><?=lang("admin_cats") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/users.php"><?=lang("admin_users") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/filters.php"><?=lang("admin_filter") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/orphans.php"><?=lang("admin_orphans") ?></a>
 <a class="menuItem" href="<?=$base_url ?>admin/backup_db.php"><?=lang("backup_db") ?></a>
@@ -284,8 +287,10 @@ function getPageOffsetTop(el) {
 </div>
 
 <div id="editMenu" class="menu">
+<? if ($pvp->auth->add) { ?>
 <a class="menuItem" href="<?=$base_url ?>new.php"><?=lang("add_entry") ?></a>
 <div class="menuItemSep"></div>
+<? } ?>
 <a class="menuItem" href="<?=$base_url ?>configure.php"><?=lang("preferences") ?></a>
 </div>
 

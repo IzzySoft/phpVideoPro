@@ -6,6 +6,7 @@
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("list"=>"stafflist.tpl"));
   $t->set_block("list","itemblock","itemlist");
+  $t->set_block("list","notfoundblock","notfoundlist");
   $filter = get_filters();
 
   function getStaffClause($i) {
@@ -63,6 +64,7 @@
     dbquery($query);
     $same_name = FALSE;
     while ($db->next_record()) {
+     $row++;
      $mtype    = $db->f('sname');
      $mtype_id = $db->f('mtype_id');
      $cass_id  = $db->f('cass_id');
@@ -98,6 +100,14 @@
      $t->parse("itemlist","itemblock",TRUE);
      $same_name = TRUE;
     }
+  }
+  if ($row) {
+    $t->set_var("not_found","");
+    $t->parse("notfoundlist","notfoundblock");
+  } else {
+    $t->set_var("not_found","<DIV ALIGN=CENTER>" . lang("no_entries_found") . "</DIV>");
+    $t->parse("notfoundlist","notfoundblock");
+    $t->set_var("itemlist","");
   }
 
   // draw table header

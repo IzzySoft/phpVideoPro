@@ -32,7 +32,7 @@
 
  include("inc/header.inc");
 
- if ($sess_id) {
+ if ($sess_id && $pvp->session->verify($sess_id)) {
    $login_info = lang("logout_user",$pvp->auth->user->login,$base_url."login.php?logout=1");
  } else {
    $login_info = "<A HREF='".$base_url."login.php'>".lang("login")."</A>";

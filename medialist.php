@@ -16,6 +16,8 @@
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
   $filter = get_filters();
+  if (!$start) $start = 0;
+  include("inc/nextmatch.inc");
 
   switch($order) {
     case "title"  : $orderby = " ORDER BY v.title,v.mtype_id DESC,v.cass_id"; break;
@@ -34,7 +36,7 @@
   $query .= " WHERE v.cat1_id=c.id AND v.mtype_id=m.id";
   if ( strlen($filter) ) $query .= " AND ($filter)";
   $query .= $orderby;
-  dbquery($query);
+  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?order=$order",$start);
   $row=0;
   while ($db->next_record()) {
    $mtype[$row]    = $db->f('sname');
@@ -75,6 +77,10 @@
   $t->set_var("date",lang("date_rec"));
   $t->set_var("category",lang("category"));
   $t->set_var("scriptname",$PHP_SELF);
+  $t->set_var("first",$nextmatch->first);
+  $t->set_var("left",$nextmatch->left);
+  $t->set_var("right",$nextmatch->right);
+  $t->set_var("last",$nextmatch->last);
   $t->pparse("out","list");
 
   include("inc/footer.inc");

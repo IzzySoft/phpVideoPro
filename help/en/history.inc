@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.2.3 (2002)
+[text]
+<ul>
+ <li>added feature to walk through long lists in pieces of user-definable size
+     (first/prev/next/last page of lists)
+</ul>
+
+[title]
 0.2.2 (May 30, 2002)
 [text]
 <ul>

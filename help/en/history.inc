@@ -18,6 +18,7 @@
  <li>on a correct login session was always created for admin (user ID 1) - fixed
  <li>movies could not be inserted/updated when a persons name contained single
      quotes - fixed
+ <li>in some cases the media type was displayed twice in the media number - fixed.
 </ul>
 
 [title]

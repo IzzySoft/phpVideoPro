@@ -29,6 +29,8 @@
  <li>Did some cleanup on all ISO-8859-1 language files (wiped out entries that
      equaled the English fallback value). Wow, that's done easily now with the
      new translation editor!
+ <li>Michael supplied some fixes for the PSLabel system: Long lines are now
+     wrapped to fit on the label, for example
 </ul>
 
 [title]

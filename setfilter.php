@@ -9,10 +9,10 @@
   $t->set_file(array("t_list"=>"setfilter_list.tpl",
                      "t_item"=>"setfilter_item.tpl",
                      "tone_item"=>"setfilter_tone_item.tpl",
-                     "tone_input"=>"setfilter_tone_item_input.tpl",
+//                     "tone_input"=>"setfilter_tone_item_input.tpl",
                      "tone_list"=>"setfilter_tone_list.tpl",
 		     "t_input"=>"setfilter_item_input.tpl"));
-
+  $t->set_block("tone_item","itemblock","itemlist");
 
   ##############################################################################
   # create a dump of posted data for debugging purposes and send them to the
@@ -172,19 +172,19 @@
       $name[$i] = $db->f('name');
       $i++;
     }
-    $t->set_var("item","");
+    $t->set_var("itemlist","");
     for ($i=0;$i<count($name);$i++) {
       $t->set_var("input",$name[$i]);
-      $t->parse("item","tone_input",TRUE);
+      $t->parse("itemlist","itemblock",TRUE);
     }
     $t->parse("list","tone_item");
-    $t->set_var("item","");
+    $t->set_var("itemlist","");
     for ($i=0;$i<count($name);$i++) {
       $input = "<INPUT TYPE=\"checkbox\" NAME=\"tone_" . $id[$i] . "\"";
       if ($filter->tone->$id[$i]) $input .= " CHECKED";
       $input .= ">";
       $t->set_var("input",$input);
-      $t->parse("item","tone_input",TRUE);
+      $t->parse("itemlist","itemblock",TRUE);
     }
     $t->parse("list","tone_item",TRUE);
     $t->parse("tone","tone_list");

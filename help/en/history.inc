@@ -12,6 +12,7 @@
  <li>Now filters can be REALLY edited (found out that up to v0.2.7 one could
      only reset or add to filters - but unsetting/changing just a single item
      was not possible)
+ <li>fixed PG constraint update problem (update from v0.2.6 to v0.2.7 failed)
 </ul>
 
 [title]

@@ -1,0 +1,19 @@
+<?
+  headline("intro");
+   li("about");
+   li("history");
+  headline("menues");
+   li("edit");
+    li("add_entry",2);
+    li("configuration",2);
+   li("filter");
+    li("set_filter",2);
+    li("unset_filter",2);
+   li("view");
+    li("medialist",2);
+    li("taperest_absolute",2);
+    li("taperest_filtered",2);
+  headline("howto");
+   li("create_lang_file");
+   li("create_help_file");
+?>

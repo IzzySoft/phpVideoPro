@@ -2,9 +2,6 @@
 
 /* $Id$ */
 
-  $page_id = "history";
-  include("inc/header.inc");
-
 ?>
 
 <H2 Align=Center>phpVideoPro History</H2>
@@ -124,9 +121,3 @@
       </ul>
  </UL></TD></TR>
 </Table>
-
-<?
-
-  include("inc/footer.inc");
-
-?>

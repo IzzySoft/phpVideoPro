@@ -4,8 +4,8 @@
   A:link{ text-decoration:none }
   A:visted{ text-decoration:none }
   A:active{ text-decoration:none }
-  body { font-family:Helvetica,Arial; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
+  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
   .tablink { color: #000000; }
-  TH { font-family:Helvetica,Arial; background-color:<? echo $colors["th_background"] ?>; }
+  TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color:<? echo $colors["th_background"] ?>; }
 //-->
 </style>

@@ -23,6 +23,7 @@ INSERT INTO lang VALUES('picture','de','Farbformat');
 INSERT INTO lang VALUES('tone','de','Tonformat');
 INSERT INTO lang VALUES('longplay','de','LongPlay');
 INSERT INTO lang VALUES('fsk','de','FSK');
+INSERT INTO lang VALUES('staff','de','Besetzung');
 INSERT INTO lang VALUES('actor','de','Schauspieler');
 INSERT INTO lang VALUES('director','de','Regie');
 INSERT INTO lang VALUES('composer','de','Musik');
@@ -87,3 +88,8 @@ INSERT INTO lang VALUES('no_entry_in_tapelist','de','Fehlgeschlagen - kein Eintr
 INSERT INTO lang VALUES('finnished','de','Fertig');
 INSERT INTO lang VALUES('time_left','de','%1 Minuten frei');
 INSERT INTO lang VALUES('configuration','de','Konfiguration');
+INSERT INTO lang VALUES('index','de','Index');
+INSERT INTO lang VALUES('intro','de','Einleitung');
+INSERT INTO lang VALUES('menues','de','Menüs');
+INSERT INTO lang VALUES('back','de','Zurück');
+INSERT INTO lang VALUES('close','de','Schließen');

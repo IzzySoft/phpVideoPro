@@ -87,5 +87,9 @@ INSERT INTO lang VALUES('no_entry_in_tapelist','en','Failed - no entry found in 
 INSERT INTO lang VALUES('finnished','en','Finnished');
 INSERT INTO lang VALUES('time_left','en','%1 minutes left');
 INSERT INTO lang VALUES('configuration','en','Configuration');
+INSERT INTO lang VALUES('index','en','Index');
+INSERT INTO lang VALUES('intro','en','Intro');
+INSERT INTO lang VALUES('menues','en','Menues');
+INSERT INTO lang VALUES('close','en','Close');
 
 

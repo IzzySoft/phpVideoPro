@@ -26,6 +26,9 @@
      remained from the conception phase of PSLabels.
  <li>Added initial Russian support (thank you, Denis!) - completion on this
      hopefully follows soon :-)
+ <li>Did some cleanup on all ISO-8859-1 language files (wiped out entries that
+     equaled the English fallback value). Wow, that's done easily now with the
+     new translation editor!
 </ul>
 
 [title]

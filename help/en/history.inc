@@ -6,7 +6,7 @@
 [text]
 <ul>
  <li>updated Dutch translations (Thanx to Ron Dekker)
- <li>fixed a lot of the PHP notices (due to uninitialized vars etc.)
+ <li>hopefully fixed all of the PHP notices (due to uninitialized vars etc.)
 </ul>
 
 [title]

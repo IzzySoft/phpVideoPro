@@ -65,6 +65,11 @@
     }
     return $output;
   }
+  
+  function sort_cats($c1,$c2) {
+    if($c1[name]<$c2[name]) return -1;
+      else if ($c1[name]>$c2[name]) return 1;
+  }
 
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
@@ -72,6 +77,7 @@
     $mtypes = $db->get_mtypes();
     $ttypes = $db->get_tone();
     $cats   = $db->get_category("");
+    usort($cats,"sort_cats"); reset ($cats);
     $scolors = $db->get_color();
     for ($i=0;$i<count($scolors);$i++) {
      $scolors[$i][name] = lang($scolors[$i][name]);

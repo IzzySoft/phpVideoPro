@@ -1,7 +1,7 @@
 <?php
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -239,7 +239,7 @@ echo "showpage\n";
      $t->set_var("hformat_$col",lang("format"));
    }
    $t->set_var("listtitle",lang("print_label"));
-   $t->set_var("form_target",$PHP_SELF);
+   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
    $t->set_var("ltype",$ltype_id);
    $t->set_var("create",lang("create"));
    $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12'" .$form["addon_fsk"]. ">";
@@ -265,7 +265,7 @@ include("inc/footer.inc");
    $t->parse("definitionlist","definitionblock",TRUE);
    $t->set_var("lselect",lang("labeltype"));
    $t->set_var("layout",lang("layout_label"));
-   $t->set_var("form_target",$PHP_SELF);
+   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    $t->pparse("out","list");
 

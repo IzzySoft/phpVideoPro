@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,6 +13,9 @@
  /* $Id$ */
 
   $page_id = "taperest";
+  $minfree = $_REQUEST["minfree"];
+  $use_filter = $_REQUEST["use_filter"];
+  $start = $_REQUEST["start"];
   include("inc/includes.inc");
   if (!$pvp->auth->browse) kickoff();
   $t = new Template($pvp->tpl_dir);
@@ -20,10 +23,12 @@
   if (!$start) $start = 0;
   include("inc/class.nextmatch.inc");
 
+  #======================================[ Request initial data from user ]===
   if (!$minfree) {
     include("inc/header.inc");
+    $t->set_var("listtitle",lang($page_id));
     $t->set_file(array("taperest_init"=>"taperest_init.tpl"));
-    $t->set_var("form_target",$PHP_SELF);
+    $t->set_var("form_target",$_SERVER["PHP_SELF"]);
     $t->set_var("use_filter",$usefilter);
     $t->set_var("min_free",lang("enter_min_free"));
     $t->set_var("display",lang("display"));
@@ -33,6 +38,7 @@
     exit;
   }
 
+  #=================================================[ Display result list ]===
   // init templates
   $t->set_file(array("taperest_list"=>"taperest_list.tpl",
 		     "taperest_empty"=>"taperest_empty.tpl"));
@@ -40,7 +46,7 @@
   $t->set_block("itemblock","movieblock","movielist");
 
   $query = "\$db->get_freelist($minfree,\"$filter\",$start)";
-  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?minfree=$minfree",$start);
+  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?minfree=$minfree",$start);
 
   if (!$nextmatch->listcount) {
     include("inc/header.inc");
@@ -79,6 +85,7 @@
     $t->parse("itemlist","itemblock",TRUE);
   }
   include("inc/header.inc");
+  $t->set_var("listtitle",lang($page_id));
   $t->set_var("freespace",lang("free_space_on_media",$minfree));
   $t->set_var("medium",lang("medium"));
   $t->set_var("nr",lang("nr"));

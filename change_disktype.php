@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -13,18 +13,30 @@
  /* $Id$ */
 
  $page_id = "disktype_change";
-
  include("inc/includes.inc");
- if ( $change && !$pvp->auth->update) {
-   kickoff(); // kick-off unauthorized visitors
+ #=================================================[ Register global vars ]===
+ $details = array ("change","o_disktype","n_disktype","submit");
+ foreach ($details as $var) {
+   $$var = $_POST[$var];
+ }
+ $details = array ("mtype_id","cass_id","part");
+ foreach ($details as $var) {
+   $$var = $_REQUEST[$var];
  }
 
+ #==================================================[ Check authorization ]===
+ if ( $change && !$pvp->auth->update) {
+   kickoff();
+ }
+
+ #==================[ On submit: Do the changes & re-route to edit screen ]===
  if ( $change ) {
    $db->set_disktype($cass_id,$mtype_id,$n_disktype);
    header("location: " .$pvp->link->slink("edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"));
    exit;
  }
 
+ #============================[ Otherwise: Create the form for user input ]===
  $disks_id = $db->get_disktype_id($mtype_id,$cass_id);
  $mt = $db->get_mtypes("id=$mtype_id");
  include("inc/header.inc");
@@ -32,7 +44,7 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_disktype.tpl"));
  $t->set_var("listtitle",lang("change_disktype",$mt[0][sname]. " $cass_id"));
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("orig",lang("orig_disktype"));
  if ($disks_id) {
    $odt = $db->get_disktypes($mtype_id,$disks_id);

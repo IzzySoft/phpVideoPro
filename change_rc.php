@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -13,11 +13,23 @@
  /* $Id$ */
 
  $page_id = "change_rc";
-
  include("inc/includes.inc");
- if ( $change && !$pvp->auth->update) {
-   kickoff(); // kick-off unauthorized visitors
+ #=================================================[ Register global vars ]===
+ $details = array ("change","o_disktype","n_disktype","rc");
+ foreach ($details as $var) {
+   $$var = $_POST[$var];
  }
+ $details = array ("mtype_id","cass_id","part");
+ foreach ($details as $var) {
+   $$var = $_REQUEST[$var];
+ }
+
+ #==================================================[ Check authorization ]===
+ if ( $change && !$pvp->auth->update) {
+   kickoff();
+ }
+
+ #==================[ On submit: Do the changes & re-route to edit screen ]===
  if ( $change ) {
    if ($n_disktype) $db->set_disktype($cass_id,$mtype_id,$n_disktype);
    $rccount = count($rc);
@@ -29,6 +41,7 @@
    exit;
  }
 
+ #============================[ Otherwise: Create the form for user input ]===
  $disks_id = $db->get_disktype_id($mtype_id,$cass_id);
  $mt = $db->get_mtypes("id=$mtype_id");
  $rc = $db->get_rc($mtype_id,$cass_id);
@@ -39,7 +52,7 @@
  $t->set_file(array("template"=>"change_rc.tpl"));
  $t->set_block("template","disktypeblock","disk");
  $t->set_var("listtitle",lang("change_rc_for",$mt[0][sname]. " $cass_id"));
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
 
  #---[ if disktype was not yet defined, we force the user to do so now ]---
  if (!$disks_id) {

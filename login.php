@@ -13,6 +13,10 @@
  /* $Id$ */
 
  $page_id = "login";
+ $details = array("sess_id","logout","login","passwd","url");
+ foreach ($details as $var) {
+   $$var = $_REQUEST[$var];
+ }
  include("inc/includes.inc");
  if ($sess_id &!$pvp->session->verify($sess_id)) $login_hint = "session_expired";
  if (isset($redir)) {
@@ -27,7 +31,7 @@
  }
  $t = new Template($pvp->tpl_dir);
 
- if ($submit) {
+ if ($_POST["submit"]) {
    if ($sess_id = $pvp->session->create($login,$passwd) ) {
      $url = $pvp->link->slink($url);
      if ($pvp->config->enable_cookies) {
@@ -41,7 +45,7 @@
  }
 
  $t->set_file(array("template"=>"login.tpl"));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  if ( isset($login_hint)) $t->set_var("login_hint",$login_hint);
  $t->set_var("welcome",lang("welcome"));
  $t->set_var("head_login",lang("login")."<INPUT TYPE='hidden' NAME='url' VALUE='$url'>");

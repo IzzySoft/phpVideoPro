@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,6 +13,7 @@
  /* $Id$ */
 
  include("inc/includes.inc");
+ $action = $_REQUEST["action"];
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("info"=>"info.tpl"));
 
@@ -21,7 +22,7 @@
                   $details = lang("info_noupdate",$version);
                   break;
    default      : $title   = lang("info_common");
-                  $details = lang("info_common_info",$version,$SERVER_NAME);
+                  $details = lang("info_common_info",$version,$_SERVER["SERVER_NAME"]);
                   break;
  }
 

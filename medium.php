@@ -14,6 +14,8 @@
 
 # $page_id = "admin_cats";
  include("inc/includes.inc");
+ $mtype_id = $_REQUEST["mtype_id"];
+ $cass_id  = $_REQUEST["cass_id"];
  $mtype  = $db->get_mtypes("id=$mtype_id");
  $medium = $mtype[0]["sname"] ." ". $cass_id;
  $mid    = $db->get_movieid($mtype_id,$cass_id);

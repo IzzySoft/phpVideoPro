@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -11,6 +11,11 @@
  #############################################################################
 
  /* $Id$ */
+
+ #=================================================[ Register global vars ]===
+ while ( list($vn,$vv)=each($_POST) ) {
+   $$vn = $vv;
+ }
 
  #========================================================[ initial setup ]===
  $silent = $cass_id || isset($create);
@@ -40,7 +45,7 @@
      if ($cass_id && $valid->num($cass_id)) {
        $mtype_id = "mtype_id_$i";
        $ltpl     = "label_$i";
-       $label = "<IMG SRC=\"" . $PHP_SELF . "?cass_id=$cass_id&mtype_id=" . ${$mtype_id} . "&template=" . ${$ltpl} . "\">";
+       $label = "<IMG SRC=\"" . $_SERVER["PHP_SELF"] . "?cass_id=$cass_id&mtype_id=" . ${$mtype_id} . "&labelconf=" . ${$ltpl} . "\">";
        $t->set_var("image",$label);
        $t->parse("definitionlist","definitionblock",TRUE);
      }
@@ -75,12 +80,11 @@
    $t->set_var("medianr",lang("medianr"));
    $t->set_var("label",lang("label"));
    $t->set_var("listtitle",lang("print_label"));
-   $t->set_var("form_target",$PHP_SELF);
+   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
    $t->set_var("create",lang("create"));
    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    $t->pparse("out","list");
  }
  
  include("inc/footer.inc");
-
 ?>

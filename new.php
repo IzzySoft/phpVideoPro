@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- if (!isset($part)) $new_entry=TRUE;
+ if (!isset($_REQUEST["part"])) $new_entry=TRUE;
  include("edit.php");
 
 ?>

@@ -12,18 +12,34 @@
 
  /* $Id$ */
 
+ $page_id = "media_change";
+ include("inc/includes.inc");
+
+ #=================================================[ Register global vars ]===
+ $details = array ("copy","change","old_mtype","old_cass_id","old_part",
+                   "new_mtype","new_cass_id","new_part","cancel");
+ foreach ($details as $var) {
+   $$var = $_POST[$var];
+ }
+ $details = array ("mtype_id","cass_id","part","id");
+ foreach ($details as $var) {
+   $$var = $_REQUEST[$var];
+ }
+
+ #=========================================================[ Helper Funcs ]===
  function make_nr($cass,$part) {
    while ( strlen($cass)<4 ) { $cass = "0".$cass; }
    if ( strlen($part)<2 ) { $part = "0".$part; }
    return $cass . "-" . $part;
  }
 
- $page_id = "media_change";
 
- include("inc/includes.inc");
+ #==================================================[ Check authorization ]===
  if ( ($copy && !$pvp->auth->add) || ($change && !$pvp->auth->update) ) {
-   kickoff(); // kick-off unauthorized visitors
+   kickoff();
  }
+
+ #==================[ On submit: Do the changes & re-route to edit screen ]===
  if ( $copy || $change ) {
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
@@ -57,12 +73,13 @@
    exit;
  }
 
+ #============================[ Otherwise: Create the form for user input ]===
  $movie = $db->get_movie($id);
 
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_nr.tpl"));
  $t->set_var("listtitle",lang("change_nr",$movie[mtype_short]. " " .$movie[cass_id]. "-" .$movie[part]));
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("latest",lang("highest_db_entries"));
  $t->set_var("latest_box",$pvp->common->make_lastnum_selectbox("lastnum"));
  $t->set_var("orig",lang("orig_medianr"));

@@ -13,6 +13,9 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
+ while ( list($vn,$vv)=each($_REQUEST) ) {
+   $$vn = $vv;
+ }
  $page_id = "filter";
  if ($admin) $root = "../";
  include($root . "inc/includes.inc");
@@ -97,6 +100,7 @@
    }
    $save = rawurlencode( serialize($filter) );
    $pvp->preferences->set("filter",$save);
+   header("Location: ".$_SERVER["PHP_SELF"]);
 /* ?>
 <HTML><HEAD>
   <meta http-equiv="refresh" content="0; URL=<? echo $base_url . "index.php" ?>">
@@ -292,7 +296,7 @@
 
  #=========================================================[ build target ]===
  include($root . "inc/header.inc");
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("listtitle",lang("filter_setup"));
  $t->set_var("mtype_name",lang("mediatype"));
  $t->set_var("length_name",lang("length"));

@@ -12,6 +12,13 @@
 
  /* $Id$ */
 
+ #=================================================[ Register global vars ]===
+ $mtype_id = $_GET["mtype_id"];
+ $cass_id  = $_GET["cass_id"];
+ while ( list($vn,$vv)=each($_POST) ) {
+   $$vn = $vv;
+ }
+
  #========================================================[ initial setup ]===
  include("inc/includes.inc");
  if (!$pvp->auth->update) kickoff();
@@ -19,8 +26,8 @@
  $t->set_file(array("template"=>"medialength.tpl"));
 
  #========================================================[ do the update ]===
- if ($update) {
-   if ( $db->set_mediaspace($cass_id,$mtype_id,$mlength) ) {
+ if ($_POST["update"]) {
+   if ( $db->set_mediaspace($_POST["cass_id"],$_POST["mtype_id"],$_POST["mlength"]) ) {
      $save_result = "<SPAN CLASS='ok'>" .lang("update_success"). ".</SPAN><BR>\n";
    } else {
      $save_result = "<SPAN CLASS='error'>" .lang("update_failed"). "!</SPAN><BR>\n";

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -16,6 +16,13 @@
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
  if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
+
+ #=================================================[ Register global vars ]===
+ $postit = array ("outputtype","pagelength","order","create");
+ foreach ($postit as $var) {
+   $$var = $_POST[$var];
+ }
+ unset($postit);
 
  #=========================================[ create and send list for d/l ]===
  if ($outputtype) {
@@ -86,10 +93,9 @@
  $t->set_var("format",lang("format"));
  $t->set_var("lines",lang("line_count"));
  $t->set_var("listtitle",lang("listgen"));
- $t->set_var("form_target",$PHP_SELF);
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("create",lang("create"));
  $t->pparse("out","list");
 
  include("inc/footer.inc");
-
 ?>

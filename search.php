@@ -15,6 +15,15 @@
  $page_id = "search_movie";
  include("inc/includes.inc");
 
+ #=================================================[ Register global vars ]===
+ $postit = array ("submit","mtype_id","cat_id","audio_id","subtitle_id","ptype",
+                  "pname","title","comment","minlen","maxlen","minfsk","maxfsk",
+                  "start","order");
+ foreach ($postit as $var) {
+   $$var = $_REQUEST[$var];
+ }
+ unset($postit);
+
  #######################################################[ Display Results ]###
  if ($start||$submit||$order) {
    include("inc/class.nextmatch.inc");
@@ -69,7 +78,7 @@
    $scrits = substr($scrits,1);
    $t->set_var("ocrits","&$scrits");
    $t->set_var("crits","?$scrits");
-   $nextmatch = new nextmatch($query,$pvp->tpl_dir,$PHP_SELF.$par,$start);
+   $nextmatch = new nextmatch($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"].$par,$start);
    unset ($title); # messes up the movie list else
    include ("inc/movielist.inc");
    include ("inc/footer.inc");

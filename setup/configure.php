@@ -12,7 +12,12 @@
 
  /* $Id$ */
 
-#========================================================[ initial setup ]===
+ #=================================================[ Register global vars ]===
+ while ( list($vn,$vv)=each($_POST) ) {
+   $$vn = $vv;
+ }
+
+ #========================================================[ initial setup ]===
 if ($menue) {
   $page_id = "configuration";
   if ($admin) $root = "../";
@@ -30,17 +35,18 @@ if ($admin) {
 }
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
-  $url = $PHP_SELF;
-  $pvp->preferences->set("lang",$default_lang);
-  $pvp->preferences->set("template",$template_set);
-  $pvp->preferences->set("imdb_url",$imdb_url);
-  $pvp->preferences->set("page_length",$cpage_length);
-  $pvp->preferences->set("date_format",$cdate_format);
-  $pvp->preferences->set("default_movie_toneid",$movie_tone);
-  $pvp->preferences->set("default_movie_colorid",$movie_color);
-  if ($label_default) { $onlabel = "1"; } else { $onlabel = "0"; }
+  $url = $_SERVER["PHP_SELF"];
+  $pvp->preferences->set("lang",$_POST["default_lang"]);
+  $pvp->preferences->set("template",$_POST["template_set"]);
+  $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
+  $pvp->preferences->set("page_length",$_POST["cpage_length"]);
+  $pvp->preferences->set("display_limit",$_POST["cdisplay_limit"]);
+  $pvp->preferences->set("date_format",$_POST["cdate_format"]);
+  $pvp->preferences->set("default_movie_toneid",$_POST["movie_tone"]);
+  $pvp->preferences->set("default_movie_colorid",$_POST["movie_color"]);
+  if ($_POST["label_default"]) { $onlabel = "1"; } else { $onlabel = "0"; }
   $pvp->preferences->set("default_movie_onlabel",$onlabel);
-  $pvp->preferences->set("printer_id",$cprinter_id);
+  $pvp->preferences->set("printer_id",$_POST["cprinter_id"]);
   $mtypes = $db->get_mtypes();
   if ($admin) {
     unset($rw_media);
@@ -52,30 +58,33 @@ if ( isset($update) ) {
       }
     }
     $db->set_config("rw_media",$rw_media);
-    if (!$remove_media) $remove_media = "0";
+    if (!$_POST["remove_media"]) $remove_media = "0"; else $remove_media = "1";
     $db->set_config("remove_empty_media",$remove_media);
-    if (!$enable_cookies) $enable_cookies = "0";
+    if (!$_POST["enable_cookies"]) $enable_cookies = "0"; else $enable_cookies = "1";
     $db->set_config("enable_cookies",$enable_cookies);
-    if (!$expire_cookies) $expire_cookies = "0";
+    if (!$_POST["expire_cookies"]) $expire_cookies = "0"; else $expire_cookies = $_POST["expire_cookies"];
     $db->set_config("expire_cookies",$expire_cookies);
+    if (!$_POST["session_purgetime"]) $session_purgetime = "0"; else $session_purgetime = $_POST["session_purgetime"];
     $db->set_config("session_purgetime",$session_purgetime);
-    if (!$session_purgetime) $session_purgetime = "0";
-    $db->set_config("site",$site_info);
+    $db->set_config("site",$_POST["site_info"]);
+    $install_lang = $_POST["install_lang"];
     if ($install_lang && $install_lang != "-") {
       $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
       queryf($sql_file,"Installation of additional language file",1);
     }
+    $refresh_lang = $_POST["refresh_lang"];
     if ($refresh_lang && $refresh_lang != "-") {
       $db->delete_translations($refresh_lang);
       $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
       queryf($sql_file,"Refresh of language phrases",1);
     }
+    $delete_lang = $_POST["delete_lang"];
     if ($delete_lang && $delete_lang != "-" && $delete_lang != "en") {
       $db->delete_translations($delete_lang);
     }
   }
   #-----------------------------[ get available language files ]---
-  if ($scan_langfile) {
+  if ($_POST["scan_langfile"]) {
     chdir("$base_path/setup");
     $handle=opendir (".");
     while (false !== ($file = readdir ($handle))) {
@@ -89,7 +98,7 @@ if ( isset($update) ) {
   exit;
 }
 
-#========================================================[ get languages ]===
+ #========================================================[ get languages ]===
 $lang_avail = $db->get_languages(1);
 for ($i=0;$i<count($lang_avail);$i++) {
   $langu[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
@@ -149,7 +158,7 @@ if (!$menue) {
 
 #===========================================[ generate the complete page ]===
 $t->set_var("listtitle",$title);
-$t->set_var("formtarget",$PHP_SELF);
+$t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
 #----------------------------------------[ setup block 1: language stuff ]---
 $t->set_var("list_head",lang("language_settings"));

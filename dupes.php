@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -14,13 +14,16 @@
 
 # $page_id = "dupes";
  include("inc/includes.inc");
+ #==================================================[ Check authorization ]===
  if (!$pvp->auth->browse) kickoff();
 
+ #==================================================[ Initialize Template ]===
  include("inc/header.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"dupes.tpl"));
  $t->set_block("template","itemblock","item");
 
+ #====================================================[ Generate the List ]===
  $mtypelist = $db->get_mtypes();
  for ($i=0;$i<count($mtypelist);++$i) {
    $id = $mtypelist[$i][id];

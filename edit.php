@@ -12,58 +12,73 @@
 
  /* $Id$ */
 
-  if ($new_entry) {
-    $page_id = "add_entry";
-    $edit    = TRUE;
-  } elseif ($edit) {
-    $page_id = "edit";
-  } elseif ($delete) {
-    include("delete.php");
-    exit;
-  } else { $page_id = "view_entry"; }
-  include("inc/includes.inc");
-  if ( ($new_entry && !$pvp->auth->add)
-    || (!$new_entry && $edit && !$pvp->auth->update)
-    || (!$new_entry && !$edit && !$pvp->auth->browse) ) {
-    kickoff(); // kick-off unauthorized visitors
-  }
+ #=================================================[ Register global vars ]===
+ $getit = array ("mtype_id","cass_id","part","nr");
+ foreach ($getit as $var) {
+   $$var = $_GET[$var];
+ }
+ unset($getit);
+ while ( list($vn,$vv)=each($_POST) ) {
+   $$vn = $vv;
+ }
 
-  function vis_actors($num) {
-    GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
-    $visible = "vis_actor" . $num;
-    $output  = "";
-    if ($edit) {
-      $output .= "<INPUT TYPE='checkbox' NAME='vis_actor" . $num . "' VALUE='1' class='checkbox'";
-      if (${$visible}) $output .= " CHECKED";
-      $output .= ">";
-    } else {
-      $output .= "<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='";
-      if (${$visible}) { $output .= lang("yes") ."'>"; } else { $output .= lang("no") . "'>"; }
-      $output .= "<INPUT TYPE='hidden' NAME='" . ${$visible} ."' VALUE='${$visible}'>";
-    }
-    return $output;
-  }
+ #==========[ Initial setup: Target action (New|Edit|Delete or View only) ]===
+ if ($new_entry) {
+   $page_id = "add_entry";
+   $edit    = TRUE;
+ } elseif ($edit) {
+   $page_id = "edit";
+ } elseif ($_POST["delete"]) {
+   include("delete.php");
+   exit;
+ } else { $page_id = "view_entry"; }
+ include("inc/includes.inc");
 
-  function vis_staff($name,$list) {
-    GLOBAL $edit;
-    $output  = "";
-    if ($edit) {
-      $output .= "<INPUT TYPE='checkbox' NAME='$name' VALUE='1' class='checkbox'";
-      if ($list) $output .= " CHECKED";
-      $output .= ">";
-    } else {
-      $output .= "<INPUT TYPE='button' NAME='$name' class='yesnobutton' VALUE='";
-      if ($list) { $output .= lang("yes") . "'>"; } else { $output .= lang("no") . "'>"; }
-      $output .= "<INPUT TYPE='hidden' NAME='$name' VALUE='$list'>";
-    }
-    return $output;
-  }
+ #==================================================[ Check authorization ]===
+ if ( ($new_entry && !$pvp->auth->add)
+   || (!$new_entry && $edit && !$pvp->auth->update)
+   || (!$new_entry && !$edit && !$pvp->auth->browse) ) {
+   kickoff(); // kick-off unauthorized visitors
+ }
+
+ #=========================================================[ Helper Funcs ]===
+ function vis_actors($num) {
+   GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
+   $visible = "vis_actor" . $num;
+   $output  = "";
+   if ($edit) {
+     $output .= "<INPUT TYPE='checkbox' NAME='vis_actor" . $num . "' VALUE='1' class='checkbox'";
+     if (${$visible}) $output .= " CHECKED";
+     $output .= ">";
+   } else {
+     $output .= "<INPUT TYPE='button' NAME='" . ${$visible} . "' class='yesnobutton' VALUE='";
+     if (${$visible}) { $output .= lang("yes") ."'>"; } else { $output .= lang("no") . "'>"; }
+     $output .= "<INPUT TYPE='hidden' NAME='" . ${$visible} ."' VALUE='${$visible}'>";
+   }
+   return $output;
+ }
+
+ function vis_staff($name,$list) {
+   GLOBAL $edit;
+   $output  = "";
+   if ($edit) {
+     $output .= "<INPUT TYPE='checkbox' NAME='$name' VALUE='1' class='checkbox'";
+     if ($list) $output .= " CHECKED";
+     $output .= ">";
+   } else {
+     $output .= "<INPUT TYPE='button' NAME='$name' class='yesnobutton' VALUE='";
+     if ($list) { $output .= lang("yes") . "'>"; } else { $output .= lang("no") . "'>"; }
+     $output .= "<INPUT TYPE='hidden' NAME='$name' VALUE='$list'>";
+   }
+   return $output;
+ }
   
-  function sort_cats($c1,$c2) {
-    if($c1[name]<$c2[name]) return -1;
-      else if ($c1[name]>$c2[name]) return 1;
-  }
+ function sort_cats($c1,$c2) {
+   if($c1[name]<$c2[name]) return -1;
+     else if ($c1[name]>$c2[name]) return 1;
+ }
 
+ #===================================================[ some initial setup ]===
   if (!$nr) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
     while ( strlen($part)<2)     { $part    = "0" . $part;    }
@@ -184,7 +199,7 @@
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("edit"=>"edit.tpl"));
   $t->set_var("form_name","entryform");
-  $t->set_var("form_target",$PHP_SELF);
+  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
   switch ( strtolower($page_id) ) {
     case "edit"      : $t->set_var("listtitle",lang("edit_entry",$movie[mtype_short]." ".$nr)); break;
     case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$movie[mtype_short]." ".$nr)); break;
@@ -238,10 +253,10 @@
       while ( ($lm[$i]["cass_id"]==0) && ($i < $lmc) ) {
         ++$i;
       } 
-      $prev = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[$i]["mtype_id"]
+      $prev = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$lm[$i]["mtype_id"]
             . "&cass_id=".(int) $lm[$i]["cass_id"]."&part=".(int) $lm[$i]["part"])
             . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0'></A>";
-      $prev .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
+      $prev .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie[previous]->mtype_id
             . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part)
 	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0'></A>";
     } else {
@@ -250,14 +265,14 @@
     }
     $t->set_var("previous",$prev); unset($prev);
     if ($movie[next]) {
-      $next = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[next]->mtype_id
+      $next = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie[next]->mtype_id
             . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part)
             . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
       $lm = $db->get_lastmovienum(); $lmc = count($lm);
       do {
         --$lmc;
       } while ( ($lm[$lmc]["cass_id"]==0) && ($lmc != 0) );
-      $next .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[$lmc]["mtype_id"]
+      $next .= "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$lm[$lmc]["mtype_id"]
             . "&cass_id=".(int) $lm[$lmc]["cass_id"]."&part=".(int) $lm[$lmc]["part"])
             . "'><IMG SRC='".$tpl_dir."/images/last.gif' BORDER='0'></A>";
     } else {

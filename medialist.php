@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -17,6 +17,8 @@
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
  $filter = get_filters();
+ $start = $_GET["start"];
+ $order = $_GET["order"];
  if (!$start) $start = 0;
  include("inc/class.nextmatch.inc");
 
@@ -27,9 +29,8 @@
 
  #=======================================[ get movies and setup variables ]===
  $query = "\$db->get_movielist(\"$order\",\"\",$start)";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?order=$order",$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?order=$order",$start);
 
  include("inc/movielist.inc");
  include("inc/footer.inc");
-
 ?>

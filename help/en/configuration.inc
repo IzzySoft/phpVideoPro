@@ -133,11 +133,21 @@ from the database - thus overwriting the defaults, even if set from the "*edit#"
 -&gt; "*preferences#" menue. So make sure to set this, if multiple users should
 access your installation at the same time.
 
-[title]
+[text]
 <b>*expire_cookies#:</b> Here you may define the lifetime of your cookies. If
 setting this to "*session#", cookies are always deleted when the browser is
 closed - and with a new session, the defaults are loaded from the database
 again. In the other cases, cookies remain active for the time frame you set.
+
+[text]
+<b>*session_purgetime#:</b> If a user logs in into phpVidePro, he gains special
+privileges you granted to his account, such as being able to edit/delete
+entries. If e.g. the user leaves his workplace unattended without logging out,
+your data may be in danger since other (unauthorized) people could manipulate
+them. To minimize this risk, phpVideoPro gives you the option to time-out
+sessions after a specified interval of user inactivity. This only affects the
+logged-in session, not the personal configuration the user stored within his/her
+cookies. After the timeout, the session falls back into guest mode.
 
 [title]
 *general#

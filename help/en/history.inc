@@ -2,7 +2,15 @@
 # /*  $Id$ */
 
 [title]
-0.4.1 (February 2003)
+0.4.2 (February 2003)
+[text]
+<ul>
+ <li>made session_purgetime (inactivity timeout for logged-in sessions) user
+     configurable
+</ul>
+
+[title]
+0.4.1 (February 5, 2003)
 [text]
 <ul>
  <li>removed the "unknown" entries from the ranking list on the statistics page

@@ -280,6 +280,20 @@
      return $trans;
    }
 
+   /** Get ALL translations for a given msgID (for backup)
+    * @method get_trans_all
+    * @param string message_id
+    * @return array lang=&gt;translation
+    */
+   function get_trans_all($id) {
+     $this->dbquery("SELECT lang,content FROM lang WHERE message_id='$id'");
+     while ( $this->next_record() ) {
+       $lang = $this->f('lang');
+       $list[$lang] = $this->f('content');
+     }
+     return $list;
+   }
+
    /** Set a translation: if $trans is empty, translation for the specified
     *  language and message $id will be removed. Otherwise the new translation
     *  will be updated or inserted

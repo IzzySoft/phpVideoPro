@@ -119,6 +119,18 @@ CREATE TABLE tone (
 
 # --------------------------------------------------------
 #
+# Table structure for table 'commercials'
+#
+
+CREATE TABLE commercials (
+   id,
+   name varchar(30),
+   PRIMARY KEY (id)
+);
+
+
+# --------------------------------------------------------
+#
 # Table structure for table 'video'
 #
 
@@ -155,6 +167,7 @@ CREATE TABLE video (
    tone_id int,
    color_id int,
    pict_id int,
+   commercials_id int,
    lp int,
    fsk int,
    comment text,

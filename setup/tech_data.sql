@@ -36,6 +36,15 @@ INSERT INTO tone VALUES ( '8', 'Dolby 6.0', '6.0');
 INSERT INTO tone VALUES ( '9', 'Dolby 6.1', '6.1');
 
 #
+# table commercials
+#
+
+INSERT INTO commercials VALUES (0,'unknown');
+INSERT INTO commercials VALUES (1,'yes');
+INSERT INTO commercials VALUES (2,'no');
+INSERT INTO commercials VALUES (3,'cut_off');
+
+#
 # initial content of table pvp_system
 #
 

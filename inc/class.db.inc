@@ -838,6 +838,31 @@
      return $av;
    }
 
+   /** update technical audio/video data
+    * @class sql
+    * @method set_av
+    * @param string table
+    * @param string name
+    * @param string sname
+    * @param optional integer id
+    * @return boolean success
+    * @version if no $id is given, a new entry will be created. If $id is
+    *  given, but $name and $sname are empty, the entry will be deleted.
+    *  In all other cases, the entry with the given $id will be updated.
+    */
+   function set_av($table,$name,$sname,$id="") {
+     if (!$id) {
+       return $this->dbquery("INSERT INTO $table (name,sname) VALUES ('$name','$sname')");
+     } else {
+       if (!$name && !$sname) {
+         return $this->dbquery("DELETE FROM $table WHERE id=$id");
+       } else {
+         return $this->dbquery("UPDATE $table SET name='$name',sname='$sname' WHERE id=$id");
+       }
+     }
+     return FALSE;
+   }
+
    /** Get all pict data and return it as array (wrapper to get_av)
     * @class sql
     * @method get_pict
@@ -846,6 +871,18 @@
     */
    function get_pict($id="") {
      return $this->get_av($id,"pict");
+   }
+
+   /** update pict data (wrapper to set_av)
+    * @class sql
+    * @method set_pict
+    * @param string name
+    * @param string sname
+    * @param optional integer id
+    * @see set_av()
+    */
+   function set_pict($name,$sname,$id="") {
+     return $this->set_av("pict",$name,$sname,$id);
    }
 
    /** Get all color data and return it as array (wrapper to get_av)
@@ -858,6 +895,18 @@
      return $this->get_av($id,"colors");
    }
 
+   /** update color data (wrapper to set_av)
+    * @class sql
+    * @method set_color
+    * @param string name
+    * @param string sname
+    * @param optional integer id
+    * @see set_av()
+    */
+   function set_color($name,$sname,$id="") {
+     return $this->set_av("colors",$name,$sname,$id);
+   }
+
    /** Get all tone data and return it as array (wrapper to get_av)
     * @class sql
     * @method get_tone
@@ -866,6 +915,18 @@
     */
    function get_tone($id="") {
      return $this->get_av($id,"tone");
+   }
+
+   /** update tone data (wrapper to set_av)
+    * @class sql
+    * @method set_tone
+    * @param string name
+    * @param string sname
+    * @param optional integer id
+    * @see set_av()
+    */
+   function set_tone($name,$sname,$id="") {
+     return $this->set_av("tone",$name,$sname,$id);
    }
 
    /** get data for commercials
@@ -1644,6 +1705,18 @@
        ++$i;
      }
      return $mtypes;
+   }
+
+   /** update mtype data (wrapper to set_av)
+    * @class sql
+    * @method set_mtypes
+    * @param string name
+    * @param string sname
+    * @param optional integer id
+    * @see set_av()
+    */
+   function set_mtypes($name,$sname,$id="") {
+     return $this->set_av("mtypes",$name,$sname,$id);
    }
 
    /** Insert a medium into the media table (if not yet exists)

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.5
+0.5.5 (November 24, 2003)
 [text]
 <ul>
  <li>updated Spanish language file (tnx to Jaime)

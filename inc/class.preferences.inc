@@ -34,7 +34,7 @@
 	      "default_movie_toneid","printer_id","imdb_url","imdb_url2",
               "imdb_tx_title","imdb_tx_year","imdb_tx_pg","imdb_tx_length",
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
-              "imdb_tx_country");
+              "imdb_tx_country","imdb_txwin_autoclose");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }

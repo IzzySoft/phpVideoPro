@@ -11,8 +11,9 @@
  <li>IMDB transfer: movies tagline, if available, is now added to the comment
      field
  <li>added advices to the HTML header to turn all caches off (also in Proxies)
-     to work around some strange behaviours of MSIE
+     to work around some strange behaviours of MSIE (optional)
  <li>fixed screwed-up title names in IMDB result list (hopefully no side effects ;)
+ <li>whether to close the IMDB TX window on transfer is now based on user preference
 </ul>
 
 [title]

@@ -32,7 +32,7 @@
      <TD><DIV ALIGN="center">{print_top}</DIV></TD>
      <TD><DIV ALIGN="center">{print_left}</DIV></TD></TR>
 <!-- END itemblock -->
- <TR><TD COLSPAN="5"><INPUT TYPE='hidden' NAME='lines' VALUE='{lines}'></TD></TR>
+ <TR><TD COLSPAN="5">{hidden}</TD></TR>
 </TABLE>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>

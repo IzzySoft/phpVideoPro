@@ -118,7 +118,10 @@
  $t->set_var("print_top",make_input("new_top",""));
  $t->set_var("print_left",make_input("new_left",""));
  $t->parse("item","itemblock",TRUE);
- $t->set_var("lines",$pcount);
+ $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$pcount'>";
+ if (!$pvp->config->enable_cookies)
+   $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_GET["sess_id"]."'>";
+ $t->set_var("hidden",$hidden);
 
  include( dirname(__FILE__) . "/../inc/header.inc");
  $t->pparse("out","template");

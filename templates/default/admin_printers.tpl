@@ -14,7 +14,7 @@
      <TD><DIV ALIGN="center">{print_top}</DIV></TD>
      <TD><DIV ALIGN="center">{print_left}</DIV></TD></TR>
 <!-- END itemblock -->
- <TR><TD COLSPAN="5"><INPUT TYPE='hidden' NAME='lines' VALUE='{lines}'></TD></TR>
+ <TR><TD COLSPAN="5">{hidden}</TD></TR>
  <TR><TH COLSPAN="5"><DIV ALIGN="center">{update}</DIV></TH></TR>
 </TABLE>
 </FORM>

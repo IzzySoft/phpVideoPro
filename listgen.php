@@ -10,19 +10,19 @@
 
  /* $Id$ */
 
- #========================================================[ initial setup ]===
- $page_id = "listgen";
- if ($outputtype) $silent = TRUE;
- include("inc/includes.inc");
- if (!$pvp->auth->browse) kickoff();
- if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
-
  #=================================================[ Register global vars ]===
  $postit = array ("outputtype","pagelength","order","create");
  foreach ($postit as $var) {
    $$var = $_POST[$var];
  }
  unset($postit);
+
+ #========================================================[ initial setup ]===
+ $page_id = "listgen";
+ if ($outputtype) $silent = TRUE;
+ include("inc/includes.inc");
+ if (!$pvp->auth->browse) kickoff();
+ if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
 
  #=========================================[ create and send list for d/l ]===
  if ($outputtype) {

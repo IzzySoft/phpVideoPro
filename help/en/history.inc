@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.3 (2003)
+0.5.3 (September 29, 2003)
 [text]
 <ul>
  <li>added delete confirmations to some admin screens that were missing it

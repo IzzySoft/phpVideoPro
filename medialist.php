@@ -14,8 +14,8 @@
     default       : $orderby = " ORDER BY v.mtype_id DESC,v.cass_id";
   }
 
-  $t->set_file(array("list"=>"medialist_list.tpl",
-                     "item"=>"medialist_item.tpl"));
+  $t->set_file(array("list"=>"medialist.tpl"));
+  $t->set_block("list","mdatablock","mdatalist");
 
   $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
   $query .= " FROM video v, cat c, mtypes m";
@@ -53,7 +53,7 @@
    $t->set_var("date",$aq_date[$i]);
    $t->set_var("category",$category[$i]);
    $t->set_var("url","edit.php?nr=$movie_id[$i]&cass_id=$cass_id[$i]&part=$part[$i]&mtype_id=$mtype_id[$i]");
-   $t->parse("mediadata","item",TRUE);
+   $t->parse("mdatalist","mdatablock",TRUE);
   }
   $t->set_var("mtype",lang("medium"));
   $t->set_var("nr",lang("nr"));

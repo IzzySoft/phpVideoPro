@@ -24,10 +24,10 @@
      } else {
        header("Location: index.php?sess_id=$sess_id");
      }
+     exit;
    } else {
-     echo $login_hint = $colors["err"] . lang("login_failed") . "</FONT><BR>\n";
+     $login_hint = $colors["err"] . lang("login_failed") . "</FONT><BR>\n";
    }
-   exit;
  }
 
  $t->set_file(array("template"=>"login.tpl"));

@@ -1,4 +1,5 @@
-<?
+<? /* $Id$ */
+
  ##############################################################################
  # create a dump of posted data for debugging purposes and send them to the
  # debug output function
@@ -25,7 +26,7 @@
           . "cat3_id='$cat3_id',pict_id='$pict_id',director_id='$dir_id',music_id='$mus_id',"
           . "actor1_id='$act1_id',actor2_id='$act2_id',actor3_id='$act3_id',actor4_id='$act4_id',"
           . "actor5_id='$act5_id',lp='$lp',music_list='$music_list',director_list='$director_list'"
-          . " WHERE cass_id='$cass_id' AND part='$part'";
+          . " WHERE cass_id='$cass_id' AND part='$part' AND mtype_id='$mtype_id'";
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
  if ( $db->query($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");

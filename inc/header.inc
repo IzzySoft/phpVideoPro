@@ -39,6 +39,8 @@ if (!$silent) {
 <?
  include($nav_script);
  include($pvp->tpl_dir ."/default.css");
+ if ( file_exists($pvp->tpl_dir . "/top.js") )
+   echo "\n <script language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
  if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 ?>

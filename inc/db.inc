@@ -448,11 +448,15 @@
 
    ############################################################################
    # get movie list as array of movies (see get_movie)
-   function get_movielist($order="",$restrict="") {
+   function get_movielist($order="",$restrict="",$start="") {
      $filter = get_filters();
      switch ($order) {
-       case "title" : $orderby = "title"; break;
-       default      : $orderby = "mtype_id DESC,cass_id,part"; break;
+       case "title"  : $orderby = "v.title,v.mtype_id DESC,v.cass_id"; break;
+       case "length" : $orderby = "v.length,v.mtype_id DESC,v.cass_id"; break;
+       case "year"   : $orderby = "v.year,v.mtype_id DESC,v.cass_id"; break;
+       case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.cass_id"; break;
+       case "cat"    : $orderby = "c.name,v.mtype_id DESC,v.cass_id"; break;
+       default       : $orderby = "v.mtype_id DESC,v.cass_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
      $query = "SELECT id FROM video v";
@@ -465,7 +469,8 @@
      }
      $query .= $where;
      $query .= " ORDER BY $orderby";
-     $this->dbquery($query);
+     if ($start==="") { $this->dbquery($query); }
+       else { $totals = $this->lim_query($query,$start); }
      while ( $this->next_record() ) {
        $list[] = $this->f('id');
      }
@@ -473,6 +478,7 @@
      for ($i=0;$i<$len;$i++) {
        $movielist[] = $this->get_movie($list[$i]);
      }
+     if ($totals) $movielist[totals] = $totals;
      return $movielist;
    }
 
@@ -548,6 +554,75 @@
        $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
      }
      return $lastnum;
+   }
+
+   ############################################################################
+   # get list of free space on media. If $start is set, the result set is
+   # limited based on $pvp->preferences->limit
+   function get_freelist($minfree,$filter="",$start="") {
+     $restrict = "free>=$minfree";
+     if ( strlen($filter) ) {
+       $this->dbquery("SELECT cass_id FROM video v WHERE $filter");
+       $i=0;
+       while ( $this->next_record() ) {
+         if ($i) { $tapelist .= "," . $this->f('cass_id'); }
+	   else { $tapelist = $this->f('cass_id'); ++$i; }
+       }
+       $restrict .=  " AND id IN ($tapelist)";
+     }
+     $query = "SELECT id,free FROM cass WHERE $restrict ORDER BY free DESC";
+     if ($start==="") { $this->dbquery($query); $totals = $count = $this->num_rows(); $type = "all"; }
+       else { $totals = $this->lim_query($query,$start); $type = "lim"; $count = $this->num_rows(); }
+     $i=0;
+     while ( $this->next_record() ) {
+       $freelist[$i][id]   = $this->f('id');
+       $freelist[$i][free] = $this->f('free');
+       ++$i;
+     }
+     $freelist[totals] = $totals;
+     $freelist[count]  = $count;
+     $freelist[type]   = $type;
+     return $freelist;
+   }
+
+   ############################################################################
+   # get list of "visible" staff members If $start is set, the result set is
+   # limited based on $pvp->preferences->limit
+   function get_visstafflist($stafftype,$filter="",$start="") {
+     if (strlen($filter)) $restrict = "AND $filter";
+     switch ($stafftype) {
+       case "music"     : $query[] = "SELECT DISTINCT music_id FROM video v WHERE music_list=1 $restrict"; $field[] = "music_id"; break;
+       case "directors" : $query[] = "SELECT DISTINCT director_id FROM video v WHERE director_list=1 $restrict"; $field[] = "director_id"; break;
+       case "actors"    : $query[] = "SELECT DISTINCT actor1_id FROM video v WHERE actor1_list=1 $restrict"; $field[] = "actor1_id";
+                          $query[] = "SELECT DISTINCT actor2_id FROM video v WHERE actor2_list=1 $restrict"; $field[] = "actor2_id";
+                          $query[] = "SELECT DISTINCT actor3_id FROM video v WHERE actor3_list=1 $restrict"; $field[] = "actor3_id";
+                          $query[] = "SELECT DISTINCT actor4_id FROM video v WHERE actor4_list=1 $restrict"; $field[] = "actor4_id";
+                          $query[] = "SELECT DISTINCT actor5_id FROM video v WHERE actor5_list=1 $restrict"; $field[] = "actor5_id"; break;
+     }
+     for ($i=0;$i<count($query);$i++) {
+       $this->dbquery($query[$i]);
+       while ( $this->next_record() ) {
+         $id[$i][] = $this->f("$field[$i]");
+       }
+       if ($i) { $ar = array_merge($ar,$id[$i]); }
+         else { $ar = $id[$i]; }
+     }
+     $list  = implode (",",$ar); // idlist of visible staff members
+     $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
+     if ($start==="") { $this->dbquery($query); $totals = $count = $this->num_rows(); $type = "all"; }
+       else { $totals = $this->lim_query($query,$start); $type = "lim"; $count = $this->num_rows(); }
+     $i=0;
+     while ( $this->next_record() ) {
+       $stafflist[$i][id]   = $this->f('id');
+       $name[firstname]     = $this->f('firstname');
+       $name[name]          = $this->f('name');
+       $stafflist[$i][name] = $this->format_name($name);
+       ++$i;
+     }
+     $stafflist[count]  = $count;
+     $stafflist[totals] = $totals;
+     $stafflist[type]   = $type;
+     return $stafflist;
    }
 
    ############################################################################

@@ -1,5 +1,6 @@
  <H2 ALIGN="center">{listtitle}</H2>
 
+ <TABLE ALIGN="center" Style="table-layout:fixed"><TR><TD>
  <FORM NAME="label" METHOD="post" ACTION="{form_target}">
   <INPUT TYPE=HIDDEN NAME="ltype_id" VALUE="{ltype}">
   {sess_id}
@@ -24,6 +25,8 @@
         <TD><DIV ALIGN="center">{medianr_2}</DIV></TD>
         <TD><DIV ALIGN="center">{label_2}</DIV></TD></TR>
     <!-- END definitionblock -->
-    <TR><TD COLSPAN=3><DIV ALIGN="center"><INPUT TYPE="submit" NAME="create" VALUE="{create}"></DIV></TD></TR>
+  </TABLE></TD></TR><TR><TD><TABLE ALIGN="center" WIDTH="100%">
+    <TR><TH><DIV ALIGN="center">{max_fontsize_desc} {max_fontsize}</DIV></TH></TR>
+    <TR><TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="create" VALUE="{create}"></DIV></TD></TR>
   </TABLE>
- </FORM>
+ </FORM></TD></TR></TABLE>

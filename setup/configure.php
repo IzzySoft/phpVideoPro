@@ -403,9 +403,9 @@ $t->set_var("item_input",$color_input . " NAME=\"cpage_length\" VALUE=\"$cpage_l
 $t->parse("item","itemblock",TRUE);
 
 #--[ date_format ]--
-$select  = "<SELECT NAME='cdate_format'><OPTION"; if ($date_format=="y-m-d") $select.=" SELECTED";
-$select .= ">y-m-d</OPTION><OPTION"; if ($date_format=="d.m.y") $select .=" SELECTED";
-$select .= ">d.m.y</OPTION><OPTION"; if ($date_format=="d/m/y") $select .=" SELECTED";
+$select  = "<SELECT NAME='cdate_format'><OPTION"; if ($cdate_format=="y-m-d") $select.=" SELECTED";
+$select .= ">y-m-d</OPTION><OPTION"; if ($cdate_format=="d.m.y") $select .=" SELECTED";
+$select .= ">d.m.y</OPTION><OPTION"; if ($cdate_format=="d/m/y") $select .=" SELECTED";
 $select .= ">d/m/y</OPTION></SELECT>";
 $t->set_var("item_name",lang("date_format"));
 $t->set_var("item_comment",lang("date_format_comment"));

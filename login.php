@@ -15,15 +15,11 @@
  $page_id = "login";
  include("inc/includes.inc");
  if ($sess_id &!$pvp->session->verify($sess_id)) $login_hint = "session_expired";
- if ($login_hint) {
-   $login_hint = lang("$login_hint");
-   if (strlen($HTTP_REFERER)) {
-     $url = $HTTP_REFERER;
-     if (strpos($url,$base_url)===false) $url = "index.php";
-   }
- } else {
-   $url = "index.php";
+ if ($redir) {
+   $url = $redir;
  }
+ if (!strlen($url))  $url = $base_url . "/index.php";
+ if ($login_hint) $login_hint = lang("$login_hint");
  if ($sess_id && $logout) {
    $pvp->session->end($sess_id);
    if ($pvp->config->enable_cookies) $pvp->cookie->delete("sess_id");

@@ -13,6 +13,7 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_pg');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_length');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_cat');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_director');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_music');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 
@@ -119,6 +120,7 @@ INSERT INTO preferences (name,value) VALUES ('imdb_tx_pg','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_length','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_cat','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_director','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_txwin_autoclose','1');

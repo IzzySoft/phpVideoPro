@@ -5,7 +5,7 @@
 Liste der Schauspieler, Regisseure und Komponisten
 
 [text]
-Unter Berücksichtigung der <A HREF="{PHP_SELF}?topic=set_filter">Filterregeln</A>
+Unter Berücksichtigung der <A HREF="{PHP_SELF}?topic=filter">Filterregeln</A>
 wird über diesen Menüpunkt eine Liste der jeweiligen Personen zusammen mit den
 Filmen, mit denen sie erfaßt wurden, angezeigt - sofern im betreffenden Film
 angegeben wurde, daß diese Person für diesen in der Liste aufgeführt werden

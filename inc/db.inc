@@ -273,6 +273,7 @@
          $av[$i][id]    = $this->f('id');
 	 $av[$i][name]  = $this->f('name');
 	 $av[$i][sname] = $this->f('sname');
+	 ++$i;
        }
      } else {
        $this->query("SELECT name,sname FROM $table WHERE id=$id");
@@ -306,13 +307,23 @@
 
    ############################################################################
    # get data for commercials
-   function get_commercials($id) {
-     $this->query("SELECT name FROM commercials WHERE id=$id");
-     if ( $this->next_record() ) {
-       $commercials = $this->f('name');
-       $commercials = lang($commercials);
+   function get_commercials($id="") {
+     if ($id=="") {
+       $this->query("SELECT id,name FROM commercials");
+       $i=0;
+       while ( $this->next_record() ) {
+         $commercials[$i][name] = lang($this->f('name'));
+	 $commercials[$i][id]   = $this->f('id');
+         ++$i;
+       }
      } else {
-       $commercials = lang("unknown");
+       $this->query("SELECT name FROM commercials WHERE id=$id");
+       if ( $this->next_record() ) {
+         $commercials = $this->f('name');
+         $commercials = lang($commercials);
+       } else {
+         $commercials = lang("unknown");
+       }
      }
      return $commercials;
    }

@@ -7,6 +7,7 @@
 <ul>
  <li>fixed some more "PHP notices" (add/delete/move entries)
  <li>now using the FAQ class (from iFAQMaker) to parse the help files
+ <li>Italian translations now up-to-date
 </ul>
 
 [title]

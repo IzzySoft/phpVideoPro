@@ -12,11 +12,10 @@ durch einen Klick auf den Kopf der Spalte, nach der man gern sortieren möchte,
 ändern.
 
 [text]
-In der gegenwärtigen Version kann diese Liste ziemlich lang werden -
-insbesondere, wenn bereits größere Datenmengen erfaßt, jedoch keine
-Filterregeln definiert wurden. Eine Einschränkung der Anzeige auf eine
-bestimmte Anzahl von Datensätzen ist derzeit leider noch nicht möglich - steht
-aber bereits auf der Aufgabenliste für eine zukünftige Version von phpVideoPro.
+Da diese Liste ziemlich lang werden könnte, wird ihre Ausgabe auf mehrere
+Seiten unterteilt. Wie viele Datensätze pro Seite angezeigt werden sollen,
+läßt sich über den Punkt "*display_limit#" im Menü
+<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A> einstellen.
 
 [text]
 Aus dieser Liste heraus gelangt man mittels eines Mausklicks auf die MediaNr

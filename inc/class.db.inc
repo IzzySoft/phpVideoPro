@@ -136,7 +136,12 @@
      while ( $this->next_record() ) {
        $lang[] = $this->f('lang');
      }
-     return $lang;
+     $langs = "'" . implode("','",$lang) . "'";
+     $this->dbquery("SELECT DISTINCT lang_id FROM languages WHERE lang_id IN ($langs) ORDER BY lang_name");
+     while ( $this->next_record() ) {
+       $langres[] = $this->f('lang_id');
+     }
+     return $langres;
    }
 
    /** Get (un)available|all languages

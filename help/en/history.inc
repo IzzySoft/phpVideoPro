@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.5.4 (2003)
+[text]
+<ul>
+ <li>Available languages in select box on configuration screen are now ordered
+     alphabetically
+</ul>
+
+[title]
 0.5.3 (September 29, 2003)
 [text]
 <ul>

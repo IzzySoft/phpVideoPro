@@ -12,7 +12,9 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- menue items for "change MediaNr" and "change MediaType"
+- "change MediaNr" and "change MediaType"
+- r/w support for multiple media (not only RVT - VCD may be r/w as well)
+- "TapeRest": adding movie numbers to the movies
 
 coming *next*:
 - search function

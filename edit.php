@@ -234,11 +234,16 @@
   if ($page_id == "view_entry") {
     $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
     if ($movie[previous]) {
-      $prev = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
+      $lm = $db->get_firstmovienum();
+      $prev = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[0]["mtype_id"]
+            . "&cass_id=".(int) $lm[0]["cass_id"]."&part=".(int) $lm[0]["part"])
+            . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0'></A>";
+      $prev .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
             . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part)
 	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0'></A>";
     } else {
-      $prev = "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
+      $prev = "<IMG SRC='".$tpl_dir."/images/first-grey.gif'>"
+            . "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
     }
     $t->set_var("previous",$prev); unset($prev);
     if ($movie[next]) {

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -42,7 +42,7 @@
      $this->totals = $this->list[totals];
      $this->start  = $start;
      $this->limit  = $pvp->preferences->get("display_limit");
-     if (!strlen(trim($script))) $script = $PHP_SELF;
+     if (!strlen(trim($script))) $script = $_SERVER["PHP_SELF"];
      $this->script = $pvp->link->slink($script);
      if (!strpos($this->script,"?")) $this->script .= "?";
      $tpl_dir = str_replace($base_path,$base_url,$tpl_dir);

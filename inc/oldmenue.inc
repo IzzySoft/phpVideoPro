@@ -24,9 +24,8 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$pvp->link->slink($base_url.'admin/backup_db.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$pvp->link->slink($base_url.'admin/configure.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$_SERVER["SERVER_NAME"]?><?=$base_url?>info.php?action=update"));
   myNavBar1.addMenu(dhtmlMenu);
-
 <? } ?>
 
   dhtmlMenu = new NavBarMenu(80, 140);
@@ -88,7 +87,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("history")?>", "JavaScript:open_help('history')"));<?
 if ($page_id) { ?>
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<? echo $page_id ?>')"));<?
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<?=$page_id?>')"));<?
 } ?>
   myNavBar1.addMenu(dhtmlMenu);
 

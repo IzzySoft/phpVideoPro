@@ -14,6 +14,10 @@
 
  $page_id = "start_page";
  include("inc/includes.inc");
+ $details = array("sel_entry","mtype_id","cass_id","part","sess_id");
+ foreach ($details as $var) {
+   $$var = $_REQUEST[$var];
+ }
 
  #======================[ if the form was submitted, redirect to edit.php ]===
  if ($sel_entry && $mtype_id && $cass_id) {

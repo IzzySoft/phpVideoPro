@@ -16,7 +16,7 @@ header('Content-type: text/html; charset=$charset');
 
 $tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
 
-if (!isset($silent)) {
+if ( !( (isset($silent)) && $silent) ) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
@@ -46,7 +46,7 @@ if (!isset($silent)) {
  include($nav_script);
  include($pvp->tpl_dir ."/default.css");
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
- if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
+ if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
 ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

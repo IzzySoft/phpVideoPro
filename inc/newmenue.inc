@@ -38,7 +38,7 @@
     onmouseover="buttonMouseover(this, 'helpMenu');"
     ><? echo lang("help") ?></a>
 <?
-if ($sess_id) {
+if ($_REQUEST["sess_id"]) {
  $login_info = lang("user").": ".$pvp->link->linkurl($base_url."admin/useredit.php?id=".$pvp->auth->user_id,$pvp->auth->user->login);
 } else {
  $login_info = lang("not_logged_in");

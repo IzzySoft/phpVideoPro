@@ -21,7 +21,7 @@
   include($inc_path . "/class.validate.inc");
   include($inc_path . "/class.session.inc");
   include($inc_path . "/class.auth.inc");
-  if ( !ini_get("register_globals") ) include ($inc_path . "/globals.inc");
+#  if ( !ini_get("register_globals") ) include ($inc_path . "/globals.inc");
   if (!isset($pvpinstall)) $translations = $db->get_translations( $pvp->preferences->get("lang") );
   $pagename = "phpVideoPro v$version @ $site";
   switch ( strtolower($page_id) ) {

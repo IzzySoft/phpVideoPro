@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -67,12 +67,12 @@
    * @return string id session identifier
    */
   function create($login,$passwd) {
-    GLOBAL $db,$pvp,$REMOTE_ADDR;
+    GLOBAL $db,$pvp;
     $this->login = $login;
     $this->clean_db();
     if ( $user_id = $pvp->auth->verify_login($login,$passwd) ) {
       $id = md5( $this->randomstring() );
-      $ip = $REMOTE_ADDR;
+      $ip = $_SERVER["REMOTE_ADDR"];
       $started = time();
       if ( $db->create_session($id,$ip,$user_id,$started) ) {
         return $id;
@@ -85,12 +85,13 @@
   /** Verify a session
    * @class session
    * @method verify
-   * @param string id identifier of the session to verify
+   * @param optional string id identifier of the session to verify
    * @return integer user-id
    */
-  function verify($id) {
-    GLOBAL $db,$REMOTE_ADDR;
-    return $db->verify_session($id,$REMOTE_ADDR);
+  function verify($id="") {
+    GLOBAL $db;
+    if (!$id) $id = $_REQUEST["sess_id"];
+    return $db->verify_session($id,$_SERVER["REMOTE_ADDR"]);
   }
 
   /** End a session
@@ -99,9 +100,10 @@
    * @param string id
    */
   function end($id) {
-    GLOBAL $db,$REMOTE_ADDR;
+    GLOBAL $db;
     $ended = time();
-    $db->end_session($id,$REMOTE_ADDR,$ended);
+    if (!$id) $id = $_REQUEST["sess_id"];
+    $db->end_session($id,$_SERVER["REMOTE_ADDR"],$ended);
   }
 
   /** Destroy a session

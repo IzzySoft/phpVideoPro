@@ -93,6 +93,14 @@ unchecked, and the medium's complete capacity will be considered as free and
 thus available space.
 
 [text]
+<b>*movie_onlabel_default#:</b> Sometimes you have an huge amount of small
+items on your media (this happens e.g. if someone fills up the last 10..20
+minutes with video clips from MTV), but not all of the items should appear
+on the label for this medium (to keep information clear). You can set this
+for each and every movie entry. Decide here what default should be set for
+new entries.
+
+[text]
 <b>*movie_color_default#:</b> Today, most movies come in colored mode. So when
 creating a new entry, you may feel fine to see this is already checked for you.
 Nevertheless, there may be some fans of "oldies" out there who mostly record

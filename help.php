@@ -7,7 +7,7 @@
 
 <H2 Align=Center>Help</H2>
 
-<P Align=Center>Sorry - not yet implemented.</P>
+<P Align=Center><? echo lang("not_yet_implemented") ?></P>
 
 <?
 

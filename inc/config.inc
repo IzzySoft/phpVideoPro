@@ -37,7 +37,7 @@ $defaults["scolor"] = "Farbe"; // most movies today have more than two colors ;)
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
-$pre        = "pre1";
+$pre        = "pre2";
 $version    = "0.1.2";
 if ($pre) $version .= $pre;
 $nav_script = $base_url . "inc/navcond.js";

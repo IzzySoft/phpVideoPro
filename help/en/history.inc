@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.9 (2004)
+0.6.9 (November 07, 2004)
 [text]
 <ul>
  <li>some work on the edit/view entry screen to get more info without scrolling
@@ -17,6 +17,7 @@
  <li>updated Dutch translations (Thanx to Ron Dekker)
  <li>cancel on editing a new entry lead to page with an "empty entry". Fixed.
  <li>added "baloon-help" to the title buttons of the Applicat template set
+ <li>starting with code cleanup ("feature freeze" until v0.7.0 is released)
 </ul>
 
 [title]

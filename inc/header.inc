@@ -36,14 +36,11 @@
     case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
     default              : break;
   }
+if (!$silent) {
 ?>
 <HTML><HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <Title><?echo $pagename ?></Title>
-<?php
- if ($exclude_menue) {
-  echo "</HEAD><BODY>\n";
- } else { // include menue ?>
  <script language="JavaScript">
 
   function open_help(topic) {
@@ -65,4 +62,4 @@ if ($oldmenue) echo " onLoad=\"init();\"" ?><!-- {body_tags}-->
   <td><? if ($oldmenue) { ?><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
  </tr>
 </table>
-<?php } // exclude_menue ?>
+<?php } // not silent ?>

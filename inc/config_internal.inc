@@ -11,7 +11,7 @@ $agent->name    = strtolower($browser->getbrowser());
 $agent->major   = $browser->getMajor();
 $agent->minor   = $browser->getMinor();
 $agent->version = $browser->getVer();
-echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
+if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 if ($agent->name == "netscape") {
  if ($agent->version < 5) {
   $oldmenue = TRUE;

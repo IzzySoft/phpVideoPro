@@ -86,6 +86,9 @@ if (!$pvpinstall) {
  $db->query("SELECT value FROM preferences WHERE name='display_limit'");
  $db->next_record();
  $pvp->preferences->display_limit = $db->f('value');
+ $db->query("SELECT value FROM preferences WHERE name='date_format'");
+ $db->next_record();
+ $pvp->preferences->date_format = $db->f('value');
 }
 #--------------------------------------------------[ debug settings ]---
 // which actions to log. Empty string turns off debug feature. Otherwise each letter

@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Delete an entry from DB                                                   *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Delete an entry from DB                                                   #
+ #############################################################################
 
  /* $Id$ */
 
@@ -90,16 +90,22 @@
     kill("video",$id);
     # and finally we may have to correct the free space remaining on that medium (if rewritable)
     if ( $pvp->common->medium_is_rw($mtype_id) ) {
-      $details .= "<li>" . lang("recalc_free"). ". ";
-      if ( $db->update_freetime($cass_id,$mtype_id) ) {
-	$time_left = $db->get_mediumfreetime($cass_id);
-	if ( strlen($time_left) ) {
-          $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
-	} else {
-	  $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
-	}
+      $details .= "<li>" . lang("check_media_delete"). ". ";
+      if ( $db->delete_medium($cass_id,$mtype_id) ) {
+        $details .= $colors["ok"] . lang("medium_deleted") . "</Font><BR>";
       } else {
-        $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
+        $details .= $colors["ok"] . lang("medium_not_deleted") . "</Font><BR>";
+        $details .= "<li>" . lang("recalc_free"). ". ";
+        if ( $db->update_freetime($cass_id,$mtype_id) ) {
+          $time_left = $db->get_mediumfreetime($cass_id);
+          if ( strlen($time_left) ) {
+            $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
+          } else {
+	    $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+          }
+        } else {
+          $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
+        }
       }
     }
     # and that's all.

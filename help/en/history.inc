@@ -12,6 +12,7 @@
      if no cookies are used (either disabled in the setup or not supported from
      the browser/user). This way system defaults should in no case be overwritten
      any more.
+ <li>search results are now sortable by clicking on the table header (as expected)
 </ul>
 
 [title]

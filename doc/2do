@@ -16,11 +16,11 @@ coming *soon*:
   the mtype set with the imported movie, and then correctly increment the
   MediaNr while adding the movie. As with categories, new mediatypes should
   be added when needed.
+- help for the initial page is missing
 
 coming *next*:
 - PS template(s) for DVD covers
 - form(s) to edit label sheets (for PSLabels)
-- the header of the search result list looks like being sortable but isn't
 - as soon as the Restore function of the backup page can handle the "ADD to
   existing entries" function: export-button for selected movie (view_entry)
   and selected movies (movie list) for transfer, similiar to a "partial backup"

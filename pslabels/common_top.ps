@@ -36,12 +36,13 @@ FG setgray
 ({_actors35_})	%% actors35
 ({_country_})	%% country
 ({_year_})	%% year
+({_music_})	%% composer of music score
 
 ({_title_})	%% title
 LL     %% line length in points
 {/lncount lncount 1 add def}
 BreakIntoLines
-lncount 6 add array astore %% one title broken up into several lines as one array
+lncount 7 add array astore %% one title broken up into several lines as one array
 /TTlines TTlines lncount add def
 
 <!-- END definitionblock -->
@@ -63,8 +64,9 @@ new_height fs_max ge { /new_height fs_max def } if
   /title_actors35 ary 3 get def
   /title_country ary 4 get def
   /title_year ary 5 get def
+  /title_composer ary 6 get def
   top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
-  6 1 ary length 1 sub 
+  7 1 ary length 1 sub 
     { 
     ary exch get
     gsave 1.35 inch 0 rmoveto c-show grestore
@@ -74,7 +76,9 @@ new_height fs_max ge { /new_height fs_max def } if
   top-font findfont new_height 0.6 mul scalefont setfont
   gsave
    1.35 inch 0 rmoveto
-   lang_director (: ) StrCat title_director StrCat c-show
+   lang_director (: ) StrCat title_director StrCat 
+   ( ) StrCat lang_composer StrCat (: ) StrCat title_composer StrCat 
+   c-show
   grestore
 
   gsave

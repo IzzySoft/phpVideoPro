@@ -24,8 +24,9 @@ Contents:
   2.) Warranty
   3.) Requirements
   4.) Pre-Requisites / Installation
-  5.) Known bugs / limitations
-  6.) Download and Sites
+  5.) Updating
+  6.) Known bugs / limitations
+  7.) Download and Sites
 
 ===============================================================================
 
@@ -113,7 +114,19 @@ Contents:
 
 ===============================================================================
 
-5.) Known bugs / limitations
+5.) Updating
+------------
+
+  When updating from a previous version of phpVideoPro, the steps to do
+  follow easier rules. After updating the files, point your browser to
+  the setup/index.php and just follow the update link there. This step
+  is not even necessary for all version updates - but only if database
+  changes have been made. So if the number of the version you update from
+  is higher than the last one listed there, no db update is needed :)
+
+===============================================================================
+
+6.) Known bugs / limitations
 ----------------------------
 
   Since filter settings are simply stored into the db now, it gets difficult
@@ -129,14 +142,18 @@ Contents:
 
 ===============================================================================
 
-6.) Download and Sites
+7.) Download and Sites
 ----------------------
 
   First, you'll find a home page as well as a running demo (which may not
   always be current) on my home page, together with the pages for my other
   projects: http://www.qumran.org/homes/izzy/ or on Sourceforge,
   http://sourceforge.net/projects/videopro/ - on both sides you'll also find
-  tarballs to download.
+  tarballs to download. The tarball of the latest available version should
+  always be available by an "alias":
+  http://www.qumran.org/ftp/net/div/izzysoft/phpvideopro.tgz should always
+  point to the gnu-zipped tarball of the latest version (hopefully - if I
+  didn't forget to update that link :)
   If you have questions/suggestions, you can also contact me via email, using
   the address izzysoft@buntspecht.de - and please, don't give up waiting if I
   do not respond that quickly; it sometimes takes me a while :)

@@ -74,6 +74,9 @@
      $t->set_var("label",$label);
      $t->parse("definitionlist","definitionblock",TRUE);
    }
+   $t->set_var("mtype",lang("mediatype"));
+   $t->set_var("medianr",lang("medianr"));
+   $t->set_var("label",lang("label"));
    $t->set_var("listtitle",lang("print_label"));
    $t->set_var("form_target",$PHP_SELF);
    $t->set_var("create",lang("create"));

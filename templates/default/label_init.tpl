@@ -2,7 +2,9 @@
 
  <FORM NAME="label" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center">
-    <TR><TD COLSPAN=3>&nbsp;</TD></TR>
+    <TR><TH>{mtype}</TH>
+        <TH>{medianr}</TH>
+        <TH>{label}</TH></TR>
     <!-- BEGIN definitionblock -->
     <TR><TD>{mtype}</TD>
         <TD>{medianr}</TD>

@@ -150,7 +150,7 @@
        case "0" : $where = "WHERE available='no'"; break;
        case "1" : $where = "WHERE available='yes'"; break;
      }
-     $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where");
+     $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where ORDER BY lang_name");
      $i=0;
      while ( $this->next_record() ) {
        $lang[$i]["id"]   = $this->f('lang_id');

@@ -2179,6 +2179,15 @@
      }
      $this->dbquery("SELECT DISTINCT mtype_id,cass_id FROM video");
      $stats[media] = $this->num_rows();
+     $mt = $this->get_mtypes();
+     $ct = count($mt);
+     for ($i=0;$i<$ct;++$i) {
+       $this->dbquery("SELECT DISTINCT cass_id FROM video WHERE mtype_id=".$mt[$i][id]);
+       $ms[mcount] = $this->num_rows();
+       $ms[name]  = $mt[$i][name];
+       $ms[sname] = $mt[$i][sname];
+       $stats[smedia][] = $ms;
+     }
      $this->dbquery("SELECT DISTINCT country FROM video");
      $stats[countries] = $this->num_rows();
      for ($i=1;$i<4;++$i) {

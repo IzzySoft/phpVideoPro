@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -23,6 +23,9 @@
   $t->set_block("stat","listblock","list");
   $t->set_block("listblock","itemblock","item");
 
+  $indent = "&nbsp;&nbsp;";
+
+  #-=[ Sums ]=-
   $t->set_var("listtitle",lang("db_stats") . "</b>");
   $t->set_var("list_head",lang("stat_counts"));
   $t->set_var("item_name","<b>" . lang("movies") . "</b>");
@@ -43,13 +46,18 @@
   $t->set_var("item_name","<b>" . lang("media") . "</b>");
   $t->set_var("item_input",$stats[media]);
   $t->parse("item","itemblock",TRUE);
+  $mc = count($stats[smedia]);
+  for ($i=0;$i<$mc;++$i) {
+    $t->set_var("item_name",$indent.$stats[smedia][$i][name]." (".$stats[smedia][$i][sname].")");
+    $t->set_var("item_input",$stats[smedia][$i][mcount]);
+    $t->parse("item","itemblock",TRUE);
+  }
   $t->set_var("item_name","<b>" . lang("countries") . "</b>");
   $t->set_var("item_input",$stats[countries]);
   $t->parse("item","itemblock",TRUE);
   $t->parse("list","listblock");
 
-  $indent = "&nbsp;&nbsp;";
-
+  #-=[ Rankings ]=-
   $t->set_var("list_head",lang("stat_ranks"));
   $t->set_var("item_name","<b>" . lang("countries") . "</b>");
   $t->set_var("item_input","");

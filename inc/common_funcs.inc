@@ -1,4 +1,7 @@
 <?
+
+ /* $Id$ */
+
  ##############################################################################
  # output debug message depending on configured debug level
  function debug($level,$msg) {
@@ -93,7 +96,7 @@
     if ($filter->aquired_max) { $sql[$i] = " v.aq_date<'" . $filter->aquired_max . "'"; $i++; }
     if ($filter->fsk_min)     { $sql[$i] = " v.fsk>'" . $filter->fsk_min . "'"; $i++; }
     if ($filter->fsk_max)     { $sql[$i] = " v.fsk<'" . $filter->fsk_max . "'"; $i++; }
-    if ($filter->title)       { $sql[$i] = " v.title='" . $filter->title . "'"; $i++; }
+    if ($filter->title)       { $sql[$i] = " v.title like '%" . $filter->title . "%'"; $i++; }
     $found = 0;
     // -----------[ mtype ]---
     $temp = get_fquery($found,"mtype","mtypes");

@@ -22,9 +22,10 @@ CREATE TABLE actors (
 
 CREATE TABLE cass (
    id int(4) NOT NULL auto_increment,
+   mtype_id int(3) DEFAULT '1' NOT NULL,
    type int(3),
    free int(3),
-   PRIMARY KEY (id)
+   PRIMARY KEY (id,mtype_id)
 );
 
 

@@ -20,10 +20,11 @@ CREATE TABLE actors (
 #
 
 CREATE TABLE cass (
-   id serial,
+   id int NOT NULL,
+   mtype_id int DEFAULT 1,
    type int,
    free int,
-   PRIMARY KEY (id)
+   PRIMARY KEY (id,mtype_id)
 );
 
 

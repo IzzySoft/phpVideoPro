@@ -16,9 +16,12 @@
 if ($menue) {
   $page_id = "configuration";
   if ($update) {
-    include ("inc/config.inc");
-    include ("inc/config_internal.inc");
-    include ("inc/common_funcs.inc");
+    if ($admin) $root = "../";
+    include ($root . "inc/config.inc");
+    include ($root . "inc/config_internal.inc");
+    include ($root . "inc/common_funcs.inc");
+  } elseif ($admin) {
+    include ("../inc/header.inc");
   } else {
     include ("inc/header.inc");
   }
@@ -273,7 +276,11 @@ if ($onlabel_default) {
 } else {
   $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\">");
 }
-$t->parse("item","itemblock",TRUE);
+if ($admin) {
+  $t->parse("item","itemblock",TRUE);
+} else {
+  $t->parse("item","itemblock");
+}
 
 #--[ movie_tone_default ]--
 $t->set_var("item_name",lang("movie_tone_default"));
@@ -288,11 +295,7 @@ for ($i=0;$i<count($pict);$i++) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
-if ($admin) {
-  $t->parse("item","itemblock",TRUE);
-} else {
-  $t->parse("item","itemblock");
-}
+$t->parse("item","itemblock",TRUE);
 
 #--[ movie_color_default ]--
 $t->set_var("item_name",lang("movie_color_default"));
@@ -307,11 +310,7 @@ for ($i=0;$i<count($pict);$i++) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
-if ($admin) {
-  $t->parse("item","itemblock",TRUE);
-} else {
-  $t->parse("item","itemblock");
-}
+$t->parse("item","itemblock",TRUE);
 
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));

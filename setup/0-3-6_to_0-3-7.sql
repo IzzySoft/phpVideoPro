@@ -5,6 +5,7 @@
 # moved items from config.inc to DB
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
+INSERT INTO pvp_config (name,value) VALUES ('site','');
 INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
 
 # version update

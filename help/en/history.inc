@@ -8,6 +8,12 @@
  <li>when a medium became empty (by removal of the last movie), it was always
      removed from the media table (and thus not available for free space
      searches). This is now configurable (config.inc, $remove_empty)
+ <li>moved color settings (for page and table backgrounds) into template's
+     stylesheet and removed them from config screen. They should only change
+     with the selected theme. Modify there for your convenience ;)
+ <li>moved parts from config.inc to config screen: rw_media, remove_empty,
+     defaults[scolor] and site - so only absolut necessary items are still
+     kept in this file
 </ul>
 
 [title]

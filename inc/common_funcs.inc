@@ -75,7 +75,7 @@
  # so this is just a wrapper until the change is done in all files
  function get_filters() {
   global $pvp;
-  return $pvp->preferences->get_filters();
+  return $pvp->preferences->filter;
  }
 
  ##############################################################################

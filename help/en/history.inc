@@ -13,6 +13,7 @@
  <li>addition of language files for Norwegian, Polish and Dutch
      (Thanx to Knut, Leszek and Tom!)
  <li>added possibility to directly go to an entry specified by MediaNr
+ <li>fixed some translation stuff (e.g. color names in edit.php)
 </ul>
 
 [title]

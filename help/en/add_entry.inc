@@ -2,62 +2,60 @@
 # /* $Id$ */
 
 [title]
-Introduction
+*intro#
 
 [text]
-Using this menu item, you can insert a new entry into your video database. Most
-fields in this form are self-explaining; but there are a few that require some
-comment (beside the fact that the unnamed input box on top is intended to keep
-the movies title ;):
+Starting with phpVideoPro v0.5.1, this menu item exists for each configured
+media type separately. This was necessary in order to support the different
+features supported by some of them, as e.g. *longplay# only for Tapes, or
+region codes only for DVDs, and suppressing input fields for features not
+supported by the given medium. And that's furthermore the reason, that not
+all described fields are available for all media.
+[text]
+Using these menu items, you can insert a new entry into your video database.
+Most fields in this form are self-explaining; but there are a few that require
+some comment (beside the fact that the unnamed input box on top is intended to
+keep the movies title ;):
 
 [title]
-MediaType
+*medianr#
 
 [text]
-<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="piece of 'add entry' menue: mediatype" ALIGN="LEFT" HSPACE="5" BORDER="1">
-The box "MediaType" (marked red in the image displayed) offers you a list of
-available media types to select from. This box itself won't need any
-explanation, I guess - but I want to draw your attention to the other two marks:
-there is a two-part MediaNr to be entered (marked blue). The first part stands
-for the physical media, e.g. tape or disk. The second part applies to the movie
-on that medium. Let's say, you've recorded two movies on tape # 20, so the first
-movie should be 20-1 and the second 20-2.
+While the *mediatype# is now already set by the selected menu item (see
+"*intro#" above), we still need to set the *medianr#. This is already partly
+done by the box prompting you for the mediums number before reaching this
+screen. So the only thing still needed is the part number (since each disk or
+tape may contain more than one movie). Since v0.5.1, phpVideoPro already guesses
+the right part number by checking the database for the latest one given and
+assuming, this one will be the next (as is the suggestion concerning the
+tape/disk number in the mentioned prompt). In both cases, you are given the
+possibility to correct this for the presumably rare cases you need to do so.
+The "*last_entry#" button tells you the highest given part number for the
+selected medium (or nothing if you just created an entry for a new tape/disk).
 [text]
-Now for the feature: Let's assume you've just recorded two movies on an empty
-tape, and now you want to create the database entries for them. Are you sure
-you remember the last (physical) MediaNr you assigned? The green marked box
-assists you in finding out the highest assigned number <b>for each media type</b>!
-Just open it to view all its content. For the creation process, it doesn't
-matter at all what value you've selected - the green marked box is for your
-information only, its content is not stored anywhere in the database.
-[text]
-But a last word on the blue marked MediaNr: the combination of the numbers
-entered here, i.e. the physical tape and the logical unit on it, together with
-the selected MediaType, have to be unique throughout the entire database. There
-is, e.g., only one DVD #1 in your collection, the next DVD should be #2 then
-a.s.o.. This program is not intended for managing some video store or
-commercial video tape library, but for private collections only :)
+At this place allow me some words on the concept for the media numbers in
+phpVideoPro: Its first part stands for the physical media, e.g. tape or disk.
+The second part applies to the movie on that medium. Let's say, you've recorded
+two movies on tape # 20, so the first movie should be 20-1 and the second 20-2.
+The combination of these numbers, i.e. the physical tape and the logical unit
+on it, together with the MediaType, have to be unique throughout the entire
+database. There is, e.g., only one DVD #1 in your collection, the next DVD
+should be #2 then a.s.o.. This program is not intended for managing some video
+store or commercial video tape library, but for private collections only :)
 
 [title]
-*date_rec#
+*disk_type# / *counter_start_stop#
 
 [text]
-The date field is split in day, month and year fields. As for now, the order
-is hardcoded to be day-month-year. Of course this may change in one of the
-following versions of phpVideoPro, to use the order configured with the date
-format setting in the setup menue, to take country specific settings (or
-special user preferences :) into account.
-
-[title]
-*counter_start_stop#
-
+The counter fields are mostly of interest for those of you having video
+recorders without an index function (and are only displayed for tapes): you can
+enter the counters from the beginning respective ending of your recording here.
+Since the only format restriction is a length of 10 characters, it doesn't
+matter if you enter plain numeric counter values, or even time codes here -
+depending on how your recorder displays the time.
 [text]
-These fields are mostly of interest for those of you having video recorders
-without an index function: you can enter the counters from the beginning
-respective ending of your recording here. Since the only format restriction
-is a length of 10 characters, it doesn't matter if you enter plain numeric
-counter values, or even time codes here - depending on how your recorder
-displays the time.
+For all other media (VCD/DVD), you can select the *disk_type# instead. Details
+on this are to be found <A HREF="{PHP_SELF}?topic=disktype_change">here</A>.
 
 [title]
 *label#
@@ -65,6 +63,16 @@ displays the time.
 [text]
 This is to define wether data for this movie should be printed on the label for
 this medium.
+
+[title]
+*region_code#
+
+[text]
+Regional Codes are somehow specific to DVDs, so these checkboxes are only
+available for DVDs. If you don't know what region code your DVD is limited to,
+just check nothing here (it will then display "unknown" when you view this
+entry later). For region-free DVDs, check the "0" only. For all others, check
+the appropriate box(es).
 
 [title]
 *commercials#
@@ -77,7 +85,17 @@ If you can't remember, you have even the possibility to state your unsureness
 here by chosing "*unknown#".
 
 [title]
-Categories
+*date_rec#
+
+[text]
+The date field is split in day, month and year fields. As for now, the order
+is hardcoded to be day-month-year. Of course this may change in one of the
+following versions of phpVideoPro, to use the order configured with the date
+format setting in the setup menue, to take country specific settings (or
+special user preferences :) into account.
+
+[title]
+*categories#
 
 [text]
 The category selected in the first box will be displayed along with the main
@@ -86,7 +104,7 @@ now by using the filter function) specifying a category, all three categories
 will be taken into account.
 
 [title]
-Staff
+*staff#
 
 [text]
 Be careful to fill in the information into the right fields here: the first is

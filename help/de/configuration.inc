@@ -82,8 +82,7 @@ eine Phrase nicht in der "Primärsprache" vorhanden, wird in den Englischen
 Übersetzungen gesucht. Schlägt auch dies fehl, taucht ein "Sprachcode" des
 Programmierers auf - sollte dies nicht auf einen Benutzerfehler (wie etwa eine
 gelöschte Englische Sprache) zurückzuführen sein, erbitte ich eine
-<A HREF="mailto:izzysoft@qumran.org">Nachricht</A> an mich, damit ich den
-Fehler beheben kann!
+Nachricht an mich, damit ich den Fehler beheben kann!
 
 [title]
 *config_media#

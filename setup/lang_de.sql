@@ -28,6 +28,7 @@ INSERT INTO lang VALUES ('audio_ts','de','Tonspur','');
 INSERT INTO lang VALUES ('back','de','Zurück','');
 INSERT INTO lang VALUES ('backup_compress','de','Daten komprimieren?','');
 INSERT INTO lang VALUES ('backup_db','de','Datenbank Backup','');
+INSERT INTO lang VALUES ('backup_db_cats','de','Kategorien sichern','');
 INSERT INTO lang VALUES ('backup_db_complete','de','Vollständiges Backup der Datenbank (incl. technischer Daten)','');
 INSERT INTO lang VALUES ('backup_db_moviedel','de','Nur Film-relevante Daten sichern; zusätzlich vor dem Einfügen der \"neuen\" (gesicherten) Daten alte Daten zum Löschen markieren','');
 INSERT INTO lang VALUES ('backup_db_movies','de','Nur Film-relevante Daten sichern (Film, Schauspieler etc.)','');

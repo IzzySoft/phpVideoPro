@@ -533,5 +533,6 @@ INSERT INTO lang VALUES ('xfer_unknown_filetype','en','This backup file type is 
 INSERT INTO lang VALUES ('xfer_wrong_mode','en','Program error: You are in the wrong mode for the requested operation. Required mode is "%1", actual mode is "%2". Please report this to the author with the details of the action performed.','Error message on backup/restore');
 INSERT INTO lang VALUES ('admin_required','en','This action requires admin privileges!','Error message when accessing an admin function without the required user privilege. Should never be displayed ;)');
 INSERT INTO lang VALUES ('restore_db_internal','en','Restore from a PVP backup file','Action on the Backup/Restore page');
-INSERT INTO lang VALUES ('backup_db_sysconf','en','Backup system config and default preferences','');
+INSERT INTO lang VALUES ('backup_db_sysconf','en','Backup system config and default preferences','Action on the Backup/Restore page');
+INSERT INTO lang VALUES ('backup_db_cats','en','Backup categories','Action on the Backup/Restore page');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

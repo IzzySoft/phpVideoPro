@@ -14,6 +14,7 @@
 
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
+ $t = new Template($pvp->tpl_dir);
 
  #==================================================[ update user account ]===
  if ($update) {
@@ -63,10 +64,34 @@
    }
  #==================================================[ delete user account ]===
  } elseif ($delete) {
+   $user = $db->get_users($delete);
+   if ($confirmed) {
+     if ( $db->del_user($delete) ) {
+       $save_result = $colors["ok"] . lang("user_deleted",$delete,$user->login,$user->comment) . ".</Font><BR>\n";
+     } else {
+       $save_result = $colors["err"] . lang("user_delete_failed",$delete,$user->login,$user->comment) . "</Font><BR>\n";
+     }
+     $t->set_file(array("template"=>"delete.tpl"));
+     $t->set_var("listtitle",lang("user_delete_report"));
+     $t->set_var("details",$save_result);
+     include("../inc/header.inc");
+     $t->pparse("out","template");
+     exit;
+   } else {
+     $t->set_file(array("template"=>"admin_userdelete.tpl"));
+     $t->set_var("listtitle",lang("confirm_userdelete",$delete));
+     $t->set_var("formtarget",$PHP_SELF);
+     $t->set_var("delete",$delete);
+     $t->set_var("yes",lang("yes"));
+     $t->set_var("no",lang("no"));
+     $t->set_var("delete_yn",$colors["err"].lang("confirm_userdeletion",$user->login,$user->comment)."</FONT>");
+     include("../inc/header.inc");
+     $t->pparse("out","template");
+     exit;
+   }
  }
 
  #=====================================================[ build input form ]===
- $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_useredit.tpl"));
 
  $users = $db->get_users($id);

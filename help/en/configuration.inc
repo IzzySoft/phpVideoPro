@@ -148,10 +148,24 @@ cookies. After the timeout, the session falls back into guest mode.
 *general#
 
 [text]
-<b>*template_set#:</b> starting with v0.1.5, phpVideoPro is based on templates.
+<b>*template_set#:</b> Starting with v0.1.5, phpVideoPro is based on templates.
 I (the author) just provided an initial template set; but as soon as there are
 additional template sets available (which will only happen when <b>YOU</b>
 write them - I'm not a good designer), this is the place to make your choice.
+
+[text]
+<b>*imdb_url#:</b> You can lookup additional data for a selected movie (or staff
+member) by clicking on its title (or name) button when viewing the movies entry.
+Since the movie title for the same movie differs in different languages, and you
+probably will not always have the "original" name of the movie in the title
+but the one corresponding to the language version, you may quite often need to
+search the IMDB manually. By selecting a better matching IMDB site here, chances
+increase for a hit on the first click: if you e.g. have the German movie name
+in the title in most cases, you should select the German site of the IMDB here
+to reach this goal.<br>
+Unfortunately, not all countries have their own IMDB site yet. The ones I know
+are available as options. If there are other sites available <i>you</i> know of,
+just drop me a note and I will add them asap!
 
 [text]
 <b>*printer#:</b> To guarantee the exact position of generated labels on the

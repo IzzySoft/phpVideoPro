@@ -17,12 +17,30 @@
       else if ($ar1[reverse]>$ar2[reverse]) return 1;
    }
 
-   $namelist = $db->get_director("");
+   switch ($order) {
+     case "dir"   : $namelist = $db->get_director("");
+                    $table    = "directors";
+		    $colname  = lang("director");
+		    $revname  = "director_rev";
+		    break;
+     case "music" : $namelist = $db->get_music("");
+                    $table    = "music";
+		    $colname  = lang("music");
+		    $revname  = "music_rev";
+		    break;
+     case "actor" :
+     default      : $namelist = $db->get_actor("");
+                    $table    = "actors";
+		    $colname  = lang("actor");
+		    $revname  = "actor_rev";
+		    break;
+   }
+   
    uasort($namelist,"sort_names");
    reset($namelist);
    $filter = get_filters();
    foreach ($namelist as $name) {
-     $m = $db->get_movienamelist("directors",$name,$filter);
+     $m = $db->get_movienamelist($table,$name,$filter);
      if (is_array($movielist)) {
        $movielist = array_merge($movielist,$m);
      } else {
@@ -32,7 +50,7 @@
 
    $listlength = count($movielist);
    if ($align) {
-     $listheader = $pvp->common->centerstr(lang("director"),25) . $sep
+     $listheader = $pvp->common->centerstr($colname,25) . $sep
                  . $pvp->common->centerstr(lang("title"),36) . $sep
                  . $pvp->common->centerstr(lang("category"),15) . $sep
                  . $pvp->common->centerstr(lang("length"),5)
@@ -40,7 +58,7 @@
    } else {
      if ($outputtype=="html") $fullrow = "<TR><TD COLSPAN=\"5\">";
      $listheader = $blockstart . $linestart
-                 . lang("director") . $sep
+                 . $colname . $sep
                  . lang("title") . $sep
                  . lang("category") . $sep
                  . lang("length") . $sep
@@ -66,13 +84,13 @@
        $title  = $pvp->common->fillblanks($movielist[$i][title],36);
        $cat    = $pvp->common->centerstr($movielist[$i][cat1],15);
        $length = $pvp->common->padblanks($movielist[$i][length],5);
-       $name   = $pvp->common->fillblanks($movielist[$i][director_rev],25);
+       $name   = $pvp->common->fillblanks($movielist[$i][$revname],25);
 #       $lp     = $pvp->common->centerstr($lp,4);
      } else {
        $title  = $movielist[$i][title];
        $cat    = $movielist[$i][cat1];
        $length = $movielist[$i][length];
-       $name   = $movielist[$i][director_rev];
+       $name   = $movielist[$i][$revname];
      }
      $line = $linestart . $name . $sep
 	   . $title . $sep

@@ -11,6 +11,7 @@
  <li>removed obsolet SQL update files in setup/ (which just increased the
      version number). Updates from "ancient versions" do still work.
  <li>absolut taperest list was broken (fixed filters)
+ <li>Bulgarian language file updated (thanx to Tsveti!)
 </ul>
 
 [title]

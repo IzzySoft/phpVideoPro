@@ -95,7 +95,7 @@
    $t->set_var("cat_name",make_input($cat_name,$cats[$i]['internal']));
    $t->set_var("cat_trans",make_input($cat_trans,$cats[$i]['name']));
    $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$cats[$i]['id']);
-   $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+   $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
    $t->set_var("cat_del",$trash);
    if ($cats[$i]['used'] == 0) {
      $checkbox = "<INPUT TYPE='checkbox' NAME='cat".$i."_dis' VALUE='1'";

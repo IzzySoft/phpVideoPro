@@ -135,9 +135,9 @@
    for ($i=0;$i<$pictcount;++$i) {
      $t->set_var("item_name",$picts[$i]['name']);
      $t->set_var("item_sname",$picts[$i]['sname']);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=pict&edit=" .$picts[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=pict&edit=" .$picts[$i]['id'],"<IMG SRC='$edit_img' ALT='".lang("edit")."' BORDER='0'>");
      $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=pict&delete=".$picts[$i]['id']);
-     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      if ($i) $t->parse("screen","screenitemblock",TRUE);
@@ -152,9 +152,9 @@
    for ($i=0;$i<$colorcount;++$i) {
      $t->set_var("item_name",$colors[$i]['name']);
      $t->set_var("item_sname",$colors[$i]['sname']);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=color&edit=" .$colors[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=color&edit=" .$colors[$i]['id'],"<IMG SRC='$edit_img' ALT='".lang("edit")."' BORDER='0'>");
      $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=color&delete=".$colors[$i]['id']);
-     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      if ($i) $t->parse("color","coloritemblock",TRUE);
@@ -169,9 +169,9 @@
    for ($i=0;$i<$mtypecount;++$i) {
      $t->set_var("item_name",$mtypes[$i]['name']);
      $t->set_var("item_sname",$mtypes[$i]['sname']);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=mtype&edit=" .$mtypes[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=mtype&edit=" .$mtypes[$i]['id'],"<IMG SRC='$edit_img' ALT='".lang("edit")."' BORDER='0'>");
      $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=mtype&delete=".$mtypes[$i]['id']);
-     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      if ($i) $t->parse("mtype","mtypeitemblock",TRUE);
@@ -186,9 +186,9 @@
    for ($i=0;$i<$tonecount;++$i) {
      $t->set_var("item_name",$tones[$i]['name']);
      $t->set_var("item_sname",$tones[$i]['sname']);
-     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=tone&edit=" .$tones[$i]['id'],"<IMG SRC='$edit_img' BORDER='0'>");
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=tone&edit=" .$tones[$i]['id'],"<IMG SRC='$edit_img' ALT='".lang("edit")."' BORDER='0'>");
      $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=tone&delete=".$tones[$i]['id']);
-     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $trash = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      if ($i) $t->parse("tone","toneitemblock",TRUE);

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -16,9 +16,11 @@
   * @package Api
   * @class cookie
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
  class cookie {
+
+   var $active;
 
    /** Initialize the expiration time
     * @constructor cookie
@@ -26,6 +28,31 @@
     */
    function cookie($expire) {
      $this->expire = $expire;
+     $this->check_cookie();
+   }
+
+   /** Can we use cookies?
+    * @class cookie
+    * @method check_active
+    */
+   function check_cookie() {
+     GLOBAL $pvp;
+     if ($pvp->config->enable_cookies) {
+       $lang = $this->get("lang");
+       if (empty($lang)) {
+         $this->set("have_cookie","1");
+	 if ($this->get("have_cookie")=="1") {
+           $this->active = TRUE;
+	   $this->delete("have_cookie");
+	 } else {
+           $this->active = FALSE;
+	 }
+       } else {
+         $this->active = TRUE;
+       }
+     } else {
+       $this->active = FALSE;
+     }
    }
 
    /** Set a cookie
@@ -65,4 +92,9 @@
  } // end class cookie
 
  $pvp->cookie = new cookie($pvp->config->expire_cookies);
+
+ /** Does this session use cookies?
+  * @class cookie
+  * @attribute boolean active
+  */
 ?>

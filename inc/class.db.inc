@@ -191,12 +191,12 @@
      $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$def_lang'");
      while ( $this->next_record() ) { // initiate with fall-back
        $msg_id         = $this->f('message_id');
-       $trans[$msg_id] = $this->f('content');
+       $trans[$msg_id] = stripslashes($this->f('content'));
      }
      $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$pref_lang'");
      while ( $this->next_record() ) { // overwrite with preferred (if exists)
        $msg_id         = $this->f('message_id');
-       $trans[$msg_id] = $this->f('content');
+       $trans[$msg_id] = stripslashes($this->f('content'));
      }
      return $trans;
    }
@@ -215,11 +215,39 @@
      if (!$trans) { // remove translation
        $query = "DELETE FROM lang WHERE message_id='$id' AND lang='$lang'";
      } else {
-       $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
-       if ( !$this->affected_rows() )
+       $trans = addslashes($trans);
+       $this->query("SELECT * FROM lang WHERE message_id='$id' AND lang='$lang'");
+       if ( $this->next_record() ) {
+         $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
+       } else {
          $this->query("INSERT INTO lang (message_id,lang,content) VALUES ('$id','$lang','$trans')");
+       }
      }
      return $this->affected_rows();
+   }
+
+   /** Get translations for the specified language only (for admin)
+    * @class sql
+    * @method get_singletrans
+    * @param string lang language to retrieve for
+    * @param optional integer start (for lim_query)
+    * @param optional string msgID single translation to catch
+    * @return object translations (msgID = translation, list[] of msgIDs)
+    */
+   function get_singletrans($lang,$start="",$msg="") {
+     $query = "SELECT message_id,content FROM lang WHERE lang='$lang'";
+     if ($msg) { $query .= " AND message_id='$msg'"; }
+       else { $query .= " ORDER BY message_id"; }
+     if ($start==="") { $this->dbquery($query); }
+       else { $totals = $this->lim_query($query,$start); }
+     while ( $this->next_record() ) {
+       $msg = $this->f('message_id');
+       $trans["$msg"] = stripslashes($this->f('content'));
+       $list[] = $msg;
+     }
+     if ($totals) $trans[totals] = $totals;
+     $trans["xlist"] = $list;
+     return $trans;
    }
 
    ############################################################################

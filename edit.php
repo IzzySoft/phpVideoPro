@@ -277,7 +277,7 @@ EndHiddenFields;
     $field = "<SELECT NAME=\"commercials_id\" class=\"techinput\">";
     for ($k=0;$k<count($comm);$k++) {
       $field .= "<OPTION VALUE=\"$comm_id[$k]\"";
-      if ($commercials_id==$comm_id[$k]) $field .= " SELECTED";
+      if ($commercials==$comm[$k]) $field .= " SELECTED";
       $field .= ">" . $comm[$k] . " </OPTION>";
     }
     $field .= "</SELECT>";

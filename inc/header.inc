@@ -21,24 +21,16 @@
   include($inc_path . "/class.validate.inc");
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
-    case "about"         : $pagename .= " [ " . lang("about") . " ]"; break;
     case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;
-    case "configuration" : $pagename .= " [ " . lang("configuration") . " ]"; break;
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
     case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
     case "edit"          : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
-    case "history"       : $pagename .= " [ " . lang("history") . " ]"; break;
-    case "media_change"  : $pagename .= " [ " . lang("media_change") . " ]"; break;
-    case "medialist"     : $pagename .= " [ " . lang("medialist") . " ]"; break;
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
-    case "add_entry"     : $pagename .= " [ " . lang("add_entry") . " ]"; break;
     case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
-    case "label"         : $pagename .= " [ " . lang("label") . " ]"; break;
-    case "listgen"       : $pagename .= " [ " . lang("listgen") . " ]"; break;
     case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
-    default              : break;
+    default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
   }
 if (!$silent) {
 ?>

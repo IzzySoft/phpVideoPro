@@ -61,8 +61,8 @@ mit der Installation einer aktuelleren Sprachdatei sind die selbst erstellten
 ein kleiner "work-around": über den Menüpunkt zur Bearbeitung der Übersetzungen
 alle Übersetzungen in eine Datei sichern, und vor dem nächsten Update die
 entsprechenden Zeilen mit der neuen Sprachdatei verbinden. Hat man sich an o.g.
-Regel gehalten, und alle Einträge in der Spalte <i>*handle</i> beginnen mit
-"cat_", so sollten die entsprechenden Zeilen in der Sprachdatei schnell
-aufgefunden sein.
+Regel gehalten, und alle Einträge in der Spalte <i>*cat_internal_name#</i>
+beginnen mit "cat_", so sollten die entsprechenden Zeilen in der Sprachdatei
+schnell aufgefunden sein.
 
 [eof]

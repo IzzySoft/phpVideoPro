@@ -1,0 +1,58 @@
+<?
+
+ ##############################################################################
+ # create a dump of posted data for debugging purposes and send them to the
+ # debug output function
+ $ddump = "Saving data:<p>\n<ul>";
+ while (list($key, $val) = each($HTTP_POST_VARS)) {
+   $ddump .= "<li>$key => $val<br>";
+ }
+ $ddump .= "</ul></TD><TD>\n";
+
+ debug("V",$ddump);
+// exit;
+
+ include("inc/sql_set_persons.inc");
+
+ if ($cat2_id < 0) $cat2_id="";
+ if ($cat3_id < 0) $cat3_id="";
+ if ($pict_id < 0) $pict_id="";
+ (int) $cass_id;
+ (int) $part;
+
+ $insert  = "INSERT INTO video (mtype_id,cass_id,part,title,length,aq_date,source,director_id,director_list,"
+          . "music_id,music_list,country,year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
+          . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"
+          . "pict_id,color_id,fsk,comment,lp) "
+          . "VALUES ("
+          . "'$mtype_id','$cass_id','$part','$title','$length','$recdate','$src','$dir_id','$director_list',"
+          . "'$mus_id','$music_list','$country','$year','$cat1_id','$cat2_id','$cat3_id','$act1_id','$act2_id','$act3_id',"
+          . "'$act4_id','$act5_id','$vis_actor1','$vis_actor2','$vis_actor3','$vis_actor4','$vis_actor5','$tone_id',"
+          . "'$pict_id','$color_id','$fsk','$comment','$lp')";
+ debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$insert</p></Font>");
+ if ( dbquery($insert) ) {
+   $save_result = $colors["ok"] . "Entry created successfully.</Font><BR>\n";
+ } else {
+   $save_result = $colors["err"] . "Failed to update entry!</Font><BR>\n";
+ };
+ ##############################################################################
+ # updating free time on media for Recorded Video Tapes
+ if ($lp) $length /= 2;
+ $free = $mlength - $length;
+ $query = "SELECT sname FROM mtypes WHERE id='$mtype_id'";
+ dbquery($query);
+ if ( !$db->next_record() ) {
+   debug("E",$colors["err"] . "Could not obtain media type for mtype_id '$mtype_id'!</Font><BR>\n");
+ } elseif ( strtolower($db->f('sname'))=="rvt" ) { // calc free space only for recorded video tapes
+   $query = "SELECT type FROM cass WHERE id='$cass_id'";
+   dbquery($query);
+   if ( !$db->next_record() ) {
+     $query = "INSERT INTO cass (id,type,free) VALUES ('$cass_id','$mlength','$free')";
+     dbquery($query);
+   } else {
+     $query = "UPDATE cass SET free='$free' WHERE id='$cass_id'";
+     dbquery($query);
+   }
+ }
+ 
+?>

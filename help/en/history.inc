@@ -13,6 +13,8 @@
  <li>if a tape entry was copied into a dvd entry, region code could not be set
      - fixed.
  <li>copying a movie entry failed if comment contained single quote(s) - fixed
+ <li>Translation editor now contains comments on the terms to be translated
+     to help the editor understanding them better
 </ul>
 
 [title]

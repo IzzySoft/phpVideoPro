@@ -128,3 +128,4 @@ INSERT INTO lang VALUES('feedback_ok','de','Positive Abfrage-Ergebnisse');
 INSERT INTO lang VALUES('feedback_err','de','Negative Abfrage-Ergebnisse');
 INSERT INTO lang VALUES('template_set','de','Template Set');
 INSERT INTO lang VALUES('start_pvp','de','phpVideoPro starten');
+INSERT INTO lang VALUES('hit_back_to_correct','de','Bitte den "Zurück" Button benutzen, um den Fehler auf der vorigen Seite zu beheben.');

@@ -76,9 +76,9 @@ Finnished editing?
 So now it's time to save your work to disk. For this, you should use the link
 provided next to the "*update#" button at the very end of the page, labeled
 "*save_lang_file#". This way you have your work ready for new installations.
-At this place it would be a nice guesture to send a copy to me, the
-<A HREF="mailto:izzysoft@qumran.org">author</A> of phpVideoPro. You participate
-free from the development of the program - so here's an easy way to say
+At this place it would be a nice guesture to send a copy to the author of
+phpVideoPro (for the EMail address, see the <code>doc/README</code> file). You
+participate free from the development of the program - so here's an easy way to say
 "thank you" :-)
 
 [eof]

@@ -58,15 +58,21 @@
    $movie->storecache = $usecache;
    $movie->setid ($movieid);
    $t->set_var("mtitle",$movie->title());
+   $t->set_var("nyear",lang("year"));
    $t->set_var("myear",$movie->year());
-   if (($photo_url = $movie->photo_localurl() ) == FALSE) $photo_url = "";
-   $t->set_var("mfoto",$photo_url);
-   $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
+   if (($photo_url = $movie->photo_localurl() ) == FALSE) {
+     $photo_url = "";
+   } else {
+     $photo_url = substr($photo_url,strlen($base_url));
+     $t->set_var("mfoto",$photo_url);
+     $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
+   }
    $aka = "";
    foreach ( $movie->alsoknow() as $ak) {
      $aka .= $ak["title"].": ".$ak["year"].", ".$ak["country"]." (".$ak["comment"].")<BR>";
    }
    $t->set_var("maka",$aka);
+   $t->set_var("nruntime",lang("length"));
    $t->set_var("mruntime",$movie->runtime());
 #   $t->set_var("mrating",$movie->rating());
 #   $t->set_var("mvotes",$movie->votes());
@@ -76,7 +82,9 @@
      $country .= $acountry[$i].", ";
    }
    $country .= $acountry[$i];
+   $t->set_var("ncountry",lang("country"));
    $t->set_var("mcountry",$country);
+   $t->set_var("ngenre",lang("categories"));
    $t->set_var("mgenre",$movie->genre());
 #   $gen = $movie->genres(); // split up array and fit into template
 #   $col = $movie->colors(); // what to do with them?
@@ -86,18 +94,21 @@
    $dir = $movie->director(); // array again - need to select
    if (is_array($dir) && !empty($dir))
     $t->set_var("dir_name",$dir[0]["name"]); // we also have "imdb" and "role"
+   $t->set_var("ndir_name",lang("director"));
 #   $wrt = $movie->writing(); // writing credits - array 0..n like director
 #   $prod = $movie->producer(); // same as $wrt
    $cast = $movie->cast(); // here come the actors
    $cc = count($cast);
    $open = FALSE;
+   $t->set_var("actors",lang("actors"));
    for ($i=0;$i<$cc;++$i) {
      $t->set_var("aname",$cast[$i]["name"]); // we also have "imdb"
+     if ($i<5) $t->set_var("asel"," SELECTED"); else $t->set_var("asel","");
      $t->parse("actlist","actblock",$open);
      $open = TRUE;
    }
    $plot = $movie->plot(); $cc = count($plot); $comment = "";
-   for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."\n\n"; }
+   for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
    $t->parse("movie","movieblock");
    $t->pparse("out","template");

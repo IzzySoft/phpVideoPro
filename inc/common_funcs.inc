@@ -88,19 +88,9 @@
    }
    return translate("$key",$vars);
  }
- function get_lang() {
-   GLOBAL $db;
-   dbquery("SELECT value FROM preferences WHERE name='lang'");
-   if ( $db->next_record() ){
-     $lang = $db->f('value');
-   } else {
-     $lang = "en";
-   }
-   return $lang;
- }
 
  # initiate the translations only once
- $translations = $db->get_translations( get_lang() );
+ $translations = $db->get_translations( $pvp->preferences->lang );
 
  function translate($key,$vars=FALSE) {
    GLOBAL $db, $translations;

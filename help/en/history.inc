@@ -12,6 +12,7 @@
      overwritten by ultra-long movie titles
  <li>Michael also supplied more details upon the top labels, as you may know
      them from the old label system
+ <li>applied some corrections plus clean-up to the PS Label images
 </ul>
 
 [title]

@@ -6,6 +6,8 @@
 [text]
 <ul>
  <li>converted help system to utf-8
+ <li>converted label systems to utf-8 (will only work for characters contained
+     within the iso-8859-15 for now, sorry)
 </ul>
 
 [title]

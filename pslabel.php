@@ -51,9 +51,9 @@ if (isset($create)) { // we have to create label sheet
   $t->set_var("_label_cols_",$ltypes[label_cols]);
   $t->set_var("_label_rows_",$ltypes[label_rows]);
 
-  $t->set_var("_lang_director_",lang("director"));
-  $t->set_var("_lang_actor_",lang("actor"));
-  $t->set_var("_lang_composer_",lang("composer"));
+  $t->set_var("_lang_director_",$pvp->common->recode(lang("director")));
+  $t->set_var("_lang_actor_",$pvp->common->recode(lang("actor")));
+  $t->set_var("_lang_composer_",$pvp->common->recode(lang("composer")));
 
   $t->pparse("out","list");
 #
@@ -162,7 +162,7 @@ closepath clip \n",$eps_llx, $eps_lly, $eps_urx, $eps_ury);
            # make name pattern for substitution
            $svar  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
 	   # now lookup var in data base and get value in $rvar
-           $rvar = $movie[$var];
+           $rvar = $pvp->common->recode($movie[$var]);
 	   # deal with special vars like length
            if ($var == "length") { // convert to hh:mm
              $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
@@ -272,5 +272,4 @@ include("inc/footer.inc");
 include("inc/footer.inc");
  }
  
-
 ?>

@@ -133,6 +133,32 @@ class common {
   }
 
   #==========================================[ text formatting functions ]===
+   /** Recode a string between two character sets
+    * @class common
+    * @method recode
+    * @param string string to recode
+    * param optional encoding (defaults to utf-8..lat1)
+    * @return string recoded string
+    * @version supports only "lat1..utf-8" and vice versa for now; the recode
+    *  definition has to be set in the this::recode property. Usage of an own
+    *  recoding method was due to recode() and iconv() functions of PHP need
+    *  special requirements (such as libraries and modules) which are not
+    *  available on most systems by default.
+    */
+   function recode ($string,$encoding="utf-8..lat1") {
+     switch ($encoding) {
+       case "utf-8..lat1" :
+         return preg_replace("/([\xC2\xC3])([\x80-\xBF])/e",
+	     "chr(ord('\\1')<<6&0xC0|ord('\\2')&0x3F)",
+	     $string); break;
+       case "lat1..utf-8" :
+         return preg_replace("/([\x80-\xFF])/e",
+             "chr(0xC0|ord('\\1')>>6).chr(0x80|ord('\\1')&0x3F)",
+	     $string); break;
+       default: return($string);
+     }
+   }
+
   /** Search a text block for URLs & cater for the [img],[imgr] and [href] tags
    * @class common
    * @method make_clickable

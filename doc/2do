@@ -23,6 +23,8 @@ coming *next*:
 - as soon as the Restore function of the backup page can handle the "ADD to
   existing entries" function: export-button for selected movie (view_entry)
   and selected movies (movie list) for transfer, similiar to a "partial backup"
+- movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
+  the possibility to "order by rating")
 
 coming *sometimes* (maybe):
 - movie language setting(s)

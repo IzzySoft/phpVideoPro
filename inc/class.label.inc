@@ -130,7 +130,9 @@
    ###########################################################################
    # Write text to a label field
    function write_text($text,$field) {
+     GLOBAL $pvp;
      $font = $this->font;
+     $text = $pvp->common->recode($text);
      for ($i=0;$i<count($text),$font>0;$i++) { // find longest line
        $tfont = $font;
        $x[$i] = $this->get_textpos($text[$i],$field,&$tfont);

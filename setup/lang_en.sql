@@ -151,3 +151,5 @@ INSERT INTO lang VALUES('list','en','List');
 INSERT INTO lang VALUES('format','en','Format');
 INSERT INTO lang VALUES('line_count','en','Lines');
 INSERT INTO lang VALUES('catlist_alpha','en','Medialist in alphabetical order, sorted by category');
+INSERT INTO lang VALUES('lists','en','Lists');
+INSERT INTO lang VALUES('labels','en','Labels');

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -14,18 +14,29 @@
 
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
- if (!$pvp->auth->admin) kickoff();
+# if (!$pvp->auth->admin) kickoff();
+ if (!$pvp->auth->admin) $id = $pvp->auth->user_id;
 
  $t = new Template($pvp->tpl_dir);
 
  #==================================================[ update user account ]===
  if ($update) {
    $user->id     = $id;
-   $user->login  = $login;
-   $user->comment= $comment;
-   $access = array("admin","browse","add","upd","del");
-   foreach ($access as $value) {
-     if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+   if (!$pvp->auth->admin) {
+     $users = $db->get_users($id);
+     $user->login = $users->login;
+     $user->comment = $users->comment;
+     $access = array("admin","browse","add","upd","del");
+     foreach ($access as $value) {
+       $user->$value = $users->$value;
+     }
+   } else {
+     $user->login  = $login;
+     $user->comment= $comment;
+     $access = array("admin","browse","add","upd","del");
+     foreach ($access as $value) {
+       if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+     }
    }
    $pwd_ok = 1;
    if ( isset($pwd1) || isset($pwd2) ) {
@@ -42,7 +53,7 @@
      $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$id). "</SPAN><BR>\n";
    }
  #=================================================[ add new user account ]===
- } elseif ($adduser) {
+ } elseif ($adduser && $pvp->auth->admin) {
    $user->id     = $id;
    $user->login  = $login;
    $user->comment= $comment;
@@ -99,13 +110,23 @@
 
  $users = $db->get_users($id);
  $t->set_var("user_id","<INPUT TYPE='hidden' NAME='id' VALUE='$id'>$id");
- $t->set_var("login","<INPUT NAME='login' VALUE='".$users->login."'>");
- $t->set_var("comment","<INPUT NAME='comment' VALUE='".$users->comment."'>");
- $t->set_var("browse",$pvp->common->make_checkbox("browse",$users->browse));
- $t->set_var("add",$pvp->common->make_checkbox("add",$users->add));
- $t->set_var("upd",$pvp->common->make_checkbox("upd",$users->upd));
- $t->set_var("del",$pvp->common->make_checkbox("del",$users->del));
- $t->set_var("isadmin",$pvp->common->make_checkbox("admin",$users->admin));
+ if ($pvp->auth->admin) {
+   $t->set_var("login","<INPUT NAME='login' VALUE='".$users->login."'>");
+   $t->set_var("comment","<INPUT NAME='comment' VALUE='".$users->comment."'>");
+   $t->set_var("browse",$pvp->common->make_checkbox("browse",$users->browse));
+   $t->set_var("add",$pvp->common->make_checkbox("add",$users->add));
+   $t->set_var("upd",$pvp->common->make_checkbox("upd",$users->upd));
+   $t->set_var("del",$pvp->common->make_checkbox("del",$users->del));
+   $t->set_var("isadmin",$pvp->common->make_checkbox("admin",$users->admin));
+ } else {
+   $t->set_var("login",$users->login);
+   $t->set_var("comment",$users->comment);
+   $t->set_var("browse",$users->browse);
+   $t->set_var("add",$users->add);
+   $t->set_var("upd",$users->upd);
+   $t->set_var("del",$users->del);
+   $t->set_var("isadmin",$users->admin);
+ }
  $t->set_var("password","<INPUT TYPE='password' NAME='pwd1' MAXLENGTH='10'>");
  $t->set_var("password2","<INPUT TYPE='password' NAME='pwd2' MAXLENGTH='10'>");
 

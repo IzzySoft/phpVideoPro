@@ -2,10 +2,12 @@
 # /*  $Id$ */
 
 [title]
-0.4.1 (2003)
+0.4.1 (February 2003)
 [text]
 <ul>
  <li>removed the "unknown" entries from the ranking list on the statistics page
+ <li>added user and session management - for certain activities you *must* login
+     now!
 </ul>
 
 [title]

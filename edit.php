@@ -125,7 +125,7 @@
   $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
            . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
-           . "color_id,tone_id,pict_id"
+           . "color_id,tone_id,pict_id,counter1,counter2"
            . " FROM video"
            . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
   dbquery($query);
@@ -138,6 +138,7 @@
   $vis_actor3 = $db->f('actor3_list'); $vis_actor4 = $db->f('actor4_list');
   $vis_actor5 = $db->f('actor5_list');
   $fsk = $db->f('fsk'); $comment = $db->f('comment'); $lp = $db->f('lp');
+  $counter1 = $db->f('counter1'); $counter2 = $db->f('counter2');
   // helper:
   $music_id  = $db->f('music_id'); $music_list = $db->f('music_list'); $cat1_id = $db->f('cat1_id');
   $cat2_id = $db->f('cat2_id'); $cat3_id   = $db->f('cat3_id'); $actor1_id = $db->f('actor1_id');
@@ -294,10 +295,13 @@ EndHiddenFields;
   }
   $t->set_var("longplay",$field);
   # Counter settings
-  $counter_1 = $counter_2 = "&nbsp;"; // dummy init - needs to be read from db!
+  if (!$edit) {
+    if (empty($counter1)) $counter1 = "&nbsp;";
+    if (empty($counter2)) $counter2 = "&nbsp;";
+  }
   $t->set_var("counter_name",lang("counter_start_stop"));
-  $t->set_var("counter_1",form_input("counter_1",$counter_1,"class=\"yesnobutton\""));
-  $t->set_var("counter_2",form_input("counter_2",$counter_2,"class=\"yesnobutton\""));
+  $t->set_var("counter_1",form_input("counter1",$counter1,"class=\"yesnobutton\""));
+  $t->set_var("counter_2",form_input("counter2",$counter2,"class=\"yesnobutton\""));
   # Categories
   $t->set_var("category_name",lang("category") . " 1-2-3");
   $field = "";

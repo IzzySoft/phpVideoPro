@@ -69,12 +69,12 @@
  $insert  = "INSERT INTO video (mtype_id,cass_id,part,title,length,aq_date,source,director_id,director_list,"
           . "music_id,music_list,country,year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
           . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"
-          . "pict_id,color_id,fsk,comment,lp) "
+          . "pict_id,color_id,fsk,comment,lp,counter1,counter2) "
           . "VALUES ("
           . "$mtype_id,$cass_id,$part,'$title',$length,'$recdate','$src',$dir_id,$director_list,"
           . "$mus_id,$music_list,'$country',$year,$cat1_id,$cat2_id,$cat3_id,$act1_id,$act2_id,$act3_id,"
           . "$act4_id,$act5_id,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5,$tone_id,"
-          . "$pict_id,$color_id,$fsk,'$comment',$lp)";
+          . "$pict_id,$color_id,$fsk,'$comment',$lp,'$counter1','$counter2')";
  if ( dbquery($insert) ) {
    $save_result = $colors["ok"] . lang("create_success") . ".</Font><BR>\n";
  } else {

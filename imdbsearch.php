@@ -16,7 +16,7 @@
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
- $usecache = TRUE;
+ $usecache = FALSE;
  $autoclose = 1;
 
  #========================================================[ Template setup ]===

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -18,7 +18,7 @@
   * @class sql
   * @extends DB_Sql
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
  /** SQL substring to limit result sets to a certain number
   * @class sql
@@ -1899,7 +1899,7 @@
        }
        $restrict .=  " AND id IN ($tapelist)";
      }
-     $query = "SELECT id,mtype_id,free FROM cass WHERE $restrict ORDER BY free DESC";
+     $query = "SELECT id,mtype_id,free FROM cass WHERE $restrict ORDER BY free";
      if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
        else { $totals = $this->lim_query($query,$start); }
      $i=0;

@@ -42,11 +42,8 @@
      $this->totals = $this->list[totals];
      $this->start  = $start;
      $this->limit  = $pvp->preferences->get("display_limit");
-     if (!strlen(trim($script))) {
-       $this->script = $PHP_SELF;
-     } else {
-       $this->script = $script;
-     }
+     if (!strlen(trim($script))) $script = $PHP_SELF;
+     $this->script = $pvp->link->slink($script);
      if (!strpos($this->script,"?")) $this->script .= "?";
      $tpl_dir = str_replace($base_path,$base_url,$tpl_dir);
      $this->img_dir = $tpl_dir . "/images";

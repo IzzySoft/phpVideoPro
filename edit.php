@@ -115,12 +115,12 @@
       $type = " " . trim($addons) . " ";
     } else {
       if ( strlen(trim($value)) < 1 ) {
-        $type = " TYPE='hidden' ";
+        $type = " TYPE='hidden' $addons";
       } else {
-        $type = " TYPE='button' ";
+        $type = " TYPE='button' $addons";
       }
     }
-    $field = "<INPUT" . $type . "NAME='$name' VALUE='$value' $addons>";
+    $field = "<INPUT" . $type . "NAME='$name' VALUE='$value'>";
     return $field;
   }
   
@@ -320,7 +320,7 @@ EndHiddenFields;
     $formAddon = $form["addon_title"];
   }
   if (!isset($title)) $title = "";
-  $t->set_var("title","<$input NAME='title' VALUE='$title' " . $formAddon . ">");
+  $t->set_var("title","<$dinput NAME='title' VALUE='$title' " . $formAddon . ">");
 
   #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));

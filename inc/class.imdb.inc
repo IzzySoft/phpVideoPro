@@ -930,12 +930,14 @@
         $id  = substr($url[count($url)-2],2);
         $this->resu[0] = new imdb($id);
         return $this->resu;
-       }else return NULL;
+       }else{
+        return NULL;
+       }
      }
      $this->page = $fp;
    } // end (page="")
 
-   $searchstring = array( '<A HREF="/title/tt', '<A href="/title/tt', '<a href="/Title?');
+   $searchstring = array( '<A HREF="/title/tt', '<A href="/title/tt', '<a href="/Title?', '<a href="/title/tt');
    $i = 0;
    foreach( $searchstring as $srch){
     $res_e = 0;

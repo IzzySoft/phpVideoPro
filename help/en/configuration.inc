@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Configure phpVideoPro</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>On this screen you set up global defaults for phpVideoPro,

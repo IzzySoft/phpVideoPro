@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>MediaList</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>This displays a list containing all movies stored in your

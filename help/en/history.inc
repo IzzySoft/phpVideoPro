@@ -4,8 +4,6 @@
 
 ?>
 
-<H2 Align=Center>phpVideoPro History</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD><UL>
   <LI><b>0.2.0 (August 2001)</b><br>

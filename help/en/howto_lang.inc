@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>How to create a new language file</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>It is not that difficult as you might think, and requires

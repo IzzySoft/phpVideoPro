@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>About phpVideoPro</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>This is phpVideoPro version <? echo $version ?>, (c) 2001 by

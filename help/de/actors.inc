@@ -2,7 +2,7 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Liste der Schauspieler, Regisseure und Komponisten</H2>
+<H4 Align=Center>Liste der Schauspieler, Regisseure und Komponisten</H4>
 
 <Table Width=90% Align=Center>
  <TR><TD>

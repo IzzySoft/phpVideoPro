@@ -2,7 +2,7 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Thema nicht gefunden</H2>
+<H3 Align=Center>Thema nicht gefunden</H3>
 
 <Table Width=90% Align=Center>
  <TR><TD>

@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Add an entry</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>Using this menu item, you can insert a new entry into your

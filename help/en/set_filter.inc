@@ -2,14 +2,12 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Set / UnSet Filters</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
-  <P Align=Justify>Both menue items, "Set Filter" as well as "UnSet Filter",
-   are calling the very same form - with one little difference: "UnSet
-   Filter" will delete all filters first, so you can start with a fresh
-   form without anything being set.</P>
+  <P Align=Justify>Both menue items, "<?=lang("set_filter")?>" as well as
+   "<?=lang("unset_filter")?>", are calling the very same form - with one
+   little difference: "<?=lang("unset_filter")?>" will delete all filters
+   first, so you can start with a fresh form without anything being set.</P>
   <H3>Filter Rules</H3>
   <H4>Items placed in one table cell together</H4>
   <OL>

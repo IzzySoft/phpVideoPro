@@ -20,7 +20,8 @@ function helppage ($topic) {
     $help->url  = "<A HREF=\"$PHP_SELF?topic=$topic\">$desc</A>";
     $help->file = $default_file;
   } else {
-    $help = helppage("no_topic");
+    $help->url  = FALSE;
+    $help->file = FALSE;
   }
   return $help;
 }
@@ -58,14 +59,28 @@ echo "</HEAD><BODY>\n";
 if ($topic) { // display specific help page
   echo "<TABLE WIDTH=100% class=navtable><TR><TD COLSPAN=2>&nbsp;</TD></TR>"
      . "<TD><A HREF=\"JavaScript:history.back()\">" . lang("back")
-     . "</A></TD><TD ALIGN=RIGHT><A HREF=\"$PHP_SELF\">" . lang("index") . "</A></TD></TR></TABLE>\n";
+     . "</A></TD><TD ALIGN=RIGHT><A HREF=\"$PHP_SELF\">" . lang("index") . "</A></TD></TR>\n"
+     . "<TR><TD COLSPAN=2>&nbsp;</TD></TR>\n"
+     . "<TR><TD COLSPAN=2><DIV ALIGN=CENTER><H2>" . lang($topic) . "</H2></DIV></TD></TR></TABLE>\n";
+  echo "<TABLE WIDTH=90% ALIGN=CENTER BORDER=0><TR><TD>\n";
   $help = helppage($topic);
+  if ( !$help->file ) {
+    $help->file = dirname(__FILE__) . "/" . $lang . "/" . $name;
+    if ( !file_exists($help->file) ) {
+      $help->file = dirname(__FILE__) . "/en/" . $name;
+    }
+  }
   include($help->file);
 } else { // display help index
-  echo "<H3>" . lang("index") . "</H3>\n";
+  echo "<TABLE WIDTH=100% class=navtable><TR><TD COLSPAN=2>&nbsp;</TD></TR>\n"
+       . "<TR><TD><DIV ALIGN=CENTER><H2>" . lang("help") . ": " . lang("index") . "</H2></DIV></TD></TR></TABLE>\n";
+  echo "<TABLE WIDTH=90% ALIGN=CENTER BORDER=0><TR><TD>\n";
   include("help_topics.php");
 }
-echo "<P ALIGN=CENTER><A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A></P>\n";
+echo "</TABLE>\n";
+echo "<TABLE WIDTH=100% class=navtable><TR><TD>&nbsp;</TD></TR><TR><TD>"
+   . "<P ALIGN=CENTER><A HREF=\"JavaScript:window.close()\">" . lang("close") . "</A></P>"
+   . "</TD></TR><TR><TD>&nbsp;</TD></TR></TABLE>\n";
 
 include("../inc/footer.inc");
 ?>

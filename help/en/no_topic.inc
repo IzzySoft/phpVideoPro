@@ -2,7 +2,7 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>Topic not found</H2>
+<H3><DIV ALIGN=CENTER>Topic not found</DIV></H3>
 
 <Table Width=90% Align=Center>
  <TR><TD>

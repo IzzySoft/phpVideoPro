@@ -2,8 +2,6 @@
  ?>
 <? /* $Id$ */ ?>
 
-<H2 Align=Center>How to create a help file</H2>
-
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>It's even easier than the creation of a new language file:</P>

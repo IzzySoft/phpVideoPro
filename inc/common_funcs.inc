@@ -33,6 +33,11 @@
 
  ##############################################################################
  # check wether the specified date is valid
+ # if FALSE or 0 are supplied as second parameter to this function, exact
+ # comparision is disabled and relax mode activated. In relax mode, the date
+ # only has to fulfill a few conditions: year must be > 1900, month < 13 and
+ # day < 32 (which also allows "2000-00-00") - whereas in exact mode the given
+ # date must really exist
  function check_date($date,$exact=1) {
    $correct = TRUE;
    if ( (substr($date,4,1)!="-") || (substr($date,7,1)!="-") ) $correct = FALSE;

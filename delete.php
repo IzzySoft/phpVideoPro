@@ -64,16 +64,16 @@
    $id    = $db->get_movieid($mtype_id,$cass_id,$part);
    $movie = $db->get_movie($id);
    if ( !is_array($movie) ) die ("<SPAN CLASS='error'>Something strange happened - the entry was not found in db!</SPAN></BODY></HTML>");
-   $music_id = $movie[music_id]; $director_id = $movie[director_id];
-   $actor_id[1] = $movie[actor1_id]; $actor_id[2] = $movie[actor2_id];
-   $actor_id[3] = $movie[actor3_id]; $actor_id[4] = $movie[actor4_id];
-   $actor_id[5] = $movie[actor5_id];
+   $music_id = $movie["music_id"]; $director_id = $movie["director_id"];
+   $actor_id[1] = $movie["actor1_id"]; $actor_id[2] = $movie["actor2_id"];
+   $actor_id[3] = $movie["actor3_id"]; $actor_id[4] = $movie["actor4_id"];
+   $actor_id[5] = $movie["actor5_id"];
    # now we have to check if any other links to director, composer and/or actors exist
    if ($director_id) { // ignore id# 0
      $name = $db->get_director($director_id);
      $rec  = $db->get_movienamelist("directors",$name);
      if ( count($rec) < 2 ) {
-       $firstname = $name[firstname]; $name = $name[name];
+       $firstname = $name["firstname"]; $name = $name["name"];
        $details = "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
        kill("directors",$director_id);
      }
@@ -82,7 +82,7 @@
      $name = $db->get_music($music_id);
      $rec  = $db->get_movienamelist("music",$name);
      if ( count($rec) < 2 ) {
-       $firstname = $name[firstname]; $name = $name[name];
+       $firstname = $name["firstname"]; $name = $name["name"];
        $details = "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
        kill("music",$music_id);
      }
@@ -93,17 +93,18 @@
        $name = $db->get_actor($aid);
        $rec  = $db->get_movienamelist("actors",$name);
        if ( count($rec) < 2 ) {
-         $firstname = $name[firstname]; $name = $name[name];
+         $firstname = $name["firstname"]; $name = $name["name"];
          $details .= "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);
          kill("actors",$aid);
        }
      }
    }
    # now we delete the movie entry from db
+   if (!isset($details)) $details = "";
    $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
    kill("video",$id);
    # and finally we may have to correct the free space remaining on that medium (if rewritable)
-   if ( $pvp->common->medium_is_rw($mtype_id) || $movie[disktype] ) {
+   if ( $pvp->common->medium_is_rw($mtype_id) || $movie["disktype"] ) {
      $details .= "<li>" . lang("check_media_delete"). ". ";
      if ( $pvp->config->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
        $details .= "<SPAN CLASS='ok'>" .lang("medium_deleted"). "</SPAN><BR>";

@@ -35,12 +35,14 @@
  (int) $part;
 
  # region code settings
- $rccount = count($rc);
- if ($rccount) {
+ if (isset($rc)) {
+  $rccount = count($rc);
+  if ($rccount) {
    for ($i=0;$i<$rccount;++$i) {
-     $mrc[$rc[$i]] = 1;
+    $mrc[$rc[$i]] = 1;
    }
    $movie[rc] = $mrc;
+  }
  }
 
  # prepare the movie array
@@ -49,23 +51,24 @@
 		 "tone_id","pict_id","color_id","fsk","comment","lp",
 		 "counter1","counter2","commercials_id","label","disktype");
  foreach ($fields as $value) {
-   $movie[$value] = ${$value};
+   if (isset(${$value})) $movie[$value] = ${$value}; else $movie[$value] = "";
  }
- $movie[title] = $pvp->common->input2string($movie[title]);
- $movie[aq_date] = $recdate; $movie[source] = $src; $movie[space] = $mlength;
- $movie[director_id] = $dir_id; $movie[music_id] = $mus_id;
+ $movie["title"] = $pvp->common->input2string($movie["title"]);
+ $movie["aq_date"] = $recdate; $movie["source"] = $src; $movie["space"] = $mlength;
+ $movie["director_id"] = $dir_id; $movie["music_id"] = $mus_id;
  for ($i=1;$i<6;++$i) {
    $id  = "actor".$i."_id"; $list = "actor".$i."_list";
    $ids = "act".$i."_id";  $lists = "vis_actor".$i;
-   $movie[$id] = ${$ids}; $movie[$list] = ${$lists};
+   if (isset(${$ids})) $movie[$id] = ${$ids}; else $movie[$id] = "";
+   if (isset(${$lists})) $movie[$list] = ${$lists}; else $movie[$list] = "";
  }
 
  for ($i=0;$i<SUBTITLES;++$i) {
    $subts = "subtitle".$i;
    $ats   = "audio_ts".$i;
-   if (!empty(${$subts}) && ${$subts}!="-") $movie[subtitle][] = ${$subts};
-   if (!empty(${$ats}) && ${$ats} != "-")   $movie[audio][] = ${$ats};
-   unset(${subts},${$ts});
+   if (!empty(${$subts}) && ${$subts}!="-") $movie["subtitle"][] = ${$subts};
+   if (!empty(${$ats}) && ${$ats} != "-")   $movie["audio"][] = ${$ats};
+#   unset(${subts},${$ts});
  }
 
  # add the movie to DB

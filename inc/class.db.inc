@@ -1847,7 +1847,7 @@
        $this->update_freetime($cass_id,$mtype_id);
      }
      if ($disktype) $this->set_disktype($cass_id,$mtype_id,$disktype);
-     if ( count($rc) ) $this->set_rc($mtype_id,$cass_id,$rc);
+     if ( isset($rc) && count($rc) ) $this->set_rc($mtype_id,$cass_id,$rc);
      return $success;
    }
 
@@ -1879,9 +1879,9 @@
      $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
             . " WHERE id=$id";
      $success = $this->dbquery($query);
-     if (is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
+     if (isset($movie) && is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
      $this->update_freetime($cass_id,$mtype_id);
-     if ( $pvp->common->medium_is_rw($movie['mtype_id']) && $movie['cass_id']!=$cass_id ) {
+     if ( isset($movie) && $pvp->common->medium_is_rw($movie['mtype_id']) && $movie['cass_id']!=$cass_id ) {
        $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
        if ( $this->next_record() ) {
          $this->update_freetime($movie['cass_id'],$movie['mtype_id']);

@@ -328,9 +328,10 @@ EndHiddenFields;
     $t->set_var("rc_name",lang("region_code"));
     if ($agent->name=="konqueror") $t->set_var("konq_fix"," STYLE='padding-right:10'");
     if ($new_entry && !$disktype) { // editable only for new DVDs
+      $rcname = "";
       for ($i=0;$i<7;++$i) {
         $rcname .= "<INPUT TYPE='checkbox' NAME='rc[]' VALUE='$i' CLASS='checkbox'";
-        if ($rc[$i]) $rcname .= " CHECKED";
+        if (isset($rc[$i]) && $rc[$i]) $rcname .= " CHECKED";
         $rcname .= ">&nbsp;$i";
         if ($i<6) $rcname .= "&nbsp;";
       }

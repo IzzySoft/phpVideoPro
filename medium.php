@@ -26,8 +26,13 @@
  $t->set_var("techdata",lang("techdata"));
  $t->set_var("moviedata",lang("movies"));
 
- function techbutton ($name,$value) {
-   return "<INPUT TYPE='button' NAME='name' VALUE='$value' CLASS='yesnobutton'>";
+ function techbutton ($name,$value,$onclick="") {
+   GLOBAL $pvp;
+   $field  = "<INPUT TYPE='button' NAME='name' VALUE='$value' CLASS='yesnobutton'";
+   if ($onclick) $field .= " onClick=\"window.location.href='"
+     . $pvp->link->slink($onclick) . "'\";
+   $field .= >";
+   return $field;
  }
 
  #=============================================[ obtain media information ]===
@@ -37,7 +42,7 @@
    else { $rw = lang("no"); }
  $t->set_var("tname",lang("medialength").":&nbsp;");
  $t->set_var("tunit",lang("minute_abbrev"));
- $t->set_var("tdata",techbutton("type",$type));
+ $t->set_var("tdata",techbutton("type",$type,"medialength.php?cass_id=$cass_id&mtype_id=$mtype_id"));
  $t->parse("tech","techblock");
  $t->set_var("tname",lang("free").":&nbsp;");
  $t->set_var("tdata",techbutton("free",$free));

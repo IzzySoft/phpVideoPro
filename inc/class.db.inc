@@ -1437,6 +1437,44 @@
      return $list;
    }
 
+   /** Get first movie numbers for each media type
+    * @class sql
+    * @method get_lastmovienum
+    * @param optional integer mtype_id
+    * @param optional integer cass_id
+    * @return mixed lastnum
+    *  array lastnum if called w/o params (i:mtype, i:mtype_id, i:cass_id,
+    *  i:part, i:entry; where i:entry = "mtype cass_id-part")
+    *  integer part if called w/ both params
+    */
+   function get_firstmovienum($mtype_id="",$cass_id="") {
+     if (is_numeric($mtype_id) && is_numeric($cass_id)) {
+       $this->dbquery("SELECT MIN(part) AS min_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
+       if ( $this->next_record() ) {
+         return $this->f('min_part');
+       } else {
+         return 0;
+       }
+     }
+     $mtypes = $this->get_mtypes();
+     for ($i=0;$i<count($mtypes);$i++) {
+       $this->dbquery("SELECT MIN(cass_id) as min_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+       $this->next_record();
+       $firstnum[$i][mtype]   = $mtypes[$i][sname];
+       $firstnum[$i][mtype_id]= $mtypes[$i][id];
+       $firstnum[$i][cass_id] = $this->f('min_id');
+       while ( strlen($firstnum[$i][cass_id])<4 ) { $firstnum[$i][cass_id] = "0" . $firstnum[$i][cass_id]; }
+     }
+     for ($i=0;$i<count($firstnum);$i++) {
+       $this->dbquery("SELECT MIN(part) as min_part FROM video WHERE cass_id=" . $firstnum[$i][cass_id] . " AND mtype_id=" . $firstnum[$i][mtype_id]);
+       $this->next_record();
+       $firstnum[$i][part]    = $this->f('min_part');
+       while ( strlen($firstnum[$i][part])<2 ) { $firstnum[$i][part] = "0" . $firstnum[$i][part]; }
+       $firstnum[$i][entry] = $firstnum[$i][mtype] . " " . $firstnum[$i][cass_id] . "-" . $firstnum[$i][part];
+     }
+     return $firstnum;
+   }
+
    /** Get last movie numbers for each media type
     * @class sql
     * @method get_lastmovienum

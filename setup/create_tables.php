@@ -15,9 +15,9 @@
 ##################################################################
 # Configuration of Setup module
 #
+  $pvpinstall = 1;
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
-  include ($pvp->db_include);
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;

@@ -73,7 +73,7 @@
  }
  #-------------------------------------------------------[ build up page ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
- $trash_img = $tpl_dir . "/images/trash.png";
+ $trash_img = $tpl_dir . "/images/trash.gif";
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_disktypes.tpl"));
  $t->set_block("template","diskblock","disks");

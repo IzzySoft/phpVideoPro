@@ -23,7 +23,8 @@
  <TR><TH><DIV ALIGN="center">{head_cat_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_cat_name}</DIV></TH>
      <TH><DIV ALIGN="center">{head_cat_trans}</DIV></TH>
-     <TH COLSPAN="2">&nbsp;</TH></TR>
+     <TH><DIV ALIGN="center"><IMG SRC="{tpl_dir}images/trash.gif" ALT="Remove" TITLE="{remove_cat}"></DIV></TH>
+     <TH><DIV ALIGN="center"><IMG SRC="{tpl_dir}images/hide.gif" WIDTH="16" ALT="Hide" TITLE="{hide_cat}"></DIV></TH></TR>
 <!-- BEGIN catblock -->
  <TR CLASS="content"><TD><DIV ALIGN="right">{cat_id}</DIV></TD>
      <TD><DIV ALIGN="center">{cat_name}</DIV></TD>

@@ -66,7 +66,7 @@
 
  #-------------------------------------------------------[ build up page ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
- $trash_img = $tpl_dir . "/images/trash.png";
+ $trash_img = $tpl_dir . "/images/trash.gif";
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_cats.tpl"));
  $t->set_block("template","catblock","cats");
@@ -75,6 +75,8 @@
  $t->set_var("head_cat_id","ID");
  $t->set_var("head_cat_name",lang("cat_internal_name"));
  $t->set_var("head_cat_trans",lang("category"));
+ $t->set_var("hide_cat",lang("hide_cat"));
+ $t->set_var("remove_cat",lang("remove_cat"));
  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='submit' VALUE='".lang("update")."'>");
 
  function make_input($name,$value,$type="text") {

@@ -58,8 +58,8 @@
  $t->set_file(array("template"=>"admin_users.tpl"));
  $t->set_block("template","itemblock","item");
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
- $edit_img  = $tpl_dir . "/images/edit.png";
- $trash_img = $tpl_dir . "/images/trash.png";
+ $edit_img  = $tpl_dir . "/images/edit.gif";
+ $trash_img = $tpl_dir . "/images/trash.gif";
 
  $users = $db->get_users();
  $usercount = count($users);

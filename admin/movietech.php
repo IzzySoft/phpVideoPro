@@ -49,8 +49,8 @@
  include("../inc/header.inc");
  #-------------------------------------------------------[ init templates ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
- $edit_img  = $tpl_dir . "/images/edit.png";
- $trash_img = $tpl_dir . "/images/trash.png";
+ $edit_img  = $tpl_dir . "/images/edit.gif";
+ $trash_img = $tpl_dir . "/images/trash.gif";
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_movietech.tpl"));
  $t->set_block("template","mainblock","main");

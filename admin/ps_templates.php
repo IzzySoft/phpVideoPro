@@ -126,8 +126,8 @@
 </SCRIPT>
 <?
    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
-   $edit_img  = $tpl_dir . "/images/edit.png";
-   $trash_img = $tpl_dir . "/images/trash.png";
+   $edit_img  = $tpl_dir . "/images/edit.gif";
+   $trash_img = $tpl_dir . "/images/trash.gif";
    $query = "\$db->get_pstemplates(\"\",$start)";
    $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
    $list = $nextmatch->list;

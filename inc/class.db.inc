@@ -290,6 +290,20 @@
      }
    }
 
+   /** Set some config value
+    * @class sql
+    * @method get_config
+    * @param string name config var's name
+    */
+   function set_config($name,$value) {
+     $this->dbquery("SELECT value FROM pvp_config WHERE name='$name'");
+     if ( $this->next_record() ) {
+       $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
+     } else {
+       $this->dbquery("INSERT INTO pvp_config (name,value) VALUES ('$name','$value')");
+     }
+   }
+
    ############################################################################
    # people and their names
    ############################################################################

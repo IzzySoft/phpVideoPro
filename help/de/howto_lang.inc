@@ -33,7 +33,7 @@ Dies ist leichter, als mancher denken mag - es sind nur wenige Schritte nötig:
      vom Sprachcode: 'en' sollte in unserem Beispiel durch 'fi' ersetzt werden).
  <LI>Sobald der vorige Schritt für alle Werte abgeschlossen ist, sollte
      die Sprachdatei phpVideoPro bekannt gemacht werden. Dies geschieht
-     wiederum im Menü "*edit# -&gt; *configuration#": hier ist die CheckBox
+     wiederum im Menü "*admin# -&gt; *configuration#": hier ist die CheckBox
      "*scan_new_lang_files#" zu aktivieren und der Button "*update#" zu
      betätigen. Wenige Sekunden später steht die Finnische Sprache zur Auswahl
      bereit, und kann mit "*select_add_lang#" in die Datenbank importiert
@@ -47,8 +47,8 @@ Die vorhandenen Übersetzungen für meine Sprache gefallen mir nicht...
 
 [text]
 Kein Problem. Entweder wir wählen einfach eine andere Sprache - oder aber
-passen einfach die Sprachdatei an (siehe oben, Schritt 3). Anschließend wird
-im Menü "*edit# -&gt; *configuration#" die Sprache im Punkt "*refresh_lang#"
+passen die Sprachdatei an (siehe oben, Schritt 3). Anschließend wird im Menü
+"*admin# -&gt; *configuration#" die Sprache im Punkt "*refresh_lang#"
 ausgewählt, und der Button "*update#" betätigt - und schon ist das Problem
 behoben.
 

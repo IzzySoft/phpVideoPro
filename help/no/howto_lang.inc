@@ -30,8 +30,8 @@ Det er enklere en det du tror, og krever kun noen f† skritt:
      3 delene du finner i paranteset. Oversett denne delen til ditt spr†k.
  <LI>N†r du er ferdig med dette, kan du fortelle phpVideoPro at det nye
      spr†ket er tilgjengelig. Start phpVideoPro og velg konfigurering fra
-     menyen (Redigere->Konfigurering), sett et merke i boksen for "S°k etter
-     nye spr†kfiler?" og velg "Oppdater". Noen sekunder senere konfigurerings
+     menyen (*admin# -&gt; *configuration#), sett et merke i boksen for "S°k
+     etter nye spr†kfiler?" og velg "Oppdater". Noen sekunder senere konfigurerings
      menyen komme tilbake og liste ditt spr†k i "Velg hvilket spr†k som skal
      installeres"
  <LI>Velg ditt nye spr†k og velg "Oppdater" p† nytt. Du kan da ogs† velge det

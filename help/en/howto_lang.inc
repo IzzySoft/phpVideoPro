@@ -32,7 +32,7 @@ It is not that difficult as you might think, and requires only a few steps:
      so in our example 'en' has to be replaced by 'fi'.
  <LI>Once you are done with this, you can go and tell phpVideoPro that there's
      a new sheriff in town: start your web browser and open phpVideoPro, then
-     go to the configuration menue ("*edit# -&gt; *configuration#"), check the
+     go to the configuration menue ("*admin# -&gt; *configuration#"), check the
      box to "*scan_new_lang_files#" and hit the "*update#" button. A few seconds
      later, the configuration menue should reappear and list your language in
      "*select_add_lang#".
@@ -46,7 +46,7 @@ The phrases for my language seem not suitable to me...
 [text]
 You may, of course, add/change phrases in your language file. This may only
 lead to some complications on updates, where you (at least for now) would have
-to check all the phrases again amually. After making changes to the language
+to check all the phrases again manually. After making changes to the language
 file (or receiving an update to it), you need to update it into phpVideoPro:
 Just select your language in the <A HREF="{PHP_SELF}?topic=configuration">configuration
 menue</A> item "*refresh_lang#" box and hit "*update#" again - all old phrases

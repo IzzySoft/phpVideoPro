@@ -28,7 +28,7 @@ recent is.
 niet aan. Het enige wat je moet wijzigen is het laatste deel, wat tussen quotes staat,
 tussen haakjes en de landcode in het midden.
 <LI>Indien je hiermee klaar bent, dan moet je dit even duidelijk maken aan phpVideoPro.
-Start phpVideoPro en ga naar het configuratie menu ("*edit# -&gt; *configuration#"), 
+Start phpVideoPro en ga naar het configuratie menu ("*admin# -&gt; *configuration#"), 
 vink het vakje "*scan_new_lang_files#" aan en klik op de "*update#" knop. Een aantal 
 seconden later zal in het menu de taal beschikbaar moeten zijn bij de optie
 "*select_add_lang#".

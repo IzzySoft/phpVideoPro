@@ -19,6 +19,11 @@
     text-align: ;
     color: #000000;
   }
+  CODE {
+   font-size: 12px;
+   font-family: monospace;
+   color: #660033;
+  }
   td, th {
     font-family: ;
     font-size: 12;

@@ -15,6 +15,7 @@
   INPUT { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; text-decoration: none; height: 20px; }
   SELECT { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; text-decoration: none; height: 20px; }
   P { margin-top:0; margin-bottom:0; }
+  CODE { font-size: 12px; font-family: monospace; color: #660033; }
   .nameinput { width: 120; }
   .techinput { width: 120; }
   .catinput { width: 180; }
@@ -23,6 +24,5 @@
   .multiselect { height: 125; width: 180; }
   .error { color: #ff0000; }
   .ok    { color: #0000ff; }
-  li { margin-top:0;margin-bottom:0; }
 //-->
 </style>

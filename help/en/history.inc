@@ -10,6 +10,7 @@
      within the iso-8859-15 for now, sorry)
  <li>updated contents of (English and German) help files. Still need volunteers
      for the other languages! It's an easy job, so come on, help me out...
+ <li>fresh install failed on categories - fixed.
 </ul>
 
 [title]

@@ -39,7 +39,14 @@
 
  #=====================================================[ setup path names ]===
  $base_path = dirname(dirname(__FILE__))."/";
+ if (substr(php_uname(), 0, 7) == "Windows") {
+   $pvp->config->os_slash = "\\";
+   $base_path = str_replace("\\","/",$base_path);
+ } else {
+   $pvp->config->os_slash = "/";
+ }
  $base_url = substr($base_path,strlen($_SERVER["DOCUMENT_ROOT"]));
+ if (strpos($base_url,"/")!==0) $base_url = "/".$base_url;
  if ( (substr($backup_path,0,1)!="/") && (substr($backup_path,0,1)!="\\") )
    $backup_path = $base_path.$backup_path;
 

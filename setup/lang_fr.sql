@@ -111,7 +111,7 @@ INSERT INTO lang VALUES('howto_help','fr','Comment de figurer d\'une nouvelle re
 INSERT INTO lang VALUES('howto_templates','fr','Comment de figurer d\'une nouvelle set des modéle?');
 INSERT INTO lang VALUES('language_settings','fr','Configuration de la langue');
 INSERT INTO lang VALUES('scan_new_lang_files','fr','Chercher pour des nouvelles records de langue?');
-INSERT INTO lang VALUES('scan_new_lang_comment','fr','(Si-vous avez figuré d\'une nouvelle record de langue en index "setup", ce-quelle activé)');
+INSERT INTO lang VALUES('scan_new_lang_comment','fr','(Si-vous avez figuré d\'une nouvelle record de langue en index "setup" - ce-quelle activé)');
 INSERT INTO lang VALUES('select_add_lang','fr','Installisation d\'une autre langue');
 INSERT INTO lang VALUES('select_add_lang_comment','fr','La langue anglais est finalement installé et d\'etre generalement usé. v.p.p.)');
 INSERT INTO lang VALUES('no_add_lang','fr','Il n\'existe pas d\'une autrement langue d\'etre utilisé.');

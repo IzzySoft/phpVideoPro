@@ -2,7 +2,7 @@
 # /* $Id$ */
 
 [title]
-How can I design my own labels?
+*intro#
 
 [text]
 Concerning labels, there are (at least) two files to consider. One is the
@@ -33,11 +33,13 @@ So here comes an explanation of the configuration variables you have to use:<br>
 <b>maxlines:</b> how many lines of text should be put on the label in maximum.
 Useful if you are used to fill the remaining space on tapes with a lot of
 VideoClips from MTV :)<br>
-<b>nr_coord, main_coord, symb_coord:</b> the coordinates of the fields. In the
-first we'll place the mediums number (without the media type), the second one
-holds all the data (see "entry" below), and the third one is a symbol's place
-like I use to have on my labels (that ship with phpVideoPro). This symbol field
-is not (yet) filled by phpVideoPro itself.<br>
+<b>nr_coord, main_coord, symb_coord:</b> the coordinates of the fields using
+the "x1,y1,x2,y2" format, where "x1,y1" represents the upper-left and "x2,y2"
+the lower-right corner of the field. In the first field we'll place the medium's
+number (without the media type), the second one holds all the data (see "entry"
+below), and the third one is a symbol's place like I use to have on my labels
+(that ship with phpVideoPro). This symbol field is not (yet) filled by
+phpVideoPro itself.<br>
 <b>entry</b>: this is either a string (if you just need one line of text per
 movie, e.g. for VideoTapes side labels) or an array. You can place plain text
 in it (will stay the same on all labels), plus use variables to be replaced
@@ -45,7 +47,7 @@ by the movie's data. Variables are to be marked by curly braces. Below is a list
 of available variables.<br>
 
 [title]
-Variables to use in the configuration file
+Variables that may be used in the "entry" variable
 
 [text]
 <ul>
@@ -68,7 +70,7 @@ Variables to use in the configuration file
  <li>tone: Mono, Stereo, Dolby Digital 5.1, etc.</li>
  <li>tone_short: same in the format "1.0", "2.0" .. "6.1"</li>
  <li>lp: is it *longplay# (*yes# / *no#)?</li>
- <li>is the movie interrupted by commecials?</li>
+ <li>commercials: is the movie interrupted by commecials?</li>
 </ul>
 
 [eof]

@@ -7,6 +7,7 @@
 <ul>
  <li>made urls in commentfield (view entry) clickable
  <li>added IMDB support for staff members (view entry, click on name)
+ <li>stafflist always displayed not_found (fixed)
 </ul>
 
 [title]

@@ -46,7 +46,7 @@
   }
   
   // retrieve all staff members
-  dbquery("SELECT id,name,firstname FROM $stafftype ORDER BY name");
+  dbquery("SELECT id,name,firstname FROM $stafftype ORDER BY id");
   $i = 0;
   while ( $db->next_record() ) {
     $staff[$i]->id        = $db->f('id');
@@ -56,6 +56,7 @@
   }
 
   // now get & draw the list
+  $row = 0;
   for ($i=0;$i<count($staff);$i++) {
     $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id,";
     switch ($stafftype) {
@@ -71,7 +72,6 @@
             . getStaffClause($i);
     if ( strlen($filter) ) $query .= " AND ($filter)";
     $same_name = FALSE;
-    $row = 0;
     dbquery($query);
     $same_name = FALSE;
     while ($db->next_record()) {
@@ -92,6 +92,7 @@
      $year     = $db->f('year'); check_empty($year);
      $aq_date  = $db->f('aq_date');  check_empty($aq_date);
      $category = $db->f('name'); check_empty($category);
+     debug("D","Got '$nr' ($title), RowCount now: '$row'.<br>");
 
      if ($same_name) {
        $t->set_var("name","&nbsp;");
@@ -112,6 +113,7 @@
      $same_name = TRUE;
     }
   }
+  debug("D","RowCount: '$row'<br>");
   if ($row) {
     $t->set_var("not_found","");
     $t->parse("notfoundlist","notfoundblock");

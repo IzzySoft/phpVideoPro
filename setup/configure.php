@@ -64,6 +64,8 @@ if ( isset($update) ) {
     $db->set_config("enable_cookies",$enable_cookies);
     if (!$expire_cookies) $expire_cookies = "0";
     $db->set_config("expire_cookies",$expire_cookies);
+    $db->set_config("session_purgetime",$session_purgetime);
+    if (!$session_purgetime) $session_purgetime = "0";
     $db->set_config("site",$site_info);
     if ($install_lang && $install_lang != "-") {
       $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
@@ -115,6 +117,7 @@ $onlabel_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
+$session_purgetime = $db->get_config("session_purgetime");
 $site_info      = $db->get_config("site");
 
 #==========================================[ get available template sets ]===
@@ -350,13 +353,34 @@ if ($admin) {
   if (!$expire_cookies) $select .= " SELECTED";
   $select .= ">" . lang("session") . "</OPTION><OPTION VALUE='86400'";
   if ($expire_cookies=="86400") $select .= " SELECTED";
-  $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604000'";
+  $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604800'";
   if ($expire_cookies=="604000") $select .= " SELECTED";
   $select .= ">1 " . lang("week") . "</OPTION><OPTION VALUE='2592000'";
   if ($expire_cookies=="2592000") $select .= " SELECTED";
   $select .= ">1 " . lang("month") . "</OPTION><OPTION VALUE='31536000'";
   if ($expire_cookies=="31536000") $select .= " SELECTED";
   $select .= ">1 " . lang("year") . "</OPTION></SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ session purgetime (timeout) ]--
+  $t->set_var("item_name",lang("session_purgetime"));
+  $t->set_var("item_comment",lang("session_purgetime_comment"));
+  $select = "<SELECT NAME='session_purgetime'><OPTION VALUE='0'";
+  if (!$session_purgetime) $select .= " SELECTED";
+  $select .= ">" . lang("never") . "</OPTION><OPTION VALUE='3600'";
+  if ($session_purgetime=="3600") $select .= " SELECTED";
+  $select .= ">1 " . lang("hour") . "</OPTION><OPTION VALUE='7200'";
+  if ($session_purgetime=="7200") $select .= " SELECTED";
+  $select .= ">2 " . lang("hours") . "</OPTION><OPTION VALUE='21600'";
+  if ($session_purgetime=="21600") $select .= " SELECTED";
+  $select .= ">6 " . lang("hours") . "</OPTION><OPTION VALUE='43200'";
+  if ($session_purgetime=="43200") $select .= " SELECTED";
+  $select .= ">12 " . lang("hours") . "</OPTION><OPTION VALUE='86400'";
+  if ($session_purgetime=="86400") $select .= " SELECTED";
+  $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604800'";
+  if ($session_purgetime=="604800") $select .= " SELECTED";
+  $select .= ">1 " . lang("week") . "</OPTION></SELECT>";
   $t->set_var("item_input",$select);
   $t->parse("item","itemblock",TRUE);
 

@@ -286,3 +286,8 @@ INSERT INTO lang VALUES('welcome','de','Willkommen bei phpVideoPro');
 INSERT INTO lang VALUES('login_failed','de','Anmeldung fehlgeschlagen. Entweder liegt ein Tippfehler beim Passwort vor, oder das angegebene Konto existiert nicht.<P />');
 INSERT INTO lang VALUES('login_required','de','Der gewünschte Vorgang kann aufgrund mangelnder Berechtigungen nicht durchgeführt werden. Eine erneute Anmeldung mit einem entsprechenden Konto kann dies Problem lösen.<P />');
 INSERT INTO lang VALUES('logout_user','de','Angemeldet als "%1". <A HREF="%2">Abmelden</A>');
+INSERT INTO lang VALUES('never','de','nie');
+INSERT INTO lang VALUES('hour','de','Stunde');
+INSERT INTO lang VALUES('hours','de','Stunden');
+INSERT INTO lang VALUES('session_purgetime','de','Inaktivitäts-Timeout für Sitzungen');
+INSERT INTO lang VALUES('session_purgetime_comment','de','Wie lange soll eine (angemeldete) Sitzung ohne Benutzer-Aktivität gültig bleiben?');

@@ -295,3 +295,8 @@ INSERT INTO lang VALUES('welcome','en','Welcome to phpVideoPro');
 INSERT INTO lang VALUES('login_failed','en','Your LogIn failed. Either you misspelled your password, or the requested account does not exist.<P />');
 INSERT INTO lang VALUES('login_required','en','Your privileges are not sufficient for the requested action. You may login with an appropriate account now.<P />');
 INSERT INTO lang VALUES('logout_user','en','Logged in as "%1". <A HREF="%2">Log out</A>');
+INSERT INTO lang VALUES('never','en','never');
+INSERT INTO lang VALUES('hour','en','Hour');
+INSERT INTO lang VALUES('hours','en','Hours');
+INSERT INTO lang VALUES('session_purgetime','en','After what time time-out an inactive session?');
+INSERT INTO lang VALUES('session_purgetime_comment','en','How long shall a session stay valid without user activity?');

@@ -18,6 +18,8 @@
    return $cass . "-" . $part;
  }
 
+ $page_id = "media_change";
+
  if ( $copy || $change ) {
    $silent=1;
    include("inc/header.inc");

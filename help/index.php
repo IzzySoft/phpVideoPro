@@ -289,7 +289,8 @@ if ($topic) { $title .= lang($topic); } else { $title .= lang("index"); }
 echo "<HTML><HEAD>\n";
 echo " <TITLE>$title</TITLE>\n";
 echo " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
-include($base_path . "templates/default/default.css");
+#include($base_path . "templates/default/default.css");
+include($pvp->tpl_dir . "/default.css");
 echo "</HEAD><BODY>\n";
 
 $pm = new pagemaker;

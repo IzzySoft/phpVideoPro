@@ -2,17 +2,21 @@
 # /*  $Id$ */
 
 [title]
-0.4.9 (2003)
+0.5.0 (June 27, 2003)
 [text]
 <ul>
  <li>since some users experienced problems with the cookie and session
      management (mostly due to their machines setup), I decided to use
      different initial settings to be changed by the "admin" after successful
      installation and application verification: cookies expire with the
-     browser session and are initially turned off, phpVideoPro's session are
-     set to never expire. For several reasons, after a new installation you
-     are recommended to change those values. The setup program gives you more
-     information about this.
+     browser session, phpVideoPro's session are set to never expire. You may
+     change those values after the installation has completed, if your setup
+     is fine (problems for these cases only arise if there are differences in
+     the machines time between the server and your client). The setup program
+     gives you more information about this.<BR>
+     If you are still unable to log in after a completed installation, search
+     this page for the string "register_globals", since this problem is most
+     probably connected to that issue.
  <li>some improvements on the PS top labels
  <li>added Session management screen
  <li>on a correct login session was always created for admin (user ID 1) - fixed

@@ -28,5 +28,7 @@ INSERT INTO preferences (name,value) VALUES ('imdb_tx_director','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');
 
+DELETE FROM languages;
+
 # version update
 #UPDATE pvp_config SET value='0.7.2' WHERE name='version';

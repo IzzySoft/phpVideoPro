@@ -23,15 +23,15 @@ Wie funktioniert es nun?
 
 [text]
 Also entschloss ich mich, die Listenaufbereitung auf unterschiedliche Weise
-vonstatten gehen zu lassen: Die Listen entweder als reiner (ASCII) Text
+vonstatten gehen zu lassen: Die Listen werden entweder als reiner (ASCII) Text
 erstellt, der sich sodann direkt (nach dem Speichern im Dateisystem und/oder
 Öffnen mit einem beliebigen Texteditor wie [k]write) drucken läßt.<br>Zur
 Alternative steht ein Export im CSV Format (die einzelnen Spalten sind mittels
 Tabulatoren (Tab-Stops) getrennt, die erste Zeile enthält die Tabellenüberschriften),
-bzw. eine HTML Tabelle, wobei sich das Resultat dann in eine beliebige
+bzw. als HTML Tabelle, wobei sich das Resultat dann in eine beliebige
 Textverarbeitung (Word, OpenOffice/StarOffice etc.), Tabellenkalkulation (Excel,
 OpenOffice/StarOffice) bzw. einen HTML Editor (Netscape Composer, DreamWeaver,
-Quanta) importieren und mittels dieser nachbereiten läßt.<br>
+Quanta) importieren und mittels dieser nachbereiten lässt.<br>
 Ich empfehle für letzteres die Erstellung einer Dokumentvorlage, in der alle
 gewünschten Tabellen- und Textformatierungen (Schriftart und -größe,
 Hintergrundfarben z.B. für den Tabellenkopf, Kopfzeilen der Seiten mit Überschrift
@@ -42,7 +42,7 @@ gedruckt werden sollen, hilft dies, den Zeitaufwand ein wenig zu begrenzen.
 Formularfelder
 
 [text]
-<b>*list#:</b> Welche Liste erstellt werden soll (erklärt sich selbst)
+<b>*list#:</b> Welche Liste erstellt werden soll (erklärt sich selbst)<br>
 <b>*format#:</b> <b><i>ASCII</i></b> bezeichnet eine formatierte Liste (etwas
 spartanisch, eher für "Faule" gedacht, die sich nicht den Aufwand der
 Nachbearbeitung machen wollen), die zum direkten Ausdruck gedacht ist (siehe

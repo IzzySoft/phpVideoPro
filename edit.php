@@ -260,7 +260,7 @@ EndHiddenFields;
     $last_part = $db->get_lastmovienum($mtype_id,$cass_id);
     $next_part = $last_part +1;
   } else {
-    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id"). "'\">";
+    $field  = "<INPUT TYPE='button' NAME='media_tname' VALUE='$media_tname' onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id"). "'\">";
     $field .= "<INPUT TYPE='hidden' NAME='media_tname' VALUE='$media_tname'>";
   }
   $t->set_var("mtype",$field);
@@ -313,7 +313,7 @@ EndHiddenFields;
     } else {
       $dttext = $disktypes[0]->name;
       if ($disktypes[0]->size) $dttext .= " (" .$disktypes[0]->size. ")";
-      $dt = "<INPUT TYPE='button' NAME='disktype' VALUE='$dttext' CLASS='techinput'>";
+      $dt = "<INPUT TYPE='button' NAME='disktype' VALUE='$dttext' CLASS='techinput' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\">";
     }
     $t->set_var("counter",$dt);
   } else {
@@ -322,8 +322,10 @@ EndHiddenFields;
       if (empty($counter2)) $counter2 = "&nbsp;";
     }
     $t->set_var("counter_name",lang("counter_start_stop"));
-    $t->set_var("counter",form_input("counter1",$counter1,"class='yesnobutton'") . " / " . form_input("counter2",$counter2,"class='yesnobutton'"));
+    $t->set_var("counter",form_input("counter1",$counter1,"class='yesnobutton' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\"") . " / " . form_input("counter2",$counter2,"class='yesnobutton' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\""));
   }
+
+
 
   # Label
   if ($new_entry) $label = $pvp->preferences->get("default_movie_onlabel");

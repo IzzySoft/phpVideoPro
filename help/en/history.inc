@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.5 (Oktober/November 2002)
+0.3.5 (Oktober 29, 2002)
 [text]
 <ul>
  <li>color name for movie (color, b/w or 3d) was not translated when viewing

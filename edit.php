@@ -426,7 +426,7 @@ EndHiddenFields;
     $t->set_var("print_label","&nbsp;");
   } else {
     $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
-    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label(this.value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
+    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label(this.options[this.selectedIndex].value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
     for ($i=0;$i<count($labels);$i++) {
       $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
       $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";

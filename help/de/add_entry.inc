@@ -39,7 +39,7 @@ einen Film auf dem jeweiligen Medium meint. RVT 68-1 wäre somit also Film Numme
 Natürlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
 wird phpVideoPro dann nicht unbedingt so reagieren, wie man es vielleicht
 erwartet :-) Wichtig ist dieses Modell z.B. bei der Ermittlung von freien
-Bandstellen über den Menüpunkt <i><A HREF="{_SERVER["PHP_SELF"]}?topic=taperest_absolute">*taperest_absolute#</A></i>
+Bandstellen über den Menüpunkt <i><A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A></i>
 (bzw. <i>*taperest_filtered#</i>), da dieses auf der MediaNummer aufbaut. Unnötig
 daher zu erwähnen, daß diese Nummern eindeutig sein müssen - es ist nicht
 möglich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
@@ -61,7 +61,7 @@ die jeweiligen Zeiten von Rekordern mit Echtzeitzählwerk eingetragen werden).
 [text]
 Für alle anderen Medien (DVD/VCD) kann an dieser Stelle der *disk_type#
 eingetragen werden. Details dazu finden sich auf
-<A HREF="{_SERVER["PHP_SELF"]}?topic=disktype_change">dieser Seite</A>.
+<A HREF="{PHP_SELF}?topic=disktype_change">dieser Seite</A>.
 
 [title]
 *label#
@@ -78,7 +78,7 @@ unterdrückt.
 RegionalCodes sind ein DVD-spezifisches "Feature" (auf das wir auch liebend
 gern verzichten würden), daher taucht dieser Punkt auch nur für DVDs auf (es
 sei denn, jemand hat dieses "Feature" auch für einen anderen Medien-Typen
-freigeschaltet - siehe <i><a href="{_SERVER["PHP_SELF"]}?topic=admin_disktypes">*admin_disktypes#</a></i>).
+freigeschaltet - siehe <i><a href="{PHP_SELF}?topic=admin_disktypes">*admin_disktypes#</a></i>).
 Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte hier einfach
 keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes erscheint
 in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist lediglich
@@ -126,7 +126,7 @@ konfigurierbar ist. Das entsprechende Formular findet sich im Administrationsmen
 Die in der ersten Box ausgewählte Kategorie wird als Hauptkategorie gewertet
 und taucht in den Listen zusammen mit den wichtigsten Eckdaten des jeweiligen
 Filmes auf. Unabhängig davon werden jedoch bei Suchen bzw. bei gesetzten
-<A HREF="{_SERVER["PHP_SELF"]}?topic=filter">Filtern</A> auch die anderen beiden
+<A HREF="{PHP_SELF}?topic=filter">Filtern</A> auch die anderen beiden
 (Unter-) Kategorien berücksichtigt.
 
 [title]
@@ -141,13 +141,13 @@ von phpVideoPro beeinflußt. Auf der
 habe ich bereits einige Einträge gesehen, die sowohl im Namen als auch im
 Vornamen vollständige Namen (also Vor- und Nachname) enthielten. Sucht man nun
 aber nach einem bestimmten Darsteller, treten entsprechende Schwierigkeiten auf,
-wie sich unschwer bei der Erstellung eines <A HREF="{_SERVER["PHP_SELF"]}?topic=filter">Filters</A>
+wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=filter">Filters</A>
 feststellen lassen wird.
 
 [text]
 Zusätzlich gibt es zu jedem Namen eine Checkbox "*in_list#", die wiederum mit
 einem netten Feature verbunden ist: Bei der Anzeige von Personenlisten, wie
-z.B. der <A HREF="{_SERVER["PHP_SELF"]}?topic=actors">Schauspielerliste</A>, werden nur
+z.B. der <A HREF="{PHP_SELF}?topic=actors">Schauspielerliste</A>, werden nur
 die Einträge berücksichtigt, die hier ein "Häkchen" erhalten haben. Auf diese
 Weise läßt sich die Anzeige eines Schauspielers für einen bestimmten Film
 unterdrücken (wenn es einem z.B. peinlich ist, daß Sascha Hehn auch in einem

@@ -7,7 +7,7 @@
 [text]
 Wer schon einmal in seiner phpVideoPro Datenbank nach einem bestimmten Film
 gesucht hat (und dafür bis einschließlich v0.4.4 lediglich die
-<A HREF="{_SERVER["PHP_SELF"]}?topic=set_filter">Filter-Einstellungen</A> zur Verfügung
+<A HREF="{PHP_SELF}?topic=set_filter">Filter-Einstellungen</A> zur Verfügung
 hatte, wird sicher bereits das eine oder andere Mal fast wahnsinnig geworden
 sein. Um dem für die Zukunft vorzubeugen, gibt es seit v0.4.5 nun dieses
 Formular. Es funktioniert ähnlich dem oben erwähnten für die Filter, mit einem
@@ -52,7 +52,7 @@ Suchergebnisse
 
 [text]
 Die Suchergebnisse werden auf die gleiche Art präsentiert, wie man es bereits
-von der <A HREF="{_SERVER["PHP_SELF"]}?topic=medialist">*medialist#</A> gewohnt ist - und
+von der <A HREF="{PHP_SELF}?topic=medialist">*medialist#</A> gewohnt ist - und
 die Navigation in selbigen erfolgt auch auf die von dort bekannte Art und Weise.
 
 [eof]

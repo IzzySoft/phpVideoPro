@@ -19,7 +19,7 @@ werden.
 
 [text]
 Es gibt zwei Möglichkeiten, diese Liste aufzurufen: <b>gefiltert</b> bedeutet,
-daß die definierten <A HREF="{_SERVER["PHP_SELF"]}?topic=filter">Filterregeln</A>
+daß die definierten <A HREF="{PHP_SELF}?topic=filter">Filterregeln</A>
 Anwendung finden - <b>absolut</b> hingegen, daß diese unberücksichtigt bleiben.
 
 [eof]

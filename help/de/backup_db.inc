@@ -94,7 +94,7 @@ Filmdaten aus einer anderen Datenbank importiert, in der neue Kategorien
 hinzugefügt wurden, werden diese in der aktuellen Datenbank auch automatisch
 angelegt. Die Entscheidung, ob es sich um eine neue Kategorie handelt, wird auf
 Basis des <i>*cat_internal_name#</i> getroffen (siehe
-<i><A HREF="{_SERVER["PHP_SELF"]}?topic=admin_cats">*admin_cats#</A></i>) - daher sollte
+<i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>) - daher sollte
 sicher gestellt werden, dass dieser für vorhandene Kategorien nicht geändert
 wird. Wird eine neue Kategorie gefunden, so wird diese mit einer neuen ID und
 dem gegebenen <i>*cat_internal_name#</i> in die Kategorien-Tabelle eingefügt.
@@ -103,7 +103,7 @@ Die ebenfalls im Datensatz gespeicherte Übersetzung wird immer der
 Feature: Eine Englische Übersetzung wird generell als "FallBack" benötigt,
 damit jedem Benutzer - unabhängig von der von ihm gewählten Sprache - eine
 Übersetzung zur Verfügung steht. Natürlich können diese Übersetzungen später
-unter Zuhilfenahme des Translation Editors (siehe <i><A HREF="{_SERVER["PHP_SELF"]}?topic=admin_translations">*admin_translations#</A></i>;
+unter Zuhilfenahme des Translation Editors (siehe <i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>;
 zu finden im Administrations-Menü) bearbeitet werden.
 
 [text]

@@ -42,7 +42,7 @@ muss diese dem System zunächst bekannt gemacht werden - dies geschieht durch
 das Aktivieren dieser Box (und natürlich anschließendes Versenden des Formulars).
 Die weiteren Schritte folgen unten. Wie eine neue Sprachdatei (z.B. für eine
 neue Sprache, die bislang noch nicht von phpVideoPro unterstützt wird) erstellt
-werden kann, findet sich in der Hilfe zum Punkt "<A HREF="{_SERVER["PHP_SELF"]}?topic=howto_lang">*howto_lang#</A>".
+werden kann, findet sich in der Hilfe zum Punkt "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>".
 
 [text]
 <b>*select_add_lang#:</b> Natürlich können hier nur verfügbare Sprachen
@@ -207,7 +207,7 @@ dann eine "Drucker-Kompatibilitäts-Liste" enthalten.<BR>
 Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Übel ein neuer
 Drucker in die Datenbank eingetragen werden. Das hierfür zu verwendende Formular
 findet sich im Administrations-Menü unter dem Punkt <i>*admin_printers#</i>
-(näheres siehe <i><A HREF="{_SERVER["PHP_SELF"]}?topic=admin_printers">hier</A></i>).
+(näheres siehe <i><A HREF="{PHP_SELF}?topic=admin_printers">hier</A></i>).
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
@@ -232,7 +232,7 @@ auf die Anzahl der Personen angewendet wird. Diese können aber durchaus auch al
 <b>*lines_per_page#:</b> Diese Angabe dient den Vorbereitungen für den
 Listendruck und gibt an, wie viele Zeilen (reinen ASCII) Textes auf ein Blatt
 Papier passen. Einmal an dieser Stelle festgelegt, wird dieser Wert bei jedem
-Aufruf des Menüpunktes "*listgen#" (siehe <A HREF="{_SERVER["PHP_SELF"]}?topic=listgen">dort</A>)
+Aufruf des Menüpunktes "*listgen#" (siehe <A HREF="{PHP_SELF}?topic=listgen">dort</A>)
 als Standard vorgegeben, kann dort jedoch auch jedesmal angepasst werden.
 
 [text]

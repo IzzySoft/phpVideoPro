@@ -55,7 +55,7 @@ und dort weiter bearbeitet werden zu können (abermals siehe oben).<br>
 <b>*line_count#</b>: Wie viele Zeilen reinen (ASCII) Textes auf eine Seite
 Papier passen (dies kann je nach Drucker unterschiedlich sein). Der Vorgabewert
 wird aus den Voreinstellungen (siehe
-"<A HREF="{_SERVER["PHP_SELF"]}?topic=configuration">*configuration#</A>") übernommen, kann
+"<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>") übernommen, kann
 jedoch hier überschrieben werden. Für CSV und HTML Listen wird der Inhalt dieses
 Feldes freilich ignoriert.
 

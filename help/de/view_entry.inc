@@ -9,7 +9,7 @@ In diesem Formular werden alle verfügbaren Informationen zum ausgewählten
 Datensatz angezeigt. Normalerweise sollte dies keiner Erklärung bedürfen, da
 der Anwender diese Informationen zumeist selbst erfaßt hat und somit ihre
 Bedeutung kennen sollte (ist dies nicht der Fall, hilft ein Blick auf
-die Hilfeseite für den Menüpunkt "<A HREF="{_SERVER["PHP_SELF"]}?topic=add_entry">*add_entry#</A>"),
+die Hilfeseite für den Menüpunkt "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>"),
 aber...
 
 [title]
@@ -34,7 +34,7 @@ minimale Unterschiede in den Daten haben), oder ein bislang auf Kassette
 vorhandener Film nun als DVD erworben wurde. Die dafür notwendige Funktion
 versteckt sich hinter den Buttons "*mediatype#" und "*medianr#". Mehr darüber
 läßt sich auf der Hilfeseite für das Formular
-"<A HREF="{_SERVER["PHP_SELF"]}?topic=media_change">*media_change#</A>" erfahren.
+"<A HREF="{PHP_SELF}?topic=media_change">*media_change#</A>" erfahren.
 [text]
 In gleicher Form läßt sich das Formular zum Anpassen der Länge eines Mediums
 erreichen, indem auf den Button für die Restzeit ("*Free#") geklickt wird.
@@ -90,16 +90,16 @@ Je nach Größe und Format eines Etikettes, ist die Anzahl der auf selbigem
 verfügbaren Zeilen unterschiedlich: d.h. es können unter Umständen nicht alle
 Informationen untergebracht werden. Wie viele Zeilen verfügbar sind, ist in der
 Konfigurationsdatei des jeweiligen Etikettes festgelegt (siehe
-"<A HREF="{_SERVER["PHP_SELF"]}?topic=howto_label">*howto_label#</A>").
+"<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>").
 
 [text]
 Für die Erstellung eigener Etikett-Vorlagen, siehe
-<A HREF="{_SERVER["PHP_SELF"]}?topic=howto_label">*howto_label#</A>.
+<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>.
 
 [text]
 Eine andere Möglichkeit zum Etiketten-Druck findet sich im Menü "Drucken" als
 "PS-Labels": hier können sogar selbstklebende (Zweckform-) Etiketten zum Einsatz
-kommen. Nähere Informationen dazu an der <A HREF="{_SERVER["PHP_SELF"]}?topic=pslabel">betreffenden
+kommen. Nähere Informationen dazu an der <A HREF="{PHP_SELF}?topic=pslabel">betreffenden
 Stelle</A>.
 
 [eof]

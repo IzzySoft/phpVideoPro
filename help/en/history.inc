@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.0 (November/December 2002)
+0.4.0 (November 20, 2002)
 [text]
 <ul>
  <li>brought help files up-to-date

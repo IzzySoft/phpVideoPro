@@ -120,6 +120,7 @@ $pvp->preferences->admin();
 		      $pvp->preferences->set("colors",rawurlencode( serialize($colors) ));
     case "0.3.7"    : queryf("0-3-7_to_0-3-8.sql","Update from v0.3.7 to v0.3.8");
                       queryf("lang_en.sql","Refresh of English language support");
+    case "0.3.8"    : queryf("0-3-8_to_0-4-0.sql","Update from v0.3.8 to v0.4.0");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

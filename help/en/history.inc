@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.2 (2004)
+0.7.2 (December 20, 2004)
 [text]
 <ul>
  <li>added new install wizzard. Now it can create the database and, if
@@ -17,6 +17,7 @@
      edit-preferences (user-specific).
  <li>Some translation updates (German, Russian, English)
  <li>Some language settings have been broken with the last update - fixed it.
+ <li>Some minor fix-ups for the IMDB data retrieval
 </ul>
 
 [title]

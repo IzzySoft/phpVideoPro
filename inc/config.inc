@@ -13,16 +13,15 @@
  /* $Id$ */
 
  #==========================================================[ directories ]===
- $base_url   = "/local/phpvideo/";
- # path relative to web server's DOCUMENT_ROOT
- $base_path  = "/usr/src/local/cvs/website/local/phpvideo/"; # absolute file systems path
+ $base_url   = "/local/phpvideo/"; # path relative to web server's DOCUMENT_ROOT
+ $base_path  = "/srv/www/htdocs/qumran/local/phpvideo/"; # absolute file systems path
 
  #=============================================================[ database ]===
  $database["type"]      = "mysql";    # mysql|pgsql
- $database["host"]      = "zion";     # your hosts name
+ $database["host"]      = "nebo";     # your hosts name
  $database["database"]  = "videopro"; # what database holds the tables
- $database["user"]      = "izzy";     # db user with at least following
+ $database["user"]      = "video";     # db user with at least following
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE
- $database["password"]  = "chumash";  # this users password for the db
+ $database["password"]  = "";  # this users password for the db
 ?>

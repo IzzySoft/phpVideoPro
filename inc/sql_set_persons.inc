@@ -17,16 +17,17 @@
  $details = array("director_name","director_fname","composer_name","composer_fname");
  foreach ($details as $var) {
    ${$var} = $pvp->common->input2string(${$var});
+   if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) ${$var} = addslashes(${$var});
  }
  $dmsg = "";
  $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
  $dmsg     .= "<ul>\n";
  $query     = "SELECT id FROM directors";
  $sub_query = "INSERT INTO directors";
- $dir_id    = insert_person("director",$query,$sub_query,addslashes($director_name),addslashes($director_fname));
+ $dir_id    = insert_person("director",$query,$sub_query,$director_name,$director_fname);
  $query     = "SELECT id FROM music";
  $sub_query = "INSERT INTO music";
- $mus_id    = insert_person("composer",$query,$sub_query,addslashes($composer_name),addslashes($composer_fname));
+ $mus_id    = insert_person("composer",$query,$sub_query,$composer_name,$composer_fname);
  for ($i=1;$i<=$max["actors"];$i++) {
    $act       = "actor" . $i;
    $aname     = $act . "_name";
@@ -34,7 +35,11 @@
    $aid       = "act" . $i . "_id";
    $query     = "SELECT id FROM actors";
    $sub_query = "INSERT INTO actors";
-   ${$aid}    = insert_person($act,$query,$sub_query,addslashes($pvp->common->input2string(${$aname})),addslashes($pvp->common->input2string(${$fname})));
+   if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
+     ${$aid}    = insert_person($act,$query,$sub_query,addslashes($pvp->common->input2string(${$aname})),addslashes($pvp->common->input2string(${$fname})));
+   } else {
+     ${$aid}    = insert_person($act,$query,$sub_query,$pvp->common->input2string(${$aname}),$pvp->common->input2string(${$fname}));
+   }
  }
  $dmsg .= "</ul>\n";
  debug("S",$dmsg);

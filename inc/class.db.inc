@@ -793,6 +793,22 @@
      }
    }
 
+   /** get category ID by categories internal name
+    * @class sql
+    * @method get_category_id
+    * @param string iname internal name of category
+    * @return integer cat_id
+    */
+   function get_category_id($iname) {
+     $sql = "SELECT id FROM cat WHERE name='$iname'";
+     $this->dbquery($sql);
+     if ( $this->next_record() ) {
+       return $this->f('id');
+     } else {
+       return 0;
+     }
+   }
+
    /** update a category
     * @class sql
     * @method update_category

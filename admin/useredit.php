@@ -14,6 +14,10 @@
 
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
+ if (!$pvp->auth->admin) { // kick-off unauthorized visitors
+   header("Location: $base_url"."login.php");
+   exit;
+ }
  $t = new Template($pvp->tpl_dir);
 
  #==================================================[ update user account ]===

@@ -16,7 +16,13 @@
  $page_id = "filter";
  if ($admin) $root = "../";
  include($root . "inc/includes.inc");
- if ($admin) $pvp->preferences->admin();
+ if ($admin) {
+   if (!$pvp->auth->admin) { // kick-off unauthorized visitors
+     header("Location: $base_url"."login.php");
+     exit;
+   }
+   $pvp->preferences->admin();
+ }
 
  function sort_ar($a1,$a2) {
    if($a1[name]<$a2[name]) return -1;

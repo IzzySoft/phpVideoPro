@@ -30,7 +30,13 @@ if ($menue) {
   include("../templates/default/default.css");
 }
 
-if ($admin) $pvp->preferences->admin();
+if ($admin) {
+  if (!$pvp->auth->admin) { // kick-off unauthorized visitors
+    header("Location: $base_url"."login.php");
+    exit;
+  }
+  $pvp->preferences->admin();
+}
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
   $url = $PHP_SELF;

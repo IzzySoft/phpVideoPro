@@ -1504,7 +1504,7 @@
 
    /** Get first movie numbers for each media type
     * @class sql
-    * @method get_lastmovienum
+    * @method get_firstmovienum
     * @param optional integer mtype_id
     * @param optional integer cass_id
     * @return mixed lastnum
@@ -1548,19 +1548,28 @@
     * @return mixed lastnum
     *  array lastnum if called w/o params (i:mtype, i:mtype_id, i:cass_id,
     *  i:part, i:entry; where i:entry = "mtype cass_id-part")
-    *  integer part if called w/ both params
+    *  integer part if called w/ both params (only 1 entry when called w/ 1st)
     */
    function get_lastmovienum($mtype_id="",$cass_id="") {
-     if (is_numeric($mtype_id) && is_numeric($cass_id)) {
-       $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
-       if ( $this->next_record() ) {
-         return $this->f('max_part');
+     if (is_numeric($mtype_id) ) {
+       if ( is_numeric($cass_id)) {
+         $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
+         if ( $this->next_record() ) return $this->f('max_part');
+           else return 0;
        } else {
-         return 0;
+         $mtypes = $this->get_mtypes();
+         for ($i=0;$i<count($mtypes);++$i) {
+           if ($mtypes[$i][id]==$mtype_id) {
+             $mt[0] = $mtypes[$i];
+             $mtypes = $mt;
+             unset($mt);
+           }
+         }
        }
+     } else {
+       $mtypes = $this->get_mtypes();
      }
-     $mtypes = $this->get_mtypes();
-     for ($i=0;$i<count($mtypes);$i++) {
+     for ($i=0;$i<count($mtypes);++$i) {
        $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
        $this->next_record();
        $lastnum[$i][mtype]   = $mtypes[$i][sname];
@@ -1707,8 +1716,8 @@
        if (${$value} == "") ${$value} = "NULL";
      }
      if ($lp) { $lp = 1; } else { $lp = 0; }
-     $audio_ts = ",".implode(",",$movie[audio]).",";
-     $subtitle = ",".implode(",",$movie[subtitle]).",";
+     $audio_ts = ",".@implode(",",$movie[audio]).",";
+     $subtitle = ",".@implode(",",$movie[subtitle]).",";
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"

@@ -115,7 +115,7 @@
    ############################################################################
    # get all data for a movie entry and return it as array
    function get_movie($id) {
-     $query = "SELECT title,length,counter1,counter2,aq_date,source,"
+     $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"
@@ -124,10 +124,10 @@
 	    . "FROM video WHERE id=$id";
      $this->query($query);
      $this->next_record();
-     $moviedetails = array("title","length","counter1","counter2","aq_date",
-                     "source","director_list","actor1_list","actor2_list",
-		     "actor3_list","actor4_list","actor5_list","fsk",
-		     "comment","cass_id","part");
+     $moviedetails = array("title","length","country","year","counter1",
+                     "counter2","aq_date","source","director_list",
+		     "actor1_list","actor2_list","actor3_list","actor4_list",
+		     "actor5_list","fsk","comment","cass_id","part");
      foreach($moviedetails as $value) {
        $movie[$value] = $this->f("$value");
      }

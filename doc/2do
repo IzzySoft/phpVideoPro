@@ -14,7 +14,6 @@ account" izzysoft@qumran.org.
 coming *soon*:
 - translation for categories missing
 - setup: check for existence and readability of SQL files before execution
-- field for "commercials" (tri-state: yes/no/cut off manually)
 
 coming *next*:
 - limit list display to user-definable amount of data sets

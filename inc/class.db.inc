@@ -1491,11 +1491,14 @@
        display_error( lang("dupe_id_entered") );
        exit;
      }
-     if ( ( bool ) !ini_get('magic_quotes_gpc') || basename($GLOBALS['PHP_SELF'])=="change_nr.php" ) {
+     if ( ( bool ) !ini_get('magic_quotes_gpc')
+      || basename($GLOBALS['PHP_SELF'])=="change_nr.php"
+      || basename($GLOBALS['PHP_SELF'])=="backup_db.php" ) {
        $title  = addslashes($title);
        $comment= addslashes($comment);
        $source = addslashes($source);
      }
+     if ($lp) { $lp = 1; } else { $lp = 0; }
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"

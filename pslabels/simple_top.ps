@@ -1,0 +1,26 @@
+gsave
+0 1.75 inch translate
+
+/ID (Action) def
+
+/this_lines {_top_lines_} def
+
+header-font findfont [12 0 0 15 0 0] makefont setfont
+0.2 inch -0.3 inch moveto   ({_cass_id_})show
+header-font findfont [8 0 0 15 0 0] makefont setfont
+2.9 inch -0.3 inch moveto   ID l-show
+
+/height 1.2 inch this_lines div def
+height 10 ge { /height 10 def } if
+top-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
+FG setgray
+0.2 inch -0.4 inch height dup add sub moveto
+
+<!-- BEGIN definitionblock -->
+gsave ({_title_}) show grestore
+gsave 2.7 inch 0 rmoveto ({_length_}) l-show grestore 
+0 height neg rmoveto
+<!-- END definitionblock -->
+
+grestore
+

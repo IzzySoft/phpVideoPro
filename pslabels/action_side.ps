@@ -1,0 +1,63 @@
+%%%!!!%%%	ANFANG text
+
+%%restore % Speicherzustand wiederherstellen 
+
+%% 
+
+
+%0 0 moveto
+%15 crossHairs
+
+gsave
+  FG setgray
+  number-font findfont [21 0 0 18 0 0] makefont setfont
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% ANFANG VARAIBLER TEIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%	number of text lines for this label
+%%/this_lines 6 def
+/this_lines {_side_lines_}  def
+%% /this_lines { {_side_lines_} 2 add } def	% for simple_side
+%%
+%%
+  gsave
+    %% put tape number 90 deg. rotated and centered at number_position
+    %%
+    0.6 cm 1 cm moveto	% variablen einbauen !
+    90 rotate
+    ({_cass_id_}) c-show
+  grestore
+
+  %%
+  %% height = 0.9 * label_height / nr_of_text_lines
+  %%
+  /height {label_height 0.9 mul this_lines div } def
+  height 10 ge { /height 10 def } if
+  side-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
+  FG setgray
+  %% start at left_text_offset for X and 
+  %% 0.9 * label_height (1 - 1/(2* no_of_lines) for Y
+  %%
+  1.2 cm label_height 0.9 mul height 2 div sub moveto % variablen einbauen !
+%%  0 height neg rmoveto	% only in simple_side
+<!-- BEGIN definitionblock -->
+  gsave
+    gsave ({_title_}) show grestore
+    ({_length_}) 11 cm 0 rmoveto l-show	% variablen einbauen !
+  grestore
+  %% make a linefeed
+  %%
+  0 height neg rmoveto
+<!-- END definitionblock -->
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% ENDE VARAIBLER TEIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+grestore
+%%
+%% nächstes label 
+%% 0 label_vdist neg translate 
+%% 0 0 moveto
+%% 15 crossHairs
+%%%!!!!%%%%	ENDE text

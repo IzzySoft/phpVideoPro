@@ -1,5 +1,5 @@
 <H2 ALIGN="center">{listtitle}</H2>
-
+<CENTER>{save_result}</CENTER>
 <FORM NAME='backup_db' METHOD='post' ACTION='{formtarget}'>
 <TABLE WIDTH="90%" ALIGN="center">
  <!-- BEGIN itemblock -->

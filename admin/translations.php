@@ -25,6 +25,7 @@
  $t->set_block("list","mtitleblock","mtitlelist");
  $t->set_block("list","mdatablock","mdatalist");
  $t->set_block("list","emptyblock","emptylist");
+ $t->set_var("listtitle",lang($page_id));
 
  #======================================================[ init target lang ]==
  if (!$targetlang) {
@@ -110,7 +111,6 @@
  $t->parse("mtitlelist","mtitleblock");
 
  include("../inc/header.inc");
- $t->set_var("listtitle",lang($page_id));
  $t->pparse("out","list");
  include("../inc/footer.inc");
 

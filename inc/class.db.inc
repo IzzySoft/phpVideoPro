@@ -914,7 +914,12 @@
     * @return mixed either freetime (integer) or empty string
     */
    function set_mediaspace($id,$mtype_id,$space,$field="type") {
-     if ( $this->dbquery("UPDATE cass SET $field=$space WHERE id=$id AND mtype_id=$mtype_id") ) {
+     if ( $this->get_mediaspace($id,$mtype_id) ) {
+       $query = "UPDATE cass SET $field=$space WHERE id=$id AND mtype_id=$mtype_id";
+     } else {
+       $query = "INSERT INTO cass (id,mtype_id,$field) VALUES ($id,$mtype_id,$space)";
+     }
+     if ( $this->dbquery($query) ) {
        return $this->update_freetime($id,$mtype_id);
      }
      return FALSE;

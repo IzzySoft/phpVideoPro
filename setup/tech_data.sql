@@ -84,7 +84,7 @@ INSERT INTO languages VALUES ('co','Corsican','','No');
 INSERT INTO languages VALUES ('cs','Czech','','No');
 INSERT INTO languages VALUES ('cy','Welsh','','No');
 INSERT INTO languages VALUES ('da','Danish','','No');
-INSERT INTO languages VALUES ('de','German','iso-8859-1''Yes');
+INSERT INTO languages VALUES ('de','German','iso-8859-1','Yes');
 INSERT INTO languages VALUES ('dz','Bhutani','','No');
 INSERT INTO languages VALUES ('el','Greek','','No');
 INSERT INTO languages VALUES ('en','English / American','iso-8859-1','Yes');

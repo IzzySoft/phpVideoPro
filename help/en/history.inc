@@ -8,6 +8,8 @@
  <li>search function crashed if searched for a non-existing staff member - fixed.
  <li>non-latin charsets (e.g. UTF-8) completely messed up the browsers display - fixed.
  <li>updated Russian translations (please correct my mistakes if any ;)
+ <li>converted all (DB) content to UTF-8 - hopefully this way we finally got
+     rid of all those stupid charset problems!
 </ul>
 
 [title]

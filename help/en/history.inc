@@ -13,6 +13,7 @@
  <li>on a forced login (e.g. due to session timeout or missing privileges) the
      redirection to the originally requested page did still not work with
      register_globals=off - fixed.
+ <li>added backup/restore for categories
 </ul>
 
 [title]

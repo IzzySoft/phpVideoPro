@@ -46,6 +46,9 @@
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }
+ $title   = addslashes($title);
+ $source  = addslashes($source);
+ $comment = addslashes($comment);
  $update  = "UPDATE video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"

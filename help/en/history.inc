@@ -13,6 +13,8 @@
      reflects the issue much better ;)
  <li>filters are now working via cookies as well - so multiple users now can
      use different filter settings simultaneously!
+ <li>there were some problems with quote signs (and some others) in title,
+     source and comment field texts. Hopefully fixed.
 </ul>
 
 [title]

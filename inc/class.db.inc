@@ -739,6 +739,9 @@
      foreach($moviedetails as $value) {
        $movie[$value] = $this->f("$value");
      }
+     $movie[title]   = stripslashes($movie[title]);
+     $movie[source]  = stripslashes($movie[source]);
+     $movie[comment] = stripslashes($movie[comment]);
      $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
      $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
      $movie[director_] = $name;
@@ -1018,6 +1021,9 @@
        display_error( lang("dupe_id_entered") );
        exit;
      }
+     $title  = addslashes($title);
+     $comment= addslashes($comment);
+     $source = addslashes($source);
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"

@@ -38,6 +38,7 @@ CREATE TABLE cass (
 CREATE TABLE cat (
    id serial,
    name varchar(30) UNIQUE,
+   enabled INT DEFAULT 1 NOT NULL,
    PRIMARY KEY (id)
 );
 

@@ -39,6 +39,7 @@ CREATE TABLE cass (
 CREATE TABLE cat (
    id int(5) NOT NULL auto_increment,
    name varchar(30) NOT NULL,
+   enabled INT(1) DEFAULT 1 NOT NULL,
    PRIMARY KEY (id),
    UNIQUE name (name)
 );

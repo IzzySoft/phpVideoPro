@@ -172,7 +172,8 @@
   if ($create) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
     while ( strlen($part)<2)     { $part    = "0" . $part;    }
-    $nr = $mediatype . " " . $cass_id . "-" . $part;
+#    $nr = $mediatype . " " . $cass_id . "-" . $part;
+    $nr = $cass_id . "-" . $part;
   }
 
 ################################################################

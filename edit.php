@@ -234,9 +234,12 @@
   if ($page_id == "view_entry") {
     $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
     if ($movie[previous]) {
-      $lm = $db->get_firstmovienum();
-      $prev = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[0]["mtype_id"]
-            . "&cass_id=".(int) $lm[0]["cass_id"]."&part=".(int) $lm[0]["part"])
+      $lm = $db->get_firstmovienum(); $lmc = count($lm); $i=0;
+      while ( ($lm[$i]["cass_id"]==0) && ($i < $lmc) ) {
+        ++$i;
+      } 
+      $prev = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[$i]["mtype_id"]
+            . "&cass_id=".(int) $lm[$i]["cass_id"]."&part=".(int) $lm[$i]["part"])
             . "'><IMG SRC='".$tpl_dir."/images/first.gif' BORDER='0'></A>";
       $prev .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
             . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part)
@@ -250,7 +253,10 @@
       $next = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[next]->mtype_id
             . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part)
             . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
-      $lm = $db->get_lastmovienum(); $lmc = count($lm) -1;
+      $lm = $db->get_lastmovienum(); $lmc = count($lm);
+      do {
+        --$lmc;
+      } while ( ($lm[$lmc]["cass_id"]==0) && ($lmc != 0) );
       $next .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[$lmc]["mtype_id"]
             . "&cass_id=".(int) $lm[$lmc]["cass_id"]."&part=".(int) $lm[$lmc]["part"])
             . "'><IMG SRC='".$tpl_dir."/images/last.gif' BORDER='0'></A>";

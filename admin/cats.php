@@ -17,18 +17,20 @@
   if (!$pvp->auth->admin) kickoff();
 
   #-------------------------------------------------------[ process input ]---
-  if ($submit) {
+  if ($delete) {
+    $catlist = $db->get_moviecatlist3($delete);
+    $totals = count($catlist);
+    if ($totals) {
+      $catname = $db->get_category($delete);
+      die ( display_error(lang("movies_left_in_cat",$catname,$totals)) );
+    } else {
+      $db->delete_category($delete);
+    }
+  } elseif ($submit) {
     for ($i=0;$i<$lines;++$i) {
       $cat_id = "cat".$i."_id"; $cat_name = "cat".$i."_name"; $cat_trans = "cat".$i."_trans";
-      if ( !strlen(trim(${$cat_name})) && !strlen(trim(${$cat_trans})) ) {
-        $catlist = $db->get_moviecatlist3(${$cat_id});
-	$totals = count($catlist);
-	if ($totals) {
-	  $catname = $db->get_category(${$cat_id});
-	  die ( display_error(lang("movies_left_in_cat",$catname,$totals)) );
-	} else {
-	  $db->delete_category(${$cat_id});
-	}
+      if ( !strlen(trim(${$cat_name})) ) {
+        die ( display_error(lang("cat_handle_empty",${$cat_id})) );
       } else {
         $db->set_translation(${$cat_name},"",$pvp->preferences->get("lang"));
         if ( !$db->update_category(${$cat_id},${$cat_name}) ) $cat .= "$i,";
@@ -52,6 +54,8 @@
   }
 
   #-------------------------------------------------------[ build up page ]---
+  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+  $trash_img = $tpl_dir . "/images/trash.png";
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("template"=>"admin_cats.tpl"));
   $t->set_block("template","catblock","cats");
@@ -80,6 +84,9 @@
     $t->set_var("cat_id",make_input($cat_id,$cats[$i][id],"button").make_input($cat_id,$cats[$i][id],"hidden"));
     $t->set_var("cat_name",make_input($cat_name,$cats[$i][internal]));
     $t->set_var("cat_trans",make_input($cat_trans,$cats[$i][name]));
+    $url = $pvp->link->slink("$PHP_SELF?delete=".$cats[$i][id]);
+    $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+    $t->set_var("cat_del",$trash);
     $t->parse("cats","catblock",TRUE);
   }
   $t->set_var("cat_id",make_input("new_id","?","button").make_input("new_id","?","hidden"));
@@ -92,6 +99,14 @@
   $t->set_var("hidden",$hidden);
       
   include( dirname(__FILE__) . "/../inc/header.inc");
+?>
+<SCRIPT LANGUAGE="JavaScript">
+ function delconfirm(url) {
+  check = confirm("<?=lang("confirm_delete")?>");
+  if (check == true) window.location.href=url;
+ }
+</SCRIPT>
+<?
   $t->pparse("out","template");
 
   include( dirname(__FILE__) . "/../inc/footer.inc");

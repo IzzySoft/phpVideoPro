@@ -36,8 +36,7 @@
   * @param string error error message to display
   */
  function display_error($error) {
-   GLOBAL $colors;
-   echo $colors["err"] . "<H2 ALIGN=CENTER>" . strtoupper(lang("warning")) . "</H2></Font>\n";
+   echo "<SPAN CLASS='error'><H2 ALIGN=CENTER>" . strtoupper(lang("warning")) . "</H2></SPAN>\n";
    echo "<Table Width=90% Align=Center>\n <TR><TD>";
    echo "<P ALIGN=JUSTIFY>$error</P>\n";
    echo " </TD></TR></TABLE>\n</BODY></HTML>";

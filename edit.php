@@ -376,7 +376,7 @@ EndHiddenFields;
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
     $field .= "<SELECT NAME='cat" . $i . "_id' class='catinput'>";
-    if ($i > 1) $field .= "<OPTION VALUE='-1'>- None -</OPTION>";
+    if ($i > 1) $field .= "<OPTION VALUE='-1'>- ".lang("none")." -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
       $field .= "<OPTION VALUE='" . $cats[$k][id] . "'";
       if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
@@ -385,7 +385,7 @@ EndHiddenFields;
     $field .= "</SELECT>";
    } else {
     $field .= "<$input NAME='cat" . $i . "' class='catinput' VALUE='";
-    if ( trim($cat[$i])=="" ) { $field .= "- None -"; } else { $field .= $cat[$i]; }
+    if ( trim($cat[$i])=="" ) { $field .= "- ".lang("none")." -"; } else { $field .= $cat[$i]; }
     $field .= "'>";
    }
    if ( $i<$max["categories"] ) $field .= "<BR>";

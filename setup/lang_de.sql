@@ -134,6 +134,7 @@ INSERT INTO lang VALUES ('director_person','de','Regisseur');
 INSERT INTO lang VALUES ('director_persons','de','Regisseure');
 INSERT INTO lang VALUES ('disktype_add_failed','de','Sorry, der neue Disk-Typ konnte leider nicht hinzugefügt werden.');
 INSERT INTO lang VALUES ('disktype_change','de','Disk-Typ ändern');
+INSERT INTO lang VALUES ('disktype_name_empty','de','Der Name eines Disk-Typs darf nicht leer sein. Bitte für Disk-Typ #%1 auf der vorigen Seite korrigieren!');
 INSERT INTO lang VALUES ('disktype_update_failed','de','Folgende Disk-Typen konnten leider nicht aktualisiert werden: %1');
 INSERT INTO lang VALUES ('disk_size','de','Kapazität');
 INSERT INTO lang VALUES ('disk_type','de','Disk-Typ');

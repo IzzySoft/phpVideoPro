@@ -1,18 +1,5 @@
 /* $Id$ */
 
-To not forget all those who support the project - hope I didn't forget somebody:
-
-* The Beta-Testers and Bug-Reporters, especially Peter Bieringer for testing
-  and help with PostgreSQL, and Michael Hasselberg for pointing out Bugs (if
-  there were a "most reported award", it would belong to him!)
-* all the language support files generators: Tsvetanka Stoyanova for Bulgarian,
-  Annette for French, Alessandro Danti for Italian, Knut Fjellheim for Norwegian,
-  Leszek Boroch and Jacek Wolski for Polish, Tom Albers for Dutch, Tony Granberg
-  for Swedish
-* SourceForge and Freshmeat for hosting the project (well, and some other
-  sites promoting it)
-* the Zend Team for giving us PHP, the MySQL and PostgreSQL teams for the
-  databases
-* Linus Torvalds (and all the Linux teams) for the development and runtime
-  platform
-* and all other supporters I may have forgotten at this place
+To not forget all those who support the project - see the online help, goto
+"help"->"index" and then click on "credits". Found that the more appropriate
+place - since who reads stuff from within the doc/ directory... ;-)

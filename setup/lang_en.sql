@@ -232,3 +232,4 @@ INSERT INTO lang VALUES('admin_cats','en','Administrate Categories');
 INSERT INTO lang VALUES('cat_internal_name','en','Handle');
 INSERT INTO lang VALUES('cat_update_failed','en','Updating failed for the following categories: %1');
 INSERT INTO lang VALUES('cat_trans_update_failed','en','Updating failed for the translations of the following categories: %1');
+INSERT INTO lang VALUES('credits','en','Credits');

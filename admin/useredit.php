@@ -15,12 +15,13 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
+ $save_result = "";
 
  #-------------------------------------------------[ Register global vars ]---
- $id     = $_REQUEST["id"];
- $delete = $_REQUEST["delete"];
- $pwd1   = $_POST["pwd1"];
- $pwd2   = $_POST["pwd2"];
+ if (isset($_REQUEST["id"])) $id = $_REQUEST["id"]; else $id = 0;
+ if (isset($_REQUEST["delete"])) $delete = $_REQUEST["delete"]; else $delete = 0;
+ if (isset($_POST["pwd1"])) $pwd1 = $_POST["pwd1"]; else $pwd1 = "";
+ if (isset($_POST["pwd2"])) $pwd2 = $_POST["pwd2"]; else $pwd2 = "";
 
  #--------------------------------------------------[ Check authorization ]---
  if ($pvp->auth->user->login == "guest") kickoff();
@@ -30,7 +31,7 @@
  $t = new Template($pvp->tpl_dir);
 
  #==================================================[ update user account ]===
- if ($_POST["update"]) {
+ if (isset($_POST["update"])) {
    $user->id     = $id;
    if (!$pvp->auth->admin) {
      $users = $db->get_users($id);
@@ -42,10 +43,11 @@
      }
    } else {
      $user->login  = $_POST["login"];
+     if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
      $user->comment= $_POST["comment"];
      $access = array("admin","browse","add","upd","del");
      foreach ($access as $value) {
-       if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }
+       if (isset($_POST[$value])) { $user->$value = "1"; } else { $user->$value = "0"; }
      }
    }
    $pwd_ok = 1;
@@ -63,10 +65,11 @@
      $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$id). "</SPAN><BR>\n";
    }
  #=================================================[ add new user account ]===
- } elseif ($_POST["adduser"] && $pvp->auth->admin) {
+ } elseif (isset($_POST["adduser"]) && $pvp->auth->admin) {
    $user->id     = $_POST["id"];
-   $user->login  = $_POST["login"];
-   $user->comment= $_POST["comment"];
+   $user->login = $_POST["login"];
+   if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
+   if (isset($_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
    $access = array("admin","browse","add","upd","del");
    foreach ($access as $value) {
      if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }
@@ -88,7 +91,7 @@
  #==================================================[ delete user account ]===
  } elseif ($delete) {
    $user = $db->get_users($delete);
-   if ($_POST["confirmed"]) {
+   if (isset($_POST["confirmed"])) {
      if ( $db->del_user($delete) ) {
        $save_result = "<SPAN CLASS='ok'>" .lang("user_deleted",$delete,$user->login,$user->comment) . ".</SPAN><BR>\n";
      } else {

@@ -17,13 +17,14 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- $lines = $_POST["lines"];
+ if (isset($_POST["lines"])) $lines = $_POST["lines"]; else $lines = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
+ $save_result = "";
 
  #==================================================[ process the changes ]===
- if ($_POST["update"]) {
+ if (isset($_POST["update"])) {
    for ($i=0;$i<$lines;++$i) {
      $user->id     = $_POST["user_".$i];
      $user->login  = $_POST["user_".$i."_login"];
@@ -31,11 +32,11 @@
      $access = array("admin","browse","add","upd","del");
      foreach ($access as $value) {
        $var = $value ."_".$user->id;
-       if ($_POST[$var]) { $user->$value = "1"; } else { $user->$value = "0"; }
+       if (isset($_POST[$var]) && $_POST[$var]) { $user->$value = "1"; } else { $user->$value = "0"; }
      }
      if ( !$db->set_user($user) ) $error .= ",".$user->id;
    }
-   if ($error) {
+   if (isset($error)) {
      $error = substr($error,1);
      $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$error) . "</SPAN><BR>\n";
    } else {
@@ -74,7 +75,8 @@
    $t->set_var("edit",$pvp->link->linkurl("useredit.php?id=".$users[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
    $url = $pvp->link->slink("useredit.php?delete=".$users[$i]->id);
    $t->set_var("delete","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
-   $t->parse("item","itemblock",TRUE);
+   if ($i) $t->parse("item","itemblock",TRUE);
+     else $t->parse("item","itemblock");
  }
 
  $t->set_var("listtitle",lang("admin_users"));

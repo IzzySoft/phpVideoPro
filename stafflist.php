@@ -4,8 +4,8 @@
   $page_id = $stafftype;
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
-  $t->set_file(array("list"=>"stafflist_list.tpl",
-                     "item"=>"stafflist_item.tpl"));
+  $t->set_file(array("list"=>"stafflist.tpl"));
+  $t->set_block("list","itemblock","itemlist");
   $filter = get_filters();
 
   function getStaffClause($i) {
@@ -96,7 +96,7 @@
      $t->set_var("url","edit.php?nr=$movie_id[$k]&cass_id=$cass_id[$k]&part=$part[$k]&mtype_id=$mtype_id[$k]");
      $t->set_var("mtype",$mtype[$k]);
      $t->set_var("nr",$nr[$k]);
-     $t->parse("mediadata","item",TRUE);
+     $t->parse("itemlist","itemblock",TRUE);
      $same_name = TRUE;
     }
   }

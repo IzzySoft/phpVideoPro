@@ -15,6 +15,11 @@
  $page_id = "login";
  include("inc/includes.inc");
  if ($login_hint) $login_hint = lang("$login_hint");
+ if ($sess_id && $logout) {
+   $pvp->session->end($sess_id);
+   if ($pvp->config->enable_cookies) $pvp->cookie->delete("sess_id");
+   $sess_id = "";
+ }
  $t = new Template($pvp->tpl_dir);
 
  if ($submit) {

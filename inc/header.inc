@@ -10,8 +10,10 @@
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
     case "about"         : $pagename .= " [ " . lang("about") . " ]"; break;
+    case "actor_list"    : $pagename .= " [ " . lang("actor_list") . " ]"; break;
     case "configuration" : $pagename .= " [ " . lang("configuration") . " ]"; break;
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
+    case "director_list" : $pagename .= " [ " . lang("director_list") . " ]"; break;
     case "edit"          : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
@@ -38,10 +40,11 @@
  <? include($nav_script);
     include($base_path . "templates/default/default.css") ?>
 </HEAD>
-<BODY leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"><!-- onLoad="init();" {body_tags}-->
+<BODY leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"<?
+if ($oldmenue) echo " onLoad=\"init();\"" ?><!-- {body_tags}-->
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
  <tr>
-  <td><? if ($oldmenue) { ?><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nsbp; <? } ?></td>
+  <td><? if ($oldmenue) { ?><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
  </tr>
 </table>

@@ -27,6 +27,8 @@
   dhtmlMenu = new NavBarMenu(140, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("view") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>medialist.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("actors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=actor"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("directors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=director"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_absolute") ?>", "<? echo $base_url ?>taperest.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_filtered") ?>", "<? echo $base_url ?>taperest.php?usefilter=1"));

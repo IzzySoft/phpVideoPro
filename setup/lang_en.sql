@@ -24,7 +24,9 @@ INSERT INTO lang VALUES('tone','en','Tone Format');
 INSERT INTO lang VALUES('longplay','en','LongPlay');
 INSERT INTO lang VALUES('fsk','en','PG');
 INSERT INTO lang VALUES('actor','en','Actor');
+INSERT INTO lang VALUES('actors','en','Actors');
 INSERT INTO lang VALUES('director','en','Director');
+INSERT INTO lang VALUES('directors','en','Directors');
 INSERT INTO lang VALUES('composer','en','Composer');
 INSERT INTO lang VALUES('min','en','min');
 INSERT INTO lang VALUES('max','en','max');
@@ -93,5 +95,7 @@ INSERT INTO lang VALUES('menues','en','Menues');
 INSERT INTO lang VALUES('back','en','Back');
 INSERT INTO lang VALUES('close','en','Close');
 INSERT INTO lang VALUES('help_about','en','Help about');
+INSERT INTO lang VALUES('actor_list','en','List of Actors');
+INSERT INTO lang VALUES('director_list','en','List of Directors');
 
 

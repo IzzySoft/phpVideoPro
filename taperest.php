@@ -9,6 +9,7 @@
     <FORM NAME="space" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
       <INPUT TYPE="hidden" NAME="usefilter" VALUE="<? echo $usefilter ?>">
       <TABLE WIDTH="70%" ALIGN="center">
+        <TR><TD COLSPAN=3>&nbsp;</TD></TR>
         <TR><TD><? echo lang("enter_min_free") ?></TD>
             <TD><INPUT NAME="minfree"></TD>
             <TD><INPUT TYPE="submit" NAME="getrest" VALUE="<? echo lang("display") ?>"></TR>

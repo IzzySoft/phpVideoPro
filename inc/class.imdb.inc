@@ -804,16 +804,47 @@
     $alsoknow_arr = explode ( "<br>", $alsoknow_all);
     $j=0;
     for ( $i=1; ($i +1)< count($alsoknow_arr); $i++){
+# echo "<b>AKALine:</b> $alsoknow_arr[$i]<br>\n";
 	$tmparr = explode('(', $alsoknow_arr[$i]);
+# echo "<pre>";print_r($tmparr);echo "</pre>\n";
+        unset($ak_temp);
 	$ak_temp["title"]= $tmparr[0];
-	$ak_temp["year"]= substr($tmparr[1], 0, 4) ;
-	if ( ($country_e = strpos($tmparr[2], ":")) != 0){
-		$ak_temp["country"]= substr( $tmparr[2], 0, $country_e);
-		$ak_temp["comment"]= substr( $tmparr[2], $country_e+2, strlen($tmparr[2]) - $country_e -4);
-	}else{
-		$ak_temp["country"]= substr( $tmparr[2], 0, strlen($tmparr[2]) - 2);
-		$ak_temp["comment"]= NULL;
-	}
+        $elems = count($tmparr);
+        for ($k=1;$k<$elems;++$k) {
+          if (strpos($tmparr[$k],')'))
+            $var = substr($tmparr[$k],0,strrpos($tmparr[$k],')'));
+          else $var = $tmparr[$k];
+          if (!isset($ak_temp["year"])) {
+            if (is_numeric($var)) {
+              $ak_temp["year"] = $var;
+              continue;
+            } else {
+              $ak_temp["year"] = "";
+            }
+            if ( ($country_e = strpos($var, ":")) != 0){
+              $ak_temp["country"]= substr( $var, 0, $country_e);
+              $ak_temp["comment"]= substr( $var, $country_e+2, strlen($var) - $country_e -2);
+            }else{
+              $ak_temp["country"]= $var;
+            }
+          } elseif (!isset($ak_temp["country"])) {
+            if ( ($country_e = strpos($var, ":")) != 0){
+              $ak_temp["country"]= substr( $var, 0, $country_e);
+              $ak_temp["comment"]= substr( $var, $country_e+2, strlen($var) - $country_e -2);
+            }else{
+              $ak_temp["country"]= $var;
+            }
+          } else {
+            if (strpos($var,')'))
+              $var = substr($var,0,strrpos($var,')'));
+            if (isset($ak_temp["comment"]) && !empty($ak_temp["comment"])) $ak_temp["comment"] .= "($var)";
+            else $ak_temp["comment"] = $var;
+          }
+        }
+        if (!isset($ak_temp["year"])) $ak_temp["year"] = "";
+        if (!isset($ak_temp["country"])) $ak_temp["country"] = "";
+        if (!isset($ak_temp["comment"])) $ak_temp["comment"] = "";
+# echo "ak_temp:<pre>";print_r($ak_temp); echo "</pre>\n";
 	$this->main_alsoknow[$j] = $ak_temp;
 	$j++;
     }

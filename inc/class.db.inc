@@ -2032,11 +2032,11 @@
                      );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);
-       for ($i=1;$i<4;++$i) {
+       for ($i=1,$k=1;$k<4;++$i) {
          $this->next_record();
 	 $item = $this->f('item');
-	 $rank = "rank_" . $value["name"] . "_" . $i;
-	 if (!strlen( trim($item) )) --$i; // remove the "unknowns"
+	 $rank = "rank_" . $value["name"] . "_" . $k;
+	 if (strlen( trim($item) )) ++$k; // do not count the "unknowns"
 	 $stats[$rank] =  "$item (" . $this->f('rank') . ")";
        }
      }

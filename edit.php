@@ -1,6 +1,16 @@
-<? /* Edit an entry */
+<?php
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Edit/View an entry                                                        *
+ \***************************************************************************/
 
-  /* $Id$ */
+ /* $Id$ */
 
   if ($new_entry) {
     $page_id = "add_entry";

@@ -65,6 +65,6 @@ $query_count = 4;
      </UL></TD></TR>
  <TR><TD><DIV ALIGN="justify">Congratulations - if there are <?=$query_count?>
       lines stating "success", you've done it - the basic installation is
-      complete! You can then proceed to the <A HREF="configure.php">configuration</A>
+      complete! You can then proceed to the <A HREF="../admin/configure.php">configuration</A>
       page.</DIV></TD></TR>
 </TABLE></BODY></HTML>

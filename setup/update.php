@@ -100,10 +100,10 @@
       case "0.2.5"    : queryf("0-2-5_to_0-2-6.sql","Update from v0.2.5 to v0.2.6");
       case "0.2.6"    : queryf("0-2-6_to_0-2-7." . $database["type"],"Update from v0.2.6 to v0.2.7");
       case "0.2.7"    : queryf("0-2-7_to_0-2-8.sql","Update from v0.2.7 to v0.2.8");
-                        queryf("lang_en.sql","Refresh of English language support");
                         queryf("categories.sql","Refresh of categories");
       case "0.2.8"    :
       case "0.3.0"    : queryf("0-2-8_to_0-3-1.sql","Update from v0.2.8/9 to v0.3.1");
+                        queryf("lang_en.sql","Refresh of English language support");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

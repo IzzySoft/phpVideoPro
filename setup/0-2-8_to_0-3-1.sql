@@ -4,3 +4,6 @@
 
 # version update
 UPDATE pvp_config SET value='0.3.1' WHERE name='version';
+
+# prepare default language update
+DELETE FROM lang WHERE lang='en';

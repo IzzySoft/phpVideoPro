@@ -46,6 +46,33 @@
    exit;
  }
 
+ #========================================================[ save lang file ]==
+ if ($savelang) {
+   $langs = $db->get_languages();
+   $lcount = count($langs);
+   for($i=0;$i<$lcount;++$i) {
+     if ($langs[$i]["id"] == $targetlang) {
+       $tlang = $langs[$i]["name"];
+       $tchar = $langs[$i]["charset"];
+       break;
+     }
+   }
+   if (!$tchar) $tchar = "iso-8859-15";
+   $trans = $db->get_singletrans($targetlang);
+   $totals = count($trans["xlist"]);
+   $sql   = "# ========================================================\n"
+          . "# $tlang Language File created by phpVideoPro v".$version."\n"
+          . "# ========================================================\n\n"
+          . "UPDATE languages SET charset='$tchar' WHERE lang_id='$targetlang';\n";
+   for ($i=0;$i<$totals;++$i) {
+     $msgid = $trans["xlist"][$i];
+     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes($trans[$msgid])."');\n";
+   }
+   header("Content-type: application/octet-stream");
+   header("Content-Disposition: attachment; filename=lang_".$targetlang.".sql");
+   echo $sql;
+   exit;
+ }
 
  #=======================================[ get movies and setup variables ]===
  $query = "\$db->get_singletrans(\"en\",$start)";
@@ -67,6 +94,7 @@
    $t->set_var("sample","");
    $t->parse("mdatalist","mdatablock",TRUE);
  }
+ if ($submit) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
  $t->set_var("code",lang("trans_code"));
@@ -74,6 +102,7 @@
  $t->set_var("trans",lang("target_trans"));
  $t->set_var("sample",lang("trans_sample"));
  $t->set_var("submit",lang("update"));
+ $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
  $t->set_var("hidden",$hidden);
  $t->set_var("first",$nextmatch->first);
  $t->set_var("left",$nextmatch->left);

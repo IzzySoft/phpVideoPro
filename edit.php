@@ -16,7 +16,7 @@
   function vis_actors($num) {
     GLOBAL $edit,$vis_actor1,$vis_actor2,$vis_actor3,$vis_actor4,$vis_actor5;
     $visible = "vis_actor" . $num;
-    $output  = "<CENTER>";
+    $output  = "";
     if ($edit) {
       $output .= "<INPUT TYPE=\"checkbox\" NAME=\"vis_actor" . $num . "\" VALUE=\"1\"";
       if (${$visible}) $output .= " CHECKED";
@@ -26,13 +26,12 @@
       if (${$visible}) { $output .= lang("yes") ."\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"" . ${$visible} ."\" VALUE=\"${$visible}\">";
     }
-    $output .= "</CENTER>";
     return $output;
   }
 
   function vis_staff($name,$list) {
     GLOBAL $edit;
-    $output  = "<CENTER>";
+    $output  = "";
     if ($edit) {
       $output .= "<INPUT TYPE=\"checkbox\" NAME=\"$name\" VALUE=\"1\"";
       if ($list) $output .= " CHECKED";
@@ -42,7 +41,6 @@
       if ($list) { $output .= lang("yes") . "\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"$name\" VALUE=\"$list\">";
     }
-    $output .= "</CENTER>";
     return $output;
   }
 
@@ -101,23 +99,12 @@
       }
     }
     $field = "<INPUT" . $type . "NAME=\"$name\" VALUE=\"$value\">";
-    echo $field;
+    return $field;
   }
   
   if ($update) { include("inc/update.inc"); }
   elseif ($create) { include("inc/add_entry.inc"); }
 
-  echo "<H2 Align=Center>";
-  switch ( strtolower($page_id) ) {
-    case "edit"      : echo lang("edit_entry",$nr); break;
-    case "view"      : echo lang("view_entry",$nr); break;
-    case "new_entry" : echo lang("add_entry"); break;
-    default          : break;
-  }
-  echo "</H2>\n";
-
-  echo "<CENTER>$save_result</CENTER>";
-  
   ##########################################################################
   # get all needed data from db (if not $new_entry ;)
  if (!$new_entry) {
@@ -214,161 +201,190 @@
 
 ################################################################
 # Form Start
-?>
-<FORM NAME="entryform" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
-<? if (!$new_entry) { ?>
-<INPUT TYPE="hidden" NAME="cass_id" VALUE="<? echo $cass_id ?>">
-<INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
-<INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>"><? } ?>
-<Table Width="90%" Align="Center" Border="1">
- <TR><TH ColSpan=4><? echo "<$input NAME=\"title\" VALUE=\"$title\" " . $form["addon_title"] . ">" ?></TH></TR>
- <TR>
-  <TD Width=20%><? echo lang("mediatype") ?></TD><TD Width=30%><?
+  $t = new Template($pvp->tpl_dir);
+  $t->set_file(array("edit"=>"edit.tpl","actors"=>"edit_actors.tpl"));
+#  $t->set_file(array("edit"=>"edit.tpl"));
+  $t->set_var("form_name","entryform");
+  $t->set_var("form_target",$PHP_SELF);
+  switch ( strtolower($page_id) ) {
+    case "edit"      : $t->set_var("listtitle",lang("edit_entry",$nr)); break;
+    case "view"      : $t->set_var("listtitle",lang("view_entry",$nr)); break;
+    case "add_entry" : $t->set_var("listtitle",lang("add_entry")); break;
+    default          : break;
+  }
+  $t->set_var("save_result",$save_result);
+#  $t->set_block("edit", "actors", "actorlist");
+
+  // actors block
+  for ($i=1;$i<=$max["actors"];$i++) {
+    $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
+    $t->set_var("actor_name",lang("actor") . " $i");
+    $t->set_var("actor",form_input($name,$actor[$i][name],$form["addon_name"]));
+    $t->set_var("actor_f",form_input($fname,$actor[$i][fname],$form["addon_name"]));
+    $t->set_var("actor_list",vis_actors($i));
+    $t->parse("actorlist","actors",TRUE);
+  }
+
+  // main block
+  if (!$new_entry) {
+    $hiddenfields = <<<EndHiddenFields
+<INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
+<INPUT TYPE="hidden" NAME="part" VALUE="$part">
+<INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
+EndHiddenFields;
+  }
+  $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $form["addon_title"] . ">");
+  $t->set_var("mtype_name",lang("mediatype"));
   if ($new_entry) {
-    echo "<SELECT NAME=\"mtype_id\">";
+    $field = "<SELECT NAME=\"mtype_id\">";
     for ($i=0;$i<count($mtypes);$i++) {
-      echo "<OPTION VALUE=\"" . $mtypes[$i][id] . "\"";
-      if ($mtypes[$i][name]==$media_tname) echo " SELECTED";
-      echo ">" . $mtypes[$i][name] . "</OPTION>";
+      $field .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\"";
+      if ($mtypes[$i][name]==$media_tname) $field .= " SELECTED";
+      $field .= ">" . $mtypes[$i][name] . "</OPTION>";
     }
-    echo "</SELECT>";
+    $field .= "</SELECT>";
   } else {
-    echo "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
-    echo "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
-  } ?></TD>
-  <TD Width=20%><? echo lang("country") ?></TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
- <TR>
-  <TD Width=20%><? echo lang("medianr") ?></TD><TD Width=30%><?
-    if ($new_entry) {
-      echo "<INPUT NAME=\"cass_id\" " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME=\"part\" " . $form["addon_part"] . ">";
-      echo "&nbsp;&nbsp;&nbsp;" . lang("highest_db_entries") . ":&nbsp;<SELECT>";
-      for ($i=0;$i<count($lastnum);$i++) {
-        echo "<OPTION NAME=\"lastnum\" VALUE=\"\">" . $lastnum[$i][entry] . "</OPTION>";
-      }
-      echo "</SELECT>";
-    } else {
-      echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
-    } ?></TD>
-  <TD><? echo lang("year") ?></TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
- <TR>
-  <TD><? echo lang("length") ?></TD><TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0><TR><TD><? form_input("length",$length,$form["addon_filmlen"]); echo " " . lang("min"); ?></TD><TD><? echo lang("longplay") ?>:&nbsp;<INPUT NAME="lp" <?
-  if ($edit) { ?>TYPE="checkbox" VALUE="1"<? if ($lp) echo " CHECKED"; echo ">"; } else { ?>TYPE="button" VALUE="<? if ($lp) { echo lang("yes") . "\">"; } else { echo lang("no") . "\">"; } } ?></TD></TR></TABLE>
-  <TD><? echo lang("category") ?> 1-2-3</TD><TD><?
+    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
+    $field .= "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
+  }
+  $t->set_var("mtype",$field);
+  $t->set_var("country_name",lang("country"));
+  $t->set_var("country",form_input("country",$country,$form["addon_country"]));
+  $t->set_var("medianr_name",lang("medianr"));
+  if ($new_entry) {
+    $field  = "<INPUT NAME=\"cass_id\" " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME=\"part\" " . $form["addon_part"] . ">";
+    $field .= "&nbsp;&nbsp;&nbsp;" . lang("highest_db_entries") . ":&nbsp;<SELECT>";
+    for ($i=0;$i<count($lastnum);$i++) {
+      $field .= "<OPTION NAME=\"lastnum\" VALUE=\"\">" . $lastnum[$i][entry] . "</OPTION>";
+    }
+    $field .= "</SELECT>";
+  } else {
+    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+  }
+  $t->set_var("medianr",$field);
+  $t->set_var("year_name",lang("year"));
+  $t->set_var("year",form_input("year",$year,$form["addon_year"]));
+  $t->set_var("length_name",lang("length"));
+  $t->set_var("length",form_input("length",$length,$form["addon_filmlen"]) . " " . lang("min"));
+  $t->set_var("longplay_name",lang("longplay"));
+  $field = "<INPUT NAME=\"lp\"";
+  if ($edit) { 
+    $field .= "TYPE=\"checkbox\" VALUE=\"1\"";
+    if ($lp) $field .= " CHECKED";
+    $field .= ">";
+  } else {
+    $field .= ">TYPE=\"button\" VALUE=\"";
+    if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+  }
+  $t->set_var("longplay",$field);
+  $t->set_var("category_name",lang("category") . " 1-2-3");
+  $field = "";
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
-    echo "<SELECT NAME=\"cat" . $i . "_id\">";
-    if ($i > 1) echo "<OPTION VALUE=\"-1\">- None -</OPTION>";
+    $field .= "<SELECT NAME=\"cat" . $i . "_id\">";
+    if ($i > 1) $field .= "<OPTION VALUE=\"-1\">- None -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
-      echo "<OPTION VALUE=\"" . $cats[$k][id] . "\"";
-      if ($cats[$k][name]==$cat[$i]) echo " SELECTED";
-      echo ">" . $cats[$k][name] . " </OPTION>";
+      $field .= "<OPTION VALUE=\"" . $cats[$k][id] . "\"";
+      if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
+      $field .= ">" . $cats[$k][name] . " </OPTION>";
     }
-    echo "</SELECT>";
+    $field .= "</SELECT>";
    } else {
-    echo "<$input NAME=\"cat" . $i . "\" VALUE=\"";
-    if ( trim($cat[$i])=="" ) { echo "- None -"; } else { echo $cat[$i]; }
-    echo "\">";
+    $field .= "<$input NAME=\"cat" . $i . "\" VALUE=\"";
+    if ( trim($cat[$i])=="" ) { $field .= "- None -"; } else { $field .= $cat[$i]; }
+    $field .= "\">";
    }
-   if ( $i<$max["categories"] ) echo "&nbsp;-&nbsp;";
+   if ( $i<$max["categories"] ) $field .= "&nbsp;-&nbsp;";
   }
-  ?></TD></TR>
- <TR>
-  <TD ColSpan=2>
-   <Table Width=100% Border=0 CellPadding=0 CellSpacing=0><?
-    if ($new_entry) {
-      echo "<TR><TD>" . lang("medialength") . "</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev") . "</TD></TD>\n";
-    } else {
-      echo "<TR><TD>" . lang("free") . "</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev") . "</TD></TD>\n";
-    } ?>
-    <TR><TD><? echo lang("date_rec") ?></TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
-    <TR><TD ColSpan="2"><HR></TD></TR>
-    <TR><TD WIDTH=30%><? echo lang("tone") ?></TD><TD><?
-    if ($edit) {
-      echo "<SELECT NAME=\"tone_id\">";
-      for ($i=0;$i<count($ttypes);$i++) {
-        echo "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
-        if ($ttypes[$i][name]==$tone) echo  "SELECTED";
-        echo ">" . $ttypes[$i][name] . " </OPTION>";
-      }
-      echo "</SELECT>";
-    } else {
-      echo "<$input NAME=\"tone\" VALUE=\"$tone\">";
-    } ?></TD></TR>
-    <TR><TD><? echo lang("picture") ?></TD><TD><?
-    if ($edit) {
-      echo "<SELECT NAME=\"color_id\">";
-      for ($i=0;$i<count($scolors);$i++) {
-        echo "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
-        if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][name]==$defaults["scolor"]) ) echo " SELECTED";
-        echo ">" . $scolors[$i][name] . " </OPTION>";
-      }
-      echo "</SELECT>";
-    } else {
-      echo "<$input NAME=\"color\" VALUE=\"$color\">";
+  $t->set_var("category",$field);
+  if ($new_entry) {
+    $t->set_var("mlength_free_name",lang("medialength"));
+    $t->set_var("mlength_free","<INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev"));
+  } else {
+    $t->set_var("mlength_free_name",lang("free"));
+    $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
+  }
+  $t->set_var("date_name",lang("date_rec"));
+  $t->set_var("date","<$input NAME=\"recdate\" VALUE=\"$recdate\">");
+  $t->set_var("tone_name",lang("tone"));
+  if ($edit) {
+    $field = "<SELECT NAME=\"tone_id\">";
+    for ($i=0;$i<count($ttypes);$i++) {
+      $field .= "<OPTION VALUE=\"" . $ttypes[$i][id] . "\"";
+      if ($ttypes[$i][name]==$tone) $field .=  "SELECTED";
+      $field .= ">" . $ttypes[$i][name] . " </OPTION>";
     }
-    ?></TD></TR>
-    <TR><TD Width=40%><? echo lang("screen") ?></TD><TD Width=60%><?
-    if ($edit) {
-      echo "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
-      for ($i=0;$i<count($picts);$i++) {
-        echo "<OPTION VALUE=\"" . $picts[$i][id] . "\"";
-        if ($picts[$i][name]==$pict_format) echo  "SELECTED";
-        echo ">" . $picts[$i][name] . " </OPTION>";
-      }
-      echo "</SELECT>";
-    } else {
-      echo "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\">";
+    $field .= "</SELECT>";
+  } else {
+    $field = "<$input NAME=\"tone\" VALUE=\"$tone\">";
+  }
+  $t->set_var("tone",$field);
+  $t->set_var("picture_name",lang("picture"));
+  if ($edit) {
+    $field = "<SELECT NAME=\"color_id\">";
+    for ($i=0;$i<count($scolors);$i++) {
+      $field .= "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
+      if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][name]==$defaults["scolor"]) ) $field .= " SELECTED";
+      $field .= ">" . $scolors[$i][name] . " </OPTION>";
     }
-    ?></TD></TR>
-    <TR><TD Width=40%><? echo lang("source") ?></TD><TD Width=60%><? if (strlen(trim($src))) { form_input("src",$src,$form["addon_src"]); } else { form_input("dummy",lang("unknown"),$form["addon_src"]); } ?></TD></TR>
-    <TR><TD><? echo lang("fsk") ?></TD><TD><? form_input("fsk",$fsk,$form["addon_fsk"]); ?></TD></TR>
-   </Table></TD>
-  <TD ColSpan=2>
-   <Table Width=100%>
-    <TR><TD><B><? echo lang("staff") ?></B></TD><TD><? echo lang("name") ?></TD><TD><? echo lang("first_name") ?></TD><TD ALIGN="center"><? echo lang("in_list") ?></TD></TR>
-    <TR><TD><? echo lang("director") ?></TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); ?></TD>
-        <TD><? form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD>
-        <TD><? echo vis_staff('director_list',$director_list); ?></TD></TR>
-    <TR><TD><? echo lang("composer") ?></TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); ?></TD>
-        <TD><? form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD>
-        <TD><? echo vis_staff('music_list',$music_list); ?></TD></TR>
-    <TR><TD COLSPAN="4"><HR></TD></TR>
-    <?php for ($i=1;$i<=$max["actors"];$i++) {
-      $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
-      echo "<TR><TD>" . lang("actor") . " $i</TD><TD>";
-      form_input($name,$actor[$i][name],$form["addon_name"]);
-      echo "</TD><TD>";
-      form_input($fname,$actor[$i][fname],$form["addon_name"]);
-      echo "</TD><TD>" . vis_actors($i) . "</TD></TR>\n";
-    } ?>
-   </Table>
-  </TD>
-  </TR>
- <TR><TD ColSpan=4 Align=Center>
-   <TABLE WIDTH="100%" BORDER="0">
-     <TR><TH><HR><? echo lang("comments") ?><HR></TH></TR>
-     <TR><TD><?
-     if ($edit) {
-       echo "<CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></CENTER>";
-     } else {
-       echo nl2br($comment);
-     }
-     ?></TD></TR>
-   </TABLE>
- <TR><TD ColSpan=4>
-   <INPUT TYPE="hidden" NAME="nr" VALUE="<?php echo $nr ?>">
-   <Table Width="100%"><? if ($new_entry) { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo lang("cancel") ?>"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="create" VALUE="<? echo lang("create") ?>"></TD></TR><? } elseif ($edit) { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo lang("cancel") ?>"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="<? echo lang("update") ?>"></TD></TR><? } else { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="<? echo lang("edit") ?>"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="delete" VALUE="<? echo lang("delete") ?>"></TD></TR><? } ?>
-   </TABLE>
- </TD></TR>
-</Table>
-</FORM>
-<?
+    $field .= "</SELECT>";
+  } else {
+    $field = "<$input NAME=\"color\" VALUE=\"$color\">";
+  }
+  $t->set_var("picture",$field);
+  $t->set_var("screen_name",lang("screen"));
+  if ($edit) {
+    $field = "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
+    for ($i=0;$i<count($picts);$i++) {
+      $field .= "<OPTION VALUE=\"" . $picts[$i][id] . "\"";
+      if ($picts[$i][name]==$pict_format) $field .=  "SELECTED";
+      $field .= ">" . $picts[$i][name] . " </OPTION>";
+    }
+    $field .= "</SELECT>";
+  } else {
+    $field = "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\">";
+  }
+  $t->set_var("screen",$field);
+  $t->set_var("source_name",lang("source"));
+  if (strlen(trim($src))) {
+    $t->set_var("source",form_input("src",$src,$form["addon_src"]));
+  } else {
+    $t->set_var("source",form_input("dummy",lang("unknown"),$form["addon_src"]));
+  }
+  $t->set_var("fsk_name",lang("fsk"));
+  $t->set_var("fsk",form_input("fsk",$fsk,$form["addon_fsk"]));
+  $t->set_var("staff_name",lang("staff"));
+  $t->set_var("name_name",lang("name"));
+  $t->set_var("firstname_name",lang("first_name"));
+  $t->set_var("inlist_name",lang("in_list"));
+  $t->set_var("director_name",lang("director"));
+  $t->set_var("director",form_input("director_name",$director_name,$form["addon_name"]));
+  $t->set_var("director_f",form_input("director_fname",$director_fname,$form["addon_name"]));
+  $t->set_var("director_list",vis_staff('director_list',$director_list));
+  $t->set_var("composer_name",lang("composer"));
+  $t->set_var("composer",form_input("composer_name",$composer_name,$form["addon_name"]));
+  $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$form["addon_name"]));
+  $t->set_var("composer_list",vis_staff('music_list',$music_list));
+  // actors are set up on top, in the "actors block"
+  $t->set_var("comments_name",lang("comments"));
+  if ($edit) {
+    $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></DIV>");
+  } else {
+    $t->set_var("comments",nl2br($comment));
+  }
+  $hiddenfields .= "<INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+  $t->set_var("hiddenfields",$hiddenfields);
+  if ($new_entry) {
+    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
+    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"create\" VALUE=\"" . lang("create") . "\">");
+  } elseif ($edit) {
+    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
+    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
+  } else {
+    $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"edit\" VALUE=\""   . lang("edit")   . "\">");
+    $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"delete\" VALUE=\"" . lang("delete") . "\">");
+  }
+  $t->pparse("out","edit");
 
   include("inc/footer.inc");
 

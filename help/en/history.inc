@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.5 (2004)
+0.6.5 (September 21, 2004)
 [text]
 <ul>
  <li>converted help system to utf-8
@@ -11,6 +11,7 @@
  <li>updated contents of (English and German) help files. Still need volunteers
      for the other languages! It's an easy job, so come on, help me out...
  <li>fresh install failed on categories - fixed.
+ <li>minor updates to documentation (doc/README and in setup/install.php)
 </ul>
 
 [title]

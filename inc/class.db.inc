@@ -1571,6 +1571,22 @@
    # Media Specific Stuff
    ############################################################################
 
+   /** Obtain all media numbers that have a certain disk type assigned
+    * @class sql
+    * @method get_mediaForDisktype
+    * @param integer id disktype-ID
+    * @return array media (array of objects w/ properties mtype_id, cass_id)
+    */
+   function get_mediaForDisktype($id) {
+     $this->dbquery("SELECT mtype_id,id FROM cass WHERE disks_id=$id");
+     while ( $this->next_record() ) {
+       $m->cass_id  = $this->f('id');
+       $m->mtype_id = $this->f('mtype_id');
+       $media[] = $m;
+     }
+     return $media;
+   }
+
    /** Obtain all disk type for a given media type
     * @class sql
     * @method get_disktypes

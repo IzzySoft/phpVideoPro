@@ -1,0 +1,52 @@
+#
+# Data for table 'cat'
+#
+
+INSERT INTO cat VALUES ( '1', 'Abenteuer');
+INSERT INTO cat VALUES ( '2', 'Action');
+INSERT INTO cat VALUES ( '3', 'Agentenfilm');
+INSERT INTO cat VALUES ( '4', 'Bibelfilm');
+INSERT INTO cat VALUES ( '5', 'Biographie');
+INSERT INTO cat VALUES ( '6', 'Bühnenstck');
+INSERT INTO cat VALUES ( '7', 'Dokumentarfilm');
+INSERT INTO cat VALUES ( '8', 'Drama');
+INSERT INTO cat VALUES ( '9', 'Fantasy');
+INSERT INTO cat VALUES ( '10', 'Feier');
+INSERT INTO cat VALUES ( '11', 'Gruselfilm');
+INSERT INTO cat VALUES ( '12', 'Historie');
+INSERT INTO cat VALUES ( '13', 'Horror');
+INSERT INTO cat VALUES ( '14', 'Judaistik');
+INSERT INTO cat VALUES ( '15', 'Kamera');
+INSERT INTO cat VALUES ( '16', 'Katastrophe');
+INSERT INTO cat VALUES ( '17', 'Kinder');
+INSERT INTO cat VALUES ( '18', 'Komödie');
+INSERT INTO cat VALUES ( '19', 'Konzert');
+INSERT INTO cat VALUES ( '20', 'Kriegsfilm');
+INSERT INTO cat VALUES ( '21', 'Krimi');
+INSERT INTO cat VALUES ( '22', 'Liebesfilm');
+INSERT INTO cat VALUES ( '23', 'Märchenfilm');
+INSERT INTO cat VALUES ( '24', 'Melodrama');
+INSERT INTO cat VALUES ( '25', 'Monumentalfilm');
+INSERT INTO cat VALUES ( '26', 'Musical');
+INSERT INTO cat VALUES ( '27', 'Musik');
+INSERT INTO cat VALUES ( '28', 'Musik-Videoclip');
+INSERT INTO cat VALUES ( '29', 'Musikfilm');
+INSERT INTO cat VALUES ( '30', 'Naturfilm');
+INSERT INTO cat VALUES ( '31', 'Oper');
+INSERT INTO cat VALUES ( '32', 'Operette');
+INSERT INTO cat VALUES ( '33', 'Problemfilm');
+INSERT INTO cat VALUES ( '34', 'Reportage');
+INSERT INTO cat VALUES ( '35', 'Satire');
+INSERT INTO cat VALUES ( '36', 'Science Fiction');
+INSERT INTO cat VALUES ( '37', 'Show');
+INSERT INTO cat VALUES ( '38', 'Sonstige');
+INSERT INTO cat VALUES ( '39', 'Spionagefilm');
+INSERT INTO cat VALUES ( '40', 'Thriller');
+INSERT INTO cat VALUES ( '41', 'Tier');
+INSERT INTO cat VALUES ( '42', 'Tierfilm');
+INSERT INTO cat VALUES ( '43', 'Travestie');
+INSERT INTO cat VALUES ( '44', 'Urlaub');
+INSERT INTO cat VALUES ( '45', 'Weihnachten');
+INSERT INTO cat VALUES ( '46', 'Western');
+INSERT INTO cat VALUES ( '47', 'Western-Komödie');
+INSERT INTO cat VALUES ( '48', 'Zeichentrick');

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -62,12 +62,11 @@
  $t->set_var("year",lang("year"));
  $t->set_var("date",lang("date_rec"));
  $t->set_var("category",lang("category"));
- $t->set_var("scriptname",$PHP_SELF);
+ $t->set_var("scriptname",$_SERVER["PHP_SELF"]);
  $t->set_var("first",$nextmatch->first);
  $t->set_var("left",$nextmatch->left);
  $t->set_var("right",$nextmatch->right);
  $t->set_var("last",$nextmatch->last);
 
  $t->pparse("out","list");
-
 ?>

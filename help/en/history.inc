@@ -8,6 +8,7 @@
  <li>categories are now translated (if you miss translations for your language,
      see the "HowTo" section on how to create them, then create them, and send
      them to me :)
+ <li>added Swedish language file (thanks to Tony!)
 </ul>
 
 [title]

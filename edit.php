@@ -361,7 +361,7 @@
    <Table Width="100%"><? if ($new_entry) { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo lang("cancel") ?>"></TD>
         <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="create" VALUE="<? echo lang("create") ?>"></TD></TR><? } elseif ($edit) { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? lang("cancel") ?>"></TD>
+    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo lang("cancel") ?>"></TD>
         <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="<? echo lang("update") ?>"></TD></TR><? } else { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="<? echo lang("edit") ?>"></TD>
         <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="delete" VALUE="<? echo lang("delete") ?>"></TD></TR><? } ?>

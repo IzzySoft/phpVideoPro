@@ -93,7 +93,7 @@
     $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
     kill("video",$id);
     # and finally we may have to correct the free space remaining on that medium (if rewritable)
-    if ( $pvp->common->medium_is_rw($mtype_id) ) {
+    if ( $pvp->common->medium_is_rw($mtype_id) || $movie[disktype] ) {
       $details .= "<li>" . lang("check_media_delete"). ". ";
       if ( $pvp->config->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
         $details .= $colors["ok"] . lang("medium_deleted") . "</Font><BR>";

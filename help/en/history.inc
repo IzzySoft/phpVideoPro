@@ -12,6 +12,9 @@
       <ul>
        <li>started implementing help system
        <li>out-sourced stylesheet for maybe planned template support
+       <li>added sort criteria to media list: 1) MediaType, 2) MediaNr.
+           For now this is static - some future version may add some
+	   dynamic to it to let the user decide about the sorting
       </ul>
   <LI><b>0.1.2 (July 17, 2001)</b><br>
       alpha release "freedom":

@@ -14,6 +14,7 @@
 
  #=======================================[ get movies and setup variables ]===
  $list = $nextmatch->list;
+ $mtype = array();
  for ($i=0;$i<$nextmatch->listcount;$i++) {
    $mtype[$i]    = $list[$i]['mtype_short'];
    $mtype_id[$i] = $list[$i]['mtype_id'];

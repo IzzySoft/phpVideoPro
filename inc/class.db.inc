@@ -1322,6 +1322,7 @@
     */
    function get_movielist($order="",$restrict="",$start="") {
      $filter = get_filters();
+     $where  = "";
      switch ($order) {
        case "title"  : $orderby = "v.title,v.mtype_id DESC,v.cass_id"; break;
        case "length" : $orderby = "v.length,v.mtype_id DESC,v.cass_id"; break;
@@ -1333,7 +1334,7 @@
      if ($restrict) $where = " WHERE $restrict";
      $query = "SELECT v.id FROM video v";
      if (strlen($filter)) {
-       if (isset($where)) {
+       if (!empty($where)) {
          $where .= " AND $filter";
        } else {
          $where = " WHERE $filter";

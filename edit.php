@@ -185,7 +185,7 @@
   }
  } else {
    for ($i=0;$i<count($mtypes);$i++) {
-     dbquery("SELECT MAX(cass_id) max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
+     dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i][id]);
      $db->next_record();
      $lastnum[$i][mtype]   = $mtypes[$i][sname];
      $lastnum[$i][mtype_id]= $mtypes[$i][id];
@@ -193,9 +193,9 @@
      while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
    }
    for ($i=0;$i<count($lastnum);$i++) {
-     dbquery("SELECT MAX(part) FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
+     dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
      $db->next_record();
-     $lastnum[$i][part]    = $db->f('MAX(part)');
+     $lastnum[$i][part]    = $db->f('max_part');
      while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }
      $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
    }

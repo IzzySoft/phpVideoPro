@@ -1982,15 +1982,20 @@
     * @method public disktypeGetForMedia
     * @param integer mtype_id Media Type ID
     * @param integer media_id Media ID (alias cass_id)
-    * @return integer disktype_id
+    * @return object disktype (properties: int(type) [=id],array(rc))
     */
    function disktypeGetForMedia($mtype_id,$media_id) {
-     if (empty($mtype_id) || empty($media_id)) return 0;
+     $mt->type = 0; $mt->rc = array();
+     if (empty($mtype_id) || empty($media_id)) return $mt;
      $media_id = (int) $media_id;
-     $this->dbquery("SELECT disks_id FROM cass WHERE mtype_id=$mtype_id AND id=$media_id");
-     if (!$this->num_rows()) return 0;
+     $this->dbquery("SELECT disks_id,rc FROM cass WHERE mtype_id=$mtype_id AND id=$media_id");
+     if (!$this->num_rows()) return $mt;
      $this->next_record();
-     return $this->f('disks_id');
+     $mt->type = $this->f('disks_id');
+     $rc = $this->f('rc');
+     $trc = explode(",",substr($rc,1,strlen($rc)-2));
+     foreach ($trc as $var) { $mt->rc[$var] = 1; }
+     return $mt;
    }
 
    /** Delete a disktype from table disks

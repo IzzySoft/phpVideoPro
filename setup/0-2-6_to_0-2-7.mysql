@@ -13,6 +13,17 @@ UPDATE video SET actor3_list=0 WHERE actor3_list IS NULL;
 UPDATE video SET actor4_list=0 WHERE actor4_list IS NULL;
 UPDATE video SET actor5_list=0 WHERE actor5_list IS NULL;
 UPDATE video SET lp=0 WHERE lp IS NULL;
+ALTER TABLE video MODIFY pict_id INT(5) NOT NULL;
+ALTER TABLE video MODIFY commercials_id INT(5) NOT NULL;
+ALTER TABLE video MODIFY cat1_id INT(5) NOT NULL;
+ALTER TABLE video MODIFY cat2_id INT(5) NOT NULL;
+ALTER TABLE video MODIFY cat3_id INT(5) NOT NULL;
+ALTER TABLE video MODIFY actor1_list INT(1) NOT NULL;
+ALTER TABLE video MODIFY actor2_list INT(1) NOT NULL;
+ALTER TABLE video MODIFY actor3_list INT(1) NOT NULL;
+ALTER TABLE video MODIFY actor4_list INT(1) NOT NULL;
+ALTER TABLE video MODIFY actor5_list INT(1) NOT NULL;
+ALTER TABLE video MODIFY lp INT(1) NOT NULL;
 
 # version update
 UPDATE pvp_config SET value='0.2.7' WHERE name='version';

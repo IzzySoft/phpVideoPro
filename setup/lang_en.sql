@@ -313,3 +313,9 @@ INSERT INTO lang VALUES('backup_db_complete','en','Backup the complete Database 
 INSERT INTO lang VALUES('backup_db_movies','en','Backup movie relevant data only (movies, actors etc.)');
 INSERT INTO lang VALUES('backup_db_moviedel','en','Backup movie relevant data only and insert a delete statement for old data prior to the insert statements for new (backup\'d) data');
 INSERT INTO lang VALUES('backup_db_runscript','en','Would you like to create the script now?');
+INSERT INTO lang VALUES('trans_code','en','Translation Code');
+INSERT INTO lang VALUES('orig_trans','en','Original translation (%1)');
+INSERT INTO lang VALUES('target_trans','en','Translation for your target language (%1)');
+INSERT INTO lang VALUES('trans_sample','en','Link to Sample');
+INSERT INTO lang VALUES('save_lang_file','en','Save target translations to file');
+INSERT INTO lang VALUES('admin_translations','en','Edit Translations');

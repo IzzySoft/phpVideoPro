@@ -2,7 +2,16 @@
 # /*  $Id$ */
 
 [title]
-0.4.6 (April 2003)
+0.4.7 (2003)
+[text]
+<ul>
+ <li>Made editing for translations easy by a new form in admin menu. If you've
+     added/updated some entries, you may save them to a file and then send them
+     to me for inclusion with future versions!
+</ul>
+
+[title]
+0.4.6 (April 19, 2003)
 [text]
 <ul>
  <li>media statistics just reported count of r/w media instead of all media -

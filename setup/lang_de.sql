@@ -303,3 +303,8 @@ INSERT INTO lang VALUES('backup_db_complete','de','Vollständiges Backup der Date
 INSERT INTO lang VALUES('backup_db_movies','de','Nur Film-relevante Daten sichern (Film, Schauspieler etc.)');
 INSERT INTO lang VALUES('backup_db_moviedel','de','Nur Film-relevante Daten sichern; zusätzlich vor dem Einfügen der "neuen" (gesicherten) Daten alte Daten zum Löschen markieren');
 INSERT INTO lang VALUES('backup_db_runscript','de','Soll das Script jetzt erstellt werden?');
+INSERT INTO lang VALUES('orig_trans','de','Original-Text (%1)');
+INSERT INTO lang VALUES('target_trans','de','Übersetzung für die Ziel-Sprache language (%1)');
+INSERT INTO lang VALUES('trans_sample','de','Beispiel-Links');
+INSERT INTO lang VALUES('save_lang_file','de','Übersetzungen für die Ziel-Sprache in Datei sichern');
+INSERT INTO lang VALUES('admin_translations','de','Übersetzungen bearbeiten');

@@ -11,6 +11,8 @@
  <li>added audio and subtitle to search function
  <li>sometimes the link to the previous movie (in view_entry) was broken
      (especially when "part 1" of a medium was missing and MySQL used). Fixed.
+ <li>if there were holes in the mtype id chain (e.g. highest id 6, but 4 not
+     set) this caused problems with prev/nextentry. Fixed.
 </ul>
 
 [title]

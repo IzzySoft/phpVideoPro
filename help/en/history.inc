@@ -15,6 +15,7 @@
  <li>fixed screwed-up title names in IMDB result list (hopefully no side effects ;)
  <li>whether to close the IMDB TX window on transfer is now based on user preference
  <li>added context help links (icons) on configuration and backup page
+ <li>IMDB transfer now also handles the composer(s) ("Original Music by...")
 </ul>
 
 [title]

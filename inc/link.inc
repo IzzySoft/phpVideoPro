@@ -34,7 +34,7 @@
 
   ############################################################################
   # IMDB link creation
-  /** Create url string to a persons entry in imdb
+  /** Create url string to a persons entry in imdb (privat - called by formImdbPerson only)
    * @class link
    * @method ImdbPerson
    * @param string fname first name
@@ -69,7 +69,7 @@
     } else { return ""; }
   } // end function formImdbPerson
 
-  /** Create url string to a titles entry in imdb
+  /** Create url string to a titles entry in imdb (privat - called by formImdbTitle only)
    * @class link
    * @method ImdbTitle
    * @param string title movie title

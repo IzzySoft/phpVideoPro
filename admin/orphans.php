@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- $page_id = "admin_orphans";
+# $page_id = "admin_orphans";
  include("../inc/header.inc");
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_orphans.tpl"));

@@ -59,10 +59,12 @@
 
  #=======================================================[ run the backup ]===
  if ($_POST["backup"]) {
+   $stamp = date('ymd'); // to generate a unique filename
+ #---------------------------------------------[ Movies only (PVP format) ]---
    if ($_POST["btype"]=="movieint") {
      $mlist  = $db->get_movieids_all();
      $mcount = count($mlist);
-     fhead("movies_".date('ymd').".pvp");
+     fhead("movies_".$stamp.".pvp");
      fout("PVP Movie Backup: [$mcount] records");
      for ($i=0;$i<$mcount;++$i) {
        $movie = $db->get_movie($mlist[$i]);
@@ -71,23 +73,13 @@
      if ($_POST["compress"]) echo gzencode($out);
      exit;
    }
-   if ($_POST["compress"]) { fhead("pvp-backup.sql.gz"); }
-   else { fhead("pvp-backup.sql"); }
+ #--------------------------------------[ Complete DB backup (SQL format) ]---
+   if ($_POST["compress"]) { fhead("pvp-$stamp.sql.gz"); }
+   else { fhead("pvp-$stamp.sql"); }
    fout("######################################");
    fout("# Backup created by phpVideoPro v$version");
    fout("######################################");
-   switch ($_POST["btype"]) {
-     case "movieint" : $tables = array(); break;
-     case "moviedel" : $purge = TRUE;
-     case "movies"   :
-       $tabs = array("video","cass","music","directors","actors");
-       foreach ($tabs as $val) {
-         $tables[]["table_name"] = $val;
-       }
-       break;
-     default         :
-       $tables = $db->table_names();
-   }
+   $tables = $db->table_names();
    $tablecount = count($tables);
    for ($i=0;$i<$tablecount;++$i) {
      $name = $tables[$i]["table_name"];

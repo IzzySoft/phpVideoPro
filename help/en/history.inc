@@ -7,6 +7,7 @@
 <ul>
  <li>On adding a new/editing an existing entry you now can get the basic values
      from IMDB!
+ <li>updated localized language names - now most of them are available
 </ul>
 
 [title]

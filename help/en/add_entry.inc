@@ -73,7 +73,7 @@ and some future features may not consider this possibility.
 
 [text]
 Additionally, there's a checkbox attached to each name, titled "In List". This,
-too, refers to a planned feature: there will be the possibility to list up,
+too, refers to a nice feature: there will be the possibility to list up,
 e.g., all actors together with the title of the movies they played a role in.
 By marking this checkbox, you can decide if this movie shall be displayed for
 this actor. If, for example, your favorite actor now plays very serious roles -

@@ -39,6 +39,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("display_limit",$display_limit);
   $pvp->preferences->set("page_length",$page_length);
   $pvp->preferences->set("date_format",$date_format);
+  $pvp->preferences->set("default_movie_toneid",$movie_tone);
   $pvp->preferences->set("default_movie_colorid",$movie_color);
   $pvp->preferences->set("default_movie_onlabel",$onlabel_default);
   $mtypes = $db->get_mtypes();
@@ -99,6 +100,7 @@ $template_set   = $pvp->preferences->template;
 $display_limit  = $pvp->preferences->display_limit;
 $page_length    = $pvp->preferences->page_length;
 $date_format    = $pvp->preferences->date_format;
+$movie_tone     = $pvp->preferences->default_movie_toneid;
 $movie_color    = $pvp->preferences->default_movie_colorid;
 $onlabel_default= $pvp->preferences->default_movie_onlabel;
 $remove_media   = $db->get_config("remove_empty_media");
@@ -272,6 +274,25 @@ if ($onlabel_default) {
   $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\">");
 }
 $t->parse("item","itemblock",TRUE);
+
+#--[ movie_tone_default ]--
+$t->set_var("item_name",lang("movie_tone_default"));
+$t->set_var("item_comment",lang("movie_tone_default_comment"));
+unset($id,$input);
+$pict = $db->get_tone();
+for ($i=0;$i<count($pict);$i++) {
+  $id     = $pict[$i][id];
+  $name   = $pict[$i][name];
+  $input .= "<INPUT TYPE='radio' NAME='movie_tone' VALUE='$id'";
+  if ($pvp->preferences->default_movie_toneid==$id) {
+    $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
+}
+$t->set_var("item_input",$input);
+if ($admin) {
+  $t->parse("item","itemblock",TRUE);
+} else {
+  $t->parse("item","itemblock");
+}
 
 #--[ movie_color_default ]--
 $t->set_var("item_name",lang("movie_color_default"));

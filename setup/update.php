@@ -110,8 +110,8 @@ if ( !isset($oldversion) ) {
     case "0.3.2"    :
     case "0.3.3"    : queryf("0-3-3_to_0-3-4.".$database["type"],"Update from v0.3.3 to v0.3.4");
     case "0.3.4"    :
-    case "0.3.5"    : queryf("0-3-5_to_0-3-6.sql","Update from v0.3.5 to v0.3.6");
-    case "0.3.6"    : queryf("0-3-6_to_0-3-7.sql","Update from v0.3.6 to v0.3.7");
+    case "0.3.5"    :
+    case "0.3.6"    : queryf("0-3-6_to_0-3-7.".$database["type"],"Update from v0.3.6 to v0.3.7");
                       queryf("lang_en.sql","Refresh of English language support");
 		      $colors = $pvp->preferences->colors;
 		      unset($colors["page_background"]);

@@ -245,6 +245,8 @@ INSERT INTO lang VALUES('rw_media','en','Editable Media');
 INSERT INTO lang VALUES('rw_media_comment','en','Media to maintain free space for (since you record on them).');
 INSERT INTO lang VALUES('remove_empty_media','en','Remove empty media');
 INSERT INTO lang VALUES('remove_empty_media_comment','en','Should media be removed from the free-space-maintenance, when the last movie is deleted from them?');
+INSERT INTO lang VALUES('movie_tone_default','en','Default sound format of a movie');
+INSERT INTO lang VALUES('movie_tone_default_comment','en','This will be used as pre-set sound format of a new entry.');
 INSERT INTO lang VALUES('movie_color_default','en','Default color format of a movie');
 INSERT INTO lang VALUES('movie_color_default_comment','en','This will be used as pre-set color format of a new entry.');
 INSERT INTO lang VALUES('site_info','en','Site Info');

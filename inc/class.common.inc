@@ -210,6 +210,32 @@ class common {
     return $str;
   }
 
+  /** remove unwanted HTML tags to safeguard the site
+   * @class common
+   * @method safehtml
+   * @param string string string to clean up
+   * @param optional string allowed tags to permit (defaults to "block|pre|br|b|i|p|ul|ol|u|center|hr")
+   * @param optional boolean addstring add $allowed to the defaults (TRUE) or replace (FALSE)?
+   * @param optional string keep tags to keep entirely intact (needed for e.g. "a|img"; default: "")
+   * @return string cleaned string
+   * @version Everything enclosed by &lt;script&gt;, &lt;iframe&gt; and
+   *  &lt;head&gt; tags is completely removed with those tags respective. All
+   *  other non-allowed tags are removed, but the enclosed text is kept intact.
+   */
+  function safehtml($str,$allowed="",$add=FALSE,$keep="") {
+    if ($allowed==="") $allowed = "block|pre|br|b|i|p|ul|ol|u|center|hr";
+    if ($keep) {
+      if ($allowed) { $ignored = $allowed . "|" . $keep; } else { $ignored = $keep; }
+    } else { $ignored = $allowed; }
+    echo "Ignore: '$ignored'<br>";
+    $str = preg_replace("'<script[^>]*?>.*?</script>'si", "", $str);
+    $str = preg_replace("'<iframe[^>]*?>.*?</iframe>'si", "", $str);
+    $str = preg_replace("'<head[^>]*?>.*?</head>'si", "", $str);
+    $str = preg_replace("/<((?!\/?($ignored)\b)[^>]*>)/xis", "", $str);
+    $str = preg_replace("/<($allowed).*?>/i", "<\\1>", $str);
+    return $str;
+  }
+
    #============================================[ file system functions ]===
   /** get a list of files from within a given directory optionally using a mask
    *  (where $mask is the file's extension)

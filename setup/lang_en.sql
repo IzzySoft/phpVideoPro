@@ -381,3 +381,6 @@ INSERT INTO lang VALUES('imp_errors','en','Import of %2 records finnished with %
 INSERT INTO lang VALUES('imp_success','en','Import of %1 records successfully completed.','Result message after import');
 INSERT INTO lang VALUES('backup_file_corrupt','en','The selected Backup-File is corrupt - cannot restore from this!','Hint on backup/restore page');
 INSERT INTO lang VALUES('clean_restore','en','CleanUp (remove) old data before restore','Selection on backup/restore page');
+INSERT INTO lang VALUES('taperest','en','Manage remaining time','Page title when searching for free space on media');
+INSERT INTO lang VALUES('tplset_applicat','en','Applicat Template Set','Name of the <I>Applicat</I> template set for the page title');
+INSERT INTO lang VALUES('not_logged_in','en','not logged in','String to display instead of the user name when not logged in');

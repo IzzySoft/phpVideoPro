@@ -49,8 +49,9 @@
    </TABLE>
  <TR><TD ColSpan=4>
    <Table Width="100%">
-    <TR><TD Width="50%">{button_li}</TD>
-        <TD Width="50%"><div align=right>{button_re}</div></TD></TR>
+    <TR><TD Width="33%">{button_li}</TD>
+        <TD Width="34%"><DIV ALIGN="center">{print_label}</DIV></TD>
+        <TD Width="33%"><div align=right>{button_re}</div></TD></TR>
    </TABLE>
  </TD></TR>
 </Table>

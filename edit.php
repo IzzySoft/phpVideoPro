@@ -440,12 +440,15 @@ EndHiddenFields;
   if ($new_entry) {
     $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
     $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"create\" VALUE=\"" . lang("create") . "\">");
+    $t->set_var("print_label","&nbsp;");
   } elseif ($edit) {
     $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"cancel\" VALUE=\"" . lang("cancel") . "\">");
     $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
+    $t->set_var("print_label","&nbsp;");
   } else {
     $t->set_var("button_li","<INPUT TYPE=\"submit\" NAME=\"edit\" VALUE=\""   . lang("edit")   . "\">");
     $t->set_var("button_re","<INPUT TYPE=\"submit\" NAME=\"delete\" VALUE=\"" . lang("delete") . "\">");
+    $t->set_var("print_label","<A HREF=\"" . $base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id\" TARGET=\"_blank\">Label</A>");
   }
   $t->pparse("out","edit");
 

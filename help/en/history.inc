@@ -7,6 +7,8 @@
 <ul>
  <li>$recdate in view_entry was not displayed correctly for "unknown dates"
  <li>fixed display of unknown dates in medialist
+ <li>added simple label printing (very primitive for now, but will be enhanced).
+     Accessible via the view_entry form.
 </ul>
 
 [title]

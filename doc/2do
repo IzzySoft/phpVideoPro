@@ -16,6 +16,10 @@ coming *soon*:
   the mtype set with the imported movie, and then correctly increment the
   MediaNr while adding the movie. As with categories, new mediatypes should
   be added when needed.
+- after updating, there should be a link to the initial page instead of
+  (or in addition to) the one to the configuration page
+- remove path and URL from inc/config.inc and auto-evaluate it in
+  inc/config_internal
 
 coming *next*:
 - PS template(s) for DVD covers

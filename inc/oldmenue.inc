@@ -42,6 +42,11 @@
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   myNavBar1.addMenu(dhtmlMenu);
 
+  dhtmlMenu = new NavBarMenu(80, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("print") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("label") ?>", "<? echo $base_url ?>label.php"));
+  myNavBar1.addMenu(dhtmlMenu);
+
   dhtmlMenu = new NavBarMenu(62, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("index") ?>", "JavaScript:open_help('')"));

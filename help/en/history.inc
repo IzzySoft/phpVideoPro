@@ -16,6 +16,8 @@
      displayed within the title bar of your browser behind the "@" sign.
  <li>view/edit entry screens now show the complete movie number (including the
      media type) in title bar and headline, plus the form looks a bit better now
+ <li>added prev/next buttons (next to the movie title) to the "view entry"
+     form so you now can directly walk your collection
 </ul>
 
 [title]

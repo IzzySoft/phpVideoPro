@@ -8,6 +8,8 @@
  <li>first/last entry was broken if first/last mtype contained no media
  <li>base_path and base_url no longer need to be specified in inc/config.inc
  <li>bunch of changes to finally get phpVideoPro running with register_globals=Off
+ <li>on adding/updating a movie, staff information got lost if name or firstname
+     were empty
 </ul>
 
 [title]

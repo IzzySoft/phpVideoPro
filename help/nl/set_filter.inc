@@ -19,7 +19,7 @@ Filter regels
  <li><b>Tekst die een min/max waarde aangeeft</b><br>
      Deze teksten worden aan elkaar geknoopt met een 'and'. Dit houdt in
 dat als je een "Min 60" en een "Max 90" bij de lengte velden aangeeft, dan zoek je
-dus een film met een duur van 60 tot 90 minuten. Indien je slechts één waarde 
+dus een film met een duur van 60 tot 90 minuten. Indien je slechts Ã©Ã©n waarde 
 opgeeft dan wordt er uiteraard rekening gehouden met slechts deze voorwaarde.
  <li><b>Titel</b><br>
 	Hier kun je een <i>deel</i> van de titel opgeven. Indien je dus 'hard' opgeeft,

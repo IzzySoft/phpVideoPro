@@ -62,7 +62,7 @@ Macro's
 
 [text]
 Er zijn enkele macro's beschikbaar binnen de helpbestanden. Deze kunnen verdeeld
-worden in twee categorieën: variabelen en vertaal-tags. Indien je een beetje bekend
+worden in twee categorieÃ«n: variabelen en vertaal-tags. Indien je een beetje bekend
 bent met PHP (en met de code van phpVideoPro), dan kun je deze gebruiken.
 
 [text]

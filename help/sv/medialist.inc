@@ -2,21 +2,21 @@
 # /* $Id$ */
 
 [title]
-Lista på registrerad media
+Lista pÃ¥ registrerad media
 
 [text]
-Detta visar en lista som innehåller alla filmer lagrade i din databas, per default
-sorterat efter MediaType och MediaNr. Du kan ändra ordningen med föremål som visas
-bara genom att klicka på tabellhuvudet i kolumnen du vill sortera efter. Om du
-måste sätta upp lite filter, används dessa för att välja noteringar - så i detta fall
+Detta visar en lista som innehÃ¥ller alla filmer lagrade i din databas, per default
+sorterat efter MediaType och MediaNr. Du kan Ã¤ndra ordningen med fÃ¶remÃ¥l som visas
+bara genom att klicka pÃ¥ tabellhuvudet i kolumnen du vill sortera efter. Om du
+mÃ¥ste sÃ¤tta upp lite filter, anvÃ¤nds dessa fÃ¶r att vÃ¤lja noteringar - sÃ¥ i detta fall
 endast filmer som matchar filtren, visas.
 [text]
-Eftersom denna lista kan bli ganska lång, delar vi upp den på flera sidor. Hur många
-rader med data som ska visas per sida, kan du konfigurera via föremålet
-"*display_limit#" på <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>-sidan.
+Eftersom denna lista kan bli ganska lÃ¥ng, delar vi upp den pÃ¥ flera sidor. Hur mÃ¥nga
+rader med data som ska visas per sida, kan du konfigurera via fÃ¶remÃ¥let
+"*display_limit#" pÃ¥ <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>-sidan.
 [text]
-Från denna lista, kan du välja enstaka föremål att visa detaljerna för, och
-från den detaljskärmen kan du avgöra att <A HREF="{PHP_SELF}?topic=add_entry">ändra</A>
+FrÃ¥n denna lista, kan du vÃ¤lja enstaka fÃ¶remÃ¥l att visa detaljerna fÃ¶r, och
+frÃ¥n den detaljskÃ¤rmen kan du avgÃ¶ra att <A HREF="{PHP_SELF}?topic=add_entry">Ã¤ndra</A>
 eller tillochmed ta bort noteringen.
 
 [eof]

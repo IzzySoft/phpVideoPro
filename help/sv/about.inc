@@ -5,56 +5,56 @@
 Intro
 
 [text]
-Om du har för många DVDs och videokassetter att hantera, då behöver du ett bättre 
-system! Det är exakt därför som phpVideoPro skapades. Detta program är allt du
-behöver för att få din gigantiska samling under kontroll. Informationen blir mycket lätt-
-tillgänglig!
+Om du har fÃ¶r mÃ¥nga DVDs och videokassetter att hantera, dÃ¥ behÃ¶ver du ett bÃ¤ttre 
+system! Det Ã¤r exakt dÃ¤rfÃ¶r som phpVideoPro skapades. Detta program Ã¤r allt du
+behÃ¶ver fÃ¶r att fÃ¥ din gigantiska samling under kontroll. Informationen blir mycket lÃ¤tt-
+tillgÃ¤nglig!
 
 [title]
 Historia
 
 [text]
-PhpVideoPro var inspirerat av Bernd Rickers' VideoPro, som är tillgänglig i ett
-DOS-baserat inklistringsprogram (senast släppt 1994) så väl som i en Windows-
-version (med början cirka 1993 - detta är nu känt under namnet Video-5, se
+PhpVideoPro var inspirerat av Bernd Rickers' VideoPro, som Ã¤r tillgÃ¤nglig i ett
+DOS-baserat inklistringsprogram (senast slÃ¤ppt 1994) sÃ¥ vÃ¤l som i en Windows-
+version (med bÃ¶rjan cirka 1993 - detta Ã¤r nu kÃ¤nt under namnet Video-5, se
 <A HREF="http://www.bernd.rickers.de.vu/" TARGET="_blank">Bernds hemsida</A>
-för detaljer). PhpVideoPro var designat med hjälp av PHP p g a flerplattforms-
-möjligheter och fördelen med att kunna ha sin information tillgänglig varsomhelst, 
-närsomhelst. 
+fÃ¶r detaljer). PhpVideoPro var designat med hjÃ¤lp av PHP p g a flerplattforms-
+mÃ¶jligheter och fÃ¶rdelen med att kunna ha sin information tillgÃ¤nglig varsomhelst, 
+nÃ¤rsomhelst. 
 
 [title]
 Funktioner
 
 [text]
-Detta program tillåter dig att lägga till och ändra noteringar då det behövs. PhpVideoPro kan 
-konfigureras till att visa din katalog på begäran. Du kan kolla på dina föremål i en lista
-som innehåller alla dina noteringar eller så kan du be programmet att visa en lista 
-på tillgängligt ledigt utrymme på dina egengjorda videokassettband. Du kan kolla in detajler på en
-specifik notering, eller visa en lista på alla filmer med en viss skådespelare - bara för att
-nämna några exempel.
+Detta program tillÃ¥ter dig att lÃ¤gga till och Ã¤ndra noteringar dÃ¥ det behÃ¶vs. PhpVideoPro kan 
+konfigureras till att visa din katalog pÃ¥ begÃ¤ran. Du kan kolla pÃ¥ dina fÃ¶remÃ¥l i en lista
+som innehÃ¥ller alla dina noteringar eller sÃ¥ kan du be programmet att visa en lista 
+pÃ¥ tillgÃ¤ngligt ledigt utrymme pÃ¥ dina egengjorda videokassettband. Du kan kolla in detajler pÃ¥ en
+specifik notering, eller visa en lista pÃ¥ alla filmer med en viss skÃ¥despelare - bara fÃ¶r att
+nÃ¤mna nÃ¥gra exempel.
 [text]
-Så du kan hålla reda på vad som är vad och vad du tänker lägga till i din 
-garderob av skatter! Filter-funktioner hjälper dig att sortera genom din katalog
-genom att skapa underkategorier och hitta speciella noteringar inom din alltid-förökande
+SÃ¥ du kan hÃ¥lla reda pÃ¥ vad som Ã¤r vad och vad du tÃ¤nker lÃ¤gga till i din 
+garderob av skatter! Filter-funktioner hjÃ¤lper dig att sortera genom din katalog
+genom att skapa underkategorier och hitta speciella noteringar inom din alltid-fÃ¶rÃ¶kande
 samling.
 [text]
-Även fast du eventuellt har tillräckligt med kassetter och DVDs för att göra din
-egen version av Blockbuster, så var inte phpVideoPro designat för att servera videobutiker. 
-Den senaste versionen var inte skapad för att logga flera kopior av samma föremål. Vad programmet gör,
-däremot, är att urskilja DVDs, original-videokassetter och kassetterna du
-spelade in själv. Mer följer.
+Ã„ven fast du eventuellt har tillrÃ¤ckligt med kassetter och DVDs fÃ¶r att gÃ¶ra din
+egen version av Blockbuster, sÃ¥ var inte phpVideoPro designat fÃ¶r att servera videobutiker. 
+Den senaste versionen var inte skapad fÃ¶r att logga flera kopior av samma fÃ¶remÃ¥l. Vad programmet gÃ¶r,
+dÃ¤remot, Ã¤r att urskilja DVDs, original-videokassetter och kassetterna du
+spelade in sjÃ¤lv. Mer fÃ¶ljer.
 
 [title]
 Framtiden
 
 [text]
-Nya funktioner är planerade, och utveckling fortsätter fortfarande. Frekvensen av nya
-versioner är inte särskilt stadig och troligtvis kommer det aldrig att bli så - eftersom "det endast är en
-hobby", och för att det är så många andra som kräver min närvaro :) Men så länge som
-jag inte har lagt till alla funktioner som <b>I</b> behövs (se doc/2do), så kan du vara säker
-på att det alltid kommer att finnas en fräsch version tillgänglig inom de närmaste kommande veckorna!
-Så jag avslutar med min standard-fras: "Detta är bara en hobby, så jag kan inte lova dig
-något - Jag bara ber dig att stanna kvar där du är..."
+Nya funktioner Ã¤r planerade, och utveckling fortsÃ¤tter fortfarande. Frekvensen av nya
+versioner Ã¤r inte sÃ¤rskilt stadig och troligtvis kommer det aldrig att bli sÃ¥ - eftersom "det endast Ã¤r en
+hobby", och fÃ¶r att det Ã¤r sÃ¥ mÃ¥nga andra som krÃ¤ver min nÃ¤rvaro :) Men sÃ¥ lÃ¤nge som
+jag inte har lagt till alla funktioner som <b>I</b> behÃ¶vs (se doc/2do), sÃ¥ kan du vara sÃ¤ker
+pÃ¥ att det alltid kommer att finnas en frÃ¤sch version tillgÃ¤nglig inom de nÃ¤rmaste kommande veckorna!
+SÃ¥ jag avslutar med min standard-fras: "Detta Ã¤r bara en hobby, sÃ¥ jag kan inte lova dig
+nÃ¥got - Jag bara ber dig att stanna kvar dÃ¤r du Ã¤r..."
 [text]
 <div align=right>Itzchak Rehberg, September 2001</div>
 

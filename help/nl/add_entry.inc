@@ -36,9 +36,9 @@ waarde wordt dus niet in de database opgeslagen.
 Nog even iets over het blauw omcirkelde medianummer: De combinatie van nummer die
 hier ingevoerd wordt, bijvoorbeeld het fysieke medium en het nummer daarbij, samen met 
 het geselecteerde mediatype, moet uniek zijn in de volledige database. Er is dus maar 
-één DVD nummer 1 in de collectie, de volgende DVD moet dan nummer 2 zijn, en zo verder.
+Ã©Ã©n DVD nummer 1 in de collectie, de volgende DVD moet dan nummer 2 zijn, en zo verder.
 Het programma is dus niet bedoeld voor het beheer van een videoverhuurwinkel of voor
-een commerciële videobanden bibliotheek, maar wel voor uw privé collectie.
+een commerciÃ«le videobanden bibliotheek, maar wel voor uw privÃ© collectie.
 
 [title]
 Aanschafdatum
@@ -51,13 +51,13 @@ dan wordt er standaard de datum van vandaag ingevuld. Dit veld blijft voorlopig 
 het nu is, voor mij voldoet het en zolang niemand klaagt.... ;-)
 
 [title]
-Categorieën
+CategorieÃ«n
 
 [text]
 De categorie die geselecteerd is in het eerste veld zal worden weergegeven in 
 de standaardoverzichten binnen het systeem. Indien je zoekt naar een film 
 (voorlopig door het gebruik van de filter functie) door het aangeven van een
-categorie, zal er worden gezocht in alle drie de categorieën.
+categorie, zal er worden gezocht in alle drie de categorieÃ«n.
 
 [title]
 Staf
@@ -68,7 +68,7 @@ eerste veld is de achternaam, het tweede veld is voor de voornaam. Namen
 worden opgeslagen in een aparte tabel, er wordt bij de filmgegevens alleen een verwijzing naar 
 deze tabel opgenomen. Indien je dit niet zo invult, dan kun je later in problemen komen.
 Op de <A HREF="http://www.qumran.org/homes/izzy/">demo site</A>, was er al te zien,
-dat iemand twee namen in één veld had neergezet. Dit kun je wel doen, maar dat betekent
+dat iemand twee namen in Ã©Ã©n veld had neergezet. Dit kun je wel doen, maar dat betekent
 dat als je later een overzicht wilt hebben van alle films waarin een persoon voorkomt,
 dit natuurlijk niet gaat lukken. 
 

@@ -2,85 +2,85 @@
 # /* $Id$ */
 
 [title]
-Hur generar jag mina egna hjälpsidor?
+Hur generar jag mina egna hjÃ¤lpsidor?
 
 [text]
-Det är tillochmed enklare än skapandet av en ny språkfil -
+Det Ã¤r tillochmed enklare Ã¤n skapandet av en ny sprÃ¥kfil -
 speciellt efter
-ändringarna som gjordes i v0.2 när hjälpsidorna började drivas av mallar.
-Nu behöver du inte ens kunna HTML - du behöver bara ändra en enkel
-textfil som <b>kan</b> innehålla lite makro/HTML-kod, men behöver inte det:
+Ã¤ndringarna som gjordes i v0.2 nÃ¤r hjÃ¤lpsidorna bÃ¶rjade drivas av mallar.
+Nu behÃ¶ver du inte ens kunna HTML - du behÃ¶ver bara Ã¤ndra en enkel
+textfil som <b>kan</b> innehÃ¥lla lite makro/HTML-kod, men behÃ¶ver inte det:
 [text]
 <OL>
- <LI>gå till hjälp-katalogen, öppna help_topics.php med din
-     favorit-viewer för text (än en gång, detta är ren text). Strukturen
-     på denna fil är självförklarande: 
-     en rad börjar med "headline" som markerar en headline, ett ämne
-     börjar med "li". Den första saken inom måsvingar är hjälp-rubriken.
-     Titta efter namnet på rubriken du vill skapa en hjälpfil för.
- <LI>Om det inte finns en enda hjälpfil tillgängligt för ditt språk än,
-     får du lov att skapa den korrekta katalogen för ditt språk först.
-     Hitta språkkoden för ditt språk (se
-     "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>" på hur man
-gör detta), och skapa katalogen med namnet på språkkoden nedan
-     hjälpkatalogen - t.ex. "help/fi" för finska.
- <LI>Nu: antingen skapa en ny fil med namnet <topic>.inc i din språk-
-     katalog (e.g. "help/fi/about.inc" för det finska "About"-ämnet), eller
-     kopiera det från det engelska trädet (help/en) som en mall.
- <LI>Öppna din nya hjälpfil ("help/fi/about.inc" i ovanstående exempel) med
-     med din favorit-editor och översätt/skapa hjälprubriken. Formatet på
-     en sådan fil förklaras nedan.
- <LI>Det är allt - du är klar! phpVideoPro kommer automatiskt hitta och använda
-     hjälpfilen till det definierade förstahandsspråket först. Oroa dig inte om du
-     saknar <b>vissa</b> hjälpfiler för ditt språk: om phpVideoPro
-     inte kan hitta en hjälpfil i ditt förstahandsspråk, visas den
+ <LI>gÃ¥ till hjÃ¤lp-katalogen, Ã¶ppna help_topics.php med din
+     favorit-viewer fÃ¶r text (Ã¤n en gÃ¥ng, detta Ã¤r ren text). Strukturen
+     pÃ¥ denna fil Ã¤r sjÃ¤lvfÃ¶rklarande: 
+     en rad bÃ¶rjar med "headline" som markerar en headline, ett Ã¤mne
+     bÃ¶rjar med "li". Den fÃ¶rsta saken inom mÃ¥svingar Ã¤r hjÃ¤lp-rubriken.
+     Titta efter namnet pÃ¥ rubriken du vill skapa en hjÃ¤lpfil fÃ¶r.
+ <LI>Om det inte finns en enda hjÃ¤lpfil tillgÃ¤ngligt fÃ¶r ditt sprÃ¥k Ã¤n,
+     fÃ¥r du lov att skapa den korrekta katalogen fÃ¶r ditt sprÃ¥k fÃ¶rst.
+     Hitta sprÃ¥kkoden fÃ¶r ditt sprÃ¥k (se
+     "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>" pÃ¥ hur man
+gÃ¶r detta), och skapa katalogen med namnet pÃ¥ sprÃ¥kkoden nedan
+     hjÃ¤lpkatalogen - t.ex. "help/fi" fÃ¶r finska.
+ <LI>Nu: antingen skapa en ny fil med namnet <topic>.inc i din sprÃ¥k-
+     katalog (e.g. "help/fi/about.inc" fÃ¶r det finska "About"-Ã¤mnet), eller
+     kopiera det frÃ¥n det engelska trÃ¤det (help/en) som en mall.
+ <LI>Ã–ppna din nya hjÃ¤lpfil ("help/fi/about.inc" i ovanstÃ¥ende exempel) med
+     med din favorit-editor och Ã¶versÃ¤tt/skapa hjÃ¤lprubriken. Formatet pÃ¥
+     en sÃ¥dan fil fÃ¶rklaras nedan.
+ <LI>Det Ã¤r allt - du Ã¤r klar! phpVideoPro kommer automatiskt hitta och anvÃ¤nda
+     hjÃ¤lpfilen till det definierade fÃ¶rstahandssprÃ¥ket fÃ¶rst. Oroa dig inte om du
+     saknar <b>vissa</b> hjÃ¤lpfiler fÃ¶r ditt sprÃ¥k: om phpVideoPro
+     inte kan hitta en hjÃ¤lpfil i ditt fÃ¶rstahandssprÃ¥k, visas den
      engelska som standard.
   </OL>
 
 [title]
 Filformat
 [text]
-Det generella formatet som används för hjälpfilerna är väldigt enkelt: varje rad startar
-med en brädgård ("#") som tolkas som kommentar (t.ex. ett som helt ignoreras). Den första raden
-tolken börjar med måste vara en rad som innehåller enbart [title] 
-tagg (inledande/avslutande blanktecken ignoreras). Tolken stannar på [eof]-
-taggen och sen (och bara sen) skickas hjälpfilen till webbläsaren. Den tredje
-taggen som är ett måste är [text]-taggen. Taggar <b>måste</b> placeras på separata
-rader för att identifieras (än en gång, inledande/avslutande blanktecken ignoreras)!<br>So
-sen då, vad menas?
+Det generella formatet som anvÃ¤nds fÃ¶r hjÃ¤lpfilerna Ã¤r vÃ¤ldigt enkelt: varje rad startar
+med en brÃ¤dgÃ¥rd ("#") som tolkas som kommentar (t.ex. ett som helt ignoreras). Den fÃ¶rsta raden
+tolken bÃ¶rjar med mÃ¥ste vara en rad som innehÃ¥ller enbart [title] 
+tagg (inledande/avslutande blanktecken ignoreras). Tolken stannar pÃ¥ [eof]-
+taggen och sen (och bara sen) skickas hjÃ¤lpfilen till webblÃ¤saren. Den tredje
+taggen som Ã¤r ett mÃ¥ste Ã¤r [text]-taggen. Taggar <b>mÃ¥ste</b> placeras pÃ¥ separata
+rader fÃ¶r att identifieras (Ã¤n en gÃ¥ng, inledande/avslutande blanktecken ignoreras)!<br>So
+sen dÃ¥, vad menas?
 [text]
 <ul>
- <li><b>[title]</b> markerar en headline. Allt som följer denna tagg (upp till 
-     nästa tagg, som i de flesta fall [text]) ses som en headline för
-     det följande ([text]) blocket.
- <li><b>[text]</b> startar ett till textblock - här är all information med
-     detaljer. För att uppnå flera "paragrafer", bara starta flera [text]-
+ <li><b>[title]</b> markerar en headline. Allt som fÃ¶ljer denna tagg (upp till 
+     nÃ¤sta tagg, som i de flesta fall [text]) ses som en headline fÃ¶r
+     det fÃ¶ljande ([text]) blocket.
+ <li><b>[text]</b> startar ett till textblock - hÃ¤r Ã¤r all information med
+     detaljer. FÃ¶r att uppnÃ¥ flera "paragrafer", bara starta flera [text]-
      block en efter en.
- <li><b>[eof]</b> betyder "End Of File" och säger till tolken att nu verkligen
-     generera utdatan. Den säger också till den att det inte är av något mer
-     intresse för honom :)
+ <li><b>[eof]</b> betyder "End Of File" och sÃ¤ger till tolken att nu verkligen
+     generera utdatan. Den sÃ¤ger ocksÃ¥ till den att det inte Ã¤r av nÃ¥got mer
+     intresse fÃ¶r honom :)
 </ul>
 [text]
-Du kan använda HTML-formateringskod som t.ex. för att understryka fraser med 
+Du kan anvÃ¤nda HTML-formateringskod som t.ex. fÃ¶r att understryka fraser med 
 &lt;B&gt;bold&lt;/B&gt; markeringar, generera listor med &lt;UL&gt;, placera ut tabeller,
-grafik, etc. Jag förklarar inte hur man gör det - det finns bättre manualer
-tillgängliga inom detta ämne. Än en gång, du <b>måste</b> inte använda detta, men du
+grafik, etc. Jag fÃ¶rklarar inte hur man gÃ¶r det - det finns bÃ¤ttre manualer
+tillgÃ¤ngliga inom detta Ã¤mne. Ã„n en gÃ¥ng, du <b>mÃ¥ste</b> inte anvÃ¤nda detta, men du
 <b>kan</b>.
 
 [title]
 Makron
 
 [text]
-Det finns några makron tillgängliga i hjälpfilerna. De kan delas in i två kategorier:
-variabler och översättare. Om du är en aning mer van vid PHP (och tillochmed koden för phpVideoPro),
-så borde du vilja använda dessa.
+Det finns nÃ¥gra makron tillgÃ¤ngliga i hjÃ¤lpfilerna. De kan delas in i tvÃ¥ kategorier:
+variabler och Ã¶versÃ¤ttare. Om du Ã¤r en aning mer van vid PHP (och tillochmed koden fÃ¶r phpVideoPro),
+sÃ¥ borde du vilja anvÃ¤nda dessa.
 [text]
-Allting som sätts därimellan {måsvingar} ersätts med global
-variabel med sitt namn (om det är tillgängligt). Denna variabel måste t.ex. INTE innehålla några
-blanksteg, etc. (se PHP-manualen för detta).
+Allting som sÃ¤tts dÃ¤rimellan {mÃ¥svingar} ersÃ¤tts med global
+variabel med sitt namn (om det Ã¤r tillgÃ¤ngligt). Denna variabel mÃ¥ste t.ex. INTE innehÃ¥lla nÃ¥gra
+blanksteg, etc. (se PHP-manualen fÃ¶r detta).
 [text]
-Allt som är i tysk BTX-stil insatt mellan en *asterisk och en #brädgårds-
-markering (än en gång, inga blanksteg!) indikerar till tolken att det måste översättas
-genom att använda the fraserna definierade av språkfilerna. Självklart så följer den reglerna av phpVideoPros översättningssystem.
+Allt som Ã¤r i tysk BTX-stil insatt mellan en *asterisk och en #brÃ¤dgÃ¥rds-
+markering (Ã¤n en gÃ¥ng, inga blanksteg!) indikerar till tolken att det mÃ¥ste Ã¶versÃ¤ttas
+genom att anvÃ¤nda the fraserna definierade av sprÃ¥kfilerna. SjÃ¤lvklart sÃ¥ fÃ¶ljer den reglerna av phpVideoPros Ã¶versÃ¤ttningssystem.
 
 [eof]

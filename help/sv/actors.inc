@@ -1,20 +1,20 @@
-<? /* lista på skådespelare, regissörer, kompositörer */
+<? /* lista pÃ¥ skÃ¥despelare, regissÃ¶rer, kompositÃ¶rer */
  ?>
 <? /* $Id$ */ ?>
 
 [title]
-Lista på skådespelare, regissörer och kompositörer
+Lista pÃ¥ skÃ¥despelare, regissÃ¶rer och kompositÃ¶rer
 
 [text]
 Medan jag observerade <A HREF="{PHP_SELF}?topic=set_filter">filterreglerna</A>,
-så visade dessa meny-föremål en lista på personalmedlemmar ordnade efter deras namn,
-enbart listandes dem du definierat att vara "i listan" för filmerna. Genom att klicka
-på MediaNr, kan du visa/redigera detaljer om filmen (se
-<A HREF="{PHP_SELF}?topic=add_entry">redigera</A> eller lägg till en ny notering).
+sÃ¥ visade dessa meny-fÃ¶remÃ¥l en lista pÃ¥ personalmedlemmar ordnade efter deras namn,
+enbart listandes dem du definierat att vara "i listan" fÃ¶r filmerna. Genom att klicka
+pÃ¥ MediaNr, kan du visa/redigera detaljer om filmen (se
+<A HREF="{PHP_SELF}?topic=add_entry">redigera</A> eller lÃ¤gg till en ny notering).
 
 [text]
-Medan denna lista kan bli en aning lång, så är den uppdelad på flera sidor. Du kan
-definiera maximala antalet datasets per sida, genom att använda föremålet "*display_limit#"
-på <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A> menyn.
+Medan denna lista kan bli en aning lÃ¥ng, sÃ¥ Ã¤r den uppdelad pÃ¥ flera sidor. Du kan
+definiera maximala antalet datasets per sida, genom att anvÃ¤nda fÃ¶remÃ¥let "*display_limit#"
+pÃ¥ <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A> menyn.
 
 [eof]

@@ -14,7 +14,7 @@ gewenste films te selecteren.
 [text]
 In de huidige versie, de lijst kan behoorlijk lang worden. De mogelijkheid
 om het aantal films te beperken tot een bepaald aantal is nog niet beschikbaar,
-maar zal in een toekomstige versie geïntroduceerd worden.
+maar zal in een toekomstige versie geÃ¯ntroduceerd worden.
 
 [text]
 Vanuit deze lijst kun je een film selecteren om de details te zien. Vanaf daar

@@ -6,36 +6,36 @@ Introduksjon
 
 [text]
 Dette er phpVideoPro versjon {version}, (c) 2001 Itzchak Rehberg, alle rettigheter
-(og linker) er reservert. Inspirert av min favoritt programvare for dette form†let,
+(og linker) er reservert. Inspirert av min favoritt programvare for dette formÂ†let,
 VideoPro (c) 1991-1994 Bernd Rickers, startet jeg utviklingen av min egen programvare
-for h†ndtering av video - da p† den ene side Videopro kun var tilgjengelig som en DOS
-basert 'clipper' applikasjon, og p† den andre siden nye viktige egenskaper som st°tte
+for hÂ†ndtering av video - da pÂ† den ene side Videopro kun var tilgjengelig som en DOS
+basert 'clipper' applikasjon, og pÂ† den andre siden nye viktige egenskaper som stÂ°tte
 for DVD og lydformater som Dolby Digital 5.1 manglet, og Bernd stoppet utviklingen i
-1994. Jeg valgte PHP ikke kun med tanke p† platformuavhengighet, men p† denne m†ten
-ville jeg ha tilgang p† informasjonen uavhengig av hvor jeg befinner meg, i verste
-fall ved † bes°ke en internet cafe :-)
+1994. Jeg valgte PHP ikke kun med tanke pÂ† platformuavhengighet, men pÂ† denne mÂ†ten
+ville jeg ha tilgang pÂ† informasjonen uavhengig av hvor jeg befinner meg, i verste
+fall ved Â† besÂ°ke en internet cafe :-)
 [text]
-P† dette stadiet er phpVideoPro beregnet for enkeltbrukere. Dette kan endre seg i
+PÂ† dette stadiet er phpVideoPro beregnet for enkeltbrukere. Dette kan endre seg i
 framtidige versjoner - men ikke forvent flerbruker egenskaper i den nermeste framtiden...
 
 [title]
 Egenskaper
 
 [text]
-S† hvikle egenskaper har phpVideoPro tilgjengelig? Som video h†ndterings programmvare
-er den selvf°lgelig beregnet til † h†ndtere dine (private) filmsamling (den har ikke
-som m†lsetning † h†ndtere en video butikk, der mange kopier av det samme mediaet kan
+SÂ† hvikle egenskaper har phpVideoPro tilgjengelig? Som video hÂ†ndterings programmvare
+er den selvfÂ°lgelig beregnet til Â† hÂ†ndtere dine (private) filmsamling (den har ikke
+som mÂ†lsetning Â† hÂ†ndtere en video butikk, der mange kopier av det samme mediaet kan
 eksistere). Du kan andre og legge til, vise en liste som inneholder alle filmene
-eller vise en liste av tilgjengelig rom p† dine video kassetter - og phpVideoPro
-skiller mellom DVD, kj°pte/komersielle videoer (Original VideoTapes, OVT), videoer
-som er innspilt selv (Recorded VideoTapes, RTV). Filter funkjoner hjelper deg i †
-velge et bestemt utvalg av filmer og finne spesielle filmer i en st°rre samling.
+eller vise en liste av tilgjengelig rom pÂ† dine video kassetter - og phpVideoPro
+skiller mellom DVD, kjÂ°pte/komersielle videoer (Original VideoTapes, OVT), videoer
+som er innspilt selv (Recorded VideoTapes, RTV). Filter funkjoner hjelper deg i Â†
+velge et bestemt utvalg av filmer og finne spesielle filmer i en stÂ°rre samling.
 [text]
-Nye tjenester er planlagt, og utviklingen foreg†r fortl°pende. Perioden mellom nye
+Nye tjenester er planlagt, og utviklingen foregÂ†r fortlÂ°pende. Perioden mellom nye
 utgivelser er ikke konstant og vil trolig ikke bli det i framtiden - da "dette er
-kun en hobby", og det er mye annent som krever min oppmerksomhet :) Men s† lenge
-jeg ikke har lagt til alle tjenestene <b>jeg</b> trenger (se doc/2do), kan du vµre
-trygg p† at det altid vil vµre en ny utgave tilgjengelig i l°pet av noen f† uker!
+kun en hobby", og det er mye annent som krever min oppmerksomhet :) Men sÂ† lenge
+jeg ikke har lagt til alle tjenestene <b>jeg</b> trenger (se doc/2do), kan du vÂµre
+trygg pÂ† at det altid vil vÂµre en ny utgave tilgjengelig i lÂ°pet av noen fÂ† uker!
 So jeg avslutter med min standard ansvarsfraskrivelse: "Dette er kun en hobby, jeg
 kan ikke love noe - jeg ber kun om at du holer kontakten...."
 [text]

@@ -2,17 +2,17 @@
 # /* $Id$ */
 
 [title]
-Hoe creëer ik mijn eigen template?
+Hoe creÃ«er ik mijn eigen template?
 
 [text]
 Net als de help en taal bestanden, is dit ook een kwestie van het maken van een
-subdirectory en het kopiëren en wijzigen van wat bestanden:
+subdirectory en het kopiÃ«ren en wijzigen van wat bestanden:
 
 [text]
 <OL>
 <LI>Verzin een leuke naam voor de nieuwe templates. Als voorbeeld gebruik ik nu even 
 "babylon5".
-<LI>Ga naar de templates directory en creëer een subdirectory met deze naam.
+<LI>Ga naar de templates directory en creÃ«er een subdirectory met deze naam.
 <LI>Kopieer de bestanden uit de 'templates/default' naar deze directory en verander
 deze zoals jij dat graag wilt. De tekens &#123;brazes&#125; 
 zijn plekken waar de gegevens straks worden samengevoegd in de template. Deze moeten

@@ -5,104 +5,104 @@
 Introduktion
 
 [text]
-Genom att använda detta menyföremål, kan du lägga in en ny notering i din video-databas. De flesta
-fälten i detta formulär är självförklarande; men det finns några som behöver kommenteras
-litegrann (förutom det faktum att den ej namngivna input-rutan ovanpå har som syfte att hålla
+Genom att anvÃ¤nda detta menyfÃ¶remÃ¥l, kan du lÃ¤gga in en ny notering i din video-databas. De flesta
+fÃ¤lten i detta formulÃ¤r Ã¤r sjÃ¤lvfÃ¶rklarande; men det finns nÃ¥gra som behÃ¶ver kommenteras
+litegrann (fÃ¶rutom det faktum att den ej namngivna input-rutan ovanpÃ¥ har som syfte att hÃ¥lla
 kvar filmtiteln ;):
 
 [title]
 MediaTyp
 
 [text]
-<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="bit av 'lägg till notering' meny: mediatyp" ALIGN=LEFT
+<IMG SRC="{base_url}help/img/mtype_nr.png" ALT="bit av 'lÃ¤gg till notering' meny: mediatyp" ALIGN=LEFT
 HSPACE=5>
-Rutan "MediaTyp" (röd-markerad i bilden som visas) ger dig en lista på
-tillgängliga mediatyper att välja från. Denna ruta i sig självt, behöver ingen
-förklaring, antar jag - men jag vill dra din uppmärksamhet mot dem andra två markeringarna:
-det finns ett tvådelat MediaNr att skriva in (blå-markerat). Den första biten står för
-den fysiska median, till exempel kassett eller disk. Den andra biten gäller filmen på den median. 
-Låt oss säga, att du har spelat in två filmer på kassett # 20, så den första
+Rutan "MediaTyp" (rÃ¶d-markerad i bilden som visas) ger dig en lista pÃ¥
+tillgÃ¤ngliga mediatyper att vÃ¤lja frÃ¥n. Denna ruta i sig sjÃ¤lvt, behÃ¶ver ingen
+fÃ¶rklaring, antar jag - men jag vill dra din uppmÃ¤rksamhet mot dem andra tvÃ¥ markeringarna:
+det finns ett tvÃ¥delat MediaNr att skriva in (blÃ¥-markerat). Den fÃ¶rsta biten stÃ¥r fÃ¶r
+den fysiska median, till exempel kassett eller disk. Den andra biten gÃ¤ller filmen pÃ¥ den median. 
+LÃ¥t oss sÃ¤ga, att du har spelat in tvÃ¥ filmer pÃ¥ kassett # 20, sÃ¥ den fÃ¶rsta
 filmen borde vara 20-1 och den andra 20-2.
 [text]
-Nu till funktionen: Låt oss föreställa oss, att vi just har spelat in 2 filmer på en tom kassett,
- och nu vill du skapa databas-noteringarna för dessa. Är du säker på
-att du kom ihåg det sista (fysiska) MediaNr du tilldelat? Den grön-markerade rutan
-hjälper dig i ditt sökande efter det högsta tilldelade numret <b>för varje mediatyp</b>!
-Öppna det bara, för att visa alla dess innehåll. För skapandeprocessen, är det inte
-ett problem för alla, vilket värde du valt - den grön-markerade rutan är för din information
-endast, dess innehåll är inte sparat någonstans i databasen.
+Nu till funktionen: LÃ¥t oss fÃ¶restÃ¤lla oss, att vi just har spelat in 2 filmer pÃ¥ en tom kassett,
+ och nu vill du skapa databas-noteringarna fÃ¶r dessa. Ã„r du sÃ¤ker pÃ¥
+att du kom ihÃ¥g det sista (fysiska) MediaNr du tilldelat? Den grÃ¶n-markerade rutan
+hjÃ¤lper dig i ditt sÃ¶kande efter det hÃ¶gsta tilldelade numret <b>fÃ¶r varje mediatyp</b>!
+Ã–ppna det bara, fÃ¶r att visa alla dess innehÃ¥ll. FÃ¶r skapandeprocessen, Ã¤r det inte
+ett problem fÃ¶r alla, vilket vÃ¤rde du valt - den grÃ¶n-markerade rutan Ã¤r fÃ¶r din information
+endast, dess innehÃ¥ll Ã¤r inte sparat nÃ¥gonstans i databasen.
 [text]
-Men ett sista ord om blå-markerade MediaNr: kombinationen av nummer
-inskrivna här, t.ex. den fysiska kassetten och den logiska enheten på det, tillsammans med
-den valda MediaTypen, måste vara unik genom hela databasen. Det 
-är, t.ex, bara en DVD #1 i din samling, nästa DVD ska vara #2, 
-osv... Detta programs syfte är inte att användas till att hantera någon videobutik eller
-kommersiellt videokassettbibliotek, utan för privata samlingar endast :)
+Men ett sista ord om blÃ¥-markerade MediaNr: kombinationen av nummer
+inskrivna hÃ¤r, t.ex. den fysiska kassetten och den logiska enheten pÃ¥ det, tillsammans med
+den valda MediaTypen, mÃ¥ste vara unik genom hela databasen. Det 
+Ã¤r, t.ex, bara en DVD #1 i din samling, nÃ¤sta DVD ska vara #2, 
+osv... Detta programs syfte Ã¤r inte att anvÃ¤ndas till att hantera nÃ¥gon videobutik eller
+kommersiellt videokassettbibliotek, utan fÃ¶r privata samlingar endast :)
 
 [title]
 *date_rec#
 
 [text]
-Datumfältet är uppdelat i "månader och år"-fält. Tills vidare, är ordningen
-hårdkodad att vara dag-månad-år. Naturligtvis kommer detta att ändras i en av dem
-följande versionerna av phpVideoPro, att använda ordningen konfigurerad med datumformat-inställningen
-i setup-menyn och att läsa av landspecifika inställningar (eller
-med special-användar-inställningar :) i åtanke.
+DatumfÃ¤ltet Ã¤r uppdelat i "mÃ¥nader och Ã¥r"-fÃ¤lt. Tills vidare, Ã¤r ordningen
+hÃ¥rdkodad att vara dag-mÃ¥nad-Ã¥r. Naturligtvis kommer detta att Ã¤ndras i en av dem
+fÃ¶ljande versionerna av phpVideoPro, att anvÃ¤nda ordningen konfigurerad med datumformat-instÃ¤llningen
+i setup-menyn och att lÃ¤sa av landspecifika instÃ¤llningar (eller
+med special-anvÃ¤ndar-instÃ¤llningar :) i Ã¥tanke.
 
 [title]
 *counter_start_stopp#
 
 [text]
-Dessa fält är mestadels av intresse för dem av er som har videobandspelare
-utan indexeringsfunktion: du kan skriva in räknarna från början
-respektive slutet av din inspelning här. Eftersom den enda format-restriktionen
-är en längd på 10 tecken, spelar det ingen roll om du skriver in enkla numeriska
-räknar-värden, eller t.om. tidskoder här - beroende på hur din videobandspelare
+Dessa fÃ¤lt Ã¤r mestadels av intresse fÃ¶r dem av er som har videobandspelare
+utan indexeringsfunktion: du kan skriva in rÃ¤knarna frÃ¥n bÃ¶rjan
+respektive slutet av din inspelning hÃ¤r. Eftersom den enda format-restriktionen
+Ã¤r en lÃ¤ngd pÃ¥ 10 tecken, spelar det ingen roll om du skriver in enkla numeriska
+rÃ¤knar-vÃ¤rden, eller t.om. tidskoder hÃ¤r - beroende pÃ¥ hur din videobandspelare
 visar tiden.
 
 [title]
 *commercials#
 
 [text]
-Även fast detta fält borde vara självförklarande, är en del ord på värderna att
-välja: du markerar här ifall inspelningen är avbruten av "reklamblock"
+Ã„ven fast detta fÃ¤lt borde vara sjÃ¤lvfÃ¶rklarande, Ã¤r en del ord pÃ¥ vÃ¤rderna att
+vÃ¤lja: du markerar hÃ¤r ifall inspelningen Ã¤r avbruten av "reklamblock"
 ("*yes#") eller inte ("*no#"), eller om du klipper bort dessa  block manuellt ("*cut_off#").
-Om du inte kan komma ihåg, så har du t.om. möjligheten att säga till om din osäkerhet
-här genom att välja "*unknown#".
+Om du inte kan komma ihÃ¥g, sÃ¥ har du t.om. mÃ¶jligheten att sÃ¤ga till om din osÃ¤kerhet
+hÃ¤r genom att vÃ¤lja "*unknown#".
 
 [title]
 Kategorier
 
 [text]
-Den valda kategorin i den första rutan kommer att visas jämsides med huvudfilms-
-datan i listorna. Inte nog med det: om du söker efter en notering (just
-nu genom att använda filter-funktionen) och specifierar en kategori, kommer alla tre av kategorierna
-att tas i åtanke.
+Den valda kategorin i den fÃ¶rsta rutan kommer att visas jÃ¤msides med huvudfilms-
+datan i listorna. Inte nog med det: om du sÃ¶ker efter en notering (just
+nu genom att anvÃ¤nda filter-funktionen) och specifierar en kategori, kommer alla tre av kategorierna
+att tas i Ã¥tanke.
 
 [title]
 Personal
 
 [text]
-Var försiktig med att fylla i informationen i dem högra fälten här: det första är
-alltid för familjenamnet, det andra för det första namnet. Namn på personalmedlemmar 
-är inte lagrade tillsammans med film-datan, utan i en separat tabell.
-Med film-datan, finns det bara en referens lagrad - så om du senare vill gå till
-listan med några noteringar för en specifik person, så kan du hamna i trubbel: på
-<A HREF="http://www.qumran.org/homes/izzy/">demosajten</A>, såg jag redan
-noteringar som håller båda namndelarna i ett fält, bara för att lagra två personer i
-en notering. Självklart <i>kan</i> du göra så - men det är inte så jag planerat det,
-och några framtida funktioner behöver inte nödvändigtvis tänkas få denna möjlighet.
+Var fÃ¶rsiktig med att fylla i informationen i dem hÃ¶gra fÃ¤lten hÃ¤r: det fÃ¶rsta Ã¤r
+alltid fÃ¶r familjenamnet, det andra fÃ¶r det fÃ¶rsta namnet. Namn pÃ¥ personalmedlemmar 
+Ã¤r inte lagrade tillsammans med film-datan, utan i en separat tabell.
+Med film-datan, finns det bara en referens lagrad - sÃ¥ om du senare vill gÃ¥ till
+listan med nÃ¥gra noteringar fÃ¶r en specifik person, sÃ¥ kan du hamna i trubbel: pÃ¥
+<A HREF="http://www.qumran.org/homes/izzy/">demosajten</A>, sÃ¥g jag redan
+noteringar som hÃ¥ller bÃ¥da namndelarna i ett fÃ¤lt, bara fÃ¶r att lagra tvÃ¥ personer i
+en notering. SjÃ¤lvklart <i>kan</i> du gÃ¶ra sÃ¥ - men det Ã¤r inte sÃ¥ jag planerat det,
+och nÃ¥gra framtida funktioner behÃ¶ver inte nÃ¶dvÃ¤ndigtvis tÃ¤nkas fÃ¥ denna mÃ¶jlighet.
 
 [text]
-Slutligen, finns det en checkruta fastklistrad till varje namn, märkt "i listan". Denna,
-också, refererar till en najs funktion: det kommer att finnas en möjlighet till att lista upp,
-t.ex. alla skådespelare tillsammans med titeln på filmerna dem spelade en roll i.
-Genom att markera denna checkruta, kan du bestämma ifall att denna film skall visas för
-denna skådespelare. Om, till exempel, din favoritskådespelare nu spelar väldigt seriösa roller -
-men faktiskt spelade i några se*-filmer tidigare, vilka du bara spelade in för, humm, låt oss
-säga "intresse", men ingen förutom du skall nu få veta om detta (medan läsning av dina utskrivna kassettlistor),
-behöver du bara kryssa av rutan här och han/hon kommer då inte att dyka upp tillsammans med
-denna films titel i skådespelarlistan.
+Slutligen, finns det en checkruta fastklistrad till varje namn, mÃ¤rkt "i listan". Denna,
+ocksÃ¥, refererar till en najs funktion: det kommer att finnas en mÃ¶jlighet till att lista upp,
+t.ex. alla skÃ¥despelare tillsammans med titeln pÃ¥ filmerna dem spelade en roll i.
+Genom att markera denna checkruta, kan du bestÃ¤mma ifall att denna film skall visas fÃ¶r
+denna skÃ¥despelare. Om, till exempel, din favoritskÃ¥despelare nu spelar vÃ¤ldigt seriÃ¶sa roller -
+men faktiskt spelade i nÃ¥gra se*-filmer tidigare, vilka du bara spelade in fÃ¶r, humm, lÃ¥t oss
+sÃ¤ga "intresse", men ingen fÃ¶rutom du skall nu fÃ¥ veta om detta (medan lÃ¤sning av dina utskrivna kassettlistor),
+behÃ¶ver du bara kryssa av rutan hÃ¤r och han/hon kommer dÃ¥ inte att dyka upp tillsammans med
+denna films titel i skÃ¥despelarlistan.
 
 [eof]
 

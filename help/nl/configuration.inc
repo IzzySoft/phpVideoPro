@@ -39,7 +39,7 @@ nodig is om de oude te verwijderen, maar dat is nog niet gedaan.
 
 [text]
 <b>*select_primary_lang#:</b> 
-Uit de lijst met geïnstalleerde talen, kun je jouw favoriete taal instellen. Indien
+Uit de lijst met geÃ¯nstalleerde talen, kun je jouw favoriete taal instellen. Indien
 jouw moedertaal aanwezig is in dit lijstje, dan denk ik dat je voor die taal zal 
 kiezen ;-) Voor alle zinnen die ontbreken in je favoriete taal, zal de engelse zin
 worden afgedrukt (wat niet zal gebeuren, tenzij deze taal ontbreekt om een of andere 

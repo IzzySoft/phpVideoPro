@@ -77,22 +77,22 @@
    }
 
    function write_text($text) {
-     $length = 0;
      for ($i=0;$i<count($text);$i++) { // find longest line
-       if ( strlen($text[$i]) > $length ) $length = strlen($text[$i]);
+       $length = strlen($text[$i]);
+       $font[$i] = $this->font;
+       do { // calculate position of the text on the label
+         $textwidth = $length * imagefontwidth($font[$i]);
+         $x[$i] = ($this->width - $textwidth) / 2; $x[$i] = ceil($x[$i]);
+         --$font[$i];
+       } while (($x[$i] < 0) && ($font[$i] > 0));
+       ++$font[$i];
      }
-     do { // calculate position of the text on the label
-       $textwidth = $length * imagefontwidth($this->font);
-       $x = ($this->width - $textwidth) / 2; $x = ceil($x);
-       --$font;
-     } while (($x < 0) && ($this->font > 0));
-     ++$this->font;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
      $y = $this->vmidth - (imagefontheight($this->font) * $lines / 2);
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $this->textcolor[0], $this->textcolor[1], $this->textcolor[2]);
      for ($i=0;$i<count($text),$i<4;$i++) {
-       imagestring($this->label, $this->font, $x, $y, "$text[$i]", $color);
+       imagestring($this->label, $font[$i], $x[$i], $y, "$text[$i]", $color);
        $y += imagefontheight($this->font);
      }
    }

@@ -370,3 +370,4 @@ INSERT INTO lang VALUES('disktype_name_empty','en','The name for a disk type mus
 INSERT INTO lang VALUES('delete_lang','en','Delete language');
 INSERT INTO lang VALUES('delete_lang_comment','en','Delete all phrases of the specified language from db. This will not delete the language file, so you can re-insert phrases later (if you do not delete the file yourself).');
 INSERT INTO lang VALUES('disktype_contains_media','en','This disktype cannot be deleted at the moment, since the following media are still referring to it:');
+INSERT INTO lang VALUES('reset','en','Reset');

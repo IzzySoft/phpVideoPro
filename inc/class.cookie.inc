@@ -36,9 +36,10 @@
     * @return boolean success
     */
    function set($name,$value) {
+     GLOBAL $base_url;
      if (!$this->expire) { $expire = 0; }
        else { $expire = time() + $this->expire; }
-     return setcookie($name,$value,$expire);
+     return setcookie($name,$value,$expire,$base_url);
    }
 
    /** Get a cookie's content

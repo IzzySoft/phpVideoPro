@@ -12,9 +12,10 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- add admin menu (search/delete orphans, backup/restore DB, etc.)
+- add admin menu (backup/restore DB, etc.)
 
 coming *next*:
+- manage preferences via cookies, taking defaults from DB
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - search function
 

@@ -984,6 +984,8 @@
       $res_e = strpos ($this->page, "(", $res_s);
       $tmpres = new imdb ( substr($this->page, $res_s+$len, 7));
       $tmpres->main_title=substr ($this->page, $res_s + 28, $res_e - $res_s - 28);
+      if ($pos = strpos($tmpres->main_title,">"))
+        $tmpres->main_title = substr($tmpres->main_title,$pos+1);
       $tmpres->main_year=substr($this->page, $res_e+1, 4);
       $i++;
       $this->resu[$i] = $tmpres;

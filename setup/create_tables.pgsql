@@ -29,6 +29,7 @@ CREATE TABLE cass (
    PRIMARY KEY (id,mtype_id)
 );
 
+CREATE INDEX cass_free_idx ON cass(free,id);
 
 # --------------------------------------------------------
 #
@@ -42,7 +43,6 @@ CREATE TABLE cat (
    PRIMARY KEY (id)
 );
 
-
 # --------------------------------------------------------
 #
 # Table structure for table 'colors'
@@ -54,7 +54,6 @@ CREATE TABLE colors (
    sname varchar(5) UNIQUE,
    PRIMARY KEY (id)
 );
-
 
 # --------------------------------------------------------
 #
@@ -68,7 +67,6 @@ CREATE TABLE directors (
    PRIMARY KEY (id)
 );
 
-
 # --------------------------------------------------------
 #
 # Table structure for table 'mtypes'
@@ -80,7 +78,6 @@ CREATE TABLE mtypes (
    sname varchar(5) UNIQUE,
    PRIMARY KEY (id)
 );
-
 
 # --------------------------------------------------------
 #
@@ -96,7 +93,6 @@ CREATE TABLE disks (
   PRIMARY KEY (id)
 );
 
-
 # --------------------------------------------------------
 #
 # Table structure for table 'music'
@@ -108,7 +104,6 @@ CREATE TABLE music (
    firstname varchar(30),
    PRIMARY KEY (id)
 );
-
 
 # --------------------------------------------------------
 #
@@ -122,7 +117,6 @@ CREATE TABLE pict (
    PRIMARY KEY (id)
 );
 
-
 # --------------------------------------------------------
 #
 # Table structure for table 'tone'
@@ -135,7 +129,6 @@ CREATE TABLE tone (
    PRIMARY KEY (id)
 );
 
-
 # --------------------------------------------------------
 #
 # Table structure for table 'commercials'
@@ -146,7 +139,6 @@ CREATE TABLE commercials (
    name varchar(30),
    PRIMARY KEY (id)
 );
-
 
 # --------------------------------------------------------
 #
@@ -194,6 +186,7 @@ CREATE TABLE video (
    PRIMARY KEY (id)
 );
 
+CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
 
 # --------------------------------------------------------
 #

@@ -29,6 +29,7 @@ CREATE TABLE cass (
    rc varchar(25),
    PRIMARY KEY (id,mtype_id)
 );
+CREATE INDEX cass_free_idx ON cass(free,id);
 
 
 # --------------------------------------------------------
@@ -199,6 +200,7 @@ CREATE TABLE video (
    comment text,
    PRIMARY KEY (id)
 );
+CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
 
 
 # --------------------------------------------------------

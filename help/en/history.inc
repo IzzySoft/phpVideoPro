@@ -13,7 +13,8 @@
      data for phpVideoPro, the browser always overwrote the "Login" field
      in the user editor - fixed.
  <li>when adding a new movie for an already existing medium, the form still
-     offered to select the disk type - fixed.
+     offered to select the disk type - fixed together with the RegionCode
+     problem in this case.
 </ul>
 
 [title]

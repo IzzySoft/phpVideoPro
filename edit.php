@@ -222,11 +222,11 @@
   // main block
   #---[ Obtain disktype data ]---
   $mdisktype = $db->get_disktypes($mtype_id);
-  if ($edit) {
-    $disktypes = $mdisktype;
-    $dtcount   = count($disktypes);
-  } elseif ($disktype) {
+  if ($disktype) {
     $disktypes = $db->get_disktypes($mtype_id,$disktype);
+    $dtcount   = count($disktypes);
+  } elseif ($edit) {
+    $disktypes = $mdisktype;
     $dtcount   = count($disktypes);
   }
   

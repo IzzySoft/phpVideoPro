@@ -8,6 +8,8 @@
  <li>fixed some warnings occuring with empty DB (e.g. after fresh install)
  <li>IMDB Title search did not work for some movies due to IMDB-internal
      redirects - hopefully fixed.
+ <li>IMDB transfer: movies tagline, if available, is now added to the comment
+     field
 </ul>
 
 [title]

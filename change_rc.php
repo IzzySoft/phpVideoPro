@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
- $page_id = "disktype_change";
+ $page_id = "change_rc";
 
  include("inc/includes.inc");
  if ( $change && !$pvp->auth->update) {
@@ -39,18 +39,13 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_rc.tpl"));
  $t->set_block("template","disktypeblock","disk");
- $t->set_var("listtitle",lang("change_rc",$mt[0][sname]. " $cass_id"));
+ $t->set_var("listtitle",lang("change_rc_for",$mt[0][sname]. " $cass_id"));
  $t->set_var("form_target",$PHP_SELF);
 
  #---[ if disktype was not yet defined, we force the user to do so now ]---
- if (!$odt[0]->id) {
+ if (!$disks_id) {
    $t->set_var("orig",lang("orig_disktype"));
-   if ($disks_id) {
-     $odtname = $odt[0]->name;
-     if ($odt[0]->size) $odtname .= " (".$odt[0]->size.")";
-   } else {
-     $odtname = lang("unknown");
-   }
+   $odtname = lang("unknown");
    $t->set_var("o_disktype","<INPUT TYPE='button' NAME='o_disktype' VALUE='$odtname'>");
    $t->set_var("new",lang("new_disktype"));
    $dt = $db->get_disktypes($mtype_id);

@@ -28,7 +28,7 @@
  </FORM>
 
 </TD></TR>
-<TR><TD STYLE="text-align:center;margin:3;">{submit}</TD></TR>
+<TR><TD><DIV STYLE="text-align:center;margin:3;">{submit}</DIV></TD></TR>
 </TABLE>
 </DIV>
 </TD></TR></TABLE>

@@ -17,6 +17,10 @@
      that there are no longer multiple cookie requests on a single page.
      Nevertheless, since HTTP is stateless phpVideoPro will check that once at
      the beginning of every page (i.e., the result is not stored anywhere).
+ <li>if the form on the initial page (jump-to-entry) is submitted without any
+     part of the media number, the request is routed to the corresponding
+     result list of the search screen now (i.e. a list of all movies on the
+     given media type is displayed)
 </ul>
 
 [title]

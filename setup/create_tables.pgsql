@@ -209,6 +209,18 @@ CREATE TABLE preferences (
 
 # --------------------------------------------------------
 #
+# Table structure for table 'userprefs'
+#
+CREATE TABLE pvp_userprefs (
+   id serial,
+   user_id int NOT NULL,
+   name varchar(30),
+   value text,
+   PRIMARY KEY (id)
+);
+
+# --------------------------------------------------------
+#
 # Table structure for table 'pvp_system' (system settings)
 #
 

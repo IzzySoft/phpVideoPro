@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.1 (July 2003)
+0.5.1 (July 4, 2003)
 [text]
 <ul>
  <li>added support for disk types (such as CD-R[W], DVD-R[W] and DVD+R[W])

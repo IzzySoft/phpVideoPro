@@ -2,13 +2,18 @@
 # /*  $Id$ */
 
 [title]
-0.5.6
+0.5.6 (December 18, 2003)
 [text]
 <ul>
  <li>hopefully fixed stafflist crashing with SQL error when no staffmembers
      found (which is usually the case when starting with a fresh install)
  <li>hopefully fixed the other lists crashing on fresh database since no
      entries found
+ <li>finally fixed problem in get_preventry(): sometimes MySQL seems to return
+     an empty value instead of no result (this only happened if one entered
+     a higher medianr than 1 as first medium of a type). Worked around this.
+ <li>language file syntax had changed with v0.5.5 - but we forgot to update
+     some language files to the new syntax (Ouch!) - done.
 </ul>
 
 [title]

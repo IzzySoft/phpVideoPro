@@ -10,14 +10,24 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.0.3 (June 2001)</b><br>
+  <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:
       <ul>
        <li>action processed (e.g. "editing entry RVT 0089-02") is now
            displayed in the browsers title bar
-       <li>free time on media list now working
-       <li>free time on media was not updated when updating an entry. fixed.
+       <li>"free time on media" list now working
+       <li>"free time on media" was not updated when updating an entry. fixed.
+       <li>added page with instructions how to setup phpVideoPro
+       <li>added setup script for database
+       <li>adding a new entry is now possible! So this fine piece of software
+           should now be useful even for people other than me :)
       </ul>
+      Going to feature freeze (now the product has all its "main functions"
+      and can, as mentioned above, be used by "the public") and check for
+      bugs (guess I'll have to force myself to this step - since there are some
+      functions I am dying to implement ;). If no bugs are found within the next
+      days (or the ones found are fixed), version number will change to 0.1.0 as
+      first public beta (wow!)
   <LI><b>0.0.2 (June 24, 2001)</b><br>
       database completely reworked and restructured to what I felt to be
       suitable to fit the new requirements. Detail view largely improved

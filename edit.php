@@ -1,6 +1,11 @@
 <? /* Edit an entry */
 
-  if ($edit) { $page_id = "edit"; } else { $page_id = "view"; }
+  if ($new_entry) {
+    $page_id = "new_entry";
+    $edit    = TRUE;
+  } elseif ($edit) {
+    $page_id = "edit";
+  } else { $page_id = "view"; }
   include("inc/config.inc");
   include("inc/header.inc");
 
@@ -39,11 +44,12 @@
 
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
-    dbquery("SELECT name,id FROM mtypes");
+    dbquery("SELECT id,name,sname FROM mtypes");
     $i = 0;
     while ( $db->next_record() ){
-     $mtypes[$i][id]   = $db->f('id');
-     $mtypes[$i][name] = $db->f('name');
+     $mtypes[$i][id]    = $db->f('id');
+     $mtypes[$i][name]  = $db->f('name');
+     $mtypes[$i][sname] = $db->f('sname');
      $i++;
     }
     dbquery("SELECT name,id FROM tone");
@@ -63,8 +69,8 @@
     dbquery("SELECT name,id FROM colors");
     $i = 0;
     while ( $db->next_record() ){
-     $colors[$i][id]   = $db->f('id');
-     $colors[$i][name] = $db->f('name');
+     $scolors[$i][id]   = $db->f('id');
+     $scolors[$i][name] = $db->f('name');
      $i++;
     }
     dbquery("SELECT name,id FROM pict");
@@ -94,13 +100,23 @@
     echo $field;
   }
   
-?>
+  if ($update) { include("inc/update.inc"); }
+  elseif ($create) { include("inc/add_entry.inc"); }
 
-<? if ($update) { include("inc/update.inc"); } ?>
+  echo "<H2 Align=Center>";
+  switch ( strtolower($page_id) ) {
+    case "edit"      : echo "Edit entry $nr"; break;
+    case "view"      : echo "View entry $nr"; break;
+    case "new_entry" : echo "Add entry"; break;
+    default          : break;
+  }
+  echo "</H2>\n";
 
-<H2 Align=Center><? if ($edit) { echo "Edit"; } else { echo "View";} echo " entry $nr"; ?></H2>
-<?
   echo "<CENTER>$save_result</CENTER>";
+  
+  ##########################################################################
+  # get all needed data from db (if not $new_entry ;)
+ if (!$new_entry) {
   $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
            . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
@@ -134,6 +150,7 @@
   dbquery("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
   $db->next_record();
   $mediatype = $db->f('sname'); $media_tname = $db->f('name');
+  if ($create) $nr = $mediatype . " " . $cass_id . "-" . $part;
   dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');
@@ -163,19 +180,37 @@
     dbquery($query); $db->next_record();
     $free  = $db->f('free');
   }
+ } else {
+   for ($i=0;$i<count($mtypes);$i++) {
+     dbquery("SELECT MAX(cass_id) FROM video WHERE mtype_id='" . $mtypes[$i][id] . "'");
+     $db->next_record();
+     $lastnum[$i][mtype]   = $mtypes[$i][sname];
+     $lastnum[$i][mtype_id]= $mtypes[$i][id];
+     $lastnum[$i][cass_id] = $db->f('MAX(cass_id)');
+     while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
+   }
+   for ($i=0;$i<count($lastnum);$i++) {
+     dbquery("SELECT MAX(part) FROM video WHERE cass_id='" . $lastnum[$i][cass_id] . "' AND mtype_id='" . $lastnum[$i][mtype_id] . "'");
+     $db->next_record();
+     $lastnum[$i][part]    = $db->f('MAX(part)');
+     while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }
+     $lastnum[$i][entry] = $lastnum[$i][mtype] . " " . $lastnum[$i][cass_id] . "-" . $lastnum[$i][part];
+   }
+ } // end if (!$new_entry)
 ################################################################
 # Form Start
 ?>
 <FORM NAME="entryform" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
+<? if (!$new_entry) { ?>
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="<? echo $cass_id ?>">
 <INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
-<INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>">
+<INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>"><? } ?>
 <Table Width="90%" Align="Center" Border="1">
  <TR><TH>Title</TH><TH ColSpan=3><? echo "<$input NAME=\"title\" VALUE=\"$title\">" ?></TH></TR>
  <TR>
   <TD Width=20%>MediaType</TD><TD Width=30%><?
   if ($new_entry) {
-    echo "<SELECT NAME=\"media_tid\">";
+    echo "<SELECT NAME=\"mtype_id\">";
     for ($i=0;$i<count($mtypes);$i++) {
       echo "<OPTION VALUE=\"" . $mtypes[$i][id] . "\"";
       if ($mtypes[$i][name]==$media_tname) echo " SELECTED";
@@ -188,7 +223,17 @@
   } ?></TD>
   <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
-  <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
+  <TD Width=20%>MediaNr</TD><TD Width=30%><?
+    if ($new_entry) {
+      echo "<INPUT NAME=\"cass_id\" " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME=\"part\" " . $form["addon_part"] . ">";
+      echo "&nbsp;&nbsp;&nbsp;highest entries in db:&nbsp;<SELECT>";
+      for ($i=0;$i<count($lastnum);$i++) {
+        echo "<OPTION NAME=\"lastnum\" VALUE=\"\">" . $lastnum[$i][entry] . "</OPTION>";
+      }
+      echo "</SELECT>";
+    } else {
+      echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+    } ?></TD>
   <TD>Year</TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
  <TR>
   <TD>Length</TD><TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0><TR><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD><TD>LongPlay:&nbsp;<INPUT NAME="lp" <?
@@ -214,8 +259,12 @@
   ?></TD></TR>
  <TR>
   <TD ColSpan=2>
-   <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>
-    <TR><TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD></TD>
+   <Table Width=100% Border=0 CellPadding=0 CellSpacing=0><?
+    if ($new_entry) {
+      echo "<TR><TD>MediaLength</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> min</TD></TD>";
+    } else {
+      echo "<TR><TD>Free</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min</TD></TD>";
+    } ?>
     <TR><TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
     <TR><TD ColSpan="2"><HR></TD></TR>
     <TR><TD WIDTH=30%>Tone</TD><TD><?
@@ -233,10 +282,10 @@
     <TR><TD>Picture</TD><TD><?
     if ($edit) {
       echo "<SELECT NAME=\"color_id\">";
-      for ($i=0;$i<count($colors);$i++) {
-        echo "<OPTION VALUE=\"" . $colors[$i][id] . "\"";
-        if ($colors[$i][name]==$color) echo " SELECTED";
-        echo ">" . $colors[$i][name] . " </OPTION>";
+      for ($i=0;$i<count($scolors);$i++) {
+        echo "<OPTION VALUE=\"" . $scolors[$i][id] . "\"";
+        if ($scolors[$i][name]==$color || ($new_entry && $scolors[$i][name]==$defaults["scolor"]) ) echo " SELECTED";
+        echo ">" . $scolors[$i][name] . " </OPTION>";
       }
       echo "</SELECT>";
     } else {
@@ -287,13 +336,15 @@
      if ($edit) {
        echo "<CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></CENTER>";
      } else {
-       echo $comment;
+       echo nl2br($comment);
      }
      ?></TD></TR>
    </TABLE>
  <TR><TD ColSpan=4>
    <INPUT TYPE="hidden" NAME="nr" VALUE="<?php echo $nr ?>">
-   <Table Width="100%"><? if ($edit) { ?>
+   <Table Width="100%"><? if ($new_entry) { ?>
+    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="Cancel"></TD>
+        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="create" VALUE="Create"></TD></TR><? } elseif ($edit) { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="Cancel"></TD>
         <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="Update"></TD></TR><? } else { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="Edit"></TD>

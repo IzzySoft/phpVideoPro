@@ -17,46 +17,54 @@ $pvpinstall = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
+include("css.inc");
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
 #====================================================[ Output page intro ]===
 $title = "phpVideoPro: Setting up the Database";
 ?>
 <HTML><HEAD>
- <TITLE><? echo $title ?></TITLE>
- <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <TITLE><?=$title?></TITLE>
+ <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
 </HEAD>
 <BODY>
-<H2 ALIGN=CENTER><? echo $title ?></H2>
-<P ALIGN=JUSTIFY>This page is intended to create all tables needed for
- phpVideoPro as well as to insert initial data into them. Right now this
- is done in three steps:</P>
-<UL>
- <LI>Creation of all tables
- <LI>Insertion of an initial list of categories
- <LI>Insertion of technical data, i.e. colors (b/w, color, 3D), media types
-     (DVD, original video tapes, self recorded video tapes), screen formats
-     (4:3, 16:9), tone formats (from Mono to Digital Dolby 6.1).
-</UL>
-<P ALIGN=JUSTIFY>For each of those mentioned steps you should be informed
- below if they were completed successfully. So, if below this are less than
- three statements about successfully completion, there was probably something
- going wrong...</P>
-<UL>
+<H2 ALIGN=CENTER><?=$title?></H2>
+<TABLE WIDTH="90%" ALIGN="center">
+ <TR><TH>Introduction</TH></TR>
+ <TR><TD><DIV ALIGN="justify"><P>This page is intended to create all tables
+     needed for phpVideoPro as well as to insert initial data into them. Right
+     now this is done in three steps:</P>
+     <UL>
+      <LI>Creation of all tables</LI>
+      <LI>Insertion of an initial list of categories</LI>
+      <LI>Insertion of technical data, i.e. colors (b/w, color, 3D), media types
+         (DVD, original video tapes, self recorded video tapes), screen formats
+         (4:3, 16:9), tone formats (from Mono to Digital Dolby 6.1).</LI>
+    </UL>
+    <P>For each of those mentioned steps you should be informed below if they
+    were completed successfully. So, if below this are less than three
+    statements about successfully completion, there was probably something going
+    wrong...</P></DIV></TD></TR>
+ <TR><TD><UL>
 <?
 
 #===================[ Get SQL statements from their files & execute them ]===
 $create_script = "create_tables." . $database["type"];
 $tables   = queryf($create_script,"Creation of tables");
-$cats     = queryf("categories.sql","Insertion of categories");
-$techdata = queryf("tech_data.sql","Insertion of technical data");
-$def_lang = queryf("lang_en.sql","Prepare default language");
+if ($restore) {
+  $restore  = queryf("restore.sql","Restore of a previously created Backup");
+} else {
+  $cats     = queryf("categories.sql","Insertion of categories");
+  $techdata = queryf("tech_data.sql","Insertion of technical data");
+  $def_lang = queryf("lang_en.sql","Prepare default language");
+}
 $query_count = 4;
 
 #=========================================================[ Closing page ]===
 ?>
-</UL>
-<P ALIGN=JUSTIFY>Congratulations - if there are <? echo $query_count ?>
- lines stating "success", you've done it - the basic installation is complete!
- You can then proceed to the <A HREF="configure.php">configuration</A> page.</P>
-</BODY></HTML>
+     </UL></TD></TR>
+ <TR><TD><DIV ALIGN="justify">Congratulations - if there are <?=$query_count?>
+      lines stating "success", you've done it - the basic installation is
+      complete! You can then proceed to the <A HREF="configure.php">configuration</A>
+      page.</DIV></TD></TR>
+</TABLE></BODY></HTML>

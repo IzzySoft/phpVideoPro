@@ -9,6 +9,8 @@
  <li>added count for each media type to stats page
  <li>context help for the initial page was missing - added.
  <li>added links to first and last movies on the "view entry" screen
+ <li>on the "change disktype" page, submit button was outside the form (i.e.
+     not working)
 </ul>
 
 [title]

@@ -14,7 +14,7 @@ help page for "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>"), but...
 Walking through your collection
 
 [text]
-To walk through your collection, you can of course use the "*view#" -&gt; "*start_page"
+To walk through your collection, you can of course use the "*view#" -&gt; "*start_page#"
 form. Since I felt this is not always the most convinient way, I added
 previous/next buttons next to the movie's title. If they are clickable, there's
 another entry to go in that direction. If not, there simply isn't one.
@@ -29,7 +29,7 @@ this are e.g. entering multiple parts of series, where the description just has
 minimal differences - or having the same movie twice, once as a tape and once
 as a DVD. You can efford this by clicking on the "*mediatype#" or "*medianr#"
 buttons. To learn more about the feature itself, see the documentation about
-"<A HREF="{PHP_SELF}?topic=media_change">*media_change#</A>".
+<i><A HREF="{PHP_SELF}?topic=media_change">*media_change#</A></i>.
 [text]
 Similiarly, for (re)writable media, you may change the media length by clicking
 on the button displaying the remaining space ("*free#"). This is useful in at
@@ -76,14 +76,14 @@ displaying "RVT 1234-2", and the tape 1234 additionally contains parts 1 and
 there's a limitation to a certain number of lines on it, i.e. it may be that not
 all information will fit onto them. How many lines fit on a label, is defined
 within the label's config (see
-"<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>").
+<i><A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A></i>).
 
 [text]
 To create your own labels, simply put them into the "labels/" directory. The
 .config file is needed always and describes the size of the labels plus the
 size and position of the contained areas. If a .png file with the same name
 exists, it will be used - otherwise a plain (white) template is created (and
-labeled, of course). For details, see <A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>.
+labeled, of course). For details, see <i><A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A></i>.
 
 [text]
 One more possibility to print even nicer labels is to be found via the print

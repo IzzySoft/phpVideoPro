@@ -20,7 +20,8 @@ previous/next buttons next to the movie's title. If they are clickable, there's
 another entry to go in that direction. If not, there simply isn't one.
 
 [title]
-Move or copy a movie to another place, changing media length
+Move or copy a movie to another place, changing media length, disk types or
+RegionCode
 
 [text]
 Sometimes you may want to move or copy a movie to another place. Situations for
@@ -35,6 +36,14 @@ on the button displaying the remaining space ("*free#"). This is useful in at
 least two cases: when moving/copying an entry to a new medium of different size,
 or if you just changed a media type to be (re)writable and now have to update
 the affected entries.
+[text]
+The page to change the disk type (for VCDs and DVDs) can be retrieved by
+clicking one of the counter buttons (if they are still there, i.e. if the disk
+type was not yet set previously) or the disk type button. You can also find it
+by clicking on the *region_code# button (which is for changing the
+*region_code# as you already may have guessed correctly), if you did not yet
+specify the disk typ. If you already did, the latter lets you change the
+*region_code# only.
 
 [title]
 IMDB information
@@ -75,6 +84,12 @@ To create your own labels, simply put them into the "labels/" directory. The
 size and position of the contained areas. If a .png file with the same name
 exists, it will be used - otherwise a plain (white) template is created (and
 labeled, of course). For details, see <A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>.
+
+[text]
+One more possibility to print even nicer labels is to be found via the print
+menu as "PSLabels". This nice PostScript based variant is even designed for
+self-adhesive label forms (Zweckform). More information on this is to be found
+on <A HREF="{PHP_SELF}?topic=pslabel">this page</A>.
 
 [eof]
 

@@ -11,6 +11,7 @@
  /* $Id$ */
 
  $silent = $cass_id || isset($create);
+ $page_id = "label";
  $labels_pp = 5; // how many labels per page
  include("inc/header.inc");
  include("inc/label.inc");

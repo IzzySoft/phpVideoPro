@@ -34,6 +34,7 @@
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
     case "add_entry"     : $pagename .= " [ " . lang("add_entry") . " ]"; break;
     case "taperest"      : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
+    case "label"         : $pagename .= " [ " . lang("label") . " ]"; break;
     default              : break;
   }
 if (!$silent) {

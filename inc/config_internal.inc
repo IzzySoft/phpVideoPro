@@ -73,7 +73,6 @@
  $max["srclen_chars"]   = 25;
  $min["media_size"]     = 10; // min length of recordable media in minutes
  $form["addon_country"] = "SIZE='30' MAXLENGTH='" . $max["country_chars"] . "'";
-# $form["addon_name"]    = "SIZE='30' MAXLENGTH='" . $max["name_chars"] . "' class='nameinput'";
  $form["addon_name"]    = "SIZE='30' MAXLENGTH='" . $max["name_chars"] . "'";
  $form["addon_year"]    = "SIZE='4' MAXLENGTH='4'";
  $form["addon_month"]   = "SIZE='2' MAXLENGTH='2'";
@@ -105,10 +104,12 @@
  $db->User     = $pvp->config->db->user     = $database["user"];
  $db->Password = $pvp->config->db->password = $database["password"];
 
+ $charset = 'utf-8';
  if (!isset($pvpinstall)) {
   $pvp->config->enable_cookies = $db->get_config("enable_cookies");
   $pvp->config->expire_cookies = $db->get_config("expire_cookies");
   $pvp->config->session_purgetime = $db->get_config("session_purgetime");
+  $pvp->config->cache_enable = $db->get_config("cache_enable");
   include (dirname(__FILE__) . "/class.cookie.inc");
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;
@@ -117,7 +118,6 @@
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");
   if ( isset($pre) ) $version .= $pre;
-  $charset = 'utf-8';
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
   $pvp->tpl_url = $base_url . "templates/" . $pvp->preferences->get("template");
   $pvp->pstpl_dir = $base_path . "pslabels";

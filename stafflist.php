@@ -37,7 +37,7 @@
    $movies = $db->get_movienamelist($stafftype,$staff[$i]['name'],$filter);
    $moviecount = count($movies);
    $same_name = FALSE;
-   for ($k=0;$k<$moviecount;$k++) {
+   for ($k=0;$k<$moviecount;++$k) {
     $row++;
     $mtype    = $movies[$k]['mtype_short'];
     $mtype_id = $movies[$k]['mtype_id'];
@@ -72,7 +72,7 @@
     $t->set_var("url",$pvp->link->slink("edit.php?nr=$movie_id&cass_id=$cass_id&part=$part&mtype_id=$mtype_id"));
     $t->set_var("mtype",$mtype);
     $t->set_var("nr",$nr);
-    if ($k) $t->parse("itemlist","itemblock",TRUE);
+    if ($row>1) $t->parse("itemlist","itemblock",TRUE);
       else  $t->parse("itemlist","itemblock");
     $same_name = TRUE;
    }

@@ -439,6 +439,7 @@ INSERT INTO lang VALUES ('update_success','de','Datensatz erfolgreich aktualisie
 INSERT INTO lang VALUES ('upd_access','de','Darf Datensätze aktualisieren','');
 INSERT INTO lang VALUES ('upper_right_corner','de','Obere rechte Ecke (x/y)','');
 INSERT INTO lang VALUES ('user','de','Benutzer','');
+INSERT INTO lang VALUES ('user_create_login_required','de','Für den Benutzer muss ein Login-Name angegeben werden!','');
 INSERT INTO lang VALUES ('user_deleted','de','Der Benutzer #%1, \"%2\" (%3), wurde erfolgreich gelöscht.','');
 INSERT INTO lang VALUES ('user_delete_failed','de','Das Löschen des Benutzers #%1, \"%2\" (%3), ist fehlgeschlagen.','');
 INSERT INTO lang VALUES ('user_delete_report','de','Ergebnis des Löschvorgangs','');

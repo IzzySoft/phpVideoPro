@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Common SQL helper funcs used for most database accesses                   *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Common SQL helper funcs used for most database accesses                   #
+ #############################################################################
 
  /* $Id$ */
 
@@ -566,7 +566,8 @@
      $moviedetails = array("title","length","country","year","counter1",
                      "counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
-		     "actor5_list","music_list","fsk","comment","cass_id","part");
+		     "actor5_list","music_list","fsk","comment","cass_id","part",
+		     "mtype_id","tone_id","color_id");
      foreach($moviedetails as $value) {
        $movie[$value] = $this->f("$value");
      }

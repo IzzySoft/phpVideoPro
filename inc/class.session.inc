@@ -14,7 +14,7 @@
 
  /** Session Managment
   * @package Api
-  * @class cookie
+  * @class session
   * @author Izzy (izzysoft@qumran.org)
   * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
   */
@@ -100,7 +100,7 @@
   function destroy($id) {
   }
 
- } // end class auth
+ } // end class session
 
  $pvp->session = new session();
 ?>

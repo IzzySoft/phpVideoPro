@@ -28,9 +28,10 @@
  $t->set_block("movieblock","pgblock","pglist");
  $t->set_block("movieblock","acatblock","acatlist");
  $t->set_block("acatblock","catblock","catlist");
-
  $t->set_block("movieblock","dirblock","dirlist");
  $t->set_block("movieblock","actblock","actlist");
+
+ $t->set_block("template","queryblock","query");
 
  $t->set_var("listtitle",lang("imdb_title_search"));
 
@@ -43,12 +44,13 @@
   $results = $search->results ();
   $open = FALSE;
   foreach ($results as $res) {
-    $t->set_var("movie",$res->title()." (".$res->year().")");
-    $links = "<a href='".$_SERVER["PHP_SELF"]."?mid=".$res->imdbid()."'>Details</a>"
-           . "&nbsp;"
-           . "<a href='http://".$search->imdbsite."/title/tt".$res->imdbid()
-           . "'>imdb page</a>";
-    $t->set_var("links",$links);
+    $moviename = "<a href='".$_SERVER["PHP_SELF"]."?mid=".$res->imdbid()."'>"
+           . $res->title()." (".$res->year().")"."</a>";
+    $t->set_var("moviename",$moviename);
+    $link  = "<a href='http://".$search->imdbsite."/title/tt".$res->imdbid()
+           . "' target='_blank'><img src='".$base_url."images/imdb_movie.gif' "
+           . "border='0' alt='Open IMDB page'></a>";
+    $t->set_var("links",$link);
     $t->parse("resultitem","resitemblock",$open);
     $open = TRUE;
   }
@@ -117,6 +119,7 @@
    $t->set_var("mgenre",$genre);
    $catlist = $db->get_category(); $cc = count($catlist); $open=FALSE; $done=-1;
    for ($k=0;$k<3;++$k) {
+    $t->set_var("catnr",$k+1);
     $t->set_var("cid","");
     $t->set_var("csel","");
     $t->set_var("cname","- ".lang("none")." -");
@@ -175,11 +178,35 @@
      else $comment = "";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
+   $t->set_var("btransfer",lang("imdb_transfer2edit"));
+   $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+  function transfer_data() {
+   omf = opener.document.movieform;
+   dmf = document.movieform;
+   omf.title.value   = dmf.title.value;
+   omf.length.value  = dmf.runtime.value;
+   omf.country.value = dmf.country.value;
+   omf.year.value    = dmf.year.value;
+   omf.comment.value = dmf.comment.value;
+   omf.cat1_id.value = dmf.cat1_id.value;
+   omf.cat2_id.value = dmf.cat2_id.value;
+   omf.cat3_id.value = dmf.cat3_id.value;
+   name = dmf.directors.value;
+//   omf.director_name.value  =
+//   omf.director_fname.value =
+//   omf.actor1_name.value    =
+//   omf.actor1_fname.value   =
+//   alert('Opener Title: '+omf.title.value);
+  }
+//--></SCRIPT>";
+   $t->set_var("js",$js);
    $t->parse("movie","movieblock");
    $t->pparse("out","template");
  } else {
  #=================================================[ Nothing to do for us! ]===
-   echo "<P><BR></P>Got NO DATA - nothing to do<br>";
+   $t->set_var("submit",lang("submit"));
+   $t->parse("query","queryblock");
+   $t->pparse("out","template");
  }
 
  include("inc/footer.inc");

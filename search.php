@@ -23,7 +23,8 @@
    $t->set_block("list","mdatablock","mdatalist");
    $t->set_block("list","emptyblock","emptylist");
    if (!$start) $start = 0;
-   $values = array ("mtype_id"=>$mtype_id,"cat_id"=>$cat_id,"ptype"=>$ptype,
+   $values = array ("mtype_id"=>$mtype_id,"cat_id"=>$cat_id,"audio_id"=>$audio_id,
+                    "subtitle_id"=>$subtitle_id,"ptype"=>$ptype,
                     "pname"=>$pname,"title"=>$title,"comment"=>$comment,
                     "minlen"=>$minlen,"maxlen"=>$maxlen,"minfsk"=>$minfsk,
                     "maxfsk"=>$maxfsk);
@@ -41,6 +42,20 @@
    } else {
      unset($searchmovievals["cat_id"]);
      $searchmovievals["cat_id"]   = explode(",",$cat_id);
+   }
+   if ( is_array($audio_id) ) {
+     unset($values["audio_id"]);
+     $values["audio_id"] = implode(",",$audio_id);
+   } else {
+     unset($searchmovievals["audio_id"]);
+     $searchmovievals["audio_id"] = explode(",",$audio_id);
+   }
+   if ( is_array($subtitle_id) ) {
+     unset($values["subtitle_id"]);
+     $values["subtitle_id"] = implode(",",$subtitle_id);
+   } else {
+     unset($searchmovievals["subtitle_id"]);
+     $searchmovievals["subtitle_id"] = explode(",",$subtitle_id);
    }
    $query  = "\$db->searchmovies(\"$order\",$start)";
    $par = "?order=$order";
@@ -83,6 +98,24 @@
  }
  $cat_field .= "</SELECT>";
  $t->set_var("cat_field",$cat_field);
+
+ $t->set_var("audio_name",lang("audio_ts"));
+ $langs = $db->get_avlang("audio"); $lc = count($langs);
+ $lang_field = "<SELECT NAME='audio_id[]' SIZE='4' MULTIPLE CLASS='multiselect'>";
+ for ($i=0;$i<$lc;++$i) {
+   $lang_field .= "<OPTION VALUE='".$langs[$i]->id."'>".$langs[$i]->name."</OPTION>";
+ }
+ $lang_field .= "</SELECT>";
+ $t->set_var("audio_field",$lang_field);
+ $t->set_var("subtitle_name",lang("subtitle"));
+ $langs = $db->get_avlang("subtitle"); $lc = count($langs);
+ $lang_field = "<SELECT NAME='subtitle_id[]' SIZE='4' MULTIPLE CLASS='multiselect'>";
+ for ($i=0;$i<$lc;++$i) {
+   $lang_field .= "<OPTION VALUE='".$langs[$i]->id."'>".$langs[$i]->name."</OPTION>";
+ }
+ $lang_field .= "</SELECT>";
+ $t->set_var("subtitle_field",$lang_field);
+
  $t->set_var("person_field","<SELECT NAME='ptype'><OPTION NAME='actor'>".lang("actor")."</OPTION><OPTION NAME='director'>".lang("director_person")."</OPTION></SELECT>");
  $t->set_var("name_field","<INPUT NAME='pname' ".$form["addon_name"].">");
  $t->set_var("title_name",lang("title"));

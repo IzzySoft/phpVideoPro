@@ -1337,6 +1337,7 @@
      foreach ($searchmovievals as $key=>$val) {
        ${$key} = $val;
      }
+     #---[ MediaTypes ]--
      $ccount = count($mtype_id);
      for ($i=0;$i<$ccount;++$i) {
        if (!$mtype_id[$i]) break;
@@ -1344,6 +1345,7 @@
        $restrict .= "v.mtype_id=".$mtype_id[$i]." ";
        if ($i+1==$ccount) $restrict .= ") ";
      }
+     #---[ Categories ]--
      $ccount = count($cat_id);
      for ($i=0;$i<$ccount;++$i) {
        if (!$cat_id[$i]) break;
@@ -1352,8 +1354,27 @@
        $restrict .= "v.cat1_id=$cat OR v.cat2_id=$cat OR v.cat3_id=$cat ";
        if ($i+1<$ccount) { $restrict .= " OR "; } else { $restrict .= ") "; }
      }
+     #---[ Audio_Lang ]--
+     $ccount = count($audio_id);
+     for($i=0;$i<$ccount;++$i) {
+       if (!$audio_id[$i]) break;
+       if ($i==0) { if ($restrict) $restrict .= "AND "; $restrict .= " ("; } else { $restrict .= " OR "; }
+       $restrict .= "v.audio like '%,".$audio_id[$i].",%'";
+       if ($i+1==$ccount) $restrict .= ") ";
+     }
+     #---[ Subtitles ]--
+     $ccount = count($subtitle_id);
+     for($i=0;$i<$ccount;++$i) {
+       if (!$subtitle_id[$i]) break;
+       if ($i==0) { if ($restrict) $restrict .= "AND "; $restrict .= " ("; } else { $restrict .= " OR "; }
+       $restrict .= "v.subtitle like '%,".$subtitle_id[$i].",%'";
+       if ($i+1==$ccount) $restrict .= ") ";
+     }
+
      if ($restrict) $restrict .= "AND ";
      $restrict .= "v.title LIKE '%$title%' AND ";
+
+     #---[ Staff ]--
      if ($pname) {
        switch ($ptype) {
          case director :
@@ -1380,6 +1401,7 @@
        }
        if (!empty($pids)) $restrict .= ") AND ";
      }
+
      $restrict .= "comment LIKE '%$comment%'";
      if ($minlen) $restrict .= " AND length>=$minlen";
      if ($maxlen) $restrict .= " AND length<=$maxlen";

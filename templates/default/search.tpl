@@ -4,6 +4,8 @@
  <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>
  <TR><TD><DIV ALIGN="center">{mtype_name}<BR>{mtype_field}</DIV></TD>
      <TD><DIV ALIGN="center">{cat_name}<BR>{cat_field}</DIV></TD></TR>
+ <TR><TD><DIV ALIGN="center">{audio_name}<BR>{audio_field}</DIV></TD>
+     <TD><DIV ALIGN="center">{subtitle_name}<BR>{subtitle_field}</DIV></TD></TR>
  <TR><TD><DIV ALIGN="center">{person_field}</DIV></TD>
      <TD><DIV ALIGN="center">{name_field}</DIV></TD></TR>
  <TR><TD><DIV ALIGN="center">{title_name}</DIV></TD><TD><DIV ALIGN="center">{title_field}</DIV></TD></TR>

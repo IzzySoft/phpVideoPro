@@ -1,5 +1,5 @@
 # ========================================================
-# Spanish Language File created by phpVideoPro v0.5.4p1
+# Spanish Language File created by phpVideoPro v0.5.4p2
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='es';
@@ -311,8 +311,7 @@ INSERT INTO lang VALUES ('print','es','Imprimír');
 INSERT INTO lang VALUES ('printer','es','Impresora');
 INSERT INTO lang VALUES ('printer_add_failed','es','Ocurrio un error al añadir esta impresora.');
 INSERT INTO lang VALUES ('printer_add_success','es','Impresora añadida con exito.');
-INSERT INTO lang VALUES ('printer_comment','es','Si desea imprimir en los formularios 
- (usados para etiquetas PS), necesitamos la compensación márgenes exactos de su impresora.');
+INSERT INTO lang VALUES ('printer_comment','es','Si desea imprimir en los formularios  (usados para etiquetas PS), necesitamos la compensación márgenes exactos de su impresora.');
 INSERT INTO lang VALUES ('printer_name','es','Nombre');
 INSERT INTO lang VALUES ('printer_upd_failed','es','Actualización falló para las siguientes impresoras: %1');
 INSERT INTO lang VALUES ('print_label','es','Imprimir etiqueta:');
@@ -321,21 +320,18 @@ INSERT INTO lang VALUES ('pstpl_name','es','Nombre de Templete');
 INSERT INTO lang VALUES ('pstpl_type','es','Tipo de Templete');
 INSERT INTO lang VALUES ('read_access','es','Puede reviasr entradas');
 INSERT INTO lang VALUES ('read_access_short','es','ver');
-INSERT INTO lang VALUES ('recalc_free','es','Recalculando el espacio libre disponible en 
- este medio');
+INSERT INTO lang VALUES ('recalc_free','es','Recalculando el espacio libre disponible en  este medio');
 INSERT INTO lang VALUES ('refresh_lang','es','Refrescar lista de lenguaje');
 INSERT INTO lang VALUES ('refresh_lang_comment','es','Ingrese nuevamente las frases del archivo del idioma a la BD');
 INSERT INTO lang VALUES ('region_code','es','Código De Región');
 INSERT INTO lang VALUES ('remove_empty_media','es','Remover el medio vacío');
 INSERT INTO lang VALUES ('remove_empty_media_comment','es','¿Desea remover el medio del mantenimiento de espacio libre, cuando la última película sea eliminada del mismo?');
+INSERT INTO lang VALUES ('reset','es','Reiniciar');
 INSERT INTO lang VALUES ('rw_media','es','Medio Editable');
-INSERT INTO lang VALUES ('rw_media_comment','es','Medio para el cual se mantendrá espacio libre 
- (ya que usted graba ellos).');
+INSERT INTO lang VALUES ('rw_media_comment','es','Medio para el cual se mantendrá espacio libre  (ya que usted graba ellos).');
 INSERT INTO lang VALUES ('s/w','es','B/N');
 INSERT INTO lang VALUES ('save_lang_file','es','Guarde la traducción objetiva al archivo');
-INSERT INTO lang VALUES ('scan_new_lang_comment','es','(Si creó sus propios archivos de lenguajes y 
- los puso adentro del directorio \"setup\", 
- esto le dirá a phpVideoPro donde encontrarlos)');
+INSERT INTO lang VALUES ('scan_new_lang_comment','es','(Si creó sus propios archivos de lenguajes y  los puso adentro del directorio \"setup\",  esto le dirá a phpVideoPro donde encontrarlos)');
 INSERT INTO lang VALUES ('scan_new_lang_files','es','¿Escanear para nuevos archivos de lenguajes?');
 INSERT INTO lang VALUES ('screen','es','Formato de pantalla');
 INSERT INTO lang VALUES ('search','es','Búsqueda');
@@ -343,15 +339,12 @@ INSERT INTO lang VALUES ('search_movie','es','Búsqueda De Película');
 INSERT INTO lang VALUES ('select_add_lang','es','Seleccióne un lenguaje adicional a instalar');
 INSERT INTO lang VALUES ('select_add_lang_comment','es','(Inglés ya está instalado y siempre lo estará - vea el siguiente ítem. Para otros lenguajes ya instalados, también vea el siguiente ítem.)');
 INSERT INTO lang VALUES ('select_primary_lang','es','Seleccione lenguaje principal');
-INSERT INTO lang VALUES ('select_primary_lang_comment','es','(para las frases que falten, siempre habrá un 
- por defecto en inglés)');
+INSERT INTO lang VALUES ('select_primary_lang_comment','es','(para las frases que falten, siempre habrá un  por defecto en inglés)');
 INSERT INTO lang VALUES ('sel_target_lang','es','Seleccione el lenguaje objetivo (al cual traducir):');
 INSERT INTO lang VALUES ('session','es','Sesión');
 INSERT INTO lang VALUES ('session_expired','es','Su sesión ha expirado - inicie nuevamente.');
-INSERT INTO lang VALUES ('session_purgetime','es','¿Despues de cuanto tiempo sin uso se 
- considerará inactiva una sesión ?');
-INSERT INTO lang VALUES ('session_purgetime_comment','es','¿Cuanto tiempo debe mentenerse valida una 
- sesión sin actividad?');
+INSERT INTO lang VALUES ('session_purgetime','es','¿Despues de cuanto tiempo sin uso se  considerará inactiva una sesión ?');
+INSERT INTO lang VALUES ('session_purgetime_comment','es','¿Cuanto tiempo debe mentenerse valida una  sesión sin actividad?');
 INSERT INTO lang VALUES ('sess_dla','es','Accedido último');
 INSERT INTO lang VALUES ('sess_end','es','Terminó');
 INSERT INTO lang VALUES ('sess_id','es','ID de sesión');

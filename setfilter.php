@@ -130,6 +130,7 @@
     $t->parse("date","t_item");
 
     # screen
+    $t->set_var("inputlist","");
     dbquery("SELECT id,name FROM pict");
     $i=0;
     while ( $db->next_record() ) {
@@ -146,6 +147,7 @@
     $t->parse("screen","t_item");
 
     # picture
+    $t->set_var("inputlist","");
     dbquery("SELECT id,name FROM colors");
     $i=0;
     while ( $db->next_record() ) {

@@ -1,13 +1,18 @@
 <?php
-/*
- * Session Management for PHP3
- *
- * (C) Copyright 1999-2000 NetUSE GmbH
- *                    Kristian Koehntopp
- *
- * $Id$
- *
- */ 
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Template class taken from PHPLIB                                          *
+ * (C) Copyright 1999-2000 NetUSE GmbH                                       *
+ *                    Kristian Koehntopp                                     *
+ \***************************************************************************/
+
+ /* $Id$ */
 
 class Template {
   var $classname = "Template";

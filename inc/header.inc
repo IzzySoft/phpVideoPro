@@ -1,6 +1,16 @@
-<? /* page header */
+<?php
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Common header for almost all pages (except some setup specials)           *
+ \***************************************************************************/
 
-/* $Id$ */
+ /* $Id$ */
 
   $inc_path = dirname(__FILE__);
   include($inc_path . "/config.inc");

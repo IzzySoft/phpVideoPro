@@ -1,5 +1,17 @@
-<?
-  /* $Id$ */
+<?php
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Internal configuration - setup the program with information collected from*
+ * the database and browser info                                             *
+ \***************************************************************************/
+
+ /* $Id$ */
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!

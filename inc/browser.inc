@@ -1,17 +1,20 @@
 <?php
-// $Horde: horde/lib/Browser.php,v 1.16 2001/05/20 06:47:53 max Exp $
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Taken from the Horde project: horde/lib/Browser.php Revision: 1.2         *
+ * The Browser:: class provides capability information for the current       *
+ * web client. Browser identification is performed by examining the          *
+ * $HTTP_USER_AGENT environmental variable provide by the web server.        *
+ \***************************************************************************/
 
-/**
- * The Browser:: class provides capability information for the current
- * web client. Browser identification is performed by examining the
- * $HTTP_USER_AGENT environmental variable provide by the web server.
- *
- * @author  Chuck Hagenbuch <chuck@horde.org>
- * @author  Jon Parise <jon@csh.rit.edu>
- * @version $Revision$
- * @since   Horde 1.3
- * @package horde
- */
+ /* $Id$ */
+
 class Browser {
     
     /**

@@ -41,7 +41,7 @@
  $t->set_file(array("template"=>"admin_users.tpl"));
  $t->set_block("template","itemblock","item");
 
- $users = $db->get_userlist();
+ $users = $db->get_users();
  $usercount = count($users);
  for ($i=0;$i<$usercount;++$i) {
    $t->set_var("user_id","<INPUT TYPE='hidden' NAME='user_".$i."' VALUE='".$users[$i]->id."'>".$users[$i]->id);

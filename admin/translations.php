@@ -43,7 +43,7 @@
    $t->set_var("sel_lang_title",lang("sel_target_lang"));
    $t->set_var("sel_lang",$sel_lang);
    $t->parse("emptylist","emptyblock");
-   $t->set_var("submitname",lang("sellang"));
+   $t->set_var("submit_name",lang("sellang"));
    $t->set_var("submit",lang("submit"));
    include("../inc/header.inc");
    $t->pparse("out","list");
@@ -107,7 +107,7 @@
  $t->set_var("orig",lang("orig_trans","en"));
  $t->set_var("trans",lang("target_trans",$targetlang));
  $t->set_var("sample",lang("trans_sample"));
- $t->set_var("submitname","update");
+ $t->set_var("submit_name","update");
  $t->set_var("submit",lang("update"));
  $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");
  $t->set_var("hidden",$hidden);

@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.6.11 (2004)
+[text]
+<ul>
+ <li>replaced some *.png files by *.gif pendants for correct transparency in
+     all browsers (e.g. M$IE)
+</ul>
+
+[title]
 0.6.10 (November 12, 2004)
 [text]
 <ul>

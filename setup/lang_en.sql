@@ -536,4 +536,6 @@ INSERT INTO lang VALUES ('restore_db_internal','en','Restore from a PVP backup f
 INSERT INTO lang VALUES ('backup_db_sysconf','en','Backup system config and default preferences','Action on the Backup/Restore page');
 INSERT INTO lang VALUES ('backup_db_cats','en','Backup categories','Action on the Backup/Restore page');
 INSERT INTO lang VALUES ('user_create_login_required','en','You must specify a login name for the user!','Error message when trying to add a user without login name');
+INSERT INTO lang VALUES ('hide_cat','en','Hide category','Hint in the Category Administration');
+INSERT INTO lang VALUES ('remove_cat','en','Remove category','Hint in the Category Administration');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

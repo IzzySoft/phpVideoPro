@@ -167,7 +167,7 @@
   */
  function kickoff() {
    GLOBAL $base_url;
-   header("Location: $base_url"."login.php");
+   header("Location: $base_url"."login.php?login_hint=login_required");
    exit;
  }
  include (dirname(__FILE__) . "/class.common.inc");

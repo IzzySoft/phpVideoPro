@@ -28,7 +28,6 @@ if ($menue) {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
-  include ("../inc/db.inc");
 }
 
 ##################################################################

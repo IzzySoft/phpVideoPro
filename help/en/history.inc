@@ -10,6 +10,7 @@
  <li>stafflist always displayed not_found (fixed)
  <li>added stylesheets for input and select boxes
  <li>some design update on edit/view entry screen (w/o effect for NS 4.x :)
+ <li>added new fields for counter & commercials to edit/view entry page
 </ul>
 
 [title]

@@ -14,7 +14,7 @@
   SELECT { font-family: Verdana,Arial,Helvetica,sans-serif; text-decoration: none; height: 20px; }
   .nameinput { width: 120; }
   .techinput { width: 120; }
-  .catinput { width: 120; }
+  .catinput { width: 180; }
   .yesnobutton { width: 40; }
   .checkbox { height: 15; }
   .multiselect { height: 125; width: 180; }

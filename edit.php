@@ -293,6 +293,12 @@ EndHiddenFields;
     if ($lp) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
   }
   $t->set_var("longplay",$field);
+  # Counter settings
+  $counter_1 = $counter_2 = "&nbsp;"; // dummy init - needs to be read from db!
+  $t->set_var("counter_name",lang("counter_start_stop"));
+  $t->set_var("counter_1",form_input("counter_1",$counter_1,"class=\"yesnobutton\""));
+  $t->set_var("counter_2",form_input("counter_2",$counter_2,"class=\"yesnobutton\""));
+  # Categories
   $t->set_var("category_name",lang("category") . " 1-2-3");
   $field = "";
   for ($i=1;$i<=$max["categories"];$i++) {
@@ -310,9 +316,26 @@ EndHiddenFields;
     if ( trim($cat[$i])=="" ) { $field .= "- None -"; } else { $field .= $cat[$i]; }
     $field .= "\">";
    }
-   if ( $i<$max["categories"] ) $field .= "&nbsp;-&nbsp;";
+   if ( $i<$max["categories"] ) $field .= "<BR>";
   }
   $t->set_var("category",$field);
+  # Commercials
+  $comm[0] = lang("unknown"); $comm[1] = lang("Yes"); $comm[2] = lang("No"); $comm[3] = "Cutt Off";
+  $t->set_var("commercial_name",lang("commercials"));
+  if ($edit) {
+    $field = "<SELECT NAME=\"commercials\" class=\"techinput\">";
+    for ($k=0;$k<4;$k++) {
+      $field .= "<OPTION VALUE=\"$k\"";
+      if ($commercials==$k) $field .= " SELECTED";
+      $field .= ">" . $comm[$k] . " </OPTION>";
+    }
+    $field .= "</SELECT>";
+  } else {
+    $field  = "<$input NAME=\"commercials\" class=\"techinput\" VALUE=\"";
+    $field .= $comm[0] . "\">";
+  }
+  $t->set_var("commercial",$field);
+  # Remaining free time
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
     $t->set_var("mlength_free","<INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev"));

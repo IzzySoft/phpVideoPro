@@ -11,11 +11,14 @@
   <TD Width=20%>{medianr_name}</TD><TD Width=30%>&nbsp;{medianr}</TD>
   <TD>{year_name}</TD><TD>&nbsp;{year}</TD></TR>
  <TR>
-  <TD>{length_name}</TD>
-  <TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0>
-       <TR><TD>&nbsp;{length}</TD>
-       <TD>{longplay_name}:&nbsp;{longplay}</TD></TR></TABLE>
-  <TD>{category_name}</TD><TD>&nbsp;{category}</TD></TR>
+  <TD ColSpan=2><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0>
+       <TR><TD>{length_name}</TD><TD>&nbsp;{length}</TD>
+       <TD>{longplay_name}:&nbsp;{longplay}</TD></TR>
+       <TR><TD>{counter_name}<TD>&nbsp;{counter_1}</TD>
+       <TD>{counter_2}</TD></TR>
+       <TR><TD>{commercial_name}<TD ColSpan=2>&nbsp;{commercial}</TD></TR>
+      </TABLE></TD>
+  <TD>{category_name}</TD><TD>{category}</TD></TR>
  <TR>
   <TD ColSpan=2>
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>

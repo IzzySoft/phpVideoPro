@@ -40,8 +40,8 @@ nicht alle geläufig sind. Daher hier eine kurze Auflistung:
   <TR><TH CLASS="help">Einheit</TH><TH CLASS="help">Vergleich</TH><TH CLASS="help">Beschreibung</TH></TR>
   <TR><TD>pt</TD><TD>&nbsp;</TD><TD>Der "Punkt" ist die kleinste Einheit bei PostScript</TD></TR>
   <TR><TD>inch</TD><TD>72 pt</TD><TD>Alte britische Maßeinheit, der wohl auch unser "Zollstock" seinen Namen verdankt</TD></TR>
-  <TR><TD>mm</TD><TD>28.3465 pt</TD><TD>Millimeter ist die kleinste metrische Maßeinheit, die in unserem Kontext einen Sinn ergibt</TD></TR>
-  <TR><TD>cm</TD><TD>2.8346 pt</TD><TD>Das gleiche wie 10 mm. Die Frage, ob PostScript nur 4 Stellen nach dem Komma unterstützt, geht an Michael (bis dahin am besten "mm" für genauere Angaben verwenden ;)</TD></TR>
+  <TR><TD>mm</TD><TD>2.83465 pt</TD><TD>Millimeter ist die kleinste metrische Maßeinheit, die in unserem Kontext einen Sinn ergibt</TD></TR>
+  <TR><TD>cm</TD><TD>28.346 pt</TD><TD>Das gleiche wie 10 mm. Die Frage, ob PostScript nur 4 Stellen nach dem Komma unterstützt, geht an Michael (bis dahin am besten "mm" für genauere Angaben verwenden ;)</TD></TR>
 </TABLE>
 
 [title]

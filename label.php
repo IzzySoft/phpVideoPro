@@ -67,8 +67,7 @@
    for ($i=0;$i<$labels_pp;$i++) {
      $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</OPTION>";
      $medianr = "<INPUT NAME=\"medianr_$i\"" . $form["addon_tech"] . ">";
-     $label   = "<SELECT NAME=\"label_$i\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>"
-              . "$labellist</SELECT>";
+     $label   = "<SELECT NAME=\"label_$i\">$labellist</SELECT>";
      $t->set_var("mtype",$mtype);
      $t->set_var("medianr",$medianr);
      $t->set_var("label",$label);

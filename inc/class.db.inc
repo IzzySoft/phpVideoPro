@@ -1869,15 +1869,44 @@
    return $printerlist;
  }
 
+ /** set printer specifics
+  * @class sql
+  * @method set_printer
+  * @param optional integer id printerID (if not set, new printer will be added)
+  * @param optional string name printer name (if not set, printer will be deleted)
+  * @param optional integer unit unit id (default: 0 = pt)
+  * @param optional float top_offset top offset (defaults to 0)
+  * @param optional float left_offset left offset (defaults to 0)
+  * @return boolean success
+  */
+ function set_printer($id="",$name="",$unit=1,$top_offset=0,$left_offset=0) {
+   if (!$id && !$name) return FALSE;
+   if (!$name) { $query = "DELETE FROM printers WHERE id=$id"; }
+     elseif (!$id) {
+       $this->query("SELECT MAX(id) AS maxid FROM printers");
+       $this->next_record();
+       $id = $this->f('maxid') +1;
+       $query = "INSERT INTO printers VALUES ($id,'$name',$unit,$top_offset,$left_offset)";
+   } else {
+     $query = "UPDATE printers SET name='$name',unit_id=$unit,"
+            . "top_offset=$top_offset,left_offset=$left_offset "
+            . "WHERE id=$id";
+   }
+   $rc = $this->dbquery($query);
+   if ($rc<0) return FALSE;
+   return TRUE;
+ }
+
  /** get available units
   * @class sql
   * @method get_units
-  * @return mixed (array of unit,factor)
+  * @return mixed (array of id,unit,factor)
   */
  function get_units() {
-     $this->query("SELECT unit,size FROM units");
+     $this->query("SELECT id,unit,size FROM units");
      $i=0;
      while ( $this->next_record() ) {
+       $units[$i][id]   = $this->f('id');
        $units[$i][unit] = $this->f('unit');
        $units[$i][factor] = $this->f('size');
        ++$i;

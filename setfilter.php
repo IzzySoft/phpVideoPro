@@ -8,11 +8,11 @@
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("t_list"=>"setfilter_list.tpl",
                      "t_item"=>"setfilter_item.tpl",
-                     "tone_item"=>"setfilter_tone_item.tpl",
-//                     "tone_input"=>"setfilter_tone_item_input.tpl",
+//                     "tone_item"=>"setfilter_tone_item.tpl",
                      "tone_list"=>"setfilter_tone_list.tpl",
 		     "t_input"=>"setfilter_item_input.tpl"));
-  $t->set_block("tone_item","itemblock","itemlist");
+  $t->set_block("tone_list","listblock","listlist");
+  $t->set_block("listblock","itemblock","itemlist");
 
   ##############################################################################
   # create a dump of posted data for debugging purposes and send them to the
@@ -177,7 +177,7 @@
       $t->set_var("input",$name[$i]);
       $t->parse("itemlist","itemblock",TRUE);
     }
-    $t->parse("list","tone_item");
+    $t->parse("listlist","listblock");
     $t->set_var("itemlist","");
     for ($i=0;$i<count($name);$i++) {
       $input = "<INPUT TYPE=\"checkbox\" NAME=\"tone_" . $id[$i] . "\"";
@@ -186,7 +186,7 @@
       $t->set_var("input",$input);
       $t->parse("itemlist","itemblock",TRUE);
     }
-    $t->parse("list","tone_item",TRUE);
+    $t->parse("listlist","listblock",TRUE);
     $t->parse("tone","tone_list");
 
     # longplay

@@ -11,10 +11,10 @@
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
     case "about"         : $pagename .= " [ " . lang("about") . " ]"; break;
-    case "actor"         : $pagename .= " [ " . lang("actor_list") . " ]"; break;
+    case "actors"        : $pagename .= " [ " . lang("actors_list") . " ]"; break;
     case "configuration" : $pagename .= " [ " . lang("configuration") . " ]"; break;
     case "delete"        : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
-    case "director"      : $pagename .= " [ " . lang("director_list") . " ]"; break;
+    case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
     case "edit"          : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;

@@ -2,7 +2,9 @@
 # Updating Database for phpVideoPro from v0.2.0 to v0.2.1
 # ========================================================
 
-ALTER TABLE video ADD counter1 VARCHAR(10), ADD counter2 VARCHAR(10), ADD commercials_id int;
+ALTER TABLE video ADD counter1 VARCHAR(10);
+ALTER TABLE video ADD counter2 VARCHAR(10);
+ALTER TABLE video ADD commercials_id int;
 CREATE TABLE commercials (
    id int NOT NULL,
    name varchar(30),

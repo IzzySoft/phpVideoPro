@@ -54,7 +54,8 @@ if ($page_id) { ?>
   myNavBar1.addMenu(dhtmlMenu);
 
   //set menu colors
-  myNavBar1.setColors("#343434", "#eeeeee", "#60707C", "#ffffff", "#888888", "#eeeeee", "#60707C", "#ffffff", "#777777")
+//myNavBar1.setColors("separator", "unselMenuTxt", "unselMenuBg", "selMenuTxt", "selMenuBg", "unselMenuItemTxt", "unselMenuItemBg", "selMenuItemTxt", "#selMenuItemBg")
+  myNavBar1.setColors("#343434",   "#eeeeee",      "#60707C",     "#ffffff",    "#888888",   "#eeeeee",          "#60707C",         "#ffffff",        "#777777")
   myNavBar1.setFonts("Verdana", "Normal", "Normal", "10pt", "Verdana", "Normal", "Normal", "10pt");
 
   //uncomment below line to center the menu (valid values are "left", "center", and "right"

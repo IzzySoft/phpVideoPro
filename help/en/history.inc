@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.3.2 (Oktober 2002)
+[text]
+<ul>
+ <li>added menue item for d/l of latest version
+</ul>
+
+[title]
 0.3.1 (Oktober 2, 2002)
 [text]
 <ul>

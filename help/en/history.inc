@@ -13,6 +13,8 @@
      CSS setting ;)
  <li>moved some CSS and JavaScript definitions to external files
  <li>fixed some problems concerning template sets
+ <li>added new template set: <I>Applicat</I> should be more user friendly
+     by e.g. offering short-keys to some menu items like context help and logoff
 </ul>
 
 [title]

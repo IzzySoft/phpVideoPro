@@ -50,6 +50,9 @@ INSERT INTO commercials VALUES (3,'cut_off');
 #
 
 INSERT INTO pvp_config (name,value) VALUES ('version','0.3.6');
+INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
+INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
+INSERT INTO pvp_config (name,value) VALUES ('site','');
 
 #
 # set default preferences
@@ -62,6 +65,8 @@ INSERT INTO preferences (name,value) VALUES ('template','default');
 INSERT INTO preferences (name,value) VALUES ('display_limit','30');
 INSERT INTO preferences (name,value) VALUES ('date_format','y-m-d');
 INSERT INTO preferences (name,value) VALUES ('page_length','85');
+INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
+INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 
 #
 # list of languages and their keys

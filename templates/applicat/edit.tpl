@@ -2,17 +2,8 @@
  ul {margin-left: 0; padding-left: 10px; margin-top: 0; margin-bottom:0; padding-top:0; padding-bottom:0;}
  li {margin-top: 0; margin-bottom:0;}
 --></style>
-<SCRIPT LANGUAGE="JavaScript">// <!--
-  function adjustObjWidth(mainTab,refTab) {
-    refObj   = document.getElementById(refTab);
-    mainObj  = document.getElementById(refTab);
-    wwid     = document.documentElement.offsetWidth * 0.93;
-    owid     = refObj.offsetWidth;
-    if (owid > wwid) mainObj.width = wwid;
-  }
-//--></SCRIPT>
 <BR>
-<TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed" id="mainFrame"><TR><TD>
+<TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" Style="table-layout:fixed" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
 <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
@@ -131,6 +122,3 @@
 </TABLE>
 </DIV>
 </TD></TR></TABLE>
-<SCRIPT LANGUAGE="JavaScript">// <!--
-  adjustObjWidth("mainFrame","commentTab");
-//--></SCRIPT>

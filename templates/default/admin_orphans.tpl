@@ -6,6 +6,7 @@
  <TR><TD>{details}</TD></TR>
  <!-- END itemblock -->
 </TABLE>
+<BR>
 <FORM NAME='admin_orphans' METHOD='post' ACTION='{formtarget}'>
  <DIV ALIGN='center'>{button}</DIV>
 </FORM>

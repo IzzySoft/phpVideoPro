@@ -342,6 +342,52 @@
   }
 
  #------------------------------------------------------------[ Categories ]---
+  /** Update category data from backup.
+   *  Possible errors are logged to xfer::report, plus xfer::errors is
+   *  incremented
+   * @method private catSet
+   * @param boolean replace whether to replace existing data (TRUE) or just
+   *  append new categories/translations (FALSE)
+   * @return boolean success
+   */
+  function catSet($replace) {
+    GLOBAL $db;
+    if ($this->mode!="import") {
+      $this->report .= "<li>".lang("xfer_wrong_mode","import",$this->mode);
+      $this->errors = $this->items;
+      return FALSE;
+    }
+    #--[ get available languages ]--
+    $tlangs = $db->get_languages(1);
+    $lc = count($tlangs);
+    for ($i=0;$i<$lc;++$i) {
+      $langs[] = $tlangs["id"];
+    }
+    unset($tlangs,$lc);
+    for ($i=0;$i<$this->items;++$i) {
+      $cat = unserialize(urldecode($this->data[$i]));
+      #--[ add cat if not exists ]--
+      if ( !$cid = $db->get_category_id($cat[internal]) ) {
+        if ( !$db->add_category($cat[internal]) ) {
+          $this->report .= "<li>failed adding category '$cat[internal]'</li>";
+          ++$this->errors;
+          continue;
+        }
+        $cid = $db->get_category_id($cat[internal]);
+      }
+      #--[ add/replace translations ]--
+      $tcount = count($cat[trans]);
+      foreach ($cat[trans] as $var=>$val) {
+        if ( in_array($var,$langs) ) { // only update installed langs
+          $trans = $db->get_singletrans($var,"",$val);
+          if ( empty($trans) || $replace ) {
+            $db->set_translation($cat[internal],$var,$val);
+          }
+        }
+      }
+    }
+  }
+
   /** Retrieve Categories from DB and store them into xfer::list
    * @method private catGet
    */
@@ -398,7 +444,16 @@
         if ($this->configPut()) return $this->okMsg( lang("imp_success",$this->items) );
           else {
           $msg = lang("imp_errors",$this->errors,$this->items);
-          if ( debugLevel("R") ) $msg .= "Errors: <UL>".$this->report."</UL>";
+          if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
+          return $this->errorMsg($msg);
+        }
+        break;
+      case "Cats"    :
+        if ($this->catPut(!$append)) {
+          return $this->okMsg( lang("imp_success",$this->items) );
+        } else {
+          $msg = lang("imp_errors",$this->errors,$this->items);
+          if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
           return $this->errorMsg($msg);
         }
         break;

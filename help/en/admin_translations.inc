@@ -13,49 +13,18 @@ moreover to be part of the team by sending the resulting language file back to
 me, the author of phpVideoPro, having it included with future releases.
 
 [title]
-Requirements
-
-[text]
-Your machine must be set up to use the same character set as specified with the
-language you want to edit, or a character set that has it included as a subset
-(if you e.g. would like to edit the English language using US-ASCII, your
-machine should be set up to use either US-ASCII or ISO-8859-1, which has US-ASCII
-as a subset).
-
-[text]
-Second, you must go to "*edit# -&gt; *preferences#" and change your primary
-language to the one you want to edit (at least if the current primary language
-uses a different character set than the one to edit - if both use the same, you
-may skip this item). Of course you won't be able to do so if there are no
-translations exist yet for the target language - for this case, see below.
-
-[title]
 *sel_target_lang#
 
 [text]
 The first step is to select the language we want to edit. If there are already
 translations available within the database, these are loaded then. Otherwise,
 we create a whole new set at this place (and all text areas to edit will be
-initially empty). To determine the character set used for the target language,
-it is displayed next to the language's name in this drop-down box. For languages
-that have not yet any translations, this is intended as a hint: you may of course
-decide for a different character set (see below), but the iso-* sets are
-prefered.
+initially empty). Right now, all languages use the UTF-8 character set - do not
+worry about this, your browser and web server take care for the conversions from
+your local character set.
 
 [title]
 *admin_translations#
-
-[text]
-If we found no character set defined for the selected language, phpVideoPro
-assumes iso-8859-1, which might look strange when you e.g. entered Japanese and
-then see the results. In such a case, I recommend to just export the result-file
-right on this page (without any translations being made), edit the one-and-only
-SQL line in that file to have it reflecting the character set you intend to use,
-and then go to the "*admin# -&gt; *configuration#" page and reload your new
-created file. The same applies if you want to start with a complete new set of
-translations for an existing language, using a different character set: in this
-case, additionally delete all translations in that file and just leave the first
-SQL statement in.
 
 [text]
 Now we are ready to proceed. Should be quite easy on this page: you only can

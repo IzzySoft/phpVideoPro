@@ -40,10 +40,10 @@ Restore (movies)
 [text]
 To restore a movie backup, you first must place the backup file in the
 directory you configured in the <code>inc/config.inc</code> file. Keep the files
-extension to ".pvp" and make sure it is readable by your web server. When you
-then load the page, the file should show up in the selection box: just select
-it, press the "*button_restore#" button and wait until the restore process is
-finnished (you will see the result just below the page title then).
+extension to "<code>.pvp</code>" and make sure it is readable by your web server.
+When you then load the page, the file should show up in the selection box: just
+select it, press the "*button_restore#" button and wait until the restore
+process is finnished (you will see the result just below the page title then).
 
 [text]
 phpVideoPro will automatically detect whether the backup file was compressed

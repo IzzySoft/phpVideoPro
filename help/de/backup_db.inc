@@ -36,9 +36,9 @@ Restore (Filmdaten)
 
 [text]
 Hierfür ist die Sicherungsdatei in dem in der Datei <code>inc/config.inc</code>
-angegebenen Verzeichnis abzulegen. Die Dateierweiterung ".pvp" muss beibehalten
-werden. Darüber hinaus muss sicher gestellt sein, dass der Webserver für
-selbige über die nötige Leseberechtigung verfügt. Wird nun die Backup-Seite
+angegebenen Verzeichnis abzulegen. Die Dateierweiterung "<code>.pvp</code>" muss
+beibehalten werden. Darüber hinaus muss sicher gestellt sein, dass der Webserver
+für selbige über die nötige Leseberechtigung verfügt. Wird nun die Backup-Seite
 geladen, sollte die Datei in der Auswahlliste erscheinen. Dort ist sie nun
 zu selektieren, und anschließend der Button "*button_restore#" zu betätigen.
 Nach einer von der Größe des verwendeten Backups abhängigen Zeit sollte die

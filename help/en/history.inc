@@ -8,6 +8,8 @@
  <li>converted help system to utf-8
  <li>converted label systems to utf-8 (will only work for characters contained
      within the iso-8859-15 for now, sorry)
+ <li>updated contents of (English and German) help files. Still need volunteers
+     for the other languages! It's an easy job, so come on, help me out...
 </ul>
 
 [title]

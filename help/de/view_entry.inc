@@ -93,13 +93,8 @@ Konfigurationsdatei des jeweiligen Etikettes festgelegt (siehe
 "<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>").
 
 [text]
-Um selbsterstellte Etikett-Vorlagen zu verwenden, sind diese einfach in das
-Verzeichnis "labels/" zu kopieren. Eine ".config" Datei wird zwingend benötigt;
-diese enthält die notwendigen Angaben über Größe und Position der einzelnen
-Felder. Ist darüber hinaus eine ".png" Datei gleichen Namens vorhanden, wird
-diese dem Etikett zugrunde gelegt - andernfalls wird ein leeres (weißes)
-Etikett erstellt (und natürlich beschriftet). Details sind der Seite
-<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A> zu entnehmen.
+Für die Erstellung eigener Etikett-Vorlagen, siehe
+<A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A>.
 
 [text]
 Eine andere Möglichkeit zum Etiketten-Druck findet sich im Menü "Drucken" als

@@ -5,13 +5,18 @@
 *intro#
 
 [text]
-Etiketten werden im Verzeichnis "labels/" erstellt bzw. konfiguriert. Hierbei
-gilt es zumindest zwei Dateien zu berücksichtigen: die Konfigurationsdatei
-(*.config) und das optionale "leere Etikett" als Grafik-Datei (*.png). Beide
-müssen den gleichen "Vornamen" haben: heißt also die Konfigurationsdatei
-"Favorit.config", muss die zugehörige Grafikdatei "Favorit.png" heißen. Ist
-keine gleichnamige Grafikdatei vorhanden, wird einfach ein leeres Etikett
-(nur die Rahmen auf weißem Grund) erzeugt und verwendet.
+Das Folgende bezieht sich auf das <b>ALTE</b> Label-System, nicht auf die
+PSLabels!
+
+[text]
+Etiketten werden im Verzeichnis "<code>labels/</code>" erstellt bzw.
+konfiguriert. Hierbei gilt es zumindest zwei Dateien zu berücksichtigen: die
+Konfigurationsdatei (<code>*.config</code>) und das optionale "leere Etikett"
+als Grafik-Datei (<code>*.png</code>). Beide müssen den gleichen "Vornamen"
+haben: heißt also die Konfigurationsdatei "<code>Favorit.config</code>", muss
+die zugehörige Grafikdatei "<code>Favorit.png</code>" heißen. Ist keine
+gleichnamige Grafikdatei vorhanden, wird einfach ein leeres Etikett (nur die
+Rahmen auf weißem Grund) erzeugt und verwendet.
 
 [text]
 In der Konfigurationsdatei wird, wie der Name bereits vermuten läßt, das
@@ -39,7 +44,7 @@ kurzen Rest mit vielen VideoClips von MTV & Co. auffüllt ;)<br>
 im Format "x1,y1,x2,y2", wobei "x1,y1" die obere linke und "x2,y2" die untere
 rechte Ecke des jeweiligen Feldes bezeichnen. Die zugehörigen Felder werden
 dann gefüllt mit der *medianr# (ohne den MedienTyp), den Filmdaten und einem
-Symbol - naja, letzteres wird derzeit noch nicht von phpVideoPro erstellt.<br>
+Symbol - naja, letzteres wird nicht von phpVideoPro erstellt.<br>
 <b>entry</b>: Dies ist entweder ein String (wenn pro Film nur eine Zeile Text
 gewünscht wird) oder ein Array von Strings. Die Strings können aus einfachem
 Text bestehen, aber auch (durch geschweifte Klammern begrenzte) Variablen

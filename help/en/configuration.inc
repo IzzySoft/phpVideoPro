@@ -124,9 +124,10 @@ for new movies accordingly. Do this here.
 [text]
 <b>*enable_cookies#:</b> Without having this box checked, phpVideoPro won't
 use any cookies at all, i.e. preferences will allways be saved to and loaded
-from the database - thus overwriting the defaults, even if set from the "*edit#"
--&gt; "*preferences#" menue. So make sure to set this, if multiple users should
-access your installation at the same time.
+from the database (the defaults set from the "*edit#" -&gt; "*preferences#"
+menue will not be overwritten by this, since for the user preferences a separate
+table is used). Moreover, cookies are used for some data not stored to the
+database, such as the session ID.
 
 [text]
 <b>*expire_cookies#:</b> Here you may define the lifetime of your cookies. If

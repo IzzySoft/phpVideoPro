@@ -15,10 +15,12 @@ Edit existing entries
 [text]
 To edit an existing entry, simply click on the edit icon for the corresponding
 entry. This will lead you to a screen that lets you edit its values. Feel free
-to rename/change the value provided for the "*name#". But for changing the
-value of "*sname#" be cautious: this value was used to evaluate certain
-capabilities with older versions of phpVideoPro, and I'm not sure whether I
-removed all references to that in the code...
+to rename/change the value provided for the "*name#". The "sname" you should
+leave untouched: first, this value was used to evaluate certain capabilities
+with older versions of phpVideoPro, and I'm not sure whether I removed all
+references to that in the code - and second it will be needed on importing data
+from a different installation to determine e.g. the media type, since the ID
+might be different depending on the order of addition to the DB.
 
 [title]
 Adding a new entry
@@ -27,7 +29,9 @@ Adding a new entry
 Just click on "*add_entry#" at the bottom of the table you want to add an entry
 to. This will lead you to the same screen as the edit above - but the difference
 is that a new entry will be created. For new entries, the warning regarding
-"*sname#" above does not apply.
+"*sname#" above does not apply. But you should use a sname you thing others
+would chose as well (e.g. "mDV" for the "mini DV tapes" of camcorders), for the
+same above mentioned reasons.
 
 [title]
 Deleting an entry

@@ -29,11 +29,10 @@ Disk-Typen (in diesem Falle DVDs) verfügbar.
 [text]
 Für die Anzahl der gleichzeitig erfassbaren RegionalCodes gibt es eigentlich
 kein Limit (außer, dass es nur die Codes 0..6 gibt). Eine Mehrfach-Auswahl ist
-hier möglich, da ich bereits von ein paar DVDs gehört habe, die mehr als einen
-(aber dennoch nicht alle) RegionalCodes unterstützen. Für RC-freie DVDs sollten
-dennoch nicht alle Felder markiert werden: der Code "0" steht für "code-free"
-und sollte in diesem speziellen Fall als einziger verwendet werden. Natürlich
-steht es jedem frei, trotzdem alle Häkchen zu machen - das ist aber wirklich
-nicht nötig :-)
+hier möglich, da es auch DVDs gibt, die mehr als einen (aber dennoch nicht alle)
+RegionalCodes unterstützen. Für RC-freie DVDs sollten dennoch nicht alle Felder
+markiert werden: der Code "0" steht für "code-free" und sollte in diesem
+speziellen Fall als einziger verwendet werden. Natürlich steht es jedem frei,
+trotzdem alle Häkchen zu machen - das ist aber wirklich nicht nötig :-)
 
 [eof]

@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -29,7 +28,8 @@ as such a feature is requested by the user (e.g. by pushing the edit button),
 instead of reaching the requested page, the browser gets relocated to the login
 page: to use features not granted to the guest user, a login is required.
 Furthermore, certain menue items (e.g. the administration menue) are hidden as
-long as the logged-in user lacks the appropriate privileges.
+long as the logged-in user lacks the appropriate privileges. (After a successful
+login, the user then is redirected to the originally requested page)
 
 [title]
 Settings

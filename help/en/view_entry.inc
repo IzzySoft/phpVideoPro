@@ -79,11 +79,8 @@ within the label's config (see
 <i><A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A></i>).
 
 [text]
-To create your own labels, simply put them into the "labels/" directory. The
-.config file is needed always and describes the size of the labels plus the
-size and position of the contained areas. If a .png file with the same name
-exists, it will be used - otherwise a plain (white) template is created (and
-labeled, of course). For details, see <i><A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A></i>.
+If you want to create your own labels, see the section
+<i><A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A></i>.
 
 [text]
 One more possibility to print even nicer labels is to be found via the print
@@ -92,4 +89,3 @@ self-adhesive label forms (Zweckform). More information on this is to be found
 on <A HREF="{PHP_SELF}?topic=pslabel">this page</A>.
 
 [eof]
-

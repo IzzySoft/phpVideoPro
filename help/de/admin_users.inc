@@ -31,6 +31,8 @@ des Datensatzes) geladen, sondern der Besucher wird auf die &quot;Login&quot;
 Seite weiter geleitet, damit er sich anmelden kann. Desweiteren sind einige
 Menüs bereits ausgeblendet, sofern der (nicht) angemeldete Benutzer die
 notwendigen Berechtigungen nicht besitzt (so z.B. das Administrations-Menü).
+Nach einem erfolgreichen Login erfolgt in der Regel die automatische
+Weiterleitung zur ursprünglich angeforderten Seite.
 
 [title]
 Einstellungen

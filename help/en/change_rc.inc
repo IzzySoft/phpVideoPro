@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -26,10 +25,9 @@ immediately see if they can be easily done by a 1:1 copy.
 
 [text]
 When setting up the region code(s), there are technically no limitations
-concerning their count. As I've heard there are some disks supporting more than
-one (but not all) regions, so I made it a "multiple choice" option. However,
-if you have DVDs that support all region codes, you should only check the box
-for RC 0, which means "code free" - no need to check 1 to 6 as well then.
+concerning their count. There are some disks supporting more than one (but not
+all) regions, so I made it a "multiple choice" option. However, if you have DVDs
+that support all region codes (called "code free"), you should only check the
+box for RC 0, which means "code free" - no need to check 1 to 6 as well then.
 
 [eof]
-

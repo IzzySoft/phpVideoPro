@@ -142,13 +142,11 @@ geschehen.
 
 [text]
 <b>*enable_cookies#:</b> Ist diese Schaltfläche nicht aktiviert, werden keine
-Cookies verwendet. Das heißt dann allerdings auch, das Änderungen, die ein
-Benutzer im Menü "*edit#" -&gt; "*preferences#" vornimmt, ebenfalls in die
-Datenbank geschrieben werden, und somit die Voreinstellungen überschreiben.
-Gleiches gilt auch für die Filtereinstellungen. Mit anderen Worten: phpVideoPro
-verhält sich damit wie in seinen ersten Versionen, und es kann zu Problemen
-führen, sollten mehrere Benutzer dieselbe Installation simultan verwenden. Für
-eine Einzelplatz-Installation kann jedoch genau dieses Verhalten erwünscht sein.
+Cookies verwendet. Die Benutzer-spezifischen Einstellungen werden stattdessen
+in einer separaten Tabelle der Datenbank gespeichert (die globalen
+Voreinstellungen werden dabei nicht  überschrieben). Gleiches gilt auch für die
+Filtereinstellungen. Die Session-ID wird bei deaktivierten Cookies in der URL
+mit übermittelt.
 
 [text]
 <b>*expire_cookies#:</b> Hiermit wird definiert, nach welchem Zeitraum erstellte

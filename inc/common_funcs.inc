@@ -198,7 +198,7 @@
    }
    $ndx = 1;
    while ( list($k,$v)=each($vars) ) {
-     $trans = preg_replace("/%ndx/",$v,$trans);
+     $trans = preg_replace("/%$ndx/",$v,$trans);
      $ndx++;
    }
    return $trans;

@@ -188,13 +188,16 @@ class Browser {
 
             } elseif (preg_match('|Konqueror/([0-9]+)|', $this->agent, $version)) {
                 $this->setBrowser('konqueror');
-                $this->setFeature('javascript', 1.1);
                 $this->setQuirk('empty_file_input_value');
                 $this->majorVersion = $version[1];
 
                 switch ($this->majorVersion) {
                   case 3:
                     $this->setFeature('dom');
+                    $this->setFeature('javascript', 1.5);
+                    break;
+                  default:
+                    $this->setFeature('javascript', 1.1);
                     break;
                 }
 

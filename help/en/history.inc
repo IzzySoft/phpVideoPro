@@ -7,13 +7,26 @@
 <ul>
  <li>Made editing for translations easy by a new form in admin menu. If you've
      added/updated some entries, you may save them to a file and then send them
-     to me for inclusion with future versions!
+     to me for inclusion with future versions!<br>
+     Found some problems with that on charsets other than iso-8859-1*. Not sure
+     yet where to look for the problem due to lack of different machine setups.
+     As far as I can tell now, to use this new editor your machine must be set
+     up with all locale settings for the target language, especially for the
+     character set. Any experiences you make with this, please share with me.
+     Most important if you managed to use it with a charset other than
+     iso-8859-1 or iso-8859-15 - I must have to now how :-)
  <li>Matzah was cleaned up with the leaven: almost no tags where allowed in the
      comment field of a movie. Fixed: Now Bold, Underline, Italics and Center
      work again.
  <li>Added "Overview per Medium": on the initial page, when selecting a media
      type and entering a media number <b><i>without a part</i></b>, there's now
      a page displaying all movies on that medium together with some data
+ <li>Introducing basic Hebrew support (many thanx to Shalom Pollack for his
+     patient work). This is still experimental, since we've encountered some
+     problems with BiDi in mixed phrases (Hebrew phrases containing English
+     words) etc. that have to be solved.
+ <li>A bit database cleanup took place: removed two obsolete tables that
+     remained from the conception phase of PSLabels.
 </ul>
 
 [title]

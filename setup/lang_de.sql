@@ -50,7 +50,6 @@ INSERT INTO lang VALUES ('cat_concert','de','Konzert');
 INSERT INTO lang VALUES ('cat_crime','de','Krimi');
 INSERT INTO lang VALUES ('cat_documentary','de','Dokumentarfilm');
 INSERT INTO lang VALUES ('cat_drama','de','Drama');
-INSERT INTO lang VALUES ('cat_dummy','de','Dummy-Cat');
 INSERT INTO lang VALUES ('cat_fairytale','de','Märchen');
 INSERT INTO lang VALUES ('cat_fantasy','de','Fantasy');
 INSERT INTO lang VALUES ('cat_handle_empty','de','Das Handle für eine Kategorie darf nicht leer sein - bitte Daten für Kategorie #%1 korrigieren!');

@@ -115,18 +115,34 @@
    ############################################################################
    # get all data for a person and return it as array
    function get_person($id,$table) {
-     $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
-     if ( $this->next_record() ) {
-       $person[name] = trim($this->f('name'));
-       $person[firstname] = trim($this->f('firstname'));
-       $person[fullname] = $person[firstname];
-       if (strlen($person[fullname])) {
-         $person[fullname] .= " " . $person[name];
+     if ($id) {
+       $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
+       if ( $this->next_record() ) {
+         $person[name] = trim($this->f('name'));
+         $person[firstname] = trim($this->f('firstname'));
+         $person[fullname] = $person[firstname];
+         if (strlen($person[fullname])) {
+           $person[fullname] .= " " . $person[name];
+         } else {
+           $person[fullname] .= $person[name];
+         }
        } else {
-         $person[fullname] .= $person[name];
+         $person[name] = $person[firstname] = $person[fullname] = "";
        }
      } else {
-       $person[name] = $person[firstname] = $person[fullname] = "";
+       $this->dbquery("SELECT id,firstname,name FROM $table");
+       $i=0;
+       while ( $this->next_record() ) {
+         $person[$i][id]   = trim($this->f('id'));
+         $person[$i][name] = trim($this->f('name'));
+         $person[$i][firstname] = trim($this->f('firstname'));
+         if (strlen($person[$i][fullname])) {
+           $person[$i][fullname] .= " " . $person[$i][name];
+         } else {
+           $person[$i][fullname] .= $person[$i][name];
+         }
+	 ++$i;
+       }
      }
      return $person;
    }
@@ -152,11 +168,20 @@
    ############################################################################
    # get a category's name
    function get_category($id) {
-     $this->query("SELECT name FROM cat WHERE id=$id");
-     if ( $this->next_record() ) {
-       return trim($this->f('name'));
+     if ($id) {
+       $this->query("SELECT name FROM cat WHERE id=$id");
+       if ( $this->next_record() ) {
+         return trim($this->f('name'));
+       } else {
+         return "";
+       }
      } else {
-       return "";
+       $this->query("SELECT id,name FROM cat");
+       while ( $this->next_record() ) {
+         $cat[][id]   = $this->f('id');
+         $cat[][name] = $this->f('name');
+       }
+       return $cat;
      }
    }
 

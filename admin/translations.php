@@ -17,17 +17,16 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- $update     = $_POST["update"];
- $sellang    = $_POST["sellang"];
- $savelang   = $_GET["savelang"];
- $targetlang = $_REQUEST["targetlang"];
- $start      = $_REQUEST["start"];
+ if (isset($_POST["update"])) $update = $_POST["update"]; else $update = FALSE;
+ if (isset($_POST["sellang"])) $sellang = $_POST["sellang"]; else $sellang = "";
+ if (isset($_GET["savelang"])) $savelang = $_GET["savelang"]; else $savelang = FALSE;
+ if (isset($_REQUEST["targetlang"])) $targetlang = $_REQUEST["targetlang"]; else $targetlang = "";
+ if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
 
  #--------------------------------------------------[ initialize template ]---
- if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
  $t = new Template($pvp->tpl_dir);
@@ -54,6 +53,7 @@
    $t->parse("emptylist","emptyblock");
    $t->set_var("submit_name",lang("sellang"));
    $t->set_var("submit",lang("submit"));
+   $hidden = "";
    if (!$pvp->cookie->active) $hidden = "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
    $t->set_var("hidden",$hidden);
    include("../inc/header.inc");
@@ -104,10 +104,12 @@
    $t->set_var("code",$msgid);
    $t->set_var("orig",$orig);
    $rows  = ceil( strlen($orig)/40 ) +1;
-   $input = "<TEXTAREA NAME='$msgid"."_trans' COLS='50' ROWS='$rows'>".$target[$msgid]."</TEXTAREA>";
+   if (isset($target[$msgid])) $tmsg = $target[$msgid]; else $tmsg = "";
+   $input = "<TEXTAREA NAME='$msgid"."_trans' COLS='50' ROWS='$rows'>$tmsg</TEXTAREA>";
    $t->set_var("trans",$input);
    $t->set_var("sample",$list["xcomment"]["$msgid"]);
-   $t->parse("mdatalist","mdatablock",TRUE);
+   if ($i) $t->parse("mdatalist","mdatablock",TRUE);
+     else $t->parse("mdatalist","mdatablock");
  }
  if ($update) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";

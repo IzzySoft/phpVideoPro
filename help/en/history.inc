@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.4 (2002)
+0.2.4 (June 12, 2002)
 [text]
 <ul>
  <li>$recdate in view_entry was not displayed correctly for "unknown dates"

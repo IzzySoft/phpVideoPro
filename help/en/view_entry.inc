@@ -29,5 +29,24 @@ information available there - i.e. we are not responsible for this, and we
 won't change the information there :-) But some of us felt it may be a nice
 feature to bring you these informations on just a single mouse click...
 
+[title]
+Label printing
+
+[text]
+The selection box titled "*print_label#" allows you to print a label for the
+selected medium. It contains a number of templates available, and will print
+title and time of <b>all</b> movies on the selected medium (if you are e.g.
+displaying "RVT 1234-2", and the tape 1234 additionally contains parts 1 and
+3, the label contains all three movies), but is at this time (v0.2.4) limited
+to a number of 4 lines, i.e. movies per medium. This may be made configurable
+lateron.
+
+[text]
+To create your own labels, simply put them into the "labels/" directory. The
+.config file is needed always and describes the size of the labels plus the
+size and position of the contained areas. If a .png file with the same name
+exists, it will be used - otherwise a plain (white) template is created (and
+labeled, of course).
+
 [eof]
 

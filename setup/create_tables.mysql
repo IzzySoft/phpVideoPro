@@ -8,9 +8,9 @@
 #
 
 CREATE TABLE actors (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   firstname varchar(30),
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
 
@@ -21,12 +21,12 @@ CREATE TABLE actors (
 #
 
 CREATE TABLE cass (
-   id int(4) NOT NULL auto_increment,
-   mtype_id int(3) DEFAULT '1' NOT NULL,
-   disks_id int(3),
-   type int(3),
-   free int(3),
-   rc varchar(25),
+   id INT(4) NOT NULL auto_increment,
+   mtype_id INT(3) DEFAULT '1' NOT NULL,
+   disks_id INT(3),
+   type INT(3),
+   free INT(3),
+   rc VARCHAR(25),
    PRIMARY KEY (id,mtype_id)
 );
 CREATE INDEX cass_free_idx ON cass(free,id);
@@ -38,8 +38,8 @@ CREATE INDEX cass_free_idx ON cass(free,id);
 #
 
 CREATE TABLE cat (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30) NOT NULL,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30) NOT NULL,
    enabled INT(1) DEFAULT 1 NOT NULL,
    PRIMARY KEY (id),
    UNIQUE name (name)
@@ -52,9 +52,9 @@ CREATE TABLE cat (
 #
 
 CREATE TABLE colors (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   sname varchar(5) NOT NULL,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -66,9 +66,9 @@ CREATE TABLE colors (
 #
 
 CREATE TABLE directors (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   firstname varchar(30),
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
 
@@ -79,9 +79,9 @@ CREATE TABLE directors (
 #
 
 CREATE TABLE mtypes (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   sname varchar(5) NOT NULL,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -108,9 +108,9 @@ CREATE TABLE disks (
 #
 
 CREATE TABLE music (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   firstname varchar(30),
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
 
@@ -121,9 +121,9 @@ CREATE TABLE music (
 #
 
 CREATE TABLE pict (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   sname varchar(5) NOT NULL,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -135,9 +135,9 @@ CREATE TABLE pict (
 #
 
 CREATE TABLE tone (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   sname varchar(5) NOT NULL,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -149,8 +149,8 @@ CREATE TABLE tone (
 #
 
 CREATE TABLE commercials (
-   id int(5) NOT NULL,
-   name varchar(30),
+   id INT(5) NOT NULL,
+   name VARCHAR(30),
    PRIMARY KEY (id)
 );
 
@@ -161,43 +161,45 @@ CREATE TABLE commercials (
 #
 
 CREATE TABLE video (
-   id int(7) NOT NULL auto_increment,
-   mtype_id int(5),
-   cass_id int(4),
-   part int(2),
-   title varchar(60),
-   label int(1) NOT NULL,
-   length int(3),
-   counter1 varchar(10),
-   counter2 varchar(10),
-   aq_date varchar(10),
-   source varchar(15),
-   director_id int(5),
-   director_list int(1),
-   music_id int(5),
-   music_list int(1),
-   country varchar(30),
-   year int(4),
-   cat1_id int(5) NOT NULL,
-   cat2_id int(5) NOT NULL,
-   cat3_id int(5) NOT NULL,
-   actor1_id int(5),
-   actor2_id int(5),
-   actor3_id int(5),
-   actor4_id int(5),
-   actor5_id int(5),
-   actor1_list int(1) NOT NULL,
-   actor2_list int(1) NOT NULL,
-   actor3_list int(1) NOT NULL,
-   actor4_list int(1) NOT NULL,
-   actor5_list int(1) NOT NULL,
-   tone_id int(5),
-   color_id int(5),
-   pict_id int(5) NOT NULL,
-   commercials_id int(5) NOT NULL,
-   lp int(1) NOT NULL,
-   fsk int(2),
-   comment text,
+   id INT(7) NOT NULL auto_increment,
+   mtype_id INT(5),
+   cass_id INT(4),
+   part INT(2),
+   title VARCHAR(60),
+   label INT(1) NOT NULL,
+   length INT(3),
+   counter1 VARCHAR(10),
+   counter2 VARCHAR(10),
+   aq_date VARCHAR(10),
+   source VARCHAR(15),
+   director_id INT(5),
+   director_list INT(1),
+   music_id INT(5),
+   music_list INT(1),
+   country VARCHAR(30),
+   year INT(4),
+   cat1_id INT(5) NOT NULL,
+   cat2_id INT(5) NOT NULL,
+   cat3_id INT(5) NOT NULL,
+   actor1_id INT(5),
+   actor2_id INT(5),
+   actor3_id INT(5),
+   actor4_id INT(5),
+   actor5_id INT(5),
+   actor1_list INT(1) NOT NULL,
+   actor2_list INT(1) NOT NULL,
+   actor3_list INT(1) NOT NULL,
+   actor4_list INT(1) NOT NULL,
+   actor5_list INT(1) NOT NULL,
+   tone_id INT(5),
+   color_id INT(5),
+   pict_id INT(5) NOT NULL,
+   commercials_id INT(5) NOT NULL,
+   lp INT(1) NOT NULL,
+   fsk INT(2),
+   audio VARCHAR(50),
+   subtitle VARCHAR(100),
+   comment TEXT,
    PRIMARY KEY (id)
 );
 CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
@@ -210,9 +212,9 @@ CREATE UNIQUE INDEX video_unique_medium_idx ON video(mtype_id,cass_id,part);
 #
 
 CREATE TABLE preferences (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30),
-   value text,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30),
+   value TEXT,
    PRIMARY KEY (id)
 );
 
@@ -221,10 +223,10 @@ CREATE TABLE preferences (
 # Table structure for table 'pvp_userprefs'
 #
 CREATE TABLE pvp_userprefs (
-   id int(5) NOT NULL auto_increment,
-   user_id int(5) NOT NULL,
-   name varchar(30),
-   value text,
+   id INT(5) NOT NULL auto_increment,
+   user_id INT(5) NOT NULL,
+   name VARCHAR(30),
+   value TEXT,
    PRIMARY KEY (id)
 );
 
@@ -234,9 +236,9 @@ CREATE TABLE pvp_userprefs (
 #
 
 CREATE TABLE pvp_config (
-   id int(5) NOT NULL auto_increment,
-   name varchar(30) NOT NULL,
-   value text,
+   id INT(5) NOT NULL auto_increment,
+   name VARCHAR(30) NOT NULL,
+   value TEXT,
    PRIMARY KEY (id)
 );
 
@@ -246,10 +248,10 @@ CREATE TABLE pvp_config (
 #
 
 CREATE TABLE lang (
-  message_id varchar(150) NOT NULL,
-  lang varchar(5) NOT NULL,
-  content text NOT NULL,
-  comment text,
+  message_id VARCHAR(150) NOT NULL,
+  lang VARCHAR(5) NOT NULL,
+  content TEXT NOT NULL,
+  comment TEXT,
   PRIMARY KEY (message_id,lang)
 );
 
@@ -259,10 +261,12 @@ CREATE TABLE lang (
 #
 
 CREATE TABLE languages (
-  lang_id char(2) NOT NULL,
-  lang_name varchar(50) NOT NULL,
-  charset varchar(20),
-  available char(3) DEFAULT 'No' NOT NULL,
+  lang_id CHAR(2) NOT NULL,
+  lang_name VARCHAR(50) NOT NULL,
+  charset VARCHAR(20),
+  available CHAR(3) DEFAULT 'No' NOT NULL,
+  audio INT(1) DEFAULT 0 NOT NULL,
+  subtitle INT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (lang_id)
 );
 
@@ -301,8 +305,8 @@ CREATE TABLE pvp_sessions (
 # Table structure for pvp_options (option management)
 #
 CREATE TABLE pvp_options (
-  id int(5) NOT NULL auto_increment,
-  name varchar(30) NOT NULL,
-  value text,
+  id INT(5) NOT NULL auto_increment,
+  name VARCHAR(30) NOT NULL,
+  value TEXT,
   PRIMARY KEY  (id)
 );

@@ -124,6 +124,17 @@
    }
 
    ############################################################################
+   # set preferences
+   function set_preferences($name,$value) {
+     $this->query("SELECT value FROM preferences WHERE name='$name'");
+     if ( $this->next_record() ) {
+       $this->query("UPDATE preferences SET value='$value' WHERE name='$name'");
+     } else {
+       $this->query("INSERT INTO preferences (name,value) VALUES ('$name','$value'");
+     }
+   }
+
+   ############################################################################
    # get all data for a person and return it as array
    function get_person($id,$table) {
      if ($id) {

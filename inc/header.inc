@@ -55,8 +55,9 @@ if ( !( (isset($silent)) && $silent) ) {
  </tr>
 </table>
 <?
- } else { // page_id != "login"
-   include($pvp->tpl_dir ."/default.css");
+ } else { // page_id != "login" ?>
+ <link href="<?=$pvp->tpl_url?>/default.css" rel="stylesheet" type="text/css">
+<?
    echo "</HEAD><BODY>\n";
  } // !login
 } // !silent ?>

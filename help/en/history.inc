@@ -13,8 +13,10 @@
      directory with e.g. a <code>.htaccess</code> file against unauthorized
      access
  <li>Now the user can select which data to transfer from the IMDB to the local
-     database. Presets can be defined via admin-configure (global) and
+     database. Defaults can be defined via admin-configure (global) and
      edit-preferences (user-specific).
+ <li>Some translation updates (German, Russian, English)
+ <li>Some language settings have been broken with the last update - fixed it.
 </ul>
 
 [title]

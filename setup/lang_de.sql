@@ -106,3 +106,4 @@ INSERT INTO lang VALUES('no_space_of','de','Es konnte kein Medium mit mindestens
 INSERT INTO lang VALUES('howto','de','HowTo\'s');
 INSERT INTO lang VALUES('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?');
 INSERT INTO lang VALUES('howto_help','de','Wie erstelle ich eine Hilfedatei?');
+INSERT INTO lang VALUES('howto_templates','de','Wie erstelle ich ein neues Template Set?');

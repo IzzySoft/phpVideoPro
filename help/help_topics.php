@@ -19,5 +19,5 @@
   headline("howto");
    li("howto_lang");
    li("howto_help");
-   li("create_templates");
+   li("howto_templates");
 ?>

@@ -30,10 +30,17 @@
 
  include("inc/includes.inc");
  include("inc/header.inc");
+
+ if ($sess_id) {
+   $login_info = lang("logout_user",$pvp->auth->user->login,$base_url."login.php?logout=1");
+ } else {
+   $login_info = "<A HREF='".$base_url."login.php'>".lang("login")."</A>";
+ }
   
  #=================================================[ build the input form ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"select_entry.tpl"));
+ $t->set_var("login_info",$login_info);
  $t->set_var("form_target",$PHP_SELF);
  $t->set_var("goto_entry",lang("goto_entry"));
  $t->set_var("mtype",lang("mediatype"));

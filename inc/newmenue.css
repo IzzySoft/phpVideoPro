@@ -20,8 +20,8 @@ a.menuButton, a.menuButtonActive, #menuBar {
   top: 0;
 }
 #menuBar {
-  background-color: #c0c0c0;
   border-width: 0;
+  background-color: #c0c0c0;
   border-top-color: #f0f0f0;
   border-top-width: 2px;
   border-bottom-color: #909090;
@@ -35,7 +35,9 @@ a.menuButton, a.menuButtonActive, #menuBar {
   z-index: 100;
 }
 a.menuButton, a.menuButtonActive {
-  border-width: 1px;
+  border-width: 0;
+  border-right-width: 1px;
+  border-left-width: 1px;
   border-color: #c0c0c0;
   cursor: default;
   font-family: sans-serif;
@@ -50,6 +52,7 @@ a.menuButton, a.menuButtonActive {
 }
 a.menuButton:hover {
   border-color: #f0f0f0 #505050 #505050 #f0f0f0;
+  border-width: 1px;
   color: #000;
 }
 a.menuButtonActive, a.menuButtonActive:hover {

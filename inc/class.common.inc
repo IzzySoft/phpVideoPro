@@ -214,6 +214,7 @@ class common {
     $pee = preg_replace('!<br />(\s*</?(?:p|li|div|th|pre|td|ul|ol)>)!', '$1', $pee);
     $pee = preg_replace('/&([^#])(?![a-z]{1,8};)/', '&#038;$1', $pee);
     $pee = str_replace("<p><hr></p>","<hr>",$pee);
+    $pee = preg_replace("/<p>(<[p|P])/","$1",$pee); // remove double P produced when textblock already started with P
 #    $pee = "<DIV CLASS='notes'>$pee</DIV>";
     return $pee; 
   }

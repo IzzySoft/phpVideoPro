@@ -15,15 +15,13 @@
 #========================================================[ initial setup ]===
 if ($menue) {
   $page_id = "configuration";
+  if ($admin) $root = "../";
   if ($update) {
-    if ($admin) $root = "../";
     include ($root . "inc/config.inc");
     include ($root . "inc/config_internal.inc");
     include ($root . "inc/common_funcs.inc");
-  } elseif ($admin) {
-    include ("../inc/header.inc");
   } else {
-    include ("inc/header.inc");
+    include ($root . "inc/header.inc");
   }
 } else {
   include ("../inc/config.inc");

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.7 (November 2002)
+0.3.7 (November 6, 2002)
 [text]
 <ul>
  <li>when a medium became empty (by removal of the last movie), it was always
@@ -25,6 +25,8 @@
      every thing has its time, right?
  <li>added setting "label" to the edit form. This is to define wether a movie
      should appear on the label for its medium.
+ <li>added default setting for tone format (was previously "mono" for new
+     entries - now it is configurable)
 </ul>
 
 [title]

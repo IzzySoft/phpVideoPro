@@ -40,9 +40,9 @@
    * @return string target url
    */
   function slink($target) {
-    GLOBAL $pvp;
+    GLOBAL $pvp,$sess_id;
     if (!$pvp->config->enable_cookies) {
-      $sess_id = $_REQUEST["sess_id"];
+      if (!$sess_id) $sess_id = $_REQUEST["sess_id"];
       $pos = strpos($target,"?");
       if ($pos) {
         $target .= "&sess_id=$sess_id";

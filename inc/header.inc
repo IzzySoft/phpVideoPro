@@ -75,7 +75,7 @@
 
   dhtmlMenu = new NavBarMenu(62, 80);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "JavaScript:open_help('')"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("index") ?>", "JavaScript:open_help('')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "JavaScript:open_help('about')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "JavaScript:open_help('history')"));
   myNavBar1.addMenu(dhtmlMenu);

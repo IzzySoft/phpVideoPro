@@ -8,13 +8,18 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <li><b>0.1.3 (2001)</b><br>
+  <li><b>0.1.3 (July 26, 2001)</b><br>
       <ul>
-       <li>started implementing help system
+       <li>implemented help system and wrote English help files
        <li>out-sourced stylesheet for maybe planned template support
        <li>added sort criteria to media list: 1) MediaType, 2) MediaNr.
            For now this is static - some future version may add some
-	   dynamic to it to let the user decide about the sorting
+	       dynamic to it to let the user decide about the sorting
+	   <li>fixed a small bug in config routine (language files were
+	       not found)
+	   <li>added possibility to refresh language phrases in db from
+	       new/modified language files (you will need this on every
+	       update :)
       </ul>
   <LI><b>0.1.2 (July 17, 2001)</b><br>
       alpha release "freedom":

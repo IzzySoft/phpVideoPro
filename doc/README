@@ -1,4 +1,4 @@
-This is the README file I wrote for phpVideoPro v0.0.3. As you may know,
+This is the README file I wrote for phpVideoPro v0.1.3. As you may know,
 programmers get very lazy on writing documentation - so starting with point
 3.), the information in this file may or may not fit newer versions, since I
 may have forgotten to update it. Don't be angry at me if this happens - just
@@ -6,15 +6,15 @@ drop me a note about this - or even better, update this file (if you know
 the missing/changed information) and send it back to me, so I can replace it
 in the package :)
 
-More documentation may follow (or not - see above ;) in the future. But I'm
-more concerned about new features and, if needed, bugfixes to come asap, so
-again I may forget about the documentation - since it doesn't have that high
-priority for me :)
+More documentation may follow (or not - see above ;) in the future, some even
+is already contained in the help system. But I'm more concerned about new
+features and, if needed, bugfixes to come asap, so again I may forget about
+the documentation - since it doesn't have that high priority for me :)
 
 So I hope you can cope with this code, and wish you good luck - and enjoy
 phpVideoPro!
 
-Itzchak "Izzy" Rehberg (izzysoft@buntspecht.de)
+Itzchak "Izzy" Rehberg (izzysoft@qumran.org)
 
 ===============================================================================
 
@@ -74,7 +74,7 @@ Contents:
     parsed by PHP). At this time, only Netscape is tested to work with
     phpVideoPro (probably M$ Internet Exploder will work as well). Konqueror is
     known as *NOT* working because of the JavaScript used for the menue right
-    now (version 1.9.8, version 2.1 - higher versions may work but are not
+    now (version 1.9.8, 2.1 and 2.1.1 - higher versions may work but are not
     tested yet) - though it works for the setup program
 
 ===============================================================================
@@ -99,6 +99,8 @@ Contents:
       make sure it has a leading slash (i.e. it has to be the complete
       path starting with your web servers document root) as well as a
       trailing slash.
+    - $base_path: same as $base_url, but for the file system (so for
+      Windoze this one starts with the drive letter)
     - $database : settings for the database (host running the db server,
       database name, user and password to access the database).
     The other settings you can leave unchanged, they have suitable defaults.
@@ -119,11 +121,9 @@ Contents:
 ------------
 
   When updating from a previous version of phpVideoPro, the steps to do
-  follow easier rules. After updating the files, point your browser to
-  the setup/index.php and just follow the update link there. This step
-  is not even necessary for all version updates - but only if database
-  changes have been made. So if the number of the version you update from
-  is higher than the last one listed there, no db update is needed :)
+  follow easier rules. After updating the files (and checking config.inc for
+  possible changes), point your browser to the setup/index.php and just
+  follow the update link there.
 
 ===============================================================================
 
@@ -156,5 +156,5 @@ Contents:
   point to the gnu-zipped tarball of the latest version (hopefully - if I
   didn't forget to update that link :)
   If you have questions/suggestions, you can also contact me via email, using
-  the address izzysoft@buntspecht.de - and please, don't give up waiting if I
+  the address izzysoft@qumran.org - and please, don't give up waiting if I
   do not respond that quickly; it sometimes takes me a while :)

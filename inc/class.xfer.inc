@@ -350,7 +350,7 @@
    *  append new categories/translations (FALSE)
    * @return boolean success
    */
-  function catSet($replace) {
+  function catPut($replace) {
     GLOBAL $db;
     if ($this->mode!="import") {
       $this->report .= "<li>".lang("xfer_wrong_mode","import",$this->mode);
@@ -386,6 +386,8 @@
         }
       }
     }
+    if ($this->errors) return FALSE;
+    return TRUE;
   }
 
   /** Retrieve Categories from DB and store them into xfer::list

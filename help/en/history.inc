@@ -19,6 +19,7 @@
      internal name - so be again warned here not to change that one for
      existing entries ;)
  <li>some updates on the Applicat template set (minor fixes for Mozilla quirks)
+ <li>added more (missing) descriptions for the translation editor
 </ul>
 
 [title]

@@ -7,6 +7,8 @@
 <ul>
  <li>color name for movie (color, b/w or 3d) was not translated when viewing
      an entry. Fixed.
+ <li>on the start page, when an entry was selected HTML header was created
+     twice - which caused problems with Netscape 4.x. Fixed by Michael.
 </ul>
 
 [title]

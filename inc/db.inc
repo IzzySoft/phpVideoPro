@@ -166,12 +166,18 @@
    ############################################################################
    # set preferences
    function set_preferences($name,$value) {
-     $this->query("SELECT value FROM preferences WHERE name='$name'");
+     $this->dbquery("SELECT value FROM preferences WHERE name='$name'");
      if ( $this->next_record() ) {
-       $this->query("UPDATE preferences SET value='$value' WHERE name='$name'");
+       $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
      } else {
-       $this->query("INSERT INTO preferences (name,value) VALUES ('$name','$value'");
+       $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value'");
      }
+   }
+
+   ############################################################################
+   # remove preferences
+   function unset_preferences($name) {
+     $this->dbquery("DELETE FROM preferences WHERE name='filter'");
    }
 
    ############################################################################

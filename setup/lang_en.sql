@@ -369,3 +369,4 @@ INSERT INTO lang VALUES('delete_lang_comment','en','Delete all phrases of the sp
 INSERT INTO lang VALUES('disktype_contains_media','en','This disktype cannot be deleted at the moment, since the following media are still referring to it:','');
 INSERT INTO lang VALUES('reset','en','Reset','Button description');
 INSERT INTO lang VALUES('confirm_prilang','en','Do you really want to change the default primary language for ALL (new) users?','Confirmation on changing the primary language in the admin-&gt;configuration menu');
+INSERT INTO lang VALUES('backup_db_movie_internal','en','Backup all movies using the phpVideoPro internal format','');

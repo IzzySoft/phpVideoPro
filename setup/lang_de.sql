@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.5.6
+# German Language File created by phpVideoPro v0.5.7
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
@@ -29,6 +29,7 @@ INSERT INTO lang VALUES ('backup_db','de','Datenbank Backup','');
 INSERT INTO lang VALUES ('backup_db_complete','de','Vollständiges Backup der Datenbank (incl. technischer Daten)','');
 INSERT INTO lang VALUES ('backup_db_moviedel','de','Nur Film-relevante Daten sichern; zusätzlich vor dem Einfügen der \"neuen\" (gesicherten) Daten alte Daten zum Löschen markieren','');
 INSERT INTO lang VALUES ('backup_db_movies','de','Nur Film-relevante Daten sichern (Film, Schauspieler etc.)','');
+INSERT INTO lang VALUES ('backup_db_movie_internal','de','Alle Film-relevanten Daten im phpVideoPro internen Format sichern','');
 INSERT INTO lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erstellt werden?','');
 INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
 INSERT INTO lang VALUES ('categories','de','Kategorien','');

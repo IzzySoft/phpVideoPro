@@ -373,6 +373,19 @@
      return TRUE;
    }
 
+   /** Delete user
+    * @class sql
+    * @method del_user
+    * @param integer id id of user to delete
+    * @return boolean success
+    */
+   function del_user($id) {
+     $this->dbquery("DELETE FROM pvp_users WHERE id=$id");
+     $this->dbquery($query);
+     if ( $this->affected_rows() < 0 ) return FALSE;
+     return TRUE;
+   }
+
    ############################################################################
    # people and their names
    ############################################################################

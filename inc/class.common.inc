@@ -136,16 +136,6 @@ class common {
   /** Search a text block for URLs & cater for the [img],[imgr] and [href] tags
    * @class common
    * @method make_clickable
-   * @copyright initial code for function make_clickable taken from
-   *   text_to_links() in the SourceForge Snipplet Library
-   *   http://sourceforge.net/snippet/detail.php?type=snippet&id=100004
-   *   but then adapted and extended for the [href] and [img] tags
-   * @version Since for now (until v0.4.4p1) we also convert urls given
-   *   without enclosing [href] tags to clickable urls, both [img] and [imgr]
-   *   tags must be local, i.e. must NOT contain any http or www.* references
-   *   since this would screw up things. Therefore we have to drop the former
-   *   behaviour and to force the use of [href] tags to enable [img] and [imgr]
-   *   tags to refer to images on other servers
    * @param string data textblock to format
    * @return string newText formatted text block
    */

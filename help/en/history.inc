@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.6.6 (2004)
+[text]
+<ul>
+ <li>some code cleanup: made it more strict to prevent some "notices" (aka
+     "unimportant warnings") from PHP
+</ul>
+
+[title]
 0.6.5 (September 21, 2004)
 [text]
 <ul>

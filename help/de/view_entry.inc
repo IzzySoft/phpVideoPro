@@ -13,7 +13,7 @@ die Hilfeseite für den Menüpunkt "<A HREF="{PHP_SELF}?topic=add_entry">*add_entr
 aber...
 
 [title]
-Kopieren bzw. verschieben eines Eintrags
+Kopieren bzw. verschieben eines Eintrags, Anpassen der Länge eines Mediums
 
 [text]
 Hin und wieder kann es nötig werden, einen Eintrag zu kopieren bzw. verschieben.
@@ -23,6 +23,14 @@ vorhandener Film nun als DVD erworben wurde. Die dafür notwendige Funktion
 versteckt sich hinter den Buttons "*mediatype#" und "*medianr#". Mehr darüber
 läßt sich auf der Hilfeseite für das Formular
 "<A HREF="{PHP_SELF}?topic=media_change">*media_change#</A>" erfahren.
+[text]
+In gleicher Form läßt sich das Formular zum Anpassen der Länge eines Mediums
+erreichen, indem auf den Button für die Restzeit ("*Free#") geklickt wird.
+Diese Funktion kann nicht nur nötig sein, wenn ein Eintrag auf ein anderes
+Medium unterschiedlicher Länge verschoben bzw. kopiert wird. Sie wird auch
+gebraucht, wenn gerade ein Medientyp neu als "(wieder)beschreibbar" deklariert
+wurde, der vorher nur "lesbar" war. In diesem Fall muss ggf. für alle betroffenen
+Medien auf diese Weise die Länge erfasst werden.
 
 [title]
 IMDB Informationen

@@ -22,7 +22,7 @@
    </TR>
    <!-- END mdatablock -->
    <!-- BEGIN emptyblock -->
-   <TR><TH>{sel_lang_title}</TH><TD>{sel_lang}</TD></TR>
+   <TR><TH COLSPAN="2">{sel_lang_title}</TH><TD COLSPAN="2"><DIV ALIGN="center">{sel_lang}</DIV></TD></TR>
    <!-- END emptyblock -->
    <TR><TH COLSPAN="2"><DIV ALIGN="center">{save}</DIV></TH>
        <TH COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TH>

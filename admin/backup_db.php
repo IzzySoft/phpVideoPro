@@ -16,7 +16,6 @@
  if ($backup) $silent = 1;
  include("inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
- $pvp->backup_dir = $base_path . "testdata";
 
  function fhead($filename) {
    header("content-type: application/octet-stream");

@@ -1,0 +1,125 @@
+This is the README file I wrote for phpVideoPro v0.0.3. As you may know,
+programmers get very lazy on writing documentation - so starting with point
+3.), the information in this file may or may not fit newer versions, since I
+may have forgotten to update it. Don't be angry at me if this happens - just
+drop me a note about this - or even better, update this file (if you know
+the missing/changed information) and send it back to me, so I can replace it
+in the package :)
+
+More documentation may follow (or not - see above ;) in the future. But I'm
+more concerned about new features and, if needed, bugfixes to come asap, so
+again I may forget about the documentation - since it doesn't have that high
+priority for me :)
+
+So I hope you can cope with this code, and wish you good luck - and enjoy
+phpVideoPro!
+
+Itzchak "Izzy" Rehberg (izzysoft@buntspecht.de)
+
+===============================================================================
+
+Contents:
+---------
+  1.) CopyRight
+  2.) Warranty
+  3.) Requirements
+  4.) Pre-Requisites / Installation
+  5.) Download and Sites
+
+===============================================================================
+
+1.) CopyRight (and CopyLeft)
+----------------------------
+
+  This nice piece of software is (c) 2001 by Itzchak Rehberg and IzzySoft, and
+  is protected by the Gnu Public License Version 2 (GPL). In short, this means:
+  - you'll have the source code available (humm - it's PHP, so what shall I
+    do? :)
+  - you may run this program on as many machines as you want/have
+  - you may copy and distribute it as much as you want - as long as you don't
+    take money for it (and keep all files together!)
+  - you may edit this code to fit your needs/wishes (please, let me know about
+    improvements!)
+  - you may use this code for own applications - but they have to be released
+    under GPL then as well.
+  For details, please read the file named LICENSE in the doc/ directory.
+
+===============================================================================
+
+2.) Warranty
+------------
+
+  This program is provided "as is" with no warranty (see GPL Par. 11).
+  Especially this means, that the aothor is not responsible for any damages
+  caused by the use of this software - explicitly or implicitly. The only thing
+  I can guarantee you is: it will consume some disk space :)
+
+===============================================================================
+
+3.) Requirements
+----------------
+
+ There are a few things you have to make sure first (without them the whole
+ program, including this setup, won't work at all):
+ 1. have a webserver running (I just tested it with Apache)
+ 2. have PHP running, at least v4.0b3 (a version less than this won't work;
+    I recommend using Apache with PHP as loadable module, and that's
+    the only combination I've tested)
+ 3. make sure your PHP has MySQL support built in! (if requirements
+    1. and 2. are met, point your browser to the setup/phpinfo.php file via
+    http to see what features are supported by your PHP setup)
+ 4. point your browser the setup/index.php page via http (so that this page is
+    parsed by PHP). At this time, only Netscape is tested to work with
+    phpVideoPro (probably M$ Internet Exploder will work as well). Konqueror is
+    known as *NOT* working (version 1.9.8 - higher versions may work but are
+    not tested yet) - though it works for the setup program
+
+===============================================================================
+
+4.) Pre-Requisites / Installation
+---------------------------------
+
+ If above mentioned requirements are met, we can start setting up phpVideoPro.
+ To do this, follow these steps:
+ 1. unpack the tarball to a directory of your choice. It has to be located
+    below your webservers document root (or you have to configure your
+    webserver in a way it can use that directory, e.g. by creating an alias).
+    Simple advice: use "tar xzf <tarfile>" to unpack it into the current
+    directory. Probably you have already done this - otherwise you would not
+    be able to read this file :)
+ 2. edit inc/config.inc to reflect your structures. Don't change anything
+    below the hashed line, since these are only global internal settings
+    (so if you change something here, you may "break" the program).
+    Essential settings you <b>must</b> make sure to reflect your structures
+    are:
+    - $base_url : the root directory of your phpVideoPro copy.
+      make sure it has a leading slash (i.e. it has to be the complete
+      path starting with your web servers document root) as well as a
+      trailing slash.
+    - $database : settings for the database (host running the db server,
+      database name, user and password to access the database).
+    The other settings you can leave unchanged, they have suitable defaults.
+    you may change them in the future if you feel any need to :)
+ 3. create the database with the name you specified in inc/config.inc as
+    $database["database"] on the host you configured there. Make sure the
+    configured user has at least following privileges for this database:
+    Select, Insert, Update, Delete, Create. For future versions (updates),
+    the privileges Alter, Drop and References may also be needed.
+ 4. now, point your browser to <phpvideopro>/setup/index.php, read almost
+    the same advices again to make sure everything is prepared (*grin*),
+    and then click on the "create" link on the bottom of that page. More
+    explanations follow there.
+
+===============================================================================
+
+5.) Download and Sites
+----------------------
+
+  First, you'll find a home page as well as a running demo (which may not
+  always be current) on my home page, together with the pages for my other
+  projects: http://www.qumran.org/homes/izzy/ or on Sourceforge,
+  http://sourceforge.net/projects/videopro/ - on both sides you'll also find
+  tarballs to download.
+  If you have questions/suggestions, you can also contact me via email, using
+  the address izzysoft@buntspecht.de - and please, don't give up waiting if I
+  do not respond that quickly; it sometimes takes me a while :)

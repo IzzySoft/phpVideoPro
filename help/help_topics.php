@@ -33,8 +33,6 @@
     li("add_entry",2);
     li("configuration",2);
    li("filter");
-    li("set_filter",2);
-    li("unset_filter",2);
    li("view");
     li("medialist",2);
     li("actors",2);

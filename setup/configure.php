@@ -253,7 +253,7 @@ if ($admin) {
     $id[$i]   = $mtypes[$i]['id'];
     $name[$i] = $mtypes[$i]['sname'];
     if ($pvp->common->medium_is_rw($id[$i])) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
-    $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" . $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
+    $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
   }
   $t->set_var("item_input",$input);
   $t->parse("item","itemblock");
@@ -475,7 +475,7 @@ if ($menue && !(isset($update))) {
   include ($base_path . "inc/header.inc");
   if ($admin) {
 ?>
-<script language="JavaScript">//<!--
+<script TYPE="text/javascript" language="JavaScript">//<!--
  function pri_lang() {
   var chk=window.confirm('<?=lang("confirm_prilang")?>');
   lang = document.getElementById('prilang');

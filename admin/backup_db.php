@@ -114,7 +114,7 @@
      if ( $fcount   = count($filelist) ) {
        $select   = "<SELECT NAME='rfile'>";
        foreach ($filelist as $var) {
-         $select .= "<OPTION NAME='$var'>$var</OPTION>";
+         $select .= "<OPTION VALUE='$var'>$var</OPTION>";
        }
        $select .= "</SELECT><BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox'";

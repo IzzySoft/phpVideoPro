@@ -126,7 +126,7 @@
  }
  $t->set_var("item","");
  for ($k=0;$k<count($id);$k++) {
-   $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "\" . $checked[$k] class=\"checkbox\">&nbsp;$name[$k]</TD>");
+   $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "\" $checked[$k] class=\"checkbox\">&nbsp;$name[$k]");
    if ($k) $t->parse("inputlist","inputblock",TRUE);
      else  $t->parse("inputlist","inputblock");
  }

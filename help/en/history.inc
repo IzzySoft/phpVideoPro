@@ -7,7 +7,9 @@
 <ul>
  <li>fixed some more "PHP notices" (add/delete/move entries)
  <li>now using the FAQ class (from iFAQMaker) to parse the help files
- <li>Italian and French translations now up-to-date
+ <li>Italian and French translations now up-to-date - thanks to Lorenzo and Didier
+ <li>Update from &lt; v0.6.1 as well as fresh install was broken for
+     PostgreSQL - fixed (thanks to Didier)
 </ul>
 
 [title]

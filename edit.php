@@ -377,9 +377,11 @@ EndHiddenFields;
     $field .= "<SELECT NAME='cat" . $i . "_id' class='catinput'>";
     if ($i > 1) $field .= "<OPTION VALUE='-1'>- ".lang("none")." -</OPTION>";
     for ($k=0;$k<count($cats);$k++) {
-      $field .= "<OPTION VALUE='" . $cats[$k][id] . "'";
-      if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
-      $field .= ">" . $cats[$k][name] . " </OPTION>";
+      if ($cats[$k][enabled]) {
+        $field .= "<OPTION VALUE='" . $cats[$k][id] . "'";
+        if ($cats[$k][name]==$cat[$i]) $field .= " SELECTED";
+        $field .= ">" . $cats[$k][name] . " </OPTION>";
+      }
     }
     $field .= "</SELECT>";
    } else {

@@ -16,9 +16,8 @@
  $page_id = "admin_avlang";
  include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
- $start = $_REQUEST["start"];
- $edit  = $_GET["edit"];
- if (!$start) $start = 0;
+ if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_GET["edit"])) $edit  = $_GET["edit"]; else $edit = FALSE;
  include("../inc/class.nextmatch.inc");
 
  #===================================================[ initialize template ]==
@@ -62,7 +61,7 @@
    if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
    if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
    $t->set_var("hidden",$hidden);
-   $t->parse("edit","editblock",TRUE);
+   $t->parse("edit","editblock");
    include("../inc/header.inc");
    $t->pparse("out","template");
    include("../inc/footer.inc");
@@ -94,7 +93,8 @@
    $t->set_var("lang_audio",$yesno[$list[$i]->audio]);
    $t->set_var("lang_subtitle",$yesno[$list[$i]->subtitle]);
    $t->set_var("lang_edit",$_SERVER["PHP_SELF"]."?edit=".$list[$i]->id."&start=$start");
-   $t->parse("detail","langblock",TRUE);
+   if ($i) $t->parse("detail","langblock",TRUE);
+     else $t->parse("detail","langblock");
  }
 # if ($update) $db->lang_available($targetlang,1);
  $hidden = "";

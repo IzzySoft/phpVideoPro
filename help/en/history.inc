@@ -10,6 +10,7 @@
  <li>bunch of changes to finally get phpVideoPro running with register_globals=Off
  <li>on adding/updating a movie, staff information got lost if name or firstname
      were empty
+ <li>some cleanup and information update in the doc/ and setup/ directories
 </ul>
 
 [title]

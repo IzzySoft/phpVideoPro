@@ -32,10 +32,7 @@
 
  ##############################################################################
  # check wether there already is an entry with the given Movie ID
- $query = "SELECT id FROM video"
-        . " WHERE mtype_id=$mtype_id AND cass_id=$cass_id AND part=$part";
- dbquery($query);
- if ( $db->next_record() ) {
+ if ( $db->get_movieid($mtype_id,$cass_id,$part) ) {
    $error = lang("dupe_id_entered");
    display_error($error);
    exit;

@@ -30,6 +30,7 @@
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
     case "history"       : $pagename .= " [ " . lang("history") . " ]"; break;
+    case "media_change"  : $pagename .= " [ " . lang("media_change") . " ]"; break;
     case "medialist"     : $pagename .= " [ " . lang("medialist") . " ]"; break;
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
     case "add_entry"     : $pagename .= " [ " . lang("add_entry") . " ]"; break;

@@ -19,6 +19,7 @@ coming *around* 0.2.0 (not yet sure if before or after):
 - fields for counter settings (start/end of movie for old tape recorders
   (feature request by user via sourceforge))
 - splitting date field into day-month-year
+- translating the genres!
 
 coming *after* 0.2.0:
 - limit list display to user-definable amount of data sets

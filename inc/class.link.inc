@@ -32,6 +32,25 @@
     $this->imdb = "http://us.imdb.com/";
   }
 
+  /** Provide a link with session info, if necessary
+   * @class link
+   * @method slink
+   * @param string target url
+   * @return string target url
+   */
+  function slink($target) {
+    GLOBAL $pvp,$sess_id;
+    if (!$pvp->config->enable_cookies) {
+      $pos = strpos($target,"?");
+      if ($pos) {
+        $target .= "&sess_id=$sess_id";
+      } else {
+        $target .= "?sess_id=$sess_id";
+      }
+    }
+    return $target;
+  }
+
   ############################################################################
   # IMDB link creation
   /** Create url string to a persons entry in imdb (privat - called by formImdbPerson only)

@@ -17,11 +17,13 @@
   if (!$pvp->auth->admin) kickoff();
 
   #-------------------------------------------------------[ process input ]---
-  if ($submit) {
+  if ($delete) {
+    $db->delete_disktype($delete);
+  } elseif ($submit) {
     for ($i=1;$i<=$lines;++$i) {
       $disk_id = "id_$i"; $mtype = "mtype_$i"; $name = "name_$i"; $size = "size_$i"; $lp = "lp_$i"; $rc = "rc_$i";
       if ( !strlen(trim(${$name})) ) {
-        if ( !$db->delete_disktype(${$disk_id}) ) $upd_err .= ${$disk_id} . ",";
+        die ( display_error(lang("disktype_name_empty",${$disk_id})) );
       } else {
         if ( !$db->update_disktype(${$disk_id},${$mtype},${$name},${$size},${$lp},${$rc}) )
           $upd_err .= ${$disk_id} . ",";
@@ -42,6 +44,8 @@
     if ( !($add_err || $upd_err) ) $save_result = $colors["ok"].lang("update_success")."</FONT><BR>";
   }
   #-------------------------------------------------------[ build up page ]---
+  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+  $trash_img = $tpl_dir . "/images/trash.png";
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("template"=>"admin_disktypes.tpl"));
   $t->set_block("template","diskblock","disks");
@@ -100,6 +104,9 @@
       if ($dt[$k]->rc) $input .= " CHECKED";
       $input .= ">";
       $t->set_var("rc",$input);
+      $url = $pvp->link->slink("$PHP_SELF?delete=".$dt[$k]->id);
+      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+      $t->set_var("trash",$trash);
       $t->parse("disks","diskblock",TRUE);
     }
   }
@@ -118,6 +125,14 @@
   $t->set_var("hidden",$hidden);
       
   include( dirname(__FILE__) . "/../inc/header.inc");
+?>
+<SCRIPT LANGUAGE="JavaScript">
+ function delconfirm(url) {
+  check = confirm("<?=lang("confirm_delete")?>");
+  if (check == true) window.location.href=url;
+ }
+</SCRIPT>
+<?
   $t->pparse("out","template");
 
   include( dirname(__FILE__) . "/../inc/footer.inc");

@@ -97,7 +97,7 @@
         $details .= $colors["ok"] . lang("medium_not_deleted") . "</Font><BR>";
         $details .= "<li>" . lang("recalc_free"). ". ";
         if ( $db->update_freetime($cass_id,$mtype_id) ) {
-          $time_left = $db->get_mediumfreetime($cass_id);
+          $time_left = $db->get_mediumfreetime($cass_id,$mtype_id);
           if ( strlen($time_left) ) {
             $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
           } else {

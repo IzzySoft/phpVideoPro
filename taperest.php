@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Display free (remaining) space on tapes                                   *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Display free (remaining) space on tapes                                   #
+ #############################################################################
 
  /* $Id$ */
 
@@ -48,14 +48,14 @@
   }
 
   $mlist = $nextmatch->list;
-  # $mlist[][id|free]; id = $cass_id
+  # $mlist[][id|mtype_id|free]; id = $cass_id
 
   for ($i=0;$i<$nextmatch->listcount;$i++) {
-    $movie_id = $db->get_movieid(1,$mlist[$i][id]);
+    $movie_id = $db->get_movieid($mlist[$i][mtype_id],$mlist[$i][id]);
     $mid_count = count($movie_id);
     for ($k=0;$k<$mid_count;$k++) {
       $movie = $db->get_movie($movie_id[$k]);
-      $cass_id = $movie[cass_id];
+      $cass_id  = $movie[cass_id];
       while ( strlen($cass_id) < 4 ) { $cass_id = "0".$cass_id; }
       $part = $movie[part];
       if ( strlen($part) < 2 ) $part = "0".$part;

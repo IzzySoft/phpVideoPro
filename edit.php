@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Edit/View an entry                                                        *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Edit/View an entry                                                        #
+ #############################################################################
 
  /* $Id$ */
 
@@ -148,7 +148,7 @@
     $cat[$i] = $movie[$cat_nr];
   }
   $free = "0";
-  if ($pvp->common->medium_is_rw($mtype_id)) $free = $db->get_mediumfreetime($cass_id);
+  if ($pvp->common->medium_is_rw($mtype_id)) $free = $db->get_mediumfreetime($cass_id,$mtype_id);
  } else {
    $lastnum = $db->get_lastmovienum();
  } // end if (!$new_entry)

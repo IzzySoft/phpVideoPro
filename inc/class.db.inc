@@ -820,13 +820,13 @@
      GLOBAL $pvp;
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $movie = $this->get_movie($id);
-       $space = $this->get_mediaspace($movie[cass_id]);
+       $space = $this->get_mediaspace($movie[cass_id],$movie[mtype_id]);
      }
      $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
             . " WHERE id=$id";
      $success = $this->dbquery($query);
      if (is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
-     $this->update_freetime($cass_id);
+     $this->update_freetime($cass_id,$mtype_id);
      if ( $pvp->common->medium_is_rw($movie[mtype_id]) && $movie[cass_id]!=$cass_id ) {
        $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie[cass_id]." AND mtype_id=".$movie[mtype_id]);
        if ( $this->next_record() ) {
@@ -850,10 +850,10 @@
     * @param integer space complete space on media (media length)
     */
    function insert_medium($cass_id,$mtype_id,$space) {
-     $free = $this->get_mediaspace($cass_id);
+     $free = $this->get_mediaspace($cass_id,$mtype_id);
      if ($free=="") { // medium not yet in cass table
        if (!$space) $space = 240;
-       $this->dbquery("INSERT INTO cass (id,type,free) VALUES ($cass_id,$space,0)");
+       $this->dbquery("INSERT INTO cass (id,mtype_id,type,free) VALUES ($cass_id,$mtype_id,$space,0)");
      }
    }
 
@@ -881,10 +881,11 @@
     * @class sql
     * @method get_mediumfreetime
     * @param integer id media id
+    * @param integer mtype_id media type id
     * @return mixed either freetime (integer) or empty string
     */
-   function get_mediumfreetime($id) {
-     $this->query("SELECT free FROM cass WHERE id=$id");
+   function get_mediumfreetime($id,$mtype_id) {
+     $this->query("SELECT free FROM cass WHERE id=$id AND mtype_id=$mtype_id");
      if ( $this->next_record() ) return $this->f('free');
        else return "";
    }
@@ -893,11 +894,12 @@
     * @class sql
     * @method get_mediaspace
     * @param integer id media id
+    * @param integer mtype_id media type id
     * @param optional string field fieldname ("type" or "free", defaults to type)
     * @return mixed either freetime (integer) or empty string
     */
-   function get_mediaspace($id,$field="type") {
-     $this->dbquery("SELECT $field FROM cass WHERE id=$id");
+   function get_mediaspace($id,$mtype_id,$field="type") {
+     $this->dbquery("SELECT $field FROM cass WHERE id=$id AND mtype_id=$mtype_id");
      if ( $this->next_record() ) return $this->f("$field");
      return "";
    }
@@ -911,7 +913,7 @@
     */
    function update_freetime($id,$mtype_id="1",$free="") {
      if ($free=="") {
-       $free  = $this->get_mediaspace($id);
+       $free  = $this->get_mediaspace($id,$mtype_id);
        $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
        $this->dbquery($query);
        $i=0;
@@ -922,7 +924,7 @@
 	 $free -= $length;
        }
      }
-     return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id");
+     return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id AND mtype_id=$mtype_id");
    }
 
    /** Get list of free space on media. If $start is set, the result set is
@@ -945,13 +947,14 @@
        }
        $restrict .=  " AND id IN ($tapelist)";
      }
-     $query = "SELECT id,free FROM cass WHERE $restrict ORDER BY free DESC";
+     $query = "SELECT id,mtype_id,free FROM cass WHERE $restrict ORDER BY free DESC";
      if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
        else { $totals = $this->lim_query($query,$start); }
      $i=0;
      while ( $this->next_record() ) {
-       $freelist[$i][id]   = $this->f('id');
-       $freelist[$i][free] = $this->f('free');
+       $freelist[$i][id]         = $this->f('id');
+       $freelist[$i][mtype_id]   = $this->f('mtype_id');
+       $freelist[$i][free]       = $this->f('free');
        ++$i;
      }
      $freelist[totals] = $totals;

@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Update an entry in the DB (with all needed checks etc.)                   *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Update an entry in the DB (with all needed checks etc.)                   #
+ #############################################################################
 
  /* $Id$ */
 
@@ -66,7 +66,7 @@
  ##############################################################################
  # updating free time on media for Recorded Video Tapes
  if ( $pvp->common->medium_is_rw($mtype_id) ) { // calc free space only for writable media
-   $media_length = $db->get_mediaspace($cass_id);
+   $media_length = $db->get_mediaspace($cass_id,$mtype_id);
    $db->update_freetime($cass_id,$mtype_id);
  }
  

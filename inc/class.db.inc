@@ -427,7 +427,7 @@
    /** Get some config value
     * @class sql
     * @method get_config
-    * @param string name config var's name
+    * @param string name config vars name
     * @return string value
     */
    function get_config($name) {
@@ -439,10 +439,24 @@
      }
    }
 
+   /** Get all data from configuration table
+    * @class sql
+    * @method get_config_all
+    * @return array (name=>value)
+    */
+   function get_config_all() {
+     $this->query("SELECT name,value FROM pvp_config");
+     while ( $this->next_record() ) {
+       $name = $this->f('name');
+       $conf[$name] = $this->f('value');
+     }
+     return $conf;
+   }
+
    /** Set some config value
     * @class sql
     * @method set_config
-    * @param string name config var's name
+    * @param string name config vars name
     */
    function set_config($name,$value) {
      GLOBAL $pvp;
@@ -1141,6 +1155,7 @@
      if (!$this->query("TRUNCATE TABLE music")) return FALSE;
      if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
      if (!$this->query("TRUNCATE TABLE actors")) return FALSE;
+     return TRUE;
    }
 
    /** Get movie ids
@@ -2392,7 +2407,7 @@
        while ( $this->next_record() ) {
          ${$cat}[] = "a_" . $this->f("$cat"); // "a_" needed for array_merge to turn the integer into a string
        }
-       ${$cat} = array_flip(${$cat});
+       if (is_array(${$cat})) ${$cat} = array_flip(${$cat});
      }
      $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
      $stats[cats_used] = count($cats);

@@ -9,7 +9,15 @@
      change of printer impossible with cookies enabled
  <li>added printer specification for Canon S520 to PSLabel system
  <li>created final work-around for a Konqueror Cookie bug affecting the prefered
-     language setting (see second item of v0.4.3 below)
+     language setting (see second item of v0.4.3 below), which means we handle
+     the given cookie correctly (no Bulgarian-fallback at this place anymore,
+     but fallback to the language set by phpMyAdmin as long as Konqueror remains
+     within its ignorance and gives us that despite of the wrong path)
+ <li>When walking through your collection on the "*view_entry#" screen using the
+     previous/next icons (left resp. right to the movie title), gaps (holes in
+     part/media numbers) are now handled as expected. Up to now, we considered
+     the "end of the world" instead and jumped to the previous/next medium resp.
+     media type when hitting a gap ;)
 </ul>
 
 [title]

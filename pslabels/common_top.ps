@@ -30,6 +30,19 @@ FG setgray
 
 <!-- BEGIN definitionblock -->
 /lncount 0 def
+({_director_})	%% director
+length 0 gt
+({_music_})	%% composer of music score
+length 0 gt or { /TTlines TTlines 1 add def } if
+({_actors12_})	%% actors12
+length 0 gt dup { /TTlines TTlines 1 add def } if
+({_actors35_})	%% actors35
+length 0 gt and { /TTlines TTlines 1 add def } if
+({_country_})	%% country
+length 0 gt 
+({_year_})	%% year
+length 0 gt or { /TTlines TTlines 1 add def } if
+
 ({_length_})	%% length
 ({_director_})	%% director
 ({_actors12_})	%% actors12
@@ -37,7 +50,6 @@ FG setgray
 ({_country_})	%% country
 ({_year_})	%% year
 ({_music_})	%% composer of music score
-
 ({_title_})	%% title
 LL     %% line length in points
 {/lncount lncount 1 add def}
@@ -46,8 +58,8 @@ lncount 7 add array astore %% one title broken up into several lines as one arra
 /TTlines TTlines lncount add def
 
 <!-- END definitionblock -->
-% /TTlines TTlines this_lines 4.5 mul 0.7 mul add def       %% 4 additional small lines per title
-/TTlines TTlines this_lines 2.5 mul 0.7 mul add def       %% 2 additional small lines per title
+% /TTlines TTlines this_lines 4.0 mul 0.7 mul add def       %% 4 additional small lines per title
+% /TTlines TTlines this_lines 2.5 mul 0.7 mul add def       %% 2 additional small lines per title
 /new_height 1.2 inch TTlines div def
 new_height fs_max ge { /new_height fs_max def } if
 %% loop over all strings on stack and print
@@ -74,43 +86,69 @@ new_height fs_max ge { /new_height fs_max def } if
     } for
 
   top-font findfont new_height 0.6 mul scalefont setfont
-  gsave
-   1.35 inch 0 rmoveto
-   lang_director (: ) StrCat title_director StrCat 
-   ( ) StrCat lang_composer StrCat (: ) StrCat title_composer StrCat 
-   c-show
-  grestore
 
+/title_lcount 0 def
+
+title_director length 0 gt 
+title_composer length 0 gt or
+{
   gsave
-   1.35 inch new_height 0.7 mul neg rmoveto
+   1.35 inch title_lcount rmoveto
+   title_director length 0 gt 
+   {
+   lang_director (: ) StrCat title_director StrCat 
+   }
+   if
+   title_composer length 0 gt 
+   {
+     ( ) StrCat lang_composer StrCat (: ) StrCat title_composer StrCat 
+   }
+   if
+   c-show
+  /title_lcount title_lcount 1 add def
+  grestore
+}
+if
+
+title_actors12 length 0 gt 
+{
+  gsave
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
    lang_actor (: ) StrCat title_actors12 StrCat
    2.7 inch (...) stringwidth pop sub
    { { (...) StrCat } if c-show }
    TruncateLine
+  /title_lcount title_lcount 1 add def
   grestore
-%  0 new_height 0.9 mul 2.5 mul neg rmoveto
+}
+if
 
-title_actors35 length 0 gt 
+title_actors12 length 0 gt 
+title_actors35 length 0 gt and
 {
   gsave
-   1.35 inch new_height 0.7 mul 2 mul neg rmoveto
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
    title_actors35
    2.7 inch (...) stringwidth pop sub
    { { (...) StrCat } if c-show }
    TruncateLine
+  /title_lcount title_lcount 1 add def
   grestore
-  0 new_height 0.9 mul 3.5 mul neg rmoveto
-}
-{
-  0 new_height 0.9 mul 2.5 mul neg rmoveto
-}
-ifelse
+} 
+if
 
-%  gsave
-%   1.35 inch new_height 0.7 mul 3 mul neg rmoveto
-%   title_country ( ) StrCat title_year StrCat c-show
-%  grestore
-%  0 new_height 0.9 mul 4.5 mul neg rmoveto
+title_country length 0 gt 
+title_year length 0 gt or
+{
+  gsave
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
+   title_country ( ) StrCat title_year StrCat c-show
+  /title_lcount title_lcount 1 add def
+  grestore
+} 
+if
+
+  0 new_height 0.7 mul title_lcount .5 add mul neg rmoveto
 
   /tcount tcount 1 add def
   tcount this_lines ge { exit } if

@@ -225,7 +225,7 @@ INSERT INTO lang VALUES('media_copy','en','Copy data to MediaNr');
 INSERT INTO lang VALUES('media_change','en','Change MediaNr');
 INSERT INTO lang VALUES('check_media_delete','en','Checking if medium is empty');
 INSERT INTO lang VALUES('medium_deleted','en','No more movies on this medium - medium removed');
-INSERT INTO lang VALUES('medium_not_deleted','en','Still movies on this medium - medium not removed');
+INSERT INTO lang VALUES('medium_not_deleted','en','Medium not removed');
 INSERT INTO lang VALUES('change_media_length','en','Change Media Length');
 INSERT INTO lang VALUES('change_media_length_for','en','Please enter the capacity for %1');
 INSERT INTO lang VALUES('admin_cats','en','Administrate Categories');

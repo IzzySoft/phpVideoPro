@@ -19,6 +19,7 @@
   headline("menues");
    li("admin");
     li("admin_cats",2);
+    li("admin_movietech",2);
     li("admin_disktypes",2);
     li("admin_translations",2);
     li("admin_pstemplates",2);

@@ -36,6 +36,8 @@
       $this->imdb = "us.imdb.com";
   }
 
+  ############################################################################
+  # Link to other PVP documents
   /** Provide a link with session info, if necessary
    * @class link
    * @method slink
@@ -69,6 +71,18 @@
     if ($opt) $url .= " $opt";
     $url .= ">$desc</A>";
     return $url;
+  }
+
+  /** Make a clickable image for context help
+   * @method linkhelp
+   * @param string topic
+   * @return string link
+   */
+  function linkhelp($topic) {
+    GLOBAL $pvp;
+    $link = "<A HREF=\"JavaScript:open_help('$topic');\"><IMG BORDER='0' SRC='"
+          . $pvp->tpl_url."/images/info.gif'></A>";
+    return $link;
   }
 
   ############################################################################

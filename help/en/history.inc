@@ -6,6 +6,9 @@
 [text]
 <ul>
  <li>added support for disk types (such as CD-R[W], DVD-R[W] and DVD+R[W])
+ <li>longplay is now only displayed for disk types that support it (i.e. right
+     now only for tapes) or if no disk type is set (i.e. the same plus not
+     updated DVD/VCD entries) - for all others it is automatically set to "No"
 </ul>
 
 [title]

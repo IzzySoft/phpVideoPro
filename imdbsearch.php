@@ -19,7 +19,7 @@
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
  $usecache = FALSE;
- $autoclose = 1;
+ $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
  for ($i=0;$i<$count;++$i) {
   ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
@@ -201,7 +201,7 @@
    $plot = $movie->plot(); $cc = count($plot);
    if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
      else $comment = "";
-   $tagline = $movie->tagline();
+   $tagline = trim($movie->tagline());
    if (!empty($tagline)) $comment .= "<B>$tagline</B><BR>";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);

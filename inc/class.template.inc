@@ -90,7 +90,7 @@ class Template {
    * @package Api
    * @class Template
    * @method set_file
-   * @param string handle handle for a filename - can also be an array of handle,filename
+   * @param mixed handle handle for a filename (string) or array of handle,filename
    * @param optional string filename name of template file
    */
   function set_file($handle, $filename = "") {
@@ -193,7 +193,7 @@ class Template {
    * @class Template
    * @method parse
    * @param string target handle of variable to generate
-   * @param string handle handle of template(s) to substitute (can be an array as well)
+   * @param mixed handle handle of template(s) to substitute (string or array)
    * @param optional boolean append append to target handle
    * @return string parsed template
    */
@@ -221,7 +221,7 @@ class Template {
    * @class Template
    * @method pparse
    * @param string target handle of variable to generate
-   * @param string handle handle of template(s) to substitute (can be an array as well)
+   * @param mixed handle handle of template(s) to substitute (string or array)
    * @param optional boolean append append to target handle
    * @return boolean FALSE
    */
@@ -248,8 +248,8 @@ class Template {
    * @package Api
    * @class Template
    * @method get_var
-   * @param string varname name of variable (alternatively: array of variable names)
-   * @return string variable setting (alternatively: array of contents)
+   * @param mixed varname name of variable (string) or array of variable names
+   * @return mixed variable setting (string or array of contents)
    */
   function get_var($varname) {
     if (!is_array($varname)) {

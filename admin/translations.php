@@ -72,7 +72,7 @@
           . "UPDATE languages SET charset='$tchar' WHERE lang_id='$targetlang';\n";
    for ($i=0;$i<$totals;++$i) {
      $msgid = $trans["xlist"][$i];
-     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes(str_replace("\n"," ",$trans[$msgid]))."');\n";
+     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes(str_replace("\n"," ",$trans[$msgid]))."','".addslashes($trans["xcomment"]["$msgid"])."');\n";
    }
    header("Content-type: application/octet-stream");
    header("Content-Disposition: attachment; filename=lang_".$targetlang.".sql");
@@ -85,7 +85,7 @@
  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?targetlang=$targetlang",$start);
 
  $list = $nextmatch->list;
- for ($i=0;$i<$nextmatch->listcount -1;$i++) {
+ for ($i=0;$i<$nextmatch->listcount -2;$i++) {
    $msgid  = $list["xlist"][$i];
    if ($update) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
    $orig   = $list["$msgid"];
@@ -96,7 +96,7 @@
    $rows  = ceil( strlen($orig)/40 ) +1;
    $input = "<TEXTAREA NAME='$msgid"."_trans' COLS='50' ROWS='$rows'>".$target[$msgid]."</TEXTAREA>";
    $t->set_var("trans",$input);
-   $t->set_var("sample","");
+   $t->set_var("sample",$list["xcomment"]["$msgid"]);
    $t->parse("mdatalist","mdatablock",TRUE);
  }
  if ($update) $db->lang_available($targetlang,1);
@@ -107,7 +107,7 @@
  $t->set_var("code",lang("trans_code"));
  $t->set_var("orig",lang("orig_trans","en"));
  $t->set_var("trans",lang("target_trans",$targetlang));
- $t->set_var("sample",lang("trans_sample"));
+ $t->set_var("sample",lang("comments"));
  $t->set_var("submit_name","update");
  $t->set_var("submit",lang("update"));
  $t->set_var("save","<A HREF='$PHP_SELF?targetlang=$targetlang&savelang=1'>".lang("save_lang_file")."</A>");

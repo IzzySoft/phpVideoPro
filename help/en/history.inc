@@ -8,6 +8,7 @@
  <li>added some indices to the database to speed up certain processes
  <li>added count for each media type to stats page
  <li>context help for the initial page was missing - added.
+ <li>added links to first and last movies on the "view entry" screen
 </ul>
 
 [title]

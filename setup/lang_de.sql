@@ -240,3 +240,5 @@ INSERT INTO lang VALUES('no_orphans_found','de','Glückwunsch! Keine Leiche (mehr
 INSERT INTO lang VALUES('delete_orphans','de','Lösche %1 verwaiste Einträge:');
 INSERT INTO lang VALUES('backup_db','de','Datenbank Backup');
 INSERT INTO lang VALUES('desc_backup_db','de','Ein Backup ist immer eine gute Sache (sicher ist sicher :). Über dieses Formular kann der Inhalt der Datenbank gesichert werden. Es wird ein SQL Script erstellt, welches dann bei Bedarf wieder in eine (leere) Datenbank eingespielt werden kann. Gut geeignet zum Beispiel, um die Daten einer Filmsammlung zu duplizieren und auf einem weiteren Rechner zu installieren. Wichtig: nie das Backup einer neueren Version mit einer älteren Version von phpVideoPro verwenden - das kann Nebenwirkungen haben!<BR><DIV ALIGN="center"><B>Soll das Script jetzt erstellt werden?</B></DIV>');
+INSERT INTO lang VALUES('dupes','de','Duplikate Einträge');
+INSERT INTO lang VALUES('dupe_titles_found','de','Es wurden %1 Titel mit möglichen Duplikaten gefunden:');

@@ -14,6 +14,7 @@
      via the installation screens. See online help for details.
  <li>made some "visual improvements" for the installation screens. Look much
      better now - at least to me :)
+ <li>added search for duplicate movie titles
 </ul>
 
 [title]

@@ -12,14 +12,16 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
+- languages in select-boxes on configuration screen should show up in
+  alphabetical order
 
 coming *next*:
 - form(s) to edit label sheets (for PSLabels)
+- store user-based preferences into a different table if no cookies are used
 
 coming *sometimes* (maybe):
 - add check to disk type deletion
 - movie language setting(s)
-- store user-based preferences into a different table if no cookies are used
 - add "sample-links" to translation editor
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - new database field: "lent to" (to find out where your media *really* are :)

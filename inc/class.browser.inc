@@ -1,23 +1,27 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Taken from the Horde project: horde/lib/Browser.php Revision: 1.2         *
- * The Browser:: class provides capability information for the current       *
- * web client. Browser identification is performed by examining the          *
- * $HTTP_USER_AGENT environmental variable provide by the web server.        *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Taken from the Horde project: horde/lib/Browser.php Revision: 1.2         #
+ # The Browser:: class provides capability information for the current       #
+ # web client. Browser identification is performed by examining the          #
+ # $HTTP_USER_AGENT environmental variable provide by the web server.        #
+ #############################################################################
 
  /* $Id$ */
 
+ /** Browser investigation
+  * @package Api
+  * @class Browser
+  */
 class Browser {
     
-    /**
+    /** 
      * General version numbers
      */
     var $majorVersion = 0;
@@ -56,16 +60,18 @@ class Browser {
     
     /**
      * Create a browser instance
+     * @constructor Browser
      */
     function Browser($userAgent = null)
     {
         $this->match($userAgent);
     }
     
-    /**
-     * Parses the user agent string and inititializes the object with
-     * all the known features and quirks for the given browser.
-     *
+    /** Parse the user agent string and inititializes the object with
+     *  all the known features and quirks for the given browser.
+     * @package Api
+     * @class Browser
+     * @method match
      * @param string $userAgent (optional) The browser string to parse
      */
     function match($userAgent = null)
@@ -153,7 +159,8 @@ class Browser {
             } elseif (preg_match('|Opera/([0-9.]+)|', $this->agent, $version)) {
                 $this->setBrowser('opera');
                 list($this->majorVersion, $this->minorVersion) = explode('.', $version[1]);
-                $this->setFeature('javascript', false);
+		if ($this->majorVersion<6)
+                  $this->setFeature('javascript', false);
                 
             } elseif (preg_match('|UP|', $this->agent, $version) ||
                       preg_match('|Wap|', $this->agent, $version)) {
@@ -166,9 +173,10 @@ class Browser {
     }
     
     
-    /**
-     * Sets the current browser.
-     *
+    /** Set the current browser.
+     * @package Api
+     * @class Browser
+     * @method setBrowser
      * @param string $browser The browser to set as current
      */
     function setBrowser($browser)
@@ -176,127 +184,121 @@ class Browser {
         $this->browser = $browser;
     }
     
-    /**
-     * Determine if the given browser is the same as the current.
-     *
+    /** Determine if the given browser is the same as the current.
+     * @package Api
+     * @class Browser
+     * @method isBrowser
      * @param string $browser The browser to check
-     *
      * @return boolean Is the given browser the same as the current?
      */
-    function isBrowser($browser)
-    {
+    function isBrowser($browser) {
         return ($this->browser === $browser);
     }
     
-    /**
-     * Retreive the current browser.
-     *
+    /** Retreive the current browser.
+     * @package Api
+     * @class Browser
+     * @method getBrowser
      * @return boolean Current browser
      */
-    function getBrowser()
-    {
+    function getBrowser() {
         return $this->browser;
     }
     
-    /**
-     * Retreive the current browsers major version.
-     *
+    /** Retreive the current browsers major version.
+     * @package Api
+     * @class Browser
+     * @method getMajor
      * @return boolean Current browser
      */
-    function getMajor()
-    {
+    function getMajor() {
         return $this->majorVersion;
     }
     
-    /**
-     * Retreive the current browsers minor version.
-     *
+    /** Retreive the current browsers minor version.
+     * @package Api
+     * @class Browser
+     * @method getMinor
      * @return boolean Current browser
      */
-    function getMinor()
-    {
+    function getMinor() {
         return $this->minorVersion;
     }
     
-    /**
-     * Retreive the current browsers version.
-     *
+    /** Retreive the current browsers version.
+     * @package Api
+     * @class Browser
+     * @method getVer
      * @return boolean Current browser
      */
-    function getVer()
-    {
+    function getVer() {
         return $this->majorVersion . "." . $this->minorVersion;
     }
     
-    /**
-     * Set unique behavior for the current browser.
-     *
+    /** Set unique behavior for the current browser.
+     * @package Api
+     * @class Browser
+     * @method setQuirk
      * @param string $quirk The behavior to set
      * @param string $value (optional) Special behavior parameter
      */
-    function setQuirk($quirk, $value = true)
-    {
+    function setQuirk($quirk, $value = true) {
         $this->quirks[$quirk] = $value;
     }
     
-    /**
-     * Check unique behavior for the current browser
-     *
+    /** Check unique behavior for the current browser
+     * @package Api
+     * @class Browser
+     * @method hasQuirk
      * @param string $quirk The behavior to check
-     *
      * @return boolean Does the browser have the behavior set?
      */
-    function hasQuirk($quirk)
-    {
+    function hasQuirk($quirk) {
         return !empty($this->quirks[$quirk]);
     }
     
-    /**
-     * Retreive unique behavior for the current browser
-     *
+    /** Retreive unique behavior for the current browser
+     * @package Api
+     * @class Browser
+     * @method getQuirk
      * @param string $quirk The behavior to retreive
-     *
      * @return string The value for the requested behavior
      */
-    function getQuirk($quirk)
-    {
+    function getQuirk($quirk) {
         return isset($this->quirks[$quirk]) ? $this->quirks[$quirk] : null;
     }
     
-    /**
-     * Set capabilities for the current browser.
-     *
+    /** Set capabilities for the current browser.
+     * @package Api
+     * @class Browser
+     * @method setFeature
      * @param string $feature The capability to set
      * @param string $value (optional) Special capability parameter
      */
-    function setFeature($feature, $value = true)
-    {
+    function setFeature($feature, $value = true) {
         $this->features[$feature] = $value;
     }
     
-    /**
-     * Check the current browser capabilities.
-     *
+    /** Check the current browser capabilities.
+     * @package Api
+     * @class Browser
+     * @method hasFeature
      * @param string $feature The capability to check
-     *
      * @return boolean Does the browser have the capability set?
      */
-    function hasFeature($feature)
-    {
+    function hasFeature($feature) {
         return !empty($this->features[$feature]);
     }
     
-    /**
-     * Retreive the current browser capability.
-     *
+    /** Retreive the current browser capability.
+     * @package Api
+     * @class Browser
+     * @method getFeature
      * @param string $feature The capability to retreive
-     *
      * @return string The value of the requested capability
      */
-    function getFeature($feature)
-    {
+    function getFeature($feature) {
         return isset($this->features[$feature]) ? $this->features[$feature] : null;
     }
-    
 }
 ?>

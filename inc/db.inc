@@ -113,6 +113,98 @@
    }
 
    ############################################################################
+   # get all data for a person and return it as array
+   function get_person($id,$table) {
+     $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
+     if ( $this->next_record() ) {
+       $person[name] = trim($this->f('name'));
+       $person[firstname] = trim($this->f('firstname'));
+       $person[fullname] = $person[firstname];
+       if (strlen($person[fullname])) {
+         $person[fullname] .= " " . $person[name];
+       } else {
+         $person[fullname] .= $person[name];
+       }
+     } else {
+       $person[name] = $person[firstname] = $person[fullname] = "";
+     }
+     return $person;
+   }
+
+   ############################################################################
+   # get all data for an actor and return it as array
+   function get_actor($id) {
+     return $this->get_person($id,"actors");
+   }
+
+   ############################################################################
+   # get all data for a director and return it as array
+   function get_director($id) {
+     return $this->get_person($id,"directors");
+   }
+
+   ############################################################################
+   # get all data for a componist and return it as array
+   function get_music($id) {
+     return $this->get_person($id,"music");
+   }
+
+   ############################################################################
+   # get a category's name
+   function get_category($id) {
+     $this->query("SELECT name FROM cat WHERE id=$id");
+     if ( $this->next_record() ) {
+       return trim($this->f('name'));
+     } else {
+       return "";
+     }
+   }
+
+   ############################################################################
+   # get audio/video data and return it as array
+   function get_av($id,$table) {
+     $this->query("SELECT name,sname FROM $table WHERE id=$id");
+     if ( $this->next_record() ) {
+       $av[name]  = $this->f('name');
+       $av[sname] = $this->f('sname');
+     } else {
+       $av[name] = $av[sname] = "";
+     }
+     return $av;
+   }
+
+   ############################################################################
+   # get all pict data and return it as array
+   function get_pict($id) {
+     return $this->get_av($id,"pict");
+   }
+
+   ############################################################################
+   # get all color data and return it as array
+   function get_color($id) {
+     return $this->get_av($id,"colors");
+   }
+
+   ############################################################################
+   # get all tone data and return it as array
+   function get_tone($id) {
+     return $this->get_av($id,"tone");
+   }
+
+   ############################################################################
+   # get data for commercials
+   function get_commercials($id) {
+     $this->query("SELECT name FROM commercials WHERE id=$commercials_id");
+     if ( $this->next_record() ) {
+       $commercials = $this->f('name');
+       $commercials = lang($commercials);
+     } else {
+       $commercials = lang("unknown");
+     }
+     return $commercials;
+   }
+
+   ############################################################################
    # get all data for a movie entry and return it as array
    function get_movie($id) {
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
@@ -142,9 +234,8 @@
      foreach($moviedetails as $value) {
        $name = substr($value,0,6);
        if (${$value}) {
-         $this->query("SELECT firstname,name FROM actors WHERE id=${$value}");
-	 $this->next_record();
-         $movie[$name] = trim( $this->f('firstname') . " " . $this->f('name') );
+	 $actor = $this->get_actor(${$value});
+	 $movie[$name] = $actor[fullname];
        } else {
          $movie[$name] = "";
        }
@@ -168,45 +259,34 @@
        if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
        $movie[actors] .= $movie[actors35];
      }
-     $this->query("SELECT firstname,name FROM directors WHERE id=$director_id");
-     $this->next_record();
-     $movie[director] = trim( $this->f('firstname') . " " . $this->f('name') );
-     $this->query("SELECT firstname,name FROM music WHERE id=$music_id");
-     $this->next_record();
-     $movie[music] = trim( $this->f('firstname') . " " . $this->f('name') );
-     $this->query("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
-     $this->next_record();
-     $movie[mtype] = $this->f('name'); $movie[mtype_short] = $this->f('sname');
+     $director = $this->get_director($director_id);
+     $movie[director] = $director[fullname];
+     $music = $this->get_music($music_id);
+     $movie[music] = $music[fullname];
+     $mtypes = $this->get_mtypes("id=$mtype_id");
+     $movie[mtype] = $mtypes[0][name]; $movie[mtype_short] = $mtypes[0][sname];
      $moviedetails = array("cat1_id","cat2_id","cat3_id");
      foreach($moviedetails as $value) {
        $name = substr($value,0,4);
        if (${$value}) {
-         $this->query("SELECT name FROM cat WHERE id=${$value}");
-	 $this->next_record();
-         $movie[$name] = trim( $this->f('name') );
+         $movie[$name] = $this->get_category(${$value});
        } else {
          $movie[$name] = "";
        }
        $$value = $this->f("$value");
      }
      if ($pict_id) {
-       $this->query("SELECT name,sname FROM pict WHERE id=$pict_id");
-       $this->next_record();
-       $movie[pict] = $this->f('name'); $movie[pict_short] = $this->f('sname');
+       $pict = get_pict($pict_id);
+       $movie[pict] = $pict[name]; $movie[pict_short] = $$pict[sname];
      } else {
        $movie[pict] = $movie[pict_short] = lang("unknown");
      }
-     $this->query("SELECT name,sname FROM colors WHERE id=$color_id");
-     $this->next_record();
-     $movie[color] = $this->f('name'); $movie[color_short] = $this->f('sname');
-     $this->query("SELECT name,sname FROM tone WHERE id=$tone_id");
-     $this->next_record();
-     $movie[tone] = $this->f('name'); $movie[tone_short] = $this->f('sname');
+     $color = $this->get_color($color_id);
+     $movie[color] = $color[name]; $movie[color_short] = $color[sname];
+     $tone = $this->get_tone($tone_id);
+     $movie[tone] = $tone[name]; $movie[tone_short] = $tone[sname];
      if ($commercials_id) {
-       $this->query("SELECT name FROM commercials WHERE id=$commercials_id");
-       $this->next_record();
-       $movie[commercials] = $this->f('name');
-       $movie[commercials] = lang($movie[commercials]);
+       $movie[commercials] = $this->get_commercials($commercials_id);
      } else {
        $movie[commercials] = lang("unknown");
      }

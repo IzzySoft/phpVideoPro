@@ -24,15 +24,43 @@
    foreach ($access as $value) {
      if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
    }
-   if ( !$db->set_user($user) ) $error .= ",".$user->id;
-   if ($error) {
-     $error = substr($error,1);
-     $save_result = $colors["err"] . lang("user_update_failed",$error) . "</Font><BR>\n";
-   } else {
+   $pwd_ok = 1;
+   if ( isset($pwd1) || isset($pwd2) ) {
+     if ($pwd1 == $pwd2) {
+       $user->pwd = $pwd1;
+     } else {
+       $pwd_ok = 0;
+       $save_result = $colors["err"] . lang("password_nomatch") . "</Font><BR>\n";
+     }
+   }
+   if ( $db->set_user($user) ) {
      $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+   } else {
+     $save_result = $colors["err"] . lang("user_update_failed",$id) . "</Font><BR>\n";
    }
  #=================================================[ add new user account ]===
- } elseif ($addnew) {
+ } elseif ($adduser) {
+   $user->id     = $id;
+   $user->login  = $login;
+   $user->comment= $comment;
+   $access = array("admin","browse","add","upd","del");
+   foreach ($access as $value) {
+     if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+   }
+   $pwd_ok = 1;
+   if ( isset($pwd1) || isset($pwd2) ) {
+     if ($pwd1 == $pwd2) {
+       $user->pwd = $pwd1;
+     } else {
+       $pwd_ok = 0;
+       $save_result = $colors["err"] . lang("password_nomatch") . "</Font><BR>\n";
+     }
+   }
+   if ( $pwd_ok && $db->add_user($user) ) {
+     $save_result = $colors["ok"] . lang("create_success") . ".</Font><BR>\n";
+   } else {
+     $save_result .= $colors["err"] . lang("user_update_failed","#") . "</Font><BR>\n";
+   }
  #==================================================[ delete user account ]===
  } elseif ($delete) {
  }
@@ -56,7 +84,7 @@
  $t->set_var("listtitle",lang("admin_useredit"));
  $t->set_var("formtarget",$PHP_SELF);
  $t->set_var("update","<INPUT TYPE='submit' NAME='update' VALUE='".lang("update")."'>");
- $t->set_var("adduser","<INPUT TYPE='submit' NAME='addnew' VALUE='".lang("add_user")."'>");
+ $t->set_var("adduser","<INPUT TYPE='submit' NAME='adduser' VALUE='".lang("add_user")."'>");
  $t->set_var("save_result",$save_result);
  $t->set_var("head_users",lang("user"));
  $t->set_var("head_access",lang("data_access"));

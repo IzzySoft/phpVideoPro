@@ -355,6 +355,24 @@
      return TRUE;
    }
 
+   /** Add user
+    * @class sql
+    * @method add_user
+    * @param object user single user object (as defined as element of userlist array)
+    * @return boolean success
+    */
+   function add_user($user) {
+     $query = "INSERT INTO pvp_users (login,admin,browse,ins,upd,del,comment";
+     if (isset($user->pwd)) $query .= ",pwd";
+     $query .= ") VALUES ('".$user->login."',".$user->admin.",".$user->browse.","
+	      .$user->add.",".$user->upd.",".$user->del.",'".$user->comment."'";
+     if (isset($user->pwd)) $query .= ",'".md5($user->pwd)."'";
+     $query .= ")";;
+     $this->dbquery($query);
+     if ( $this->affected_rows() < 0 ) return FALSE;
+     return TRUE;
+   }
+
    ############################################################################
    # people and their names
    ############################################################################

@@ -13,6 +13,17 @@ die Hilfeseite für den Menüpunkt "<A HREF="{PHP_SELF}?topic=add_entry">*add_entr
 aber...
 
 [title]
+Durchstöbern der Sammlung
+
+[text]
+Sicher kann man die virtuelle Videothek mit Hilfe des Formulares unter
+"*view#" -&gt; "*start_page#" durchwandern. Aber in manchen Situationen wirkt
+dieser Weg ein wenig umständlich. Daher habe ich jeweils links und rechts vom
+Filmtitel einen Button zum Blättern hinzu gefügt, der jeweils mit dem vorigen
+bzw. nächsten Eintrag verlinkt ist. Sollte er einmal nicht verlinkt sein, dann
+gibt es gerade keinen weiteren Eintrag in dieser Richtung.
+
+[title]
 Kopieren bzw. verschieben eines Eintrags, Anpassen der Länge eines Mediums
 
 [text]

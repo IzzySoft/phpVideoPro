@@ -91,7 +91,7 @@ Contents:
 
  If above mentioned requirements are met, we can start setting up phpVideoPro.
  To do this, follow these steps:
- 1. unpack the tarball to a directory of your choice. It has to be located
+ 1. *UNPACK THE TARBALL* to a directory of your choice. It has to be located
     below your webservers document root (or you have to configure your
     webserver in a way it can use that directory, e.g. by creating an alias).
     Simple advice: use "tar xzf <tarfile>" to unpack it into the current
@@ -103,7 +103,7 @@ Contents:
     The other settings (Hu? Ah, other files ;) you should leave unchanged. If
     you need more customization, you can do so later via the web interface.
  3. now, point your browser to <phpvideopro>/setup/install/index.php, which
-    starts the installation wizzard. This wizzard will create your database
+    starts the *INSTALLATION WIZZARD*. This wizzard will create your database
     (and, if necessary, also the user) and install the "skeleton" (all the
     technical data needed to run phpVideoPro). If you are going to restore from
     a previously created backup, this is also done here. The wizzard will
@@ -115,7 +115,7 @@ Contents:
     * protect it via the web server (e.g. with .htaccess file when using Apache)
     * change its permissions with "chmod 0700 install" if the web server
       user is not its owner
- 5. If you are concerned about disk space, you may want to remove the
+ 5. If you are concerned about *DISK SPACE*, you may want to remove the
     language support files for languages you won't ever use. By this, you
     will save about 100..250kB per language (with phpVideoPro v0.6.0 - may be
     more with future versions). I'm going to explain the removal of a
@@ -131,7 +131,7 @@ Contents:
     files for the English [en] support, since these files ARE ALLWAYS
     REQUIRED by phpVideoPro). The worst thing to happen is, that the whole
     application may be English only, regardless of your configuration.
- 6. To safeguard your installation you should add the .inc file extension
+ 6. To *SAFEGUARD YOUR INSTALLATION* you should add the .inc file extension
     in your web servers config to be recognized as a PHP file. For Apache,
     search the config for the line
     AddType application/x-httpd-php .php
@@ -140,7 +140,10 @@ Contents:
     next to it, so nobody can browse your configuration file (if tried, the
     result then would just be an empty browser window - without this setting,
     the result would be the source code of the *.inc file).
- 7. For the data retrieval from IMDB, phpVideoPro needs a directory to store
+    Moreover, you may want to protect the setup/install (see above) and
+    setup/update directories by placing an .htaccess file (or adding the
+    appropriate statements to your Apache config directly).
+ 7. For the *DATA RETRIEVAL FROM IMDB*, phpVideoPro needs a directory to store
     the images in (as shipped, this is moviepic/imdb/). This directory must
     be readable and writable for the web server process, which - depending on
     the distribution used, runs under different users. To make this work

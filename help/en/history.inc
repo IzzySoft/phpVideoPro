@@ -8,6 +8,10 @@
  <li>added new install wizzard. Now it can create the database and, if
      necessary, also the user itself - and should after all be a bit more
      comfortable
+ <li>outsourced the update code to its own subdirectory (<code>setup/update</code>),
+     so you can safeguard both, this and the <code>setup/install</code>
+     directory with e.g. a <code>.htaccess</code> file against unauthorized
+     access
 </ul>
 
 [title]

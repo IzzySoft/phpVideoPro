@@ -184,7 +184,8 @@ $t->set_var("listtitle",$title);
 $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
 #----------------------------------------[ setup block 1: language stuff ]---
-$t->set_var("list_head",lang("language_settings")." ".$pvp->link->linkhelp($page_id."#lang"));
+$t->set_var("list_head",lang("language_settings"));
+$t->set_var("help_icon",$pvp->link->linkhelp($page_id."#lang"));
 
 if ($admin) {
   #--[ scan for new language files? ]--
@@ -266,7 +267,8 @@ if ($admin) {
 $t->parse("list","listblock");
 
 #-----------------------------------------[ setup block 3: movies & media ]---
-$t->set_var("list_head",lang("config_media")." ".$pvp->link->linkhelp($page_id."#media"));
+$t->set_var("list_head",lang("config_media"));
+$t->set_var("help_icon",$pvp->link->linkhelp($page_id."#media"));
 
 if ($admin) {
   #--[ rw_media ]--
@@ -347,7 +349,8 @@ $t->parse("list","listblock",TRUE);
 
 #------------------------------------------------[ setup block 4: cookies ]---
 if ($admin) {
-  $t->set_var("list_head",lang("cookies")." ".$pvp->link->linkhelp($page_id."#cookies"));
+  $t->set_var("list_head",lang("cookies"));
+  $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#cookies"));
 
   #--[ enable_cookies ]--
   $t->set_var("item_name",lang("enable_cookies"));
@@ -402,7 +405,8 @@ if ($admin) {
 }
 
 #------------------------------------------[ setup block 5: imdb defaults ]---
-$t->set_var("list_head","IMDB ".$pvp->link->linkhelp($page_id."#imdb"));
+$t->set_var("list_head","IMDB");
+$t->set_var("help_icon",$pvp->link->linkhelp($page_id."#imdb"));
 
 #--[ imdb_url ]--
 $t->set_var("item_name",lang("imdb_url"));
@@ -460,7 +464,8 @@ $t->parse("item","itemblock",TRUE);
 $t->parse("list","listblock",TRUE);
 
 #---------------------------------------------[ setup block 6: misc stuff ]---
-$t->set_var("list_head",lang("general")." ".$pvp->link->linkhelp($page_id."#general"));
+$t->set_var("list_head",lang("general"));
+$t->set_var("help_icon",$pvp->link->linkhelp($page_id."#general"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 
 #--[ template set ]--

@@ -3,7 +3,6 @@
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
-INSERT INTO lang VALUES ('','de','Dummy-Cat');
 INSERT INTO lang VALUES ('about','de','About');
 INSERT INTO lang VALUES ('actions','de','Aktionen');
 INSERT INTO lang VALUES ('actor','de','Darsteller');

@@ -228,7 +228,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
+    $field  = "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\" onClick=\"window.location.href='change_nr.php?id=$id'\">";
     $field .= "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
   }
   $t->set_var("mtype",$field);
@@ -243,7 +243,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
-    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
+    $field = "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\" onClick=\"window.location.href='change_nr.php?id=$id'\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
   }
   $t->set_var("medianr",$field);
   $t->set_var("year_name",lang("year"));

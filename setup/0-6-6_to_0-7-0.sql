@@ -3,7 +3,7 @@
 # ========================================================
 
 # prepare default lang update
-# DELETE FROM lang WHERE lang='en';
+DELETE FROM lang WHERE lang='en';
 
 # language names
 UPDATE languages SET lang_name='አማርኛ' WHERE lang_id='am';

@@ -814,7 +814,7 @@
     * @return mixed either id (integer) or array of IDs
     */
    function get_movieid($mtype_id,$cass_id,$part="") {
-     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
+     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id ORDER BY part";
      if ($part=="") {
        $this->query($query);
        while( $this->next_record() ) {
@@ -1694,6 +1694,185 @@
        exit;
      }
    } // end query_f()
+
+ ############################################################################
+ # PS-Label Specific Stuff
+ ############################################################################
+
+ /** get available units
+  * @class sql
+  * @method get_units
+  * @return mixed (array of unit,factor)
+  */
+ function get_units() {
+     $this->query("SELECT unit,size FROM units");
+     $i=0;
+     while ( $this->next_record() ) {
+       $units[$i][unit] = $this->f('unit');
+       $units[$i][factor] = $this->f('size');
+       ++$i;
+     }
+   return $units;
+  }
+
+ /** get available label forms
+  * @class sql
+  * @method get_label_forms
+  * @return mixed (array of i:id,i:vendor,i:product)
+  */
+ function get_label_forms() {
+     $this->query("SELECT id,vendor,product FROM label_forms");
+     $i=0;
+     while ( $this->next_record() ) {
+       $label_forms[$i][product] = $this->f('product');
+       $label_forms[$i][vendor] = $this->f('vendor');
+       $label_forms[$i][id]   = $this->f('id');
+       ++$i;
+     }
+   return $label_forms;
+  }
+
+ /** get number of rows and columns on sheet for $id
+  * @class sql
+  * @method get_lsheet
+  * @return mixed (rows,cols)
+  */
+ function get_lsheet($id) {
+     $query="SELECT rows,cols,type FROM label_forms WHERE id=$id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[rows] = $this->f('rows');
+         $lsheet[cols] = $this->f('cols');
+         $lsheet[type] = $this->f('type');
+         return $lsheet;
+       }
+     }
+     return FALSE;
+  }
+
+ /** get all print format relevant infos for label form $id
+  * @class sql
+  * @method get_lsheet_info
+  * @return mixed ()
+  */
+ function get_lsheet_info($id,$printer_id) {
+     $stat=0;
+
+     $query="SELECT rows,cols,unit_id,h_dist,
+     v_dist,width,heigth,leftm,topm,sheet_id 
+     FROM label_forms WHERE id=$id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[label_rows] = $this->f('rows');
+         $lsheet[label_cols] = $this->f('cols');
+         $lsheet[label_hdist] = $this->f('h_dist');
+         $lsheet[label_vdist] = $this->f('v_dist');
+         $lsheet[label_width] = $this->f('width');
+         $lsheet[label_heigth] = $this->f('heigth');
+         $lsheet[left_margin] = $this->f('leftm');
+         $lsheet[top_margin] = $this->f('topm');
+         $label_unit_id = $this->f('unit_id');
+         $lsheet_sheet_id = $this->f('sheet_id');
+	 $stat++;
+       }
+       $stat++;
+     }
+
+     $query="SELECT size FROM units WHERE id=$label_unit_id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[label_unit_size] = $this->f('size');
+         $stat++;
+       }
+       $stat++;
+     }
+
+     $query="SELECT name,unit_id,width,length FROM sheets WHERE id=$lsheet_sheet_id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $sheet_unit_id = $this->f('unit_id');
+	 $lsheet[sheet_papersize] = $this->f('name');
+	 $lsheet[sheet_length] = $this->f('length');
+	 $lsheet[sheet_width] = $this->f('width');
+         $stat++;
+       }
+       $stat++;
+     }
+
+     $query="SELECT size FROM units WHERE id=$sheet_unit_id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[sheet_unit_size] = $this->f('size');
+         $stat++;
+       }
+       $stat++;
+     }
+
+     $query="SELECT unit_id,top_offset,left_offset
+     FROM printers WHERE id=$printer_id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[pr_left] = $this->f('left_offset');
+         $lsheet[pr_top] = $this->f('top_offset');
+         $printer_unit_id = $this->f('unit_id');
+         $stat++;
+       }
+       $stat++;
+     }
+
+     $query="SELECT size FROM units WHERE id=$printer_unit_id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $lsheet[pr_unit_size] = $this->f('size');
+         $stat++;
+       }
+       $stat++;
+     }
+
+     if ($stat) return $lsheet;
+     return FALSE;
+  }
+
+ /** get eps template description for $type
+  * @class sql
+  * @method get_epstemplates
+  * @return mixed (id,description)
+  */
+ function get_epstemplates($type) {
+     $query="SELECT id,description FROM eps_templates WHERE type=$type";
+     if ( $this->dbquery($query) ) {
+       $i=0;
+     while ( $this->next_record() ) {
+         $eps_template[$i][id] = $this->f('id');
+         $eps_template[$i][description] = $this->f('description');
+         ++$i;
+       }
+       return $eps_template;
+     }
+     return FALSE;
+  }
+
+ /** get eps image reference for $id
+  * @class sql
+  * @method get_epsimage
+  * @return mixed (eps_file,ps_file,llx,lly,urx,ury)
+  */
+ function get_epsimage($id) {
+     $query="SELECT eps_filename,ps_filename,llx,lly,urx,ury
+     FROM eps_templates WHERE id=$id";
+     if ( $this->dbquery($query) ) {
+       if ( $this->next_record() ) {
+         $eps_image[eps] = $this->f('eps_filename');
+         $eps_image[ps] = $this->f('ps_filename');
+         $eps_image[llx] = $this->f('llx');
+         $eps_image[lly] = $this->f('lly');
+         $eps_image[urx] = $this->f('urx');
+         $eps_image[ury] = $this->f('ury');
+       }
+       return $eps_image;
+     }
+     return FALSE;
+  }
 
  } // end class sql
 

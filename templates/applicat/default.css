@@ -143,8 +143,8 @@
   .navtable { background-color: #6699FF; }
 
   .virtual_button {
-    border:1px solid #8888aa;
-    background-color: #dedede;
+    border:1px outset #ffffff;
+    background-color: #d0d0d0;
   }
 //-->
 </style>

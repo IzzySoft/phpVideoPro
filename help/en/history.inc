@@ -10,6 +10,9 @@
  <li>filter could not be edited when no actor, director or componist was
      in DB - fixed.
  <li>some more code cleanup (to produce new bugs ;)
+ <li>in edit/view entry, remaining free time now is displayed for editable
+     media only (e.g. not for DVD or Original Video Tapes), i.e. at this
+     time for RVT only (until I've added support for more than one mtype here)
 </ul>
 
 [title]

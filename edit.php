@@ -24,11 +24,11 @@
   include("inc/header.inc");
 ?>
  <script language="JavaScript"><!--
-   function label() {
-     if (document.entryform.labelconf.value != "-") {
-       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&template="?>' + document.entryform.labelconf.value;
+   function label(labelconf) {
+     if (labelconf != "-") {
+       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&template="?>' + labelconf;
        var pos = (screen.width/2)-400;
-       campus  = eval("window.open(url,'<?=lang("print_label")?>','toolbar=yes,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
+       campus  = eval("window.open(url,'label','toolbar=yes,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
      }
    }
  //-->
@@ -296,9 +296,14 @@ EndHiddenFields;
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
     $t->set_var("mlength_free","<INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev"));
-  } else {
-    $t->set_var("mlength_free_name",lang("free"));
-    $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
+  } else { // hide free time for non-editable media
+    if ($pvp->common->medium_is_rw($mtype_id)) {
+      $t->set_var("mlength_free_name",lang("free"));
+      $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
+    } else {
+      $t->set_var("mlength_free_name","&nbsp;");
+      $t->set_var("mlength_free","&nbsp;");
+    }
   }
   $t->set_var("date_name",lang("date_rec"));
   if ($recdate == lang("unknown")) {
@@ -395,7 +400,7 @@ EndHiddenFields;
     $t->set_var("print_label","&nbsp;");
   } else {
     $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
-    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label()\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
+    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label(this.value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
     for ($i=0;$i<count($labels);$i++) {
       $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
       $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";

@@ -19,8 +19,7 @@
  <li>movies could not be inserted/updated when a persons name contained single
      quotes - fixed
  <li>in some cases the media type was displayed twice in the media number - fixed.
- <li>on submission of the configuration form in admin-&gt;configuration session
-     was broken if cookies were disabled - fixed.
+ <li>on submission of some forms session was broken if cookies were disabled - fixed.
  <li>on updating configuration or preferences, unchanged values got duplicated
      in the database - fixed.
 </ul>

@@ -35,49 +35,31 @@
 		     "taperest_empty"=>"taperest_empty.tpl"));
   $t->set_block("taperest_list","itemblock","itemlist");
   $t->set_block("itemblock","movieblock","movielist");
-  $where = "WHERE free>=$minfree";
-  if ( strlen($filter) ) {
-    dbquery("SELECT cass_id FROM video v WHERE $filter");
-    $i=0;
-    while ( $db->next_record() ) {
-      if ($i) { $tapelist .= "," . $db->f('cass_id'); } else { $tapelist = $db->f('cass_id'); }
-    }
-    $where .= " AND id IN ($tapelist)";
-  }
-  $query = "SELECT id,free FROM cass $where ORDER BY free DESC";
+
+  $query = "\$db->get_freelist($minfree,\"$filter\",$start)";
   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?minfree=$minfree",$start);
-  if (!$db->num_rows()) {
+
+  if (!$nextmatch->listcount) {
     $t->set_var("title",lang("no_entries_found"));
     $t->set_var("msg",lang("no_space_of",$minfree));
     $t->pparse("out","taperest_empty");
     include("inc/footer.inc");
     exit;
   }
-  $i = 0;
-  while ( $db->next_record() ) {
-    $i++;
-    $mlist[$i]["id"]   = $db->f('id');
-    $mlist[$i]["free"] = $db->f('free');
-  }
 
-  for ($i=1;$i<=count($mlist);$i++) {
-    $query = "SELECT v.title,m.sname,c.name"
-           . " FROM video v,mtypes m,cat c"
-	   . " WHERE cass_id='" . $mlist[$i]["id"] . "'"
-	   . " AND v.mtype_id=m.id AND v.cat1_id=c.id"
-	   . " AND v.mtype_id IN ($rw_media)";
-    debug("S","<TR><TD colspan=4>" . $colors["ok"] . "$query</Font></TD></TR>\n");
-    dbquery($query);
-    $k = 0;
-    while ( $db->next_record() ) {
-      $k++;
-      $mlist[$i][$k]      = $db->f('title') . " (" . $db->f('name') . ")";
-      $mlist[$i]["mtype"] = $db->f('sname');
+  $mlist = $nextmatch->list;
+  # $mlist[][id|free]; id = $cass_id
+
+  for ($i=0;$i<$nextmatch->listcount;$i++) {
+    $movie_id = $db->get_movieid(1,$mlist[$i][id]);
+    $mid_count = count($movie_id);
+    for ($k=0;$k<$mid_count;$k++) {
+      $movie = $db->get_movie($movie_id[$k]);
+      $mlist[$i][$k]    = $movie[title] . " (" . $movie[cat1] . ")";
+      $mlist[$i][mtype] = $movie[mtype_short];
       debug("V","<TR><TD colspan=4>Title: '". $mlist[$i][$k] . "', Type: '" . $mlist[$i]["mtype"] . "'</TD></TR>\n");
-    }
-    for ($l=1;$l<=$k;$l++) {
-      $t->set_var("movies",$mlist[$i][$l]);
-      if ($l==1) {
+      $t->set_var("movies",$mlist[$i][$k]);
+      if (!$k) {
         $t->parse("movielist","movieblock");
       } else {
         $t->parse("movielist","movieblock",TRUE);
@@ -85,7 +67,7 @@
     }
     $t->set_var("mtype",$mlist[$i]["mtype"]);
     $t->set_var("id",$mlist[$i]["id"]);
-    $t->set_var("free",$mlist[$i]["free"]);
+    $t->set_var("free",$mlist[$i][free]);
     $t->parse("itemlist","itemblock",TRUE);
   }
   $t->set_var("freespace",lang("free_space_on_media",$minfree));

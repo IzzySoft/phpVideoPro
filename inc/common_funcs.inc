@@ -165,4 +165,42 @@
   return "";
  }
 
+ ##############################################################################
+ # get translation
+ function lang($key,$m1="",$m2="",$m3="",$m4="",$m5="",$m6="",$m7="",$m8="",$m9="",$m10="") {
+   if (is_array($m1)){
+     $vars = $m1;
+   } else {
+     $vars = array($m1,$m2,$m3,$m4,$m5,$m6,$m7,$m8,$m9,$m10);
+   }
+   return translate("$key",$vars);
+ }
+ function translate($key,$vars=FALSE) {
+   GLOBAL $db;
+   $trans = $key;
+   if (!$vars) $vars=array();
+   dbquery("SELECT value FROM preferences WHERE name='lang'");
+   if ( $db->next_record() ){
+     $lang = $db->f('value');
+   } else {
+     $lang = "en";
+   }
+   $lang = strtolower($lang);
+   dbquery("SELECT message_id,lang,content FROM lang WHERE lang='$lang' OR lang='en'");
+   while ( $db->next_record() ) {
+     $msg_id = $db->f('message_id');
+     $transi = $db->f('content');
+     $langi  = $db->f('lang');
+     if ( strtolower($key)==strtolower($msg_id) ) {
+       $trans = $transi;
+       if ( $lang==$langi) break;
+     }
+   }
+   $ndx = 1;
+   while ( list($k,$v)=each($vars) ) {
+     $trans = preg_replace("/%ndx/",$v,$trans);
+     $ndx++;
+   }
+   return $trans;
+ }
 ?>

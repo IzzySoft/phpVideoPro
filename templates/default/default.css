@@ -10,6 +10,14 @@ A:visted{ text-decoration:none }
 A:active{ text-decoration:none }
 .tablink { color: #000000; }
 TABLE { background-color: #fff; }
+TABLE.beam,TR.beam {
+  border:1px solid #000;
+  border-spacing: 0;
+  background-color: #ccc;
+}
+TABLE.beam { margin-bottom: 7px; margin-top: 7px; }
+TD.beam { background-color: #03f; }
+TD.nobeam { background-color: transparent; }
 .navtable { background-color: #69f; }
 TH {
   font-family: sans-serif;

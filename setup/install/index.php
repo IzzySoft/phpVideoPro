@@ -47,6 +47,8 @@
    $infile  = file($base_path."inc/config.inc");
    $inlines = count($infile);
    $changed = FALSE;
+   $t->set_var("beamspan","2");
+   $t->set_var("nobeamspan","3");
    for ($i=0;$i<$inlines;++$i) {
      if ( strpos(trim($infile[$i]),"\$backup_path")===0 ) {
        $old = trim(preg_replace('/([^"]*)\"([^"]*)\"(.*)/','\\2',$infile[$i]));
@@ -138,6 +140,8 @@
    $t->pparse("out","template");
  } elseif (isset($_POST["config_done"])) {
  #================================================[ Get privileged DB user ]===
+   $t->set_var("beamspan","3");
+   $t->set_var("nobeamspan","2");
    $t->set_var("listtitle","phpVideoPro Installation: Create the DB");
    $t->set_var("submit_name","dbcreate");
    $t->set_var("info_head","Superuser");
@@ -163,6 +167,8 @@
    $t->pparse("out","template");
  } elseif (isset($_POST["dbcreate"])) {
  #===================================================[ Set up the database ]===
+   $t->set_var("beamspan","4");
+   $t->set_var("nobeamspan","1");
    $t->set_var("listtitle","phpVideoPro Installation: Setting up the DB");
    $t->set_var("submit_name","tables_done");
    $dbc = new sql();
@@ -297,6 +303,8 @@
  } else {
  #===================================================[ Default: First step ]===
    include("../../inc/config.inc");
+   $t->set_var("beamspan","1");
+   $t->set_var("nobeamspan","4");
    $t->set_var("listtitle","phpVideoPro Installation: Setting up the config file");
    $t->set_var("submit_name","config");
    #-=[ Backup Path ]=-

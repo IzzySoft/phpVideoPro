@@ -16,9 +16,15 @@
 </TABLE>
 <!-- END formblock -->
 
+<TABLE WIDTH="90%" ALIGN="center" BORDER="0" CLASS="beam"><TR CLASS="beam">
+  <COLGROUP><COL WIDTH="20%"><COL WIDTH="20%"><COL WIDTH="20%"><COL WIDTH="20%"><COL WIDTH="20%"></COLGROUP>
+  <TD COLSPAN="{beamspan}" CLASS="beam"><IMG SRC="{tpl_dir}images/blank.gif" HEIGHT="1"></TD>
+  <TD COLSPAN="{nobeamspan}" CLASS="nobeam"><IMG SRC="{tpl_dir}images/blank.gif" HEIGHT="1"></TD>
+</TR></TABLE>
+
 <DIV ALIGN="center">
  <INPUT TYPE="hidden" NAME="{submit_name}" VALUE="1">
- <INPUT TYPE="image" NAME="{submit_name}" SRC="{submit_button}" onClick="submit();">
+ <A HREF="JavaScript:document.configform.submit();"><IMG BORDER="0" SRC="{submit_button}"></A>
 </DIV>
 
 </FORM>

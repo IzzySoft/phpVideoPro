@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.5.6
+[text]
+<ul>
+ <li>hopefully fixed stafflist crashing with SQL error when no staffmembers
+     found (which is usually the case when starting with a fresh install)
+ <li>hopefully fixed the other lists crashing on fresh database since no
+     entries found
+</ul>
+
+[title]
 0.5.5 (November 24, 2003)
 [text]
 <ul>

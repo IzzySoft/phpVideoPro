@@ -250,8 +250,8 @@ CREATE TABLE languages (
   lang_name VARCHAR(50) NOT NULL,
   charset VARCHAR(20),
   available CHAR(3) DEFAULT 'No' NOT NULL,
-  audio INT(1) DEFAULT 0 NOT NULL,
-  subtitle INT(1) DEFAULT 0 NOT NULL,
+  audio INT DEFAULT 0 NOT NULL,
+  subtitle INT DEFAULT 0 NOT NULL,
   PRIMARY KEY (lang_id)
 );
 

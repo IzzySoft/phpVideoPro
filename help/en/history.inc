@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.5.5
+[text]
+<ul>
+ <li>updated Spanish language file (tnx to Jaime)
+ <li>some translations have been hardcoded (= not translated) - fixed.
+ <li>disktype (e.g. DVD-9) was not displayed correctly when editing an
+     existing entry - fixed.
+</ul>
+
+[title]
 0.5.4 (November 2, 2003)
 [text]
 <ul>

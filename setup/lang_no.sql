@@ -1,6 +1,6 @@
 # ========================================================
-# English Translation phrases for phpVideoPro
-# created by Knut Fjellheim <knutfjellheim@hotmail.com>
+# Norwegian Translation phrases for phpVideoPro
+# provided by Knut Fjellheim <knutfjellheim@hotmail.com>
 # ========================================================
 
 INSERT INTO lang (message_id,lang,content) VALUES ('not_yet_implemented','no','Beklager - ikke implementert.');

@@ -89,6 +89,7 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"search.tpl"));
  $t->set_var("listtitle",lang("search_movie"));
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("submit",lang("search"));
  $t->set_var("mtype_name",lang("mediatype"));
  #----------------------------------------------------------[ Media Types ]---

@@ -54,7 +54,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.4.6');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.4.7');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','');
@@ -133,7 +133,7 @@ INSERT INTO languages VALUES ('ik','Inupiak','','No');
 INSERT INTO languages VALUES ('in','Indonesian','','No');
 INSERT INTO languages VALUES ('is','Icelandic','iso-8859-1','No');
 INSERT INTO languages VALUES ('it','Italian','iso-8859-1','No');
-INSERT INTO languages VALUES ('iw','Hebrew','iso-8859-8','No');
+INSERT INTO languages VALUES ('iw','Hebrew','iso-8859-8-i','No');
 INSERT INTO languages VALUES ('ja','Japanese','','No');
 INSERT INTO languages VALUES ('ji','Yiddish','','No');
 INSERT INTO languages VALUES ('jw','Javanese','','No');

@@ -121,13 +121,13 @@ $pvp->preferences->admin();
     case "0.3.7"    :
     case "0.3.8"    :
     case "0.4.0"    : queryf("0-4-0_to_0-4-1.".$database["type"],"Update from v0.4.0 to v0.4.1");
-    case "0.4.1"    : queryf("0-4-1_to_0-4-2.sql","Update from v0.4.1 to v0.4.2");
-                      queryf("pslabel.".$database["type"],"Set up of PSLabel tables");
+    case "0.4.1"    : queryf("pslabel.".$database["type"],"Set up of PSLabel tables");
     case "0.4.2"    :
     case "0.4.3"    :
     case "0.4.4"    : queryf("0-4-2_to_0-4-5.sql","Update from v0.4.2/3/4 to v0.4.5");
                       $commenturl = 1;
-    case "0.4.5"    : queryf("0-4-5_to_0-4-6.sql","Update from v0.4.5 to v0.4.6");
+    case "0.4.5"    :
+    case "0.4.6"    : queryf("0-4-6_to_0-4-7.sql","Update from v0.4.6 to v0.4.7");
                       queryf("lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

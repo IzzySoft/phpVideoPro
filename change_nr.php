@@ -12,14 +12,15 @@
 
  /* $Id$ */
 
- if ( $copy ) $silent=1;
- include("inc/header.inc");
+ function make_nr($cass,$part) {
+   while ( strlen($cass)<4 ) { $cass = "0".$cass; }
+   if ( strlen($part)<2 ) { $part = "0".$part; }
+   return $cass . "-" . $part;
+ }
 
- if ( $change ) {
-   echo "<P>&nbsp;<BR></P><H3 ALIGN='center'>".lang("not_yet_implemented")."</H3>\n";
-   include("inc/footer.inc");
-   exit;
- } elseif ( $copy ) {
+ if ( $copy || $change ) {
+   $silent=1;
+   include("inc/header.inc");
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
      display_error($error);
@@ -29,14 +30,21 @@
  $movie_id = $db->get_movieid($old_mtype,$old_cass_id,$old_part);
   
  $movie = $db->get_movie($movie_id);
+ } else {
+   include("inc/header.inc");
+ }
+
+ if ( $change ) {
+   $db->move_movie($movie_id,$new_mtype,$new_cass_id,$new_part);
+   $new_nr = make_nr($new_cass_id,$new_part);
+   header("location: edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr");
+ } elseif ( $copy ) {
    $movie[mtype_id] = $new_mtype;
    $movie[cass_id]  = $new_cass_id;
    $movie[part]     = $new_part;
    if ( !$movie[lp] ) $movie[lp] = 0;
    $db->add_movie($movie);
-   $new_nr = $new_cass_id;
-   while ( strlen($new_nr)<4 ) { $new_nr = "0".$new_nr; }
-   if ( strlen($new_part)<2 ) { $new_nr .= "-0".$new_part; } else { $new_nr .= "-".$new_part; }
+   $new_nr = make_nr($new_cass_id,$new_part);
    header("location: edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr");
    exit;
  }

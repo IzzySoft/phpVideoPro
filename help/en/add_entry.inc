@@ -95,6 +95,20 @@ setting in the setup menue, to take country specific settings (or special user
 preferences :) into account.
 
 [title]
+*audio_ts# / *subtitle#
+
+[text]
+Here you can enter the available language tracks for audio (i.e. what language
+is <i>spoken</i> in the movie) and subtitles. Especially with DVDs, there can
+be multiple tracks available - so we allow to enter multiple tracks here.
+
+[text]
+Since the number of available languages worldwide is not that small, but we
+want to keep our application handsome, only a selected subset of languages will
+show up in the selection boxes. You can customize these via the administration
+dialogs (found in the administration menu).
+
+[title]
 *categories#
 
 [text]

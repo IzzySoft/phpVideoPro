@@ -172,7 +172,7 @@
   $t->set_var("form_target",$PHP_SELF);
   switch ( strtolower($page_id) ) {
     case "edit"      : $t->set_var("listtitle",lang("edit_entry",$nr)); break;
-    case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$nr)); break;
+    case "view_entry"      : $t->set_var("listtitle",lang("view_entry",$movie[mtype_short]." ".$nr)); break;
     case "add_entry" : $t->set_var("listtitle",lang("add_entry")); break;
     default          : break;
   }

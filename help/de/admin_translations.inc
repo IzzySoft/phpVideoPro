@@ -41,13 +41,13 @@ Sprache aufgeführt) - andernfalls wird "ISO-8859-1" (= Latin-1) angenommen.
 [text]
 Handelt es sich bei der zu bearbeitenden Sprache um eine, die einen abweichenden
 Zeichensatz verwendet, sollte auf dieser Seite zunächst über den Link
-"*save_lang_file" am Ende der Seite die (unfertige) Sprachdatei gesichert, der
+"*save_lang_file#" am Ende der Seite die (unfertige) Sprachdatei gesichert, der
 Zeichensatz in selbiger korrigiert (in der Zeile, die mit "UPDATE" beginnt) und
 über die Seite "*admin# -&gt; *configuration#" neu eingelesen werden. Gleiches
 gilt auch für den Fall, dass einfach ein neuer Satz an Übersetzungen für eine
 Sprache angelegt werden soll, für die bereits Übersetzungen vorhanden sind -
 jedoch für diesen neuen Satz ein anderer Zeichensatz verwendet werden soll (wer
-das nicht für möglich hält: für Russisch gibt es allein drei <b><i>Standard-</i></b>
+das nicht für möglich hält: für Russisch gibt es z.B. allein drei <b><i>Standard-</i></b>
 Zeichensätze und darüber hinaus noch eine Reihe weiterer). In diesem Falle
 sollten ggf. auch alle auf die "UPDATE" Zeile folgenden Zeilen aus der Datei
 entfernt werden, bevor diese neu importiert wird.
@@ -58,12 +58,6 @@ auf die nächste Seite (mittels der bereits von anderen Listen, wie z.B. der
 "*medialist#", bekannten Steuerelemente) sollte nicht vergessen werden, etwaige
 Änderungen mittels des "*update#" Buttons zu speichern.
 
-[text]
-Noch eine Kleinigkeit: es ist <b><i>nicht</i></b> nötig eine Übersetzung
-einzufügen, die mit dem Text in der Spalte "*orig_trans#" 100% übereinstimmt:
-wird keine Übersetzung in der "Primärsprache" gefunden, wird dieser Wert
-ohnehin verwendet.
-
 [title]
 Fertig?
 
@@ -71,10 +65,10 @@ Fertig?
 Dann wird es Zeit, die vollbrachte Arbeit in eine Datei zu sichern (wiederum
 über den Link "*save_lang_file#" am Ende der Seite). Damit steht sie nun auch
 für neue Installationen zur Verfügung. Eine nette Geste wäre es an dieser Stelle
-überdies, eine Kopie der Datei an mich, den <A HREF="mailto:izzysoft@qumran.org">Autor</A>
-von phpVideoPro, zu schicken: wer an meiner Arbeit so kostengünstig teilhaben
-kann, hat so eine einfache Möglichkeit, "Dankeschön" zu sagen - und andere
-Benutzer von phpVideoPro wird es sicher freuen, aktuelle Übersetzungen in der
-nächsten Release vor zu finden :-)
+überdies, eine Kopie der Datei an den Autor von phpVideoPro, zu schicken (EMail
+Adresse siehe <code>doc/README</code>): wer an meiner Arbeit so kostengünstig
+teilhaben kann, hat so eine einfache Möglichkeit, "Dankeschön" zu sagen - und
+andere Benutzer von phpVideoPro wird es sicher freuen, aktuelle Übersetzungen
+in der nächsten Release vor zu finden :-)
 
 [eof]

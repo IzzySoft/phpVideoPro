@@ -7,10 +7,11 @@
 <ul>
  <li>movie title button now also links to IMDB information (as names do)
  <li>movielist: order by category didn't work. Fixed.
+ <li>added statistics page
 </ul>
 
 [title]
-0.3.0 (September 2002)
+0.3.0 (September 24, 2002)
 [text]
 <ul>
  <li>first-time installation failed: we tried to read from tables which

@@ -37,6 +37,14 @@
     onclick="return buttonClick(this, 'helpMenu');"
     onmouseover="buttonMouseover(this, 'helpMenu');"
     ><? echo lang("help") ?></a>
+<?
+if ($sess_id) {
+ $login_info = lang("user").": ".$pvp->auth->user->login;
+} else {
+ $login_info = lang("not_logged_in");
+}?>
+ <span class="menuText" id="loginHint"
+    ><?=$login_info?></span>
 </div>
 
 <!-- Tags for the drop down menus. -->
@@ -116,6 +124,4 @@
 ?><div class="menuItemSep"></div>
 <a class="menuItem" href="JavaScript:open_help('<?=$page_id ?>')"><?=lang("help_about") . " \"" . lang($page_id) . "\"" ?></a>
 <? }
-?></div>
-
-</div>
+?></div></div>

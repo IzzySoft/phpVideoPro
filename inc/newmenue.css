@@ -132,6 +132,22 @@ a.menuItem {
   padding-right: 12px;
   text-decoration: none;
 }
+.menuText {
+  color: #000000;
+  cursor: default;
+  display: inline;
+  font-family: "MS Sans Serif", Arial, Tahoma,sans-serif;
+  font-size: 11;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0px;
+  padding: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-decoration: none;
+  text-align:right;
+  position: absolute; right: 0px;
+}
 a.menuItem:hover {
   background-color: #000080;
   color: #ffffff;

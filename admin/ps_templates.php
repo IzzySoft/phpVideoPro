@@ -44,14 +44,18 @@
    } else {
      $save_result = $colors["err"] . lang("update_failed") . "</FONT>";
    }
-   $t->set_var("hidden","<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>");
+   $hidden = "<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>";
+   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+   $t->set_var("hidden",$hidden);
    $t->set_var("save_result",$save_result);
  } elseif ($remove) { $db->set_pstemplate((int)$remove); }
 
  #===========================================[ edit a single eps template ]===
  if ($edit) {
    $ps = $db->get_pstemplates($edit);
-   $t->set_var("hidden","<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>");
+   $hidden = "<INPUT TYPE='hidden' NAME='edit' VALUE='$edit'>";
+   if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+   $t->set_var("hidden",$hidden);
    $t->set_var("button",lang("update"));
  } elseif ($add) {
 

@@ -37,9 +37,7 @@ ul { list-style-type: square; }
 table.boxed { border-spacing: 2px; }
 td.boxed, th.boxed, th.boxedHeader {
   background-color: #ffffff;
-  border-color: #000000;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #000000;
   color: #000000;
   padding: 2px;
   padding-left: 8px;
@@ -56,41 +54,39 @@ th.boxedHeader {
   position: fixed;
   width: 100%;
 }
+a.menuButton, a.menuButtonActive, #menuBar {
+  border-style: solid;
+  color: #000000;
+  left: 0px;
+  top: 0px;
+}
 #menuBar {
   background-color: #c0c0c0;
-  border-style: solid;
   border-width: 0px;
   border-top-color: #f0f0f0;
   border-top-width: 2px;
   border-bottom-color: #909090;
   border-bottom-width: 2px;
-  color: #000000;
   padding: 0px;
   padding-top: 2px;
   padding-bottom: 2px;
   position: absolute;
-  left: 0px;
-  top: 0px;
   text-align: left;
   width: 100%;
   z-index: 100;
 }
 a.menuButton, a.menuButtonActive {
-  border-style: solid;
   border-width: 1px;
   border-color: #c0c0c0;
-  color: #000000;
   cursor: default;
   font-family: "MS Sans Serif", Arial, Tahoma, sans-serif;
-  font-size: 11;
+  font-size: 11px;
   font-style: normal;
   font-weight: normal;
   padding: 2px;
   padding-left: 6px;
   padding-right: 6px;
   position: relative;
-  left: 0px;
-  top: 0px;
   text-decoration: none;
 }
 a.menuButton:hover {
@@ -108,22 +104,18 @@ a.menuButtonActive, a.menuButtonActive:hover {
   background-color: #c0c0c0;
   border-style: solid;
   border-width: 2px;
-  border-top-color: #f0f0f0;
-  border-right-color: #909090;
-  border-bottom-color: #909090;
-  border-left-color: #f0f0f0;
+  border-color: #f0f0f0 #909090 #909090 #f0f0f0;
   padding: 0px;
   position: absolute;
   text-align: left;
   visibility: hidden;
   z-index: 101;
 }
-a.menuItem {
+a.menuItem, .menuText {
   color: #000000;
   cursor: default;
-  display: block;
   font-family: "MS Sans Serif", Arial, Tahoma,sans-serif;
-  font-size: 11;
+  font-size: 11px;
   font-style: normal;
   font-weight: normal;
   margin: 0px;
@@ -132,19 +124,11 @@ a.menuItem {
   padding-right: 12px;
   text-decoration: none;
 }
+a.menuItem {
+  display: block;
+}
 .menuText {
-  color: #000000;
-  cursor: default;
   display: inline;
-  font-family: "MS Sans Serif", Arial, Tahoma,sans-serif;
-  font-size: 11;
-  font-style: normal;
-  font-weight: normal;
-  margin: 0px;
-  padding: 2px;
-  padding-left: 12px;
-  padding-right: 12px;
-  text-decoration: none;
   text-align:right;
   position: absolute; right: 0px; top: 2px; /* top: fix for Konqueror quirk */
 }

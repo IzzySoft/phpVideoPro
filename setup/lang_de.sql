@@ -128,3 +128,5 @@ INSERT INTO lang VALUES('feedback_ok','de','Positive Abfrage-Ergebnisse');
 INSERT INTO lang VALUES('feedback_err','de','Negative Abfrage-Ergebnisse');
 INSERT INTO lang VALUES('template_set','de','Template Set');
 INSERT INTO lang VALUES('start_pvp','de','phpVideoPro starten');
+INSERT INTO lang VALUES('goto_entry','de','Zeige folgenden Eintrag an:');
+INSERT INTO lang VALUES('start_page','de','Startseite');

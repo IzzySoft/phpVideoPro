@@ -12,6 +12,7 @@
  <li>added documentation header to most files
  <li>addition of language files for Norwegian, Polish and Dutch
      (Thanx to Knut, Leszek and Tom!)
+ <li>added possibility to directly go to an entry specified by MediaNr
 </ul>
 
 [title]

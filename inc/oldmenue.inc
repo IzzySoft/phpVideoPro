@@ -26,6 +26,8 @@
 
   dhtmlMenu = new NavBarMenu(140, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("view") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("start_page") ?>", "<? echo $base_url ?>index.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>medialist.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("actors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=actors"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("directors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=directors"));

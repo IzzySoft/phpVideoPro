@@ -295,6 +295,8 @@ function getPageOffsetTop(el) {
 </div>
 
 <div id="viewMenu" class="menu">
+<a class="menuItem" href="<? echo $base_url ?>index.php"><? echo lang("start_page") ?></a>
+<div class="menuItemSep"></div>
 <a class="menuItem" href="<? echo $base_url ?>medialist.php"><? echo lang("medialist") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=actors"><? echo lang("actors") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=directors"><? echo lang("directors") ?></a>

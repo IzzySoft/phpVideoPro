@@ -10,7 +10,8 @@
 
  /* $Id$ */
 
-include("inc/header.inc");
-include("inc/footer.inc");
+ include("inc/header.inc");
+ include("inc/sel_entry.inc");
+ include("inc/footer.inc");
 
 ?>

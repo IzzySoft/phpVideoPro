@@ -128,4 +128,5 @@ INSERT INTO lang VALUES('feedback_err','en','Feedback "Failure"');
 INSERT INTO lang VALUES('template_set','en','Template Set');
 INSERT INTO lang VALUES('start_pvp','en','Start phpVideoPro');
 INSERT INTO lang VALUES('hit_back_to_correct','en','Hit the "Back" button to correct the error.');
-
+INSERT INTO lang VALUES('goto_entry','en','Directly go to entry:');
+INSERT INTO lang VALUES('start_page','en','Initial page');

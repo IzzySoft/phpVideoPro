@@ -263,6 +263,7 @@ EndHiddenFields;
     $formAddon = $form["addon_title"];
   }
   $t->set_var("title","<$input NAME='title' VALUE='$title' " . $formAddon . ">");
+
   #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));
   if ($mdisktype[0]->rc) {
@@ -276,13 +277,12 @@ EndHiddenFields;
         if ($i<6) $rcname .= "&nbsp;";
       }
     } else {
-      if ( !is_array($rc) ) {
-        $rcname  = "<INPUT TYPE='button' NAME='rc' VALUE='".lang("unknown")."' CLASS='techinput' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
-      } else {
+      if ( is_array($rc) ) {
         for ($i=0;$i<7;++$i) {
           if ($rc[$i]) $rcname .= "<INPUT TYPE='button' NAME='rc' VALUE='$i' CLASS='yesnobutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
         }
       }
+      if (!$rcname) $rcname  = "<INPUT TYPE='button' NAME='rc' VALUE='".lang("unknown")."' CLASS='techinput' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
     }
     $t->set_var("rc",$rcname);
   }
@@ -355,8 +355,6 @@ EndHiddenFields;
     $t->set_var("counter",form_input("counter1",$counter1,"class='yesnobutton' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\"") . " / " . form_input("counter2",$counter2,"class='yesnobutton' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\""));
   }
 
-
-
   # Label
   if ($new_entry) $label = $pvp->preferences->get("default_movie_onlabel");
   $t->set_var("label_name",lang("label"));
@@ -370,6 +368,7 @@ EndHiddenFields;
     if ($label) { $field .= lang("yes") . "'>"; } else { $field .= lang("no") . "'>"; }
   }
   $t->set_var("label",$field);
+
   # Categories
   $t->set_var("category_name",lang("category") . " 1-2-3");
   $field = "";
@@ -391,6 +390,7 @@ EndHiddenFields;
    if ( $i<$max["categories"] ) $field .= "<BR>";
   }
   $t->set_var("category",$field);
+
   # Commercials
   $t->set_var("commercial_name",lang("commercials"));
   if ($edit) {
@@ -405,6 +405,7 @@ EndHiddenFields;
     $field  = "<$input NAME='commercials' class='techinput' VALUE='$commercials'>";
   }
   $t->set_var("commercial",$field);
+
   # Remaining free time
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
@@ -418,6 +419,8 @@ EndHiddenFields;
       $t->set_var("mlength_free","&nbsp;");
     }
   }
+  
+  # Date
   $t->set_var("date_name",lang("date_rec"));
   if ($recdate == lang("unknown")) {
     $tdate .= "<$dinput NAME='recdate' VALUE='$recdate'" . $form["addon_tech"] . ">";
@@ -427,8 +430,9 @@ EndHiddenFields;
     $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr[mon] . "' " . $form["addon_month"] . ">.";
     $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr[year] . "' " . $form["addon_year"] . ">";
   }
-
   $t->set_var("date",$tdate);
+
+  # Tone Format
   $t->set_var("tone_name",lang("tone"));
   if ($new_entry) $tone_id = $pvp->preferences->get("default_movie_toneid");
   if ($edit) {

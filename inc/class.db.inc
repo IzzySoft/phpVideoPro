@@ -987,6 +987,7 @@
      $movie[title]   = stripslashes($movie[title]);
      $movie[source]  = stripslashes($movie[source]);
      $movie[comment] = stripslashes($movie[comment]);
+     if (!$movie[length]) $movie[length] = 0;
      $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
      $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
      $movie[director_] = $name;
@@ -1503,6 +1504,43 @@
      return $types;
    }
 
+   /** Delete a disktype from table disks
+    * @class sql
+    * @method delete_disktype
+    * @param integer id
+    * @return boolean success
+    */
+   function delete_disktype($id) {
+     if ( $this->dbquery("UPDATE cass SET disks_id=NULL WHERE disks_id=$id") ) {
+       return $this->dbquery("DELETE FROM disks WHERE id=$id");
+     } else {
+       return FALSE;
+     }
+   }
+
+   /** Update a disktype in table disks
+    * @class sql
+    * @method update_disktype
+    * @param integer id
+    * @param integer mtype_id
+    * @param string name
+    * @param string size
+    * @param integer lp
+    * @param integer rc
+    * @return boolean success
+    */
+   function update_disktype($id,$mtype_id,$name,$size,$lp,$rc) {
+     if ( $id ) {
+       $query = "UPDATE disks SET "
+              . "mtype_id=$mtype_id,name='$name',size='$size',lp=$lp,rc=$rc "
+              . "WHERE id=$id";
+     } else {
+       $query = "INSERT INTO disks (mtype_id,name,size,lp,rc)"
+              . " VALUES ($mtype_id,'$name','$size',lp,rc)";
+     }
+     return $this->dbquery($query);
+   }
+
    /** Get a specific disktype id
     * @class sql
     * @method get_disktype_id
@@ -1585,7 +1623,7 @@
     * @class sql
     * @method get_mtypes
     * @param optional string restrict WHERE clause
-    * @return array array of media types
+    * @return array array of media types (i:id, i:sname, i:name)
     */
    function get_mtypes($restrict="") {
      if ( strlen($restrict) ) {

@@ -40,12 +40,19 @@
      default    : $sep = " "; $align = TRUE; $multipage = TRUE; $ext = "txt"; break;
    }
    if ($align) $listtitle = $pvp->common->centerstr($listtitle,$pagewidth);
-   $listheader = $pvp->common->centerstr(lang("medium"),12) . $sep
-               . $pvp->common->centerstr(lang("title"),55) . $sep
-               . $pvp->common->centerstr(lang("category"),17) . $sep
-	       . $pvp->common->centerstr(lang("length"),5) . $sep
-	       . $pvp->common->centerstr("LP",4);
-
+   if ($align) {
+     $listheader = $pvp->common->centerstr(lang("medium"),12) . $sep
+                 . $pvp->common->centerstr(lang("title"),55) . $sep
+                 . $pvp->common->centerstr(lang("category"),17) . $sep
+                 . $pvp->common->centerstr(lang("length"),5) . $sep
+	         . $pvp->common->centerstr("LP",4);
+   } else {
+     $listheader = lang("medium") . $sep
+                 . lang("title") . $sep
+                 . lang("category") . $sep
+                 . lang("length") . $sep
+	         . "LP";
+   }
    for ($i=0;$i<$pagewidth;$i++) {
      $underline .= "-";
    }
@@ -53,6 +60,7 @@
    $pages = ceil($listlength / $pagelength); $page = 0;
 
    // build the list
+   if (!$multipage) $out = "$listheader\n";
    for ($i=0;$i<$listlength;$i++) {
      if ($multipage && !($i % $pagelength)) { // new page
        ++$page;
@@ -73,7 +81,7 @@
      }
      $line = $movielist[$i][mtype_short] . " "
            . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
-           . $pvp->common->padzeros($movielist[$i][part],2) . ": "
+           . $pvp->common->padzeros($movielist[$i][part],2) . $sep
 	   . $title . $sep
 	   . $cat . $sep
 	   . $length . $sep
@@ -83,7 +91,7 @@
    if ($multipage && (--$i % $pagelength)) $out .= "\x0C"; // formfeed after last page if not done
 
    // send it to the browser
-   header("Content-Disposition: attachment; filename=\"medialist.$ext\"");
+   header("Content-Disposition: attachment; filename=medialist.$ext");
    header("Content-type: application/octet-stream"); // text/plain will be displayed inline, so we fool the browser
    echo $out;
    exit;
@@ -96,7 +104,7 @@
  echo "<TR><TD><SELECT NAME=\"order\"><OPTION VALUE=\"num\">NumList</OPTION>";
  echo "<OPTION VALUE=\"title\">AlphaList</OPTION></SELECT></TD><TD>";
  echo "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>";
- echo "<OPTION VALUE=\"cvs\">CSV</OPTION></SELECT></TD><TD>";
+ echo "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT></TD><TD>";
  echo "<INPUT NAME=\"pagelength\" VALUE=\"$pagelength\" SIZE=\"3\"></TD></TR>";
  echo "<TR><TD COLSPAN=\"3\"><DIV ALIGN=\"center\">";
  echo "<INPUT TYPE=\"submit\" NAME=\"create\" VALUE=\"Go!\"></DIV></TD></TR>";

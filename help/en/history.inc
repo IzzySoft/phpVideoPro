@@ -10,8 +10,8 @@
  <li>order by MediaNr in MediaList ignored part nr. fixed.
  <li>reorganized sql statements in preparation of PostgreSQL support
  <li>added documentation header to most files
- <li>addition of language files for Norwegian, Polish, Dutch and Bulgarian
-     (Thanx to Knut, Leszek, Tom and Tsveti!)
+ <li>addition of language files for Norwegian, Polish, Dutch, Bulgarian
+     and Italian (Thanx to Knut, Leszek, Tom, Tsveti and Alex!)
  <li>added possibility to directly go to an entry specified by MediaNr
  <li>fixed some translation stuff (e.g. color names in edit.php)
  <li>added basic PostgreSQL support - please report any errors/bugs/problems

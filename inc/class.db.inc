@@ -637,7 +637,7 @@
        $movie[$aname] = $name;
      }
      $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
-     $movie[color] = $this->f('cname'); $movie[color_short] = $this->f('csname');
+     $movie[color] = lang($this->f('cname')); $movie[color_short] = $this->f('csname');
      $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
      $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
 

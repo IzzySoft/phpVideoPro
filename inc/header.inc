@@ -42,9 +42,9 @@ if ( !( (isset($silent)) && $silent) ) {
   }
   //-->
  </script>
+ <link href="<?=$pvp->tpl_url?>/default.css" rel="stylesheet" type="text/css">
 <?
  include($nav_script);
- include($pvp->tpl_dir ."/default.css");
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
  if ( !(isset($silent) && $silent) ) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
 ?>

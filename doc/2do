@@ -13,7 +13,6 @@ account" izzysoft@qumran.org.
 
 coming *soon*:
 - redirecting on forced login due to missing permissions
-- JavaScript confirmation on change of global prefered language
 - User should be able to change his/her password without having admin
   privileges
 

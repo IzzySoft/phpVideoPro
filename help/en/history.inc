@@ -8,6 +8,10 @@
  <li>some adjustments (and fixes) to the PostgreSQL code
  <li>fixed the "implode" error on staff list display with empty DB
  <li>improved order clause for staff lists
+ <li>when the primary language is changed via the admin-&gt;configuration
+     menu, the user is now asked for a confirmation (JavaScript confirm())
+     to not accidentally change this here for ALL new users while intending
+     to change it in his/her personal preferences
 </ul>
 
 [title]

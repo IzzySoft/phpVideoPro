@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.6.5 (2004)
+[text]
+<ul>
+ <li>converted help system to utf-8
+</ul>
+
+[title]
 0.6.4 (September 05, 2004)
 [text]
 <ul>

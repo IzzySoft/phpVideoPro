@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.9 (2004)
+0.5.9 (May 16, 2004)
 [text]
 <ul>
  <li>updated French language file (supplied by Didier CLERC)

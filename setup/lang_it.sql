@@ -1,18 +1,94 @@
 # ========================================================
-# Italian Language File created by phpVideoPro v0.4.6p5
-# Original file created 20010920 by Alessandro Danti
+# Italian Language File created by phpVideoPro v0.5.7p1
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='it';
+INSERT INTO lang VALUES ('3d','it','3D','');
 INSERT INTO lang VALUES ('about','it','Informazioni','');
+INSERT INTO lang VALUES ('actions','it','Azioni','');
 INSERT INTO lang VALUES ('actor','it','Attore','');
 INSERT INTO lang VALUES ('actors','it','Attori','');
 INSERT INTO lang VALUES ('actors_list','it','Lista degli Attori','');
+INSERT INTO lang VALUES ('actor_persons','it','Attori','');
+INSERT INTO lang VALUES ('add_access','it','Può aggiungere nuovi dati','');
+INSERT INTO lang VALUES ('add_access_short','it','agg','');
 INSERT INTO lang VALUES ('add_entry','it','Aggiungi voce','');
+INSERT INTO lang VALUES ('add_user','it','Agg. Utente','');
+INSERT INTO lang VALUES ('admin','it','Amministratore','');
+INSERT INTO lang VALUES ('admin_access','it','Può accedere al menu di amministratore','');
+INSERT INTO lang VALUES ('admin_access_short','it','amm','');
+INSERT INTO lang VALUES ('admin_cats','it','Amministra Categorie','');
+INSERT INTO lang VALUES ('admin_disktypes','it','Edita Tipi di Dischi','');
+INSERT INTO lang VALUES ('admin_filter','it','Impostazioni filtro predefinite','');
+INSERT INTO lang VALUES ('admin_movietech','it','Edita dati tecnici film','');
+INSERT INTO lang VALUES ('admin_orphans','it','Rimozione dati orfani','');
+INSERT INTO lang VALUES ('admin_printers','it','Edita stampanti','');
+INSERT INTO lang VALUES ('admin_pstemplates','it','Edita Etichetta Stili','');
+INSERT INTO lang VALUES ('admin_sessions','it','Controlla sessioni','');
+INSERT INTO lang VALUES ('admin_translations','it','Edita Traduzioni','');
+INSERT INTO lang VALUES ('admin_useredit','it','Edita Account Utente','');
+INSERT INTO lang VALUES ('admin_users','it','Controlla Account Utenti','');
 INSERT INTO lang VALUES ('back','it','Indietro','');
+INSERT INTO lang VALUES ('backup_db','it','Backup Database','');
+INSERT INTO lang VALUES ('backup_db_complete','it','Fai il backup completo del Database
+ (anche dati tecnici e preferenze)','');
+INSERT INTO lang VALUES ('backup_db_moviedel','it','Fai il backup dei dati maggiormente rilevanti
+ inserisci una priorità di salvataggio','');
+INSERT INTO lang VALUES ('backup_db_movies','it','Fai il backup solo dei dati rilevanti dei film
+ (attori, films, ecc...)','');
+INSERT INTO lang VALUES ('backup_db_runscript','it','Vuoi creare lo script ora?','');
 INSERT INTO lang VALUES ('cancel','it','Annulla','');
+INSERT INTO lang VALUES ('categories','it','Categorie','');
 INSERT INTO lang VALUES ('category','it','Categoria','');
+INSERT INTO lang VALUES ('catlist_alpha','it','Lista dei Media in ordine alfabetico, secondo
+ la categoria','');
+INSERT INTO lang VALUES ('cat_action','it','Azione','');
+INSERT INTO lang VALUES ('cat_adventure','it','Avventura','');
+INSERT INTO lang VALUES ('cat_agents','it','Agente','');
+INSERT INTO lang VALUES ('cat_animal','it','Animale','');
+INSERT INTO lang VALUES ('cat_animals','it','Animali','');
+INSERT INTO lang VALUES ('cat_bible','it','Bibbia','');
+INSERT INTO lang VALUES ('cat_biography','it','Biografie','');
+INSERT INTO lang VALUES ('cat_camera','it','Camera','');
+INSERT INTO lang VALUES ('cat_cartoon','it','Cartoni','');
+INSERT INTO lang VALUES ('cat_catastrophe','it','Catastrofici','');
 INSERT INTO lang VALUES ('cat_children','it','Bambini','');
+INSERT INTO lang VALUES ('cat_comedy','it','Commedia','');
+INSERT INTO lang VALUES ('cat_concert','it','Concerti','');
+INSERT INTO lang VALUES ('cat_crime','it','Crimini','');
+INSERT INTO lang VALUES ('cat_documentary','it','Documentari','');
+INSERT INTO lang VALUES ('cat_drama','it','Drammi','');
+INSERT INTO lang VALUES ('cat_fairytale','it','Favole','');
+INSERT INTO lang VALUES ('cat_fantasy','it','Fantasy','');
+INSERT INTO lang VALUES ('cat_handle_empty','it','Il campo Nome Interno non deve essere vuoto.
+ Controlla meglio.','');
+INSERT INTO lang VALUES ('cat_history','it','Storia','');
+INSERT INTO lang VALUES ('cat_horror','it','Horror','');
+INSERT INTO lang VALUES ('cat_internal_name','it','Nome Interno','');
+INSERT INTO lang VALUES ('cat_judaica','it','Judaica','');
+INSERT INTO lang VALUES ('cat_love','it','Storie d\'Amore','');
+INSERT INTO lang VALUES ('cat_melodrama','it','Melodramma','');
+INSERT INTO lang VALUES ('cat_misc','it','Varie','');
+INSERT INTO lang VALUES ('cat_monumental','it','Monumentale','');
+INSERT INTO lang VALUES ('cat_music','it','Music','');
+INSERT INTO lang VALUES ('cat_musical','it','Musical','');
+INSERT INTO lang VALUES ('cat_musicmovie','it','Film Musicali','');
+INSERT INTO lang VALUES ('cat_nature','it','Natura','');
+INSERT INTO lang VALUES ('cat_opera','it','Opera','');
+INSERT INTO lang VALUES ('cat_operetta','it','Operetta','');
+INSERT INTO lang VALUES ('cat_party','it','Festa','');
+INSERT INTO lang VALUES ('cat_problem','it','Problemi','');
+INSERT INTO lang VALUES ('cat_report','it','Reportage','');
+INSERT INTO lang VALUES ('cat_satire','it','Satira','');
+INSERT INTO lang VALUES ('cat_scary','it','Film Paura','');
+INSERT INTO lang VALUES ('cat_sf','it','Fiction Scienze','');
+INSERT INTO lang VALUES ('cat_show','it','Show','');
+INSERT INTO lang VALUES ('cat_spy','it','Film Spie','');
+INSERT INTO lang VALUES ('cat_stage','it','Teatro','');
+INSERT INTO lang VALUES ('cat_thriller','it','Thriller','');
+INSERT INTO lang VALUES ('cat_trans_update_failed','it','Aggiornamento fallito per la traduzione delle
+ seguenti categorie','');
+INSERT INTO lang VALUES ('cat_travesty','it','Parodia','');
 INSERT INTO lang VALUES ('check_completed','it','Controllo completato','');
 INSERT INTO lang VALUES ('close','it','Chiudi','');
 INSERT INTO lang VALUES ('colors','it','Colori','');

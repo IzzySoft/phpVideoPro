@@ -440,7 +440,7 @@
                                     . " OR  (v.actor4_id=$name[id] AND v.actor4_list=1)"
                                     . " OR  (v.actor5_id=$name[id] AND v.actor5_list=1))";
 			  $revname = "actor_rev"; $fullname = "actor";
-			  $firstname = "actor_first", $lastname = "actor_last";
+			  $firstname = "actor_first"; $lastname = "actor_last";
 			  break;
        default:
      }

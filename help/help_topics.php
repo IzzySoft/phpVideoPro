@@ -44,6 +44,8 @@
   headline("other_pages");
    li("view_entry");
    li("media_change");
+   li("change_rc");
+   li("disktype_change");
   headline("howto");
    li("howto_lang");
    li("howto_help");

@@ -10,7 +10,7 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.1.0 (2001)</b><br>
+  <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works
       on the documentation:
       <ul>
@@ -29,6 +29,7 @@
        <li>remaining time on video tape was miscalculated, if other medium (e.g. DVD)
            with the same number existed. Fixed.
       </ul>
+      This is the first public beta version - didn't think it went that fast :)
   <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:
       <ul>

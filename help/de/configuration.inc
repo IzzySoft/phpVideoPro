@@ -114,6 +114,12 @@ betreffende Medium eingeschlossen werden sollen. Hier läßt sich festlegen, wie
 die Einstellung für neue Einträge vorbelegt sein soll.
 
 [text]
+<b>*movie_tone_default#:</b> Bislang war das immer "Mono" - aber ich denke,
+das ist kaum der richtige Wert. Der hier eingestellte Wert wird als Vorgabe
+für neue Einträge verwendet. Wer also ausschließlich (oder überwiegend) DVDs
+mit Dolby 5.1 erwirbt, sollte hier auch Dolby 5.1 einstellen.
+
+[text]
 <b>*movie_color_default#:</b> Heutzutage werden die meisten Filme in Farbe
 ausgestrahlt - daher ist es natürlich auch sinnvoll, wenn dies die
 Voreinstellung für neue Einträge ist. Andernfalls mag es unter den Anwendern

@@ -101,6 +101,13 @@ for each and every movie entry. Decide here what default should be set for
 new entries.
 
 [text]
+<b>*movie_tone_default#:</b> It's difficult to decide the most used sound
+format for new entries of all users - so I leave that decision to you. The
+previous default of "mono" will definitely be wrong for most of you... Set this
+to the sound format most of your new entries will have, since that's what it's
+preset to for them.
+
+[text]
 <b>*movie_color_default#:</b> Today, most movies come in colored mode. So when
 creating a new entry, you may feel fine to see this is already checked for you.
 Nevertheless, there may be some fans of "oldies" out there who mostly record

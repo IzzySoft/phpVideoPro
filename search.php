@@ -128,7 +128,7 @@
  $lang_field .= "</SELECT>";
  $t->set_var("subtitle_field",$lang_field);
  #---------------------------------[ Inputs (Actors, title, comment etc.) ]---
- $t->set_var("person_field","<SELECT NAME='ptype'><OPTION NAME='actor'>".lang("actor")."</OPTION><OPTION NAME='director'>".lang("director_person")."</OPTION></SELECT>");
+ $t->set_var("person_field","<SELECT NAME='ptype'><OPTION VALUE='actor'>".lang("actor")."</OPTION><OPTION VALUE='director'>".lang("director_person")."</OPTION></SELECT>");
  $t->set_var("name_field","<INPUT NAME='pname' ".$form["addon_name"].">");
  $t->set_var("title_name",lang("title"));
  $t->set_var("title_field","<INPUT NAME='title' ".$form["addon_name"].">");

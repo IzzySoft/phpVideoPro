@@ -32,6 +32,11 @@
        $user_id = $user->id;
      }
      $this->user = $db->get_users($user_id);
+     $this->admin  = $this->user->admin;
+     $this->browse = $this->user->browse;
+     $this->add    = $this->user->add;
+     $this->update = $this->user->upd;
+     $this->delete = $this->user->del;
    }
 
    /** Verify login data
@@ -54,6 +59,26 @@
 
  /** User information (privileges etc.)
   * @class auth
-  * @attribute user
+  * @attribute object user
+  */
+ /** Privileges for the actual user: admin
+  * @class auth
+  * @attribute boolean admin
+  */
+ /** Privileges for the actual user: browse (select)
+  * @class auth
+  * @attribute boolean browse
+  */
+ /** Privileges for the actual user: add entries
+  * @class auth
+  * @attribute boolean add
+  */
+ /** Privileges for the actual user: update (change) entries
+  * @class auth
+  * @attribute boolean update
+  */
+ /** Privileges for the actual user: delete entries
+  * @class auth
+  * @attribute boolean delete
   */
 ?>

@@ -32,7 +32,7 @@
     $t->set_var("use_filter",$usefilter);
     $t->set_var("min_free",lang("enter_min_free"));
     $t->set_var("display",lang("display"));
-    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+    if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
     $t->pparse("out","taperest_init");
     include("inc/footer.inc");
     exit;

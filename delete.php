@@ -56,7 +56,7 @@
    $t->set_var("delete_yn","<SPAN CLASS='error'>" .lang("sure_to_delete",$nr) . "?</SPAN>");
    $t->set_var("no",strtoupper(lang("no")) . "!");
    $t->set_var("yes",lang("yes") . ".");
-   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
    $t->pparse("out","yn");
  #======================[ Process input from DELETE screen - go for real! ]===
  } else {

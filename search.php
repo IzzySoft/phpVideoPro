@@ -138,6 +138,7 @@
  $t->set_var("fsk_name",lang("fsk"));
  $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"].">");
  $t->set_var("fsk_max","<INPUT NAME='maxfsk' ".$form["addon_fsk"].">");
+ if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("inc/header.inc");
  $t->pparse("out","template");
 

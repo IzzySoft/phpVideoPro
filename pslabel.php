@@ -245,7 +245,7 @@ echo "showpage\n";
    $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12'" .$form["addon_fsk"]. ">";
    $t->set_var("max_fontsize",$ifontsize);
    $t->set_var("max_fontsize_desc",lang("max_fontsize"));
-   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
    $t->pparse("out","list");
  
 include("inc/footer.inc");
@@ -266,7 +266,7 @@ include("inc/footer.inc");
    $t->set_var("lselect",lang("labeltype"));
    $t->set_var("layout",lang("layout_label"));
    $t->set_var("form_target",$_SERVER["PHP_SELF"]);
-   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+   if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
    $t->pparse("out","list");
 
 include("inc/footer.inc");

@@ -93,7 +93,7 @@
  $t->set_var("cancel","<INPUT TYPE='cancel' NAME='cancel' VALUE='".lang("cancel")."'>");
  $t->set_var("copy","<INPUT CLASS='submit' TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
  $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";
- if (!$pvp->config->enable_cookies) $change .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ if (!$pvp->config->enable_cookies) $change .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("change",$change);
 
  $t->pparse("out","template");

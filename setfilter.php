@@ -313,7 +313,7 @@
  $t->set_var("composer_name",lang("composer"));
  $t->set_var("reset",lang("reset"));
  $t->set_var("update",lang("update"));
- if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+ if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  $t->pparse("out","t_list");
 
  include($root . "inc/footer.inc");

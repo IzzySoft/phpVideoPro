@@ -450,7 +450,7 @@ $t->parse("list","listblock",TRUE);
 
 
 #--[ complete the whole thing ]--
-if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" CLASS=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
 if ($menue && !$update) {
   include ($base_path . "inc/header.inc");

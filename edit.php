@@ -598,7 +598,7 @@ EndHiddenFields;
     $t->set_var("comments",$pvp->common->nl2br($comment));
   }
   $hiddenfields .= "<INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
-  if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+  if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
   $t->set_var("hiddenfields",$hiddenfields);
   if ($new_entry) {
     $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");

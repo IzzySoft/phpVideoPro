@@ -525,3 +525,10 @@ INSERT INTO lang VALUES ('locale','en','Locale','Name of the Locale language (fo
 INSERT INTO lang VALUES ('admin_avlang','en','Edit availabilty of languages for audio and subtitle','Link to admin screen');
 INSERT INTO lang VALUES ('state_active','en','active','status e.g. of a language availability for audio/subtitle');
 INSERT INTO lang VALUES ('state_inactive','en','inactive','status e.g. of a language availability for audio/subtitle');
+INSERT INTO lang VALUES ('intro_usage','en','<P>Here are some informations for new users:<ul><li>Navigation is always possible using the menu bar available on top of almost all pages</li><li>Most pages are supported by a help screen. You can invoke this either via the help menu or (when available) the "?" button</li><li>The form below lets you directly jump to a movie - if you know its media number. Otherwise, better use the MediaList (available from the "View" menu) or the search form ("Edit" menu).</li></ul></P>','Newbie information displayed after the logon');
+INSERT INTO lang VALUES ('intro_usage_skip','en','<P>If you do not need this introductional text anymore, you can switch it off with the corresponding option on the preferences screen (see the "Edit" menu).</P>','Hint on the initial page');
+INSERT INTO lang VALUES ('intro_usage_title','en','Introduction for new users','');
+INSERT INTO lang VALUES ('skip_intro','en','Skip the newbie intro?','Item on the preferences page');
+INSERT INTO lang VALUES ('skip_intro_comment','en','Whether to skip the introductional text on the initial page','Item on the preferences page');
+# INSERT INTO lang VALUES ('intro_usage','en','','');
+# INSERT INTO lang VALUES ('intro_usage','en','','');

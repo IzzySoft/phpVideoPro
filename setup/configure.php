@@ -36,6 +36,8 @@ if ($admin) {
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
   $url = $_SERVER["PHP_SELF"];
+  if (isset($_POST["skip_intro"]))
+    $pvp->preferences->set("skip_intro",$_POST["skip_intro"]);
   $pvp->preferences->set("lang",$_POST["default_lang"]);
   $pvp->preferences->set("template",$_POST["template_set"]);
   $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
@@ -414,6 +416,18 @@ for ($i=0;$i<count($printers);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
+
+#--[ skip the intro? ]--
+if (!$admin) {
+  $t->set_var("item_name",lang("skip_intro"));
+  $t->set_var("item_comment",lang("skip_intro_comment"));
+  if ($pvp->preferences->get("skip_intro")) {
+    $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"skip_intro\" VALUE=\"1\" CHECKED>");
+  } else {
+   $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"skip_intro\" VALUE=\"1\">");
+  }
+  $t->parse("item","itemblock",TRUE);
+}
 
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));

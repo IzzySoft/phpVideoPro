@@ -365,14 +365,14 @@ EndHiddenFields;
   $t->set_var("director_name",lang("director"));
   if ($page_id == "view_entry") {
     $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($director_fname,$director_name,"directors");
-  } else { $formaddon = $form["addon_name"]; }
+  } else { $formAddon = $form["addon_name"]; }
   $t->set_var("director",form_input("director_name",$director_name,$formAddon));
   $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
   $t->set_var("director_list",vis_staff('director_list',$director_list));
   $t->set_var("composer_name",lang("composer"));
   if ($page_id == "view_entry") {
     $formAddon = $form["addon_name"] . $pvp->link->formImdbPerson($composer_fname,$composer_name,"composers");
-  } else { $formaddon = $form["addon_name"]; }
+  } else { $formAddon = $form["addon_name"]; }
   $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));
   $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
   $t->set_var("composer_list",vis_staff('music_list',$music_list));

@@ -353,10 +353,15 @@ EndHiddenFields;
     $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
   }
   $t->set_var("date_name",lang("date_rec"));
-  $recdate_arr = $pvp->common->makeRecDateArr($recdate);
-  $tdate .= "<$dinput NAME=\"recday\" VALUE=\"" . $recdate_arr[mday] . "\" " . $form["addon_day"] . ">.";
-  $tdate .= "<$dinput NAME=\"recmon\" VALUE=\"" . $recdate_arr[mon] . "\" " . $form["addon_month"] . ">.";
-  $tdate .= "<$dinput NAME=\"recyear\" VALUE=\"" . $recdate_arr[year] . "\" " . $form["addon_year"] . ">";
+  if ($recdate == lang("unknown")) {
+    $tdate .= "<$dinput NAME=\"recdate\" VALUE=\"$recdate\"" . $form["addon_tech"] . ">";
+  } else {
+    $recdate_arr = $pvp->common->makeRecDateArr($recdate);
+    $tdate .= "<$dinput NAME=\"recday\" VALUE=\"" . $recdate_arr[mday] . "\" " . $form["addon_day"] . ">.";
+    $tdate .= "<$dinput NAME=\"recmon\" VALUE=\"" . $recdate_arr[mon] . "\" " . $form["addon_month"] . ">.";
+    $tdate .= "<$dinput NAME=\"recyear\" VALUE=\"" . $recdate_arr[year] . "\" " . $form["addon_year"] . ">";
+  }
+
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
   if ($edit) {

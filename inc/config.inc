@@ -2,7 +2,7 @@
 
 $base_url   = "/local/phpvideo/";
 $nav_script = $base_url . "inc/navcond.js";
-$version    = "0.0.2";
+$version    = "0.0.3";
 
 // colors - mainly for debug messages
 $colors["ok"]  = "<Font Color=\"#0000ff\">";
@@ -16,7 +16,7 @@ $colors["err"] = "<Font Color=\"#ff0000\">";
 // S - SQL statements
 // V - Variables set
 // $debug["log"]  = "SV";
-$debug["log"]  = "ES";
+$debug["log"]  = "E";
 
 // internals - don't edit below this unless you exactly know what you are doing!
 $max["actors"]         =  5;

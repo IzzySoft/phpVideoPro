@@ -1,5 +1,6 @@
 <? /* Edit an entry */
 
+  if ($edit) { $page_id = "edit"; } else { $page_id = "view"; }
   include("inc/config.inc");
   include("inc/header.inc");
 
@@ -103,7 +104,7 @@
 
 <? if ($update) { include("inc/update.inc"); } ?>
 
-<H2 Align=Center>Edit an entry</H2>
+<H2 Align=Center><? if ($edit) { echo "Edit"; } else { echo "View";} echo " entry $nr"; ?></H2>
 <?
   echo "<CENTER>$save_result</CENTER>";
 //  $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
@@ -224,6 +225,7 @@
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0>
     <TR><TD>Free</TD><TD><? echo "<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min" ?></TD></TD>
     <TR><TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
+    <TR><TD ColSpan="2"><HR></TD></TR>
     <TR><TD WIDTH=30%>Tone</TD><TD><?
     if ($edit) {
       echo "<SELECT NAME=\"tone_id\">";

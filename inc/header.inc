@@ -18,9 +18,19 @@
     if ( strpos(strtoupper($debug["log"]),strtoupper($level))===false ) return;
     echo $msg;
   }
+  $pagename = "phpVideoPro v$version";
+  switch ( strtolower($page_id) ) {
+    case "about"     : $pagename .= " [ About ]"; break;
+    case "edit"      : $pagename .= " [ Editing entry $nr ]"; break;
+    case "view"      : $pagename .= " [ Viewing entry $nr ]"; break;
+    case "history"   : $pagename .= " [ History ]"; break;
+    case "medialist" : $pagename .= " [ MediaList ]"; break;
+    case "taperest"  : $pagename .= " [ Free space on media ]"; break;
+    default          : break;
+  }
 ?>
 <HTML><HEAD>
-<Title>phpVideoPro</Title>
+<Title><?echo $pagename ?></Title>
  <STYLE type="text/css">
    a { text-decoration:none; }
    <!--

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,9 +13,8 @@
  /* $Id$ */
 
  #==========================================================[ directories ]===
- $base_url   = "/local/phpvideo/"; # path relative to web server's DOCUMENT_ROOT
- $base_path  = "/srv/www/htdocs/qumran/local/phpvideo/"; # absolute file systems path
- $backup_path= $base_path . "testdata"; # where to look for backup files
+ $backup_path= "testdata"; # where to look for backup files. If not given an
+                           # absolute path, it will be relative to the PVP path
 
  #=============================================================[ database ]===
  $database["type"]      = "mysql";    # mysql|pgsql

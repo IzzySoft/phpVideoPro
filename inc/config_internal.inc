@@ -25,6 +25,12 @@
  $debug["log"]  = "EW";
  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
+ #=====================================================[ setup path names ]===
+ $base_path = dirname(dirname(__FILE__))."/";
+ $base_url = substr($base_path,strlen($_SERVER["DOCUMENT_ROOT"]));
+ if ( (substr($backup_path,0,1)!="/") && (substr($backup_path,0,1)!="\\") )
+   $backup_path = $base_path.$backup_path;
+
  #=========================================[ retrieve browser information ]===
  include($base_path . "inc/class.browser.inc");
  $browser = new browser;

@@ -1,5 +1,6 @@
 # ========================================================
 # English Translation phrases for phpVideoPro
+# by Annette
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-1' WHERE lang_id='fr';
@@ -134,3 +135,7 @@ INSERT INTO lang VALUES('counter_start_stop','fr','Conter Start/Stop');
 INSERT INTO lang VALUES('other_pages','fr','Autre Sites');
 INSERT INTO lang VALUES('commercials','fr','Merchandise');
 INSERT INTO lang VALUES('cut_off','fr','remplacé');
+INSERT INTO lang VALUES('display_limit','fr','Display Limit');
+INSERT INTO lang VALUES('display_limit_comment','fr','(comment a-t-yl des lignes pour le display par suivant per pages)');
+INSERT INTO lang VALUES('print_label','fr','print à label:');
+INSERT INTO lang VALUES('howto_label','fr','Comment à configurer des templates des labels');

@@ -11,6 +11,16 @@ Formular, mit nur einem kleinen (wenn auch signifikanten) Unterschied:
 mit der Erstellung eines neuen Regelsets begonnen werden kann - ohne zuerst auf
 bestehende Regeln prüfen zu müssen.
 
+[text]
+Wurde dieses Formular über das Menü "*admin#" -&gt; "*admin_filter#" aufgerufen,
+so werden die Default Filtereinstellungen, welche in der Datenbank gespeichert
+sind, bearbeitet. Ein Aufruf über das "*edit#" Menü hingegen speichert
+Änderungen in Cookies (und liest sie, ihre Existenz vorausgesetzt, auch aus
+selbigen) - sofern Cookies aktiviert sind. Dies ermöglicht mehreren Benutzern,
+zur gleichen Zeit mit ein und derselben Installation zu arbeiten, und dennoch
+ihre eigenen Filtereinstellungen vornehmen zu können - ohne die eines anderen
+zu überschreiben.
+
 [title]
 Filterregeln
 

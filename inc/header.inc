@@ -26,7 +26,7 @@ if ( !( (isset($silent)) && $silent) ) {
 <? 
  if ( file_exists($pvp->tpl_dir . "/top.js") )
    echo " <script type='text/javascript' language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
- if ( $page_id != "login" ) { ?>
+ if ( $page_id != "login" && $page_id != "imdbsearch" ) { ?>
  <script type='text/javascript' language='JavaScript'>//<!--
   function open_help(topic) {
     if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }

@@ -6,6 +6,7 @@
  <TR><TH>{title}</TH></TR>
  <TR><TD>{details}</TD></TR>
  <!-- END itemblock -->
+ {hidden}
 </TABLE>
 <BR>
 <DIV ALIGN='center'>{button}</DIV>

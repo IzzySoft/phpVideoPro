@@ -82,6 +82,7 @@
    $t->parse("item","itemblock",TRUE);
    $t->set_var("button","<INPUT TYPE='submit' NAME='backup' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
+   if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    include("../inc/header.inc");
    $t->pparse("out","template");
  }

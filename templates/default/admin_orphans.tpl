@@ -7,6 +7,6 @@
  <!-- END itemblock -->
 </TABLE>
 <BR>
-<FORM NAME='admin_orphans' METHOD='post' ACTION='{formtarget}'>
+<FORM NAME='admin_orphans' METHOD='post' ACTION='{formtarget}'>{hidden}
  <DIV ALIGN='center'>{button}</DIV>
 </FORM>

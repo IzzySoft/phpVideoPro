@@ -11,6 +11,8 @@
      quotes (patch supplied by Didier CLERC)
  <li>menu now stays fixed on top of screen (as long as the browser supports the
      CSS setting ;)
+ <li>moved some CSS and JavaScript definitions to external files
+ <li>fixed some problems concerning template sets
 </ul>
 
 [title]

@@ -15,7 +15,7 @@
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
-<TR><TD style="text-align:center">
+<TR><TD style="text-align:center"><CENTER>
 
  <TABLE STYLE="margin:3;text-align:center;" BORDER="1" ALIGN="center"><TR CLASS="content"><TD>
  <FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
@@ -32,7 +32,7 @@
   </TABLE>
  </TD></TR></TABLE>
 
-</TD></TR>
+</CENTER></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD><DIV STYLE="margin:3">

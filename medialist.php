@@ -17,9 +17,10 @@
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
  $filter = get_filters();
- $start = $_GET["start"];
- $order = $_GET["order"];
- if (!$start) $start = 0;
+ if (isset($_GET["start"])) $start = $_GET["start"];
+ if (isset($_GET["order"])) $order = $_GET["order"];
+ if (!isset($start)) $start = 0;
+ if (!isset($order)) $order = "";
  include("inc/class.nextmatch.inc");
 
  $t = new Template($pvp->tpl_dir);

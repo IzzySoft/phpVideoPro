@@ -51,18 +51,26 @@ Details zum Film
 [text]
 Wer hier angekommen ist, konnte den gewünschten Film erfolgreich in der IMDB
 ausfindig machen. Jetzt gilt es, die Details auszuwählen, die in die Datenbank
-von phpVideoPro übernommen werden sollen.
+von phpVideoPro übernommen werden sollen. Einzelne Details lassen sich daher
+mittels der Checkboxen gezielt (ab)wählen. Die Voreinstellungen für diese
+Checkboxen können im Menü <A HREF="{PHP_SELF}?topic=configuration">*preferences#</A>
+festgelegt werden.
 
 [text]
-Filmtitel sowie das Land und Jahr der Produktion sollten eindeutig korrekt sein,
-also gibt es hier auch keine Änderungsmöglichkeiten. Anders sieht es hingegen
-für die restlichen Daten aus: Abhängig vom "Heimatland", sind von der jeweiligen
-"<b><i>FSK</i></b>" ("<i>Freiwillige SelbstKontrolle</i>") andere "Mindest-Alter"
-für den Konsum des Filmmaterials vorgesehen. Hier kann der zutreffende Wert
-ausgewählt werden, welcher sich natürlich auf der "<i>*add_entry#</i>" Seite
-auch manuell ändern lässt. Die <b><i>Länge</i></b> des Filmes kann (z.B.
-aufgrund von Werbefetzen oder Kürzungen seitens der Sendeanstalt) vom Original
-abweichen, und lässt sich daher hier korrigieren.
+Das Land und Jahr der Produktion sollten eindeutig korrekt sein, also gibt es
+hier auch keine Änderungs-/Auswahlmöglichkeiten. Anders sieht es hingegen
+für die restlichen Daten aus: Manche Filme haben "Alternativtitel", daher gibt
+es für den Titel eine Auswahlbox. Der erste Eintrag in dieser Liste ist der
+"offizielle" Filmtitel, alle weiteren Einträge sind "Alternativtitel".
+
+[text]
+Abhängig vom "Heimatland", sind von der jeweiligen "<b><i>FSK</i></b>"
+("<i>Freiwillige SelbstKontrolle</i>") andere "Mindest-Alter" für den Konsum
+des Filmmaterials vorgesehen. Hier kann der zutreffende Wert ausgewählt werden,
+welcher sich natürlich auf der "<i>*add_entry#</i>" Seite auch manuell ändern
+lässt. Die <b><i>Länge</i></b> des Filmes kann (z.B. aufgrund von Werbefetzen
+oder Kürzungen seitens der Sendeanstalt) vom Original abweichen, und lässt sich
+daher hier korrigieren.
 
 [text]
 Was die <b><i>Kategorien</i></b> betrifft, so versucht phpVideoPro zu den

@@ -193,6 +193,8 @@
    }
 
    ############################################################################
+   # translations
+   ############################################################################
    /** delete translations for a specific language
     * @class sql
     * @method delete_translations
@@ -202,7 +204,6 @@
      $this->dbquery("DELETE FROM lang WHERE lang='$lang'");
    }
 
-   ############################################################################
    /** Get all translations and return them as array
     * @class sql
     * @method get_translations
@@ -222,6 +223,29 @@
        $trans[$msg_id] = $this->f('content');
      }
      return $trans;
+   }
+
+   /** set a translation
+    * @class sql
+    * @method set_translation
+    * @param string id translation identifier
+    * @param string trans translated string
+    * @param string lang language of the translation
+    * @return boolean success
+    */
+   function set_translation($id,$trans,$lang) {
+     if (!$trans) { // remove translation
+       $query = "DELETE FROM lang WHERE message_id='$id' AND lang='$lang'";
+     } else {
+       $this->query("SELECT content FROM lang WHERE lang='$lang' AND message_id='$id'");
+       if ( $this->next_record() ) {
+         $query = "UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'";
+       } else {
+         $query = "INSERT INTO lang (message_id,lang,content) VALUES ('$id','$lang','$trans')";
+       }
+     }
+     $this->dbquery($query);
+     return $this->affected_rows();
    }
 
    ############################################################################
@@ -362,6 +386,8 @@
    }
 
    ############################################################################
+   # categories
+   ############################################################################
    /** Get a category's data
     * @class sql
     * @method get_category
@@ -392,6 +418,30 @@
        }
        return $cat;
      }
+   }
+
+   /** update a category
+    * @class sql
+    * @method update_category
+    * @param integer id category's id
+    * @param string name category's name
+    * @return boolean success
+    */
+   function update_category($id,$name) {
+     $this->dbquery("UPDATE cat SET name='$name' WHERE id=$id");
+     if ( $this->affected_rows() < 0 ) return FALSE;
+     return TRUE;
+   }
+
+   /** add a category
+    * @class sql
+    * @method add_category
+    * @param string name
+    * @return boolean success
+    */
+   function add_category($name) {
+     $this->dbquery("INSERT INTO cat (name) VALUES ('$name')");
+     return $this->affected_rows();
    }
 
    ############################################################################

@@ -265,6 +265,28 @@ class common {
     return FALSE;
   }
 
+  /** Build &lt;SELECT&gt; box for MediaTypes
+   * @class common
+   * @method make_mtype_selectbox
+   * @param string name name for the &lt;SELECT&gt; object
+   * @param optional integer selected which mtype_id should be marked selected
+   * @param optional boolean short wether to use the short name of mtype
+   * @return string the complete HTML code for the &lt;SELECT&gt; box (default)
+   */
+  function make_mtype_selectbox($name,$selected=1,$short=TRUE) {
+    GLOBAL $db;
+    if ($short) { $type = "sname"; } else { $type = "name"; }
+    $select = "<SELECT NAME='$name'>";
+    $mtypes = $db->get_mtypes();
+    for ($i=0;$i<count($mtypes);++$i) {
+      $select .= "<OPTION VALUE='" . $mtypes[$i][id] . "'";
+      if ( $mtypes[$i][id] == $selected ) $select .= " SELECTED";
+      $select .= ">" . $mtypes[$i][$type] . "</OPTION>";
+    }
+    $select .= "</SELECT>";
+    return $select;
+  }
+
  } // end class common
  
 ?>

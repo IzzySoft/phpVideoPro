@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.1 (Oktober 2002)
+0.3.1 (Oktober 2, 2002)
 [text]
 <ul>
  <li>movie title button now also links to IMDB information (as names do)

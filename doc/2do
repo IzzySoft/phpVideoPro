@@ -13,6 +13,7 @@ account" izzysoft@qumran.org.
 
 coming *soon*:
 - fix the SQL file import (db::get_sql()) to allow ";" within field contents
+- stats report wrong count of media (only r/w media are counted)
 
 coming *next*:
 - get around the problem with ' "," ' in SQL for the comments

@@ -2410,7 +2410,7 @@
 	 $rank = "rank_" . $value["name"] . "_" . $k;
 	 if (strlen( trim($item) )) ++$k; // do not count the "unknowns"
 	 $stats[$rank] =  "$item (" . $this->f('rank') . ")";
-         if ( $i=$rankrecords+1) break; // prevent endless loop on empty list
+         if ( $i==$rankrecords+1) break; // prevent endless loop on empty list
        }
      }
      for ($i=1;$i<4;++$i) {

@@ -12,6 +12,8 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *around* 0.2.0 (not yet sure if before or after):
+- translation for color codes missing ("s/w","farbe","3d")
+- setup: check for existence and readability of SQL files before execution
 - fields for counter settings (start/end of movie for old tape recorders
   (feature request by user via sourceforge))
 - splitting date field into day-month-year

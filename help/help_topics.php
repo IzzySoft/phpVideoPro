@@ -17,7 +17,7 @@
     li("taperest_absolute",2);
     li("taperest_filtered",2);
   headline("howto");
-   li("create_lang_file");
+   li("howto_lang");
    li("create_help_file");
    li("create_templates");
 ?>

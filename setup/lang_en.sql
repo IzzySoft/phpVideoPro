@@ -102,4 +102,6 @@ INSERT INTO lang VALUES('directors_list','en','List of Directors');
 INSERT INTO lang VALUES('music_list','en','List of Composers');
 INSERT INTO lang VALUES('no_entries_found','en','No entries found');
 INSERT INTO lang VALUES('no_space_of','en','There was no medium with a minimum of %1 min of free space found in the database.');
+INSERT INTO lang VALUES('howto','en','How to...');
+INSERT INTO lang VALUES('howto_lang','en','How to create a new language file');
 

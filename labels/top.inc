@@ -9,3 +9,10 @@ $maxlines  = 10;        # how many lines fit on the label
 $nr_coord   = "0,0,10,15";   # coordinates of the number field
 $main_coord = "0,15,80,47";  # main field contains title & time
 $symb_coord = "64,0,80,15";  # symbol field for genre symbol
+
+# what information should be displayed on the label (per movie)
+$entry = "{title} ({country} {year})";
+# we want multiple lines, so we use an array: (coming soon ;)
+#$entry[] = "{title}";
+#$entry[] = "{country} {year}";
+#$entry[] = "Regie: {director}";

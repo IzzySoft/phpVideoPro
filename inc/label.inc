@@ -15,7 +15,7 @@
  class label {
 
    VAR $width, $height, $textcolor, $font, $color, $maxlines, $label,
-       $nr_coord, $main_coord, $symb_coord, $mm_conv;
+       $nr_coord, $main_coord, $symb_coord, $mm_conv, $entry;
 
    function label($config) {
      GLOBAL $base_path;
@@ -26,6 +26,7 @@
      $this->maxlines = $maxlines;
      $this->width  = $width * $this->mm_conv;
      $this->height = $height * $this->mm_conv;
+     $this->entry  = $entry;
      $this->nr_coord   = $this->convert_coord($nr_coord);
      $this->main_coord = $this->convert_coord($main_coord);
      $this->symb_coord = $this->convert_coord($symb_coord);
@@ -47,7 +48,9 @@
      return $arr;
    }
 
-   function copy_tpl($template) { // create blank label from template image
+   ###########################################################################
+   # create blank label from template image
+   function copy_tpl($template) {
      $im_info = getimagesize("$template"); // label size
      $this->width  = $im_info[0];
      $this->height = $im_info[1];
@@ -65,7 +68,9 @@
      $this->label = $im;
    } // end function copy_tpl()
 
-   function create_new() { // create blank label without template image
+   ###########################################################################
+   # create blank label without template image
+   function create_new() {
      $im  = imageCreate($this->width,$this->height); // create img in desired size
      $bgcolor = explode(",", $this->color[white]);
      $fgcolor = explode(",", $this->color[blue]);
@@ -78,17 +83,22 @@
      $this->label = $im;
    }
 
+   ###########################################################################
+   # provide image transparency
    function make_transparent(&$img) {
      $uglybg = ImageColorAllocate($img,0xf4,0xb2,0xe5); // transparent bg
      ImageColorTransparent($img,$uglybg);
    }
 
+   ###########################################################################
+   # define some colors to use
    function colors() {
      $this->color[white] = "255,255,255";
      $this->color[black] = "0,0,0";
      $this->color[blue]  = "0,11,255";
    }
 
+   ###########################################################################
    # calculate position of the text on the label field
    function get_textpos($text,$field,$font) {
      $length = strlen($text);
@@ -101,6 +111,8 @@
      return $x;
    }
 
+   ###########################################################################
+   # write text to a label field
    function write_text($text,$field) {
      $font = $this->font;
      for ($i=0;$i<count($text);$i++) { // find longest line
@@ -123,6 +135,8 @@
      }
    }
 
+   ###########################################################################
+   # wrapper to put data on the label
    function write($nr,$text) {
      while ( substr($nr,0,1)=="0" ) {
        $nr = substr($nr,1);
@@ -132,11 +146,40 @@
      $this->write_text($text,$this->main_coord);
    }
 
+   ###########################################################################
+   # prepare the text array with data from the movies listed in array $movie
+   function make_text($movies) {
+     GLOBAL $db;
+     $moviecount = count($movies);
+     preg_match_all("/\{\S+\}/",$this->entry,$matches);
+     $matchcount = count($matches[0]);
+     for ($i=0;$i<$moviecount;$i++) {
+       $ttext = $this->entry;
+       $movie = $db->get_movie($movies[$i]);
+       for ($k=0;$k<$matchcount;$k++) { // replace placeholders
+         $var  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
+	 $rvar = $movie[$var];
+	 if ($var == "length") { // convert to hh:mm
+	   $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
+	   $hours   = floor($rvar / 60);
+	   $rvar    = "$hours:$minutes";
+	 }
+	 $ttext = preg_replace("/\{$var\}/",$rvar,$ttext);
+       }
+       $text[] = $ttext;
+     }
+     return $text;
+   }
+
+   ###########################################################################
+   # send the image to the browser
    function prn() {
      header( "Content-type: image/png");
      ImagePng($this->label);
    }
 
+   ###########################################################################
+   # free memory
    function destroy() {
      ImageDestroy( $this->label() );
    }

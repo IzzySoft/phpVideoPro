@@ -9,3 +9,7 @@ $maxlines  = 4;        # how many lines fit on the label
 $nr_coord   = "0,0,10,20";    # coordinates of the number field
 $main_coord = "10,0,130,20";  # main field contains title & time
 $symb_coord = "130,0,150,20"; # symbol field for genre symbol
+
+# what information should be displayed on the label (per movie)
+# we want one line only, so we use a scalar variable:
+$entry = "{title}   {length}";

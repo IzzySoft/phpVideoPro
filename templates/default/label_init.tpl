@@ -6,9 +6,9 @@
         <TH>{medianr}</TH>
         <TH>{label}</TH></TR>
     <!-- BEGIN definitionblock -->
-    <TR><TD>{mtype}</TD>
-        <TD>{medianr}</TD>
-        <TD>{label}</TD></TR>
+    <TR><TD><DIV ALIGN="center">{mtype}</DIV></TD>
+        <TD><DIV ALIGN="center">{medianr}</DIV></TD>
+        <TD><DIV ALIGN="center">{label}</DIV></TD></TR>
     <!-- END definitionblock -->
     <TR><TD COLSPAN=3><DIV ALIGN="center"><INPUT TYPE="submit" NAME="create" VALUE="{create}"></DIV></TD></TR>
   </TABLE>

@@ -1,7 +1,7 @@
 <? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
-[title]
+[title|1|backup]
 Backup
 
 [text]
@@ -41,7 +41,7 @@ your browser will prompt you for a location to save the backup file to. Until
 then, it may take a while, depending on the size of your database and the type
 of backup chosen.
 
-[title]
+[title|1|restore]
 Restore movies from a <code>*.pvp</code> backup
 
 [text]

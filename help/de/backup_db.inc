@@ -1,7 +1,7 @@
 <? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
-[title]
+[title|1|backup]
 Backup
 
 [text]
@@ -39,7 +39,7 @@ ausprobieren - schlimmsten Falles gibt es halt eine Fehlermeldung). Nach einem
 nach Größe der Datenbank und gewähltem Backup-Typ jetzt ein Weilchen, bis der
 Browser zum Speichern der Datei auffordert.
 
-[title]
+[title|1|restore]
 Allgemeines zum "Restore"
 
 [text]

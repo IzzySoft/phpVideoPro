@@ -13,7 +13,7 @@ account" izzysoft@qumran.org.
 
 coming *soon*:
 - translation for categories missing
-- setup: check for existence and readability of SQL files before execution
+- make menu template-driven
 
 coming *next*:
 - limit list display to user-definable amount of data sets

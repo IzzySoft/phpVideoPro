@@ -12,16 +12,12 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- fix the SQL file import (db::get_sql()) to allow ";" within field contents
-- stats report wrong count of media (only r/w media are counted)
 
 coming *next*:
-- get around the problem with ' "," ' in SQL for the comments
-  (db::clean_query())
-
-coming *sometimes* (maybe):
 - form(s) to edit translations
 - same to edit printers (for PSLabels)
+
+coming *sometimes* (maybe):
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - overview "per tape" (should look equivalent to taperest)
 - new database field: "lent to" (to find out where your media *really* are :)

@@ -13,6 +13,13 @@
      (especially when "part 1" of a medium was missing and MySQL used). Fixed.
  <li>if there were holes in the mtype id chain (e.g. highest id 6, but 4 not
      set) this caused problems with prev/nextentry. Fixed.
+ <li>the restore function of the Database Backup (admin section) is now also
+     able to add to existing entries (until now, you had to remove existing
+     data before restoring or did run into error messages otherwise). It does,
+     however, not check the import file for entries that already exist in the
+     DB but appends all contained data, starting with the "last entry +1"
+     media number for each media type. New media types are created if necessary,
+     new languages for audio and subtitles will be activated if needed.
 </ul>
 
 [title]

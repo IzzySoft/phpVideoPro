@@ -1,6 +1,6 @@
 <?
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -8,7 +8,7 @@
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # ! internals - don't edit anything in this files - unless you exactly know #
- # ! what you are doing!                                                     #
+ # ! what you are doing (or advised by the author ;) !                       #
  #############################################################################
 
   /* $Id$ */
@@ -23,8 +23,18 @@
  # V - Variables set
  # W - Warnings
  # R - detailed Reports on failures (if available)
+ # N - notifies from PHP itself (PHP error reporting)
  $debug["log"]  = "EW";
+
+ #-----------------------------------------------------[ set up debugging ]---
  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
+ function set_phpdebug($level) {
+   $pdbug = error_reporting();
+   error_reporting($pdbug | $level);
+ }
+ if ( strpos(strtoupper($debug["log"]),"E")!==false ) set_phpdebug(E_ERROR);
+ if ( strpos(strtoupper($debug["log"]),"W")!==false ) set_phpdebug(E_WARNING);
+ if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
  #=====================================================[ setup path names ]===
  $base_path = dirname(dirname(__FILE__))."/";

@@ -14,7 +14,7 @@ gefügt wurde, existierte lediglich das <I>Default</I> Template-Set.
 
 [text]
 Und obwohl <I>Applicat</I> sich hinsichtlich des Design der Formulare nicht 
-wesentlich vom </I>Default</I> Template-Set unterscheidet, erscheint es
+wesentlich vom <I>Default</I> Template-Set unterscheidet, erscheint es
 bedeutend klarer und bietet sogar zusätzliche Funktionalität: Die "TitleBar"
 jeder Seite enthält einige "QuickLinks" zu wichtigen Funktionen, die bislang
 nur durch teilweise mühsames Hangeln durch die Menüs erreichbar waren. Und
@@ -31,24 +31,19 @@ Beschreibung der Buttons
  <COLGROUP><COL WIDTH="14"><COL WIDTH="1*"><COL WIDTH="1*"></COLGROUP>
  <TR><TD></TD><TD><DIV ALIGN="center"><B>Applikation</B></DIV></TD>
      <TD><DIV ALIGN="center"><B>Hilfe-System</B></DIV></TD></TR>
- <TR><TD><INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_back.gif" WIDTH="14" HEIGHT="13"
-></TD>
+ <TR><TD><INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_back.gif" STYLE="width:14;height:13;"></TD>
      <TD><DIV ALIGN="center">-</DIV></TD>
      <TD>Gehe einen Schritt in der History zurück (analog dem <I>Zurück</I> Button des Browsers)</TD></TR>
- <TR><TD><INPUT TYPE="image" NAME="button_close" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_close.gif" WIDTH="14" HEIGHT="13"
-></TD>
+ <TR><TD><INPUT TYPE="image" NAME="button_close" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_close.gif" STYLE="width:14;height:13;"></TD>
      <TD>Abmelden und zurück zum Login Screen</TD>
      <TD><I>*help#</I> Fenster schließen</TD></TR>
- <TR><TD><INPUT TYPE="image" NAME="button_help" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_help.gif" WIDTH="14" HEIGHT="13"
-></TD>
+ <TR><TD><INPUT TYPE="image" NAME="button_help" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_help.gif" STYLE="width:14;height:13;"></TD>
      <TD>Fenster mit Kontext-bezogener Hilfe öffnen</TD>
      <TD><DIV ALIGN="center">-</DIV></TD></TR>
- <TR><TD><INPUT TYPE="image" NAME="button_home" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_home.gif" WIDTH="14" HEIGHT="13"
-></TD>
+ <TR><TD><INPUT TYPE="image" NAME="button_home" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_home.gif" STYLE="width:14;height:13;"></TD>
      <TD>Zur <I>*start_page#</I> gehen</TD>
      <TD>Zum <I>*index#</I> gehen</TD></TR>
- <TR><TD><INPUT TYPE="image" NAME="button_search" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_search.gif" WIDTH="14" HEIGHT="13"
-></TD>
+ <TR><TD><INPUT TYPE="image" NAME="button_search" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_search.gif" STYLE="width:14;height:13;"></TD>
      <TD>Gehe zum <I>*search_movie#</I> Formular</TD>
      <TD><DIV ALIGN="center">-</DIV></TD></TR>
 </TABLE>

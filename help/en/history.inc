@@ -24,6 +24,8 @@
      words) etc. that have to be solved.
  <li>A bit database cleanup took place: removed two obsolete tables that
      remained from the conception phase of PSLabels.
+ <li>Added initial Russian support (thank you, Denis!) - completion on this
+     hopefully follows soon :-)
 </ul>
 
 [title]

@@ -33,7 +33,7 @@
      }
      exit;
    } else {
-     $login_hint = $colors["err"] . lang("login_failed") . "</FONT><BR>\n";
+     $login_hint = "<SPAN CLASS='error'>" .lang("login_failed"). "</SPAN><BR>\n";
    }
  }
 

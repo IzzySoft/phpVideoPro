@@ -20,7 +20,7 @@
    if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) ${$var} = addslashes(${$var});
  }
  $dmsg = "";
- $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
+ $dmsg     .= "<SPAN CLASS='ok'><b>Preparing Update</b>:</SPAN><p>";
  $dmsg     .= "<ul>\n";
  $query     = "SELECT id FROM directors";
  $sub_query = "INSERT INTO directors";

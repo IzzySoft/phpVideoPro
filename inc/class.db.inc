@@ -84,8 +84,7 @@
     * @return boolean success
     */
    function dbquery($query) {
-     GLOBAL $colors;
-     debug("S",$colors["ok"] . "$query</Font><BR>\n");
+     debug("S","<SPAN CLASS='ok'>$query</SPAN><BR>\n");
      $this->clean_query($query);
      if ( $this->query($query) ) return 1;
      return 0;
@@ -1970,9 +1969,9 @@
     * @return integer id (person_id)
     */
    function insert_person($person,$query,$sub_query,$name="",$fname="") {
-     GLOBAL $dmsg,$colors,$pvp;
+     GLOBAL $dmsg,$pvp;
      if ( strlen( trim($name . $fname) ) < 1) {
-       $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
+       $dmsg .=  "<li><SPAN CLASS='ok'>$person not specified, no action taken.</SPAN>\n";
        return 0;
      } else {
        $name  = $pvp->common->safeinput($name);
@@ -1988,23 +1987,23 @@
 	 $sub_query .= " (name,firstname) VALUES ('$name','$fname')";
        }
      }
-     $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . "</Font>";
+     $dmsg  .= " <li><SPAN CLASS='ok'>" . stripslashes($query) . "</SPAN>";
      $this->dbquery($query);
      if ( $this->next_record() ) {
        $id = $this->f('id');
        $dmsg  .= " (Got: '$id')</Font>\n";
      } else {
-       $dmsg  .= "<BR>" . $colors["err"] . "$person not found in db! Trying to insert...</Font><BR>\n";
+       $dmsg  .= "<BR><SPAN CLASS='error'>$person not found in db! Trying to insert...</SPAN><BR>\n";
        if ( $this->dbquery($sub_query) ) {
          $this->dbquery($query);
          if ( $this->next_record() ) {
            $id = $this->f('id');
-           $dmsg  .= $colors["ok"] . "$person \"$name, $fname\" inserted into db (id: $id).</Font>\n";
+           $dmsg  .= "<SPAN CLASS='ok'>$person \"$name, $fname\" inserted into db (id: $id).</SPAN>\n";
          } else {
-           $dmsg  .= $colors["err"] . "Something strange happened: inserted $person \"$name, $fname\" into db, but could not find him/her afterwards!</Font>\n";
+           $dmsg  .= "<SPAN CLASS='error'>Something strange happened: inserted $person \"$name, $fname\" into db, but could not find him/her afterwards!</SPAN>\n";
          }
        } else {
-         $dmsg .= $colors["err"] . "Insertion of $person \"$name, $fname\ into db failed!</Font>\n";
+         $dmsg .= "<SPAN CLASS='error'>Insertion of $person \"$name, $fname\ into db failed!</SPAN>\n";
        }
      }
      return $id;
@@ -2158,20 +2157,19 @@
     * @param optional boolean silent wether to (not) output advance information
     */
    function queryf($file,$comment,$silent=0) {
-     GLOBAL $colors;
      if ( !file_exists($file) ) {
-       if (!$silent) echo $colors["err"] . " <li>$comment failed: missing SQL command file '$file', process stopped.</Font><BR>\n";
+       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed: missing SQL command file '$file', process stopped.</SPAN><BR>\n";
        exit;
      }
      $array = file ($file);
      if ( !$array ) {
-       if (!$silent) echo $colors["err"] . " <li>$comment failed: we have no read permission for SQL command file '$file' (or this file is empty), process stopped.</Font><BR>\n";
+       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed: we have no read permission for SQL command file '$file' (or this file is empty), process stopped.</SPAN><BR>\n";
        exit;
      }
      if ( $this->get_sql($array) ) {
-       if (!$silent) echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
+       if (!$silent) echo " <li><SPAN CLASS='ok'>$comment successful.</SPAN><BR>\n";
      } else {
-       if (!$silent) echo $colors["err"] . " <li>$comment failed, process stopped.</Font><BR>\n";
+       if (!$silent) echo " <li><SPAN CLASS='error'>$comment failed, process stopped.</SPAN><BR>\n";
        exit;
      }
    } // end query_f()

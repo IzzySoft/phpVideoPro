@@ -70,14 +70,14 @@
           . "actor5_id=$act5_id,lp=$lp,music_list=$music_list,director_list=$director_list,"
 	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id"
           . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
- debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
+ debug("S","<P CLASS='ok'><b>Executing Final Query:</b><br>$update</P>");
 # die($update);
  if ( dbquery($update) ) {
-   debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
-   $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+   debug("S","<SPAN CLASS='ok'>Query completed successfully.</SPAN>\n");
+   $save_result = "<SPAN CLASS='ok'>" .lang("update_success"). ".</SPAN><BR>\n";
  } else {
-   debug("E",$colors["err"] . "Query failed to execute!</Font>\n");
-   $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";
+   debug("E","<SPAN CLASS='error'>Query failed to execute!</SPAN>\n");
+   $save_result = "<SPAN CLASS='error'>" . lang("update_failed") . "!</SPAN><BR>\n";
  };
  ##############################################################################
  # updating free time on media for Recorded Video Tapes

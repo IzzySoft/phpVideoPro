@@ -21,9 +21,9 @@
  #========================================================[ do the update ]===
  if ($update) {
    if ( $db->set_mediaspace($cass_id,$mtype_id,$mlength) ) {
-     $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
+     $save_result = "<SPAN CLASS='ok'>" .lang("update_success"). ".</SPAN><BR>\n";
    } else {
-     $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";
+     $save_result = "<SPAN CLASS='error'>" .lang("update_failed"). "!</SPAN><BR>\n";
    }
  }
 

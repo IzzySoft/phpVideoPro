@@ -27,12 +27,12 @@
                      "yn"=>"delete_yn.tpl"));
   
   function kill($table,$id) {
-    GLOBAL $colors, $details, $db;
+    GLOBAL $details, $db;
     $details .= " ";
     if ( $db->delete_row($table,$id) ) {
-      $details .= $colors["ok"] . lang("ok") . ".</Font><br>\n";
+      $details .= "<SPAN CLASS='ok'>" .lang("ok"). ".</SPAN><br>\n";
     } else {
-      $details .= $colors["err"] . lang("not_ok") . "!</Font><br>\n";
+      $details .= "<SPAN CLASS='error'>" .lang("not_ok"). "!</SPAN><br>\n";
     }
   }
 
@@ -44,7 +44,7 @@
     $t->set_var("cass_id",$cass_id);
     $t->set_var("part",$part);
     $t->set_var("mtype_id",$mtype_id);
-    $t->set_var("delete_yn",$colors["err"] . lang("sure_to_delete",$nr) . "?");
+    $t->set_var("delete_yn","<SPAN CLASS='error'>" .lang("sure_to_delete",$nr) . "?</SPAN>");
     $t->set_var("no",strtoupper(lang("no")) . "!");
     $t->set_var("yes",lang("yes") . ".");
     if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
@@ -53,7 +53,7 @@
     # first obtain some data
     $id    = $db->get_movieid($mtype_id,$cass_id,$part);
     $movie = $db->get_movie($id);
-    if ( !is_array($movie) ) die ($colors["err"] . "Something strange happened - the entry was not found in db!</Font></BODY></HTML>");
+    if ( !is_array($movie) ) die ("<SPAN CLASS='error'>Something strange happened - the entry was not found in db!</SPAN></BODY></HTML>");
     $music_id = $movie[music_id]; $director_id = $movie[director_id];
     $actor_id[1] = $movie[actor1_id]; $actor_id[2] = $movie[actor2_id];
     $actor_id[3] = $movie[actor3_id]; $actor_id[4] = $movie[actor4_id];
@@ -96,19 +96,19 @@
     if ( $pvp->common->medium_is_rw($mtype_id) || $movie[disktype] ) {
       $details .= "<li>" . lang("check_media_delete"). ". ";
       if ( $pvp->config->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
-        $details .= $colors["ok"] . lang("medium_deleted") . "</Font><BR>";
+        $details .= "<SPAN CLASS='ok'>" .lang("medium_deleted"). "</SPAN><BR>";
       } else {
-        $details .= $colors["ok"] . lang("medium_not_deleted") . "</Font><BR>";
+        $details .= "<SPAN CLASS='ok'>" .lang("medium_not_deleted"). "</SPAN><BR>";
         $details .= "<li>" . lang("recalc_free"). ". ";
         if ( $db->update_freetime($cass_id,$mtype_id) ) {
           $time_left = $db->get_mediumfreetime($cass_id,$mtype_id);
           if ( strlen($time_left) ) {
-            $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
+            $details .= lang("time_left",$time_left). " <SPAN CLASS='ok'>" .lang("ok") . ".</SPAN><BR>\n";
           } else {
-	    $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+	    $details .= "<SPAN CLASS='error'>" .lang("no_entry_in_tapelist"). "!</SPAN><br>\n";
           }
         } else {
-          $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
+          $details .= "<SPAN CLASS='error'>" .lang("tapelist_update_failed"). "!</SPAN><br>\n";
         }
       }
     }

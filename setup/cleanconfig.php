@@ -14,7 +14,7 @@
  /* $Id$ */
 
  ####################################################[ CleanUp pvp_config ]###
- echo $colors["ok"] . " <LI>Cleaning up config table:";
+ echo " <SPAN CLASS='ok'><LI>Cleaning up config table:";
  $rows = 0;
  $details = array ("rw_media","remove_empty_media","site","enable_cookies",
                    "expire_cookies","session_purgetime");
@@ -26,10 +26,10 @@
      if ( $db->affected_rows() ) ++$rows;
    }
  }
- echo " Found and removed duplicates for $rows entries.</FONT><BR>\n";
+ echo " Found and removed duplicates for $rows entries.</SPAN><BR>\n";
 
  ###################################################[ CleanUp preferences ]###
- echo $colors["ok"] . " <LI>Cleaning up preferences table:";
+ echo " <SPAN CLASS='ok'><LI>Cleaning up preferences table:";
  $rows = 0;
  $details = array ("lang","template","display_limit","date_format",
                    "page_length","default_movie_colorid","default_movie_onlabel",
@@ -42,6 +42,6 @@
      if ( $db->affected_rows() ) ++$rows;
    }
  }
- echo " Found and removed duplicates for $rows entries.</FONT><BR>\n";
+ echo " Found and removed duplicates for $rows entries.</SPAN><BR>\n";
 
 ?>

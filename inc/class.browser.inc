@@ -16,46 +16,50 @@
  /* $Id$ */
 
 /** Browser investigation
+ * @package Api
+ * @class Browser
  * @copyright 1999-2003 Chuck Hagenbuch <chuck@horde.org>
  * @copyright 1999-2003 Jon Parise <jon@horde.org>
  * @author  Chuck Hagenbuch <chuck@horde.org>
  * @author  Jon Parise <jon@horde.org>
  * @version $Revision$
  * @since   Horde 1.3
- * @package Api
- * @class Browser
  */
 class Browser {
 
-    /** General version numbers.
+    /** General version numbers (major)
      * @class Browser
-     * @var integer $majorVersion
-     * @var integer $minorVersion
+     * @attribute integer majorVersion
      */
     var $majorVersion = 0;
+
+    /** General version numbers (minor)
+     * @class Browser
+     * @attribute integer minorVersion
+     */
     var $minorVersion = 0;
 
     /** Browser name.
      * @class Browser
-     * @var string $browser
+     * @attribute string browser
      */
     var $browser = '';
 
     /** Full user agent
      * @class Browser
-     * @var string $agent
+     * @attribute string agent
      */
     var $agent = '';
 
     /** Platform the browser is running on.
      * @class Browser
-     * @var string $platform
+     * @attribute string platform
      */
     var $platform = '';
 
     /** Known robots.
      * @class Browser
-     * @var array $robots
+     * @attribute array robots
      */
     var $robots = array('ZyBorg', 'Googlebot', 'Scooter/',
                         'Slurp.so', 'MuscatFerret',
@@ -69,7 +73,7 @@ class Browser {
 
     /** Features.
      * @class Browser
-     * @var array $features
+     * @attribute array features
      */
     var $features = array('html'       => true,
                           'hdml'       => false,
@@ -84,7 +88,7 @@ class Browser {
 
     /** Quirks
      * @class Browser
-     * @var array $quirks
+     * @attribute array quirks
      */
     var $quirks = array('must_cache_forms'         => false,
                         'avoid_popup_windows'      => false,
@@ -99,7 +103,7 @@ class Browser {
     /** Create a browser instance (Constructor).
      * @constructor Browser
      * @access public
-     * @param optional $userAgent  The browser string to parse.
+     * @param optional string userAgent  The browser string to parse.
      */
     function Browser($userAgent = null)
     {
@@ -109,8 +113,9 @@ class Browser {
     /** Parses the user agent string and inititializes the object with
      * all the known features and quirks for the given browser.
      * @class Browser
+     * @method match
      * @access public
-     * @param optional string $userAgent  The browser string to parse.
+     * @param optional string userAgent  The browser string to parse.
      */
     function match($userAgent = null)
     {
@@ -268,6 +273,7 @@ class Browser {
      * to let us tell what line breaks to send, so it's good enough
      * for its purpose.
      * @class Browser
+     * @method _setPlatform
      * @access public
      * @since Horde 2.2
      */
@@ -284,6 +290,7 @@ class Browser {
 
     /** Return the currently matched platform.
      * @class Browser
+     * @method getPlatform
      * @return string  The user's platform.
      * @since Horde 2.2
      */
@@ -294,8 +301,9 @@ class Browser {
 
     /** Sets the current browser.
      * @class Browser
+     * @method setBrowser
      * @access public
-     * @param string $browser  The browser to set as current.
+     * @param string browser  The browser to set as current.
      */
     function setBrowser($browser)
     {
@@ -304,8 +312,9 @@ class Browser {
 
     /** Determine if the given browser is the same as the current.
      * @class Browser
+     * @method isBrowser
      * @access public
-     * @param string $browser  The browser to check.
+     * @param string browser  The browser to check.
      * @return boolean  Is the given browser the same as the current?
      */
     function isBrowser($browser)
@@ -315,6 +324,7 @@ class Browser {
 
     /** Retrieve the current browser.
      * @class Browser
+     * @method getBrowser
      * @access public
      * @return string  The current browser.
      */
@@ -325,8 +335,9 @@ class Browser {
 
     /** Retrieve the current browser's major version.
      * @class Browser
+     * @method getMajor
      * @access public
-     * @return int  The current browser's major version.
+     * @return integer  The current browser's major version.
      */
     function getMajor()
     {
@@ -335,8 +346,9 @@ class Browser {
 
     /** Retrieve the current browser's minor version.
      * @class Browser
+     * @method getMinor
      * @access public
-     * @return int  The current browser's minor version.
+     * @return integer  The current browser's minor version.
      */
     function getMinor()
     {
@@ -345,6 +357,7 @@ class Browser {
 
     /** Retrieve the current browser's version.
      * @class Browser
+     * @method getVer
      * @access public
      * @return string  The current browser's version.
      */
@@ -355,9 +368,10 @@ class Browser {
 
     /** Set unique behavior for the current browser.
      * @class Browser
+     * @method setQuirk
      * @access public
-     * @param string $quirk           The behavior to set.
-     * @param optional string $value  Special behavior parameter.
+     * @param string quirk           The behavior to set.
+     * @param optional string value  Special behavior parameter.
      */
     function setQuirk($quirk, $value = true)
     {
@@ -366,8 +380,9 @@ class Browser {
 
     /** Check unique behavior for the current browser.
      * @class Browser
+     * @method hasQuirk
      * @access public
-     * @param string $quirk  The behavior to check.
+     * @param string quirk  The behavior to check.
      * @return boolean  Does the browser have the behavior set?
      */
     function hasQuirk($quirk)
@@ -377,8 +392,9 @@ class Browser {
 
     /** Retreive unique behavior for the current browser.
      * @class Browser
+     * @method getQuirk
      * @access public
-     * @param string $quirk  The behavior to retreive.
+     * @param string quirk  The behavior to retreive.
      * @return string  The value for the requested behavior.
      */
     function getQuirk($quirk)
@@ -390,9 +406,10 @@ class Browser {
 
     /** Set capabilities for the current browser.
      * @class Browser
+     * @method setFeature
      * @access public
-     * @param string $feature         The capability to set.
-     * @param optional string $value  Special capability parameter.
+     * @param string feature         The capability to set.
+     * @param optional string value  Special capability parameter.
      */
     function setFeature($feature, $value = true)
     {
@@ -401,8 +418,9 @@ class Browser {
 
     /** Check the current browser capabilities.
      * @class Browser
+     * @method hasFeature
      * @access public
-     * @param string $feature  The capability to check.
+     * @param string feature  The capability to check.
      * @return boolean  Does the browser have the capability set?
      */
     function hasFeature($feature)
@@ -413,8 +431,9 @@ class Browser {
 
     /** Retreive the current browser capability.
      * @class Browser
+     * @method getFeature
      * @access public
-     * @param string $feature  The capability to retreive.
+     * @param string feature  The capability to retreive.
      * @return string  The value of the requested capability.
      */
     function getFeature($feature)
@@ -426,12 +445,13 @@ class Browser {
 
     /** Returns the headers for a browser download.
      * @class Browser
+     * @method downloadHeaders
      * @access public
-     * @param optional string $filename  The filename of the download.
-     * @param optional string $cType     The content-type description of the
+     * @param optional string filename  The filename of the download.
+     * @param optional string cType     The content-type description of the
      *                                   file.
-     * @param optional boolean $inline   True if inline, false if attachment.
-     * @param optional string $cLength   The content-length of this file.
+     * @param optional boolean inline   True if inline, false if attachment.
+     * @param optional string cLength   The content-length of this file.
      * @since Horde 2.2
      */
     function downloadHeaders($filename = 'unknown', $cType = null,

@@ -27,3 +27,4 @@ coming *after* 0.2.0:
 - new database field: "lent to" (to find out where your media *really* are :)
 - menue items for "change MediaNr" and "change MediaType"
 - making categories editable (user-defined categories etc.)
+- overview "per tape" (should look equivalent to taperest)

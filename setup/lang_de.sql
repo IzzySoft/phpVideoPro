@@ -294,3 +294,5 @@ INSERT INTO lang VALUES('session_purgetime_comment','de','Wie lange soll eine (a
 INSERT INTO lang VALUES('max_fontsize','de','Maximale Schriftgröße');
 INSERT INTO lang VALUES('labeltype','de','Labeltyp');
 INSERT INTO lang VALUES('layout_label','de','Layout wählen');
+INSERT INTO lang VALUES('printer','de','Drucker');
+INSERT INTO lang VALUES('printer_comment','de','Für den Druck auf Formularen (wie z.B. von PSLabels verwendet), werden die exakten Offsets des verwendeten Druckers benötigt.');

@@ -303,3 +303,5 @@ INSERT INTO lang VALUES('session_purgetime_comment','en','How long shall a sessi
 INSERT INTO lang VALUES('max_fontsize','en','Max Fontsize');
 INSERT INTO lang VALUES('labeltype','en','Label Type');
 INSERT INTO lang VALUES('layout_label','en','Chose Layout');
+INSERT INTO lang VALUES('printer','en','Printer');
+INSERT INTO lang VALUES('printer_comment','en','If you want to print on forms (as used for the PS Labels), we need the exact offsets of your printer.');

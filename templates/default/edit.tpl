@@ -4,12 +4,8 @@
 {hiddenfields}
 <Table Width="90%" Align="Center" Border="1">
  <COLGROUP>
-  <script language="JavaScript"><!--
-   width = ( (screen.width/2) - (screen.width/7) );
-   document.write('<COL WIDTH="' + width + '">');
-   document.write('<COL WIDTH="' + width + '">');
-   //-->
-  </script>
+  <COL WIDTH="50%">
+  <COL WIDTH="50%">
  </COLGROUP>
  <TR><TH ColSpan="2">{title}</TH></TR>
  <TR>

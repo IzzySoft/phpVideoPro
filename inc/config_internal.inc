@@ -70,6 +70,7 @@
  if (!$pvpinstall) {
   $pvp->config->enable_cookies = $db->get_config("enable_cookies");
   $pvp->config->expire_cookies = $db->get_config("expire_cookies");
+  $pvp->config->session_purgetime = $db->get_config("session_purgetime");
   include (dirname(__FILE__) . "/class.cookie.inc");
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;

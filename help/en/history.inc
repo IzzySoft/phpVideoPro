@@ -14,6 +14,15 @@
  <li>moved parts from config.inc to config screen: rw_media, remove_empty,
      defaults[scolor] and site - so only absolut necessary items are still
      kept in this file
+ <li>configuration form no appears twice: once in edit (where it has always
+     been) and once in the admin menue. Reason: administrative items, such as
+     which media may be written to, or should empty media be removed, are now
+     only reachable via the admin menue, while the "traditional place" now
+     only displays "preferences" that make sense on user base.<br>
+     So to protect your installation, even if there's no user management for
+     now, you just can place an .htaccess file into the admin/ directory. Well,
+     this does not protect your movie entries from being overwritten - but
+     every thing has its time, right?
 </ul>
 
 [title]

@@ -5,7 +5,7 @@
  <TR><TD>
   <TABLE WIDTH="100%">
   <!-- BEGIN itemblock -->
-   <TR><TD><b>{item_name}</b></TD>
+   <TR><TD>{item_name}</TD>
     <TD><DIV ALIGN="RIGHT">{item_input}</DIV></TD></TR>
   <!-- END itemblock -->
   </TABLE></TD></TR>

@@ -14,6 +14,7 @@
     } else {
       $output .= "<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" VALUE=\"";
       if (${$visible}) { $output .= "Yes\">"; } else { $output .= "No\">"; }
+      $output .= "<INPUT TYPE=\"hidden\" NAME=\"" . ${$visible} ."\" VALUE=\"${$visible}\">";
     }
     $output .= "</CENTER>";
     return $output;
@@ -83,17 +84,19 @@
   
 ?>
 
-<? if ($save) { include("inc/save.inc"); exit; } ?>
+<? if ($update) { include("inc/update.inc"); } ?>
 
 <H2 Align=Center>Edit an entry</H2>
 <?
-  $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
+  echo "<CENTER>$save_result</CENTER>";
+//  $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
   $query   = "SELECT title,length,year,aq_date,source,director_id,music_id,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
-           . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,mtype_id,"
+           . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
            . "color_id,tone_id,pict_id"
            . " FROM video"
-           . " WHERE cass_id=$cass_id AND part=$part";
+           . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
+  debug("S",$colors["ok"] . "<b>Executing query:</b> $query</Font><br>\n");
   $db->query($query);
   $db->next_record();
 
@@ -108,7 +111,7 @@
   $music_id  = $db->f('music_id'); $cat1_id = $db->f('cat1_id'); $cat2_id = $db->f('cat2_id');
   $cat3_id   = $db->f('cat3_id'); $actor1_id = $db->f('actor1_id'); $actor2_id = $db->f('actor2_id');
   $actor3_id = $db->f('actor3_id'); $actor4_id = $db->f('actor4_id'); $actor5_id = $db->f('actor5_id');
-  $mtype_id  =  $db->f('mtype_id'); $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
+  $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
   $director_id = $db->f('director_id'); $pict_id = $db->f('pict_id');
   // sub-queries
   for ($i=1;$i<6;$i++) {
@@ -121,10 +124,10 @@
   $db->query("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
   $db->next_record();
   $mediatype = $db->f('sname'); $media_tname = $db->f('name');
-  $db->query("SELECT name,firstname FROM directors WHERE id=$director_id");
+  $db->query("SELECT name,firstname FROM directors WHERE id='$director_id'");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');
-  $db->query("SELECT name,firstname FROM music WHERE id=$music_id");
+  $db->query("SELECT name,firstname FROM music WHERE id='$music_id'");
   $db->next_record();
   $composer_name = $db->f('name'); $composer_fname = $db->f('firstname');
   $db->query("SELECT name FROM tone WHERE id=$tone_id");
@@ -154,11 +157,14 @@
 # Form Start
 ?>
 <FORM NAME="entryform" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
+<INPUT TYPE="hidden" NAME="cass_id" VALUE="<? echo $cass_id ?>">
+<INPUT TYPE="hidden" NAME="part" VALUE="<? echo $part ?>">
+<INPUT TYPE="hidden" NAME="mtype_id" VALUE="<? echo $mtype_id ?>">
 <Table Width="90%" Align="Center" Border="1">
  <TR><TH>Title</TH><TH ColSpan=3><? echo "<$input NAME=\"title\" VALUE=\"$title\">" ?></TH></TR>
  <TR>
   <TD Width=20%>MediaType</TD><TD Width=30%><?
-  if ($edit) {
+  if ($new_entry) {
     echo "<SELECT NAME=\"media_tid\">";
     for ($i=0;$i<count($mtypes);$i++) {
       echo "<OPTION VALUE=\"" . $mtypes[$i][id] . "\"";
@@ -167,11 +173,12 @@
     }
     echo "</SELECT>";
   } else {
-    echo "<$input NAME=\"media_tname\" VALUE=\"$media_tname\">";
+    echo "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
+    echo "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
   } ?></TD>
   <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
-  <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
+  <TD Width=20%>MediaNr</TD><TD Width=30%><? echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">" ?></TD>
   <TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); name_sep($director_name,$director_fname); form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD></TR>
  <TR>
   <TD>Length</TD><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD>
@@ -273,7 +280,7 @@
    <INPUT TYPE="hidden" NAME="nr" VALUE="<?php echo $nr ?>">
    <Table Width="100%"><? if ($edit) { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="Cancel"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="save" VALUE="Save"></TD></TR><? } else { ?>
+        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="Update"></TD></TR><? } else { ?>
     <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="Edit"></TD>
         <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="delete" VALUE="Delete"></TD></TR><? } ?>
    </TABLE>

@@ -31,9 +31,8 @@ if (!$silent) {
   }
   function get_movienum(mtype,last_nr,url) {
    nr = last_nr + 1;
-   new_nr = prompt("<?=lang("enter_new_medianr")?> " + last_nr,nr);
+   new_nr = prompt(mtype + "\n" + "<?=lang("last_medianr")?> " + last_nr,nr);
    window.location.href = url + "&cass_id=" + new_nr;
-//   window.location.href = url;
   }
  </script>
 <?

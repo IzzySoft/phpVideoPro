@@ -299,7 +299,7 @@ function getPageOffsetTop(el) {
  if ($pvp->auth->add) {
   $lastnum = $db->get_lastmovienum();
   for ($i=0;$i<count($lastnum);++$i) {
-    echo "<A HREF=\"JavaScript:get_movienum('".$lastnum[$i][mtype]."',".(int)$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\" class='menuItem'>".lang("new_movie_on",$lastnum[$i][mtype])."</A>\n";
+    echo "<A HREF=\"JavaScript:get_movienum('".lang("enter_new_medianr",$lastnum[$i][mtype])."',".(int)$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\" class='menuItem'>".lang("new_movie_on",$lastnum[$i][mtype])."</A>\n";
   }
  }
  echo "<div class='menuItemSep'></div>\n";

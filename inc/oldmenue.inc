@@ -32,7 +32,7 @@
   <? if ($pvp->auth->add) {
   $lastnum = $db->get_lastmovienum();
   for ($i=0;$i<count($lastnum);++$i) {
-    echo "    dhtmlMenu.addItem(new NavBarMenuItem(".lang("new_movie_on",$lastnum[$i][mtype]).", "<A HREF=\"JavaScript:get_movienum('".$lastnum[$i][mtype]."',".(int)$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\">"));
+    echo "    dhtmlMenu.addItem(new NavBarMenuItem(".lang("new_movie_on",$lastnum[$i][mtype]).", "<A HREF=\"JavaScript:get_movienum('".lang("enter_new_medianr",$lastnum[$i][mtype])."',".(int)$lastnum[$i][cass_id].",'".$pvp->link->slink($base_url."new.php?mtype_id=".$lastnum[$i][mtype_id])."')\">"));
   }
 //  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$pvp->link->slink($base_url.'new.php')?>"));
   } ?>

@@ -12,9 +12,9 @@
 
  /* $Id$ */
 
-  include ("../inc/config.inc");
-  include("css.inc");
-  $title = "phpVideoPro Setup";
+ include ("../inc/config.inc");
+ include("../templates/default/default.css");
+ $title = "phpVideoPro Setup";
 
 ?>
 <HTML><HEAD>

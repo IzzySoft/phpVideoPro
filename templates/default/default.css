@@ -1,14 +1,14 @@
 <style type="text/css">
 <!--
-  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
+  body { font-family: Verdana,Arial,Helvetica,sans-serif; margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px; background-color: #6699ff; }
   a { text-decoration:none; }
   A:link{ text-decoration:none }
   A:visted{ text-decoration:none }
   A:active{ text-decoration:none }
   .tablink { color: #000000; }
-  TABLE { background-color: <? echo $colors["table_background"] ?>; }
-  .navtable { background-color: <? echo $colors["page_background"] ?>; }
-  TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color:<? echo $colors["th_background"] ?>; text-align: center; }
+  TABLE { background-color: #ffffff; }
+  .navtable { background-color: #6699ff; }
+  TH { font-family: Verdana,Arial,Helvetica,sans-serif; background-color: #ffff99; text-align: center; }
   TH A { color:blue; }
   INPUT { font-family: Verdana,Arial,Helvetica,sans-serif; text-decoration: none; height: 20px; }
   SELECT { font-family: Verdana,Arial,Helvetica,sans-serif; text-decoration: none; height: 20px; }

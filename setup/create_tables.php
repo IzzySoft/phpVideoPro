@@ -17,7 +17,7 @@ $pvpinstall = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include("css.inc");
+include("../templates/default/default.css");
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
 #====================================================[ Output page intro ]===

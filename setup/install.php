@@ -13,7 +13,7 @@
  /* $Id$ */
 
   include ("../inc/config.inc");
-  include("css.inc");
+  include("../templates/default/default.css");
   $title = "phpVideoPro Setup: Fresh Installation";
 
 ?>

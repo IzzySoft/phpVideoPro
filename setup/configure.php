@@ -26,15 +26,12 @@ if ($menue) {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
-  include("css.inc");
+  include("../templates/default/default.css");
 }
 
 #============================================[ On Submit: Update changes ]===
 if ( isset($update) ) {
   $url = $PHP_SELF;
-  $colors["page_background"]  = $page_background;
-  $colors["table_background"] = $table_background;
-  $colors["th_background"]    = $th_background;
   $colors["ok"]               = $color_ok;
   $colors["err"]              = $color_err;
   $pvp->preferences->set("lang",$default_lang);
@@ -182,29 +179,11 @@ $t->parse("list","listblock");
 $t->set_var("list_head",lang("colors"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 
-#--[ page background ]--
-$t->set_var("item_name",lang("page_bg"));
-$t->set_var("item_comment","");
-$t->set_var("item_input",$color_input . " NAME=\"page_background\" VALUE=\"" . $colors["page_background"] . "\">");
-$t->parse("item","itemblock");
-
-#--[ table background ]--
-$t->set_var("item_name",lang("table_bg"));
-$t->set_var("item_comment","");
-$t->set_var("item_input",$color_input . " NAME=\"table_background\" VALUE=\"" .  $colors["table_background"] . "\">");
-$t->parse("item","itemblock",TRUE);
-
-#--[ table header background ]--
-$t->set_var("item_name",lang("th_bg"));
-$t->set_var("item_comment","");
-$t->set_var("item_input",$color_input . " NAME=\"th_background\" VALUE=\"" . $colors["th_background"] . "\">");
-$t->parse("item","itemblock",TRUE);
-
 #--[ feedback "ok" ]--
 $t->set_var("item_name",lang("feedback_ok"));
 $t->set_var("item_comment","");
 $t->set_var("item_input",$color_input . " NAME=\"color_ok\" VALUE=\"" . $colors["ok"] . "\">");
-$t->parse("item","itemblock",TRUE);
+$t->parse("item","itemblock");
 
 #--[ feedback "err" ]--
 $t->set_var("item_name",lang("feedback_err"));

@@ -17,7 +17,7 @@ $runupdate = 1;
 include ("../inc/config.inc");
 include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
-include("css.inc");
+include("../templates/default/default.css");
 $db->Host     = $database["host"];
 $db->Database = $database["database"];
 $db->User     = $database["user"];
@@ -111,7 +111,13 @@ if ( !isset($oldversion) ) {
     case "0.3.3"    : queryf("0-3-3_to_0-3-4.".$database["type"],"Update from v0.3.3 to v0.3.4");
     case "0.3.4"    :
     case "0.3.5"    : queryf("0-3-5_to_0-3-6.sql","Update from v0.3.5 to v0.3.6");
+    case "0.3.6"    : # queryf("0-3-6_to_0-3-7.sql","Update from v0.3.6 to v0.3.7");
                       queryf("lang_en.sql","Refresh of English language support");
+		      $colors = $pvp->preferences->colors;
+		      unset($colors["page_background"]);
+		      unset($colors["table_background"]);
+		      unset($colors["th_background"]);
+		      $pvp->preferences->set("colors",rawurlencode( serialize($colors) ));
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

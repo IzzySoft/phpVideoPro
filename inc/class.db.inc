@@ -166,24 +166,28 @@
    /** Get list of all languages with all available settings from language table
     * @class sql
     * @method get_langlist
+    * @param optional id lang_id
     * @param optional integer start for limited queries
-    * @return array [0..n] of objects (id,name,charset,available,audio,subtitle)
+    * @return mixed array [0..n] of objects (id,name,charset,available,audio,subtitle)
+    *  or just one object if id is passed
     */
-   function get_langlist($start="") {
+   function get_langlist($id="",$start="") {
      $query = "SELECT lang_id,lang_name,charset,available,audio,subtitle "
             . "FROM languages";
+     if ($id!=="") $query .= " WHERE lang_id='$id'";
      if ($start==="") { $this->query($query);
-     } else { $totals = $this->lim_query($query); }
+     } else { $totals = $this->lim_query($query,$start); }
      $details = array("charset","available","audio","subtitle");
      while ( $this->next_record() ) {
        foreach ($details as $var) {
          $s->$var = $this->f($var);
        }
        $s->id   = $this->f("lang_id");
-       $s->name = $this->f("name");
+       $s->name = $this->f("lang_name");
        $list[]  = $s;
      }
      $list["totals"] = $totals;
+     if ($id) return $list[0];
      return $list;
    }
 

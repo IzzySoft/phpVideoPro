@@ -37,8 +37,13 @@ if ($menue) {
     $colorcode = rawurlencode( serialize($colors) );
     dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
     if ($install_lang && $install_lang != "-") {
-      $sql_file = "lang_" . $install_lang . ".sql";
+      $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
       queryf($sql_file,"Installation of additional language file",1);
+    }
+    if ($refresh_lang && $refresh_lang != "-") {
+      dbquery("DELETE FROM lang WHERE lang='$refresh_lang'");
+      $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
+      queryf($sql_file,"Refresh of language phrases",1);
     }?>
     <HTML><HEAD>
       <meta http-equiv="refresh" content="0; URL=<? echo $PHP_SELF ?>">
@@ -99,12 +104,14 @@ if ($menue) {
   $title = "phpVideoPro v$version: Configuration";
   echo " <TITLE>$title</TITLE>\n</HEAD>\n<BODY>\n";
   echo "<H2 ALIGN=CENTER>$title</H2>\n";
-  echo "<TABLE ALIGN=CENTER WIDTH=90%>\n";
+  echo "<TABLE ALIGN=CENTER WIDTH=90% BORDER=1>\n";
   ?>
 
 <FORM NAME="config_form" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
-<TR><TD><b>Select additional language to install:</b><br>(English is already installed and always will be - see next item. For other languages that are already installed, see next item, too.)</TD>
-    <TD><?
+<TR><TH>Language Settings:</TH></TR>
+<TR><TD><TABLE WIDTH=100%>
+ <TR><TD WIDTH=70%><b>Select additional language to install:</b><br>(English is already installed and always will be - see next item. For other languages that are already installed, see next item, too.)</TD>
+    <TD WIDTH=30%><?
   $select = "<SELECT NAME=\"install_lang\">";
   $none = TRUE;
   for ($i=0;$i<count($lang_avail);$i++) {
@@ -115,7 +122,15 @@ if ($menue) {
   if (!$none) $select .= "<OPTION VALUE=\"-\">-- None --</OPTION>";
   $select .= "</SELECT>";
 ?><? if ($none) { echo "No additional language available."; } else { echo $select; } ?></TD></TR>
-<TR><TD><b>Select primary language:</b><br>(for missing phrases, there will always be a fall-back to English)</TD>
+ <TR><TD><b>Refresh language:</b><br>(re-insert phrases from language file into db)</TD>
+    <TD><SELECT NAME="refresh_lang"><?
+  echo "<OPTION VALUE=\"-\">-- None --</OPTION>";
+  for ($i=0;$i<count($lang_installed);$i++) {
+    echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
+    echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
+  }
+?></SELECT></TD></TR>
+ <TR><TD><b>Select primary language:</b><br>(for missing phrases, there will always be a fall-back to English)</TD>
     <TD><SELECT NAME="default_lang"><?
   for ($i=0;$i<count($lang_installed);$i++) {
     echo "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
@@ -123,25 +138,26 @@ if ($menue) {
     echo ">" . $lang[$lang_installed[$i]] . "</OPTION>";
   }
 ?></SELECT></TD></TR>
-<TR><TD><b>Enter charset to use:</b><br>(this is important for character encoding; if unsure, don't touch :)</TD>
+ <TR><TD><b>Enter charset to use:</b><br>(this is important for character encoding; if unsure, don't touch :)</TD>
     <TD><INPUT SIZE=10 NAME="charset" VALUE="<? echo $charset ?>"></TD></TR>
-<TR><TD COLSPAN=2><b>Colors:</b></TD></TR>
-<TR><TD>&nbsp;&nbsp;<b>Page Background:</b></TD>
-    <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="page_background" VALUE="<? echo $colors["page_background"] ?>"></TD></TR>
-<TR><TD>&nbsp;&nbsp;<b>Table Headers Background:</b></TD>
+</TABLE></TD></TR>
+<TR><TH>Colors:</TH></TR><TR><TD><TABLE WIDTH=100%>
+ <TR><TD WIDTH=70%>&nbsp;&nbsp;<b>Page Background:</b></TD>
+    <TD WIDTH=30%><INPUT SIZE="7" MAXLENGTH="7" NAME="page_background" VALUE="<? echo $colors["page_background"] ?>"></TD></TR>
+ <TR><TD>&nbsp;&nbsp;<b>Table Headers Background:</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="th_background" VALUE="<? echo $colors["th_background"] ?>"></TD></TR>
-<TR><TD>&nbsp;&nbsp;<b>Feedback "OK":</b></TD>
+ <TR><TD>&nbsp;&nbsp;<b>Feedback "OK":</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_ok" VALUE="<? echo $colors["ok"] ?>"></TD></TR>
-<TR><TD>&nbsp;&nbsp;<b>Feedback "Failure":</b></TD>
+ <TR><TD>&nbsp;&nbsp;<b>Feedback "Failure":</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_err" VALUE="<? echo $colors["err"] ?>"></TD></TR>
-<TR><TD COLSPAN=2 ALIGN=CENTER><hr><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></TD></TR>
+</TABLE></TD></TR>
+<TR><TD ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></TD></TR>
 </FORM>
 <?
 
 ##################################################################
 # Closing page
 # ?>
-<TR><TD COLSPAN=2 ALIGN=CENTER><P><BR></P></TD></TR>
 <? if (!$menue) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR><? } ?>
 </TABLE>
 </BODY></HTML>

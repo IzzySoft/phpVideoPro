@@ -80,8 +80,8 @@
  if ($edit || $add || $submit) {
    $t->set_var("desc",make_input("desc",$ps[0]->desc,lang("name")));
    $t->set_var("type",type_select("type_id",$ps[0]->type_id,lang("pstpl_type")));
-   $t->set_var("gfx_file",make_input("eps_file",$ps[0]->eps_file,lang("graphic")));
-   $t->set_var("dsn_file",make_input("ps_file",$ps[0]->ps_file,lang("template")));
+   $t->set_var("gfx_file",make_input("eps_file",$ps[0]->eps_file,lang("graphic_file")));
+   $t->set_var("dsn_file",make_input("ps_file",$ps[0]->ps_file,lang("template_file")));
    $ll = "<b>".lang("lower_left_corner").": </b>".make_input("llx",$ps[0]->llx,"","yesnobutton")
        . " / ".make_input("lly",$ps[0]->lly,"","yesnobutton");
    $t->set_var("lower_left",$ll);

@@ -17,19 +17,19 @@
  $dmsg = "";
  $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
  $dmsg     .= "<ul>\n";
- $query     = "SELECT id FROM directors WHERE name='$director_name' AND firstname='$director_fname'";
- $sub_query = "INSERT INTO directors (name,firstname) VALUES ('$director_name','$director_fname')";
+ $query     = "SELECT id FROM directors";
+ $sub_query = "INSERT INTO directors";
  $dir_id    = insert_person("director",$query,$sub_query,$director_name,$director_fname);
- $query     = "SELECT id FROM music WHERE name='$composer_name' AND firstname='$composer_fname'";
- $sub_query = "INSERT INTO music (name,firstname) VALUES ('$composer_name','$composer_fname')";
+ $query     = "SELECT id FROM music";
+ $sub_query = "INSERT INTO music";
  $mus_id    = insert_person("composer",$query,$sub_query,$composer_name,$composer_fname);
  for ($i=1;$i<=$max["actors"];$i++) {
    $act       = "actor" . $i;
    $aname     = $act . "_name";
    $fname     = $act . "_fname";
    $aid       = "act" . $i . "_id";
-   $query     = "SELECT id FROM actors WHERE name='" . ${$aname} . "' AND firstname='" . ${$fname} . "'";
-   $sub_query = "INSERT INTO actors (name,firstname) VALUES ('" . ${$aname} . "','" . ${$fname} . "')";
+   $query     = "SELECT id FROM actors";
+   $sub_query = "INSERT INTO actors";
    ${$aid}    = insert_person($act,$query,$sub_query,${$aname},${$fname});
  }
  $dmsg .= "</ul>\n";

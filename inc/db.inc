@@ -1,0 +1,159 @@
+<?php
+ /***************************************************************************\
+ * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
+ * http://www.qumran.org/homes/izzy/                                         *
+ * --------------------------------------------------------------------------*
+ * This program is free software; you can redistribute and/or modify it      *
+ * under the terms of the GNU General Public License (see doc/LICENSE)       *
+ * --------------------------------------------------------------------------*
+ * Common SQL helper funcs used for most database accesses                   *
+ \***************************************************************************/
+
+ /* $Id$ */
+
+ class sql { // extends DB_Sql {
+   VAR $limit;
+
+   function sql() { // init
+     // $this->DB_Sql; // constructor of base class needs explicit call
+     $this->limit();
+   }
+
+   ############################################################################
+   # setup sql clause to limit result set
+   function limit($start=0) {
+     GLOBAL $pvp;
+     switch($pvp->config->db->type) {
+       case "mysql" : $this->limit = " LIMIT $start," . $pvp->preferences->display_limit;
+                      break;
+       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->display_limit . ",$start";
+                      break;
+       default      : $this->limit = ""; break;
+     }
+     return $this->limit;
+   }
+
+   ############################################################################
+   # replace empty values within SQL queries by NULL statement to keep query
+   # syntactically correct
+   function clean_query(&$query) {
+     $query = str_replace ("''", "NULL", $query);
+     $query = str_replace ("''", "NULL", $query);
+     $query = str_replace (",,", ",NULL,", $query);
+     $query = str_replace (",,", ",NULL,", $query);
+     $query = str_replace ("=,", "=NULL,", $query);
+     $query = str_replace ("= ", "=NULL ", $query);
+     $query = str_replace ("(,", "(NULL,", $query);
+     $query = str_replace (",)", ",NULL)", $query);
+     $query = str_replace ("\",", "\"NULL,", $query);
+     $query = str_replace (",\"", ",NULL\"", $query);
+     if (substr($query,strlen($query)-1)=="=") $query .= "NULL";
+   } // end clean_query()
+
+   ############################################################################
+   # query db and provide debug output
+   function dbquery($query) {
+     GLOBAL $db,$colors;
+     debug("S",$colors["ok"] . "$query</Font><BR>\n");
+     $this->clean_query($query);
+     if ( $db->query($query) ) return 1;
+     return 0;
+   }
+
+   ############################################################################
+   # check wether a given person exists in the db and aquire his/her id. If not
+   # found in db, insert him/her first
+   function insert_person($person,$query,$sub_query,$name="",$fname="") {
+     GLOBAL $db,$dmsg,$colors;
+     if ( strlen( trim($name . $fname) ) < 1) {
+       $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
+       return 0;
+     } else {
+       if (empty($fname)) {
+         $query .= " WHERE name='$name'";
+	 $sub_query .= " (name) VALUES ('$name')";
+       } elseif (empty($name)) {
+         $query .= " WHERE firstname='$fname'";
+	 $sub_query .= " (firstname) VALUES ('$fname')";
+       } else {
+         $query .= " WHERE name='$name' AND firstname='$fname'";
+	 $sub_query .= " (name,firstname) VALUES ('$name','$fname')";
+       }
+     }
+     $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . "</Font>";
+     $this->dbquery($query);
+     if ( $db->next_record() ) {
+       $id = $db->f('id');
+       $dmsg  .= " (Got: '$id')</Font>\n";
+     } else {
+       $dmsg  .= "<BR>" . $colors["err"] . "$person not found in db! Trying to insert...</Font><BR>\n";
+       if ( $this->dbquery($sub_query) ) {
+         $this->dbquery($query);
+         if ( $db->next_record() ) {
+           $id = $db->f('id');
+           $dmsg  .= $colors["ok"] . "$person \"$name, $fname\" inserted into db (id: $id).</Font>\n";
+         } else {
+           $dmsg  .= $colors["err"] . "Something strange happened: inserted $person \"$name, $fname\" into db, but could not find him/her afterwards!</Font>\n";
+         }
+       } else {
+         $dmsg .= $colors["err"] . "Insertion of $person \"$name, $fname\ into db failed!</Font>\n";
+       }
+     }
+     return $id;
+   } // end insert_person()
+
+   ############################################################################
+   # read a file containing sql statements and execute the statements one-by-one
+   function get_sql($file) {
+     if ( !file_exists($file) ) return 0;
+     $array = file ($file);
+     $sql   = ""; $ok = 1;
+     for ($i=0;$i<count($array);$i++) {
+       $pos  = strpos(" " . trim($array[$i]),"#");
+       if ($pos<>1) {
+         $sql .= $array[$i];
+         $endpos = strpos($sql,";");
+         if ($endpos) {
+           $sql = substr($sql,0,$endpos);
+           if ( !$this->dbquery($sql) ) $ok = 0;
+           $sql = "";
+         }
+       }
+     }
+     return $ok;
+   } // end get_sql()
+
+   ############################################################################
+   # interface to get_sql()
+   function queryf($file,$comment,$silent=0) {
+     GLOBAL $colors;
+     if ( $this->get_sql($file) ) {
+       if (!$silent) echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
+     } else {
+       if (!$silent) echo $colors["err"] . " <li>$comment failed, process stopped.</Font><BR>\n";
+       exit;
+     }
+   } // end query_f()
+
+ } // end class sql
+
+ $pvp->sql = new sql;
+
+ ##############################################################################
+ # placeholder(s) for backward compatibility
+ function dbquery($query) {
+   GLOBAL $pvp;
+   return $pvp->sql->dbquery($query);
+ }
+ function insert_person($person,$query,$sub_query,$name="",$fname="") {
+   // only called from inc/sql_set_persons.inc
+   GLOBAL $pvp;
+   return $pvp->sql->insert_person($person,$query,$sub_query,$name,$fname);
+ }
+ function queryf($file,$comment,$silent=0) { // only used in setup/*
+   GLOBAL $pvp;
+   $pvp->sql->queryf($file,$comment,$silent);
+ }
+
+?>

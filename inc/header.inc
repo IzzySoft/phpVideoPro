@@ -1,4 +1,7 @@
 <? /* page header */
+
+/* $Id$ */
+
   include("inc/config.inc");
   include("inc/common_funcs.inc");
   include("inc/sql_helpers.inc");
@@ -13,6 +16,7 @@
   switch ( strtolower($page_id) ) {
     case "about"     : $pagename .= " [ About ]"; break;
     case "edit"      : $pagename .= " [ Editing entry $nr ]"; break;
+    case "filter"    : $pagename .= " [ Filter Setup ]"; break;
     case "view"      : $pagename .= " [ Viewing entry $nr ]"; break;
     case "history"   : $pagename .= " [ History ]"; break;
     case "medialist" : $pagename .= " [ MediaList ]"; break;

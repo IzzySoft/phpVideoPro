@@ -1,4 +1,5 @@
 <?
+
 /* $Id$ */
 
 $base_url   = "/local/phpvideo/";

@@ -19,8 +19,10 @@
   headline("menues");
    li("admin");
     li("admin_cats",2);
+    li("admin_users",2);
     li("admin_filter",2);
     li("backup_db",2);
+    li("configuration",2);
    li("edit");
     li("add_entry",2);
     li("configuration",2);

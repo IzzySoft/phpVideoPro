@@ -114,6 +114,12 @@
            $imp->records = $mcount -2;
            for ($i=1;$i<$mcount -1;++$i) {
              $movie = unserialize(urldecode($data[$i]));
+             if ($movie[director_id]) $movie[director_id] = $db->check_person($movie[director_][name],$movie[director_][firstname],"directors",TRUE);
+             if ($movie[music_id]) $movie[music_id] = $db->check_person($movie[music_][name],$movie[music_][firstname],"music",TRUE);
+             for ($k=1;$k<6;++$k) {
+               $pset = "actor_$k"; $pid = "actor$k"."_id";
+               if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset][name],$movie[$pset][firstname],"actors",TRUE);
+             }
              if (!$db->add_movie($movie)) ++$imp->errors;
            }
            if ($imp->errors) {

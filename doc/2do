@@ -12,6 +12,10 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
+- IMDB URL selection (german.imdb.com, us.imdb.com - who knows more?)
+- automatic redirection after forced login often fails - fixit!
+- fixing the JavaScript for "select New (OVT|DVD|...)" in the edit menu:
+  "cancel" shouldn't result in an error (but just a cancel or reload)
 - Restore function should take care for changed/new categories (refering to
   them not via id but the internal name to correctly assign even detect changed
   ones, and having categories not yet existing added)

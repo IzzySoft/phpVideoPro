@@ -7,7 +7,7 @@
  <TR><TD COLSPAN=2>
   <TABLE ALIGN="center" BORDER="1" CELLPADDING="2" CELLSPACING="2" WIDTH="100%" Style="table-layout:fixed">
    <!-- BEGIN mtitleblock -->
-   <COLGROUP><COL WIDTH="150 pt"><COL WIDTH="*"><COL WIDTH="380 pt"><COL WIDTH="100 pt"></COLGROUP -->
+   <COLGROUP><COL WIDTH="150 pt"><COL WIDTH="*"><COL WIDTH="380 pt"><COL WIDTH="*"></COLGROUP -->
    <TR><TH>{code}</TH>
        <TH>{orig}</TH>
        <TH>{trans}</A></TH>

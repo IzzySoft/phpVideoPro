@@ -16,7 +16,7 @@
 # Configuration of Setup module
 #
   include ("../inc/config.inc");
-  include ("../inc/db_mysql.inc");
+  include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;

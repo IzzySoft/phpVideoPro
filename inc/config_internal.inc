@@ -1,17 +1,5 @@
-<?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * Internal configuration - setup the program with information collected from*
- * the database and browser info                                             *
- \***************************************************************************/
-
- /* $Id$ */
+<?
+  /* $Id$ */
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
@@ -57,7 +45,8 @@ $form["addon_part"]    = "SIZE=\"2\" MAXLENGTH=\"2\"";
 $form["addon_title"]   = "SIZE=\"50\" MAXLENGTH=\"60\"";
 
 #----------------------------------------[ read preferences from DB ]---
-include (dirname(__FILE__) . "/db_mysql.inc");
+$pvp->db_include = dirname(__FILE__) . "/db_" . $database["type"] . ".inc";
+include ($pvp->db_include);
 $db = new DB_Sql;
 $db->Host     = $database["host"];
 $db->Database = $database["database"];
@@ -73,7 +62,7 @@ $colors["err"] = "<FONT COLOR=\"" . $colors["err"] . "\">";
 $db->query("SELECT value FROM pvp_config WHERE name='version'");
 $db->next_record();
 $version  = $db->f('value');
-//$pre      = "pre3";
+$pre      = "p7";
 if ($pre) $version .= $pre;
 $db->query("SELECT value FROM preferences WHERE name='charset'");
 $db->next_record();

@@ -16,7 +16,8 @@
 # Configuration of Setup module
 #
   include ("../inc/config.inc");
-  include ("../inc/db_mysql.inc");
+  include ("../inc/config_internal.inc");
+  include ($pvp->db_include);
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
   $db = new DB_Sql;
@@ -57,7 +58,8 @@
 ##################################################################
 # Get SQL statements from their files and execute them
 #
-  $tables   = queryf("create_tables.sql","Creation of tables");
+  $create_script = "create_tables." . $database["type"];
+  $tables   = queryf($create_script,"Creation of tables");
   $cats     = queryf("categories.sql","Insertion of categories");
   $techdata = queryf("tech_data.sql","Insertion of technical data");
   $def_lang = queryf("lang_en.sql","Prepare default language");

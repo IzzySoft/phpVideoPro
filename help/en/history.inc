@@ -14,6 +14,8 @@
      (Thanx to Knut, Leszek and Tom!)
  <li>added possibility to directly go to an entry specified by MediaNr
  <li>fixed some translation stuff (e.g. color names in edit.php)
+ <li>added basic PostgreSQL support - please report any errors/bugs/problems,
+     since I myself don't use it :-)
 </ul>
 
 [title]

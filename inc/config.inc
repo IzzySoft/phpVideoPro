@@ -1,26 +1,16 @@
-<?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * User's configuration file - the only one for the user to edit!            *
- \***************************************************************************/
+<?
 
- /* $Id$ */
+/* $Id$ */
 
-$base_url   = "/local/phpvideo/";
+$base_url   = "/homes/izzy/software/pvp-demo/";
 // the root directory of phpVideoPro
-$base_path  = "/usr/src/cvs/website/local/phpvideo/";
+$base_path  = "/web/htdocs/homes/izzy/software/pvp-demo/";
 
 // database settings
-$database["host"]      = "linux";
+$database["type"]      = "mysql";  // mysql|pgsql
+$database["host"]      = "horeb";
 //$database["host"]      = "localhost";
 $database["database"]  = "video_demo";
-$database["database"]  = "videopro";
 $database["user"]      = "guest";
 $database["password"]  = "";
 

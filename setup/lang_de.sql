@@ -285,3 +285,4 @@ INSERT INTO lang VALUES('submit','de','Absenden');
 INSERT INTO lang VALUES('welcome','de','Willkommen bei phpVideoPro');
 INSERT INTO lang VALUES('login_failed','de','Anmeldung fehlgeschlagen. Entweder liegt ein Tippfehler beim Passwort vor, oder das angegebene Konto existiert nicht.<P />');
 INSERT INTO lang VALUES('login_required','de','Der gewünschte Vorgang kann aufgrund mangelnder Berechtigungen nicht durchgeführt werden. Eine erneute Anmeldung mit einem entsprechenden Konto kann dies Problem lösen.<P />');
+INSERT INTO lang VALUES('logout_user','de','Angemeldet als "%1". <A HREF="%2">Abmelden</A>');

@@ -36,8 +36,12 @@
      echo " <LI>\"$title\" contains an &lt;IMG&gt; tag with http: reference. Leaving untouched; please update manually.</LI>\n";
      continue;
    }
-   if ( preg_match("/\[href\]\S+\[\/href\]/i",$data) ) {
+   if ( preg_match("/\[url\]\S+\[\/url\]/i",$data) ) {
      echo " <LI>\"$title\" already seems to be up-to-date with the [url] tag.</LI>\n";
+     continue;
+   }
+   if ( preg_match("/\[href\]\S+\[\/href\]/i",$data) ) {
+     echo " <LI>\"$title\" uses the undocumented [href] tag. Please use the [url] tag instead. Leaving this title untouched for now.</LI>\n";
      continue;
    }
    if ( preg_match("/\[img\]\S+\[\/img\]/i",$data) ) {

@@ -1,14 +1,14 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- * --------------------------------------------------------------------------*
- * insert an entry into the database
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # insert an entry into the database                                         #
+ #############################################################################
 
  /* $Id$ */
 
@@ -24,7 +24,7 @@
 
  ##############################################################################
  # check wether a valid media number can be constructed from user input
- if ( $mtype_id<1 || trim($cass_id)=="" || trim($part)=="" || !((int)$cass_id) || !((int)$part) ) {
+ if ( !$valid->medianr($mtype_id,$cass_id,$part) ) {
    $error = lang("invalid_media_nr") . "</P>\n";
    display_error($error);
    exit;

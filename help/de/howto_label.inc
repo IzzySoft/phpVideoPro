@@ -59,6 +59,11 @@ Variablen für den Eintrag des Etiketts (entry)
  <li>aq_date: *date_rec#</li>
  <li>source: *source#</li>
  <li>actor1,..,actor5: Schauspieler 1..5 (im Format "Vorname Nachname")</li>
+ <li>actor12: Schauspieler 1+2 als Aufzählung ("Schauspieler 1, Schauspieler 2").
+     Berücksichtigt auch nicht angegebene Schauspieler: falls also z.B.
+     Schauspieler 2 gar nicht angegeben ist, ist actor12 das gleiche wie actor1.</li>
+ <li>actor35: das gleiche wie actor12, nur für Schauspieler 3-5</li>
+ <li>actors: das gleiche wie actor12, nur für alle Schauspieler (1-5)</li>
  <li>director: *director#</li>
  <li>music: Komponist des Soundtracks</li>
  <li>fsk: *fsk#</li>

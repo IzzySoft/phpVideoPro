@@ -16,12 +16,11 @@ coming *soon*:
 coming *next*:
 - form(s) to edit label sheets (for PSLabels)
 - form(s) to edit tech data (colors, commercials, mtypes, pict, tone)
-- possibility to delete a category (applying a different category to movies
-  in the category to delete)
 
 coming *sometimes* (maybe):
-- region code support for DVD entries
+- add confirmation to disk type deletion
 - movie language setting(s)
+- store user-based preferences into a different table if no cookies are used
 - add "sample-links" to translation editor
 - enable/disable a category (to temporarily get rid of unwanted ones)
 - new database field: "lent to" (to find out where your media *really* are :)

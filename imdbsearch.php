@@ -17,6 +17,7 @@
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
  $usecache = TRUE;
+ $autoclose = 1;
 
  #========================================================[ Template setup ]===
  $t = new Template($pvp->tpl_dir);
@@ -180,6 +181,16 @@
    $t->set_var("mcomment",$comment);
    $t->set_var("btransfer",lang("imdb_transfer2edit"));
    $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+  function name_split(name) {
+    pos = name.lastIndexOf(' ');
+    if (pos==-1) return name;
+    return name.substr(pos+1,500);
+  }
+  function fname_split(name) {
+    pos = name.lastIndexOf(' ');
+    if (pos==-1) return '';
+    return name.substring(0,pos);
+  }
   function transfer_data() {
    omf = opener.document.movieform;
    dmf = document.movieform;
@@ -192,11 +203,26 @@
    omf.cat2_id.value = dmf.cat2_id.value;
    omf.cat3_id.value = dmf.cat3_id.value;
    name = dmf.directors.value;
-//   omf.director_name.value  =
-//   omf.director_fname.value =
-//   omf.actor1_name.value    =
-//   omf.actor1_fname.value   =
-//   alert('Opener Title: '+omf.title.value);
+   omf.director_name.value  = name_split(dmf.directors.value);
+   omf.director_fname.value = fname_split(dmf.directors.value);
+   if (dmf.directors.value != '') omf.director_list.click();
+   k = 1;
+   for (i=0;i<dmf.actors.length;++i) {
+     if (dmf.actors.options[i].selected) {
+       curr  = dmf.actors.options[i].text;
+       switch(k) {
+         case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.click(); break;
+         case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.click(); break;
+         case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.click(); break;
+         case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.click(); break;
+         case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.click(); break;
+         default: break;
+       }
+       ++k;
+     }
+   }
+   omf.fsk.value = dmf.pg.value;
+   if ($autoclose) self.close();
   }
 //--></SCRIPT>";
    $t->set_var("js",$js);

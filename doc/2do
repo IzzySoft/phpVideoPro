@@ -12,8 +12,6 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- if deleting the latest movie on a r/w medium, the medium's entry still
-  remains in cass table. Should be removed then.
 - r/w support for multiple media (not only RVT - VCD may be r/w as well)
 
 coming *next*:

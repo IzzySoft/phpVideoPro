@@ -466,6 +466,7 @@ EndHiddenFields;
     }
     $field .= "</SELECT>";
   } else {
+    if (!$pict_format) $pict_format = "unknown";
     $field = "<$input NAME='pict_format' VALUE='" . lang($pict_format) . "'" . $form["addon_tech"] . ">";
   }
   $t->set_var("screen",$field);

@@ -384,3 +384,5 @@ INSERT INTO lang VALUES('clean_restore','en','CleanUp (remove) old data before r
 INSERT INTO lang VALUES('taperest','en','Manage remaining time','Page title when searching for free space on media');
 INSERT INTO lang VALUES('tplset_applicat','en','Applicat Template Set','Name of the <I>Applicat</I> template set for the page title');
 INSERT INTO lang VALUES('not_logged_in','en','not logged in','String to display instead of the user name when not logged in');
+INSERT INTO lang VALUES('imdb_url','en','IMDB Site to use','String to display for the IMDB selection on the configuration page');
+INSERT INTO lang VALUES('imdb_url_comment','en','The Internet Movie DataBase provides information on many movies. There are localized sites available: the German site e.g. allows searches for German movie names, while the US site is searchable for the English names. Select a site that matches best with the titles of the movies in your database.','String to display as explanation for the IMDB selection on the configuration page');

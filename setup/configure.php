@@ -381,7 +381,7 @@ $t->parse("item","itemblock");
 
 #--[ imdb_url ]--
 $t->set_var("item_name",lang("imdb_url"));
-$t->set_var("item_comment","imdb_url_comment");
+$t->set_var("item_comment",lang("imdb_url_comment"));
 $select  = "<SELECT NAME=\"imdb_url\">";
 $imdburls = $db->get_options("imdb_url");
 for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {

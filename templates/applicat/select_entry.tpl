@@ -20,7 +20,7 @@
 <!-- BEGIN introblock -->
  <TABLE ALIGN="center" BORDER="1">
   <TR><TH><DIV ALIGN="center">{intro_head}</DIV></TH></TR>
-  <TR CLASS="content"><TD>{intro_text}</TD></TR>
+  <TR CLASS="content"><TD><DIV ALIGN="justify">{intro_text}</DIV></TD></TR>
  </TABLE>
 </TD></TR>
 <TR><TD>

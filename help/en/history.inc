@@ -12,6 +12,8 @@
      config
  <li>text (and db fields) to put on label are now configurable - even
      multiple text lines per movie are supported
+ <li>toolbar is now displayed for labels to allow easier access to the print
+     function (no effect on Konqueror whyever - but works fine with Mozilla)
 </ul>
 
 [title]

@@ -1,8 +1,8 @@
 # ========================================================
-# Deutsch Language File created by phpVideoPro v0.7.1
+# German Language File created by phpVideoPro v0.7.1
 # ========================================================
 
-UPDATE languages SET charset='No' WHERE lang_id='de';
+UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
 INSERT INTO lang VALUES ('actions','de','Aktionen','');
 INSERT INTO lang VALUES ('actor','de','Darsteller','');
 INSERT INTO lang VALUES ('actors','de','Darsteller','');

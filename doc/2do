@@ -12,8 +12,6 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 coming *soon*:
-- after updating, there should be a link to the initial page instead of
-  (or in addition to) the one to the configuration page
 - remove path and URL from inc/config.inc and auto-evaluate it in
   inc/config_internal
 - export-button for selected movie (view_entry) and selected movies (movie list)

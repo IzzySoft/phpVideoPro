@@ -67,6 +67,14 @@ benutzt werden (z.B. können auch die jeweiligen Zeiten von Rekordern mit
 Echtzeitzählwerk eingetragen werden).
 
 [title]
+*label#
+
+[text]
+Ist dieses Kästchen markiert, erscheinen Daten zu diesem Film auf dem Etikett
+für dieses Medium - andernfalls werden diese bei Erstellung des Etiketts
+unterdrückt.
+
+[title]
 *commercials#
 
 [text]

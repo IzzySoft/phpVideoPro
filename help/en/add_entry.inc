@@ -60,6 +60,13 @@ counter values, or even time codes here - depending on how your recorder
 displays the time.
 
 [title]
+*label#
+
+[text]
+This is to define wether the movie should be printed on the label for this
+medium.
+
+[title]
 *commercials#
 
 [text]

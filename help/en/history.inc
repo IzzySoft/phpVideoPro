@@ -7,7 +7,7 @@
 <ul>
  <li>when a medium became empty (by removal of the last movie), it was always
      removed from the media table (and thus not available for free space
-     searches). This is now configurable (config.inc, $remove_empty)
+     searches). This is now configurable.
  <li>moved color settings (for page and table backgrounds) into template's
      stylesheet and removed them from config screen. They should only change
      with the selected theme. Modify there for your convenience ;)
@@ -23,6 +23,8 @@
      now, you just can place an .htaccess file into the admin/ directory. Well,
      this does not protect your movie entries from being overwritten - but
      every thing has its time, right?
+ <li>added setting "label" to the edit form. This is to define wether a movie
+     should appear on the label for its medium.
 </ul>
 
 [title]

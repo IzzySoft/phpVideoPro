@@ -127,11 +127,14 @@ Schwarzwaldklinik :)
 Hier können beliebige Kommentare zum Film erfasst werden. Einige spezielle Tags
 werden zur Unterstützung angeboten: so lassen sich [url]URLs[/url] verlinkbar
 machen (sie werden dann in einem separaten Browser-Fenster geöffnet), sowie
-[img]Grafiken[/img] auch [imgr]rechtsbündig[/imgr] einbinden. Desweiteren ist
-die Verwendung einiger "normaler" HTML Tags für die Formatierung erlaubt: dies
-sind B,I,U,CENTER sowie BLOCK,PRE,BR,P,HR und Listen. Alle anderen Tags werden
-gnadenlos entfernt - dies dient dem Schutz der Site gegen "bösartigen" HTML
-Code.
+[img]Grafiken[/img] auch [imgr]rechtsbündig[/imgr] einbinden. Um ein Bild zu
+verlinken, können die Tags wie folgt verschachtelt werden:
+[url][img]Bild-URL[/img][/url].
+[text]
+Desweiteren ist die Verwendung einiger "normaler" HTML Tags für die Formatierung
+erlaubt: dies sind B,I,U,CENTER sowie BLOCK,PRE,BR,P,HR und Listen. Alle anderen
+Tags werden gnadenlos entfernt - dies dient dem Schutz der Site gegen
+"bösartigen" HTML Code.
 
 [eof]
 

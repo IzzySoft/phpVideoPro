@@ -12,17 +12,6 @@
 
  /* $Id$ */
 
- ##############################################################################
- # create a dump of posted data for debugging purposes and send them to the
- # debug output function
- $ddump = "Saving data:<p>\n<ul>";
- while (list($key, $val) = each($HTTP_POST_VARS)) {
-   $ddump .= "<li>$key => $val<br>";
- }
- $ddump .= "</ul></TD><TD>\n";
- debug("V",$ddump);
-
- ##############################################################################
  # check wether a valid media number can be constructed from user input
  if ( !$valid->medianr($mtype_id,$cass_id,$part) ) {
    $error = lang("invalid_media_nr") . "</P>\n";
@@ -30,7 +19,6 @@
    exit;
  }
 
- ##############################################################################
  # check wether there already is an entry with the given Movie ID
  if ( $db->get_movieid($mtype_id,$cass_id,$part) ) {
    $error = lang("dupe_id_entered");
@@ -38,7 +26,6 @@
    exit;
  }
 
- ##############################################################################
  # check if "fsk" (= pg, parental guide) is integer
  if ( !$valid->num($fsk) ) {
    $error = lang("fsk");
@@ -47,7 +34,6 @@
    exit;
  }
 
- ##############################################################################
  # check wether the specified date is valid
  if (!$recday)  $recday  = "0";
  if (!$recmon)  $recmon  = "0";

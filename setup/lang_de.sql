@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.6.5
+# German Language File created by phpVideoPro v0.6.8
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -184,6 +184,9 @@ INSERT INTO lang VALUES ('info_common','de','Allgemeine Information','');
 INSERT INTO lang VALUES ('info_common_info','de','<DIV ALIGN=\"center\">Dies ist Version %1 von phpVideoPro, installiert auf %2.</div>','');
 INSERT INTO lang VALUES ('info_noupdate','de','<DIV ALIGN=\"center\">Die installierte Version von phpVideoPro (%1) ist auf dem aktuellen Stand - es steht keine neue Version zum Download zur Verfügung. Für den Download des Tarballs der installierten Version bitte <A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">diesem Link</a> folgen.</div>','');
 INSERT INTO lang VALUES ('intro','de','Einleitung','');
+INSERT INTO lang VALUES ('intro_usage','de','<P>Informationen für neue Benutzer:<ul><li>Die Navigation innerhalb von phpVideoPro ist fast immer über die Menübar am Anfang der Seite möglich</li><li>Die meisten Seiten verfügen über eine zugehörige Hilfeseite. Diese lässt sich entweder über das \"Hilfe\" Menü, oder aber (sofern vorhanden) über den \"?\" Button aufrufen</li><li>Das folgende Formular erlaubt den direkten Sprung zu einem Filmeintrag (wenn die Nummer bekannt ist). Für eine Auflistung aller Filme gibt es die Medien-Liste (Menüpunkt \"Medienliste\" im Menü \"Anzeigen\").</li></ul></p>','');
+INSERT INTO lang VALUES ('intro_usage_skip','de','<P>Wer diesen Einleitungs-Text nicht mehr benötigt, kann ihn bei seinen bevorzugten Einstellungen (Menü \"Bearbeiten\", Punkt \"Einstellungen\") abschalten.</p>','');
+INSERT INTO lang VALUES ('intro_usage_title','de','Einleitung für neue Benutzer','');
 INSERT INTO lang VALUES ('invalid_backup_dir','de','Das konfigurierte Backup-Verzeichnis existiert nicht!','');
 INSERT INTO lang VALUES ('invalid_fsk','de','Der eingegebene Wert für FSK (\"%1\") ist ungültig.<br>FSK steht für Freiwillige Selbst-Kontrolle und gibt das Mindestalter an, ab dem der Film zur Betrachtung freigegeben ist.','');
 INSERT INTO lang VALUES ('invalid_media_nr','de','Die angegebene MediaNr ist entweder unvollständig oder ungültig. Es muß eine <b>Zahl</b> in <b>beiden</b> MediaNr Feldern eingegeben werden.','');
@@ -399,6 +402,8 @@ INSERT INTO lang VALUES ('sess_end','de','Beendet','');
 INSERT INTO lang VALUES ('sess_start','de','Gestartet','');
 INSERT INTO lang VALUES ('set_filter','de','Filter setzen','');
 INSERT INTO lang VALUES ('site_info_comment','de','für die Anzeige in der Titelbar','');
+INSERT INTO lang VALUES ('skip_intro','de','Intro für neue Benutzer ausblenden?','');
+INSERT INTO lang VALUES ('skip_intro_comment','de','Läßt den Einführungstext auf der Startseite verschwinden','');
 INSERT INTO lang VALUES ('source','de','Quelle','');
 INSERT INTO lang VALUES ('staff','de','Besetzung','');
 INSERT INTO lang VALUES ('start_page','de','Startseite','');
@@ -442,5 +447,7 @@ INSERT INTO lang VALUES ('warning','de','Warnung','');
 INSERT INTO lang VALUES ('week','de','Woche','');
 INSERT INTO lang VALUES ('welcome','de','Willkommen bei phpVideoPro','');
 INSERT INTO lang VALUES ('wrong_date','de','Das angegebene Datum %1 (%2) ist ungültig. Bitte geben Sie den Tag in das erste, den Monat in das zweite und das Jahr in das dritte Datumsfeld ein, und verwenden Sie ausschließlich Ziffern. Ist Ihnen der Wert für eines oder mehrere der Felder unbekannt (Sie wissen z.B. nur noch, dass Sie das Medium irgendwann im Februar 2002 erworben haben, erinnern sich jedoch nicht genau an den Tag), tragen Sie hierfür Nullen ein (im genannten Beispiel \"00\" im Tagesfeld, \"02\" im Monats- und \"2002\" im Jahresfeld).','');
+INSERT INTO lang VALUES ('xfer_unknown_filetype','de','Der Datentyp dieses Backup-Sets wird von phpVideoPro (noch) nicht unterstützt.','');
+INSERT INTO lang VALUES ('xfer_wrong_mode','de','Programmfehler: Der eingestellte Transfermodus ist für die gewünschte Aktion nicht zulässig. Erforderlich wäre der Modus \"%1\", eingestellt ist jedoch \"%2\". Bitte unbedingt einen Report mit den Schritten, die zu diesem Fehler geführt haben, an den Autoren schicken!','');
 INSERT INTO lang VALUES ('year','de','Jahr','');
 INSERT INTO lang VALUES ('yes','de','Ja','');

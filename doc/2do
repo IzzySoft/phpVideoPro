@@ -31,7 +31,6 @@ coming *next*:
   the possibility to "order by rating")
 
 coming *sometimes* (maybe):
-- movie language setting(s)
 - honour date format settings in all places
 - add "sample-links" to translation editor
 - new database field: "lent to" (to find out where your media *really* are :)

@@ -121,13 +121,20 @@ $pvp->preferences->admin();
     case "0.3.7"    : queryf("0-3-7_to_0-3-8.sql","Update from v0.3.7 to v0.3.8");
                       queryf("lang_en.sql","Refresh of English language support");
     case "0.3.8"    : queryf("0-3-8_to_0-4-0.sql","Update from v0.3.8 to v0.4.0");
+    case "0.4.0"    : queryf("0-4-0_to_0-4-1.sql","Update from v0.4.0 to v0.4.1");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
   echo "</UL><DIV ALIGN='center'>\n";
   if ($final) echo "$final<br>\n";
   echo "<P>If everything went right, you can now proceed to the\n"
-      ." <a href=\"../admin/configure.php\">configuration</a> page.</p></DIV>\n";
+      ." <a href=\"../admin/configure.php\">configuration</a> page. In case you"
+      ." are upgrading from a version prior to v0.4.1, the previous link will"
+      ." lead you to the login screen instead. Use the &quot;admin&quot; user"
+      ." (password is "video") to login, and first go to the user administration"
+      ." page (to be found in the &quot;admin&quot; menue) and change this"
+      ." password first. You'll find more information about this new feature"
+      ." within the online help,</p></DIV>\n";
 }
 
 #=========================================================[ Closing page ]===

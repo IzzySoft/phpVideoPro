@@ -1073,10 +1073,10 @@
        $restrict .= ") AND ";
      }
      $restrict .= "comment LIKE '%$comment%'";
-     if ($minlen) $restrict .= " AND length>$minlen";
-     if ($maxlen) $restrict .= " AND length<$maxlen";
-     if ($minfsk) $restrict .= " AND fsk>$minfsk";
-     if ($maxfsk) $restrict .= " AND fsk<$maxfsk";
+     if ($minlen) $restrict .= " AND length>=$minlen";
+     if ($maxlen) $restrict .= " AND length<=$maxlen";
+     if ($minfsk) $restrict .= " AND fsk>=$minfsk";
+     if ($maxfsk) $restrict .= " AND fsk<=$maxfsk";
      return $this->get_movielist($order,$restrict,$start);
    }
 

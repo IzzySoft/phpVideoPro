@@ -49,7 +49,7 @@
    function verify_login($login,$passwd) {
      GLOBAL $db;
      $user = $db->get_logindata($login);
-     if ( $user->passwd == md5($passwd) ) return TRUE;
+     if ( $user->passwd == md5($passwd) ) return $user->id;
      return FALSE;
    }
 

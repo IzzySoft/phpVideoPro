@@ -7,32 +7,36 @@
 <Table Width=90% Align=Center>
  <TR><TD>
   <P Align=Justify>This is phpVideoPro version <? echo $version ?>, (c) 2001 by
-   Itzchak Rehberg, all rights (and links) reserved. It's my try to port the best video
-   management software I've ever found, VideoPro (c) Bernd Rickers, to a platform
-   independant application, while adding some new features that were not to think
-   of at that time (last available version of VideoPro is from 1994, so that time
-   Bernd didn't think of the now wide-spread DVD media, for example, or of features
-   like Digital Dolby Surround and others) and dropping
- things I think not needed
-   (as e.g. his phone book - when phpVideoPro is
- plugged into phpGroupWare, you'll
-   have everything there :-)</P>
-  <P Align=Justify>Starting with Version 0.0.3 the program came to a state where it is
-   usable not only by me (since I already have a database, which I manually converted
-   from Bernds VideoPro), but by everybody who has a PHP powered web server with MySQL
-   running: even if it's not that comfortable for now, you can add and change entries,
-   display a list containing all entries or display a list of available free space on
-   your video tapes - and phpVideoPro distinguishes between DVD, Original VideoTapes (OVT
-   - these are the ones you bought or got as a present) and Recorded VideoTapes (RVT -
-   these are the ones you recorded yourself).</P>
-  <P Align=Justify>New features are planned <b>after</b> releasing the first public
-   Beta, which shall provide almost stable code with the functionality of v0.0.3, but
-   have the bugs of that version fixed and some documentation added; that is v0.1.0.
-   What functions are already planned, you can see in the menue items :) With some luck,
-   there will be a second beta having some or even all of those features already this
-   summer. But (my "standard disclaimer"): Since this is only a hobby, I can't promise
-   anything - and just again ask you to stay tuned...</P>
-  <P Align=Right>Itzchak Rehberg, June 2001</P>
+   Itzchak Rehberg, all rights (and links) reserved. Inspired by my long-time
+   favorite software for this purpose, VideoPro (c) 1991-94 by Bernd Rickers, I
+   started developing my own video management program - since on one hand
+   VideoPro was just available as a DOS based clipper program, and on the
+   other hand some now important features like support for DVDs and tone
+   formats like Dolby Digital 5.1 where missing, and Bernd stopped development
+   in 1994. I decided for PHP not only as a platform independent language,
+   but since this way I would have all my data available from everywhere, in
+   the worst case by visiting some internet cafe :-)</P>
+  <P Align=Justify>At this stage, phpVideoPro is intended for a single user
+   environment. This may change with some future version - but don't expect
+   multi user capabilities in the very close future...</P>
+  <P ALIGN=Justify><b>So what features does phpVideoPro provide?</b> As a
+   video management software it is of course intended to manage your (private)
+   movies collection (it does not aim to manage a video shop, where multiple
+   copies of the same movie can exist). You can add and change entries, display
+   a list containing all entries or display a list of available free space on
+   your video tapes - and phpVideoPro distinguishes between DVD, Original
+   VideoTapes (OVT - these are the ones you bought or got as a present) and
+   Recorded VideoTapes (RVT - these are the ones you recorded yourself).
+   Moreover, filter functions help you to select subsets or find special
+   entries even in large collections.</P>
+  <P Align=Justify>New features are planned, and development still goes on.
+   The beat of new releases is not very rhytmic and won't ever be, since "it's
+   only a hobby", and there are so many others that require my presence :) But
+   as long as I have not added all the features <b>I</b> need, you can be sure
+   that there will always be a fresh release available within the next weeks!
+   So I close with my "standard disclaimer": This is only a hobby, I can't
+   promise anything - I just ask you to stay tuned...</P>
+  <P Align=Right>Itzchak Rehberg, July 2001</P>
  </TD></TR>
 </Table>
 

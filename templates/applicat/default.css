@@ -22,9 +22,13 @@
     font-size: 12px;
     color: #000000;
     font-weight: 500;
+    text-align: left;
   }
   tr.content { background-color: #F3F3F3; }
-  th { background-color: #FFFF99; }
+  th {
+    background-color: #FFFF99;
+    font-weight: bold;
+  }
   span {
     font-size: 12px;
     color: #000000;

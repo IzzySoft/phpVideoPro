@@ -20,7 +20,7 @@
 <FORM NAME="filter" METHOD="post" ACTION="{form_target}">
 <DIV STYLE="margin:3">
  <TABLE Align="Center" Border="0">
-  <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ !>
+  <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ -->
     <TABLE WIDTH="100%" BORDER="1">
      <TR CLASS="content"><TD WIDTH="15%">{mtype_name}</TD><TD>{mtype}</TD></TR>
      <TR CLASS="content"><TD WIDTH="15%">{length_name}</TD><TD>{length}</TD></TR>
@@ -31,7 +31,7 @@
      <TR CLASS="content"><TD WIDTH="15%">{longplay_name}</TD><TD>{longplay}</TD></TR>
      <TR CLASS="content"><TD WIDTH="15%">{fsk_name}</TD><TD>{fsk}</TD></TR>
     </TABLE></TD>
-   <TD WIDTH="50%"><!-- ===================================== Right side ============ !>
+   <TD WIDTH="50%"><!-- ===================================== Right side ============ -->
     <TABLE WIDTH="100%" BORDER="1">
      <TR CLASS="content"><TD WIDTH="10%">{title_name}</TD><TD COLSPAN="3">{title}</TD></TR>
      <TR CLASS="content"><TD WIDTH="10%">{category_name}</TD><TD WIDTH="40%">{category}</TD>

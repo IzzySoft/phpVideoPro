@@ -74,39 +74,39 @@
    ############################################################################
    # "blind" controls
    function first_grey() {
-     $this->first = "<IMG SRC='" . $this->img_dir . "/first-grey.gif' BORDER=0>";
+     $this->first = "<IMG SRC='" . $this->img_dir . "/first-grey.gif' BORDER='0' ALT=''>";
    }
    function left_grey() {
-     $this->left  = "<IMG SRC='" . $this->img_dir . "/left-grey.gif' BORDER=0>";
+     $this->left  = "<IMG SRC='" . $this->img_dir . "/left-grey.gif' BORDER='0' ALT=''>";
    }
    function right_grey() {
-     $this->right  = "<IMG SRC='" . $this->img_dir . "/right-grey.gif' BORDER=0>";
+     $this->right  = "<IMG SRC='" . $this->img_dir . "/right-grey.gif' BORDER='0' ALT=''>";
    }
    function last_grey() {
-     $this->last  = "<IMG SRC='" . $this->img_dir . "/last-grey.gif' BORDER=0>";
+     $this->last  = "<IMG SRC='" . $this->img_dir . "/last-grey.gif' BORDER='0' ALT=''>";
    }
 
    ############################################################################
    # functional controls
    function first_normal() {
      $this->first = "<A HREF='" . $this->script .
-          "'><IMG SRC='" . $this->img_dir . "/first.gif' BORDER=0></A>";
+          "'><IMG SRC='" . $this->img_dir . "/first.gif' BORDER='0' ALT='&lt;&lt;'></A>";
    }
    function left_normal() {
      $start = $this->start - $this->limit;
      if ($start < 0) $start = 0;
      $url = $this->clean_url($this->script . "&start=$start");
-     $this->left = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/left.gif' BORDER=0></A>";
+     $this->left = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/left.gif' BORDER='0' ALT='&lt;'></A>";
    }
    function right_normal() {
      $url = $this->clean_url($this->script . "&start=" . ($this->start+$this->limit));
-     $this->right = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/right.gif' BORDER=0></A>";
+     $this->right = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/right.gif' BORDER='0' ALT='&gt;'></A>";
    }
    function last_normal() {
      $end = $this->totals % $this->limit;
      if (!$end) $end = $this->limit;
      $url = $this->clean_url($this->script . "&start=" . ($this->totals - $end));
-     $this->last  = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/last.gif' BORDER=0></A>";
+     $this->last  = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/last.gif' BORDER='0' ALT='&gt;&gt;'></A>";
    }
 
    ############################################################################

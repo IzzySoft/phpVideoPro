@@ -54,4 +54,3 @@ Medientyp und "Science Fiction" als Kategorie resultiert daher in allen DVDs,
 welche Science Fiction Filme enthalten.
 
 [eof]
-

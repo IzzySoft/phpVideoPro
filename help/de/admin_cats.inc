@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -67,4 +66,3 @@ Regel gehalten, und alle Einträge in der Spalte <i>*handle</i> beginnen mit
 aufgefunden sein.
 
 [eof]
-

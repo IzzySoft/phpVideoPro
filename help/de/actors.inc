@@ -21,4 +21,3 @@ Wie viele Datensätze maximal pro Seite dargestellt werden sollen, läßt sich �
 festlegen.
 
 [eof]
-

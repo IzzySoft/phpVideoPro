@@ -1,5 +1,4 @@
-<? /* list of actors, directors, composers */
- ?>
+<? /* list of actors, directors, composers */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -66,4 +65,3 @@ dadurch ist es möglich, einen nicht vollständig aufgebrauchten Bogen auch
 vollständig aufzubrauchen.
 
 [eof]
-

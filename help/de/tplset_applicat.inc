@@ -1,5 +1,4 @@
-<? /* description of the Applicat template set */
- ?>
+<? /* description of the Applicat template set */ ?>
 <? /* $Id$ */ ?>
 
 [title]

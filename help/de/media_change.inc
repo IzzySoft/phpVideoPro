@@ -1,5 +1,4 @@
-<? /* change media nr or copy entry */
- ?>
+<? /* change media nr or copy entry */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -59,4 +58,3 @@ vergebenen Nummer sollte also lediglich zu einer Warnung führen, und nicht
 zu einem Datenverlust.
 
 [eof]
-

@@ -1,5 +1,4 @@
-<? /* list of actors, directors, composers */
- ?>
+<? /* list of actors, directors, composers */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -70,4 +69,3 @@ geladen, und mit einer entsprechenden Erfolgsmeldung versehen - wie es bereits
 von der Bearbeitung der Film-Einträge her bekannt sein sollte.
 
 [eof]
-

@@ -47,4 +47,3 @@ wird. Hierbei wird nur die angegebene Sitzung entfernt, alle anderen bleiben
 davon unbeeinflusst.
 
 [eof]
-

@@ -1,5 +1,4 @@
-<? /* medialist */
- ?>
+<? /* medialist */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -61,4 +60,3 @@ jedoch hier überschrieben werden. Für CSV und HTML Listen wird der Inhalt dies
 Feldes freilich ignoriert.
 
 [eof]
-

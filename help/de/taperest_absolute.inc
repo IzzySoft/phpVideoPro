@@ -1,5 +1,4 @@
-<? /* absolute taperest */
- ?>
+<? /* absolute taperest */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -24,4 +23,3 @@ daß die definierten <A HREF="{PHP_SELF}?topic=filter">Filterregeln</A>
 Anwendung finden - <b>absolut</b> hingegen, daß diese unberücksichtigt bleiben.
 
 [eof]
-

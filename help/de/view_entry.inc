@@ -108,4 +108,3 @@ kommen. Nähere Informationen dazu an der <A HREF="{PHP_SELF}?topic=pslabel">bet
 Stelle</A>.
 
 [eof]
-

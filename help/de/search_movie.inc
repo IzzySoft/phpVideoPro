@@ -1,5 +1,4 @@
-<? /* Movie Search Page */
- ?>
+<? /* Movie Search Page */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -57,4 +56,3 @@ von der <A HREF="{PHP_SELF}?topic=medialist">*medialist#</A> gewohnt ist - und
 die Navigation in selbigen erfolgt auch auf die von dort bekannte Art und Weise.
 
 [eof]
-

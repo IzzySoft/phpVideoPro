@@ -13,4 +13,3 @@ Normalfall ihre eigenen Hilfeseiten nämlich eher selten, und entdecken solche
 Fehler daher eher nie :-)
 
 [eof]
-

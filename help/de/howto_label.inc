@@ -82,4 +82,3 @@ Variablen für den Eintrag des Etiketts (entry)
 </ul>
 
 [eof]
-

@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -38,4 +37,3 @@ steht es jedem frei, trotzdem alle Häkchen zu machen - das ist aber wirklich
 nicht nötig :-)
 
 [eof]
-

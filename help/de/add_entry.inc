@@ -5,45 +5,45 @@
 *intro#
 
 [text]
-Seit phpVideoPro v0.5.1, existiert dieser Menüpunkt für jeden konfigurierten
-Medientyp separat. Dieser Schritt war nötig, um den verschiedenen Features
-Rechnung zu tragen, die jeweils nur für einige der Medientypen verfügbar sind
-(wie z.B. Regionalcodes für DVDs, LongPlay für Kassetten etc.), und die Felder
-für Features, die vom gerade bearbeiteten Medium nicht unterstützt werden,
+Seit phpVideoPro v0.5.1, existiert dieser MenÃ¼punkt fÃ¼r jeden konfigurierten
+Medientyp separat. Dieser Schritt war nÃ¶tig, um den verschiedenen Features
+Rechnung zu tragen, die jeweils nur fÃ¼r einige der Medientypen verfÃ¼gbar sind
+(wie z.B. Regionalcodes fÃ¼r DVDs, LongPlay fÃ¼r Kassetten etc.), und die Felder
+fÃ¼r Features, die vom gerade bearbeiteten Medium nicht unterstÃ¼tzt werden,
 auch gar nicht erst einzublenden.
 [text]
-Über diese Menüpunkte läßt sich nun ein neuer Eintrag in die Datenbank einfügen.
-Die meisten Felder dieses Formulars erklären sich selbst, und so soll an dieser
+Ãœber diese MenÃ¼punkte lÃ¤ÃŸt sich nun ein neuer Eintrag in die Datenbank einfÃ¼gen.
+Die meisten Felder dieses Formulars erklÃ¤ren sich selbst, und so soll an dieser
 Stelle nur auf die Punkte eingegangen werden, die aus meiner Sicht einer
-Erklärung bedürfen:
+ErklÃ¤rung bedÃ¼rfen:
 
 [title]
 *medianr#
 
 [text]
-Während der Medientyp nun bereits durch die Auswahl aus dem Menü bekannt ist,
+WÃ¤hrend der Medientyp nun bereits durch die Auswahl aus dem MenÃ¼ bekannt ist,
 und die Nummer des physikalische Mediums durch den Prompt ermittelt wurde, ist
 hier nun lediglich noch die "logische" Nummer des Films auf dem Medium zu
-erfassen. Wie auch bereits bei dem erwähnten Prompt, wird auch hierfür die
-höchste vergebene Nummer aus der Datenbank ermittelt und mitgeteilt (hier durch
+erfassen. Wie auch bereits bei dem erwÃ¤hnten Prompt, wird auch hierfÃ¼r die
+hÃ¶chste vergebene Nummer aus der Datenbank ermittelt und mitgeteilt (hier durch
 den Button "*last_entry#"), und die Folgenummer als Vorschlag bereits
-vorgegeben. In der Regel sollten diese Angaben stimmen; im Bedarfsfall können
+vorgegeben. In der Regel sollten diese Angaben stimmen; im Bedarfsfall kÃ¶nnen
 sie freilich angepasst werden.
 [text]
 An dieser Stelle ein paar Worte zum Aufbau der *medianr#: Der erste
 (maximal vierstellige) Teil dieser Nummer bezeichnet (in Verbindung mit dem
-Medientyp) das Medium selbst (mit RVT 68 ließe sich also eindeutig die
-Videokassette Nummer 68 identifizieren), während der zweite (zweistellige) Teil
-einen Film auf dem jeweiligen Medium meint. RVT 68-1 wäre somit also Film Nummer
+Medientyp) das Medium selbst (mit RVT 68 lieÃŸe sich also eindeutig die
+Videokassette Nummer 68 identifizieren), wÃ¤hrend der zweite (zweistellige) Teil
+einen Film auf dem jeweiligen Medium meint. RVT 68-1 wÃ¤re somit also Film Nummer
 1 auf dem selbst bespielten Videoband Nummer 68, 68-2 der zweite u.s.w..
-Natürlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
+NatÃ¼rlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
 wird phpVideoPro dann nicht unbedingt so reagieren, wie man es vielleicht
 erwartet :-) Wichtig ist dieses Modell z.B. bei der Ermittlung von freien
-Bandstellen über den Menüpunkt <i><A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A></i>
-(bzw. <i>*taperest_filtered#</i>), da dieses auf der MediaNummer aufbaut. Unnötig
-daher zu erwähnen, daß diese Nummern eindeutig sein müssen - es ist nicht
-möglich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
-speichern. Wer die gleiche DVD also zweimal hat, muß ihr entweder zwei
+Bandstellen Ã¼ber den MenÃ¼punkt <i><A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A></i>
+(bzw. <i>*taperest_filtered#</i>), da dieses auf der MediaNummer aufbaut. UnnÃ¶tig
+daher zu erwÃ¤hnen, daÃŸ diese Nummern eindeutig sein mÃ¼ssen - es ist nicht
+mÃ¶glich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
+speichern. Wer die gleiche DVD also zweimal hat, muÃŸ ihr entweder zwei
 verschiedene Nummern geben - oder den entsprechenden Vermerk im Kommentarfeld
 unterbringen.
 
@@ -51,15 +51,15 @@ unterbringen.
 *disk_type# / *counter_start_stop#
 
 [text]
-Die Zähler-Einstellungen sind in erster Linie für Besitzer älterer Videorekorder
-interessant, welche noch nicht über eine Indexfunktion verfügen (sie sind auch
-nur für Kassetten verfügbar): diese können hier die jeweiligen Zählerstände bei
+Die ZÃ¤hler-Einstellungen sind in erster Linie fÃ¼r Besitzer Ã¤lterer Videorekorder
+interessant, welche noch nicht Ã¼ber eine Indexfunktion verfÃ¼gen (sie sind auch
+nur fÃ¼r Kassetten verfÃ¼gbar): diese kÃ¶nnen hier die jeweiligen ZÃ¤hlerstÃ¤nde bei
 Beginn bzw. Ende der Aufzeichnung eintragen. Da das Format der Eintragungen in
-diesen Feldern jedoch nicht festgelegt ist (mit Ausnahme der Einschränkung auf
-maximal 10 Zeichen), kann es auch anderweitig benutzt werden (z.B. können auch
-die jeweiligen Zeiten von Rekordern mit Echtzeitzählwerk eingetragen werden).
+diesen Feldern jedoch nicht festgelegt ist (mit Ausnahme der EinschrÃ¤nkung auf
+maximal 10 Zeichen), kann es auch anderweitig benutzt werden (z.B. kÃ¶nnen auch
+die jeweiligen Zeiten von Rekordern mit EchtzeitzÃ¤hlwerk eingetragen werden).
 [text]
-Für alle anderen Medien (DVD/VCD) kann an dieser Stelle der *disk_type#
+FÃ¼r alle anderen Medien (DVD/VCD) kann an dieser Stelle der *disk_type#
 eingetragen werden. Details dazu finden sich auf
 <A HREF="{PHP_SELF}?topic=disktype_change">dieser Seite</A>.
 
@@ -67,51 +67,51 @@ eingetragen werden. Details dazu finden sich auf
 *label#
 
 [text]
-Ist dieses Kästchen markiert, erscheinen Daten zu diesem Film auf dem Etikett
-für dieses Medium - andernfalls werden diese bei Erstellung des Etiketts
-unterdrückt.
+Ist dieses KÃ¤stchen markiert, erscheinen Daten zu diesem Film auf dem Etikett
+fÃ¼r dieses Medium - andernfalls werden diese bei Erstellung des Etiketts
+unterdrÃ¼ckt.
 
 [title]
 *region_code#
 
 [text]
 RegionalCodes sind ein DVD-spezifisches "Feature" (auf das wir auch liebend
-gern verzichten würden), daher taucht dieser Punkt auch nur für DVDs auf (es
-sei denn, jemand hat dieses "Feature" auch für einen anderen Medien-Typen
+gern verzichten wÃ¼rden), daher taucht dieser Punkt auch nur fÃ¼r DVDs auf (es
+sei denn, jemand hat dieses "Feature" auch fÃ¼r einen anderen Medien-Typen
 freigeschaltet - siehe <i><a href="{PHP_SELF}?topic=admin_disktypes">*admin_disktypes#</a></i>).
 Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte hier einfach
 keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes erscheint
-in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist lediglich
-die "0" auszuwählen, und für alle anderen die entsprechende(n) Checkbox(en).
+in diesem Fall der Hinweis "unbekannt". FÃ¼r RegionCode-freie DVDs ist lediglich
+die "0" auszuwÃ¤hlen, und fÃ¼r alle anderen die entsprechende(n) Checkbox(en).
 
 [title]
 *commercials#
 
 [text]
-Dieses Feld ist ja eigentlich selbsterklärend: es dient der Angabe, ob die
-Aufzeichnung von Werbeblöcken unterbrochen wird ("*yes#"), ob dies nicht der
-Fall ist ("*no#"), oder ob sie während der Aufnahme von Hand entfernt wurden
-("*cut_off#"). Für den Fall allgemeiner Unsicherheit gibt es auch noch die
-Möglichkeit, "*unknown#" auszuwählen.
+Dieses Feld ist ja eigentlich selbsterklÃ¤rend: es dient der Angabe, ob die
+Aufzeichnung von WerbeblÃ¶cken unterbrochen wird ("*yes#"), ob dies nicht der
+Fall ist ("*no#"), oder ob sie wÃ¤hrend der Aufnahme von Hand entfernt wurden
+("*cut_off#"). FÃ¼r den Fall allgemeiner Unsicherheit gibt es auch noch die
+MÃ¶glichkeit, "*unknown#" auszuwÃ¤hlen.
 
 [title]
 *date_rec#
 
 [text]
 Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch auf
-Tag-Monat-Jahr festgelegt ist. In einer späteren Version wird ggf. auch hierfür
-das im Konfigurationsmenü einstellbare Datumsformat Verwendung finden, um den
-verschiedenen Länderpräferenzen Rechnung zu tragen.
+Tag-Monat-Jahr festgelegt ist. In einer spÃ¤teren Version wird ggf. auch hierfÃ¼r
+das im KonfigurationsmenÃ¼ einstellbare Datumsformat Verwendung finden, um den
+verschiedenen LÃ¤nderprÃ¤ferenzen Rechnung zu tragen.
 
 [title]
 *categories#
 
 [text]
-Die in der ersten Box ausgewählte Kategorie wird als Hauptkategorie gewertet
+Die in der ersten Box ausgewÃ¤hlte Kategorie wird als Hauptkategorie gewertet
 und taucht in den Listen zusammen mit den wichtigsten Eckdaten des jeweiligen
-Filmes auf. Unabhängig davon werden jedoch bei Suchen bzw. bei gesetzten
+Filmes auf. UnabhÃ¤ngig davon werden jedoch bei Suchen bzw. bei gesetzten
 <A HREF="{PHP_SELF}?topic=set_filter">Filtern</A> auch die anderen beiden
-(Unter-) Kategorien berücksichtigt.
+(Unter-) Kategorien berÃ¼cksichtigt.
 
 [title]
 *staff#
@@ -119,22 +119,22 @@ Filmes auf. Unabhängig davon werden jedoch bei Suchen bzw. bei gesetzten
 [text]
 Etwas Achtsamkeit ist bei der Eingabe dieser Daten angebracht: das erste Feld
 sollte den Namen, und das zweite den Vornamen enthalten. Auch hier kann
-natürlich wieder jeder seinem Gusto frönen - was aber ggf. einige Funktionen
-von phpVideoPro beeinflußt. Auf der
+natÃ¼rlich wieder jeder seinem Gusto frÃ¶nen - was aber ggf. einige Funktionen
+von phpVideoPro beeinfluÃŸt. Auf der
 <A HREF="http://www.qumran.org/homes/izzy/software/pvp/demo" TARGET="_blank">Demo-Site</A>
-habe ich bereits einige Einträge gesehen, die sowohl im Namen als auch im
-Vornamen vollständige Namen (also Vor- und Nachname) enthielten. Sucht man nun
+habe ich bereits einige EintrÃ¤ge gesehen, die sowohl im Namen als auch im
+Vornamen vollstÃ¤ndige Namen (also Vor- und Nachname) enthielten. Sucht man nun
 aber nach einem bestimmten Darsteller, treten entsprechende Schwierigkeiten auf,
 wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=set_filter">Filters</A>
 feststellen lassen wird.
 
 [text]
-Zusätzlich gibt es zu jedem Namen eine Checkbox "*in_list#", die wiederum mit
+ZusÃ¤tzlich gibt es zu jedem Namen eine Checkbox "*in_list#", die wiederum mit
 einem netten Feature verbunden ist: Bei der Anzeige von Personenlisten, wie
 z.B. der <A HREF="{PHP_SELF}?topic=actors">Schauspielerliste</A>, werden nur
-die Einträge berücksichtigt, die hier ein "Häkchen" erhalten haben. Auf diese
-Weise läßt sich die Anzeige eines Schauspielers für einen bestimmten Film
-unterdrücken (wenn es einem z.B. peinlich ist, daß Sascha Hehn auch in einem
+die EintrÃ¤ge berÃ¼cksichtigt, die hier ein "HÃ¤kchen" erhalten haben. Auf diese
+Weise lÃ¤ÃŸt sich die Anzeige eines Schauspielers fÃ¼r einen bestimmten Film
+unterdrÃ¼cken (wenn es einem z.B. peinlich ist, daÃŸ Sascha Hehn auch in einem
 70ger Jahre P*rn* der eigenen Sammlung mitgespielt hat, und nicht nur in der
 Schwarzwaldklinik :)
 
@@ -142,17 +142,17 @@ Schwarzwaldklinik :)
 *comments#
 
 [text]
-Hier können beliebige Kommentare zum Film erfasst werden. Einige spezielle Tags
-werden zur Unterstützung angeboten: so lassen sich [url]URLs[/url] verlinkbar
-machen (sie werden dann in einem separaten Browser-Fenster geöffnet), sowie
-[img]Grafiken[/img] auch [imgr]rechtsbündig[/imgr] einbinden. Um ein Bild zu
-verlinken, können die Tags wie folgt verschachtelt werden:
+Hier kÃ¶nnen beliebige Kommentare zum Film erfasst werden. Einige spezielle Tags
+werden zur UnterstÃ¼tzung angeboten: so lassen sich [url]URLs[/url] verlinkbar
+machen (sie werden dann in einem separaten Browser-Fenster geÃ¶ffnet), sowie
+[img]Grafiken[/img] auch [imgr]rechtsbÃ¼ndig[/imgr] einbinden. Um ein Bild zu
+verlinken, kÃ¶nnen die Tags wie folgt verschachtelt werden:
 [url][img]Bild-URL[/img][/url].
 [text]
-Desweiteren ist die Verwendung einiger "normaler" HTML Tags für die Formatierung
+Desweiteren ist die Verwendung einiger "normaler" HTML Tags fÃ¼r die Formatierung
 erlaubt: dies sind B,I,U,CENTER sowie BLOCK,PRE,BR,P,HR und Listen. Alle anderen
 Tags werden gnadenlos entfernt - dies dient dem Schutz der Site gegen
-"bösartigen" HTML Code.
+"bÃ¶sartigen" HTML Code.
 
 [eof]
 

@@ -24,4 +24,3 @@ Eintrag sodann <A HREF="{PHP_SELF}?topic=add_entry">editieren</A> oder auch
 löschen kann.
 
 [eof]
-

@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -67,4 +66,3 @@ die aber benötigt werden, mir zur Sicherheit mitgeteilt werden - damit ich sie
 für folgende Versionen berücksichtigen kann.
 
 [eof]
-

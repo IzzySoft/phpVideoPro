@@ -74,4 +74,3 @@ komen (wat alleen zal gebeuren indien JIJ deze maakt, dan is er hier de mogelijk
 om hier de template te selecteren.
 
 [eof]
-

@@ -1,5 +1,4 @@
-<? /* list of labels */
- ?>
+<? /* list of labels */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -19,4 +18,3 @@ wurde, sollten die gewünschten Labels angezeigt werden und lassen sich sodann
 mittels der Druckfunktion des Browsers zu Papier bringen.
 
 [eof]
-

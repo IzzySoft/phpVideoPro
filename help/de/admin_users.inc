@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -68,4 +67,3 @@ Um neue Benutzerkonten hinzuzufügen, oder weitere Details an bereits vorhandene
 Konten zu ändern, sind entsprechende Links vorhanden.
 
 [eof]
-

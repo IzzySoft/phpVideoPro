@@ -22,4 +22,3 @@ kun je besluiten om de film te <A HREF="{PHP_SELF}?topic=add_entry">wijzigen</A>
 of om de film te verwijderen.
 
 [eof]
-

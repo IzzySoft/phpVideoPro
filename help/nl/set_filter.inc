@@ -33,5 +33,5 @@ in de overzichten te zien.</OL>
 <H4>Tekst geplaatst in verschillende velden</H4>
 Deze worden aan elkaar geknoopt door middel van 'and', dus indien je DVD aanvinkt en 
 "Science Fiction" als categorie, dan resulteert dit in alle 'Science Fiction'-dvd's.
-[eof]
 
+[eof]

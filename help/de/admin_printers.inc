@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -59,4 +58,3 @@ verloren gehen, daher sind...
 </ol>
 
 [eof]
-

@@ -8,6 +8,9 @@
  <li>Made editing for translations easy by a new form in admin menu. If you've
      added/updated some entries, you may save them to a file and then send them
      to me for inclusion with future versions!
+ <li>Matzah was cleaned up with the leaven: almost no tags where allowed in the
+     comment field of a movie. Fixed: Now Bold, Underline, Italics and Center
+     work again.
 </ul>
 
 [title]

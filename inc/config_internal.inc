@@ -83,6 +83,9 @@ if (!$pvpinstall) {
  $db->query("SELECT value FROM preferences WHERE name='template'");
  $db->next_record();
  $pvp->tpl_dir = $base_path . "templates/" . $db->f('value');
+ $db->query("SELECT value FROM preferences WHERE name='display_limit'");
+ $db->next_record();
+ $pvp->preferences->display_limit = $db->f('value');
 }
 #--------------------------------------------------[ debug settings ]---
 // which actions to log. Empty string turns off debug feature. Otherwise each letter

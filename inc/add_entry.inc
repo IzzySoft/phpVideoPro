@@ -63,6 +63,15 @@
  (int) $cass_id;
  (int) $part;
 
+ # no *_list field shall be NULL
+ echo "<p><br></p>";
+ $idfields = array("director_list","music_list","vis_actor1","vis_actor2",
+             "vis_actor3","vis_actor4","vis_actor5","lp");
+ foreach ($idfields as $field) {
+   if (!$$field) $$field = 0;
+#   echo "$field: '" . $$field . "'<br>";
+ }
+
  $insert  = "INSERT INTO video (mtype_id,cass_id,part,title,length,aq_date,source,director_id,director_list,"
           . "music_id,music_list,country,year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
           . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,tone_id,"

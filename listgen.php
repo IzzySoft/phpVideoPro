@@ -1,36 +1,34 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ #############################################################################
 
  /* $Id$ */
 
+ #========================================================[ initial setup ]===
  $page_id = "listgen";
  if ($outputtype) $silent = TRUE;
  include("inc/header.inc");
  if (!$pagelength) $pagelength = $pvp->preferences->page_length;
 
- ############################################################################
- # create the list and sent it to the browser for d/l
+ #=========================================[ create and send list for d/l ]===
  if ($outputtype) {
 
-   // disable time out - else long lists have no chance
-   set_time_limit(0);
+   set_time_limit(0); // disable time out - else long lists have no chance
 
-   // title line for multi-page lists
-   function listtitle($page,$pages) {
+   function listtitle($page,$pages) { // title line for multi-page lists
      GLOBAL $listtitle;
      $add = "-= $page / $pages =-";
      $lt = substr($listtitle,0,strlen($listtitle) - strlen($add)) . $add;
      return $lt;
    }
 
-   // obtain the list of movies and prepare some default settings
+   #-------------------[ obtain list of movies & prepare default settings ]---
    $pagewidth  = 98;
    switch ($order) {
      case "title" : $listtitle = lang("medialist_alpha"); $pfile="movie"; break;
@@ -54,15 +52,14 @@
 
    if ($multipage && (--$i % $pagelength)) $out .= "\x0C"; // formfeed after last page if not done
 
-   // send it to the browser
+   #-------------------------------------------[ send list to the browser ]---
    header("Content-Disposition: attachment; filename=medialist.$ext");
    header("Content-type: application/octet-stream"); // text/plain will be displayed inline, so we fool the browser
    echo $out;
    exit;
  }
 
- ############################################################################
- # form to prompt user for input
+ #========================================[ form to prompt user for input ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"listgen.tpl"));
  $t->set_block("list","definitionblock","definitionlist");

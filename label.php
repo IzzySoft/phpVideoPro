@@ -1,23 +1,25 @@
 <?php
- /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
- * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
- * http://www.qumran.org/homes/izzy/                                         *
- * --------------------------------------------------------------------------*
- * This program is free software; you can redistribute and/or modify it      *
- * under the terms of the GNU General Public License (see doc/LICENSE)       *
- \***************************************************************************/
+ #############################################################################
+ # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
+ # http://www.qumran.org/homes/izzy/                                         #
+ # ------------------------------------------------------------------------- #
+ # This program is free software; you can redistribute and/or modify it      #
+ # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Label generator                                                           #
+ #############################################################################
 
  /* $Id$ */
 
+ #========================================================[ initial setup ]===
  $silent = $cass_id || isset($create);
  $page_id = "label";
  $labels_pp = 8; // how many labels per page
  include("inc/header.inc");
  include("inc/class.label.inc");
 
- ############################################################################
- # create exactly one label and send it as image
+ #========================[ create exactly one label and send it as image ]===
  if ($cass_id) { // we directly go to create one label
    if (!$template) $template = "default";
    $id = $db->get_movieid($mtype_id,$cass_id);
@@ -26,8 +28,7 @@
    $label->write($cass_id,$text);
    $label->prn();
    $label->destroy();
- ############################################################################
- # create multiple labels and output result as HTML via template
+ #===============[ create multiple labels and output as HTML via template ]===
  } elseif (isset($create)) { // we have to create multiple labels
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"label_list.tpl"));
@@ -44,8 +45,7 @@
      }
    }
    $t->pparse("out","list");
- ############################################################################
- # query user input for multi-label-print
+ #===============================[ query user input for multi-label-print ]===
  } else { // no arguments - so we have to prompt for them
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"label_init.tpl"));

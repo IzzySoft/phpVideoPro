@@ -300,3 +300,6 @@ INSERT INTO lang VALUES('hour','en','Hour');
 INSERT INTO lang VALUES('hours','en','Hours');
 INSERT INTO lang VALUES('session_purgetime','en','After what time time-out an inactive session?');
 INSERT INTO lang VALUES('session_purgetime_comment','en','How long shall a session stay valid without user activity?');
+INSERT INTO lang VALUES('max_fontsize','en','Max Fontsize');
+INSERT INTO lang VALUES('labeltype','en','Label Type');
+INSERT INTO lang VALUES('layout_label','en','Chose Layout');

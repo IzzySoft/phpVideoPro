@@ -291,3 +291,6 @@ INSERT INTO lang VALUES('hour','de','Stunde');
 INSERT INTO lang VALUES('hours','de','Stunden');
 INSERT INTO lang VALUES('session_purgetime','de','Inaktivitäts-Timeout für Sitzungen');
 INSERT INTO lang VALUES('session_purgetime_comment','de','Wie lange soll eine (angemeldete) Sitzung ohne Benutzer-Aktivität gültig bleiben?');
+INSERT INTO lang VALUES('max_fontsize','de','Maximale Schriftgröße');
+INSERT INTO lang VALUES('labeltype','de','Labeltyp');
+INSERT INTO lang VALUES('layout_label','de','Layout wählen');

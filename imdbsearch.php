@@ -18,7 +18,7 @@
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
- $usecache = TRUE;
+ $usecache = $db->get_config("imdb_cache_use");
  $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
  for ($i=0;$i<$count;++$i) {
@@ -176,7 +176,7 @@
     $t->parse("muslist","musblock",$open);
     $open = TRUE;
    }
-   $t->set_var("music_chk",$pvp->common->make_checkbox("music_chk",$imdb_tx_director));
+   $t->set_var("music_chk",$pvp->common->make_checkbox("music_chk",$imdb_tx_music));
    #-=[ Actors ]=-
    $cast = $movie->cast(); // here come the actors
    $cc = count($cast);

@@ -202,6 +202,7 @@ INSERT INTO lang VALUES ('imdb_tx_comments','de','Kommentar','');
 INSERT INTO lang VALUES ('imdb_tx_country','de','Land','');
 INSERT INTO lang VALUES ('imdb_tx_director','de','Regisseur','');
 INSERT INTO lang VALUES ('imdb_tx_length','de','Filmlänge','');
+INSERT INTO lang VALUES ('imdb_tx_music','de','Musik','');
 INSERT INTO lang VALUES ('imdb_tx_pg','de','FSK','');
 INSERT INTO lang VALUES ('imdb_tx_title','de','Filmtitel','');
 INSERT INTO lang VALUES ('imdb_tx_year','de','Jahr','');

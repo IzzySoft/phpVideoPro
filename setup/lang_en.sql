@@ -583,4 +583,5 @@ INSERT INTO lang VALUES ('cache_enable','en','Enable browser/proxy caching?','Op
 INSERT INTO lang VALUES ('cache_enable_comment','en','Since phpVideoPro is a dynamic application, generating pages based upon database information on each request, you may want to disable caching the generated pages. Sometimes, this is very helpful for MSIE users...','Option on the configuration screen');
 INSERT INTO lang VALUES ('imdb_txwin_autoclose','en','AutoClose search window on data transfer?','Option on the configuration screen for IMDB window');
 INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','en','When you got all needed values from the IMDB and transfered them to your edit screen, the search window is no longer needed. Nevertheless, you may want to keep it for reference or other reasons.','Option on the configuration screen for IMDB window');
+INSERT INTO lang VALUES ('imdb_tx_music','en','Composer','Option name on configuration/preferences page for items to transfer from IMDB');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

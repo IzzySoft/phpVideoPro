@@ -68,7 +68,7 @@ if ( !isset($_REQUEST["oldversion"]) ) {
 <P ALIGN=JUSTIFY>This simple script will update your database from a previous
  version of phpVideoPro to the recent one. I strongly recommend you to backup
  your existing database before executing the script! Furthermore, please
- inspect config.inc for possible changes.</P>
+ inspect inc/config.inc for possible changes.</P>
 <P ALIGN=JUSTIFY>For each update step, you should then be notified whether it
  was successfull or not. So now, if you've made your backup
  (or decided not to backup at all), we can go on with the update process.</P>
@@ -144,7 +144,7 @@ $pvp->preferences->admin();
     case "0.6.1"    : queryf("0-6-1_to_0-6-2.".$database["type"],"Update from v0.6.1 to v0.6.2");
     case "0.6.2"    : $db2utf8 = TRUE;
     case "0.6.3"    : queryf("0-6-3_to_0-6-4.sql","Update from v0.6.3 to v0.6.4");
-    case "0.6.4"    : queryf("0-6-4_to_0-6-5.sql","Update from v0.6.4 to v0.6.5");
+    case "0.6.4"    :
     case "0.6.5"    : queryf("0-6-5_to_0-6-6.".$database["type"],"Update from v0.6.5 to v0.6.6");
                       queryf("lang_en.sql","Refresh of English language support");
                       break;

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -22,7 +22,7 @@
  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
 </HEAD>
 <BODY>
-<H1 ALIGN=CENTER><?=$title?></H1>
+<H2 ALIGN=CENTER><?=$title?></H2>
 
 <TABLE WIDTH="90%" ALIGN="center">
  <TR><TH>Requirements</TH></TR>
@@ -31,12 +31,12 @@
      at all):</P>
      <OL>
       <LI>have a webserver running (I just tested it with Apache)</LI>
-      <LI>have PHP running, at least v4.0b3 (a version less than this won't work;
+      <LI>have PHP running, at least v4.1 (a version less than this won't work;
           I recommend using Apache with PHP as loadable module, and that's
           the only combination I've tested)</LI>
-      <LI>make sure your PHP has MySQL support built in! (if requirements
-          1, 2 and 4 are met, click <A HREF="phpinfo.php">here</A> to see what
-          features are supported by your PHP setup)</LI>
+      <LI>make sure your PHP has MySQL or PostgreSQL support built in! (if
+          requirements 1, 2 and 4 are met, click <A HREF="phpinfo.php">here</A>
+          to see what features are supported by your PHP setup)</LI>
      </OL>
      <P>Guess your system meets these requirements - otherwise you wouldn't
      read this page, would you?</P></DIV></TD></TR>
@@ -48,19 +48,20 @@
           settings you <b>must</b> check, so this is done fast:<BR><BR>
           <TABLE WIDTH="90%" ALIGN="center" BORDER="1">
 	   <COLGROUP><COL WIDTH="15%"><COL WIDTH="85%"></COLGROUP>
-           <TR><TD><b>$base_url</b></TD>
-	       <TD>the root directory of your phpVideoPro copy. Make sure it has
-               a leading slash (i.e. it has to be the complete path starting
-               with your web servers document root) as well as a trailing slash.</TD></TR>
-           <TR><TD><b>$base_path</b></TD>
-               <TD>same as $base_url, but regarding your file system (so for
-               Windoze this one starts with a drive letter)</TD></TR>
+           <TR><TD><b>$backup_path</b></TD>
+	       <TD>this is where phpVideoPro looks for the backup files to
+               restore from (see online help on the admin->backup screen). You
+               may use an absolute path, of course - even if it leads to a
+               location outside your web tree. If you use a relative path (i.e.
+               one that does not start with a slash), this will be relative to
+               the directory you installed phpVideoPro to.</TD></TR>
            <TR><TD><b>$database</b></TD>
                <TD>settings for the database (host running the db server,
                database name, user and password to access the database).</TD></TR>
           </TABLE><BR>
-          The other settings you can leave unchanged, they have suitable defaults.
-          you may change them in the future if you feel any need to :)</LI>
+          The other settings (i.e. other files) you should leave unchanged. More
+          customization may be done later via the web interface - and if you
+          feel there is something missing, better tell me ;)</LI>
       <LI>create the database with the name you specified in inc/config.inc as
           $database["database"] on the host you configured there. Make sure the
           configured user has at least following privileges for this database:

@@ -21,6 +21,7 @@
   include($inc_path . "/class.validate.inc");
   include($inc_path . "/class.session.inc");
   include($inc_path . "/class.auth.inc");
+  if ( !ini_get("register_globals") ) include ($inc_path . "/globals.inc");
   $pagename = "phpVideoPro v$version @ $site";
   switch ( strtolower($page_id) ) {
     case ""              : break;

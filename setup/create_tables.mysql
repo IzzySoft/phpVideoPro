@@ -135,7 +135,7 @@ CREATE TABLE video (
    part int(2),
    title varchar(60),
    length int(3),
-   aq_date date,
+   aq_date varchar(10),
    source varchar(15),
    director_id int(5),
    director_list int(1),

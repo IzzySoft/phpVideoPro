@@ -6,7 +6,7 @@ Wie erstelle ich meine eigenen Hilfe-Seiten?
 
 [text]
 Das ist die einfachste der "Wie erstelle ich..." Sachen - insbesondere, nachdem
-mit v0.1.7 auch das Hilfesystem templatebasiert ist. jetzt sind für diesen
+mit v0.1.7 auch das Hilfesystem templatebasiert ist. Jetzt sind für diesen
 Punkt weder PHP noch HTML Kenntnisse erforderlich - auch wenn man selbige bei
 Bedarf einsetzen <b>kann</b>. Die zu bearbeitenden/erstellenden Dateien sind
 reine Textdateien, die HTML/Makro Code enthalten <b>können</b>, aber nicht

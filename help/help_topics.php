@@ -18,6 +18,6 @@
     li("taperest_filtered",2);
   headline("howto");
    li("howto_lang");
-   li("create_help_file");
+   li("howto_help");
    li("create_templates");
 ?>

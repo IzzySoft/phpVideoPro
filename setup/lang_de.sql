@@ -105,3 +105,4 @@ INSERT INTO lang VALUES('no_entries_found','de','Kein Datensatz gefunden');
 INSERT INTO lang VALUES('no_space_of','de','Es konnte kein Medium mit mindestens %1 Minuten freiem Platz in der Datenbank gefunden werden.');
 INSERT INTO lang VALUES('howto','de','HowTo\'s');
 INSERT INTO lang VALUES('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?');
+INSERT INTO lang VALUES('howto_help','de','Wie erstelle ich eine Hilfedatei?');

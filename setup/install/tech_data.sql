@@ -4,6 +4,14 @@
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://german.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_pg');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_length');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_cat');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_director');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 
 # Data for pvp_users
 #
@@ -99,4 +107,12 @@ INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 INSERT INTO preferences (name,value) VALUES ('printer_id','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_url','http://us.imdb.com/');
-
+INSERT INTO preferences (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_title','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_year','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_pg','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_length','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_cat','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_director','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');

@@ -42,6 +42,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("lang",$_POST["default_lang"]);
   $pvp->preferences->set("template",$_POST["template_set"]);
   $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
+  $pvp->preferences->set("imdb_url2",$_POST["imdb_url2"]);
   $pvp->preferences->set("page_length",$_POST["cpage_length"]);
   $pvp->preferences->set("display_limit",$_POST["cdisplay_limit"]);
   $pvp->preferences->set("date_format",$_POST["cdate_format"]);
@@ -98,6 +99,12 @@ if ( isset($update) ) {
     }
     closedir($handle);
   }
+  #-----------------------------[ IMDB Options ]---
+  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
+  for ($i=0;$i<$count;++$i) {
+    if (!isset($_POST[$imdbtx["imdb_tx"][$i]])) $val = 0; else $val = 1;
+    $pvp->preferences->set($imdbtx["imdb_tx"][$i],$val);
+  }
   header("Location: " .$pvp->link->slink($url));
   exit;
 }
@@ -115,6 +122,11 @@ $lang_installed = $db->get_installedlang();
 $lang_preferred = $pvp->preferences->get("lang");
 $template_set   = $pvp->preferences->get("template");
 $imdb_url       = $pvp->preferences->get("imdb_url");
+$imdb_url2      = $pvp->preferences->get("imdb_url2");
+$imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
+for ($i=0;$i<$count;++$i) {
+  ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
+}
 $cdisplay_limit = $pvp->preferences->get("display_limit");
 $cpage_length   = $pvp->preferences->get("page_length");
 $cdate_format   = $pvp->preferences->get("date_format");
@@ -383,7 +395,54 @@ if ($admin) {
   $t->parse("list","listblock",TRUE);
 }
 
-#---------------------------------------------[ setup block 5: misc stuff ]---
+#------------------------------------------[ setup block 5: imdb defaults ]---
+$t->set_var("list_head","IMDB");
+
+#--[ imdb_url ]--
+$t->set_var("item_name",lang("imdb_url"));
+$t->set_var("item_comment",lang("imdb_url_comment"));
+$select  = "<SELECT NAME=\"imdb_url\">";
+$imdburls = $db->get_options("imdb_url");
+for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
+  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
+  if ($imdburls["imdb_url"][$i] == $imdb_url) $select .= " SELECTED";
+  $select .= ">" . $imdburls["imdb_url"][$i] . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock");
+
+#--[ imdb_url2 ]--
+$t->set_var("item_name",lang("imdb_url2"));
+$t->set_var("item_comment",lang("imdb_url2_comment"));
+$select  = "<SELECT NAME=\"imdb_url2\">";
+$imdburls = $db->get_options("imdb_url");
+for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
+  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
+  if ($imdburls["imdb_url"][$i] == $imdb_url2) $select .= " SELECTED";
+  $select .= ">" . $imdburls["imdb_url"][$i] . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ IMDB Transfer ]--
+$t->set_var("item_name",lang("imdb_tx"));
+$t->set_var("item_comment",lang("imdb_tx_comment"));
+$select = "";
+$imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
+for ($i=0;$i<$count;++$i) {
+  $select .= "<INPUT TYPE='checkbox' CLASS='checkbox' NAME='".$imdbtx["imdb_tx"][$i]."'";
+  if (${$imdbtx["imdb_tx"][$i]}) $select .= " CHECKED";
+  $select .= ">".lang($imdbtx["imdb_tx"][$i])."&nbsp;";
+}
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ complete imdb block ]--
+$t->parse("list","listblock",TRUE);
+
+#---------------------------------------------[ setup block 6: misc stuff ]---
 $t->set_var("list_head",lang("general"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 
@@ -399,22 +458,6 @@ for ($i=0;$i<count($tpldir);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock");
-
-#--[ imdb_url ]--
-$t->set_var("item_name",lang("imdb_url"));
-$t->set_var("item_comment",lang("imdb_url_comment"));
-$select  = "<SELECT NAME=\"imdb_url\">";
-$imdburls = $db->get_options("imdb_url");
-for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
-  $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
-  if ($imdburls["imdb_url"][$i] == $imdb_url) $select .= " SELECTED";
-  $select .= ">" . $imdburls["imdb_url"][$i] . "</OPTION>";
-}
-$select .= "</SELECT>";
-$t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
-#echo "IMDB URLs: <PRE>";print_r($imdburls);echo "</PRE>\n";
-#exit; # *!*
 
 #--[ printer_id ]--
 $t->set_var("item_name",lang("printer"));

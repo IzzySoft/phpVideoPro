@@ -566,4 +566,16 @@ INSERT INTO lang VALUES ('remove_cat','en','Remove category','Hint in the Catego
 INSERT INTO lang VALUES ('imdb_title_search','en','Search movie on IMDB','Page name: retrieving movie details from the IMDB');
 INSERT INTO lang VALUES ('imdb_transfer2edit','en','Transfer data to edit screen','Button description on the IMDBSearch page');
 INSERT INTO lang VALUES ('imdbsearch','en','Retrieve movie details from the IMDB','Item in the help topic list');
+INSERT INTO lang VALUES('imdb_url2','en','IMDB Backup Site to use','String to display for the IMDB selection on the configuration page');
+INSERT INTO lang VALUES('imdb_url2_comment','en','Although we have localized instances of the IMDB, all they localized up to know are the identifiers the IMDB class uses to parse - so this localization(s) just break the class. On the other hand, the movie information we need stays in English even on non-English sites. This means, for parsing the details we need an <b><i>English</i></b> IMDB site - please chose an appropriate one.','String to display as explanation for the IMDB selection on the configuration page');
+INSERT INTO lang VALUES ('imdb_tx','en','Data to transfer from IMDB','String to display as explanation for the IMDB selection on the configuration page');
+INSERT INTO lang VALUES ('imdb_tx_comment','en','When adding/editing a movie entry with the IMDB feature: what information you want to transfer to phpVideoPros database by default?','String to display as explanation for the IMDB selection on the configuration page');
+INSERT INTO lang VALUES ('imdb_tx_title','en','Title','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_year','en','Year','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_pg','en','PG','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_length','en','Length','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_cat','en','Categories','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_director','en','Director','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_actor','en','Actors','Option name on configuration/preferences page for items to transfer from IMDB');
+INSERT INTO lang VALUES ('imdb_tx_comments','en','Comment','Option name on configuration/preferences page for items to transfer from IMDB');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

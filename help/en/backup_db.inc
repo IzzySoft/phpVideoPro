@@ -47,24 +47,45 @@ process is finnished (you will see the result just below the page title then).
 
 [text]
 phpVideoPro will automatically detect whether the backup file was compressed
-and care for de-compression in that case. As for now, you will have to chose
-the "*clean_restore#" checkbox (if your database isn't already empty), since
-otherwise the restore would result in conflicts due to duplicate MediaNumbers.
+and care for de-compression in that case. The restore process will also detect
+new categories automatically. This means, if you import a movie backup from a
+different installation, where new categories may have been added, phpVideoPro
+takes care for this fact, too. Whether a category is already available with
+your installation will be decided based on the <i>*cat_internal_name#</i> (see
+<i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>), so make sure to
+not change this name for any existing category. If a new category is detected,
+it will be added to the categories table with a new id and the provided
+<i>*cat_internal_name#</i>. The translation provided with this category will
+always be added to the <i><b>English</b></i> language - this is not a bug but a
+feature: we always need an English translation for fallback, so that users have
+a term available regardless of their prefered language setting. You may edit
+the translation later using the translation editor (see
+<i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>).
 
 [text]
-The restore process will also detect new categories automatically. This means,
-if you import a movie backup from a different installation, where new categories
-may have been added, phpVideoPro takes care for this fact, too. Whether a
-category is already available with your installation will be decided based on
-the <i>*cat_internal_name#</i> (see <i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>),
-so make sure to not change this name for any existing category. If a new category
-is detected, it will be added to the categories table with a new id and the
-provided <i>*cat_internal_name#</i>. The translation provided with this
-category will always be added to the <i><b>English</b></i> language - this is
-not a bug but a feature: we always need an English translation for fallback,
-so that users have a term available regardless of their prefered language setting.
-You may edit the translation later using the translation editor (see
-<i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>).
+Moreover, if any imported movie contains an audio or subtitle channel for a
+language you did not (yet) activate for audio/subtitle: don't worry -
+phpVideoPro takes care for that, too.
+
+[title]
+Replace or Append?
+
+[text]
+If you "screwed up" your database and want to replace all entries, just check
+the "<i>*clean_restore#</i>" box. This will first remove all entries from the
+database, and then import the new data from your backup file. If you just want
+to import an entire database from a different machine as duplicate, do the same.
+
+[text]
+If you uncheck this box, all movies from the backup file will be <i><b>appended</b></i>
+to your database. This means, phpVideoPro will look up the highest *medianr#
+for each media type, increment it by 1, and then starting to add new entries
+as if you just copied all the media as well (i.e., movies that have been on the
+same medium on the export/backup will stay on the same medium). This also means
+that, if you started with a fresh installation, all "gaps" in the *medianr#
+resulting from removed media will be closed, and you will start with a straight
+line from 1 to n without "gaps" (and, of course, with a lower "highest entry"
+number).
 
 [title]
 Restore (full)

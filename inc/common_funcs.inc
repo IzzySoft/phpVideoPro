@@ -16,7 +16,7 @@
  /** output debug message depending on configured debug level
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function debug
   * @param string level debug level (1 char only)
   * @param string msg debug message
@@ -31,7 +31,7 @@
  /** format and display an error message for unrecoverable error
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function display_error
   * @param string error error message to display
   */
@@ -46,7 +46,7 @@
  /** preset empty (table) fields with a hard space (to enforce table borders)
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function check_empty
   * @param string field field to check
   */
@@ -57,7 +57,7 @@
  /** check wether the string contains only digits (and nothing else)
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function is_num
   * @param string var var to check
   */
@@ -75,7 +75,7 @@
   *  date must really exist
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function check_date
   * @param string date date to check (format: YYYY-MM-DD)
   * @param optional integer exact whether the date has to be valid; otherwise "00" is counted as a valid day/month and "0000" as a valid year as well (defaults to "1")
@@ -104,7 +104,7 @@
   *  so this is just a wrapper until the change is done in all files
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function get_filters
   */
  function get_filters() {
@@ -117,7 +117,7 @@
   *  if no translation is found, the content of the passed param $key is returned instead
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function lang
   * @param string key translation key
   * @param optional array m1 replace placeholder (%1..%10 in translations)
@@ -132,13 +132,10 @@
    return translate("$key",$vars);
  }
 
- # initiate the translations only once
- if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->get("lang") );
-
  /** build the translations (helper func to function lang)
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function translate
   * @param string key translation key
   * @param optional array vars array of replacement strings (see function lang)
@@ -160,7 +157,7 @@
  /** kick-off unauthorized visitor
   * @package Api
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   * @function kickoff
   */
  function kickoff() {

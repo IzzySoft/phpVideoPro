@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class preferences
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
 
  class preferences {
@@ -28,7 +28,7 @@
    * @constructor preferences
    */
   function preferences() {
-    GLOBAL $db;
+    GLOBAL $db,$pvp;
     $pnames = array ("lang","template","display_limit","date_format",
               "page_length","default_movie_colorid","default_movie_onlabel",
 	      "default_movie_toneid","printer_id","imdb_url");
@@ -36,6 +36,7 @@
       $this->$var = $db->get_preferences($var);
     }
     $this->filter = $this->get_filters();
+#    echo "<P><BR><BR>UserID: '".$pvp->auth->user_id."'</P>\n";
   }
 
   ############################################################################
@@ -57,10 +58,14 @@
    */
   function set($name,$value) {
     GLOBAL $db, $pvp;
-    if ($pvp->config->enable_cookies && !$this->admin) {
-      $pvp->cookie->set($name,$value);
-    } else {
+    if ($this->admin) {
       $db->set_preferences($name,$value);
+    } else {
+      if ($pvp->cookie->active) {
+        $pvp->cookie->set($name,$value);
+      } else {
+        $db->set_preferences($name,$value,$pvp->auth->user_id);
+      }
     }
   }
 
@@ -70,15 +75,29 @@
    * @param string name preference to set
    */
   function get($name) {
-    GLOBAL $pvp;
-    if ($pvp->config->enable_cookies && !$this->admin) {
-      $pref = $pvp->cookie->get($name);
-      if (strlen($pref)) {
-        if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-        return($pref); 
-      } else { return $this->$name; }
-    } else {
+    GLOBAL $pvp,$db;
+    if ($this->admin) {
       return $this->$name;
+    } else {
+      if ($pvp->cookie->active) {
+        $pref = $pvp->cookie->get($name);
+        if (strlen($pref)) {
+          if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
+          return($pref); 
+        } else {
+	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
+          if (strlen($pref)) {
+            if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
+            return($pref); 
+	  } else { return $this->$name; }
+	}
+      } else {
+	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
+          if (strlen($pref)) {
+            if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
+            return($pref); 
+	  } else { return $this->$name; }
+      }
     }
   }
 

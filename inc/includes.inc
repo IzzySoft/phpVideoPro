@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -22,6 +22,7 @@
   include($inc_path . "/class.session.inc");
   include($inc_path . "/class.auth.inc");
   if ( !ini_get("register_globals") ) include ($inc_path . "/globals.inc");
+  if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->get("lang") );
   $pagename = "phpVideoPro v$version @ $site";
   switch ( strtolower($page_id) ) {
     case ""              : break;

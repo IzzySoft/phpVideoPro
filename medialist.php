@@ -31,7 +31,7 @@
 
   $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
   $query .= " FROM video v, cat c, mtypes m";
-  $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id";
+  $query .= " WHERE v.cat1_id=c.id AND v.mtype_id=m.id";
   if ( strlen($filter) ) $query .= " AND ($filter)";
   $query .= $orderby;
   dbquery($query);

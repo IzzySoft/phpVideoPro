@@ -13,10 +13,28 @@
  /* $Id$ */
 
  ##############################################################################
+ # replace empty values within SQL queries by NULL statement to keep query
+ # syntactically correct
+ function clean_query(&$query) {
+  $query = str_replace ("''", "NULL", $query);
+  $query = str_replace ("''", "NULL", $query);
+  $query = str_replace (",,", ",NULL,", $query);
+  $query = str_replace (",,", ",NULL,", $query);
+  $query = str_replace ("=,", "=NULL,", $query);
+  $query = str_replace ("= ", "=NULL ", $query);
+  $query = str_replace ("(,", "(NULL,", $query);
+  $query = str_replace (",)", ",NULL)", $query);
+  $query = str_replace ("\",", "\"NULL,", $query);
+  $query = str_replace (",\"", ",NULL\"", $query);
+  if (substr($query,strlen($query)-1)=="=") $query .= "NULL";
+ }
+
+ ##############################################################################
  # query db and provide debug output
   function dbquery($query) {
     GLOBAL $db,$colors;
     debug("S",$colors["ok"] . "$query</Font><BR>\n");
+    clean_query($query);
     if ( $db->query($query) ) return 1;
     return 0;
   }
@@ -84,5 +102,4 @@
      exit;
    }
  }
-
 ?>

@@ -23,22 +23,22 @@
   function getStaffClause($i) {
     GLOBAL $staff,$stafftype;
     switch ($stafftype) {
-      case "actors"     : $staff_clause = " (v.actor1_id='" . $staff[$i]->id ."'"
-                                        . " AND v.actor1_list='1') OR"
-					. " (v.actor2_id='" . $staff[$i]->id ."'"
-                                        . " AND v.actor2_list='1') OR"
-					. " (v.actor3_id='" . $staff[$i]->id ."'"
-                                        . " AND v.actor3_list='1') OR"
-					. " (v.actor4_id='" . $staff[$i]->id ."'"
-                                        . " AND v.actor4_list='1') OR"
-					. " (v.actor5_id='" . $staff[$i]->id ."'"
-                                        . " AND v.actor5_list='1'))";
+      case "actors"     : $staff_clause = " (v.actor1_id=" . $staff[$i]->id
+                                        . " AND v.actor1_list=1) OR"
+					. " (v.actor2_id=" . $staff[$i]->id
+                                        . " AND v.actor2_list=1) OR"
+					. " (v.actor3_id=" . $staff[$i]->id
+                                        . " AND v.actor3_list=1) OR"
+					. " (v.actor4_id=" . $staff[$i]->id
+                                        . " AND v.actor4_list=1) OR"
+					. " (v.actor5_id=" . $staff[$i]->id
+                                        . " AND v.actor5_list=1))";
 					break;
-      case "directors" : $staff_clause = " (v.director_id='" . $staff[$i]->id ."'"
-                                       . " AND v.director_list='1'))";
+      case "directors" : $staff_clause = " (v.director_id=" . $staff[$i]->id
+                                       . " AND v.director_list=1))";
                          break;
-      case "music"     : $staff_clause = " (v.music_id='" . $staff[$i]->id ."'"
-                                       . " AND v.music_list='1'))";
+      case "music"     : $staff_clause = " (v.music_id=" . $staff[$i]->id
+                                       . " AND v.music_list=1))";
                          break;
       default          : break;
     }

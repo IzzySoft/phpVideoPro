@@ -33,7 +33,7 @@
 		     "taperest_empty"=>"taperest_empty.tpl"));
   $t->set_block("taperest_list","itemblock","itemlist");
   $t->set_block("itemblock","movieblock","movielist");
-  $where = "WHERE free>='$minfree'";
+  $where = "WHERE free>=$minfree";
   if ( strlen($filter) ) {
     dbquery("SELECT cass_id FROM video v WHERE $filter");
     $i=0;

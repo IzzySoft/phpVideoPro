@@ -143,7 +143,7 @@
   // sub-queries
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor" . $i . "_id";
-    $query   = "SELECT name,firstname FROM actors WHERE id=\"${$act_id}\"";
+    $query   = "SELECT name,firstname FROM actors WHERE id=${$act_id}";
     dbquery($query); $db->next_record();
     $actor[$i][name]  = $db->f('name');
     $actor[$i][fname] = $db->f('firstname');
@@ -151,10 +151,10 @@
   dbquery("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
   $db->next_record();
   $mediatype = $db->f('sname'); $media_tname = $db->f('name');
-  dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
+  dbquery("SELECT name,firstname FROM directors WHERE id=$director_id");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');
-  dbquery("SELECT name,firstname FROM music WHERE id='$music_id'");
+  dbquery("SELECT name,firstname FROM music WHERE id=$music_id");
   $db->next_record();
   $composer_name = $db->f('name'); $composer_fname = $db->f('firstname');
   dbquery("SELECT name FROM tone WHERE id=$tone_id");
@@ -170,19 +170,19 @@
   if (strlen($pict_format)<1) $pict_format = "unknown";
   for ($i=1;$i<4;$i++) {
     $cat_nr  = "cat" . $i . "_id";
-    $query   = "SELECT name FROM cat WHERE id=\"${$cat_nr}\"";
+    $query   = "SELECT name FROM cat WHERE id=${$cat_nr}";
     dbquery($query); $db->next_record();
     $cat[$i] = $db->f('name');
   }
   $free = "0";
   if ($mediatype == "RVT") {
-    $query = "SELECT free FROM cass WHERE id='$cass_id'";
+    $query = "SELECT free FROM cass WHERE id=$cass_id";
     dbquery($query); $db->next_record();
     $free  = $db->f('free');
   }
  } else {
    for ($i=0;$i<count($mtypes);$i++) {
-     dbquery("SELECT MAX(cass_id) FROM video WHERE mtype_id='" . $mtypes[$i][id] . "'");
+     dbquery("SELECT MAX(cass_id) FROM video WHERE mtype_id=" . $mtypes[$i][id]);
      $db->next_record();
      $lastnum[$i][mtype]   = $mtypes[$i][sname];
      $lastnum[$i][mtype_id]= $mtypes[$i][id];
@@ -190,7 +190,7 @@
      while ( strlen($lastnum[$i][cass_id])<4 ) { $lastnum[$i][cass_id] = "0" . $lastnum[$i][cass_id]; }
    }
    for ($i=0;$i<count($lastnum);$i++) {
-     dbquery("SELECT MAX(part) FROM video WHERE cass_id='" . $lastnum[$i][cass_id] . "' AND mtype_id='" . $lastnum[$i][mtype_id] . "'");
+     dbquery("SELECT MAX(part) FROM video WHERE cass_id=" . $lastnum[$i][cass_id] . " AND mtype_id=" . $lastnum[$i][mtype_id]);
      $db->next_record();
      $lastnum[$i][part]    = $db->f('MAX(part)');
      while ( strlen($lastnum[$i][part])<2 ) { $lastnum[$i][part] = "0" . $lastnum[$i][part]; }

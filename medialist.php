@@ -3,6 +3,7 @@
   $page_id = "medialist";
   include("inc/config.inc");
   include("inc/header.inc");
+  $filter = get_filters();
 
 ?>
 
@@ -15,6 +16,7 @@
   $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id";
   $query .= " FROM video v, cat c, mtypes m";
   $query .= " WHERE v.cat1_id = c.id AND v.mtype_id = m.id";
+  if ( strlen($filter) ) $query .= " AND ($filter)";
   $db->query($query);
   while ($db->next_record()) {
    $mtype    = $db->f('sname');

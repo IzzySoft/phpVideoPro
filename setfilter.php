@@ -43,7 +43,6 @@
       $field = "color_" . $id;
       if (${$field}) $filter->color->$id = TRUE;
     }
-    $save = serialize($filter);
     dbquery("SELECT id,name FROM tone");
     while ( $db->next_record() ) {
       $id    = $db->f('id');

@@ -15,6 +15,16 @@
   <LI><b>0.1.1 (July 2001)</b><br>
       <ul>
        <li>(un)setting of filters now implemented
+       <li>for now filters follow this rule: multiple selected items of the
+           same type (e.g. categories) are combined with "OR" (except those
+           with "min" and "max" values - they are combined with "AND"), different
+           types are combined with "AND". An example: setting the filter on
+           category_a, category_b, mediatype_a and mediatype_b would produce
+           the filter "(category_a OR category_b) AND (mediatype_a OR mediatype_b)".
+           I plan to extend this, and make AND/OR selectable for those fields it
+           makes sense with (e.g. it makes no sense with the colors to combine them
+           with AND - since a movie is either s/w or color).
+       <li>implemented filters into medialist - seems to work :)
       </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works

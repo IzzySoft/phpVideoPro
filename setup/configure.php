@@ -41,12 +41,13 @@ if ( isset($update) ) {
   $colors["err"]              = $color_err;
   $pvp->preferences->set("lang",$default_lang);
   $pvp->preferences->set("template",$template_set);
-  $pvp->preferences->set("display_limit",$display_limit);
-  $pvp->preferences->set("page_length",$page_length);
-  $pvp->preferences->set("date_format",$date_format);
+  $pvp->preferences->set("display_limit",$cdisplay_limit);
+  $pvp->preferences->set("page_length",$cpage_length);
+  $pvp->preferences->set("date_format",$cdate_format);
   $pvp->preferences->set("default_movie_toneid",$movie_tone);
   $pvp->preferences->set("default_movie_colorid",$movie_color);
-  $pvp->preferences->set("default_movie_onlabel",$onlabel_default);
+  if ($label_default) { $onlabel = "1"; } else { $onlabel = "0"; }
+  $pvp->preferences->set("default_movie_onlabel",$onlabel);
   $pvp->preferences->set("printer_id",$cprinter_id);
   $mtypes = $db->get_mtypes();
   if ($admin) {
@@ -109,12 +110,12 @@ $lang_installed = $db->get_installedlang();
 $lang_preferred = $pvp->preferences->get("lang");
 $colors         = $pvp->preferences->get("colors");
 $template_set   = $pvp->preferences->get("template");
-$display_limit  = $pvp->preferences->get("display_limit");
-$page_length    = $pvp->preferences->get("page_length");
-$date_format    = $pvp->preferences->get("date_format");
+$cdisplay_limit = $pvp->preferences->get("display_limit");
+$cpage_length   = $pvp->preferences->get("page_length");
+$cdate_format   = $pvp->preferences->get("date_format");
 $movie_tone     = $pvp->preferences->get("default_movie_toneid");
 $movie_color    = $pvp->preferences->get("default_movie_colorid");
-$onlabel_default= $pvp->preferences->get("default_movie_onlabel");
+$label_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
@@ -290,10 +291,11 @@ if ($admin) {
 #--[ default_movie_onlabel ]--
 $t->set_var("item_name",lang("movie_onlabel_default"));
 $t->set_var("item_comment",lang("movie_onlabel_default_comment"));
-if ($onlabel_default) {
-  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\" CHECKED>");
+#if ($onlabel_default) {
+if ($pvp->preferences->get("default_movie_onlabel")) {
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"label_default\" VALUE=\"1\" CHECKED>");
 } else {
-  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"onlabel_default\" VALUE=\"1\">");
+  $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"label_default\" VALUE=\"1\">");
 }
 if ($admin) {
   $t->parse("item","itemblock",TRUE);
@@ -410,17 +412,17 @@ $t->parse("item","itemblock");
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));
 $t->set_var("item_comment",lang("display_limit_comment"));
-$t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
+$t->set_var("item_input",$color_input . " NAME=\"cdisplay_limit\" VALUE=\"$cdisplay_limit\">");
 $t->parse("item","itemblock",TRUE);
 
 #--[ lines per page ]--
 $t->set_var("item_name",lang("lines_per_page"));
 $t->set_var("item_comment",lang("lines_per_page_comment"));
-$t->set_var("item_input",$color_input . " NAME=\"page_length\" VALUE=\"$page_length\">");
+$t->set_var("item_input",$color_input . " NAME=\"cpage_length\" VALUE=\"$cpage_length\">");
 $t->parse("item","itemblock",TRUE);
 
 #--[ date_format ]--
-$select  = "<SELECT NAME='date_format'><OPTION"; if ($date_format=="y-m-d") $select.=" SELECTED";
+$select  = "<SELECT NAME='cdate_format'><OPTION"; if ($date_format=="y-m-d") $select.=" SELECTED";
 $select .= ">y-m-d</OPTION><OPTION"; if ($date_format=="d.m.y") $select .=" SELECTED";
 $select .= ">d.m.y</OPTION><OPTION"; if ($date_format=="d/m/y") $select .=" SELECTED";
 $select .= ">d/m/y</OPTION></SELECT>";
@@ -446,6 +448,5 @@ if (!$pvp->config->enable_cookies) $t->set_var("sess_id","<INPUT TYPE='hidden' N
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
 if ($menue && !$update) include ($base_path . "inc/header.inc");
 $t->pparse("out","config");
-
 include($base_path . "inc/footer.inc");
 ?>

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -15,8 +15,18 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_translations";
  include("../inc/includes.inc");
+
+ #-------------------------------------------------[ Register global vars ]---
+ $update     = $_POST["update"];
+ $sellang    = $_POST["sellang"];
+ $savelang   = $_GET["savelang"];
+ $targetlang = $_REQUEST["targetlang"];
+ $start      = $_REQUEST["start"];
+
+ #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
- $filter = get_filters();
+
+ #--------------------------------------------------[ initialize template ]---
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
@@ -87,7 +97,7 @@
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount -2;$i++) {
    $msgid  = $list["xlist"][$i];
-   if ($update) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
+   if ($update) $db->set_translation($msgid,$_POST[$msgid."_trans"],$targetlang);
    $orig   = $list["$msgid"];
    $target = $db->get_singletrans($targetlang,"",$msgid);
    if ($orig) $orig = htmlentities($orig);

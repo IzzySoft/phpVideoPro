@@ -1,24 +1,36 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
- # Administration: User Access Management                                    #
+ # Administration: Management of technical movie data (media types etc.)     #
  #############################################################################
 
  /* $Id$ */
 
  $page_id = "admin_movietech";
  include("../inc/includes.inc");
- include("../inc/header.inc");
+
+ #=================================================[ Register global vars ]===
+ $postit = array ("name","sname","id");
+ foreach ($postit as $var) {
+   $$var = $_POST[$var];
+ }
+ $postit = array ("type","delete","edit","add");
+ foreach ($postit as $var) {
+   $$var = $_REQUEST[$var];
+ }
+ unset($postit);
+
+ #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();
 
  #==================================================[ process the changes ]===
- if ($update) {
+ if ($_POST["update"]) {
    switch($type) {
      case "pict"  : $success = $db->set_pict($name,$sname,$id); break;
      case "color" : $success = $db->set_color($name,$sname,$id); break;
@@ -29,11 +41,12 @@
    if ($success) {
      $save_result = "<SPAN CLASS='ok'>" .lang("update_success") . ".</SPAN><BR>\n";
    } else {
-     $save_result = "<SPAN CLASS='error'>" .lang("update_failed"). "</SPAN><BR>\n";
+     echo "<p><br></p>Inserting Name($name), sName($sname), ID($id)<br>\n";
    }
  }
 
  #=======================================================[ build the form ]===
+ include("../inc/header.inc");
  #-------------------------------------------------------[ init templates ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
  $edit_img  = $tpl_dir . "/images/edit.png";
@@ -41,6 +54,7 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_movietech.tpl"));
  $t->set_block("template","mainblock","main");
+ $t->set_block("template","mlinkblock","mlink");
  $t->set_block("mainblock","screenitemblock","screen");
  $t->set_block("mainblock","coloritemblock","color");
  $t->set_block("mainblock","mtypeitemblock","mtype");
@@ -57,7 +71,8 @@
                     $item = $db->get_color($edit);
                     break;
      case "mtype" : $t->set_var("edit_title",lang("mediatype"));
-                    $item = $db->get_mtypes($edit);
+                    $titem = $db->get_mtypes("id=".$edit);
+                    $item = $titem[0]; unset($titem);
                     break;
      case "tone"  : $t->set_var("edit_title",lang("tone"));
                     $item = $db->get_tone($edit);
@@ -120,15 +135,15 @@
    for ($i=0;$i<$pictcount;++$i) {
      $t->set_var("item_name",$picts[$i][name]);
      $t->set_var("item_sname",$picts[$i][sname]);
-     $edit  = $pvp->link->linkurl("$PHP_SELF?type=pict&edit=" .$picts[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink("$PHP_SELF?type=pict&delete=".$picts[$i][id]);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=pict&edit=" .$picts[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=pict&delete=".$picts[$i][id]);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      $t->parse("screen","screenitemblock",TRUE);
    }
    $t->set_var("screen_title",lang("screen"));
-   $t->set_var("screen_add",$pvp->link->linkurl("$PHP_SELF?add=pict",lang("add_entry")));
+   $t->set_var("screen_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=pict",lang("add_entry")));
 
    #--------------------------------------------------------[ color block ]---
    $colors = $db->get_color();
@@ -136,15 +151,15 @@
    for ($i=0;$i<$colorcount;++$i) {
      $t->set_var("item_name",$colors[$i][name]);
      $t->set_var("item_sname",$colors[$i][sname]);
-     $edit  = $pvp->link->linkurl("$PHP_SELF?type=color&edit=" .$colors[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink("$PHP_SELF?type=color&delete=".$colors[$i][id]);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=color&edit=" .$colors[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=color&delete=".$colors[$i][id]);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      $t->parse("color","coloritemblock",TRUE);
    }
    $t->set_var("color_title",lang("picture"));
-   $t->set_var("color_add",$pvp->link->linkurl("$PHP_SELF?add=color",lang("add_entry")));
+   $t->set_var("color_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=color",lang("add_entry")));
 
    #-------------------------------------------------------[ mtypes block ]---
    $mtypes = $db->get_mtypes();
@@ -152,15 +167,15 @@
    for ($i=0;$i<$mtypecount;++$i) {
      $t->set_var("item_name",$mtypes[$i][name]);
      $t->set_var("item_sname",$mtypes[$i][sname]);
-     $edit  = $pvp->link->linkurl("$PHP_SELF?type=mtype&edit=" .$mtypes[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink("$PHP_SELF?type=mtype&delete=".$mtypes[$i][id]);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=mtype&edit=" .$mtypes[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=mtype&delete=".$mtypes[$i][id]);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      $t->parse("mtype","mtypeitemblock",TRUE);
    }
    $t->set_var("mtype_title",lang("mediatype"));
-   $t->set_var("mtype_add",$pvp->link->linkurl("$PHP_SELF?add=mtype",lang("add_entry")));
+   $t->set_var("mtype_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=mtype",lang("add_entry")));
 
    #---------------------------------------------------------[ tone block ]---
    $tones = $db->get_tone();
@@ -168,21 +183,23 @@
    for ($i=0;$i<$tonecount;++$i) {
      $t->set_var("item_name",$tones[$i][name]);
      $t->set_var("item_sname",$tones[$i][sname]);
-     $edit  = $pvp->link->linkurl("$PHP_SELF?type=tone&edit=" .$tones[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
-     $url   = $pvp->link->slink("$PHP_SELF?type=tone&delete=".$tones[$i][id]);
+     $edit  = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?type=tone&edit=" .$tones[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink($_SERVER["PHP_SELF"]."?type=tone&delete=".$tones[$i][id]);
      $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
      $t->set_var("edit",$edit);
      $t->set_var("trash",$trash);
      $t->parse("tone","toneitemblock",TRUE);
    }
    $t->set_var("tone_title",lang("tone"));
-   $t->set_var("tone_add",$pvp->link->linkurl("$PHP_SELF?add=tone",lang("add_entry")));
+   $t->set_var("tone_add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=tone",lang("add_entry")));
 
    $t->set_var("name",lang("name"));
    $t->set_var("sname",lang("sname"));
    $t->parse("main","mainblock");
  
    $t->set_var("edit",""); # remove editblock
+   $t->set_var("admin_avlang",$pvp->link->linkurl("avlang.php",lang("admin_avlang")));
+   $t->parse("mlink","mlinkblock");
 ?>
 <SCRIPT LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -194,12 +211,11 @@
  } // end "else" for edit/add/delete
 
  $t->set_var("listtitle",lang("admin_movietech"));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("save_result",$save_result);
 
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);
- $t->set_var("admin_avlang",$pvp->link->linkurl("avlang.php",lang("admin_avlang")));
  $t->pparse("out","template");
 
  include("../inc/footer.inc");

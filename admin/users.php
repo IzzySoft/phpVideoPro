@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,20 +12,26 @@
 
  /* $Id$ */
 
+ #========================================================[ initial setup ]==
  $page_id = "admin_users";
  include("../inc/includes.inc");
+
+ #-------------------------------------------------[ Register global vars ]---
+ $lines = $_POST["lines"];
+
+ #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
 
  #==================================================[ process the changes ]===
- if ($update) {
+ if ($_POST["update"]) {
    for ($i=0;$i<$lines;++$i) {
-     $user->id     = ${"user_".$i};
-     $user->login  = ${"user_".$i."_login"};
-     $user->comment= ${"user_".$i."_comment"};
+     $user->id     = $_POST["user_".$i];
+     $user->login  = $_POST["user_".$i."_login"];
+     $user->comment= $_POST["user_".$i."_comment"];
      $access = array("admin","browse","add","upd","del");
      foreach ($access as $value) {
        $var = $value ."_".$user->id;
-       if (${$var}) { $user->$value = "1"; } else { $user->$value = "0"; }
+       if ($_POST[$var]) { $user->$value = "1"; } else { $user->$value = "0"; }
      }
      if ( !$db->set_user($user) ) $error .= ",".$user->id;
    }
@@ -38,6 +44,7 @@
  }
 
  #=======================================================[ build the form ]===
+ include("../inc/header.inc");
 ?>
 <SCRIPT LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -71,7 +78,7 @@
  }
 
  $t->set_var("listtitle",lang("admin_users"));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='update' VALUE=".lang("update").">");
  $t->set_var("adduser",$pvp->link->linkurl("useredit.php?addnew=1",lang("add_user")));
  $t->set_var("save_result",$save_result);
@@ -92,7 +99,6 @@
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$usercount'>";
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);
- include("../inc/header.inc");
  $t->pparse("out","template");
 
  include("../inc/footer.inc");

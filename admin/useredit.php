@@ -12,15 +12,25 @@
 
  /* $Id$ */
 
+ #========================================================[ initial setup ]==
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
+
+ #-------------------------------------------------[ Register global vars ]---
+ $id     = $_REQUEST["id"];
+ $delete = $_REQUEST["delete"];
+ $pwd1   = $_POST["pwd1"];
+ $pwd2   = $_POST["pwd2"];
+
+ #--------------------------------------------------[ Check authorization ]---
  if ($pvp->auth->user->login == "guest") kickoff();
  if (!$pvp->auth->admin) $id = $pvp->auth->user_id;
 
+ #--------------------------------------------------[ initialize template ]---
  $t = new Template($pvp->tpl_dir);
 
  #==================================================[ update user account ]===
- if ($update) {
+ if ($_POST["update"]) {
    $user->id     = $id;
    if (!$pvp->auth->admin) {
      $users = $db->get_users($id);
@@ -31,11 +41,11 @@
        $user->$value = $users->$value;
      }
    } else {
-     $user->login  = $login;
-     $user->comment= $comment;
+     $user->login  = $_POST["login"];
+     $user->comment= $_POST["comment"];
      $access = array("admin","browse","add","upd","del");
      foreach ($access as $value) {
-       if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+       if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }
      }
    }
    $pwd_ok = 1;
@@ -53,13 +63,13 @@
      $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$id). "</SPAN><BR>\n";
    }
  #=================================================[ add new user account ]===
- } elseif ($adduser && $pvp->auth->admin) {
-   $user->id     = $id;
-   $user->login  = $login;
-   $user->comment= $comment;
+ } elseif ($_POST["adduser"] && $pvp->auth->admin) {
+   $user->id     = $_POST["id"];
+   $user->login  = $_POST["login"];
+   $user->comment= $_POST["comment"];
    $access = array("admin","browse","add","upd","del");
    foreach ($access as $value) {
-     if (${$value}) { $user->$value = "1"; } else { $user->$value = "0"; }
+     if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }
    }
    $pwd_ok = 1;
    if ( isset($pwd1) || isset($pwd2) ) {
@@ -78,7 +88,7 @@
  #==================================================[ delete user account ]===
  } elseif ($delete) {
    $user = $db->get_users($delete);
-   if ($confirmed) {
+   if ($_POST["confirmed"]) {
      if ( $db->del_user($delete) ) {
        $save_result = "<SPAN CLASS='ok'>" .lang("user_deleted",$delete,$user->login,$user->comment) . ".</SPAN><BR>\n";
      } else {
@@ -87,13 +97,14 @@
      $t->set_file(array("template"=>"delete.tpl"));
      $t->set_var("listtitle",lang("user_delete_report"));
      $t->set_var("details",$save_result);
+     header('refresh: 4; url=users.php');
      include("../inc/header.inc");
      $t->pparse("out","template");
      exit;
    } else {
      $t->set_file(array("template"=>"admin_userdelete.tpl"));
      $t->set_var("listtitle",lang("confirm_userdelete",$delete));
-     $t->set_var("formtarget",$PHP_SELF);
+     $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
      $t->set_var("delete",$delete);
      $t->set_var("yes",lang("yes"));
      $t->set_var("no",lang("no"));
@@ -131,7 +142,7 @@
  $t->set_var("password2","<INPUT TYPE='password' NAME='pwd2' MAXLENGTH='10'>");
 
  $t->set_var("listtitle",lang("admin_useredit"));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  if ($id) $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='update' VALUE='".lang("update")."'>");
  if ($pvp->auth->admin) {
    $t->set_var("adduser","<INPUT TYPE='submit' CLASS='submit' NAME='adduser' VALUE='".lang("add_user")."'>");

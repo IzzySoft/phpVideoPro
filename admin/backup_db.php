@@ -58,8 +58,8 @@
  $t->set_var("listtitle",lang("backup_db"));
 
  #=======================================================[ run the backup ]===
- if ($backup) {
-   if ($btype=="movieint") {
+ if ($_POST["backup"]) {
+   if ($_POST["btype"]=="movieint") {
      $mlist  = $db->get_movieids_all();
      $mcount = count($mlist);
      fhead("movies_".date('ymd').".pvp");
@@ -71,7 +71,7 @@
      if ($compress) echo gzencode($out);
      exit;
    }
-   if ($compress) { fhead("pvp-backup.sql.gz"); }
+   if ($_POST["compress"]) { fhead("pvp-backup.sql.gz"); }
    else { fhead("pvp-backup.sql"); }
    fout("######################################");
    fout("# Backup created by phpVideoPro v$version");
@@ -113,11 +113,12 @@
        fout("INSERT INTO $name ($fields) VALUES ($cols);");
      }
    }
-   if ($compress) echo gzencode($out);
+   if ($_POST["compress"]) echo gzencode($out);
    exit;
  } else {
  #======================================================[ run the restore ]===
-   if ($restore) { // restore data
+   if ($_POST["restore"]) { // restore data
+     $rfile = $_POST["rfile"];
      if (!empty($rfile)) {
        if (file_exists($pvp->backup_dir."/$rfile")) {
          $imp->errors  = 0;
@@ -178,7 +179,7 @@
                }
              }
              #--[ if we add to existing entries: beware media numbers! ]--
-	     if (!$cleandb) {
+	     if (!$_POST["cleandb"]) {
                #--[ make sure the mtype exists ]--
                $mts = $movie[mtype_short];
                if ( $mtypes[$mts]->id ) {
@@ -249,7 +250,7 @@
    $t->set_var("hright",$haction);
    $t->parse("settings","settingsblock");
    $t->parse("item","itemblock",TRUE);
-   $t->set_var("formtarget",$PHP_SELF);
+   $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
    $t->set_var("save_result",$save_result);
    if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
    include("../inc/header.inc");

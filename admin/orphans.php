@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -20,10 +20,10 @@
  $t->set_file(array("template"=>"admin_orphans.tpl"));
  $t->set_block("template","itemblock","item");
 
- if ($delete) {
+ if ($_POST["delete"]) {
   $t->set_var("button","");
  } else {
-  $t->set_var("formtarget",$PHP_SELF);
+  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
   $t->set_var("button","<INPUT TYPE='submit' CLASS='submit' NAME='delete' VALUE='" . lang("delete"). "'>");
   $t->set_var("title",lang("intro"));
   $t->set_var("details",lang("desc_admin_orphans"));

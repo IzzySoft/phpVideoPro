@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -15,7 +15,19 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_sessions";
  include("../inc/includes.inc");
+
+ #-------------------------------------------------[ Register global vars ]---
+ $postit = array ("days","ended");
+ foreach ($postit as $var) {
+   $$var = $_POST[$var];
+ }
+ $delete = $_GET["delete"];
+ unset($postit);
+
+ #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
+
+ #--------------------------------------------------[ initialize template ]---
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
@@ -27,18 +39,19 @@
  $t->set_file(array("list"=>"admin_sessions.tpl"));
  $t->set_block("list","itemblock","item");
  $t->set_var("listtitle",lang($page_id));
- $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
  #=====================================[ get sessions and setup variables ]===
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
  $trash_img = $tpl_dir . "/images/trash.png";
  $query = "\$db->get_sessions($start)";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF,$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
 
  function todate($date) {
    return date("d.m.Y H:m",$date);
  }
 
+ include("../inc/header.inc");
 ?>
 <SCRIPT LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -57,7 +70,7 @@
    $t->set_var("sess_dla",todate($list[$i][dla]));
    if ($list[$i][ended]) { $sEnd = todate($list[$i][ended]); } else { $sEnd = "&nbsp;"; }
    $t->set_var("sess_end",$sEnd);
-   $url = $pvp->link->slink($PHP_SELF."?delete=".$list[$i][sess_id]);
+   $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?delete=".$list[$i][sess_id]);
    $del = "<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">";
    $t->set_var("sess_action",$del);
    $t->parse("item","itemblock",TRUE);
@@ -78,8 +91,6 @@
  $t->set_var("last",$nextmatch->last);
  if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
 
- include("../inc/header.inc");
  $t->pparse("out","list");
  include("../inc/footer.inc");
-
 ?>

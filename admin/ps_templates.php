@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2003 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -15,7 +15,23 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_pstemplates";
  include("../inc/includes.inc");
+
+ #-------------------------------------------------[ Register global vars ]---
+ $add    = $_GET["add"];
+ $remove = $_GET["remove"];
+ $edit   = $_REQUEST["edit"];
+ $start  = $_REQUEST["start"];
+ $submit = $_POST["submit"];
+ $postit = array ("desc","type_id","eps_file","ps_file","llx","lly","urx","ury");
+ foreach ($postit as $var) {
+   $$var = $_POST[$var];
+ }
+ unset($postit);
+
+ #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
+
+ #--------------------------------------------------[ initialize template ]---
  if (!$start) $start = 0;
  include("../inc/class.nextmatch.inc");
 
@@ -84,6 +100,7 @@
    return $select;
  }
 
+ include("../inc/header.inc");
  #===========================[ create the edit form for a single template ]===
  if ($edit || $add || $submit) {
    $t->set_var("desc",make_input("desc",$ps[0]->desc,lang("name")));
@@ -133,7 +150,6 @@
    $t->parse("list","listblock");
  }
 
- include("../inc/header.inc");
  $t->pparse("out","template");
  include("../inc/footer.inc");
 

@@ -3,7 +3,6 @@
 
   $page_id = "taperest";
   include("inc/header.inc");
-  include("inc/template.inc");
   $t = new Template($pvp->tpl_dir);
   if ($usefilter) $filter = get_filters();
 

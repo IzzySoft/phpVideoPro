@@ -41,7 +41,7 @@
    if ($btype=="movieint") {
      $mlist  = $db->get_movieids_all();
      $mcount = count($mlist);
-     fhead("movies.pvp");
+     fhead("movies_".date('ymd').".pvp");
      fout("PVP Movie Backup: [$mcount] records");
      for ($i=0;$i<$mcount;++$i) {
        $movie = $db->get_movie($mlist[$i]);

@@ -311,7 +311,7 @@ EndHiddenFields;
   } else { // hide free time for non-editable media
     if ($pvp->common->medium_is_rw($mtype_id)) {
       $t->set_var("mlength_free_name",lang("free"));
-      $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
+      $t->set_var("mlength_free","<INPUT TYPE='button' NAME='free' VALUE='$free' onClick=\"window.location.href='medialength.php?cass_id=$cass_id&mtype_id=$mtype_id'\"> " . lang("minute_abbrev"));
     } else {
       $t->set_var("mlength_free_name","&nbsp;");
       $t->set_var("mlength_free","&nbsp;");

@@ -1,0 +1,21 @@
+# =======================================================
+# Updating Database for phpVideoPro from v0.6.1 to v0.6.2
+# =======================================================
+
+# add column to cat table to mark a category als enabled/disabled
+ALTER TABLE cat ADD enabled INT(1) DEFAULT 1 NOT NULL;
+
+# add a table to keep the user preferences when cookies are disabled
+CREATE TABLE pvp_userprefs (
+   id int(5) NOT NULL auto_increment,
+   user_id int(5) NOT NULL,
+   name varchar(30),
+   value text,
+   PRIMARY KEY (id)
+);
+
+# prepare default lang update
+DELETE FROM lang WHERE lang='en';
+
+# version update
+UPDATE pvp_config SET value='0.6.2' WHERE name='version';

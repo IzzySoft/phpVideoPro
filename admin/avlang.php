@@ -103,7 +103,7 @@
 # if ($update) $db->lang_available($targetlang,1);
  $hidden = "";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
  $t->set_var("first",$nextmatch->first);
  $t->set_var("left",$nextmatch->left);

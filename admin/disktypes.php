@@ -145,7 +145,7 @@
  $t->set_var("rc",$input);
  $t->parse("disks","diskblock",TRUE);
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$lines'>";
- if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
+ if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
       
  include( dirname(__FILE__) . "/../inc/header.inc");

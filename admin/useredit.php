@@ -109,7 +109,7 @@
      $t->set_var("yes",lang("yes"));
      $t->set_var("no",lang("no"));
      $t->set_var("delete_yn","<SPAN CLASS='error'>".lang("confirm_userdeletion",$user->login,$user->comment)."</SPAN>");
-     if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+     if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
      include("../inc/header.inc");
      $t->pparse("out","template");
      exit;
@@ -162,7 +162,7 @@
  $t->set_var("head_isadmin",lang("admin_access"));
  $t->set_var("head_password",lang("password"));
  $t->set_var("head_password2",lang("password_retype"));
- if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>");
+ if (!$pvp->config->enable_cookies) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("../inc/header.inc");
  $t->pparse("out","template");
 

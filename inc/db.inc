@@ -243,7 +243,7 @@
      if ($id) {
        $this->query("SELECT name FROM cat WHERE id=$id");
        if ( $this->next_record() ) {
-         return trim($this->f('name'));
+         return lang(trim($this->f('name')));
        } else {
          return "";
        }
@@ -256,7 +256,7 @@
        $i=0;
        while ( $this->next_record() ) {
          $cat[$i][id]   = $this->f('id');
-         $cat[$i][name] = $this->f('name');
+         $cat[$i][name] = lang($this->f('name'));
 	 ++$i;
        }
        return $cat;
@@ -405,7 +405,7 @@
      $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
      $movie[color] = $this->f('cname'); $movie[color_short] = $this->f('csname');
      $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
-     $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
+     $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
 
      $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",
@@ -524,7 +524,7 @@
        $movie[$lastname]  = $name[name];
        $movie[$firstname] = $name[firstname];
        $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
-       $movie[cat1] = $this->f('cat1name'); $movie[cat2] = $this->f('cat2name'); $movie[cat3] = $this->f('cat3name');
+       $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
        $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");

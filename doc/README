@@ -1,10 +1,10 @@
-This is the README file I wrote for phpVideoPro v0.1.3. As you may know,
-programmers get very lazy on writing documentation - so starting with point
-3.), the information in this file may or may not fit newer versions, since I
-may have forgotten to update it. Don't be angry at me if this happens - just
-drop me a note about this - or even better, update this file (if you know
-the missing/changed information) and send it back to me, so I can replace it
-in the package :)
+This is the README file I wrote for phpVideoPro v0.1.3 (and updated for v0.2.5).
+As you may know, programmers get very lazy on writing documentation - so
+starting with point 3.), the information in this file may or may not fit newer
+versions, since I may have forgotten to update it. Don't be angry at me if this
+happens - just drop me a note about this - or even better, update this file (if
+you know the missing/changed information) and send it back to me, so I can
+replace it in the package :)
 
 More documentation may follow (or not - see above ;) in the future, some even
 is already contained in the help system. But I'm more concerned about new
@@ -33,10 +33,10 @@ Contents:
 1.) CopyRight (and CopyLeft)
 ----------------------------
 
-  This nice piece of software is (c) 2001 by Itzchak Rehberg and IzzySoft, and
-  is protected by the Gnu Public License Version 2 (GPL). In short, this means:
-  - you'll have the source code available (humm - it's PHP, so what shall I
-    do? :)
+  This nice piece of software is (c) 2001,2002 by Itzchak Rehberg and IzzySoft,
+  and is protected by the Gnu Public License Version 2 (GPL). In short, this
+  means:
+  - you'll have the source code available
   - you may run this program on as many machines as you want/have
   - you may copy and distribute it as much as you want - as long as you don't
     take money for it (and keep all files together!)
@@ -45,6 +45,11 @@ Contents:
   - you may use this code for own applications - but they have to be released
     under GPL then as well.
   For details, please read the file named LICENSE in the doc/ directory.
+  If you release this program e.g. in a bundle of software on CD/DVD, release
+  an article about this program etc, let the author know about this. Not that
+  you need an explicit permission (as long as you stick to the above terms,
+  especially the GPL) - you are even encouraged to do so. I just want to be
+  informed about the fact to be up-to-date about all PR taking place ;).
 
 ===============================================================================
 
@@ -67,15 +72,12 @@ Contents:
  2. have PHP running, at least v4.0b3 (a version less than this won't work;
     I recommend using Apache with PHP as loadable module, and that's
     the only combination I've tested)
- 3. make sure your PHP has MySQL support built in! (if requirements
+ 3. make sure your PHP has built in support for the database you want to use
+    (this has to be one supported by the program, of course)! (if requirements
     1. and 2. are met, point your browser to the setup/phpinfo.php file via
     http to see what features are supported by your PHP setup)
  4. point your browser the setup/index.php page via http (so that this page is
-    parsed by PHP). At this time, only Netscape is tested to work with
-    phpVideoPro (probably M$ Internet Exploder will work as well). Konqueror is
-    known as *NOT* working because of the JavaScript used for the menue right
-    now (version 1.9.8, 2.1 and 2.1.1 - higher versions may work but are not
-    tested yet) - though it works for the setup program
+    parsed by PHP).
 
 ===============================================================================
 

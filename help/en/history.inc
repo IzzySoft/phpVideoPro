@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.2.0 (August 2001)
+[text]
+<ul>
+ <li>if no matching entry was found, stafflist screen was messed up. Fixed.
+ <li>completed German help files
+</ul>
+
+[title]
 0.1.7 (August 16, 2001)
 [text]
 another intermediate release due to internal changes (help system). Now I will

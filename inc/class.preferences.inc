@@ -1,6 +1,6 @@
 <?php
  /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
  * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
  * http://www.qumran.org/homes/izzy/                                         *
  * --------------------------------------------------------------------------*
@@ -12,12 +12,49 @@
 
  /* $Id$ */
 
+ /** Maintain the (DB-stored) user's preferences
+  * @package Api
+  * @class preferences
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  */
+ /** Color settings for HTML code
+  * @class preferences
+  * @attribute array colors
+  */
+ /** Filter settings for DB queries
+  * @class preferences
+  * @attribute object filter
+  */
+ /** Default language for translation system
+  * @class preferences
+  * @attribute string lang
+  */
+ /** Default template directory
+  * @class preferences
+  * @attribute string template
+  */
+ /** Datasets per page
+  * @class preferences
+  * @attribute integer display_limit
+  */
+ /** Date format to use
+  * @class preferences
+  * @attribute string date_format
+  */
+ /** Lines per page (for printing)
+  * @class preferences
+  * @attribute integer page_length
+  */
+
  class preferences {
   var $colors, $filter, $lang, $template,
       $display_limit, $date_format, $page_length;
   
   ############################################################################
-  # constructor: read all values from DB
+  /** Constructor: reads all values from DB
+   * @constructor preferences
+   */
   function preferences() {
     GLOBAL $db;
     $pnames = array ("lang","template","display_limit","date_format",
@@ -37,14 +74,26 @@
   }
 
   ############################################################################
-  # set a preference
+  /** Set a preference
+   * @class preferences
+   * @method set
+   * @param string name preference to set
+   * @param mixed value
+   */
   function set($name,$value) {
     GLOBAL $db;
     $db->set_preferences($name,$value);
   }
 
   ##############################################################################
-  # get id for a filter part (helper to get_filters())
+  /** get id for a filter part (helper to get_filters())
+   * @class preferences
+   * @method get_id
+   * @param integer found counter
+   * @param string fname filter name
+   * @param string tname table name
+   * @return string SQL filter part for WHERE clause
+   */
   function get_fquery(&$found,$fname,$tname="") {
    GLOBAL $db, $filter;
    if ( !strlen($tname) ) $tname=$fname;
@@ -62,7 +111,11 @@
   }
 
   ##############################################################################
-  # get filter settings from db
+  /** get filter settings from db
+   * @class preferences
+   * @method get_filters
+   * @return string SQL filter part for WHERE clause
+   */
   function get_filters() {
    global $db, $filter;
    $db->query("SELECT value FROM preferences WHERE name='filter'");

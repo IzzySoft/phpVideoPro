@@ -72,7 +72,7 @@ if ( isset($update) ) {
 #========================================================[ get languages ]===
 $lang_avail = $db->get_languages(1);
 for ($i=0;$i<count($lang_avail);$i++) {
-  $lang[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
+  $langu[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
 }
 if ($scan_langfile) $lang_unavail = $db->get_languages(0);
 $lang_installed = $db->get_installedlang();
@@ -155,7 +155,7 @@ $select  = "<SELECT NAME=\"refresh_lang\">";
 $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
 for ($i=0;$i<count($lang_installed);$i++) {
   $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
-  $select .= ">" . $lang[$lang_installed[$i]] . "</OPTION>";
+  $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
@@ -168,7 +168,7 @@ $select  = "<SELECT NAME=\"default_lang\">";
 for ($i=0;$i<count($lang_installed);$i++) {
   $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
   if ( $lang_installed[$i]==$lang_preferred ) $select .= " SELECTED";
-  $select .= ">" . $lang[$lang_installed[$i]] . "</OPTION>";
+  $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);

@@ -69,7 +69,7 @@
   </SELECT>
  </TD></TR>
  <TR><TD>{comments_chk}</TD><TD>{mfoto_pic}</TD><TD><TEXTAREA ROWS="10" COLS="88" NAME="comment">{mcomment}</TEXTAREA></TD></TR>
- <TR><TD COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="button" NAME="transfer" VALUE="{btransfer}" onClick="transfer_data();"></DIV></TD></TR>
+ <TR><TD COLSPAN="3"><DIV ALIGN="center"><INPUT TYPE="button" NAME="transfer" VALUE="{btransfer}" onClick="transfer_data();"></DIV></TD></TR>
 </TABLE>
 </FORM>
 <!-- END movieblock -->

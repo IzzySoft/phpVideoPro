@@ -21,7 +21,10 @@ if (!$silent) {
  <meta http-equiv="cache-control" content="no-cache">
  <meta http-equiv="content-language" content="<?=$pvp->preferences->get("lang")?>">
  <Title><?=$pagename?></Title>
-<? if ( $page_id != "login" ) { ?>
+<? 
+ if ( file_exists($pvp->tpl_dir . "/top.js") )
+   echo " <script language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
+ if ( $page_id != "login" ) { ?>
  <script language="JavaScript">//<!--
   function open_help(topic) {
     if (topic!='') { help_topic = '?topic=' + topic; } else { help_topic = ''; }
@@ -39,8 +42,6 @@ if (!$silent) {
 <?
  include($nav_script);
  include($pvp->tpl_dir ."/default.css");
- if ( file_exists($pvp->tpl_dir . "/top.js") )
-   echo "\n <script language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
  if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
 ?>

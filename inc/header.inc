@@ -37,7 +37,8 @@
   }
 ?>
 <HTML><HEAD>
-<Title><?echo $pagename ?></Title>
+ <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
+ <Title><?echo $pagename ?></Title>
  <!--LINK REL=stylesheet type="text/css" HREF="<? echo $base_url ?>templates/default/default.css"-->
  <script language="JavaScript">
 

@@ -325,6 +325,7 @@ function getPageOffsetTop(el) {
 <div id="printMenu" class="menu">
 <?
  echo $pvp->link->linkurl($base_url."label.php",lang("labels"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."pslabel.php",lang("labels")." (PS)","class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."listgen.php",lang("lists"),"class='menuItem'") ."\n";
 ?>
 </div>

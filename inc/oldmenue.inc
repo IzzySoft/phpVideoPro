@@ -58,6 +58,7 @@
   dhtmlMenu = new NavBarMenu(80, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("print")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?>", "<?=$pvp->link->slink($base_url.'label.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?> (PS)", "<?=$pvp->link->slink($base_url.'pslabel.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("lists")?>", "<?=$pvp->link->slink($base_url.'listgen.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 

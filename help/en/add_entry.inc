@@ -112,5 +112,19 @@ say "interest", but nobody but you shall now (when reading your printed tape
 lists), you just uncheck the box here and (s)he will not appear together with
 this films title in the actors list.
 
+[title]
+*comments#
+
+[text]
+You may put any kind of comments for the movie here. Some special tags are
+provided to your convinience: URLs enclosed by [href] and [/href] are made
+"clickable", the link will open within a new window. Moreover there are
+[img]image-url[/img] and [imgr]right-aligned-image-url[/imgr] tags that make
+correct tags to display a given image either left- or right-aligned. Some more
+standard HTML tags are allowed in their original way, such as tags for bold,
+underline, italics, linebreaks, paragraphs, lists and horizontal rulers. All
+other HTML tags get stripped of - that is to protect your site from malicious
+HTML code input.
+
 [eof]
 

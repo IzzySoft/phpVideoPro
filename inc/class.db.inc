@@ -71,8 +71,8 @@
      $query = str_replace ("= ", "=NULL ", $query);
      $query = str_replace ("(,", "(NULL,", $query);
      $query = str_replace (",)", ",NULL)", $query);
-     $query = str_replace ("\",", "\"NULL,", $query);
-     $query = str_replace (",\"", ",NULL\"", $query);
+#     $query = str_replace ("\",", "\"NULL,", $query);
+#     $query = str_replace (",\"", ",NULL\"", $query);
      if (substr($query,strlen($query)-1)=="=") $query .= "NULL";
    } // end clean_query()
 
@@ -201,7 +201,9 @@
      return $trans;
    }
 
-   /** set a translation
+   /** Set a translation: if $trans is empty, translation for the specified
+    *  language and message $id will be removed. Otherwise the new translation
+    *  will be updated or inserted
     * @class sql
     * @method set_translation
     * @param string id translation identifier
@@ -213,14 +215,10 @@
      if (!$trans) { // remove translation
        $query = "DELETE FROM lang WHERE message_id='$id' AND lang='$lang'";
      } else {
-       $this->query("SELECT content FROM lang WHERE lang='$lang' AND message_id='$id'");
-       if ( $this->next_record() ) {
-         $query = "UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'";
-       } else {
-         $query = "INSERT INTO lang (message_id,lang,content) VALUES ('$id','$lang','$trans')";
-       }
+       $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
+       if ( !$this->affected_rows() )
+         $this->query("INSERT INTO lang (message_id,lang,content) VALUES ('$id','$lang','$trans')");
      }
-     $this->dbquery($query);
      return $this->affected_rows();
    }
 
@@ -255,12 +253,9 @@
    function set_preferences($name,$value) {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
-     $this->dbquery("SELECT value FROM preferences WHERE name='$name'");
-     if ( $this->next_record() ) {
-       $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
-     } else {
+     $this->dbquery("UPDATE preferences SET value='$value' WHERE name='$name'");
+     if ( !$this->affected_rows() )
        $this->dbquery("INSERT INTO preferences (name,value) VALUES ('$name','$value')");
-     }
    }
 
    /** Remove preferences from DB
@@ -300,12 +295,9 @@
    function set_config($name,$value) {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
-     $this->dbquery("SELECT value FROM pvp_config WHERE name='$name'");
-     if ( $this->next_record() ) {
-       $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
-     } else {
+     $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
+     if ( !$this->affected_rows() )
        $this->dbquery("INSERT INTO pvp_config (name,value) VALUES ('$name','$value')");
-     }
    }
 
    ############################################################################
@@ -322,7 +314,7 @@
     */
    function create_session($id,$ip,$user_id,$started) {
      $query = "INSERT INTO pvp_sessions (id,ip,user_id,started,dla) VALUES ("
-            . "'$id','$ip',$user_id,$started,$started)";
+            . "'$id','$ip',$user_id,'$started','$started')";
      return $this->query($query);
    }
 
@@ -413,7 +405,7 @@
      }
    }
 
-   /** Update user
+   /** Update user record
     * @class sql
     * @method set_user
     * @param object user single user object (as defined as element of userlist array)
@@ -991,7 +983,6 @@
        default       : $orderby = "v.mtype_id DESC,v.cass_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
-#     $query = "SELECT DISTINCT v.id FROM video v,cat c";
      $query = "SELECT v.id FROM video v";
      if (strlen($filter)) {
        if (strlen($where)) {
@@ -1806,7 +1797,7 @@
      }
      $array = file ($file);
      if ( !$array ) {
-       if (!$silent) echo $colors["err"] . " <li>$comment failed: we have no read permission for SQL command file '$file', process stopped.</Font><BR>\n";
+       if (!$silent) echo $colors["err"] . " <li>$comment failed: we have no read permission for SQL command file '$file' (or this file is empty), process stopped.</Font><BR>\n";
        exit;
      }
      if ( $this->get_sql($array) ) {

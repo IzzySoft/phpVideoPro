@@ -405,14 +405,14 @@
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
-       $orphan[] = $this->setup_orphan("director",$this->f('id'),$this->f('name'),$this->f('firstname'));
+       $orphan[] = $this->setup_orphan("director_person",$this->f('id'),$this->f('name'),$this->f('firstname'));
      }
      $id = $this->get_distinct_staffids("music_id");
      $query = "SELECT id,name,firstname FROM music"
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
-       $orphan[] = $this->setup_orphan("composer",$this->f('id'),$this->f('name'),$this->f('firstname'));
+       $orphan[] = $this->setup_orphan("compose_person",$this->f('id'),$this->f('name'),$this->f('firstname'));
      }
      $id = $this->get_distinct_staffids("actor1_id");
      $id = array_merge($id, $this->get_distinct_staffids("actor2_id"));
@@ -423,7 +423,7 @@
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
-       $orphan[] = $this->setup_orphan("composer",$this->f('id'),$this->f('name'),$this->f('firstname'));
+       $orphan[] = $this->setup_orphan("actor",$this->f('id'),$this->f('name'),$this->f('firstname'));
      }
      return $orphan;
    }

@@ -5,8 +5,6 @@
 ##################################################################
 # Configuration of Configuration module
 #
-// $referer = substr(dirname($HTTP_REFERER),strlen(dirname($HTTP_REFERER))-6);
-// if ($referer=="/setup" || $referer=="") {
 if ($menue) {
   $page_id = "configuration";
   if ($update) {
@@ -28,12 +26,14 @@ if ($menue) {
 # Update changes (when submitted)
 #
   if ( isset($update) ) {
+    $url = $PHP_SELF;
     $colors["page_background"] = $page_background;
     $colors["th_background"]   = $th_background;
     $colors["ok"]              = $color_ok;
     $colors["err"]             = $color_err;
     dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
     dbquery("UPDATE preferences SET value='$charset' WHERE name='charset'");
+    dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
     $colorcode = rawurlencode( serialize($colors) );
     dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
     if ($install_lang && $install_lang != "-") {
@@ -44,16 +44,24 @@ if ($menue) {
       dbquery("DELETE FROM lang WHERE lang='$refresh_lang'");
       $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
       queryf($sql_file,"Refresh of language phrases",1);
-    }?>
-    <HTML><HEAD>
-      <meta http-equiv="refresh" content="0; URL=<? echo $PHP_SELF ?>">
+    }
+    #-----------------------------[ get available language files ]---
+    if ($scan_langfile) {
+      chdir("$base_path/setup");
+      $handle=opendir (".");
+      while (false !== ($file = readdir ($handle))) {
+        if ( substr($file,0,5) != "lang_" || substr($file,7) != ".sql") continue;
+        $flang = substr($file,5,2);
+        dbquery("UPDATE languages SET available='yes' WHERE lang_id='$flang'");
+      }
+      closedir($handle);
+    }
+    ?><HTML><HEAD>
+      <meta http-equiv="refresh" content="0; URL=<? echo $url ?>">
     </HEAD></HTML><?
     exit;
   }
 
-##################################################################
-# Obtain settings from DB
-#
   #---------------------------------[ get available languages ]---
   dbquery("SELECT lang_id,lang_name,available FROM languages WHERE available='yes'");
   $i = 0;
@@ -62,6 +70,16 @@ if ($menue) {
     $lang_avail[$i]["name"] = $db->f('lang_name');
     $lang[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
     $i++;
+  }
+
+  #-------------------------------[ get unavailable languages ]---
+  if ($scan_langfile) {
+    dbquery("SELECT lang_id,lang_name,available FROM languages WHERE available='no'");
+    $i = 0;
+    while ( $db->next_record() ) {
+      $lang_unavail[$i]["id"]   = $db->f('lang_id');
+      $i++;
+    }
   }
 
   #---------------------------------[ get installed languages ]---
@@ -96,6 +114,30 @@ if ($menue) {
     debug("E","No charset in db?!?");
   }
 
+  #---------------------------------------[ get user template ]---
+  dbquery("SELECT value FROM preferences WHERE name='template'");
+  if ( $db->next_record() ) {
+    $template_set = $db->f('value');
+  } else {
+    debug("E","No user template in db?!?");
+  }
+
+##################################################################
+# Obtain settings from file system
+#
+  #------------------------------[ get available template sets ]---
+  chdir("$base_path/templates");
+  $handle=opendir (".");
+  $i = 0;
+  while (false !== ($file = readdir ($handle))) {
+   if ( in_array (strtolower($file), array("cvs",".","..")) ) continue;
+   if ( is_dir($file) ) $tpldir[$i] = $file;
+  }
+  closedir($handle);
+  chdir("$base_path/setup");
+
+
+
 ##################################################################
 # Output page intro
 # 
@@ -110,6 +152,8 @@ if ($menue) {
 <FORM NAME="config_form" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
 <TR><TH>Language Settings:</TH></TR>
 <TR><TD><TABLE WIDTH=100%>
+ <TR><TD WIDTH=70%><b>Scan for new language files?</b><br>(If you created your own language file and put it into the setup directory, this will tell phpVideoPro to look for it)</TD>
+    <TD WIDTH=30%><INPUT TYPE="checkbox" NAME="scan_langfile" VALUE="1"></TD></TR>
  <TR><TD WIDTH=70%><b>Select additional language to install:</b><br>(English is already installed and always will be - see next item. For other languages that are already installed, see next item, too.)</TD>
     <TD WIDTH=30%><?
   $select = "<SELECT NAME=\"install_lang\">";
@@ -150,6 +194,13 @@ if ($menue) {
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_ok" VALUE="<? echo $colors["ok"] ?>"></TD></TR>
  <TR><TD>&nbsp;&nbsp;<b>Feedback "Failure":</b></TD>
     <TD><INPUT SIZE="7" MAXLENGTH="7" NAME="color_err" VALUE="<? echo $colors["err"] ?>"></TD></TR>
+ <TR><TD>&nbsp;&nbsp;<b>Template Set:</b></TD>
+    <TD><SELECT NAME="template_set"><?
+ for ($i=0;$i<count($tpldir);$i++) {
+   echo "<OPTION VALUE=\"" . $tpldir[$i] . "\"";
+   if ($tpldir[$i] == $template_set) echo " SELECTED";
+   echo ">" . ucfirst($tpldir[$i]) . "</OPTION>";
+ } ?></SELECT></TD></TR>
 </TABLE></TD></TR>
 <TR><TD ALIGN=CENTER><INPUT TYPE="SUBMIT" NAME="update" VALUE="Update"></TD></TR>
 </FORM>

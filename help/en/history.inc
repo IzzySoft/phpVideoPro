@@ -8,11 +8,22 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <LI><b>0.1.5 (Aug 2001)</b><br>
+  <LI><b>0.1.5 (August 5, 2001)</b><br>
+      alpha-release "camouflage":
       <ul>
        <li>re-sorting of medialist can now be done by simply
            clicking on the appropriate table header
-       <li>started with template stuff
+       <li>moved to template-based design - now YOU can decide
+           how phpVideoPro shall look like, without knowing
+	   anything about PHP: just edit plain HTML templates
+	   and create your own favorite "skin" (and then don't
+	   forget to send it to me to include it within the next
+	   release :)
+       <li>added template selection to configuration page
+       <li>added checkbox to configuration page: scan for new
+           language files. You need to check this only, if you
+	   add a language file that was not present before
+	   (new language)
       </ul>
   <LI><b>0.1.4 (July 29, 2001)</b><br>
       <ul>

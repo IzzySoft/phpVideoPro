@@ -19,4 +19,5 @@
   headline("howto");
    li("create_lang_file");
    li("create_help_file");
+   li("create_templates");
 ?>

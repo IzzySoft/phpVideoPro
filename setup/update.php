@@ -85,6 +85,8 @@
       case "0.1.3"    : queryf("0-1-3_to_0-1-4.sql","Update from v0.1.3 to v0.1.4");
                         queryf("lang_en.sql","Refresh of English language support");
                         break;
+      case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.4 to v0.1.5");
+                        break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }
     echo "</UL>\n";

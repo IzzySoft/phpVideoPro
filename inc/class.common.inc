@@ -190,10 +190,7 @@ class common {
    * @return string num zero-padded string
    */
   function padzeros($num,$len) {
-    while (strlen($num)<$len) {
-      $num = "0$num";
-    }
-    return $num;
+    return sprintf("%'0$len"."d",$num);
   }
  
   /** fill a string with blanks until its length is $len , start from left
@@ -204,8 +201,7 @@ class common {
    * @return string str blank-padded string
    */
   function padblanks($str,$len) {
-    while (strlen($str)<$len) $str = " $str";
-    return $str;
+    return sprintf("%$len"."s",$str);
   }
 
   /** fill a string with blanks until its length is $len , start from right
@@ -216,7 +212,7 @@ class common {
    * @return string str blank-padded string
    */
   function fillblanks($str,$len) {
-    while (strlen($str)<$len) $str .= " ";
+    $str = sprintf("%-$len"."s",$str);
     if (strlen($str)>$len) $str = substr($str,0,$len);
     return $str;
   }

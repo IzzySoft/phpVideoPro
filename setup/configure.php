@@ -18,6 +18,7 @@
  }
 
  #========================================================[ initial setup ]===
+if (!isset($admin)) $admin = FALSE;
 if ($menue) {
   $page_id = "configuration";
   if ($admin) $root = "../";

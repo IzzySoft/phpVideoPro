@@ -57,8 +57,8 @@ und dort weiter bearbeitet werden zu können (abermals siehe oben).<br>
 Papier passen (dies kann je nach Drucker unterschiedlich sein). Der Vorgabewert
 wird aus den Voreinstellungen (siehe
 "<A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>") übernommen, kann
-jedoch hier überschrieben werden. Für CSV Listen wird der Inhalt dieses Feldes
-freilich ignoriert.
+jedoch hier überschrieben werden. Für CSV und HTML Listen wird der Inhalt dieses
+Feldes freilich ignoriert.
 
 [eof]
 

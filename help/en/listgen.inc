@@ -46,7 +46,7 @@ spreadsheet or HTML editor for formatting and printing.<br>
 <b>*line_count#</b>: How many lines of (plain) text fit on one page. The
 default value is taken from the preferences (see
 <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>). The content of
-this field is ignored for CSV lists.
+this field is ignored for CSV and HTML lists.
 
 [eof]
 

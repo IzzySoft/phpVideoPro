@@ -14,8 +14,8 @@
 
  #===============================[ helper function for name array sorting ]===
  function sort_names($ar1,$ar2) {
-   if ($ar1[reverse]<$ar2[reverse]) return -1;
-    else if ($ar1[reverse]>$ar2[reverse]) return 1;
+   if ($ar1['reverse']<$ar2['reverse']) return -1;
+    else if ($ar1['reverse']>$ar2['reverse']) return 1;
  }
 
  #===================[ retrieve list data depending on persons occupation ]===
@@ -45,7 +45,7 @@
    $filter = get_filters();
    foreach ($namelist as $name) {
      $m = $db->get_movienamelist($table,$name,$filter);
-     if (is_array($movielist)) {
+     if (isset($movielist) && is_array($movielist)) {
        $movielist = array_merge($movielist,$m);
      } else {
        $movielist = $m;
@@ -70,6 +70,7 @@
                . lang("length") . $sep
                . lang("medium") . $lineend;
  }
+ $underline = "";
  for ($i=0;$i<$pagewidth;$i++) {
    $underline .= "-";
  }
@@ -86,23 +87,23 @@
      $out .= "\n$listheader\n$underline\n";
    }
    if ($align) {
-     $title  = $pvp->common->fillblanks($movielist[$i][title],36);
-     $cat    = $pvp->common->centerstr($movielist[$i][cat1],15);
-     $length = $pvp->common->padblanks($movielist[$i][length],5);
+     $title  = $pvp->common->fillblanks($movielist[$i]['title'],36);
+     $cat    = $pvp->common->centerstr($movielist[$i]['cat1'],15);
+     $length = $pvp->common->padblanks($movielist[$i]['length'],5);
      $name   = $pvp->common->fillblanks($movielist[$i][$revname],25);
    } else {
-     $title  = $movielist[$i][title];
-     $cat    = $movielist[$i][cat1];
-     $length = $movielist[$i][length];
+     $title  = $movielist[$i]['title'];
+     $cat    = $movielist[$i]['cat1'];
+     $length = $movielist[$i]['length'];
      $name   = $movielist[$i][$revname];
    }
    $line = $linestart . $name . $sep
          . $title . $sep
          . $cat . $sep
          . $length . $sep
-         . $movielist[$i][mtype_short] . " "
-         . $pvp->common->padzeros($movielist[$i][cass_id],4) . "-"
-         . $pvp->common->padzeros($movielist[$i][part],2)
+         . $movielist[$i]['mtype_short'] . " "
+         . $pvp->common->padzeros($movielist[$i]['cass_id'],4) . "-"
+         . $pvp->common->padzeros($movielist[$i]['part'],2)
          . $lineend;
    $out .= "$line\n";
  }

@@ -22,7 +22,7 @@ CREATE TABLE actors (
 
 CREATE TABLE cass (
    id INT(4) NOT NULL auto_increment,
-   mtype_id INT(3) DEFAULT '1' NOT NULL,
+   mtype_id INT(3) DEFAULT 1 NOT NULL,
    disks_id INT(3),
    type INT(3),
    free INT(3),

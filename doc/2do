@@ -18,6 +18,8 @@ coming *soon*:
   the possibility to "order by rating")
 - whether to read/write cookies should not be decided by config->cookies_enabled
   but by cookies->active (i.e. cookies_enabled && cookies_supported_by_browser)
+- more informative "welcome" page for new users (which optionally can be turned
+  off by the users preferences for "advanced users")
 
 coming *next*:
 - PS template(s) for DVD covers

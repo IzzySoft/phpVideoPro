@@ -12,7 +12,7 @@
      $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . " (Got: '$id')</Font>\n";
    } else {
      $dmsg  .= $colors["err"] . " <li>" . stripslashes($query) . " ($person not found in db! Trying to insert...)</Font><BR>\n";
-/*     if ( $db->query($sub_query) ) {
+     if ( $db->query($sub_query) ) {
        $db->query($query);
        if ( $db->next_record() ) {
          $id = $db->f('id');
@@ -22,7 +22,7 @@
        }
      } else {
        $dmsg .= $colors["err"] . "Insertion of $person \"$name, $fname\ into db failed!</Font>\n";
-     } */
+     }
    }
    return $id;
  }
@@ -58,7 +58,7 @@
     . " <li>Comment: '$comment'"
     . "</ul>";
  debug("V",$ddump);
- $dmsg     .= "Sorry- not really saved :) SQL statements to execute:<p>";
+ $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
  $dmsg     .= "<ul>\n";
  $query     = "SELECT id FROM directors WHERE name='$director_name' AND firstname='$director_fname'";
  $sub_query = "INSERT INTO directors (name,firstname) VALUES ('$director_name','$director_fname')";
@@ -88,7 +88,7 @@
           . "cat3_id='$cat3_id',pict_id='$pict_id',director_id='$dir_id',music_id='$mus_id',"
           . "actor1_id='$act1_id',actor2_id='$act2_id',actor3_id='$act3_id',actor4_id='$act4_id',"
           . "actor5_id='$act5_id',mtype_id='$media_tid' WHERE cass_id='$cass_id' AND part='$part'";
- debug("S","<p><b>Final Query:</b><br>$update</p>");
+ debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
  if ( $db->query($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
  } else {

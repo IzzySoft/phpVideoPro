@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.4.8
+# German Language File created by phpVideoPro v0.5.0
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
@@ -165,6 +165,7 @@ INSERT INTO lang VALUES ('label','de','Etikett');
 INSERT INTO lang VALUES ('labels','de','Etiketten');
 INSERT INTO lang VALUES ('labeltype','de','Labeltyp');
 INSERT INTO lang VALUES ('language_settings','de','Spracheinstellungen');
+INSERT INTO lang VALUES ('last_entry','de','Letzter Eintrag');
 INSERT INTO lang VALUES ('layout_label','de','Layout wählen');
 INSERT INTO lang VALUES ('left_offset','de','Offset Links');
 INSERT INTO lang VALUES ('length','de','Länge');
@@ -204,6 +205,7 @@ INSERT INTO lang VALUES ('music','de','Musik');
 INSERT INTO lang VALUES ('music_list','de','Liste der Komponisten');
 INSERT INTO lang VALUES ('never','de','nie');
 INSERT INTO lang VALUES ('new_medianr','de','neue MediaNr');
+INSERT INTO lang VALUES ('new_movie_on','de','Neuer Film auf %1');
 INSERT INTO lang VALUES ('no','de','Nein');
 INSERT INTO lang VALUES ('nobody_named','de','Es gibt keinen weiteren Film unter Mitwirkung von %1 %2 %3 in der Datenbank - dieser Name wird also aus der Tabelle gelöscht.');
 INSERT INTO lang VALUES ('none','de','Keine');

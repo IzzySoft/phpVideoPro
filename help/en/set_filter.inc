@@ -9,6 +9,14 @@ Both menue items, "*set_filter#" as well as "*unset_filter#", are calling the
 very same form - with one little difference: "*unset_filter#" will delete all
 filters first, so you can start with a fresh form without anything being set.
 
+[text]
+If you called the form via the "*admin#" -&gt; "*admin_filter#" menue, you can
+setup the user default filter in the database. Otherwise, if cookies are
+enabled and the filter form is called via the "*filter#" menue, changes are
+stored into cookies and thus don't overwrite the database default. By this
+way it is ensured, that multiple users can work simultaneously, each one with
+his very own filter settings.
+
 [title]
 Filter Rules
 

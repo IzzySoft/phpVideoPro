@@ -113,9 +113,11 @@
    $cc = count($gen); $genre = "";
    for ($i=0;$i+1<$cc;++$i) {
      $genre .= $gen[$i].", ";
+     if (strtolower($gen[$i])=="sci-fi") $gen[$i] = "sf";
      if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
    }
    $genre .= $gen[$i];
+   if (strtolower($gen[$i])=="sci-fi") $gen[$i] = "sf";
    if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
    $t->set_var("mgenre",$genre);
    $catlist = $db->get_category(); $cc = count($catlist); $open=FALSE; $done=-1;

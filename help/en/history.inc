@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.0 (August 2001)
+0.2.0 (September 2001)
 [text]
 <ul>
  <li>if no matching entry was found, stafflist screen was messed up. Fixed.
@@ -10,12 +10,14 @@
  <li>order by MediaNr in MediaList ignored part nr. fixed.
  <li>reorganized sql statements in preparation of PostgreSQL support
  <li>added documentation header to most files
- <li>addition of language files for Norwegian, Polish and Dutch
-     (Thanx to Knut, Leszek and Tom!)
+ <li>addition of language files for Norwegian, Polish, Dutch and Bulgarian
+     (Thanx to Knut, Leszek, Tom and Tsveti!)
  <li>added possibility to directly go to an entry specified by MediaNr
  <li>fixed some translation stuff (e.g. color names in edit.php)
- <li>added basic PostgreSQL support - please report any errors/bugs/problems,
-     since I myself don't use it :-)
+ <li>added basic PostgreSQL support - please report any errors/bugs/problems
+ <li>charset is now maintained by the language files (and not accessible
+     via the configuration screen any more)
+ <li>fresh installation was broken (fixed)
 </ul>
 
 [title]

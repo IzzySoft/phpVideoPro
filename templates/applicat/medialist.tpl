@@ -17,11 +17,11 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
 
-<TABLE ALIGN=CENTER BORDER=0>
+<TABLE ALIGN="center" BORDER="0">
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- <TR><TD COLSPAN=2>
-  <TABLE ALIGN=Center BORDER=1>
+     <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
+ <TR><TD COLSPAN="2">
+  <TABLE ALIGN="center" BORDER="1">
    <TR><TH><A HREF="{scriptname}{crits}">{mtype}</A></TH>
        <TH><A HREF="{scriptname}{crits}">{nr}</A></TH>
        <TH><A HREF="{scriptname}?order=title{ocrits}">{title}</A></TH>
@@ -32,7 +32,7 @@
    </TR>
    <!-- BEGIN mdatablock -->
    <TR CLASS="content"><TD>{mtype}</TD>
-       <TD><A HRef={url}>{nr}</A></TD>
+       <TD><A HRef="{url}">{nr}</A></TD>
        <TD>{title}</TD>
        <TD>{length}</TD>
        <TD>{year}</TD>
@@ -46,7 +46,7 @@
   </Table>
  </TD></TR>
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
+     <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
 </TABLE>
 
 </TD></TR></TABLE>

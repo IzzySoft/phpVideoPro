@@ -20,9 +20,9 @@
 <DIV STYLE="margin:3">
 <TABLE ALIGN="center" BORDER="0">
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- <TR><TD COLSPAN=2>
-  <TABLE ALIGN=Center BORDER="1" WIDTH="100%">
+     <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
+ <TR><TD COLSPAN="2">
+  <TABLE ALIGN="center" BORDER="1" WIDTH="100%">
    <TR><TH>{stafftype}</TH><TH>{title}</TH>
       <TH>{category}</TH><TH>{length}</TH>
       <TH WIDTH="85">{medianr}</TH></TR>
@@ -30,12 +30,12 @@
    <TR CLASS="content"><TD>{name}{namesep}{firstname}</TD><TD>{title}</TD><TD>{category}</TD><TD>{length}</TD><TD><A HRef="{url}">{mtype} {nr}</A></TD></TR>
    <!-- END itemblock -->
    <!-- BEGIN notfoundblock -->
-   <TR><TD COLSPAN=5>{not_found}</TD></TR>
+   <TR><TD COLSPAN="5">{not_found}</TD></TR>
    <!-- END notfoundblock -->
   </Table>
  </TD></TR>
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
+     <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
 </TABLE>
 </DIV>
 

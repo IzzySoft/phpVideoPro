@@ -21,7 +21,7 @@
 <TR><TD>
 
  <TABLE WIDTH="100%" Style="text-align:center;margin:3;"><TR><TD>
-  <INPUT TYPE=HIDDEN NAME="ltype_id" VALUE="{ltype}">
+  <INPUT TYPE="hidden" NAME="ltype_id" VALUE="{ltype}">
   {sess_id}
   <TABLE ALIGN="center">
     <TR><TH>{hmtype_0}</TH>

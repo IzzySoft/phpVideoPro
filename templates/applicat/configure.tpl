@@ -24,10 +24,10 @@
 <!-- BEGIN listblock -->
  <TR><TH>{list_head}</TH></TR>
  <TR CLASS="content"><TD>
-  <TABLE WIDTH=100%>
+  <TABLE WIDTH="100%">
   <!-- BEGIN itemblock -->
-   <TR><TD WIDTH=70%><b>{item_name}</b><br>{item_comment}</TD>
-    <TD WIDTH=30%>{item_input}</TD></TR>
+   <TR><TD WIDTH="70%"><b>{item_name}</b><br>{item_comment}</TD>
+    <TD WIDTH="30%">{item_input}</TD></TR>
   <!-- END itemblock -->
   </TABLE></TD></TR>
   {sess_id}

@@ -26,7 +26,7 @@
  <TR><TD COLSPAN=2><DIV STYLE="margin:3">
   <TABLE ALIGN="center" BORDER="1" CELLPADDING="2" CELLSPACING="2">
    <!-- BEGIN mtitleblock -->
-   <COLGROUP><COL WIDTH="150 pt"><COL WIDTH="3*"><COL WIDTH="380 pt"><COL WIDTH="3*"></COLGROUP>
+   <COLGROUP><COL WIDTH="150pt"><COL WIDTH="3*"><COL WIDTH="380pt"><COL WIDTH="3*"></COLGROUP>
    <TR><TH>{code}</TH>
        <TH>{orig}</TH>
        <TH>{trans}</TH>

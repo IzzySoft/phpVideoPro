@@ -274,50 +274,51 @@ function getPageOffsetTop(el) {
 <!-- Tags for the drop down menus. -->
 
 <div id="adminMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>admin/cats.php"><? echo lang("admin_cats") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>admin/orphans.php"><? echo lang("admin_orphans") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>admin/backup_db.php"><? echo lang("backup_db") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/cats.php"><?=lang("admin_cats") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/orphans.php"><?=lang("admin_orphans") ?></a>
+<a class="menuItem" href="<?=$base_url ?>admin/backup_db.php"><?=lang("backup_db") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"><? echo lang("dl_pvp_latest") ?></a>
+<a class="menuItem" href="http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"><?=lang("dl_pvp_latest") ?></a>
 </div>
 
 <div id="editMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>new.php"><? echo lang("add_entry") ?></a>
+<a class="menuItem" href="<?=$base_url ?>new.php"><?=lang("add_entry") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="<? echo $base_url ?>configure.php"><? echo lang("configuration") ?></a>
+<a class="menuItem" href="<?=$base_url ?>configure.php"><?=lang("configuration") ?></a>
 </div>
 
 <div id="filterMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>setfilter.php"><? echo lang("set_filter") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>setfilter.php?reset=1"><? echo lang("unset_filter") ?></a>
+<a class="menuItem" href="<?=$base_url ?>setfilter.php"><?=lang("set_filter") ?></a>
+<a class="menuItem" href="<?=$base_url ?>setfilter.php?reset=1"><?=lang("unset_filter") ?></a>
 </div>
 
 <div id="viewMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>index.php"><? echo lang("start_page") ?></a>
+<a class="menuItem" href="<?=$base_url ?>index.php"><?=lang("start_page") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="<? echo $base_url ?>medialist.php"><? echo lang("medialist") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=actors"><? echo lang("actors") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=directors"><? echo lang("directors") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=music"><? echo lang("composer") ?></a>
+<a class="menuItem" href="<?=$base_url ?>medialist.php"><?=lang("medialist") ?></a>
+<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=actors"><?=lang("actors") ?></a>
+<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=directors"><?=lang("directors") ?></a>
+<a class="menuItem" href="<?=$base_url ?>stafflist.php?stafftype=music"><?=lang("composer") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="<? echo $base_url ?>taperest.php"><? echo lang("taperest_absolute") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>taperest.php?usefilter=1"><? echo lang("taperest_filtered") ?></a>
+<a class="menuItem" href="<?=$base_url ?>taperest.php"><?=lang("taperest_absolute") ?></a>
+<a class="menuItem" href="<?=$base_url ?>taperest.php?usefilter=1"><?=lang("taperest_filtered") ?></a>
 <div class="menuItemSep"></div>
-<a class="menuItem" href="<? echo $base_url ?>stats.php"><? echo lang("db_stats") ?></a>
+<a class="menuItem" href="<?=$base_url ?>dupes.php"><?=lang("dupes") ?></a>
+<a class="menuItem" href="<?=$base_url ?>stats.php"><?=lang("db_stats") ?></a>
 </div>
 
 <div id="printMenu" class="menu">
-<a class="menuItem" href="<? echo $base_url ?>label.php"><? echo lang("labels") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>listgen.php"><? echo lang("lists") ?></a>
+<a class="menuItem" href="<?=$base_url ?>label.php"><?=lang("labels") ?></a>
+<a class="menuItem" href="<?=$base_url ?>listgen.php"><?=lang("lists") ?></a>
 </div>
 
 <div id="helpMenu" class="menu">
-<a class="menuItem" href="JavaScript:open_help('')"><? echo lang("index") ?></a>
-<a class="menuItem" href="JavaScript:open_help('about')"><? echo lang("about") ?></a>
-<a class="menuItem" href="JavaScript:open_help('history')"><? echo lang("history") ?></a>
+<a class="menuItem" href="JavaScript:open_help('')"><?=lang("index") ?></a>
+<a class="menuItem" href="JavaScript:open_help('about')"><?=lang("about") ?></a>
+<a class="menuItem" href="JavaScript:open_help('history')"><?=lang("history") ?></a>
 <? if ($page_id) {
 ?><div class="menuItemSep"></div>
-<a class="menuItem" href="JavaScript:open_help('<? echo $page_id ?>')"><? echo lang("help_about") . " \"" . lang($page_id) . "\"" ?></a>
+<a class="menuItem" href="JavaScript:open_help('<?=$page_id ?>')"><?=lang("help_about") . " \"" . lang($page_id) . "\"" ?></a>
 <? }
 ?></div>
 

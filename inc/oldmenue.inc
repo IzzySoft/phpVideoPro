@@ -7,40 +7,41 @@
   //add more menus simply by adding more "blocks" of same code below
 
   dhtmlMenu = new NavBarMenu(80, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin_cats") ?>", "<? echo $base_url ?>admin/cats.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("admin_orphans") ?>", "<? echo $base_url ?>admin/orphans.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("backup_db") ?>", "<? echo $base_url ?>admin/backup_db.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_cats")?>", "<?=$base_url?>admin/cats.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$base_url?>admin/orphans.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$base_url?>admin/backup_db.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("dl_pvp_latest") ?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dl_pvp_latest")?>", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp&version=<?=$version?>&info_url=http://<?=$SERVER_NAME?><?=$base_url?>info.php?action=update"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("edit") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("add_entry") ?>", "<? echo $base_url ?>new.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("edit")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("add_entry")?>", "<?=$base_url?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("configuration") ?>", "<? echo $base_url ?>configure.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$base_url?>configure.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("filter") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("set_filter") ?>", "<? echo $base_url ?>setfilter.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("unset_filter") ?>", "<? echo $base_url ?>setfilter.php?reset=1"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("filter")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("set_filter")?>", "<?=$base_url?>setfilter.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("unset_filter")?>", "<?=$base_url?>setfilter.php?reset=1"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(140, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("view") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("start_page") ?>", "<? echo $base_url ?>index.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("view")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("start_page")?>", "<?=$base_url?>index.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>medialist.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("actors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=actors"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("directors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=directors"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("composer") ?>", "<? echo $base_url ?>stafflist.php?stafftype=music"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$base_url?>medialist.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("actors")?>", "<?=$base_url?>stafflist.php?stafftype=actors"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("directors")?>", "<?=$base_url?>stafflist.php?stafftype=directors"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("composer")?>", "<?=$base_url?>stafflist.php?stafftype=music"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_absolute") ?>", "<? echo $base_url ?>taperest.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_filtered") ?>", "<? echo $base_url ?>taperest.php?usefilter=1"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_absolute")?>", "<?=$base_url?>taperest.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_filtered")?>", "<?=$base_url?>taperest.php?usefilter=1"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<? echo $base_url ?>stats.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes")?>", "<?=$base_url?>dupes.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$base_url?>stats.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);
@@ -48,19 +49,19 @@
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(80, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("print") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("labels") ?>", "<? echo $base_url ?>label.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("lists") ?>", "<? echo $base_url ?>listgen.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("print")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("labels")?>", "<?=$base_url?>label.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("lists")?>", "<?=$base_url?>listgen.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(62, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("index") ?>", "JavaScript:open_help('')"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "JavaScript:open_help('about')"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "JavaScript:open_help('history')"));<?
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("index")?>", "JavaScript:open_help('')"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("about")?>", "JavaScript:open_help('about')"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("history")?>", "JavaScript:open_help('history')"));<?
 if ($page_id) { ?>
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<? echo $page_id ?>')"));<?
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<? echo $page_id ?>')"));<?
 } ?>
   myNavBar1.addMenu(dhtmlMenu);
 

@@ -25,11 +25,22 @@
 
  if ($backup) {
    header("content-type: application/octet-stream");
+   if ($btype=="movieint") {
+     header("Content-Disposition: attachment; filename=movies.pvp");
+     $mlist  = $db->get_movie();
+     $mcount = count($mlist);
+     echo "PVP Movie Backup: [$mcount] records\n";
+     for ($i=0;$i<$mcount;++$i) {
+       echo urlencode(serialize($mlist[$i]))."\n";
+     }
+     exit;
+   }
    header("Content-Disposition: attachment; filename=pvp-backup.sql");
    echo "######################################\n"
       . "# Backup created by phpVideoPro v$version\n"
       . "######################################\n\n";
    switch ($btype) {
+     case "movieint" : $tables = array(); break;
      case "moviedel" : $purge = TRUE;
      case "movies"   :
        $tabs = array("video","cass","music","directors","actors");
@@ -74,7 +85,8 @@
    $t->set_var("title",lang("preferences"));
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CHECKED>".lang("backup_db_complete")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movies'>".lang("backup_db_movies")."<BR>"
-          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>";
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint'>".lang("backup_db_movie_internal")."<BR>";
    $t->set_var("details",$radio);
    $t->parse("item","itemblock",TRUE);
    $t->set_var("title",lang("backup_db_runscript"));

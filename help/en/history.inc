@@ -9,6 +9,10 @@
      redirected to the original page on successful login
  <li>taperest list now serves best matches first (instead of most free)
  <li>Italian language file updated (tnx to Jason!)
+ <li>added phpVideoPro internal format to the backup page. This should a)
+     solve the restore problems with PostgreSQL (sequences are not considered
+     by current backup) and b) be compatible amongst all (even future) supported
+     databases. Only disadvantage: we have no restore yet *grin* - next2come.
 </ul>
 
 [title]

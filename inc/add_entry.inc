@@ -65,7 +65,7 @@
 
  # no *_list field shall be NULL
  $idfields = array("director_list","music_list","vis_actor1","vis_actor2",
-             "vis_actor3","vis_actor4","vis_actor5","lp");
+             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id");
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }

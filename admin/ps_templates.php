@@ -30,6 +30,10 @@
  #===================================================[ process user input ]===
  if ($submit) {
    if ($edit) $ps->id = $edit;
+   $details = array("llx","lly","urx","ury");
+   foreach ($details as $item) {
+     if (!${$item}) ${$item} = 0;
+   }
    $details = array ("type_id","desc","eps_file","ps_file","llx","lly","urx","ury");
    foreach ($details as $item) {
      $ps->$item = ${$item};

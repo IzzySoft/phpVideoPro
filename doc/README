@@ -77,6 +77,9 @@ Contents:
     (this has to be one supported by the program, of course)! (if requirements
     1. and 2. are met, point your browser to the setup/phpinfo.php file via
     http to see what features are supported by your PHP setup)
+ 4. with PHP 4.2 and higher, you have to set register_globals=On in your
+    php.ini -- sorry for that, just discovered it today. Hopefully, I will
+    remove this limitation in the near future!
 
 ===============================================================================
 

@@ -15,6 +15,12 @@
      database backup, there are two more options now: backup movie relevant
      data only, and the same plus having the old data purged before execution
      on a restore
+ <li>on the help pages, you may now force to display the English files. I felt
+     this necessary since help files are not up-to-date for some languages, so
+     some new features may not be described there. Switch to the English help
+     file by clicking on the flag when you feel there's something missing in
+     your language's file. If you are right, feel free to update your language's
+     file and send it to me :-)
 </ul>
 
 [title]

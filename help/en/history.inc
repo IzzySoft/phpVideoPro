@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.3.3 (Oktober/November 2002)
+[text]
+<ul>
+ <li>worked around a Netscape 4.x JavaScript bug with the label printing
+     function in "*view_entry#" (thanx to Michael Hasselberg for providing
+     this fix!)
+</ul>
+
+[title]
 0.3.2 (Oktober 14, 2002)
 [text]
 <ul>

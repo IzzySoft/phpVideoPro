@@ -2,6 +2,18 @@
 # /*  $Id$ */
 
 [title]
+0.2.6 (2002)
+[text]
+<ul>
+ <li>added list printing functionality. Right now, it prepares the lists for
+     either directly being printed (spartanic ASCII version) or exported to
+     your favorite word processor / spread sheet for further processing
+     (CSV version)
+ <li>made date format configurable (right now just used with the list printing,
+     everything else will follow)
+</ul>
+
+[title]
 0.2.5 (June 17, 2002)
 [text]
 <ul>

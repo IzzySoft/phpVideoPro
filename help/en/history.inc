@@ -8,6 +8,8 @@
  <li>Printers can now be edited (see admin menu)
  <li>Templates for PSLabels now have a frontend to be managed with (admin menu)
  <li>there was a possibility to access the translation editor w/o admin privs (fixed)
+ <li>fix from Michael for the PS Side labels: movie length no longer gets
+     overwritten by ultra-long movie titles
 </ul>
 
 [title]

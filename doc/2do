@@ -14,16 +14,12 @@ account" izzysoft@qumran.org.
 coming *soon*:
 
 coming *next*:
-- form(s) to edit printers (for PSLabels)
-- form(s) to edit labels (for PSLabels)
-- form(s) to edit templates (for PSLabels)
-- form(s) to edit sheets and units (for PSLabel)
+- form(s) to edit label sheets (for PSLabels)
 - form(s) to edit tech data (colors, commercials, mtypes, pict, tone)
 
 coming *sometimes* (maybe):
 - add "sample-links" to translation editor
 - enable/disable a category (to temporarily get rid of unwanted ones)
-- overview "per tape" (should look equivalent to taperest)
 - new database field: "lent to" (to find out where your media *really* are :)
 - make menu template-driven
 - configurable format of counter display: as is in db / in minutes / in hh:mm

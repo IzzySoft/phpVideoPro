@@ -283,3 +283,5 @@ INSERT INTO lang VALUES('user_deleted','de','Der Benutzer #%1, "%2" (%3), wurde 
 INSERT INTO lang VALUES('user_delete_failed','de','Das Löschen des Benutzers #%1, "%2" (%3), ist fehlgeschlagen.');
 INSERT INTO lang VALUES('submit','de','Absenden');
 INSERT INTO lang VALUES('welcome','de','Willkommen bei phpVideoPro');
+INSERT INTO lang VALUES('login_failed','de','Anmeldung fehlgeschlagen. Entweder liegt ein Tippfehler beim Passwort vor, oder das angegebene Konto existiert nicht.<P />');
+INSERT INTO lang VALUES('login_required','de','Der gewünschte Vorgang kann aufgrund mangelnder Berechtigungen nicht durchgeführt werden. Eine erneute Anmeldung mit einem entsprechenden Konto kann dies Problem lösen.<P />');

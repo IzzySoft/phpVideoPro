@@ -292,3 +292,5 @@ INSERT INTO lang VALUES('user_deleted','en','Successfully deleted user #%1, "%2"
 INSERT INTO lang VALUES('user_delete_failed','en','Deletion of user #%1, "%2" (%3) failed');
 INSERT INTO lang VALUES('submit','en','Submit');
 INSERT INTO lang VALUES('welcome','en','Welcome to phpVideoPro');
+INSERT INTO lang VALUES('login_failed','en','Your LogIn failed. Either you misspelled your password, or the requested account does not exist.<P />');
+INSERT INTO lang VALUES('login_required','en','Your privileges are not sufficient for the requested action. You may login with an appropriate account now.<P />');

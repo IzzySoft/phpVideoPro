@@ -112,7 +112,7 @@ always for the family name, the second for the first name. Names of staff
 members are not stored together with the movie data, but in a separate table.
 With the movie data, there's only a reference stored - so if you later go to
 list some entries for a specific person, you may run into trouble: on the
-<A HREF="http://www.qumran.org/homes/izzy/software/videopro-demo" TARGET="_blank">demo site</A>,
+<A HREF="http://www.qumran.org/homes/izzy/software/pvp/demo" TARGET="_blank">demo site</A>,
 I already saw entries keeping both name parts in one field, just to store two
 persons into one entry. Of course you <i>can</i> do so - but it's not the way
 it is intended. You will e.g. encounter problems in this case, when setting
@@ -148,4 +148,3 @@ rulers. All other HTML tags get stripped of - that is to protect your site from
 malicious HTML code input.
 
 [eof]
-

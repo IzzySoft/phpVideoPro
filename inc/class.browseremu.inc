@@ -61,7 +61,7 @@
 
    /** Add a post parameter. Post parameters are sent in the body of an HTTP
     *  POST request.
-    * @method add PostData
+    * @method addPostData
     * @param string name
     * @param string value
     */

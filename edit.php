@@ -148,7 +148,7 @@
     $cat[$i] = $movie[$cat_nr];
   }
   $free = "0";
-  if ($mediatype == "RVT") $free = $db->get_mediumfreetime($cass_id);
+  if ($pvp->common->medium_is_rw($mtype_id)) $free = $db->get_mediumfreetime($cass_id);
  } else {
    $lastnum = $db->get_lastmovienum();
  } // end if (!$new_entry)

@@ -88,8 +88,8 @@
     # now we delete the movie entry from db
     $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
     kill("video",$id);
-    # and finally we may have to correct the free space remaining on that medium
-    if ( $mtype_id == 1 ) { // RVT
+    # and finally we may have to correct the free space remaining on that medium (if rewritable)
+    if ( $pvp->common->medium_is_rw($mtype_id) ) {
       $details .= "<li>" . lang("recalc_free"). ". ";
       $time_left = $db->get_mediaspace($cass_id);
       if ( strlen($time_left) ) {

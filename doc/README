@@ -116,6 +116,22 @@ Contents:
     the same advices again to make sure everything is prepared (*grin*),
     and then click on the "create" link on the bottom of that page. More
     explanations follow there.
+ 5. If you are concerned about disk space, you may want to remove the
+    language support files for languages you won't ever use. By this, you
+    will save about 100kB per language (with phpVideoPro v0.3.0 - may be
+    more with future versions). I'm going to explain the removal of a
+    language by the example of GERMAN.
+    The German language has the code "de" (to find this out, you may want
+    to look into setup/tech_data.sql and find the language together with
+    its code at the end of the file).
+    Remove German help files: delete the whole help/de directory.
+    Remove German translations: delete the setup/lang_de.sql file (the
+    translations may still be available if you loaded them into the database
+    prior to this step).
+    You won't destroy anything by these steps (as long as you don't remove
+    files for the English [en] support, since these files ARE ALLWAYS
+    REQUIRED by phpVideoPro). The worst thing to happen is, that the whole
+    application may be English only, regardless of your configuration.
 
 ===============================================================================
 

@@ -164,6 +164,19 @@ Cookies auf dem System des Benutzers wieder gelöscht werden. Wird hier
 Benutzer seinen Browser wieder schließt. In den anderen Fällen bleiben sie für
 den jeweils angegebenen Zeitraum aktiv.
 
+[text]
+<b>*session_purgetime#:</b> Wenn sich ein Benutzer bei phpVideoPro anmeldet,
+werden ihm/ihr zusätzliche Rechte eingeräumt, die dem entsprechenden Konto
+zugewiesen wurden - dies kann z.B. das Bearbeiten und/oder Löschen von Daten
+beinhalten. Verläßt dieser Benutzer nun z.B. seinen Arbeitsplatz, ohne sich
+zuvor abzumelden, besteht die Gefahr, dass jemand anderes seine Sitzung benutzt
+und Daten manipuliert. Um dieses Risiko möglichst gering zu halten, bietet
+phpVideoPro die Option, eine inaktive Sitzung nach einem definierten Zeitraum
+zu löschen. Die vom Benutzer in seinen "Keksen" gespeicherten Einstellungen
+sind hiervon nicht betroffen: er/sie wird lediglich vom System abgemeldet, und
+verfügt somit (bis zu einer erneuten Anmeldung) lediglich noch über die Rechte
+des Gast-Kontos.
+
 [title]
 *general#
 

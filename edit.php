@@ -148,11 +148,7 @@
     $cat[$i] = $movie[$cat_nr];
   }
   $free = "0";
-  if ($mediatype == "RVT") {
-    $query = "SELECT free FROM cass WHERE id=$cass_id";
-    dbquery($query); $db->next_record();
-    $free  = $db->f('free');
-  }
+  if ($mediatype == "RVT") $free = $db->get_mediumfreetime($cass_id);
  } else {
    $lastnum = $db->get_lastmovienum();
  } // end if (!$new_entry)

@@ -46,9 +46,13 @@
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }
- $title   = addslashes($title);
- $source  = addslashes($source);
- $comment = addslashes($comment);
+ $title   = $pvp->common->safeinput(addslashes($title));
+ $source  = $pvp->common->safeinput(addslashes($source));
+ $comment = $pvp->common->safetextarea(addslashes($comment));
+ $fields   = array("country","year","length","src","fsk","counter1","counter2");
+ foreach ($fields as $field) {
+   ${$field} = $pvp->common->safeinput(${$field});
+ }
  $update  = "UPDATE video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"
@@ -72,5 +76,4 @@
    $media_length = $db->get_mediaspace($cass_id,$mtype_id);
    $db->update_freetime($cass_id,$mtype_id);
  }
- 
 ?>

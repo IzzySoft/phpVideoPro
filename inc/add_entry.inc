@@ -38,7 +38,7 @@
  (int) $part;
 
  # no *_list field shall be NULL
- $idfields = array("director_list","music_list","vis_actor1","vis_actor2",
+ $idfields = array("label","director_list","music_list","vis_actor1","vis_actor2",
              "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id");
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
@@ -48,7 +48,7 @@
  $fields = array("mtype_id","cass_id","part","title","length","country","year",
                  "cat1_id","cat2_id","cat3_id","director_list","music_list",
 		 "tone_id","pict_id","color_id","fsk","comment","lp",
-		 "counter1","counter2","commercials_id");
+		 "counter1","counter2","commercials_id","label");
  foreach ($fields as $value) {
    $movie[$value] = ${$value};
  }

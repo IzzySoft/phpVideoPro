@@ -292,7 +292,7 @@
 
    /** Set some config value
     * @class sql
-    * @method get_config
+    * @method set_config
     * @param string name config var's name
     */
    function set_config($name,$value) {
@@ -685,7 +685,7 @@
     *              previous, next (see get_preventry/get_nextentry)
     *  Tech  data: color, color_short, color_id, tone, tone_short, tone_id,
     *              pict, pict_short, pict_id, commercials, commercials_id,
-    *              lp
+    *              lp, label
     *  Movie data: title, length, country, year, counter1, counter2, aq_date
     *              source, fsk, comment, catX / catX_id (1..3), comment
     *  Staff data: director_list, music_list, actorX_list (where X is 1..5);
@@ -700,7 +700,7 @@
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
-	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,"
+	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
 	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,comment,mtype_id,"
 	    . "d.name as dname,d.firstname as dfname,"
 	    . "m.name as mname,m.firstname as mfname,"
@@ -731,7 +731,7 @@
 	    . "WHERE video.id=$id";
      $this->query($query);
      $this->next_record();
-     $moviedetails = array("title","length","country","year","counter1",
+     $moviedetails = array("title","label","length","country","year","counter1",
                      "counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","cass_id","part",
@@ -1018,14 +1018,14 @@
        display_error( lang("dupe_id_entered") );
        exit;
      }
-     $insert = "INSERT INTO video (mtype_id,cass_id,part,title,length,aq_date,"
+     $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
 	     . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,"
 	     . "actor4_list,actor5_list,tone_id,pict_id,color_id,fsk,comment,"
 	     . "lp,counter1,counter2,commercials_id) "
 	     . "VALUES ("
-	     . "$mtype_id,$cass_id,$part,'$title',$length,'$aq_date','$source',"
+	     . "$mtype_id,$cass_id,$part,'$title',$label,$length,'$aq_date','$source',"
 	     . "$director_id,$director_list,$music_id,$music_list,'$country',"
 	     . "$year,$cat1_id,$cat2_id,$cat3_id,$actor1_id,$actor2_id,"
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"

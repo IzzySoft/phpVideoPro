@@ -24,7 +24,7 @@
   include("inc/header.inc");
 ?>
  <script language="JavaScript"><!--
-   function label(labelconf) {
+   function mklabel(labelconf) {
      if (labelconf != "-") {
        url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&template="?>' + labelconf;
        var pos = (screen.width/2)-400;
@@ -124,9 +124,9 @@
   $movie = $db->get_movie($id);
 
   // values:
-  $mdetails = array ("title","length","year","country","fsk","lp","comment",
-              "counter1","counter2","music_list","director_list","commercials",
-	      "tone","color");
+  $mdetails = array ("title","label","length","year","country","fsk","lp",
+              "comment","counter1","counter2","music_list","director_list",
+	      "commercials","tone","color");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -216,7 +216,7 @@
     if ($movie[previous]) {
       $prev = "<A HREF='$PHP_SELF?mtype_id=".$movie[previous]->mtype_id
             . "&cass_id=".$movie[previous]->media_nr."&part=".$movie[previous]->part
-	    . "'><IMG SRC='".$tpl_dir."/images/left.gif'></A>";
+	    . "'><IMG SRC='".$tpl_dir."/images/left.gif' BORDER='0'></A>";
     } else {
       $prev = "<IMG SRC='".$tpl_dir."/images/left-grey.gif'>";
     }
@@ -224,7 +224,7 @@
     if ($movie[next]) {
       $next = "<A HREF='$PHP_SELF?mtype_id=".$movie[next]->mtype_id
             . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part
-            . "'><IMG SRC='".$tpl_dir."/images/right.gif'></A>";
+            . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
     } else {
       $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif'>";
     }
@@ -294,6 +294,18 @@ EndHiddenFields;
   $t->set_var("counter_name",lang("counter_start_stop"));
   $t->set_var("counter_1",form_input("counter1",$counter1,"class=\"yesnobutton\""));
   $t->set_var("counter_2",form_input("counter2",$counter2,"class=\"yesnobutton\""));
+  # Label
+  $t->set_var("label_name",lang("label"));
+  $field = "<INPUT NAME=\"label\"";
+  if ($edit) { 
+    $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
+    if ($label) $field .= " CHECKED";
+    $field .= ">";
+  } else {
+    $field .= "TYPE=\"button\" class=\"yesnobutton\" VALUE=\"";
+    if ($label) { $field .= lang("yes") . "\">"; } else { $field .= lang("no") . "\">"; }
+  }
+  $t->set_var("label",$field);
   # Categories
   $t->set_var("category_name",lang("category") . " 1-2-3");
   $field = "";
@@ -451,7 +463,7 @@ EndHiddenFields;
     $t->set_var("print_label","&nbsp;");
   } else {
     $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
-    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"label(this.options[this.selectedIndex].value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
+    $labellist = "<SELECT NAME=\"labelconf\" onChange=\"mklabel(this.options[this.selectedIndex].value)\"><OPTION VALUE=\"-\">" . lang("print_label") . "</OPTION>";
     for ($i=0;$i<count($labels);$i++) {
       $confname = substr($labels[$i],0,strlen($labels[$i]) - 7);
       $labellist .= "<OPTION VALUE=\"$confname\">" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";

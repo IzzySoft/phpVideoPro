@@ -147,6 +147,7 @@ CREATE TABLE video (
    cass_id int(4),
    part int(2),
    title varchar(60),
+   label int(1) NOT NULL,
    length int(3),
    counter1 varchar(10),
    counter2 varchar(10),

@@ -42,11 +42,11 @@
  include("inc/sql_set_persons.inc");
 
  $idfields = array("pict_id","director_list","music_list","vis_actor1","vis_actor2",
-             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id");
+             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id","label");
  foreach ($idfields as $field) {
    if (!$$field) $$field = 0;
  }
- $update  = "UPDATE video SET title='$title',country='$country',length=$length,year=$year,tone_id=$tone_id,"
+ $update  = "UPDATE video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"
           . "actor4_list=$vis_actor4,actor5_list=$vis_actor5,cat1_id=$cat1_id,cat2_id=$cat2_id,"

@@ -46,6 +46,7 @@
      $this->symb_coord = $this->convert_coord($symb_coord);
      $this->textcolor = $this->color[$textcolor];
      $this->font   = 5;
+     if ($fontsize) $this->fontsize = $fontsize;
      $template = $config . ".png";
      if (file_exists($template)) {
        $this->copy_tpl($template);
@@ -127,7 +128,7 @@
    }
 
    ###########################################################################
-   # write text to a label field
+   # Write text to a label field
    function write_text($text,$field) {
      $font = $this->font;
      for ($i=0;$i<count($text),$font>0;$i++) { // find longest line
@@ -151,6 +152,9 @@
        if (isset($this->titleline) && $i % $movielines == $this->titleline) {
          if ($font < 5) { 
            $usefont = $font +1;
+           if (isset($this->fontsize) && $usefont < 5)
+             if ( ($usefont + $this->fontsize)<6 ) {
+               $usefont += $fontsize; } else { $usefont = 5; }
            $x[$i] = $this->get_textpos($text[$i],$field,$usefont);
 	 }
        } else {
@@ -163,7 +167,12 @@
    }
 
    ###########################################################################
-   # wrapper to put data on the label
+   /** Wrapper to put data on the label
+    * @class label
+    * @method write
+    * @param integer nr media number
+    * @param array text text as returned by label::make_text
+    */
    function write($nr,$text) {
      while ( substr($nr,0,1)=="0" ) {
        $nr = substr($nr,1);
@@ -174,12 +183,18 @@
    }
 
    ###########################################################################
-   # prepare the text array with data from the movies listed in array $movie
+   /** prepare the text array with data from the movies listed in array $movie
+    * @class label
+    * @method make_text
+    * @param array movies as returned by sql::get_movieid
+    * @return array text (one line per array field)
+    */
    function make_text($movies) {
      GLOBAL $db;
      $moviecount = count($movies);
      for ($i=0;$i<$moviecount;$i++) {
        $movie = $db->get_movie($movies[$i]);
+       if (!$movie[label]) continue;
        for ($lines=0;$lines<count($this->entry);$lines++) {
          if ( substr($this->entry[$lines],0,1) == "*" ) {
 	   $this->entry[$lines] = substr($this->entry[$lines],1);
@@ -205,14 +220,20 @@
    }
 
    ###########################################################################
-   # send the image to the browser
+   /** Send the image to the browser
+    * @class label
+    * @method prn
+    */
    function prn() {
      header( "Content-type: image/png");
      ImagePng($this->label);
    }
 
    ###########################################################################
-   # free memory
+   /** Free memory
+    * @class label
+    * @method destroy
+    */
    function destroy() {
      ImageDestroy( $this->label() );
    }

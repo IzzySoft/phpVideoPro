@@ -35,7 +35,7 @@ INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUE
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('dz','Bhutani','UTF-8','No','0','0');
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('ee','Eve','UTF-8','No','0','0');
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('el','Ελληνικά','UTF-8','No','0','0');
-INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('en','English','UTF-8','No','1','1');
+INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('en','English','UTF-8','Yes','1','1');
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('eo','Esperanto','UTF-8','No','0','0');
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('es','Español','UTF-8','No','1','1');
 INSERT INTO languages (lang_id,lang_name,charset,available,audio,subtitle) VALUES ('et','Eesti','UTF-8','No','0','0');

@@ -21,6 +21,7 @@ coming *next*:
 - PS template(s) for DVD covers
 - form(s) to edit label sheets (for PSLabels)
 - settings for NTSC/PAL
+- "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
 
 coming *sometimes* (maybe):
 - honour date format settings in all places

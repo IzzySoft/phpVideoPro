@@ -2,12 +2,6 @@
   include("inc/config.inc");
   include("inc/common_funcs.inc");
   include("inc/sql_helpers.inc");
-  function check_empty(&$field) {
-    if ($field == "") $field = "&nbsp";
-  }
-  function check_empty_name(&$field) {
-    if (trim($field) == ",") $field = "";
-  }
   include("inc/db_mysql.inc");
   $db = new DB_Sql;
   $db->Host     = $database["host"];
@@ -37,7 +31,7 @@
      A:active{ text-decoration:none }
      body { margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
      .tablink { color: #000000; }
-     TH { background-color:#cccccc; }
+     TH { background-color:<? echo $colors["th_background"] ?>; }
    -->
  </STYLE>
  <script language="JavaScript" src="<? echo $nav_script ?>"></script>

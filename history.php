@@ -20,6 +20,8 @@
            update was broken (duplicate function declaration), fixed.
        <li>when adding a new entry it was possible to get duplicate or
            invalid media IDs. Added some check to prevent this.
+       <li>preset "Aquired" date to current date when adding a new entry
+       <li>added check for valid date on adding new and changing existing entry
       </ul>
   <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:

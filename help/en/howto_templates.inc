@@ -19,10 +19,10 @@ subdir and copying/editing or creating files:
      appear in your new templates for sure :-) Everything else can be
      removed/replaced as you like.
  <LI>Now that you are done with the creation, you may want to go to the
-     configuration page (Edit -&gt; Configuration) and activate it: phpVideoPro
-     finds out about the installed template sets by parsing the templates
-     directory for existing sub directories, so your new template set will be
-     found automagically.
+     configuration page ("*edit# -&gt; *configuration#") and activate it:
+     phpVideoPro finds out about the installed template sets by parsing the
+     templates directory for existing sub directories, so your new template set
+     will be found automagically.
 </OL>
 
 [eof]

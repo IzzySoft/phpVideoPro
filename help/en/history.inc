@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.8 (July 2002)
+0.2.8 (July 29, 2002)
 [text]
 <ul>
  <li>categories are now translated (if you miss translations for your language,

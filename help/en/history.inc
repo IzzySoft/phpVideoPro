@@ -2,6 +2,25 @@
 # /*  $Id$ */
 
 [title]
+0.4.5 (2003)
+[text]
+<ul>
+ <li>Added support for several special tags within the comment field: You now
+     may easily add thumbnails by using the [img] and [imgr] tags (the first
+     just puts the image on the lefthand side, the latter on the righthand
+     side). To add an URL to an external reference, you may now use the [href]
+     tag. In all three cases, enclose the target by opening and closing tags,
+     e.g.: [href]http://www.izzysoft.de/[/href]. Until now, phpVideoPro
+     automatically converts all strings that look like an URL into the [href]
+     format. For that reason, the image links may only refer to <b>local</b>
+     images and not to other systems, i.e. you have to put the images on the
+     same server as your copy of phpVideoPro is running and just add them with
+     their path - not with protocol and server name. To enable "remote" images,
+     we may drop the auto-conversion at some future point.<br>One more note:
+     the [href] and [img]/[imgr] tags must <b>not</b> be nested.
+</ul>
+
+[title]
 0.4.4 (April 4, 2003)
 [text]
 <ul>

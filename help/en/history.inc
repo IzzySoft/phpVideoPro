@@ -10,6 +10,8 @@
  <li>there was a possibility to access the translation editor w/o admin privs (fixed)
  <li>fix from Michael for the PS Side labels: movie length no longer gets
      overwritten by ultra-long movie titles
+ <li>Michael also supplied more details upon the top labels, as you may know
+     them from the old label system
 </ul>
 
 [title]

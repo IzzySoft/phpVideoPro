@@ -37,7 +37,7 @@
   $t->set_var("item_input",$stats[composers]);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name",lang("categories"));
-  $t->set_var("item_input",$stats[categories]);
+  $t->set_var("item_input",$stats[cats_used] . "/" . $stats[categories]);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name",lang("media"));
   $t->set_var("item_input",$stats[media]);

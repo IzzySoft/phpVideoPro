@@ -991,6 +991,16 @@
 	 }
        }
      }
+     for ($i=1;$i<4;++$i) {
+       $cat = "cat" . $i . "_id";
+       $this->dbquery("SELECT DISTINCT $cat FROM video");
+       while ( $this->next_record() ) {
+         ${$cat}[] = "a_" . $this->f("$cat");
+       }
+       ${$cat} = array_flip(${$cat});
+     }
+     $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
+     $stats[cats_used] = count($cats);
      return $stats;
    }
 

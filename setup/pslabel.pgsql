@@ -17,22 +17,32 @@ CREATE TABLE eps_templates (
 
 CREATE INDEX eps_templates_desc ON eps_templates (description);
 
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (1,2,'action_side','action_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (2,2,'default_side','simple_side.eps','simple_side.ps',0,0,414,54);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (3,1,'default_top','simple_top.eps','simple_top.ps',0,0,223,126);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (1,2,'adventure_side','adventure_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (2,1,'adventure_top','adventure_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (3,2,'action_side','action_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (4,1,'action_top','action_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (5,2,'sf_side','sf_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (6,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (5,2,'b5_side','b5_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (6,1,'b5_top','b5_top.eps','common_top.ps',0,0,273,160);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (7,2,'bible_side','bibelfilm_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (8,1,'bible_top','bibelfilm_top.eps','common_top.ps',0,0,273,160);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (9,2,'comedy_side','comedy_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (10,1,'comedy_top','comedy_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (11,2,'docu_side','docu_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (12,1,'docu_top','docu_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (13,2,'drama_side','drama_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (14,1,'drama_top','drama_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (11,2,'trick_side','trick_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (12,1,'trick_top','trick_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (11,2,'default_side','simple_side.eps','simple_side.ps',0,0,414,54);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (12,1,'default_top','simple_top.eps','simple_top.ps',0,0,223,126);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (13,2,'docu_side','docu_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (14,1,'docu_top','docu_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (15,2,'drama_side','drama_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (16,1,'drama_top','drama_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (17,2,'fantasy_side','fantasy_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (18,1,'fantasy_top','fantasy_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (19,2,'history_side','history_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (20,1,'history_top','history_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (21,2,'music_side','music_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (22,1,'music_top','music_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (23,2,'sf_side','sf_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (24,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (25,2,'trick_side','trick_side.eps','common_side.ps',0,0,513,68);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (26,1,'trick_top','trick_top.eps','common_top.ps',0,0,273,160);
 
 #
 # Table structure and data for 'label form definition'
@@ -144,3 +154,4 @@ INSERT INTO units (id, unit, size) VALUES (1,'pt',1);
 INSERT INTO units (id, unit, size) VALUES (2,'inch',72);
 INSERT INTO units (id, unit, size) VALUES (3,'cm',28.3465);
 INSERT INTO units (id, unit, size) VALUES (4,'mm',2.8346);
+

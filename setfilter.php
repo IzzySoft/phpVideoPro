@@ -246,7 +246,7 @@
     # actor
     unset($id);
     $pict = $db->get_actor("");
-    usort ($pict,"sort_ar");
+    if (is_array($pict)) usort ($pict,"sort_ar");
     $option = "";
     for ($i=0;$i<count($pict);$i++) {
       $id   = $pict[$i][id];
@@ -261,7 +261,7 @@
     # director
     unset($id);
     $pict = $db->get_director("");
-    usort ($pict,"sort_ar");
+    if (is_array($pict)) usort ($pict,"sort_ar");
     $option = "";
     for ($i=0;$i<count($pict);$i++) {
       $id   = $pict[$i][id];
@@ -276,7 +276,7 @@
     # composer
     unset($id);
     $pict = $db->get_music("");
-    usort ($pict,"sort_ar");
+    if (is_array($pict)) usort ($pict,"sort_ar");
     dbquery("SELECT id,name,firstname FROM music ORDER BY name");
     $option = "";
     for ($i=0;$i<count($pict);$i++) {

@@ -80,6 +80,11 @@ Contents:
  4. with PHP 4.2 and higher, you have to set register_globals=On in your
     php.ini -- sorry for that, just discovered it today. Hopefully, I will
     remove this limitation in the near future!
+ 5. at this time, cookies *must* be enabled (for the session/permission
+    management), otherwise certain tasks cannot be performed. If you don't
+    like this and don't need the protection of your data, you may give the
+    guest account full access (including the admin option) and turn cookies
+    off then. This limitation will hopefully be removed soon as well.
 
 ===============================================================================
 

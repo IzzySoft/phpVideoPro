@@ -14,14 +14,16 @@ Development Crew
 [text]
 <UL>
  <LI>The Beta-Testers and Bug-Reporters, especially Peter Bieringer for testing
-     and help with PostgreSQL, and Michael Hasselberg for pointing out Bugs (if
+     and help with PostgreSQL, Michael Hasselberg for pointing out Bugs (if
      there were a "most reported award", it would belong to him!) plus inventing
-     the new PostScript based label engine</LI>
+     the new PostScript based label engine and Ron Dekker for a lot of beta
+     testing (and bug finding) concerning the "register_globals" and disabled
+     cookies issue</LI>
  <LI>all the language support files generators: Tsvetanka Stoyanova for
      Bulgarian, Didier Clerc &lt;didier-clerc AT isuisse DOT com&gt; for French,
      Alessandro Danti and Jason Reaper for Italian, Knut Fjellheim for Norwegian,
      Leszek Boroch and Jacek Wolski for Polish, Tom Albers for Dutch, Tony
-     Granberg for Swedish, Pablo Sanchez and Jaime Valdés-Pagés for Spanish,
+     Granberg for Swedish, Pablo Sanchez and Jaime ValdÃ©s-PagÃ©s for Spanish,
      Denis Shvidkiy for Russian, Shalom Pollack for Hebrew (he deserves a very
      special credit for his hard work and patience - took us some special
      lessons with this special and holy tongue!)</LI>

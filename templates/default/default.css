@@ -8,7 +8,7 @@
   .tablink { color: #000000; }
   TABLE { background-color: #ffffff; }
   .navtable { background-color: #6699ff; }
-  TH { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; background-color: #ffff99; text-align: center; }
+  TH { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12; background-color: #ffff99; text-align: center; font-weight: bold; }
   TH A { color:blue; }
   TH.help { background-color: #e5e5e5; text-align: center; }
   TD { font-size: 12; }
@@ -22,12 +22,15 @@
   .medianrinput { width: 70; height: 18; }
   .partinput { width: 20; height: 18; }
   .yesnoinput { width: 40; height: 18; }
-  .titlebutton { font-weight: bold; background-color: #dadada; }
-  .namebutton { width: 120; height: 18; background-color: #dadada; }
-  .techbutton { width: 120; height: 18; background-color: #dadada; }
-  .catbutton { width: 180; height: 18; background-color: #dadada; }
-  .medianrbutton { width: 70; height: 18; background-color: #dadada; }
-  .yesnobutton { width: 40; height: 18; background-color: #dadada; }
+  .titlebutton, .namebutton, .techbutton, .catbutton, .medianrbutton, .yesnobutton {
+    font-family: Verdana,Arial,Helvetica,sans-serif; background-color: #dadada;
+    height: 18;
+  }
+  .titlebutton { font-weight: bold; }
+  .namebutton, .techbutton { width: 120; }
+  .catbutton { width: 180; }
+  .medianrbutton { width: 70; }
+  .yesnobutton { width: 40; }
   .checkbox { height: 15; }
   .multiselect { height: 125; width: 180; }
   .error { color: #ff0000; }

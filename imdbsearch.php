@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
-# $page_id = "search_imdb";
+ $page_id = "imdbsearch";
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");

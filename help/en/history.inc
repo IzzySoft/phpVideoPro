@@ -10,6 +10,10 @@
  <li>added database backup (humm, time for a separate admin menue, huh?)
  <li>added admin menue and moved all administrative items here (hm, now the
      edit menue looks quite empty ;)
+ <li>added restore. Don't look for it in the menue - it's not there, but runs
+     via the installation screens. See online help for details.
+ <li>made some "visual improvements" for the installation screens. Look much
+     better now - at least to me :)
 </ul>
 
 [title]

@@ -1032,8 +1032,8 @@
     *              with _rev as reverse name (name, firstname);
     *              actors, actors12, actors35 as list of actorX</pre>
     */
-   function get_movie($id) {
-     if (!$id) return "";
+   function get_movie($id="") {
+     if ($id) $where = " WHERE video.id=$id";
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
@@ -1064,84 +1064,88 @@
 	    . "LEFT JOIN actors a2 ON actor2_id=a2.id "
 	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
 	    . "LEFT JOIN actors a4 ON actor4_id=a4.id "
-	    . "LEFT JOIN actors a5 ON actor5_id=a5.id "
-	    . "WHERE video.id=$id";
+	    . "LEFT JOIN actors a5 ON actor5_id=a5.id" . $where;
      $this->query($query);
-     $this->next_record();
-     $moviedetails = array("title","label","length","country","year","counter1",
+     $rc = $this->num_rows(); # somehow the while loop does not work here???
+     for ( $rcc=0;$rcc<$rc;++$rcc ) {
+       $this->next_record();
+       $moviedetails = array("title","label","length","country","year","counter1",
                      "counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","cass_id","part",
 		     "mtype_id","tone_id","color_id");
-     foreach($moviedetails as $value) {
-       $movie[$value] = $this->f("$value");
-     }
-     $movie[title]   = stripslashes($movie[title]);
-     $movie[source]  = stripslashes($movie[source]);
-     $movie[comment] = stripslashes($movie[comment]);
-     if (!$movie[length]) $movie[length] = 0;
-     $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
-     $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
-     $movie[director_] = $name;
-     $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
-     $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
-     $movie[music_] = $name;
-     for ($i=1;$i<6;$i++) { // actor 1..5: [actor1],[actor1_rev],[actor_1]...
-       $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
-       $tname  = stripslashes($this->f("$dbname"));
-       $tfname = stripslashes($this->f("$dbfname"));
-       $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
-       $name = $this->format_name( array(name=>$tname,firstname=>$tfname) );
-       $movie[$vname] = $name[fullname]; $movie[$vrev] = $name[reverse];
-       $movie[$aname] = $name;
-     }
-     $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
-     $movie[color] = lang($this->f('cname')); $movie[color_short] = $this->f('csname');
-     $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
-     $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
+       foreach($moviedetails as $value) {
+         $movie[$value] = $this->f("$value");
+       }
+       $movie[title]   = stripslashes($movie[title]);
+       $movie[source]  = stripslashes($movie[source]);
+       $movie[comment] = stripslashes($movie[comment]);
+       if (!$movie[length]) $movie[length] = 0;
+       $name = $this->format_name( array(name=>$this->f('dname'),firstname=>$this->f('dfname')) );
+       $movie[director] = $name[fullname]; $movie[director_rev] = $name[reverse];
+       $movie[director_] = $name;
+       $name = $this->format_name( array(name=>$this->f('mname'),firstname=>$this->f('mfname')) );
+       $movie[music] = $name[fullname]; $movie[music_rev] = $name[reverse];
+       $movie[music_] = $name;
+       for ($i=1;$i<6;$i++) { // actor 1..5: [actor1],[actor1_rev],[actor_1]...
+         $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
+         $tname  = stripslashes($this->f("$dbname"));
+         $tfname = stripslashes($this->f("$dbfname"));
+         $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
+         $name = $this->format_name( array(name=>$tname,firstname=>$tfname) );
+         $movie[$vname] = $name[fullname]; $movie[$vrev] = $name[reverse];
+         $movie[$aname] = $name;
+       }
+       $movie[mtype] = $this->f('mtname'); $movie[mtype_short] = $this->f('mtsname');
+       $movie[color] = lang($this->f('cname')); $movie[color_short] = $this->f('csname');
+       $movie[tone] = $this->f('tname'); $movie[tone_short] = $this->f('tsname');
+       $movie[cat1] = lang($this->f('cat1name')); $movie[cat2] = lang($this->f('cat2name')); $movie[cat3] = lang($this->f('cat3name'));
 
-     $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
+       $moviedetails = array("actor1_id","actor2_id","actor3_id","actor4_id",
                      "actor5_id","director_id","music_id","cat1_id","cat2_id",
 		     "cat3_id","pict_id","commercials_id","lp","mtype_id");
-     foreach($moviedetails as $value) {
-       $$value = $this->f("$value");
-       $movie[$value] = $$value;
-     }
-     $movie[actors12] = $movie[actor1];
-     if ( strlen($movie[actor2]) ) {
-       if ( strlen($movie[actors12]) ) $movie[actors12] .= ", ";
-       $movie[actors12] .= $movie[actor2];
-     }
-     $movie[actors35] = $movie[actor3];
-     for ($i=4;$i<6;$i++) {
-       $actor = "actor$i";
-       if ( strlen($movie[$actor]) ) {
-         if ( strlen($movie[actors35]) ) $movie[actors35] .= ", ";
-	 $movie[actors35] .= $movie[$actor];
+       foreach($moviedetails as $value) {
+         $$value = $this->f("$value");
+         $movie[$value] = $$value;
        }
+       $movie[actors12] = $movie[actor1];
+       if ( strlen($movie[actor2]) ) {
+         if ( strlen($movie[actors12]) ) $movie[actors12] .= ", ";
+         $movie[actors12] .= $movie[actor2];
+       }
+       $movie[actors35] = $movie[actor3];
+       for ($i=4;$i<6;$i++) {
+         $actor = "actor$i";
+         if ( strlen($movie[$actor]) ) {
+           if ( strlen($movie[actors35]) ) $movie[actors35] .= ", ";
+	   $movie[actors35] .= $movie[$actor];
+         }
+       }
+       $movie[actors] = $movie[actors12];
+       if ( strlen($movie[actors35]) ) {
+         if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
+         $movie[actors] .= $movie[actors35];
+       }
+       if ($pict_id) {
+         $pict = $this->get_pict($pict_id);
+         $movie[pict] = $pict[name]; $movie[pict_short] = $$pict[sname];
+       } else {
+         $movie[pict] = $movie[pict_short] = lang("unknown");
+       }
+       if ($commercials_id) {
+         $movie[commercials] = $this->get_commercials($commercials_id);
+       } else {
+         $movie[commercials] = lang("unknown");
+       }
+       if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
+       $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
+       $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
+       $movie[disktype] = $this->get_disktype_id($movie[mtype_id],$movie[cass_id]);
+       $movie[rc]       = $this->get_rc($movie[mtype_id],$movie[cass_id]);
+       if ($id) return $movie;
+       $list[] = $movie;
      }
-     $movie[actors] = $movie[actors12];
-     if ( strlen($movie[actors35]) ) {
-       if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
-       $movie[actors] .= $movie[actors35];
-     }
-     if ($pict_id) {
-       $pict = $this->get_pict($pict_id);
-       $movie[pict] = $pict[name]; $movie[pict_short] = $$pict[sname];
-     } else {
-       $movie[pict] = $movie[pict_short] = lang("unknown");
-     }
-     if ($commercials_id) {
-       $movie[commercials] = $this->get_commercials($commercials_id);
-     } else {
-       $movie[commercials] = lang("unknown");
-     }
-     if ($lp) { $movie[lp] = lang("longplay"); } else { $movie[lp] = ""; }
-     $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
-     $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
-     $movie[disktype] = $this->get_disktype_id($movie[mtype_id],$movie[cass_id]);
-     $movie[rc]       = $this->get_rc($movie[mtype_id],$movie[cass_id]);
-     return $movie;
+     return $list;
    }
 
    /** Get movie list as array of movies (see get_movie)

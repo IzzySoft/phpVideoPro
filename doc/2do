@@ -15,11 +15,10 @@ coming *soon*:
 
 coming *next*:
 - manage preferences via cookies, taking defaults from DB
-- checkbox "on label" (analogue to "in list", but per movie title)
-- enable/disable a category (to temporarily get rid of unwanted ones)
 - search function
 
 coming *sometimes* (maybe):
+- enable/disable a category (to temporarily get rid of unwanted ones)
 - overview "per tape" (should look equivalent to taperest)
 - new database field: "lent to" (to find out where your media *really* are :)
 - make menu template-driven

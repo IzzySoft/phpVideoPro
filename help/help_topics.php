@@ -14,6 +14,7 @@
 
   headline("intro");
    li("about");
+   li("credits");
    li("history");
   headline("menues");
    li("edit");

@@ -113,9 +113,10 @@
    GLOBAL $db, $filter;
    if ( !strlen($tname) ) $tname=$fname;
    $db->query("SELECT id FROM $tname");
+   $query = "";
    while ( $db->next_record() ) {
      $id   = $db->f('id');
-     if ($filter->$fname->$id) {
+     if ( isset($filter->$fname->$id) && $filter->$fname->$id ) {
        if ($found) { $query .=  " OR v." . $fname . "_id='$id'";
        } else { $query = " v." . $fname . "_id='$id'"; }
        $found++;
@@ -179,7 +180,7 @@
      $db->query("SELECT id FROM music");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
-       if ($filter->composer->$id) {
+       if ( isset($filter->composer->$id) && $filter->composer->$id) {
          if ($found) { $sql[$i] .=  " OR v.music_id='$id'";
          } else { $sql[$i] = " v.music_id='$id'"; }
          $found++;
@@ -191,7 +192,7 @@
      $db->query("SELECT id FROM actors");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
-       if ($filter->actor->$id) {
+       if ( isset($filter->actor->$id) && $filter->actor->$id) {
          if ($found) { $sql[$i] .=  " OR v.actor1_id='$id' OR v.actor2_id='$id' OR v.actor3_id='$id' OR v.actor4_id='$id' OR v.actor5_id='$id'";
          } else { $sql[$i] = " v.actor1_id='$id' OR v.actor2_id='$id' OR v.actor3_id='$id' OR v.actor4_id='$id' OR v.actor5_id='$id'"; }
          $found++;
@@ -203,7 +204,7 @@
      $db->query("SELECT id FROM cat");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
-       if ($filter->cat->$id) {
+       if ( isset($filter->cat->$id) && $filter->cat->$id) {
          if ($found) { $sql[$i] .=  " OR v.cat1_id='$id' OR v.cat2_id='$id' OR v.cat3_id='$id'";
          } else { $sql[$i] = " v.cat1_id='$id' OR v.cat2_id='$id' OR v.cat3_id='$id'"; }
          $found++;

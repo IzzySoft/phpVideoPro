@@ -16,11 +16,11 @@
  include("inc/includes.inc");
  $details = array("sel_entry","mtype_id","cass_id","part","sess_id");
  foreach ($details as $var) {
-   $$var = $_REQUEST[$var];
+   if ( isset($_REQUEST[$var]) ) $$var = $_REQUEST[$var];
  }
 
  #======================[ if the form was submitted, redirect to edit.php ]===
- if ($sel_entry && $mtype_id) {
+ if ( (isset($sel_entry) && $sel_entry) && (isset($mtype_id) && $mtype_id) ) {
    if ($cass_id) {
      if (!$part) {
        header("Location: ".$pvp->link->slink($baseurl ."medium.php?mtype_id=$mtype_id&cass_id=$cass_id"));
@@ -70,7 +70,7 @@
  $sel_mtype = "<SELECT NAME=\"mtype_id\">";
  $mtypes = $db->get_mtypes();
  for ($i=0;$i<count($mtypes);$i++) {
-   $sel_mtype .= "<OPTION VALUE=\"" . $mtypes[$i][id] . "\">" . $mtypes[$i][sname] . "</OPTION>";
+   $sel_mtype .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
  }
  $sel_mtype .= "</SELECT>";
  if (!$pvp->cookie->active) $sel_mtype .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";

@@ -115,7 +115,7 @@
   $site     = $db->get_config("site");
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");
-  if ($pre) $version .= $pre;
+  if ( isset($pre) ) $version .= $pre;
   $charset = 'utf-8';
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
   $pvp->pstpl_dir = $base_path . "pslabels";

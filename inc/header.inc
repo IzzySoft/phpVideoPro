@@ -46,7 +46,7 @@ if ( !( (isset($silent)) && $silent) ) {
  include($nav_script);
  include($pvp->tpl_dir ."/default.css");
  if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
- if (!$silent) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
+ if ( !(isset($silent) && $silent) ) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
 ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

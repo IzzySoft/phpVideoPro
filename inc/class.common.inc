@@ -16,7 +16,7 @@
   * @package Api
   * @class common
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2002-2004 by Itzchak Rehberg and IzzySoft
   */
 
 class common {
@@ -42,18 +42,18 @@ class common {
    */
   function initDate($date=0) {
     switch (strtolower(gettype($date))) {
-      case "string"  : $tdate[year] = substr($date,0,4);
-                       $tdate[mon]  = substr($date,5,2);
+      case "string"  : $tdate['year'] = substr($date,0,4);
+                       $tdate['mon']  = substr($date,5,2);
                        $tdate[mday] = substr($date,8,2);
-                       $tdate[string] = $date;
+                       $tdate['string'] = $date;
                        $this->date = $tdate; break;
       case "array"   : $this->date = $date; break;
       default        : $this->date = getdate(); break;
     }
-    while (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
-    while (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
-    while (strlen($this->date[year])<4) $this->date[year] = "0" . $this->date[year];
-    $this->date[string] = $this->date[year] . "-" . $this->date[mon] . "-" . $this->date[mday];
+    while (strlen($this->date['mon'])<2) $this->date['mon'] = "0" . $this->date['mon'];
+    while (strlen($this->date['mday'])<2) $this->date['mday'] = "0" . $this->date['mday'];
+    while (strlen($this->date['year'])<4) $this->date['year'] = "0" . $this->date['year'];
+    $this->date['string'] = $this->date['year'] . "-" . $this->date['mon'] . "-" . $this->date['mday'];
   }
 
   /** setRecDate calls initDate with the date specified by the params
@@ -80,7 +80,7 @@ class common {
    */
   function getRecDate($format) {
     switch($format) {
-      case "string" : return $this->date[string]; break;
+      case "string" : return $this->date['string']; break;
       default       : return $this->date; break;
     }
   }
@@ -122,11 +122,11 @@ class common {
   function formatDate($year,$month="",$day="") {
     GLOBAL $pvp;
     $this->setRecDate($year,$month,$day);
-    $sum = $this->date[mon] + $this->date[year] + $this->date[mday];
+    $sum = $this->date['mon'] + $this->date['year'] + $this->date['mday'];
     if (!$sum) return lang("unknown");
     switch (strtolower($pvp->preferences->get("date_format"))) {
-      case "d/m/y" : return $this->date[mday] . "/" . $this->date[mon] . "/" . $this->date[year]; break;
-      case "d.m.y" : return $this->date[mday] . "." . $this->date[mon] . "." . $this->date[year]; break;
+      case "d/m/y" : return $this->date['mday'] . "/" . $this->date['mon'] . "/" . $this->date['year']; break;
+      case "d.m.y" : return $this->date['mday'] . "." . $this->date['mon'] . "." . $this->date['year']; break;
       case "y-m-d" :
       default      : return $this->getRecDate("string"); break;
     }

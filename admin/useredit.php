@@ -42,7 +42,7 @@
        $user->$value = $users->$value;
      }
    } else {
-     $user->login  = $_POST["login"];
+     $user->login  = $_POST["ulogin"];
      if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
      $user->comment= $_POST["comment"];
      $access = array("admin","browse","add","upd","del");
@@ -67,7 +67,7 @@
  #=================================================[ add new user account ]===
  } elseif (isset($_POST["adduser"]) && $pvp->auth->admin) {
    $user->id     = $_POST["id"];
-   $user->login = $_POST["login"];
+   $user->login = $_POST["ulogin"];
    if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
    if (isset($_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
    $access = array("admin","browse","add","upd","del");
@@ -125,7 +125,7 @@
  $users = $db->get_users($id);
  $t->set_var("user_id","<INPUT TYPE='hidden' NAME='id' VALUE='$id'>$id");
  if ($pvp->auth->admin) {
-   $t->set_var("login","<INPUT NAME='login' VALUE='".$users->login."'>");
+   $t->set_var("login","<INPUT NAME='ulogin' VALUE='".$users->login."'>");
    $t->set_var("comment","<INPUT NAME='comment' VALUE='".$users->comment."'>");
    $t->set_var("browse",$pvp->common->make_checkbox("browse",$users->browse));
    $t->set_var("add",$pvp->common->make_checkbox("add",$users->add));

@@ -48,9 +48,9 @@ $form["addon_title"]   = "SIZE=\"50\" MAXLENGTH=\"60\"";
 $form["addon_tech"]    = "class=\"techinput\"";
 
 #----------------------------------------[ read preferences from DB ]---
-$pvp->db_include = dirname(__FILE__) . "/db_" . $database["type"] . ".inc";
+$pvp->db_include = dirname(__FILE__) . "/class.db_" . $database["type"] . ".inc";
 include ($pvp->db_include);
-include (dirname(__FILE__) . "/db.inc");
+include (dirname(__FILE__) . "/class.db.inc");
 $pvp->config->db->type = strtolower($database["type"]);
 $db->Host     = $pvp->config->db->host     = $database["host"];
 $db->Database = $pvp->config->db->database = $database["database"];

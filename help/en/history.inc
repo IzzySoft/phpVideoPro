@@ -10,6 +10,8 @@
      redirects - hopefully fixed.
  <li>IMDB transfer: movies tagline, if available, is now added to the comment
      field
+ <li>added advices to the HTML header to turn all caches off (also in Proxies)
+     to work around some strange behaviours of MSIE
 </ul>
 
 [title]

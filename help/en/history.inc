@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.1.7 (August 2001)
+[text]
+<ul>
+ <li>made help system template driven
+ <li>added possibility for translation and variable usage to help templates
+ <li>updated some help file content
+ <li>added new German help files
+</ul>
+
+[title]
 0.1.6 (August 14, 2001)
 [text]
 <ul>

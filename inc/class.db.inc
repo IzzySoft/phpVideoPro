@@ -801,6 +801,22 @@
    }
 
    ############################################################################
+   /** Move a movie to a new place
+    * @class sql
+    * @method move_movie
+    * @param integer id movie id
+    * @param integer mtype_id media type id
+    * @param integer cass_id media_id
+    * @param integer part part
+    * @return boolean success
+    */
+   function move_movie($id,$mtype_id,$cass_id,$part) {
+     $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
+            . " WHERE id=$id";
+     return $this->dbquery($query);
+   }
+
+   ############################################################################
    /** Get freetime of a given medium
     * @class sql
     * @method get_mediumfreetime

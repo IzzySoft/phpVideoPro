@@ -988,6 +988,20 @@
    ############################################################################
    # movie data
    ############################################################################
+   /** Drop (delete) all movie data
+    *  this is used to clean the db before doing a movie restore
+    * @class sql
+    * @method drop_all_movies
+    * @return boolean success
+    */
+   function drop_all_movies() {
+     if (!$this->query("DELETE FROM video")) return FALSE;
+     if (!$this->query("DELETE FROM cass")) return FALSE;
+     if (!$this->query("DELETE FROM music")) return FALSE;
+     if (!$this->query("DELETE FROM directors")) return FALSE;
+     if (!$this->query("DELETE FROM actors")) return FALSE;
+   }
+
    /** Get movie ids
     * @class sql
     * @method get_movieid

@@ -46,6 +46,7 @@
     li("listgen",2);
   headline("other_pages");
    li("tplset_applicat");
+   li("start_page");
    li("view_entry");
    li("media_change");
    li("change_rc");

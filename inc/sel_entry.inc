@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,6 +12,7 @@
 
  /* $Id$ */
 
+ $page_id = "start_page";
  include("inc/includes.inc");
 
  #======================[ if the form was submitted, redirect to edit.php ]===

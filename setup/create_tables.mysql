@@ -232,3 +232,33 @@ CREATE TABLE languages (
   PRIMARY KEY (lang_id)
 );
 
+#
+# Table structure for table pvp_users (user management and authorization)
+#
+
+CREATE TABLE pvp_users (
+  id INT(5) NOT NULL auto_increment,
+  login VARCHAR(20) NOT NULL,
+  pwd VARCHAR(32),
+  admin INT(1) NOT NULL,
+  browse INT(1) NOT NULL,
+  ins INT(1) NOT NULL,
+  upd INT(1) NOT NULL,
+  del INT(1) NOT NULL,
+  comment VARCHAR(255),
+  UNIQUE login (login),
+  PRIMARY KEY (id)
+);
+
+#
+# Table structure for pvp_sessions (session management)
+#
+CREATE TABLE pvp_sessions (
+  id VARCHAR(255) NOT NULL,
+  ip VARCHAR(255) NOT NULL,
+  user_id INT(5),
+  started VARCHAR(50),
+  dla VARCHAR(50),
+  ended VARCHAR(50),
+  PRIMARY KEY (id)
+);

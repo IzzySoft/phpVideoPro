@@ -9,6 +9,7 @@
  <li>freetime update was broken - fixed.
  <li>filter could not be edited when no actor, director or componist was
      in DB - fixed.
+ <li>some more code cleanup (to produce new bugs ;)
 </ul>
 
 [title]

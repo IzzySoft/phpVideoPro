@@ -8,6 +8,8 @@
  <li>added managment (i.e. search for and deletion of) orphaned entries in/from
      the staff tables
  <li>added database backup (humm, time for a separate admin menue, huh?)
+ <li>added admin menue and moved all administrative items here (hm, now the
+     edit menue looks quite empty ;)
 </ul>
 
 [title]

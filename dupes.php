@@ -26,8 +26,8 @@
  #====================================================[ Generate the List ]===
  $mtypelist = $db->get_mtypes();
  for ($i=0;$i<count($mtypelist);++$i) {
-   $id = $mtypelist[$i][id];
-   $mtypes[$id][sname] = $mtypelist[$i][sname];
+   $id = $mtypelist[$i]['id'];
+   $mtypes[$id]['sname'] = $mtypelist[$i]['sname'];
  }
  $dupes  = $db->get_dupetitles();
  $dupecount = count($dupes);
@@ -36,7 +36,7 @@
    $copies = count($dupes[$i]) -1;
    for ($k=0;$k<$copies;++$k) {
      $mtype_id = $dupes[$i][$k]->mtype_id;
-     $mtype    = $mtypes[$mtype_id][sname];
+     $mtype    = $mtypes[$mtype_id]['sname'];
      $cass_id  = $dupes[$i][$k]->cass_nr;
      $part     = $dupes[$i][$k]->part;
      while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
@@ -47,9 +47,10 @@
      $details .= "$mtype $cass_id" .  "-" . $part . "</A> ("
               . $dupes[$i][$k]->len . " min)";
    }
-   $t->set_var("title",$dupes[$i][title]);
+   $t->set_var("title",$dupes[$i]['title']);
    $t->set_var("details",$details);
-   $t->parse("item","itemblock",TRUE);
+   if ($i) $t->parse("item","itemblock",TRUE);
+     else $t->parse("item","itemblock");
  }
 
  $t->set_var("listtitle",lang("dupe_titles_found",$dupecount));

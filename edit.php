@@ -31,7 +31,7 @@
  <script language="JavaScript"><!--
    function mklabel(labelconf) {
      if (labelconf != "-") {
-       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&template="?>' + labelconf;
+       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&labelconf="?>' + labelconf;
        var pos = (screen.width/2)-400;
        campus  = eval("window.open(url,'label','toolbar=yes,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
      }

@@ -22,9 +22,9 @@
 
  #========================[ create exactly one label and send it as image ]===
  if ($cass_id) { // we directly go to create one label
-   if (!$template) $template = "default";
+   if (!$labelconf) $labelconf = "default";
    $id = $db->get_movieid($mtype_id,$cass_id);
-   $label  = new label($template);
+   $label  = new label($labelconf);
    $text   = $label->make_text($id);
    $label->write($cass_id,$text);
    $label->prn();

@@ -134,7 +134,7 @@ INSERT INTO lang VALUES('start_pvp','pl','Start phpVideoPro');
 INSERT INTO lang VALUES('hit_back_to_correct','pl','Wci¶nij "Wstecz" w celu poprawy b³êdu.');
 INSERT INTO lang VALUES('goto_entry','pl','Bezpo¶rednio do wpisu:');
 INSERT INTO lang VALUES('start_page','pl','Strona startowa');
-INSERT INTO lang VALUES('invalid_fsk','pl','Warto¶æ %1 jest nieprawid³owa. %1 oznacza Rodzicielski Przewodnik, np. od ilu lat film jest dozwolony.');
+INSERT INTO lang VALUES('invalid_fsk','pl','Warto¶æ PG ("%1") jest nieprawid³owa. PG oznacza Rodzicielski Przewodnik, np. od ilu lat film jest dozwolony.');
 INSERT INTO lang VALUES('counter_start_stop','pl','Licznik Start/Stop');
 INSERT INTO lang VALUES('other_pages','pl','Inne strony');
 INSERT INTO lang VALUES('commercials','pl','Reklamy');

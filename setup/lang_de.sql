@@ -129,7 +129,7 @@ INSERT INTO lang VALUES('template_set','de','Template Set');
 INSERT INTO lang VALUES('start_pvp','de','phpVideoPro starten');
 INSERT INTO lang VALUES('goto_entry','de','Zeige folgenden Eintrag an:');
 INSERT INTO lang VALUES('start_page','de','Startseite');
-INSERT INTO lang VALUES('invalid_fsk','de','Der eingegebene Wert für %1 ist ungültig.<br>%1 steht für Freiwillige Selbst-Kontrolle und gibt das Mindestalter an, ab dem der Film zur Betrachtung freigegeben ist.');
+INSERT INTO lang VALUES('invalid_fsk','de','Der eingegebene Wert für FSK ("%1") ist ungültig.<br>FSK steht für Freiwillige Selbst-Kontrolle und gibt das Mindestalter an, ab dem der Film zur Betrachtung freigegeben ist.');
 INSERT INTO lang VALUES('counter_start_stop','de','Zähler Start/Stop');
 INSERT INTO lang VALUES('other_pages','de','Andere Seiten');
 INSERT INTO lang VALUES('commercials','de','Werbung');

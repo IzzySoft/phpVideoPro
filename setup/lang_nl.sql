@@ -130,7 +130,7 @@ INSERT INTO lang VALUES('start_pvp','nl','Start phpVideoPro');
 INSERT INTO lang VALUES('hit_back_to_correct','nl','Druk op de "Terug" button om de fout te herstellen.');
 INSERT INTO lang VALUES('goto_entry','nl','Ga direct naar:');
 INSERT INTO lang VALUES('start_page','nl','Start pagina');
-INSERT INTO lang VALUES('invalid_fsk','nl','De waarde van %1 is ongelig. %1 betekent Minimum Leeftijd.');
+INSERT INTO lang VALUES('invalid_fsk','nl','De waarde van ML ("%1") is ongelig. ML betekent Minimum Leeftijd.');
 INSERT INTO lang VALUES('counter_start_stop','nl','Teller Start/Stop');
 INSERT INTO lang VALUES('commercials','nl','Reclame');
 INSERT INTO lang VALUES('cut_off','nl','Afgelopen op');

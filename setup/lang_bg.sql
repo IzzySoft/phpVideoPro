@@ -131,7 +131,7 @@ INSERT INTO lang VALUES('start_pvp','bg','Стартирай phpVideoPro');
 INSERT INTO lang VALUES('hit_back_to_correct','bg','Натиснете бутона "Back", за да поправите грешката.');
 INSERT INTO lang VALUES('goto_entry','bg','Директно отидете на запис:');
 INSERT INTO lang VALUES('start_page','bg','Начална страница');
-INSERT INTO lang VALUES('invalid_fsk','bg','Стойността, въведена за %1, е невалидна. %1 означава Parental Guide (Родителски контрол), т.е минималната възраст, под която на никому не трябва да давате достъп до този филм.');
+INSERT INTO lang VALUES('invalid_fsk','bg','Стойността, въведена за PG ("%1"), е невалидна. PG означава Parental Guide (Родителски контрол), т.е минималната възраст, под която на никому не трябва да давате достъп до този филм.');
 INSERT INTO lang VALUES('counter_start_stop','bg','Брояч Пускане/Спиране');
 INSERT INTO lang VALUES('other_pages','bg','Други страници');
 INSERT INTO lang VALUES('commercials','bg','Реклами');

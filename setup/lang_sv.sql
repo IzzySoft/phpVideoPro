@@ -129,7 +129,7 @@ INSERT INTO lang VALUES('start_pvp','sv','Starta phpVideoPro');
 INSERT INTO lang VALUES('hit_back_to_correct','sv','Tryck på "Tillbaka"-knappen för att fixa felet.');
 INSERT INTO lang VALUES('goto_entry','sv','Gå direkt till notering:');
 INSERT INTO lang VALUES('start_page','sv','Startsida');
-INSERT INTO lang VALUES('invalid_fsk','sv','Värdet inskrivet för %1 är felaktigt. %1 betyder Vuxenguide, t.ex. minimum-ålder som bestämmer att ingen under denna ålder ska få access till denna film.');
+INSERT INTO lang VALUES('invalid_fsk','sv','Värdet inskrivet för PG ("%1") är felaktigt. PG betyder Vuxenguide, t.ex. minimum-ålder som bestämmer att ingen under denna ålder ska få access till denna film.');
 INSERT INTO lang VALUES('counter_start_stop','sv','Räknare Start/Stopp');
 INSERT INTO lang VALUES('other_pages','sv','Andra sidor');
 INSERT INTO lang VALUES('commercials','sv','Reklamer');

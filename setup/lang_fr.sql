@@ -130,7 +130,7 @@ INSERT INTO lang VALUES('template_set','fr','Set de modéle');
 INSERT INTO lang VALUES('start_pvp','fr','Commencer phpVideoPro');
 INSERT INTO lang VALUES('goto_entry','fr','Annonce le film:');
 INSERT INTO lang VALUES('start_page','fr','Site de comence');
-INSERT INTO lang VALUES('invalid_fsk','fr','Le mode donné pour %1 est invalide.<br>%1 fait place pour Parentelle Guide mentant l\'age min, de-quelle le film est agreable.');
+INSERT INTO lang VALUES('invalid_fsk','fr','Le mode donné pour PG ("%1") est invalide.<br>PG fait place pour Parentelle Guide mentant l\'age min, de-quelle le film est agreable.');
 INSERT INTO lang VALUES('counter_start_stop','fr','Conter Start/Stop');
 INSERT INTO lang VALUES('other_pages','fr','Autre Sites');
 INSERT INTO lang VALUES('commercials','fr','Merchandise');

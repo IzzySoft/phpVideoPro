@@ -1,0 +1,18 @@
+/* $Id$ */
+
+------------------------------------------------------------------------------
+This ToDo-List is not ordered by anything: I just add new ideas on the bottom,
+pick the next item by using some brain-based random() function <grin>, and
+remove completed tasks from this list. So *any* of the items listed below could
+be the next to be implemented - or stay in this list for, huh, eternity. If you
+think there's something missing in this list, feel free to add an item on the
+feature request list on my project page on sourceforge - or just write a mail
+to izzysoft@qumran.org.
+------------------------------------------------------------------------------
+
+coming *after* 0.2.0:
+- limit list display to user-definable amount of data sets
+- print lists function taking into account a user-definable page length
+- label creating and printing function
+- splitting date field into day-month-year
+- search function

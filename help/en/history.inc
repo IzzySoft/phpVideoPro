@@ -9,6 +9,10 @@
  <li>some translations have been hardcoded (= not translated) - fixed.
  <li>disktype (e.g. DVD-9) was not displayed correctly when editing an
      existing entry - fixed.
+ <li>updated Russian language file (tnx to masterr)
+ <li>if a tape entry was copied into a dvd entry, region code could not be set
+     - fixed.
+ <li>copying a movie entry failed if comment contained single quote(s) - fixed
 </ul>
 
 [title]

@@ -1,8 +1,8 @@
 #
 # Data for pvp_users
 #
-INSERT INTO pvp_users (login,pwd,admin,read,ins,upd,del,comment) VALUES ('admin','421b47ffd946ca083b65cd668c6b17e6',1,1,1,1,1,'Administrator');
-INSERT INTO pvp_users (login,admin,read,ins,upd,del,comment) VALUES ('guest',0,1,0,0,0,'Alien Visitor');
+INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment) VALUES ('admin','421b47ffd946ca083b65cd668c6b17e6',1,1,1,1,1,'Administrator');
+INSERT INTO pvp_users (login,admin,browse,ins,upd,del,comment) VALUES ('guest',0,1,0,0,0,'Alien Visitor');
 #
 # Data for table 'colors'
 #

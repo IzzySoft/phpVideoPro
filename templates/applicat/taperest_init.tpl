@@ -30,7 +30,7 @@
 </TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
-<TR><TD><DIV STYLE="margin:3;text-align:center;"><INPUT TYPE="submit" NAME="getrest" VALUE="{display}"></DIV></TD></TR>
+<TR><TD><DIV STYLE="margin:3;text-align:center;"><INPUT CLASS="submit" TYPE="submit" NAME="getrest" VALUE="{display}"></DIV></TD></TR>
 </FORM>
 </TABLE>
 </DIV>

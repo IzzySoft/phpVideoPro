@@ -554,7 +554,7 @@
    ############################################################################
    # people and their names
    ############################################################################
-   /** Format a name's array (private! just an internal helper func)
+   /** Format a names array (private! just an internal helper func)
     * @class sql
     * @method format_name
     * @param array name
@@ -1513,6 +1513,18 @@
        $comment= addslashes($comment);
        $source = addslashes($source);
      }
+     $details = array("label","cat1_id","cat2_id","cat3_id","director_list",
+                      "music_list","actor1_list","actor2_list","actor3_list",
+                      "actor4_list","actor5_list","pict_id","commercials_id","lp");
+     foreach($details as $value) {
+       if (${$value} == "") ${$value} = 0;
+     }
+     $details = array("length","director_id","music_id","year","actor1_id",
+                      "actor2_id","actor3_id","actor4_id","actor5_id","tone_id",
+                      "color_id","fsk");
+     foreach($details as $value) {
+       if (${$value} == "") ${$value} = "NULL";
+     }
      if ($lp) { $lp = 1; } else { $lp = 0; }
      $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
@@ -1527,7 +1539,7 @@
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',$commercials_id)";
-     $success = $this->dbquery($insert);
+     $success = $this->query($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $this->insert_medium($cass_id,$mtype_id,$space);
        $this->update_freetime($cass_id,$mtype_id);
@@ -2057,6 +2069,19 @@
      }
      return $id;
    } // end insert_person()
+
+   function check_person($name,$fname,$table,$code=FALSE) {
+     if ($code) {
+       $name = addslashes($name); $firstname = addslashes($firstname);
+     }
+     $get  = "SELECT id FROM $table WHERE name='$name' AND firstname='$fname'";
+     $this->dbquery($get);
+     if ( $this->next_record() ) return $this->f('id');
+     $this->dbquery("INSERT INTO $table (name,firstname) VALUES ('$name','$fname')");
+     $this->dbquery($get);
+     $this->next_record();
+     return $this->f('id');
+   }
 
    ############################################################################
    /** Gather statistic informations from the database

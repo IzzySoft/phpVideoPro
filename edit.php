@@ -23,6 +23,10 @@
  }
 
  #==========[ Initial setup: Target action (New|Edit|Delete or View only) ]===
+ if (!$new_entry && !isset($_REQUEST["mtype_id"])) {
+   header("Location: ".$base_url."index.php");
+   exit;
+ }
  if ($new_entry) {
    $page_id = "add_entry";
    $edit    = TRUE;

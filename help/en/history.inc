@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.5.1 (2003)
+0.5.1 (July 2003)
 [text]
 <ul>
  <li>added support for disk types (such as CD-R[W], DVD-R[W] and DVD+R[W])
@@ -10,6 +10,8 @@
      now only for tapes) or if no disk type is set (i.e. the same plus not
      updated DVD/VCD entries) - for all others it is automatically set to "No"
  <li>added support for region codes (DVDs only)
+ <li>added administration page for disk types
+ <li>updated help pages concerning these changes
 </ul>
 
 [title]

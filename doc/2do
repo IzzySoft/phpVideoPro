@@ -28,3 +28,8 @@ coming *after* 0.2.0:
 - menue items for "change MediaNr" and "change MediaType"
 - making categories editable (user-defined categories etc.)
 - overview "per tape" (should look equivalent to taperest)
+- adding *all* media types to cass table. This requires a new field
+  (mtype) as well - and maybe we rename the table :)
+
+coming *after* 0.3.0:
+- connect to IMDB one way or the other.

@@ -365,3 +365,4 @@ INSERT INTO lang VALUES('disktype_update_failed','en','Sorry, I could not update
 INSERT INTO lang VALUES('admin_movietech','en','Edit Movie technical data');
 INSERT INTO lang VALUES('confirm_delete','en','Do you really want to delete this record?');
 INSERT INTO lang VALUES('movies_left_reference','en','This entry cannot be deleted: There are %1 movie(s) in DB referencing it.');
+INSERT INTO lang VALUES('cat_handle_empty','en','The handle for a category must not be empty. Please go back and fix this for category #%1.');

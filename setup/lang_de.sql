@@ -1,8 +1,9 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.5.1
+# German Language File created by phpVideoPro v0.5.2
 # ========================================================
 
 UPDATE languages SET charset='iso-8859-15' WHERE lang_id='de';
+INSERT INTO lang VALUES ('','de','Dummy-Cat');
 INSERT INTO lang VALUES ('about','de','About');
 INSERT INTO lang VALUES ('actions','de','Aktionen');
 INSERT INTO lang VALUES ('actor','de','Darsteller');
@@ -34,6 +35,7 @@ INSERT INTO lang VALUES ('cancel','de','Abbrechen');
 INSERT INTO lang VALUES ('categories','de','Kategorien');
 INSERT INTO lang VALUES ('category','de','Kategorie');
 INSERT INTO lang VALUES ('catlist_alpha','de','Nach Kategorien sortierte alphabetische Medienliste');
+INSERT INTO lang VALUES ('cat_action','de','Action');
 INSERT INTO lang VALUES ('cat_adventure','de','Abenteuer');
 INSERT INTO lang VALUES ('cat_agents','de','Agentenfilm');
 INSERT INTO lang VALUES ('cat_animal','de','Tier');
@@ -48,14 +50,19 @@ INSERT INTO lang VALUES ('cat_comedy','de','Komödie');
 INSERT INTO lang VALUES ('cat_concert','de','Konzert');
 INSERT INTO lang VALUES ('cat_crime','de','Krimi');
 INSERT INTO lang VALUES ('cat_documentary','de','Dokumentarfilm');
+INSERT INTO lang VALUES ('cat_drama','de','Drama');
+INSERT INTO lang VALUES ('cat_dummy','de','Dummy-Cat');
 INSERT INTO lang VALUES ('cat_fairytale','de','Märchen');
 INSERT INTO lang VALUES ('cat_fantasy','de','Fantasy');
+INSERT INTO lang VALUES ('cat_handle_empty','de','Das Handle für eine Kategorie darf nicht leer sein - bitte Daten für Kategorie #%1 korrigieren!');
 INSERT INTO lang VALUES ('cat_history','de','Historie');
 INSERT INTO lang VALUES ('cat_judaica','de','Judaistik');
 INSERT INTO lang VALUES ('cat_love','de','Liebesfilm');
+INSERT INTO lang VALUES ('cat_melodrama','de','Melodrama');
 INSERT INTO lang VALUES ('cat_misc','de','Sonstige');
 INSERT INTO lang VALUES ('cat_monumental','de','Monumentalfilm');
 INSERT INTO lang VALUES ('cat_music','de','Musik');
+INSERT INTO lang VALUES ('cat_musical','de','Musical');
 INSERT INTO lang VALUES ('cat_musicmovie','de','Musikfilm');
 INSERT INTO lang VALUES ('cat_nature','de','Naturfilm');
 INSERT INTO lang VALUES ('cat_opera','de','Oper');
@@ -63,15 +70,20 @@ INSERT INTO lang VALUES ('cat_operetta','de','Operette');
 INSERT INTO lang VALUES ('cat_party','de','Feier');
 INSERT INTO lang VALUES ('cat_problem','de','Problemfilm');
 INSERT INTO lang VALUES ('cat_report','de','Reportage');
+INSERT INTO lang VALUES ('cat_satire','de','Satire');
 INSERT INTO lang VALUES ('cat_scary','de','Gruselfilm');
 INSERT INTO lang VALUES ('cat_sf','de','Science Fiction');
+INSERT INTO lang VALUES ('cat_show','de','Show');
 INSERT INTO lang VALUES ('cat_spy','de','Spionage');
 INSERT INTO lang VALUES ('cat_stage','de','Bühnenstück');
+INSERT INTO lang VALUES ('cat_thriller','de','Thriller');
 INSERT INTO lang VALUES ('cat_trans_update_failed','de','Aktualisierung der Übersetzungen für folgende Kategorien fehlgeschlagen: %1');
 INSERT INTO lang VALUES ('cat_travesty','de','Travestie');
 INSERT INTO lang VALUES ('cat_update_failed','de','Aktualisierung fehlgeschlagen für folgende Kategorien: %1');
 INSERT INTO lang VALUES ('cat_vacation','de','Urlaub');
+INSERT INTO lang VALUES ('cat_videoclip','de','Videoclip');
 INSERT INTO lang VALUES ('cat_war','de','Kriegsfilm');
+INSERT INTO lang VALUES ('cat_western','de','Western');
 INSERT INTO lang VALUES ('cat_westerncomedy','de','Western-Komödie');
 INSERT INTO lang VALUES ('cat_xmas','de','Weihnachten');
 INSERT INTO lang VALUES ('change_disktype','de','Disk-Typ ändern für %1');

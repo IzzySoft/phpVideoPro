@@ -358,7 +358,7 @@ if ($admin) {
   $select .= ">" . lang("session") . "</OPTION><OPTION VALUE='86400'";
   if ($expire_cookies=="86400") $select .= " SELECTED";
   $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604800'";
-  if ($expire_cookies=="604000") $select .= " SELECTED";
+  if ($expire_cookies=="604800") $select .= " SELECTED";
   $select .= ">1 " . lang("week") . "</OPTION><OPTION VALUE='2592000'";
   if ($expire_cookies=="2592000") $select .= " SELECTED";
   $select .= ">1 " . lang("month") . "</OPTION><OPTION VALUE='31536000'";

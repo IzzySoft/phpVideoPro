@@ -218,3 +218,8 @@ INSERT INTO lang VALUES('info_update','en','Update Information');
 INSERT INTO lang VALUES('info_noupdate','en','<DIV ALIGN="center">The installed version of phpVideoPro (%1) is recent - there\'s no newer version available for download.</DIV>');
 INSERT INTO lang VALUES('info_common','en','Common Information');
 INSERT INTO lang VALUES('info_common_info','en','<DIV ALIGN="center">This is version %1 of phpVideoPro, running on %2.</DIV>');
+INSERT INTO lang VALUES('change_nr','en','Change MediaNr/MediaType for %1');
+INSERT INTO lang VALUES('orig_medianr','en','original MediaNr');
+INSERT INTO lang VALUES('new_medianr','en','new MediaNr');
+INSERT INTO lang VALUES('media_copy','en','Copy data to MediaNr');
+INSERT INTO lang VALUES('media_change','en','Change MediaNr');

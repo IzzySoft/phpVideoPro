@@ -212,3 +212,4 @@ INSERT INTO lang VALUES('actor_persons','de','Schauspieler');
 INSERT INTO lang VALUES('categories','de','Kategorien');
 INSERT INTO lang VALUES('countries','de','Länder');
 INSERT INTO lang VALUES('stat_categories','de','Kategorien (benutzt/alle)');
+INSERT INTO lang VALUES('stats','de','Statistiken');

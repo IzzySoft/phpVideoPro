@@ -17,5 +17,6 @@
   .catinput { width: 120; }
   .yesnobutton { width: 40; }
   .checkbox { height: 15; }
+  .multiselect { height: 125; width: 180; }
 //-->
 </style>

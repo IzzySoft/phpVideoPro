@@ -110,7 +110,7 @@
     }
     $t->set_var("item","");
     for ($k=0;$k<count($id);$k++) {
-      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "$checked\">&nbsp;$name[$k]</TD>");
+      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$k] . "$checked\" class=\"checkbox\">&nbsp;$name[$k]</TD>");
       $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("mtype","t_item");
@@ -154,7 +154,7 @@
     $t->set_var("item","");
     for ($k=0;$k<count($id);$k++) {
       if ($filter->pict->$id) { $checked = " CHECKED"; } else { $checked = ""; }
-      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"pict_" . $id[$k] . "\"$checked>&nbsp;$name[$k]");
+      $t->set_var("input","<INPUT TYPE=\"checkbox\" NAME=\"pict_" . $id[$k] . "\"$checked class=\"checkbox\">&nbsp;$name[$k]");
       $t->parse("inputlist","inputblock",TRUE);
     }
     $t->parse("screen","t_item");
@@ -172,7 +172,7 @@
     for ($k=0;$k<$i;$k++) {
       $input = "<INPUT TYPE=\"checkbox\" NAME=\"color_$id[$k]\"";
       if ($filter->color->$id[$k]) $input .= " CHECKED";
-      $input .= ">&nbsp;" . lang("$name[$k]");
+      $input .= " class=\"checkbox\">&nbsp;" . lang("$name[$k]");
       $t->set_var("input",$input);
       $t->parse("inputlist","inputblock",TRUE);
     }
@@ -196,7 +196,7 @@
     for ($i=0;$i<count($name);$i++) {
       $input = "<INPUT TYPE=\"checkbox\" NAME=\"tone_" . $id[$i] . "\"";
       if ($filter->tone->$id[$i]) $input .= " CHECKED";
-      $input .= ">";
+      $input .= " class=\"checkbox\">";
       $t->set_var("input",$input);
       $t->parse("itemlist","itemblock",TRUE);
     }
@@ -205,7 +205,7 @@
 
     # longplay
     if ($filter->lp) { $checked = " CHECKED"; } else { $checked = ""; }
-    $t->set_var("longplay","<INPUT TYPE=\"checkbox\" NAME=\"lp\"$checked>");
+    $t->set_var("longplay","<INPUT TYPE=\"checkbox\" NAME=\"lp\"$checked class=\"checkbox\">");
 
     # fsk
     $input = lang("min") . ":&nbsp;<INPUT NAME=\"fsk_min\"";
@@ -237,7 +237,7 @@
       if ($filter->cat->$id) $option .= " SELECTED";
       $option .= ">$name</OPTION>";
     }
-    $t->set_var("category","<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+    $t->set_var("category","<SELECT NAME=\"cat_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # actor
     dbquery("SELECT id,name,firstname FROM actors ORDER BY name");
@@ -250,7 +250,7 @@
       if ($filter->actor->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";
     }
-    $t->set_var("actor","<SELECT NAME=\"act_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+    $t->set_var("actor","<SELECT NAME=\"act_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # director
     dbquery("SELECT id,name,firstname FROM directors ORDER BY name");
@@ -263,7 +263,7 @@
       if ($filter->director->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";
     }
-    $t->set_var("director","<SELECT NAME=\"dir_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+    $t->set_var("director","<SELECT NAME=\"dir_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
     # composer
     dbquery("SELECT id,name,firstname FROM music ORDER BY name");
@@ -276,7 +276,7 @@
       if ($filter->composer->$id) $option .= " SELECTED";
       $option .= ">$name, $firstname</OPTION>";
     }
-    $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE>$option</SELECT>");
+    $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
 
 # build target
 $t->set_var("form_target",$PHP_SELF);

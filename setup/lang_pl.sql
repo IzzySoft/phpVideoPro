@@ -150,7 +150,7 @@ INSERT INTO lang VALUES('medialist_alpha','pl','Lista no¶ników w porz±dku alfabe
 INSERT INTO lang VALUES('lines_per_page','pl','Linii na stronê');
 INSERT INTO lang VALUES('lines_per_page_comment','pl','Okre¶la liczbê linii na drukowanej stronie (dla funkcji drukuj±cej).');
 INSERT INTO lang VALUES('date_format','pl','Format daty');
-INSERT INTO lang VALUES('date_format_comment','pl','Okre¶la jaki format u¿ywaæ do wy¶wietlania daty. Dostêpne formaty: y-m-d, d.m.y and d/m/y');
+INSERT INTO lang VALUES('date_format_comment','pl','Okre¶la jaki format u¿ywaæ do wy¶wietlania daty.');
 INSERT INTO lang VALUES('listgen','pl','Generator List');
 INSERT INTO lang VALUES('list','pl','Lista');
 INSERT INTO lang VALUES('format','pl','Format');

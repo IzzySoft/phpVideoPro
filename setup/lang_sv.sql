@@ -145,7 +145,7 @@ INSERT INTO lang VALUES('medialist_alpha','sv','Medialista i alfabetisk ordning'
 INSERT INTO lang VALUES('lines_per_page','sv','Rader per sida');
 INSERT INTO lang VALUES('lines_per_page_comment','sv','Detta är för skriv ut-funktionerna att avgöra hur många rader text som får plats på ett enda papper.');
 INSERT INTO lang VALUES('date_format','sv','Datumformat');
-INSERT INTO lang VALUES('date_format_comment','sv','Vilket format att använda för datumvisningen. Tillgängliga format är: y-m-d, d.m.y och d/m/y');
+INSERT INTO lang VALUES('date_format_comment','sv','Vilket format att använda för datumvisningen.');
 INSERT INTO lang VALUES('listgen','sv','List-Generator');
 INSERT INTO lang VALUES('list','sv','Lista');
 INSERT INTO lang VALUES('format','sv','Format');

@@ -6,6 +6,8 @@
 [text]
 <ul>
  <li>edit.tpl caused probs with NS 4.x (almost fixed - NS 4.x too stupid)
+ <li>insert a person (staff) into db failed if only name OR firstname were
+     specified (fixed)
 </ul>
 
 [title]

@@ -291,6 +291,22 @@ class common {
     return $select;
    }
 
+  /** Build a CheckBox and set its defaults
+   * @class common
+   * @method make_checkbox
+   * @param string name name for the form field
+   * @param boolean checked whether it should be marked CHECKED
+   * @param optional boolean condition mark it CHECKED only if this is TRUE as well
+   * @return string checkbox form string
+   */
+  function make_checkbox($name,$checked,$confirm=2) {
+    if ($confirm==2) $confirm = $checked;
+    $checkbox = "<INPUT TYPE='checkbox' NAME='$name'";
+    if ($checked && $confirm) $checkbox .= " CHECKED";
+    $checkbox .= ">";
+    return $checkbox;
+  }
+
    #===================================================[ misc functions ]===
   /** check wether a medium is (re)writeable (as e.g. RVT) or not (e.g. DVD)
    * @class common

@@ -1415,7 +1415,7 @@
      }
 
      if ($restrict) $restrict .= "AND ";
-     $restrict .= "v.title LIKE '%$title%' AND ";
+     if (!empty($title)) $restrict .= "v.title LIKE '%$title%' AND ";
 
      #---[ Staff ]--
      if ($pname) {
@@ -1445,7 +1445,8 @@
        if (!empty($pids)) $restrict .= ") AND ";
      }
 
-     $restrict .= "comment LIKE '%$comment%'";
+     if (!empty($comment)) $restrict .= "v.comment LIKE '%$comment%'";
+       else $restrict .= "1=1";
      if ($minlen) $restrict .= " AND length>=$minlen";
      if ($maxlen) $restrict .= " AND length<=$maxlen";
      if ($minfsk) $restrict .= " AND fsk>=$minfsk";

@@ -153,6 +153,24 @@ cookies. After the timeout, the session falls back into guest mode.
 *general#
 
 [text]
+<b>*printer#:</b> To guarantee the exact position of generated labels on the
+sheets, we need to know the accurate offset of the printer to use. If your
+printer is not in the list, you may first try one of the provided printers:
+many of them are compatible according to this issue (and there are not so many
+possibilities). When you've found one of them working, please report this to
+<A HREF="mailto:izzysoft@qumran.org">me</A>: future versions of phpVideoPro
+may have a compatibility list included then.<BR>
+If, however, you find no compatible printer here, we have to create a new one.
+At the moment, this is only possible by manipulating the database directly (I
+may provide an interface for this in the future, but I don't promise). Practised
+users go for the table "printers", copy one of the existing entries, and play
+with the values of the columns "top_offset" and "left_offset". Once you've got
+it working, don't forget to send me this data together with the printers name.
+<b><i>ATTENTION:</i></b> changes made to this table may get lost with one of
+the next updates! So make sure to send those to <A HREF="mailto:izzysoft@qumran.org>me</A>
+that I may include them!
+
+[text]
 <b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with
 the "*medialist#" menue item, always in full length, i.e. with all records found
 in the database. Having a large collection, this not only lead to long loading

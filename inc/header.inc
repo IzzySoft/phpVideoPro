@@ -61,7 +61,7 @@
   dhtmlMenu = new NavBarMenu(60, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("Filter", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("Set Filter", "<? echo $base_url ?>setfilter.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("UnSet Filter", "<? echo $base_url ?>unsetfilter.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("UnSet Filter", "<? echo $base_url ?>setfilter.php?reset=1"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(140, 120);

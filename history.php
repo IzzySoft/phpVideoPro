@@ -1,5 +1,7 @@
 <? /* About */
 
+/* $Id$ */
+
   $page_id = "history";
   include("inc/config.inc");
   include("inc/header.inc");
@@ -10,6 +12,10 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
+  <LI><b>0.1.1 (July 2001)</b><br>
+      <ul>
+       <li>
+      </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works
       on the documentation:
@@ -22,7 +28,7 @@
            invalid media IDs. Added some check to prevent this.
        <li>preset "Aquired" date to current date when adding a new entry
        <li>added check for valid date on adding new and changing existing entry
-       <li>slightened date check. Now providing an "incomplete" date is possible.
+       <li>relaxed date check. Now providing an "incomplete" date is possible.
            This is useful, if one e.g. does not remember the exact date of
            aquiration, and so is just able to enter the year (or year and month).
            Missing data are to be substituted by zeros (e.g. "2000-05-00")

@@ -147,6 +147,11 @@ class Browser {
                 $this->setBrowser('hotjava');
                 $this->setFeature('javascript', false);
                 
+            } elseif (preg_match('|Opera/([0-9.]+)|', $this->agent, $version)) {
+                $this->setBrowser('opera');
+                list($this->majorVersion, $this->minorVersion) = explode('.', $version[1]);
+                $this->setFeature('javascript', false);
+                
             } elseif (preg_match('|UP|', $this->agent, $version) ||
                       preg_match('|Wap|', $this->agent, $version)) {
                 $this->setBrowser('wap');

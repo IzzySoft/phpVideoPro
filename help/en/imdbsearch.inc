@@ -44,16 +44,22 @@ Movie details
 [text]
 If you got here, you've probably been lucky enough to find the information you
 were looking for. Now you can select what information you want to use in your
-database.
+database. You can in/exclude details by (de)activating the associated checkboxes
+(how these are set by default, you can define via the
+<A HREF="{PHP_SELF}?topic=configuration">*preferences#</A> menu).
 
 [text]
-The movies title as well as the country and year of production will need no
-changes, so we take this information as-is. Depending on the country you are
-living in, the "PG" ("<i>Parental Guide</i>" - meaning the minimum age of the
-audience to watch this movie) may be different, so chose the correct value out
-of this list. Moreover, the recorded lenght of the movie may be different from
-the original one (e.g. due to commercials or cuttings of the TV station), so
-you can edit that here as well.
+Country and year of production will need no changes, so we take this information
+as-is. Concerning the movies title, however, there are sometimes alternatives
+presented by the IMDB - so in the title drop-down list, these are added
+<b><i>after</i></b> the official title.
+
+[text]
+Depending on the country you are living in, the "PG" ("<i>Parental Guide</i>" -
+meaning the minimum age of the audience to watch this movie) may be different,
+so chose the correct value out of this list. Moreover, the recorded lenght of
+the movie may be different from the original one (e.g. due to commercials or
+cuttings of the TV station), so you can edit that here as well.
 
 [text]
 As for the <b><i>categories</i></b>, phpVideoPro tries to find the matching

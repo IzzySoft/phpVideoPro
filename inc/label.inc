@@ -14,7 +14,7 @@
 
  class label {
 
-   VAR $width, $height, $vmidth, $textcolor, $font, $color, $maxlines, $label,
+   VAR $width, $height, $textcolor, $font, $color, $maxlines, $label,
        $nr_coord, $main_coord, $symb_coord, $mm_conv;
 
    function label($config) {
@@ -37,7 +37,6 @@
      } else {
        $this->create_new();
      }
-     $this->vmidth = ceil($this->height / 2);
    } // end function label()
 
    function convert_coord($coord) {
@@ -49,10 +48,10 @@
    }
 
    function copy_tpl($template) { // create blank label from template image
-     $im_info = getimagesize("$template.png"); // label size
+     $im_info = getimagesize("$template"); // label size
      $this->width  = $im_info[0];
      $this->height = $im_info[1];
-     $ima = imageCreateFromPng("$template.png");     // open input png
+     $ima = imageCreateFromPng("$template");     // open input png
      $im  = imageCreate($this->width,$this->height); // create img in desired size
      ImageRectangle($im,0,0,$this->width,$this->height,$uglybg);
      $dummy = imagecopyresized($im,$ima,0,0,0,0,$this->width,$this->height,$im_info[0],$im_info[1]);
@@ -80,7 +79,7 @@
    }
 
    function make_transparent(&$img) {
-     $uglybg = ImageColorAllocate($im,0xf4,0xb2,0xe5); // transparent bg
+     $uglybg = ImageColorAllocate($img,0xf4,0xb2,0xe5); // transparent bg
      ImageColorTransparent($img,$uglybg);
    }
 
@@ -108,8 +107,9 @@
        $x[$i]    = $this->get_textpos($text[$i],$field,$font[$i]);
        ++$font[$i];
      }
+     $vmidth = ceil($field[3] - $field[1]) / 2;
      $lines = count($text); if ($lines>$this->maxlines) $lines = $this->maxlines;
-     $y = $this->vmidth - (imagefontheight($this->font) * $lines / 2);
+     $y = $vmidth - (imagefontheight($this->font) * $lines / 2);
      $textcolor_array = explode(",", $this->textcolor);
      $color = ImageColorAllocate($this->label, $textcolor_array[0], $textcolor_array[1], $textcolor_array[2]);
      for ($i=0;$i<count($text),$i<4;$i++) {

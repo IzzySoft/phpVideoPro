@@ -2,10 +2,10 @@
 # /*  $Id$ */
 
 [title]
-0.3.2 (Oktober 2002)
+0.3.2 (Oktober 14, 2002)
 [text]
 <ul>
- <li>added menue item for d/l of latest version
+ <li>added functionality for d/l of latest version (new item in "*edit#" menue)
  <li>freetime update was broken - fixed.
  <li>filter could not be edited when no actor, director or componist was
      in DB - fixed.
@@ -13,8 +13,9 @@
  <li>in edit/view entry, remaining free time now is displayed for editable
      media only (e.g. not for DVD or Original Video Tapes), i.e. at this
      time for RVT only (until I've added support for more than one mtype here).
-     Analogue to that, the "in_list" button for an actor is not shown any more
-     in *view_entry#, when the actor is not set. Same for director and composer.
+     Analogue to that, the "*in_list#" button for an actor does not show
+     "*yes# / *no#" information any more in "*view_entry#", when the actor is not
+     set. Same applies to director and composer.
 </ul>
 
 [title]

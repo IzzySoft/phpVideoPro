@@ -1614,7 +1614,12 @@
        }
      }
      if ( $this->get_movieid($mtype_id,$cass_id,$part) ) {
+       header('Content-type: text/html; charset=utf-8');
+       echo "<HTML><HEAD>\n <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
+          . " <meta http-equiv='cache-control' content='no-cache'>\n <TITLE>Error</TITLE>\n"
+          . "</HEAD><BODY>\n";
        display_error( lang("dupe_id_entered") );
+       echo "</BODY></HTML>";
        exit;
      }
      if ( ( bool ) !ini_get('magic_quotes_gpc')
@@ -1672,6 +1677,15 @@
    function move_movie($id,$mtype_id,$cass_id,$part) {
      GLOBAL $pvp,$valid;
      if ( !$valid->num($cass_id) || !$valid->num($part) ) return FALSE;
+     if ( $this->get_movieid($mtype_id,$cass_id,$part) ) {
+       header('Content-type: text/html; charset=utf-8');
+       echo "<HTML><HEAD>\n <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
+          . " <meta http-equiv='cache-control' content='no-cache'>\n <TITLE>Error</TITLE>\n"
+          . "</HEAD><BODY>\n";
+       display_error( lang("dupe_id_entered") );
+       echo "</BODY></HTML>";
+       exit;
+     }
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $movie = $this->get_movie($id);
        $space = $this->get_mediaspace($movie[cass_id],$movie[mtype_id]);

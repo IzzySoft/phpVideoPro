@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -27,13 +27,16 @@
  if ( $copy || $change ) {
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
+     header('Content-type: text/html; charset=utf-8');
+     echo "<HTML><HEAD>\n <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
+        . " <meta http-equiv='cache-control' content='no-cache'>\n <TITLE>Error</TITLE>\n"
+        . "</HEAD><BODY>\n";
      display_error($error);
+     echo "</BODY></HTML>";
      exit;
    }
-  
- $movie_id = $db->get_movieid($old_mtype,$old_cass_id,$old_part);
-  
- $movie = $db->get_movie($movie_id);
+   $movie_id = $db->get_movieid($old_mtype,$old_cass_id,$old_part);
+   $movie = $db->get_movie($movie_id);
  } else {
    include("inc/header.inc");
  }
@@ -53,7 +56,6 @@
    header("location: " .$pvp->link->slink("edit.php?mtype_id=$new_mtype&cass_id=$new_cass_id&part=$new_part&nr=$new_nr"));
    exit;
  }
-
 
  $movie = $db->get_movie($id);
 

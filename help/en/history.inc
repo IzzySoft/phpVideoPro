@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.4.8 (May 2003)
+0.4.8 (May 1, 2003)
 [text]
 <ul>
  <li>Printers can now be edited (see admin menu)
@@ -13,6 +13,7 @@
  <li>Michael also supplied more details upon the top labels, as you may know
      them from the old label system
  <li>applied some corrections plus clean-up to the PS Label images
+ <li>updated Russian language file
 </ul>
 
 [title]

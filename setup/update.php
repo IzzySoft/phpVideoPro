@@ -86,17 +86,17 @@
     switch ($oldversion) {
       case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
       case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
-                        ; // queryf("lang_en.sql","Activation of English language support");
-      case "0.1.2"    : ; // queryf("0-1-2_to_0-1-3.sql","Update from v0.1.2 to v0.1.3");
-      case "0.1.3"    : queryf("0-1-3_to_0-1-4.sql","Update from v0.1.2 to v0.1.4");
-                        queryf("lang_en.sql","Refresh of English language support");
-      case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.4 to v0.1.5");
-      case "0.1.5"    : queryf("0-1-5_to_0-1-6.sql","Update from v0.1.5 to v0.1.6");
-      case "0.1.6"    : queryf("0-1-6_to_0-1-7.sql","Update from v0.1.6 to v0.1.7");
+      case "0.1.2"    :
+      case "0.1.3"    :
+      case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.5 to v0.1.6");
+      case "0.1.5"    :
+      case "0.1.6"    :
       case "0.1.7"    : queryf("0-1-7_to_0-2-0.sql","Update from v0.1.7 to v0.2.0");
       case "0.2.0"    : queryf("0-2-0_to_0-2-1." . $database["type"],"Update from v0.2.0 to v0.2.1");
       case "0.2.1"    : queryf("0-2-1_to_0-2-2." . $database["type"],"Update from v0.2.1 to v0.2.2");
       case "0.2.2"    : queryf("0-2-2_to_0-2-3.sql","Update from v0.2.2 to v0.2.3");
+      case "0.2.3"    : queryf("0-2-3_to_0-2-4.sql","Update from v0.2.2 to v0.2.3");
+                        queryf("lang_en.sql","Refresh of English language support");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

@@ -1,5 +1,5 @@
 # ========================================================
-# Updating Database for phpVideoPro from v0.2.0 to v0.2.1
+# Updating Database for phpVideoPro from v0.2.1 to v0.2.2
 # ========================================================
 
 # provide handling of VideoCD (VCD)

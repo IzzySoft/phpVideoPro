@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -29,10 +29,16 @@
      header("Content-Disposition: attachment; filename=movies.pvp");
      $mlist  = $db->get_movie();
      $mcount = count($mlist);
-     echo "PVP Movie Backup: [$mcount] records\n";
+     if ($compress) { $out = "PVP Movie Backup: [$mcount] records\n"; }
+     else { echo "PVP Movie Backup: [$mcount] records\n"; }
      for ($i=0;$i<$mcount;++$i) {
-       echo urlencode(serialize($mlist[$i]))."\n";
+       if ($compress) {
+         $out .= serialize($mlist[$i])."\n";
+       } else {
+         echo serialize($mlist[$i])."\n";
+       }
      }
+     if ($compress) echo gzencode($out);
      exit;
    }
    header("Content-Disposition: attachment; filename=pvp-backup.sql");
@@ -83,10 +89,12 @@
    $t->set_var("details",lang("desc_backup_db"));
    $t->parse("item","itemblock");
    $t->set_var("title",lang("preferences"));
+   $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CHECKED>".lang("backup_db_complete")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movies'>".lang("backup_db_movies")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>"
-          . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint'>".lang("backup_db_movie_internal")."<BR>";
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint'>".lang("backup_db_movie_internal")."<BR>"
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'>".lang("backup_compress")."<BR>";
    $t->set_var("details",$radio);
    $t->parse("item","itemblock",TRUE);
    $t->set_var("title",lang("backup_db_runscript"));

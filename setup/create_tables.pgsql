@@ -225,3 +225,36 @@ CREATE TABLE languages (
   available char(3) DEFAULT 'No' NOT NULL,
   PRIMARY KEY (lang_id)
 );
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_users' (user management and authorization)
+#
+
+CREATE TABLE pvp_users (
+  id SERIAL,
+  login VARCHAR(20) UNIQUE,
+  pwd VARCHAR(32),
+  admin INT NOT NULL,
+  browse INT NOT NULL,
+  ins INT NOT NULL,
+  upd INT NOT NULL,
+  del INT NOT NULL,
+  comment VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_sessions' (session management)
+#
+
+CREATE TABLE pvp_sessions (
+  id VARCHAR(255) NOT NULL,
+  ip VARCHAR(255) NOT NULL,
+  user_id INT,
+  started VARCHAR(50),
+  dla VARCHAR(50),
+  ended VARCHAR(50),
+  PRIMARY KEY (id)
+);

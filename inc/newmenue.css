@@ -146,7 +146,7 @@ a.menuItem {
   padding-right: 12px;
   text-decoration: none;
   text-align:right;
-  position: absolute; right: 0px;
+  position: absolute; right: 0px; top: 2px; /* top: fix for Konqueror quirk */
 }
 a.menuItem:hover {
   background-color: #000080;

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -69,11 +69,11 @@ if ( !isset($oldversion) ) {
  version of phpVideoPro to the recent one. I strongly recommend you to backup
  your existing database before executing the script! Furthermore, please
  inspect config.inc for possible changes.</P>
-<P ALIGN=JUSTIFY>For each update step, you should then be notified wether it
+<P ALIGN=JUSTIFY>For each update step, you should then be notified whether it
  was successfull or not. So now, if you've made your backup
  (or decided not to backup at all), we can go on with the update process.</P>
 <P ALIGN=JUSTIFY>The version of phpVideoPro's database which is installed on
- your machine appears to be v<? echo $oldversion ?>. If this is <b>not</b>
+ your machine appears to be <b>v<? echo $oldversion ?></b>. If this is <b>not</b>
  what you've expected, please <b><font color="#ff0000">PANIC</font></b> now!
  Otherwise (which <b>I</b> expect to be the case), follow this nice little
  <a href="<? echo "$PHP_SELF?oldversion=$oldversion" ?>">link</a> to finally
@@ -138,7 +138,8 @@ $pvp->preferences->admin();
     case "0.5.4"    : queryf("0-5-4_to_0-5-5.sql","Update from v0.5.4 to v0.5.5");
     case "0.5.5"    : 
     case "0.5.6"    :
-    case "0.5.7"    : queryf("0-5-6_to_0-5-7.sql","Update from v0.5.5 to v0.5.8");
+    case "0.5.7"    :
+    case "0.5.8"    : queryf("0-5-8_to_0-6-0.sql","Update from v0.5.x to v0.6.0");
                       queryf("lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

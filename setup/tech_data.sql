@@ -71,7 +71,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.5.8');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.6.0');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','MySite');
@@ -85,7 +85,7 @@ INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
 
 INSERT INTO preferences (name,value) VALUES ('lang','en');
 INSERT INTO preferences (name,value) VALUES ('charset','iso-8859-1');
-INSERT INTO preferences (name,value) VALUES ('template','default');
+INSERT INTO preferences (name,value) VALUES ('template','applicat');
 INSERT INTO preferences (name,value) VALUES ('display_limit','30');
 INSERT INTO preferences (name,value) VALUES ('date_format','y-m-d');
 INSERT INTO preferences (name,value) VALUES ('page_length','85');

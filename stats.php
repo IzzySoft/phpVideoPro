@@ -17,27 +17,26 @@
   $t = new Template($pvp->tpl_dir);
 
   $stats = $db->get_stats();
-#  $stats[movies] = 541;
 
   $t->set_file(array("stat"=>"stats.tpl"));
   $t->set_block("stat","listblock","list");
   $t->set_block("listblock","itemblock","item");
 
-  $t->set_var("listtitle",lang("db_stat"));
+  $t->set_var("listtitle",lang("db_stats"));
   $t->set_var("list_head",lang("stat_counts"));
   $t->set_var("item_name",lang("movies"));
   $t->set_var("item_input",$stats[movies]);
   $t->parse("item","itemblock");
-  $t->set_var("item_name",lang("director_person"));
+  $t->set_var("item_name",lang("director_persons"));
   $t->set_var("item_input",$stats[directors]);
   $t->parse("item","itemblock",TRUE);
-  $t->set_var("item_name",lang("actors"));
+  $t->set_var("item_name",lang("actor_persons"));
   $t->set_var("item_input",$stats[actors]);
   $t->parse("item","itemblock",TRUE);
-  $t->set_var("item_name",lang("compose_person"));
+  $t->set_var("item_name",lang("compose_persons"));
   $t->set_var("item_input",$stats[composers]);
   $t->parse("item","itemblock",TRUE);
-  $t->set_var("item_name",lang("category"));
+  $t->set_var("item_name",lang("categories"));
   $t->set_var("item_input",$stats[categories]);
   $t->parse("item","itemblock",TRUE);
   $t->set_var("item_name",lang("media"));

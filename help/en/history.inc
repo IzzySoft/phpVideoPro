@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>updated French language file
+ <li>forgot to remove some debug code with the last release (edit menu)
 </ul>
 
 [title]

@@ -10,6 +10,9 @@
      this fix!)
  <li>taperest list now shows the movie's number (linked to the movies entry)
      within the contents column
+ <li>now you can copy (duplicate) a movie's entry into a new record (i.e. to a
+     new medium). To find this function, just click on the MediaNr or MediaType
+     button.
 </ul>
 
 [title]

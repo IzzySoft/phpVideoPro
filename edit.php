@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -525,12 +525,12 @@ EndHiddenFields;
   if (!$pvp->config->enable_cookies) $hiddenfields .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
   $t->set_var("hiddenfields",$hiddenfields);
   if ($new_entry) {
-    $t->set_var("button_li","<INPUT TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
-    $t->set_var("button_re","<INPUT TYPE='submit' NAME='create' VALUE='" . lang("create") . "'>");
+    $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
+    $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='create' VALUE='" . lang("create") . "'>");
     $t->set_var("print_label","&nbsp;");
   } elseif ($edit) {
-    $t->set_var("button_li","<INPUT TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
-    $t->set_var("button_re","<INPUT TYPE='submit' NAME='update' VALUE='" . lang("update") . "'>");
+    $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='cancel' VALUE='" . lang("cancel") . "'>");
+    $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='update' VALUE='" . lang("update") . "'>");
     $t->set_var("print_label","&nbsp;");
   } else {
     $labels = $pvp->common->get_filenames($base_dir . "labels",".config");
@@ -540,8 +540,8 @@ EndHiddenFields;
       $labellist .= "<OPTION VALUE='$confname'>" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
     }
     $labellist .= "</SELECT>";
-    $t->set_var("button_li","<INPUT TYPE='submit' NAME='edit' VALUE='"   . lang("edit")   . "'>");
-    $t->set_var("button_re","<INPUT TYPE='submit' NAME='delete' VALUE='" . lang("delete") . "'>");
+    $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='edit' VALUE='"   . lang("edit")   . "'>");
+    $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='delete' VALUE='" . lang("delete") . "'>");
     $t->set_var("print_label","$labellist");
   }
   $t->pparse("out","edit");

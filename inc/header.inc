@@ -12,6 +12,8 @@
 
  /* $Id$ */
 
+header('Content-type: text/html; charset=$charset');
+
 $tpl_url = str_replace($base_path,$base_url,$pvp->tpl_dir)."/default.css";
 
 if (!$silent) {
@@ -53,8 +55,8 @@ if (!$silent) {
  </tr>
 </table>
 <?
-} else {
- include($pvp->tpl_dir ."/default.css");
- echo "</HEAD><BODY>\n";
-} // !login
-} // not silent ?>
+ } else { // page_id != "login"
+   include($pvp->tpl_dir ."/default.css");
+   echo "</HEAD><BODY>\n";
+ } // !login
+} // !silent ?>

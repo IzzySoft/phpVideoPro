@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>search function crashed if searched for a non-existing staff member - fixed.
+ <li>non-latin charsets (e.g. UTF-8) completely messed up the browsers display - fixed.
 </ul>
 
 [title]

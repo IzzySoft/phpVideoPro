@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.3.3 (Oktober/November 2002)
+0.3.3 (Oktober 20, 2002)
 [text]
 <ul>
  <li>worked around a Netscape 4.x JavaScript bug with the label printing
@@ -14,6 +14,8 @@
      (i.e. to a new medium). To find this function, just click on the MediaNr
      or MediaType button. Btw: this is the "change medium / media number" feature
      some of you requested, just a bit enhanced :)
+ <li>fixed some bug with freetime update when adding a new entry (possibly
+     introduced with v0.3.2)
 </ul>
 
 [title]

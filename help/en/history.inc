@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.6.4 (2004)
+[text]
+<ul>
+ <li>added some indices to the database to speed up certain processes
+</ul>
+
+[title]
 0.6.3 (August 24, 2004)
 [text]
 <ul>

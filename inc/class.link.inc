@@ -29,7 +29,8 @@
    * @constructor link
    */
   function link() {
-    $this->imdb = "http://us.imdb.com/";
+    GLOBAL $pvp;
+    $this->imdb = $pvp->preferences->get("imdb_url");
   }
 
   /** Provide a link with session info, if necessary

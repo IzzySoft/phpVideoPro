@@ -1,14 +1,20 @@
-<? // cconfiguring phpVideoPro
+<? // configuring phpVideoPro
 
 /* $Id$ */
 
 ##################################################################
 # Configuration of Configuration module
 #
+$referer = substr(dirname($HTTP_REFERER),strlen(dirname($HTTP_REFERER))-6);
+if ($referer=="/setup" || $referer=="") {
   include ("../inc/config.inc");
   include ("../inc/config_internal.inc");
   include ("../inc/common_funcs.inc");
   include ("../inc/sql_helpers.inc");
+} else {
+  include ("inc/header.inc");
+  $started = TRUE;
+}
 
 ##################################################################
 # Update changes (when submitted)
@@ -124,6 +130,6 @@
 # Closing page
 # ?>
 <TR><TD COLSPAN=2 ALIGN=CENTER><P><BR></P></TD></TR>
-<TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR>
+<? if (!$started) { ?><TR><TD COLSPAN=2 ALIGN=CENTER><A HREF="../index.php">Start phpVideoPro</A></TD></TR><? } ?>
 </TABLE>
 </BODY></HTML>

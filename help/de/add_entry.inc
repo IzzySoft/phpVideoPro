@@ -39,8 +39,8 @@ einen Film auf dem jeweiligen Medium meint. RVT 68-1 wäre somit also Film Nummer
 Natürlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
 wird phpVideoPro dann nicht unbedingt so reagieren, wie man es vielleicht
 erwartet :-) Wichtig ist dieses Modell z.B. bei der Ermittlung von freien
-Bandstellen über den Menüpunkt "<A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A>"
-(bzw. "*taperest_filtered#"), da dieses auf der MediaNummer aufbaut. Unnötig
+Bandstellen über den Menüpunkt <i><A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A></i>
+(bzw. <i>*taperest_filtered#</i>), da dieses auf der MediaNummer aufbaut. Unnötig
 daher zu erwähnen, daß diese Nummern eindeutig sein müssen - es ist nicht
 möglich, die gleiche Kombination aus Medientyp und Mediennummer mehrfach zu
 speichern. Wer die gleiche DVD also zweimal hat, muß ihr entweder zwei
@@ -52,7 +52,7 @@ unterbringen.
 
 [text]
 Die Zähler-Einstellungen sind in erster Linie für Besitzer älterer Videorekorder
-interessant, welche noch nicht über eine Indexfunktion verfügen ( sie sind auch
+interessant, welche noch nicht über eine Indexfunktion verfügen (sie sind auch
 nur für Kassetten verfügbar): diese können hier die jeweiligen Zählerstände bei
 Beginn bzw. Ende der Aufzeichnung eintragen. Da das Format der Eintragungen in
 diesen Feldern jedoch nicht festgelegt ist (mit Ausnahme der Einschränkung auf
@@ -78,11 +78,11 @@ unterdrückt.
 RegionalCodes sind ein DVD-spezifisches "Feature" (auf das wir auch liebend
 gern verzichten würden), daher taucht dieser Punkt auch nur für DVDs auf (es
 sei denn, jemand hat dieses "Feature" auch für einen anderen Medien-Typen
-freigeschaltet). Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte
-hier einfach keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes
-erscheint in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist
-lediglich die "0" auszuwählen, und für alle anderen die entsprechende(n)
-Checkbox(en).
+freigeschaltet - siehe <i><a href="{PHP_SELF}?topic=admin_disktypes">*admin_disktypes#</a></i>).
+Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte hier einfach
+keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes erscheint
+in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist lediglich
+die "0" auszuwählen, und für alle anderen die entsprechende(n) Checkbox(en).
 
 [title]
 *commercials#
@@ -98,10 +98,10 @@ Möglichkeit, "*unknown#" auszuwählen.
 *date_rec#
 
 [text]
-Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch
-auf Tag-Monat-Jahr festgelegt ist. In einer der nächsten Versionen wird ggf.
-auch hierfür das im Konfigurationsmenü einstellbare Datumsformat Verwendung
-finden, um den verschiedenen Länderpräferenzen Rechnung zu tragen.
+Das Datum ist in drei Felder aufgeteilt, deren Reihenfolge derzeit statisch auf
+Tag-Monat-Jahr festgelegt ist. In einer späteren Version wird ggf. auch hierfür
+das im Konfigurationsmenü einstellbare Datumsformat Verwendung finden, um den
+verschiedenen Länderpräferenzen Rechnung zu tragen.
 
 [title]
 *categories#
@@ -121,11 +121,11 @@ Etwas Achtsamkeit ist bei der Eingabe dieser Daten angebracht: das erste Feld
 sollte den Namen, und das zweite den Vornamen enthalten. Auch hier kann
 natürlich wieder jeder seinem Gusto frönen - was aber ggf. einige Funktionen
 von phpVideoPro beeinflußt. Auf der
-<A HREF="http://www.qumran.org/homes/izzy/">Demo-Site</A> habe ich bereits
-einige Einträge gesehen, die sowohl im Namen als auch im Vornamen vollständige
-Namen (also Vor- und Nachname) enthielten. Sucht man nun aber nach einem
-bestimmten Darsteller, treten entsprechende Schwierigkeiten auf, wie sich
-unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=set_filter">Filters</A>
+<A HREF="http://www.qumran.org/homes/izzy/software/videopro-demo" TARGET="_blank">Demo-Site</A>
+habe ich bereits einige Einträge gesehen, die sowohl im Namen als auch im
+Vornamen vollständige Namen (also Vor- und Nachname) enthielten. Sucht man nun
+aber nach einem bestimmten Darsteller, treten entsprechende Schwierigkeiten auf,
+wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=set_filter">Filters</A>
 feststellen lassen wird.
 
 [text]

@@ -66,7 +66,7 @@
  $form["addon_part"]    = "SIZE='2' MAXLENGTH='2'";
  $form["addon_title"]   = "SIZE='50' MAXLENGTH='60'";
  $form["addon_tech"]    = "class='techinput'";
- define("AUDIO_TS",4);  // max audio tracks for a movie
+ define("AUDIO_TS",6);  // max audio tracks for a movie
  define("SUBTITLES",9); // max subtitle tracks for a movie
 
  #=============================================[ read preferences from DB ]===

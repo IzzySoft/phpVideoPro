@@ -55,19 +55,20 @@
  }
 
  $title   = $pvp->common->safeinput($title);
- $source  = $pvp->common->safeinput($source);
  $comment = $pvp->common->safetextarea($comment);
- $fields   = array("country","year","length","src","fsk","counter1","counter2");
+ $fields  = array("country","year","length","src","fsk","counter1","counter2");
  foreach ($fields as $field) {
-   ${$field} = $pvp->common->safeinput(${$field});
+   if (isset(${$field})) ${$field} = $pvp->common->safeinput(${$field});
+     else ${$field} = "";
  }
 
+ $subtitle = ""; $audio_ts = "";
  for ($i=0;$i<SUBTITLES;++$i) {
    $subts = "subtitle".$i;
    $ats   = "audio_ts".$i;
-   if (!empty(${$subts}) && ${$subts}!="-") $subtitle .= ",".${$subts};
+   if (!empty(${$subts}) && ${$subts} !="-") $subtitle .= ",".${$subts};
    if (!empty(${$ats}) && ${$ats} != "-")   $audio_ts .= ",".${$ats};
-   unset(${subts},${$ts});
+   unset(${$subts},${$ats});
  }
  if (!empty($subtitle)) $subtitle .= ",";
  if (!empty($audio_ts)) $audio_ts .= ",";

@@ -65,7 +65,7 @@ class common {
    */
   function setRecDate($year,$month="",$day="") {
     if (strlen($month)) {
-      $date = array(year=>$year,mon=>$month,mday=>$day);
+      $date = array("year"=>$year,"mon"=>$month,"mday"=>$day);
     } else {
       $date = $year;
     }
@@ -169,6 +169,7 @@ class common {
     if(empty($data)) {
       return $data;
     }
+    $newText = "";
     $lines = split("\n",$data);
     while ( list ($key,$line) = each ($lines)) {
       if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$line,$matches) ) {

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.1 (2004)
+0.6.1 (May 18, 2004)
 [text]
 <ul>
  <li>IMDB site for reference lookups is now configurable as a preference. If

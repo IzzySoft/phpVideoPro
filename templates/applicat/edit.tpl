@@ -105,8 +105,11 @@
    </TABLE>
   </TD></TR>
  <TR CLASS="content"><TD COLSPAN="2" Align="center">
+   <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
+     <TR><TH><DIV STYLE="vertical-align:middle;text-align:center;font-weight:bold;margin:2;">{comments_name}</DIV></TH></TR>
+   </TABLE>
+ </TD></TR><TR CLASS="content"><TD COLSPAN="2" Align="center">
    <TABLE WIDTH="100%" BORDER="0" id="commentTab">
-     <TR><TH><DIV STYLE="text-align:center;font-weight:bold">{comments_name}</DIV></TH></TR>
      <TR><TD>{comments}</TD></TR>
    </TABLE></TD></TR>
 </Table>

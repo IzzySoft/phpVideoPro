@@ -18,7 +18,7 @@
      <TH><DIV ALIGN="center">{head_edit}</DIV></TH>
      <TH><DIV ALIGN="center">{head_delete}</DIV></TH></TR>
 <!-- BEGIN itemblock -->
- <TR><TD>{user_id}</TD>
+ <TR><TD><DIV ALIGN="right">{user_id}</DIV></TD>
      <TD>{login}</TD>
      <TD>{comment}</TD>
      <TD><DIV ALIGN="center">{browse}</DIV></TD>

@@ -11,13 +11,14 @@
      side). To add an URL to an external reference, you may now use the [href]
      tag. In all three cases, enclose the target by opening and closing tags,
      e.g.: [href]http://www.izzysoft.de/[/href]. Until now, phpVideoPro
-     automatically converts all strings that look like an URL into the [href]
-     format. For that reason, the image links may only refer to <b>local</b>
-     images and not to other systems, i.e. you have to put the images on the
-     same server as your copy of phpVideoPro is running and just add them with
-     their path - not with protocol and server name. To enable "remote" images,
-     we may drop the auto-conversion at some future point.<br>One more note:
-     the [href] and [img]/[imgr] tags must <b>not</b> be nested.
+     automatically converted all strings that look like an URL into the [href]
+     format. For that reason, the image links could only refer to <b>local</b>
+     images and not to other systems, since otherwise those links would be
+     broken. To prevent this (and make you able to use images from whatever
+     source), I provided a script to update your comments and dropped the
+     former behaviour. I suggest you to run that script - the update page
+     will provide you with the necessary link.<br>One more note: the [href]
+     and [img]/[imgr] tags must <b>not</b> be nested.
 </ul>
 
 [title]

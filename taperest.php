@@ -19,9 +19,9 @@
 
   // init templates
   $t->set_file(array("taperest_list"=>"taperest_list.tpl",
-                     "taperest_item"=>"taperest_item.tpl",
-		     "taperest_movie"=>"taperest_movie.tpl",
 		     "taperest_empty"=>"taperest_empty.tpl"));
+  $t->set_block("taperest_list","itemblock","itemlist");
+  $t->set_block("itemblock","movieblock","movielist");
   $where = "WHERE free>='$minfree'";
   if ( strlen($filter) ) {
     dbquery("SELECT cass_id FROM video v WHERE $filter");
@@ -60,15 +60,15 @@
     for ($l=1;$l<=$k;$l++) {
       $t->set_var("movies",$mlist[$i][$l]);
       if ($l==1) {
-        $t->parse("movie_list","taperest_movie");
+        $t->parse("movielist","movieblock");
       } else {
-        $t->parse("movie_list","taperest_movie",TRUE);
+        $t->parse("movielist","movieblock",TRUE);
       }
     }
     $t->set_var("mtype",$mlist[$i]["mtype"]);
     $t->set_var("id",$mlist[$i]["id"]);
     $t->set_var("free",$mlist[$i]["free"]);
-    $t->parse("item_list","taperest_item",TRUE);
+    $t->parse("itemlist","itemblock",TRUE);
   }
   $t->set_var("freespace",lang("free_space_on_media",$minfree));
   $t->set_var("medium",lang("medium"));

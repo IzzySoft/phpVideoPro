@@ -245,10 +245,15 @@
       $next = "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$movie[next]->mtype_id
             . "&cass_id=".$movie[next]->media_nr."&part=".$movie[next]->part)
             . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0'></A>";
+      $lm = $db->get_lastmovienum(); $lmc = count($lm) -1;
+      $next .= "<A HREF='" .$pvp->link->slink("$PHP_SELF?mtype_id=".$lm[$lmc]["mtype_id"]
+            . "&cass_id=".(int) $lm[$lmc]["cass_id"]."&part=".(int) $lm[$lmc]["part"])
+            . "'><IMG SRC='".$tpl_dir."/images/last.gif' BORDER='0'></A>";
     } else {
-      $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif'>";
+      $next = "<IMG SRC='".$tpl_dir."/images/right-grey.gif'>"
+            . "<IMG SRC='".$tpl_dir."/images/last-grey.gif'>";
     }
-    $t->set_var("next",$next); unset($next);
+    $t->set_var("next",$next); unset($next,$lm,$lmc);
   }
     $hiddenfields = <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">

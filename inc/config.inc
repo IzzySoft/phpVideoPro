@@ -28,7 +28,7 @@ $debug["log"]  = "EW";
 $database["host"]      = "linux";
 //$database["host"]      = "localhost";
 $database["database"]  = "video_demo";
-// $database["database"]  = "videopro";
+$database["database"]  = "videopro";
 $database["user"]      = "guest";
 $database["password"]  = "";
 
@@ -37,8 +37,9 @@ $defaults["scolor"] = "Farbe"; // most movies today have more than two colors ;)
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
-$version    = "0.1.1";
+$version    = "0.1.2";
 $nav_script = $base_url . "inc/navcond.js";
+$rw_media   = "1";
 $max["actors"]         =  5;
 $max["categories"]     =  3;
 $max["name_chars"]     = 30;

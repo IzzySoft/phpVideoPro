@@ -128,6 +128,10 @@
    # interface to get_sql()
    function queryf($file,$comment,$silent=0) {
      GLOBAL $colors;
+     if ( !file_exists($file) ) {
+       if (!$silent) echo $colors["err"] . " <li>$comment failed: missing SQL command file '$file', process stopped.</Font><BR>\n";
+       exit;
+     }
      if ( $this->get_sql($file) ) {
        if (!$silent) echo $colors["ok"] . " <li>$comment successful.</Font><BR>\n";
      } else {

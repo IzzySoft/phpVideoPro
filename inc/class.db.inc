@@ -359,6 +359,75 @@
      return $this->get_person($id,"music");
    }
 
+   /** Get distinct staff ids from video table and return them as array
+    * @class sql
+    * @method get_distinct_staffids
+    * @param string field name of id field to search
+    * @return array array of ids
+    */
+   function get_distinct_staffids($field) {
+     $this->dbquery("SELECT DISTINCT $field FROM video");
+     while ( $this->next_record() ) {
+       $id[] = $this->f("$field");
+     }
+     return $id;
+   }
+
+   /** Setup the orphans array (helper to get_orphaned_staff)
+    * @class sql
+    * @method setup_orphan
+    * @param string stafftype stafftype (director,composer,actor)
+    * @param integer id PK to stafftype's table
+    * @param string name name of orphaned staff member
+    * @param string firstname firstname of orphaned staff member
+    * @return object one element for the orphan's array
+    * @see sql::get_orphaned_staff
+    */
+   function setup_orphan($stafftype,$id,$name,$firstname) {
+     $orphan->stafftype = $stafftype;
+     $orphan->id        = $id;
+     $orphan->name      = $name;
+     $orphan->firstname = $firstname;
+     return $orphan;
+   }
+
+   /** Search the database for orphaned staff members. I.e. people who have an
+    *  entry in one of the staff tables, but the video table doesn't refer to them
+    * @class sql
+    * @method get_orphaned_staff
+    * @return mixed array of orphanes or FALSE
+    * @version the array has the format array[$i]->$item, where $item is one of
+    *  stafftype,id,name,firstname - id being the PK to the staff table
+    */
+   function get_orphaned_staff() {
+     $id = $this->get_distinct_staffids("director_id");
+     $query = "SELECT id,name,firstname FROM directors"
+            . " WHERE id NOT IN (" . implode(",",$id) . ")";
+     $this->dbquery($query);
+     while ( $this->next_record() ) {
+       $orphan[] = $this->setup_orphan("director",$this->f('id'),$this->f('name'),$this->f('firstname'));
+     }
+     $id = $this->get_distinct_staffids("music_id");
+     $query = "SELECT id,name,firstname FROM music"
+            . " WHERE id NOT IN (" . implode(",",$id) . ")";
+     $this->dbquery($query);
+     while ( $this->next_record() ) {
+       $orphan[] = $this->setup_orphan("composer",$this->f('id'),$this->f('name'),$this->f('firstname'));
+     }
+     $id = $this->get_distinct_staffids("actor1_id");
+     $id = array_merge($id, $this->get_distinct_staffids("actor2_id"));
+     $id = array_merge($id, $this->get_distinct_staffids("actor3_id"));
+     $id = array_merge($id, $this->get_distinct_staffids("actor4_id"));
+     $id = array_merge($id, $this->get_distinct_staffids("actor5_id"));
+     $query = "SELECT id,name,firstname FROM actors"
+            . " WHERE id NOT IN (" . implode(",",$id) . ")";
+     $this->dbquery($query);
+     while ( $this->next_record() ) {
+       $orphan[] = $this->setup_orphan("composer",$this->f('id'),$this->f('name'),$this->f('firstname'));
+     }
+     return $orphan;
+   }
+
    ############################################################################
    # categories
    ############################################################################

@@ -27,6 +27,20 @@
    echo $msg;
  }
 
+ /** check whether the given debug level is set
+  * @package Api
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @function debugLevel
+  * @param string level debug level (1 char only)
+  * @return boolean TRUE if set, FALSE if not
+  */
+ function debugLevel($level) {
+   GLOBAL $debug;
+   if ( strpos(strtoupper($debug["log"]),strtoupper($level))===false ) return FALSE;
+   return TRUE;
+ }
+
  #########################################################[ Error Handling ]###
  /** format and display an error message for unrecoverable error
   * @package Api

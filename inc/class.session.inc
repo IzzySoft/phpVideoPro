@@ -16,7 +16,7 @@
   * @package Api
   * @class session
   * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001,2002 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
   */
  class session {
 
@@ -90,7 +90,10 @@
    */
   function verify($id="") {
     GLOBAL $db;
-    if (!$id) $id = $_REQUEST["sess_id"];
+    if (!$id) {
+      if (!isset($_REQUEST["sess_id"])) return FALSE;
+      $id = $_REQUEST["sess_id"];
+    }
     return $db->verify_session($id,$_SERVER["REMOTE_ADDR"]);
   }
 

@@ -84,15 +84,20 @@
           if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
           return($pref); 
         } else {
-	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
-          if (strlen($pref)) {
+          if (isset($pvp->auth->user_id))
+            $pref = $db->get_preferences($name,$pvp->auth->user_id);
+          if (isset($pref) && strlen($pref)) {
             if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
             return($pref); 
-	  } else { return $this->$name; }
+	  } else {
+           if (isset($this->$name)) return $this->$name;
+           return FALSE;
+          }
 	}
       } else {
-	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
-          if (strlen($pref)) {
+          if (isset($pvp->auth->user_id))
+	    $pref = $db->get_preferences($name,$pvp->auth->user_id);
+          if (isset($pref) && strlen($pref)) {
             if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
             return($pref); 
 	  } else { return $this->$name; }

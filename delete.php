@@ -91,7 +91,7 @@
     # and finally we may have to correct the free space remaining on that medium (if rewritable)
     if ( $pvp->common->medium_is_rw($mtype_id) ) {
       $details .= "<li>" . lang("check_media_delete"). ". ";
-      if ( $db->delete_medium($cass_id,$mtype_id) ) {
+      if ( $pvp->preferences->remove_empty_media && $db->delete_medium($cass_id,$mtype_id) ) {
         $details .= $colors["ok"] . lang("medium_deleted") . "</Font><BR>";
       } else {
         $details .= $colors["ok"] . lang("medium_not_deleted") . "</Font><BR>";

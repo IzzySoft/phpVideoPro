@@ -86,6 +86,7 @@
    unset ($plang);
   }
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->template;
+  $pvp->preferences->remove_empty_media = $remove_empty; unset($remove_empty);
  }
 
  #=======================================================[ debug settings ]===

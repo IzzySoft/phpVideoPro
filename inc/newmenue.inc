@@ -1,5 +1,5 @@
  <link href="<? echo $base_url ?>inc/newmenue.css" rel="stylesheet" type="text/css">
- <script type="text/javascript" src="<?=$base_url?>inc/newmenue.js">></script>
+ <script type="text/javascript" src="<?=$base_url?>inc/newmenue.js"></script>
 </head><body>
 
 <!-- Tags for the menu bar. -->

@@ -229,7 +229,8 @@ $select .= ">";
 for ($i=0;$i<count($lang_installed);$i++) {
   $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
   if ( $lang_installed[$i]==$lang_preferred ) $select .= " SELECTED";
-  $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+#  $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+  $select .= ">" . lang("lang_".$lang_installed[$i]) . "</OPTION>";
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);

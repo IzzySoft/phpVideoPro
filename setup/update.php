@@ -131,7 +131,7 @@ $pvp->preferences->admin();
       ." <a href=\"../admin/configure.php\">configuration</a> page. In case you"
       ." are upgrading from a version prior to v0.4.1, the previous link will"
       ." lead you to the login screen instead. Use the &quot;admin&quot; user"
-      ." (password is "video") to login, and first go to the user administration"
+      ." (password is &quot;video&quot;) to login, and first go to the user administration"
       ." page (to be found in the &quot;admin&quot; menue) and change this"
       ." password first. You'll find more information about this new feature"
       ." within the online help,</p></DIV>\n";

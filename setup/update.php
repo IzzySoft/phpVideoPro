@@ -96,6 +96,7 @@
       case "0.1.5"    : queryf("0-1-5_to_0-1-6.sql","Update from v0.1.5 to v0.1.6");
       case "0.1.6"    : queryf("0-1-6_to_0-1-7.sql","Update from v0.1.6 to v0.1.7");
       case "0.1.7"    : queryf("0-1-7_to_0-2-0.sql","Update from v0.1.7 to v0.2.0");
+      case "0.2.0"    : queryf("0-2-0_to_0-2-1." . $database["type"],"Update from v0.2.0 to v0.2.1");
                         break;
       default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
     }

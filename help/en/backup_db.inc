@@ -111,9 +111,10 @@ use any frontend to your database to do so, e.g. phpMyAdmin). Alternatively,
 you can let phpVideoPro do this:
 
 [text]
-Put the SQL file into the setup/ directory. Rename it to <code>restore.sql</code>.
-Finally, act as if you where doing a fresh installation - just select
-"<i>restore</i>" instead of "<i>create</i>". That's it.
+Put the SQL file into the <code>setup/</code> directory. Rename it to
+<code>restore.sql</code>. Finally, act as if you where doing a fresh
+installation - just select "<i>restore</i>" instead of "<i>create</i>".
+That's it.
 
 [title]
 Why is there no "<i>Restore Database</i>" menue item?

@@ -16,6 +16,8 @@
   include("inc/header.inc");
   $t = new Template($pvp->tpl_dir);
   if ($usefilter) $filter = get_filters();
+  if (!$start) $start = 0;
+  include("inc/nextmatch.inc");
 
   if (!$minfree) {
     $t->set_file(array("taperest_init"=>"taperest_init.tpl"));
@@ -42,7 +44,8 @@
     }
     $where .= " AND id IN ($tapelist)";
   }
-  dbquery("SELECT id,free FROM cass $where ORDER BY free DESC");
+  $query = "SELECT id,free FROM cass $where ORDER BY free DESC";
+  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$PHP_SELF."?minfree=$minfree",$start);
   if (!$db->num_rows()) {
     $t->set_var("title",lang("no_entries_found"));
     $t->set_var("msg",lang("no_space_of",$minfree));
@@ -86,6 +89,10 @@
   $t->set_var("nr",lang("nr"));
   $t->set_var("free",lang("free"));
   $t->set_var("content",lang("content"));
+  $t->set_var("first",$nextmatch->first);
+  $t->set_var("left",$nextmatch->left);
+  $t->set_var("right",$nextmatch->right);
+  $t->set_var("last",$nextmatch->last);
   $t->pparse("out","taperest_list");
 
   include("inc/footer.inc");

@@ -18,8 +18,8 @@ include ("../inc/config_internal.inc");
 include ("../inc/common_funcs.inc");
 include ("../inc/class.template.inc");
 $translations = $db->get_translations( $pvp->preferences->get("lang") );
-$topic    = $_GET["topic"];
-$force_en = $_GET["force_en"];
+if (isset($_GET["topic"])) $topic    = $_GET["topic"]; else $topic = "";
+if (isset($_GET["force_en"])) $force_en = $_GET["force_en"]; else $force_en = FALSE;
 
 #=============================================[ Get the needed parameters ]===
 /** Find the input file for the requested help topic
@@ -125,6 +125,8 @@ class pagemaker {
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
   $this->block->name = "";
+  $this->block->content = "";
+  $this->block->append = FALSE;
  }
 
  /** Replacing placeholders for variables and translations within the
@@ -138,7 +140,6 @@ class pagemaker {
  function add_block($content) {
   if (!$this->block->name) return;
   if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
-   $var = substr($matches[0],1,strlen($matches[0])-2);
    for ($i=0;$i<count($matches[0]);$i++) {
      $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
      $pos = strpos($var,"->");
@@ -151,7 +152,6 @@ class pagemaker {
    }
   }
  if ( preg_match_all("/\*\S+\#/",$content,$matches) ) { // replace translations
-   $var = substr($matches[0],1,strlen($matches[0])-2);
    for ($i=0;$i<count($matches[0]);$i++) {
      $var  = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
      $rvar = lang($var);
@@ -185,7 +185,7 @@ class pagemaker {
  function close_block () {
   if (!$this->block->name) return;
   $this->parse_block();
-  $this->block->append  = 0;
+  $this->block->append  = FALSE;
  }
 
  /** Set template variables. Wrapper around pagemaker::t::set_var
@@ -215,6 +215,7 @@ class pagemaker {
     $input = file($file);
   }
   $line  = 0;
+  $eof = FALSE;
   while ( $line<count($input) ) {
    switch ( trim(strtolower($input[$line])) ) {
     case "[title]"   : if ($this->block->name) {
@@ -224,7 +225,7 @@ class pagemaker {
 			 $this->close_block();
                          $this->block->name = "title";
                          $this->add_block($this->block->title);
-			 $this->block->append  = 1;
+			 $this->block->append  = TRUE;
 			 $this->close_block();
 			 $this->block->content = "";
 			}
@@ -252,7 +253,7 @@ class pagemaker {
     $this->close_block();
     $this->block->name = "title";
     $this->add_block($this->block->title);
-    $this->block->append  = 1;
+    $this->block->append  = TRUE;
     $this->close_block();
     break;
    }
@@ -317,7 +318,7 @@ if ($topic) { // display specific help page
   $pm->make_page(lang($topic),$help->file);
 } else { // display help index
   include("help_topics.php");
-  $pm->t->set_var("listtitle",lang(index));
+  $pm->t->set_var("listtitle",lang("index"));
   $pm->t->set_var("title","");
   $pm->t->set_var("text","$content");
   $pm->t->parse("textlist","textblock");

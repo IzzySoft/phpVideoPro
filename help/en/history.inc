@@ -11,6 +11,8 @@
  <li>logged-in user now can view his/her account data and modify his/her
      password by clicking on the user info link in the menu bar (not available
      with Netscape &lt; v6)
+ <li>Pressing the "Cancel" button of the prompt for the media number for a new
+     entry (menu Edit-&gt;New...) no longer results in an error
 </ul>
 
 [title]

@@ -9,7 +9,7 @@
      <TH><DIV ALIGN="center">{head_lp}</DIV></TH>
      <TH><DIV ALIGN="center">{head_rc}</DIV></TH></TR>
 <!-- BEGIN diskblock -->
- <TR><TD><DIV ALIGN="right">{disk_id}</DIV></TD>
+ <TR><TD><DIV ALIGN="center">{disk_id}</DIV></TD>
      <TD><DIV ALIGN="center">{mtype}</DIV></TD>
      <TD><DIV ALIGN="center">{disk_name}</DIV></TD>
      <TD><DIV ALIGN="center">{size}</DIV></TD>

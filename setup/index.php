@@ -30,7 +30,7 @@
      <TABLE WIDTH="90%" BORDER="1">
       <COLGROUP><COL WIDTH="25%"><COL WIDTH="25%"><COL WIDTH="25%"><COL WIDTH="25%"></COLGROUP>
       <TR><TD ALIGN="center"><A HREF="install/index.php">Fresh Installation/Restore</A></TD>
-          <TD ALIGN="center"><A HREF="update.php">Update existing installation</A></TD>
+          <TD ALIGN="center"><A HREF="update/index.php">Update existing installation</A></TD>
           <TD ALIGN="center"><A HREF="configure.php">Configure existing installation</A></TD>
           <TD ALIGN="center"><A HREF="../login.php">Enter the application</A></TD></TR>
      </TABLE></DIV></TD></TR>

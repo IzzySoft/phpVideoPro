@@ -14,9 +14,9 @@
 
 #========================================================[ initial setup ]===
 $runupdate = 1;
-include ("../inc/config.inc");
-include ("../inc/config_internal.inc");
-include ("../inc/common_funcs.inc");
+include ("../../inc/config.inc");
+include ("../../inc/config_internal.inc");
+include ($base_path."inc/common_funcs.inc");
 $db->Host     = $database["host"];
 $db->Database = $database["database"];
 $db->User     = $database["user"];
@@ -49,7 +49,7 @@ function get_version() {
 echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
 echo "<HTML><HEAD>\n";
 echo " <META http-equiv='Content-Type' content='text/html; charset=utf-8'>\n";
-echo " <LINK HREF='../templates/default/default.css' rel='stylesheet' type='text/css'>\n";
+echo " <LINK HREF='".$base_url."templates/default/default.css' rel='stylesheet' type='text/css'>\n";
 
 $title = "phpVideoPro: ";
 if ( !isset($oldversion) ){
@@ -77,10 +77,12 @@ if ( !isset($_REQUEST["oldversion"]) ) {
 <P ALIGN=JUSTIFY>The version of phpVideoPro's database which is installed on
  your machine appears to be <b>v<? echo $oldversion ?></b>. If this is <b>not</b>
  what you've expected, please <b><font color="#ff0000">PANIC</font></b> now!
- Otherwise (which <b>I</b> expect to be the case), follow this nice little
- <a href="<? echo $_SERVER["PHP_SELF"]."?oldversion=$oldversion" ?>">link</a> to finally
+ Otherwise (which <b>I</b> expect to be the case), click the button below to
  <b>do</b> the real update...</p>
 <?
+$button = "<DIV ALIGN='center'><A HREF='".$_SERVER["PHP_SELF"]
+        ."?oldversion=$oldversion'><IMG BORDER='0' SRC='".$base_url
+        ."templates/default/images/button-next.gif'></A></DIV>";
 #========================================================[ Do the update ]===
 } else {
   echo "<TR><TH>Updating...</TH></TR>\n<TR><TD>";
@@ -106,7 +108,7 @@ $pvp->preferences->admin();
     case "0.2.5"    : queryf("0-2-5_to_0-2-6.sql","Upgrade to v0.2.6");
     case "0.2.6"    : queryf("0-2-6_to_0-2-7." . $database["type"],"Upgrade to v0.2.7");
     case "0.2.7"    : queryf("0-2-7_to_0-2-8.sql","Upgrade to v0.2.8");
-                      queryf("install/categories.sql","Refresh of categories");
+                      queryf("../install/categories.sql","Refresh of categories");
     case "0.2.8"    :
     case "0.3.0"    :
     case "0.3.1"    :
@@ -158,9 +160,9 @@ $pvp->preferences->admin();
     case "0.7.0"    : queryf("0-7-0_to_0-7-1.sql","Upgrade to v0.7.1");
                       $db->query("SELECT DISTINCT lang AS lang FROM lang");
                       while ($db->next_record()) $lav[] = $db->f('lang');
-                      queryf("install/languages.sql","Refresh of language data");
+                      queryf("../install/languages.sql","Refresh of language data");
                       foreach ($lav as $lavv) $db->query("UPDATE languages SET available='Yes' where lang_id='$lavv'");
-                      queryf("lang_en.sql","Refresh of English language support");
+                      queryf("../lang_en.sql","Refresh of English language support");
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }
   echo "</UL><DIV ALIGN='center'>\n";
@@ -177,16 +179,17 @@ $pvp->preferences->admin();
        ."you will find on the page the link points to.</P>";
   } else {
    echo "<HR><P>If everything went right, you can now go to the\n"
-      ." <a href='../login.php'>Login</a> page - or, if you are already"
-      ." logged in, just <a href='../index.php'>continue</a> working with"
-      ." phpVideoPro. To find out what has changed since your last update,"
+      ." <a href='".$base_url."login.php'>Login</a> page - or, if you are already"
+      ." logged in, just <a href='".$base_url."index.php'>continue</a> working "
+      . "with phpVideoPro. To find out what has changed since your last update,"
       ." you can see the \"History\" link in the help menu. In case you want"
       ." to check your settings again, just follow"
-      ." <a href='../admin/configure.php'>this link</a>.</p></DIV>\n";
+      ." <a href='".$base_url."admin/configure.php'>this link</a>.</p></DIV>\n";
   } // end db2utf8
 }
 
 #=========================================================[ Closing page ]===
+echo "</TD></TR></TABLE>\n";
+if (isset($button)) echo $button;
 ?>
-</TD></TR></TABLE>
 </BODY></HTML>

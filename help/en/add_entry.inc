@@ -50,7 +50,7 @@
   <H3>Staff</H3>
   <P Align=Justify>Be careful to fill in the information into the right
    fields here: the first is always for the family name, the second for the
-   "christian" name. Names of staff members are not stored together with the
+   first name. Names of staff members are not stored together with the
    movie data, but in a separate table. With the movie data, there's only a
    reference stored - so if you later go to list some entries for a specific
    person (with a function not available <b>yet</b>), you may run into

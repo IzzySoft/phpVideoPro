@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.7.2 (2004)
+[text]
+<ul>
+ <li>added new install wizzard. Now it can create the database and, if
+     necessary, also the user itself - and should after all be a bit more
+     comfortable
+</ul>
+
+[title]
 0.7.1 (December 12, 2004)
 [text]
 <ul>

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -34,7 +34,6 @@ if ( isset($update) ) {
   $pvp->preferences->set("lang",$default_lang);
   $pvp->preferences->set("template",$template_set);
   $pvp->preferences->set("imdb_url",$imdb_url);
-  $pvp->preferences->set("display_limit",$cdisplay_limit);
   $pvp->preferences->set("page_length",$cpage_length);
   $pvp->preferences->set("date_format",$cdate_format);
   $pvp->preferences->set("default_movie_toneid",$movie_tone);
@@ -86,9 +85,7 @@ if ( isset($update) ) {
     }
     closedir($handle);
   }
-  ?><HTML><HEAD>
-      <meta http-equiv="refresh" content="0; URL=<?=$pvp->link->slink($url)?>">
-    </HEAD></HTML><?
+  header("Location: " .$pvp->link->slink($url));
   exit;
 }
 

@@ -61,8 +61,17 @@ INSERT INTO lang VALUES('incomplete_date','en','If you do not know the exact dat
 INSERT INTO lang VALUES('dupe_id_entered','en','There is already an entry in the database for the entered media ID. Please hit the "Back" button of your browser and correct your input. Hint: There is a Select-Box next to the input box you specified the media number in. This select box tells you the highest existing movie id. Normally it is a good choice for a new media to increase the first (four-digit) number by one, or for a new movie on the same media, increase the second (two-digit) number by one.');
 INSERT INTO lang VALUES('create_success','en','Entry created successfully');
 INSERT INTO lang VALUES('update_failed','en','Failed to update entry');
-
-
+INSERT INTO lang VALUES('about','en','About');
+INSERT INTO lang VALUES('history','en','History');
+INSERT INTO lang VALUES('deleting_entry','en','Deleting entry %1');
+INSERT INTO lang VALUES('free_space_title','en','Free space on media');
+INSERT INTO lang VALUES('filter','en','Filter');
+INSERT INTO lang VALUES('set_filter','en','Set Filter');
+INSERT INTO lang VALUES('unset_filter','en','UnSet Filter');
+INSERT INTO lang VALUES('taperest_absolute','en','TapeRest (absolute)');
+INSERT INTO lang VALUES('taperest_filtered','en','TapeRest (filtered)');
+INSERT INTO lang VALUES('help','en','Help');
+INSERT INTO lang VALUES('general','en','General');
 
 # when finished, activate language
 UPDATE languages SET available='Yes' WHERE lang_id='en';

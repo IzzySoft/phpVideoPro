@@ -14,15 +14,15 @@
   if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug = 1;
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
-    case "about"     : $pagename .= " [ About ]"; break;
-    case "delete"    : $pagename .= " [ Deleting entry $nr ]"; break;
-    case "edit"      : $pagename .= " [ Editing entry $nr ]"; break;
-    case "filter"    : $pagename .= " [ Filter Setup ]"; break;
-    case "view"      : $pagename .= " [ Viewing entry $nr ]"; break;
-    case "history"   : $pagename .= " [ History ]"; break;
-    case "medialist" : $pagename .= " [ MediaList ]"; break;
-    case "new_entry" : $pagename .= " [ Add entry ]"; break;
-    case "taperest"  : $pagename .= " [ Free space on media ]"; break;
+    case "about"     : $pagename .= " [ " . lang("about") . " ]"; break;
+    case "delete"    : $pagename .= " [ " . lang("deleting_entry",$nr) . " ]"; break;
+    case "edit"      : $pagename .= " [ " . lang("edit_entry",$nr) . " ]"; break;
+    case "filter"    : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
+    case "view"      : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
+    case "history"   : $pagename .= " [ " . lang("history") . " ]"; break;
+    case "medialist" : $pagename .= " [ " . lang("medialist") . " ]"; break;
+    case "new_entry" : $pagename .= " [ " . lang("add_entry") . " ]"; break;
+    case "taperest"  : $pagename .= " [ " . lang("free_space_title") . " ]"; break;
     default          : break;
   }
 ?>
@@ -52,36 +52,36 @@
 //  dhtmlMenu.addItem(new NavBarMenuItem("Home", "http://www.qumran.org/local/"));
 //  myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(60, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("Edit", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("Add new Entry", "<? echo $base_url ?>new.php"));
+  dhtmlMenu = new NavBarMenu(80, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("edit") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("add_entry") ?>", "<? echo $base_url ?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("Change Tape Nr", "<? echo $base_url ?>change_nr.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(60, 140);
-  dhtmlMenu.addItem(new NavBarMenuItem("Filter", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("Set Filter", "<? echo $base_url ?>setfilter.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("UnSet Filter", "<? echo $base_url ?>setfilter.php?reset=1"));
+  dhtmlMenu = new NavBarMenu(80, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("filter") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("set_filter") ?>", "<? echo $base_url ?>setfilter.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("unset_filter") ?>", "<? echo $base_url ?>setfilter.php?reset=1"));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(140, 120);
-  dhtmlMenu.addItem(new NavBarMenuItem("View", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("Medialist", "<? echo $base_url ?>medialist.php"));
+  dhtmlMenu = new NavBarMenu(140, 140);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("view") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>medialist.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("Taperest (absolute)", "<? echo $base_url ?>taperest.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("Taperest (filtered)", "<? echo $base_url ?>taperest.php?usefilter=1"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_absolute") ?>", "<? echo $base_url ?>taperest.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_filtered") ?>", "<? echo $base_url ?>taperest.php?usefilter=1"));
   dhtmlMenu.addItem(new NavBarMenuItem("Duplicate", "<? echo $base_url ?>dupes.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(62, 120);
+  dhtmlMenu = new NavBarMenu(62, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(62, 120);
-  dhtmlMenu.addItem(new NavBarMenuItem("Help", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("General", "<? echo $base_url ?>help.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("About", "<? echo $base_url ?>about.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("History", "<? echo $base_url ?>history.php"));
+  dhtmlMenu = new NavBarMenu(62, 80);
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("general") ?>", "<? echo $base_url ?>help.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "<? echo $base_url ?>about.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "<? echo $base_url ?>history.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   //set menu colors

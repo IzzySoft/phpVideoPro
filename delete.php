@@ -19,7 +19,7 @@
     }
   }
 
-  echo "<H2 ALIGN=\"center\">Deleting entry $nr</H2>\n";
+  echo "<H2 ALIGN=\"center\">" . lang("deleting_entry",$nr) . "</H2>\n";
 
   if (!$approved) { ?>
 <FORM NAME="deleform" METHOD="post" ACTION="<? echo basename(__FILE__) ?>">

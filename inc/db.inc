@@ -188,8 +188,8 @@
    }
 
    ############################################################################
-   # get a category's name
-   function get_category($id) {
+   # get a category's data
+   function get_category($id,$order="") {
      if ($id) {
        $this->query("SELECT name FROM cat WHERE id=$id");
        if ( $this->next_record() ) {
@@ -198,10 +198,16 @@
          return "";
        }
      } else {
-       $this->query("SELECT id,name FROM cat");
+       if ($order=="") {
+         $this->query("SELECT id,name FROM cat");
+       } else {
+         $this->query("SELECT id,name FROM cat ORDER BY $order");
+       }
+       $i=0;
        while ( $this->next_record() ) {
-         $cat[][id]   = $this->f('id');
-         $cat[][name] = $this->f('name');
+         $cat[$i][id]   = $this->f('id');
+         $cat[$i][name] = $this->f('name');
+	 ++$i;
        }
        return $cat;
      }
@@ -342,15 +348,23 @@
    }
 
    ############################################################################
-   # get movie list it as array of movies (see get_movie)
-   function get_movielist($order="") {
+   # get movie list as array of movies (see get_movie)
+   function get_movielist($order="",$restrict="") {
      $filter = get_filters();
      switch ($order) {
        case "title" : $orderby = "title"; break;
        default      : $orderby = "mtype_id DESC,cass_id,part"; break;
      }
+     if ($restrict) $where = " WHERE $restrict";
      $query = "SELECT id FROM video v";
-     if (strlen($filter)) $query .= " WHERE $filter";
+     if (strlen($filter)) {
+       if (strlen($where)) {
+         $where .= " AND $filter";
+       } else {
+         $where = " WHERE $filter";
+       }
+     }
+     $query .= $where;
      $query .= " ORDER BY $orderby";
      $this->dbquery($query);
      while ( $this->next_record() ) {
@@ -361,6 +375,12 @@
        $movielist[] = $this->get_movie($list[$i]);
      }
      return $movielist;
+   }
+
+   ############################################################################
+   # get movie list for cat1 as array of movies (see get_movie)
+   function get_moviecatlist($cat) {
+     return $this->get_movielist("$cat1_id,title","cat1_id=$cat");
    }
 
    ############################################################################

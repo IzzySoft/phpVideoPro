@@ -7,6 +7,13 @@
 <ul>
  <li>made session_purgetime (inactivity timeout for logged-in sessions) user
      configurable
+ <li>cookies are no longer a "must" in order for sessions (user authentification)
+     to work. Even though, I encourage you to use the cookie option - not only
+     for the session id to not appear within the url lines, but the user's
+     preferences still need them (or some of your db saved "default" preferences
+     get overwritten by them from time to time ;).<br>
+     However: if you decide to use cookies in your config, but the user refuses
+     to accept them: (S)he won't be able to log in, and it's not your fault.
 </ul>
 
 [title]

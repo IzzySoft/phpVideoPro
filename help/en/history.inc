@@ -7,6 +7,11 @@
 <ul>
  <li>when deleting the last movie from a r/w medium, the empty medium is now
      removed as well (cosmetical fix).
+ <li>phpVideoPro should now be able to support multiple read/write media. Be
+     careful using this function - and please report any strange behaviour
+     immediately, since this new feature is not yet thouroughly tested. In
+     order to enable it, edit the inc/config.inc file; you'll find more
+     explanations at the end of this file within the "technical" block.
 </ul>
 
 [title]

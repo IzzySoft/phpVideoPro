@@ -280,8 +280,10 @@ function getPageOffsetTop(el) {
  echo $pvp->link->linkurl($base_url."admin/cats.php",lang("admin_cats"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/translations.php",lang("admin_translations"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/printers.php",lang("admin_printers"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."admin/users.php",lang("admin_users"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/filters.php",lang("admin_filter"),"class='menuItem'") ."\n";
+ echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."admin/orphans.php",lang("admin_orphans"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/backup_db.php",lang("backup_db"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."admin/configure.php",lang("configuration"),"class='menuItem'") ."\n";

@@ -14,6 +14,7 @@
 
  $page_id = "admin_useredit";
  include("../inc/includes.inc");
+ if ($pvp->auth->user->login == "guest") kickoff();
  if (!$pvp->auth->admin) $id = $pvp->auth->user_id;
 
  $t = new Template($pvp->tpl_dir);

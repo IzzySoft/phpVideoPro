@@ -14,7 +14,7 @@ help page for "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>"), but...
 Walking through your collection
 
 [text]
-To walk through your collection, you can of course use the "*view#"-&gt;"*start_page"
+To walk through your collection, you can of course use the "*view#" -&gt; "*start_page"
 form. Since I felt this is not always the most convinient way, I added
 previous/next buttons next to the movie's title. If they are clickable, there's
 another entry to go in that direction. If not, there simply isn't one.

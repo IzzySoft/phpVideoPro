@@ -74,6 +74,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("Help", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("General", "<? echo $base_url ?>help.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("About", "<? echo $base_url ?>about.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("History", "<? echo $base_url ?>history.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   //set menu colors
@@ -94,7 +95,8 @@
 
 //    myNavBar1.moveTo(10,36);
     myNavBar1.moveTo(10,0);
-    myNavBar1.resize(500 /*fullWidth*/);
+//    myNavBar1.resize(500 /*fullWidth*/);
+    myNavBar1.resize(fullWidth);
     myNavBar1.setSizes(0,1,1);
     myNavBar1.create();
     myNavBar1.setzIndex(2);
@@ -103,3 +105,9 @@
   </script>
 </HEAD>
 <BODY leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init();" {body_tags}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <td><img src="<? echo $base_url ?>images/menu_bar_left.gif" width="9" height="12"></td>
+ </tr>
+</table>
+

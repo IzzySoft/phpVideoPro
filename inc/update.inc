@@ -41,9 +41,11 @@
 
  include("inc/sql_set_persons.inc");
 
- if ($cat2_id < 0) $cat2_id="0";
- if ($cat3_id < 0) $cat3_id="0";
- if ($pict_id < 0) $pict_id="0";
+ $idfields = array("pict_id","director_list","music_list","vis_actor1","vis_actor2",
+             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id");
+ foreach ($idfields as $field) {
+   if (!$$field) $$field = 0;
+ }
  $update  = "UPDATE video SET title='$title',country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"

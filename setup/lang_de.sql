@@ -133,4 +133,4 @@ INSERT INTO lang VALUES('invalid_fsk','de','Der eingegebene Wert für %1 ist ungü
 INSERT INTO lang VALUES('counter_start_stop','de','Zähler Start/Stop');
 INSERT INTO lang VALUES('other_pages','de','Andere Seiten');
 INSERT INTO lang VALUES('commercials','de','Werbung');
-INSERT INTO lang VALUES('cut_off','de','geschnitten');
+INSERT INTO lang VALUES('cut_off','de','entfernt');

@@ -320,3 +320,6 @@ INSERT INTO lang VALUES('trans_sample','en','Link to Sample');
 INSERT INTO lang VALUES('save_lang_file','en','Save target translations to file');
 INSERT INTO lang VALUES('admin_translations','en','Edit Translations');
 INSERT INTO lang VALUES('sel_target_lang','en','Select target language (to translate to):');
+INSERT INTO lang VALUES('medium_overview','en','Overview for %1');
+INSERT INTO lang VALUES('is_rw','en','rewritable');
+INSERT INTO lang VALUES('techdata','en','Technical Data');

@@ -11,6 +11,9 @@
  <li>Matzah was cleaned up with the leaven: almost no tags where allowed in the
      comment field of a movie. Fixed: Now Bold, Underline, Italics and Center
      work again.
+ <li>Added "Overview per Medium": on the initial page, when selecting a media
+     type and entering a media number <b><i>without a part</i></b>, there's now
+     a page displaying all movies on that medium together with some data
 </ul>
 
 [title]

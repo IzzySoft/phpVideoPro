@@ -20,7 +20,7 @@ several situations in which this makes sense:
      friend as a present. Wow. But now, your database still says it's a tape,
      and you don't like it to lie - so you go to change the media nr.
  <LI>You are re-organizing your collection, since you threw away all your
-     movies Bruce Willis acted in (stupid guy! Had you told me before, I'ld
+     movies Bruce Willis acted in (Are you nuts?!? Had you told me before, I'ld
      given you my postal address to send ME those DVDs - so better don't tell
      me!!!)...
 </UL>
@@ -30,9 +30,9 @@ Explanation of the fields
 
 [text]
 <B>*highest_db_entries#</B>: This is just a helper box you already may know
-from the "*add_entry#" Form. It tells you the highest number you've ever given
-to your DVDs, VideoCDs or tapes. It has absolutely no effect on the action
-taken afterwards.
+from the <i>*add_entry#</i> Form. It tells you the highest number you've ever
+given to your DVDs, VideoCDs or tapes. It has absolutely no effect on the
+action taken afterwards.
 
 [text]
 <B>*orig_medianr#</B>: Just to verify. If you've called this page by clicking
@@ -42,7 +42,7 @@ plan to copy/move an entry different from this, you can do so here.
 
 [text]
 <B>*new_medianr#</B>: This is the target. It is preset to the very same value
-as "*orig_medianr#"; so if you e.g. just deleted movie #2 on a VideoCD and thus
+as <i>*orig_medianr#</i>; so if you e.g. just deleted movie #2 on a VideoCD and thus
 want to renumber #3 to #2, this should make it easy. Make sure to enter correct
 values into these fields. However: phpVideoPro won't allow you to overwrite
 existing data with this function - so if you accidentally enter an already

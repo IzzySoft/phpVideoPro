@@ -1,5 +1,4 @@
-<? /* administration of categories */
- ?>
+<? /* administration of categories */ ?>
 <? /* $Id$ */ ?>
 
 [title]
@@ -9,22 +8,51 @@
 phpVideoPro bietet zwei verschiedene Backup-Typen: ein Backup der kompletten
 Datenbank ("*backup_db_complete#") sowie ein Backup ausschließlich von für die
 Filme relevanten Daten, die vom Benutzer erfasst wurden (also Filmtitel,
-Schauspieler, Regisseure, Kommentare etc.pp.). Die Sicherung erfolgt in SQL
-Datendateien -- also reine Textdateien, welche SQL Kommandos enthalten.
-Datenbank-Strukturen werden <b><i>nicht</i></b> mit gesichert -- diese sind
-ohnehin in den Installations-Skripten verankert.
+Schauspieler, Regisseure, Kommentare etc.pp.). Datenbank-Strukturen werden bei
+<b><i>keinem</i></b> der beiden Typen mit gesichert -- diese sind ohnehin in
+den Installations-Skripten verankert.
+
 [text]
-In einer Variante des zweiten Backup-Typs ("*backup_db_moviedel#") werden in der
-SQL-Datei zusätzlich Löschbefehle aufgezeichnet, die vor dem Einfügen der neuen
-Daten die Zieltabellen leeren.
+Während das Komplett-Backup als reine SQL-Datei erstellt wird, erfolgt das
+"Film-Backup" in einem eigenen internen Format von phpVideoPro. Auf diese
+Weise soll u.a. erreicht werden, dass die Daten auch versions- und
+datenbankübergreifend verwendbar sind. Es läßt sich also somit auch eine
+Migration der Daten zwischen MySQL und PostgreSQL realisieren.
 
 [title]
-Backup und Restore der Datenbank
+Backup
 
 [text]
-Wie bereits zu lesen war, wird mittels selbigem ein SQL Script generiert,
-welches dann z.B. für eine Neuinstallation verwendet werden kann. Hier kommt
-nun die Erklärung für das Einspielen dieses Backups.
+Hierfür ist einfach der gewünschte Typ (s.o.) auszuwählen. Optional ist noch
+eine Kompression der Backup-Datei möglich, sofern die verwendete Installation
+von PHP mit Unterstützung für <code>gzip</code> kompiliert wurde (einfach
+ausprobieren - schlimmsten Falles gibt es halt eine Fehlermeldung). Nach einem
+"Klick" auf den mit "*button_backup#" beschrifteten Button dauert es je nach
+Größe der Datenbank jetzt  ein Weilchen, bis der Browser zum Speichern der Datei
+auffordert.
+
+[title]
+Restore (Filmdaten)
+
+[text]
+Hierfür ist die Sicherungsdatei in dem in der Datei <code>inc/config.inc</code>
+angegebenen Verzeichnis abzulegen. Die Dateierweiterung ".pvp" muss beibehalten
+werden. Darüber hinaus muss sicher gestellt sein, dass der Webserver für
+selbige über die nötige Leseberechtigung verfügt. Wird nun die Backup-Seite
+geladen, sollte die Datei in der Auswahlliste erscheinen. Dort ist sie nun
+zu selektieren, und anschließend der Button "*button_restore#" zu betätigen.
+Nach einer von der Größe des verwendeten Backups abhängigen Zeit sollte die
+Seite automatisch neu geladen werden, und der (Miß-) Erfolg läßt sich an der
+Zeile direkt unterhalb der Überschrift ablesen.
+
+[text]
+phpVideoPro erkennt beim Laden der Datei, ob diese komprimiert ist, und entpackt
+sie gegebenenfalls. Die Checkbox "*clean_restore#" muss derzeit auf jeden Fall
+angewählt sein - andernfalls kommt es ziemlich schnell zu dem Fehler, dass eine
+duplikate MediaNr auftritt.
+
+[title]
+Restore (komplett)
 
 [text]
 Dafür gibt es mindestens zwei Möglichkeiten. Auf jeden Fall ist für das Restore
@@ -40,12 +68,6 @@ In letzterem Falle ist das Script im setup/ Verzeichnis unter dem Namen
 Neuinstallation von phpVideoPro - nur anstelle von "create" ist halt "restore"
 zu wählen.
 
-[text]
-Für das Wiederherstellen der Daten aus einem "Teil-Backup" (mit nur
-Film-relevanten Daten) muss derzeit noch auf die eigenen FrontEnds der genutzten
-Datenbank selbst (also MySQL/PostgreSQL) verwiesen werden. Eine zukünftige
-Version von phpVideoPro wird evtl. dafür eine Schnittstelle anbieten.
-
 [title]
 Warum gibt es denn keinen Menüpunkt für die Wiederherstellung?
 
@@ -53,9 +75,6 @@ Warum gibt es denn keinen Menüpunkt für die Wiederherstellung?
 Diese Frage läßt sich einfach beantworten: er macht keinen Sinn. Ist die
 Datenbank intakt, wird er nicht benötigt. Und ist sie nicht mehr intakt,
 startet phpVideoPro nicht mehr richtig - und das Menü ist gar nicht da, kann
-also auch nicht benutzt werden...<BR>
-Außerdem könnte jeder, der Zugriff auf diesen Menüpunkt hat, die Datenbank
-überschreiben. Keine gute Idee - eher ein Sicherheitsrisiko.
+also auch nicht benutzt werden...
 
 [eof]
-

@@ -96,6 +96,16 @@
      $picts[$i][name] = $db->f('name');
      $i++;
     }
+    dbquery("SELECT id,name FROM commercials");
+    $i=0;
+    while ( $db->next_record() ){
+      $comm[$db->f('id')] = $db->f('name');
+      $comm_id[$i]        = $db->f('id');
+      $i++;
+    }
+    for ($i=0;$i<count($comm);$i++) {
+      $comm[$i] = lang($comm[$i]);
+    }
   } else {
     $input = $dinput = "INPUT TYPE=\"button\"";
     // $input .= " readonly"; // HTML 4.0 - not supported by Netscape 4.x
@@ -125,7 +135,7 @@
   $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
            . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
-           . "color_id,tone_id,pict_id,counter1,counter2"
+           . "color_id,tone_id,pict_id,counter1,counter2,commercials_id"
            . " FROM video"
            . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
   dbquery($query);
@@ -145,6 +155,7 @@
   $actor2_id = $db->f('actor2_id'); $actor3_id = $db->f('actor3_id'); $actor4_id = $db->f('actor4_id');
   $actor5_id = $db->f('actor5_id'); $color_id = $db->f('color_id'); $tone_id = $db->f('tone_id');
   $director_id = $db->f('director_id'); $director_list = $db->f('director_list'); $pict_id = $db->f('pict_id');
+  $commercials_id = $db->f('commercials_id');
   // sub-queries
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor" . $i . "_id";
@@ -162,6 +173,10 @@
   dbquery("SELECT name,firstname FROM music WHERE id=$music_id");
   $db->next_record();
   $composer_name = $db->f('name'); $composer_fname = $db->f('firstname');
+  if (!$commercials_id) $commercials_id=0;
+  dbquery("SELECT name FROM commercials WHERE id=$commercials_id");
+  $db->next_record();
+  $commercials = lang($db->f('name'));
   dbquery("SELECT name FROM tone WHERE id=$tone_id");
   $db->next_record();
   $tone = $db->f('name');
@@ -324,19 +339,17 @@ EndHiddenFields;
   }
   $t->set_var("category",$field);
   # Commercials
-  $comm[0] = lang("unknown"); $comm[1] = lang("Yes"); $comm[2] = lang("No"); $comm[3] = "Cutt Off";
   $t->set_var("commercial_name",lang("commercials"));
   if ($edit) {
     $field = "<SELECT NAME=\"commercials\" class=\"techinput\">";
-    for ($k=0;$k<4;$k++) {
-      $field .= "<OPTION VALUE=\"$k\"";
-      if ($commercials==$k) $field .= " SELECTED";
+    for ($k=0;$k<count($comm);$k++) {
+      $field .= "<OPTION VALUE=\"$comm_id[$k]\"";
+      if ($commercials_id==$comm_id[$k]) $field .= " SELECTED";
       $field .= ">" . $comm[$k] . " </OPTION>";
     }
     $field .= "</SELECT>";
   } else {
-    $field  = "<$input NAME=\"commercials\" class=\"techinput\" VALUE=\"";
-    $field .= $comm[0] . "\">";
+    $field  = "<$input NAME=\"commercials\" class=\"techinput\" VALUE=\"$commercials\">";
   }
   $t->set_var("commercial",$field);
   # Remaining free time
@@ -352,7 +365,6 @@ EndHiddenFields;
   $tdate .= "<$dinput NAME=\"recday\" VALUE=\"" . $recdate_arr[mday] . "\" " . $form["addon_day"] . ">.";
   $tdate .= "<$dinput NAME=\"recmon\" VALUE=\"" . $recdate_arr[mon] . "\" " . $form["addon_month"] . ">.";
   $tdate .= "<$dinput NAME=\"recyear\" VALUE=\"" . $recdate_arr[year] . "\" " . $form["addon_year"] . ">";
-#  echo "<br><br><b>" . htmlentities($tdate) . "<br>\n";
   $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
   if ($edit) {

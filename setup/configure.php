@@ -78,6 +78,9 @@ if ( isset($update) ) {
       $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
       queryf($sql_file,"Refresh of language phrases",1);
     }
+    if ($delete_lang && $delete_lang != "-") {
+      $db->delete_translations($delete_lang);
+    }
   }
   $colorcode = rawurlencode( serialize($colors) );
   if ($admin) $pvp->preferences->set("colors",$colorcode);
@@ -191,6 +194,19 @@ if ($admin) {
   $t->set_var("item_name",lang("refresh_lang"));
   $t->set_var("item_comment",lang("refresh_lang_comment"));
   $select  = "<SELECT NAME=\"refresh_lang\">";
+  $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
+  for ($i=0;$i<count($lang_installed);$i++) {
+    $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";
+    $select .= ">" . $langu[$lang_installed[$i]] . "</OPTION>";
+  }
+  $select .= "</SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ remove an installed language? ]--
+  $t->set_var("item_name",lang("delete_lang"));
+  $t->set_var("item_comment",lang("delete_lang_comment"));
+  $select  = "<SELECT NAME=\"delete_lang\">";
   $select .= "<OPTION VALUE=\"-\">-- " . lang("none") . " --</OPTION>";
   for ($i=0;$i<count($lang_installed);$i++) {
     $select .= "<OPTION VALUE=\"" . $lang_installed[$i] . "\"";

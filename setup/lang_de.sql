@@ -214,3 +214,7 @@ INSERT INTO lang VALUES('countries','de','Länder');
 INSERT INTO lang VALUES('stat_categories','de','Kategorien (benutzt/alle)');
 INSERT INTO lang VALUES('stats','de','Statistiken');
 INSERT INTO lang VALUES('dl_pvp_latest','de','D/L neueste Version');
+INSERT INTO lang VALUES('info_update','de','Update Information');
+INSERT INTO lang VALUES('info_noupdate','de','<DIV ALIGN="center">Die installierte Version von phpVideoPro (%1) ist auf dem aktuellen Stand - es steht keine neue Version zum Download zur Verfügung.</DIV>');
+INSERT INTO lang VALUES('info_common','de','Allgemeine Information');
+INSERT INTO lang VALUES('info_common_info','de','<DIV ALIGN="center">Dies ist Version %1 von phpVideoPro.</DIV>');

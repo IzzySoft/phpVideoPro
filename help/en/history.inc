@@ -17,6 +17,8 @@
      by e.g. offering short-keys to some menu items like context help, initial
      page and logoff
  <li>menu bar now contains login info (either logged-in user or not-logged-in info)
+ <li>movie backup files created via the admin-&gt;backup menu will now have the
+     backup date in their names for easier handling
 </ul>
 
 [title]

@@ -67,9 +67,10 @@
    # clause!!!
    function lim_query($query,$start=0) {
      if ( $this->dbquery($query) ) {
-       $totals = $db->num_rows();
+       $totals = $this->num_rows();
        $this->limit($start);
-       $this->dbquery($query . $this->limit);
+       $query .= $this->limit;
+       $this->dbquery($query);
        return $totals;
      }
      return 0;

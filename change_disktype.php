@@ -58,7 +58,7 @@
          . "<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);
- $change = "<INPUT TYPE='submit' NAME='change' VALUE='".lang("update")."'>";
+ $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("update")."'>";
  $t->set_var("change",$change);
 
  $t->pparse("out","template");

@@ -341,7 +341,10 @@
     * @return integer user-id
     */
    function verify_session($id,$ip) {
-     $this->query("SELECT user_id FROM pvp_sessions WHERE id='$id' AND ip='$ip'");
+     GLOBAL $pvp;
+     $query = "SELECT user_id FROM pvp_sessions "
+            . "WHERE id='$id' AND ip='$ip' AND dla>".time()-$pvp->config->session_purgetime;
+     $this->query($query);
      if ( $this->next_record() ) {
        $user_id = $this->f('user_id');
        $this->dbquery("UPDATE pvp_sessions SET dla=".time()." WHERE id='$id' AND ip='$ip'");

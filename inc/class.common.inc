@@ -247,9 +247,13 @@ class common {
    *  other non-allowed tags are removed, but the enclosed text is kept intact.
    */
   function safehtml($str,$allowed="",$add=FALSE,$keep="") {
-    if ($allowed==="") $allowed = "b|i|u|center";
+    $trusted = "b|i|u|center";
+    if ($allowed==="") { $allowed = $trusted; } else {
+      if ($add) $allowed = $trusted . "|" .$allowed;
+    }
     if ($keep) {
-      if ($allowed) { $ignored = $allowed . "|" . $keep; } else { $ignored = $keep; }
+      if ($allowed) { $ignored = $allowed . "|" . $keep; }
+        else { $ignored = $keep; }
     } else { $ignored = $allowed; }
     $str = preg_replace("'<script[^>]*?>.*?</script>'si", "", $str);
     $str = preg_replace("'<iframe[^>]*?>.*?</iframe>'si", "", $str);

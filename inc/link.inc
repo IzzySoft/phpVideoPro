@@ -19,6 +19,9 @@
     $this->imdb = "http://us.imdb.com/";
   }
 
+  ############################################################################
+  # IMDB link creation
+  // create url string to a persons entry in imdb
   function linkImdbPerson($fname,$name,$occupation) {
     if (strlen(trim($name))) {
       $imdb = $this->imdb . "Nsearch?name=";
@@ -26,8 +29,17 @@
         $imdb .= $fname . "+";
       }
       $imdb .= $name . "&type=substring&occupation=$occupation";
-      return " onClick=window.open(\"$imdb\",\"imdb\")";
+      return $imdb;
     } else { return ""; }
   } // end function linkImdbPerson
+
+  // create form addon (to button) for link to a persons entry in imdb
+  function formLinkImdbPerson($fname,$name,$occupation) {
+    $imdb = $this->linkImdbPerson($fname,$name,$occupation);
+    if (strlen($imdb)) {
+      return " onClick=window.open(\"$imdb\",\"imdb\")";
+    } else { return ""; }
+  } // end function formLinkImdbPerson
+
  } // end class link
 ?>

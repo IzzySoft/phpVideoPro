@@ -25,7 +25,7 @@
     <!-- END coloritemblock -->
     <TR><TD COLSPAN="3"><DIV ALIGN="center">{color_add}</DIV></TD></TR>
    </TABLE>
- </TD></TR><TR><TD COLSPAN="2">
+ </TD></TR><TR><TD>
    <TABLE ALIGN="center" BORDER="1">
     <TR><TH COLSPAN="3">{mtype_title}</TH></TR>
     <TR><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
@@ -35,6 +35,17 @@
     <TR><TD>{item_name}</TD><TD>{item_sname}</TD><TD>{edit} {trash}</TD></TR>
     <!-- END mtypeitemblock -->
     <TR><TD COLSPAN="3"><DIV ALIGN="center">{mtype_add}</DIV></TD></TR>
+   </TABLE>
+ </TD><TD>
+   <TABLE ALIGN="center" BORDER="1">
+    <TR><TH COLSPAN="3">{tone_title}</TH></TR>
+    <TR><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
+        <TD><DIV ALIGN="center"><B>{sname}</B></DIV></TD>
+	<TD></TD></TR>
+    <!-- BEGIN toneitemblock -->
+    <TR><TD>{item_name}</TD><TD>{item_sname}</TD><TD>{edit} {trash}</TD></TR>
+    <!-- END toneitemblock -->
+    <TR><TD COLSPAN="3"><DIV ALIGN="center">{tone_add}</DIV></TD></TR>
    </TABLE>
  </TD></TR>
 </TABLE>

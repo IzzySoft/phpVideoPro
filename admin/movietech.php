@@ -22,6 +22,7 @@
      case "pict"  : $success = $db->set_pict($name,$sname,$id); break;
      case "color" : $success = $db->set_color($name,$sname,$id); break;
      case "mtype" : $success = $db->set_mtypes($name,$sname,$id); break;
+     case "tone"  : $success = $db->set_tone($name,$sname,$id); break;
      default      :
    }
    if ($success) {
@@ -42,6 +43,7 @@
  $t->set_block("mainblock","screenitemblock","screen");
  $t->set_block("mainblock","coloritemblock","color");
  $t->set_block("mainblock","mtypeitemblock","mtype");
+ $t->set_block("mainblock","toneitemblock","tone");
  $t->set_block("template","editblock","edit");
 
  #----------------------------------------------------------[ edit screen ]---
@@ -55,6 +57,9 @@
                     break;
      case "mtype" : $t->set_var("edit_title",lang("mediatype"));
                     $item = $db->get_mtypes($edit);
+                    break;
+     case "tone"  : $t->set_var("edit_title",lang("tone"));
+                    $item = $db->get_tone($edit);
                     break;
      default      :
    }
@@ -75,6 +80,8 @@
                      break;
      case "mtype"  : $t->set_var("edit_title",lang("mediatype"));
                      break;
+     case "tone"   : $t->set_var("edit_title",lang("tone"));
+                     break;
      default       :
    }
    $t->set_var("name_name",lang("name"));
@@ -89,6 +96,7 @@
        case "pict"  : $success = $db->set_pict("","",$delete); break;
        case "color" : $success = $db->set_color("","",$delete); break;
        case "mtype" : $success = $db->set_mtypes("","",$delete); break;
+       case "tone"  : $success = $db->set_tone("","",$delete); break;
        default      :
      }
      if ($success) {
@@ -145,6 +153,22 @@
    }
    $t->set_var("mtype_title",lang("mediatype"));
    $t->set_var("mtype_add",$pvp->link->linkurl("$PHP_SELF?add=mtype",lang("add_entry")));
+
+   #---------------------------------------------------------[ tone block ]---
+   $tones = $db->get_tone();
+   $tonecount = count($tones);
+   for ($i=0;$i<$tonecount;++$i) {
+     $t->set_var("item_name",$tones[$i][name]);
+     $t->set_var("item_sname",$tones[$i][sname]);
+     $edit  = $pvp->link->linkurl("$PHP_SELF?type=tone&edit=" .$tones[$i][id],"<IMG SRC='$edit_img' BORDER='0'>");
+     $url   = $pvp->link->slink("$PHP_SELF?type=tone&delete=".$tones[$i][id]);
+     $trash = "<IMG SRC='$trash_img' BORDER='0' onClick=\"delconfirm('$url')\">";
+     $t->set_var("edit",$edit);
+     $t->set_var("trash",$trash);
+     $t->parse("tone","toneitemblock",TRUE);
+   }
+   $t->set_var("tone_title",lang("tone"));
+   $t->set_var("tone_add",$pvp->link->linkurl("$PHP_SELF?add=tone",lang("add_entry")));
 
    $t->set_var("name",lang("name"));
    $t->set_var("sname",lang("sname"));

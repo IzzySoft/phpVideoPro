@@ -41,7 +41,7 @@
    for ($i=0;$i<$rccount;++$i) {
     $mrc[$rc[$i]] = 1;
    }
-   $movie[rc] = $mrc;
+   $movie["rc"] = $mrc;
   }
  }
 

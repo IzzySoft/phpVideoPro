@@ -219,7 +219,8 @@
    function get_movielist($order="") {
      $filter = get_filters();
      switch ($order) {
-       default  : $orderby = "mtype_id DESC,cass_id,part";
+       case "title" : $orderby = "title"; break;
+       default      : $orderby = "mtype_id DESC,cass_id,part"; break;
      }
      $query = "SELECT id FROM video v";
      if (strlen($filter)) $query .= " WHERE $filter";

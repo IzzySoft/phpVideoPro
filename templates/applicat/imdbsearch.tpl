@@ -30,18 +30,22 @@
 
 <!-- BEGIN movieblock -->
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
- <TR><TH>{mtitle}</TH></TR>
- <TR><TD><B>Also known as:</B><BR>{maka}</TD></TR>
- <TR><TD>{mcountry} {myear}, {mruntime} min</TD></TR>
- <TR><TD>Genre: {mgenre}</TD></TR>
- <TR><TD>Directed by: {dir_name}</TD></TR>
- <TR><TD>Starring:<UL>
+ <TR><TH COLSPAN="2"><DIV ALIGN="center">{mtitle}</DIV></TH></TR>
+ <TR><TD><B>Also known as:</B></TD><TD>{maka}</TD></TR>
+ <TR><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>
+ <TR><TD><B>{nyear}:</B></TD><TD>{myear}</TD></TR>
+ <TR><TD><B>{nruntime}:</B></TD><TD>{mruntime} min</TD></TR>
+ <TR><TD><B>{ngenre}:</B></TD><TD>{mgenre}</TD></TR>
+ <TR><TD><B>{ndir_name}:</B></TD><TD>{dir_name}</TD></TR>
+ <TR><TD><B>{actors}:</B></TD>
+   <TD><SELECT NAME="actors" SIZE="7" MULTIPLE CLASS="multiselect">
  <!-- BEGIN actblock -->
-  <LI>{aname}</LI>
+    <OPTION VALUE="{aname}"{asel}>{aname}</OPTION>
  <!-- END actblock -->
- </UL></TD></TR>
- <TR><TD>{mfoto_pic}{mcomment}</TD></TR>
- <TR><TD>Foto: '{mfoto}'</TD></TR>
+  </SELECT>
+ </TD></TR>
+ <TR><TD COLSPAN="2"><P ALIGN="justify">{mfoto_pic}{mcomment}</P></TD></TR>
+ <TR><TD><B>Foto:</B></TD><TD>'{mfoto}'</TD></TR>
 </TABLE>
 <!-- END movieblock -->
 

@@ -1700,6 +1700,27 @@
  # PS-Label Specific Stuff
  ############################################################################
 
+ /** get printer specifics
+  * @class sql
+  * @method get_printer
+  * @param optional integer id
+  * @return mixed (array of object(s) with printer specifics)
+  */
+ function get_printer($id="") {
+   $query = "SELECT id,name,unit_id,top_offset,left_offset FROM printers";
+   if ($id) $query .= " WHERE id=$id";
+   $this->dbquery($query);
+   while ($this->next_record()) {
+     $printer->id   = $this->f('id');
+     $printer->name = $this->f('name');
+     $printer->unit_id = $this->f('unit_id');
+     $printer->top_offset = $this->f('top_offset');
+     $printer->left_offset = $this->f('left_offset');
+     $printerlist[] = $printer;
+   }
+   return $printerlist;
+ }
+
  /** get available units
   * @class sql
   * @method get_units

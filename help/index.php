@@ -33,6 +33,13 @@ function print_url($topic) {
   echo "$text<br>\n";
 }
 
+$title = "phpVideoPro v$version - " . lang("help") . ": ";
+if ($topic) { $title .= lang($topic); } else { $title .= lang("help_index"); }
+
+echo "<HTML><HEAD>\n";
+echo " <TITLE>$title</TITLE>\n";
+include($base_path . "templates/default/default.css");
+echo "</HEAD><BODY>\n";
 
 if ($topic) { // display specific help page
   $help = helppage($topic);

@@ -24,17 +24,8 @@
 ?>
 <HTML><HEAD>
 <Title><?echo $pagename ?></Title>
- <STYLE type="text/css">
-   a { text-decoration:none; }
-   <!--
-     A:link{ text-decoration:none }
-     A:visted{ text-decoration:none }
-     A:active{ text-decoration:none }
-     body { margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
-     .tablink { color: #000000; }
-     TH { background-color:<? echo $colors["th_background"] ?>; }
-   -->
- </STYLE>
+ <!--LINK REL=stylesheet type="text/css" HREF="<? echo $base_url ?>templates/default/default.css"-->
+<? include($base_path . "templates/default/default.css") ?>
  <script language="JavaScript" src="<? echo $nav_script ?>"></script>
  <script language="JavaScript">
 

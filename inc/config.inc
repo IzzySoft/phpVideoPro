@@ -4,6 +4,7 @@
 
 $base_url   = "/local/phpvideo/";
 // the root directory of phpVideoPro
+$base_path  = "/usr/src/cvs/website/local/phpvideo/";
 
 // database settings
 $database["host"]      = "linux";

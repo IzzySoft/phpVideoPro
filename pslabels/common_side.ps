@@ -24,16 +24,17 @@ gsave
   gsave
     %% put tape number 90 deg. rotated and centered at number_position
     %%
-    0.6 cm 1 cm moveto	% variablen einbauen !
-    90 rotate
+    0.25 cm 1 cm moveto	% variablen einbauen !
+    270 rotate
     ({_cass_id_}) c-show
   grestore
 
   %%
   %% height = 0.9 * label_height / nr_of_text_lines
   %%
+  /fs_max {_max_fontsize_} def
   /height {label_height 0.9 mul this_lines div } def
-  height 10 ge { /height 10 def } if
+  height fs_max ge { /height fs_max def } if
   side-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
   FG setgray
   %% start at left_text_offset for X and 

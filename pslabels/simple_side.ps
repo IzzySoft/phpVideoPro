@@ -27,8 +27,9 @@ gsave
   %%
   %% height = 0.9 * label_height / nr_of_text_lines
   %%
+  /fs_max {_max_fontsize_} def
   /height {label_height 0.9 mul this_lines div } def
-  height 10 ge { /height 10 def } if
+  height fs_max ge { /height fs_max def } if
   side-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
   FG setgray
   %% start at left_text_offset for X and 

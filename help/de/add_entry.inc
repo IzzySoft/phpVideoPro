@@ -104,6 +104,22 @@ das im Konfigurationsmenü einstellbare Datumsformat Verwendung finden, um den
 verschiedenen Länderpräferenzen Rechnung zu tragen.
 
 [title]
+*audio_ts# / *subtitle#
+
+[text]
+Hier kann eingetragen werden, in welchen Sprachen der Film abgefasst ist. Dies
+betrifft zum einen die Ton-Spuren, d.h. die gesprochene Sprache des Filmes, und
+zum anderen die Untertitel. Insbesondere bei DVDs können hier in beiden Feldern
+mehrere Sprachen verfügbar sein - daher lassen sich auch mehrere Sprachen
+auswählen.
+
+[text]
+Da es eine doch recht große Anzahl an möglichen Sprachen gibt - auf der anderen
+Seite jedoch die Übersichtlichkeit und Bedienbarkeit gewahrt bleiben soll, steht
+hier jeweils nur eine Auswahl von Sprachen zur Verfügung - die jedoch
+konfigurierbar ist. Das entsprechende Formular findet sich im Administrationsmenü.
+
+[title]
 *categories#
 
 [text]

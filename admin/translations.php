@@ -26,6 +26,7 @@
  $t->set_block("list","mdatablock","mdatalist");
  $t->set_block("list","emptyblock","emptylist");
  $t->set_var("listtitle",lang($page_id));
+ $t->set_var("formtarget",$PHP_SELF);
 
  #======================================================[ init target lang ]==
  if (!$targetlang) {
@@ -97,6 +98,7 @@
  if ($submit) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
+ $t->set_var("charset",$charset);
  $t->set_var("code",lang("trans_code"));
  $t->set_var("orig",lang("orig_trans","en"));
  $t->set_var("trans",lang("target_trans",$targetlang));

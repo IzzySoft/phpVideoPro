@@ -30,14 +30,14 @@
         <TD WIDTH="10%">&nbsp;</TD>
         <TD WIDTH="45%"><DIV ALIGN="center">{n_mtype} {n_medianr}-{n_part}</DIV></TD></TR>
   </TABLE>
- </FORM></TD></TR></TABLE>
+ </TD></TR></TABLE>
 
 </TD></TR>
 <TR><TD><DIV STYLE="margin:3">
  <TABLE ALIGN="center" BORDER="0">
   <TD WIDTH="50%" STYLE="text-align:left">{copy}</TD>
   <TD WIDTH="50%" STYLE="text-align:right">{change}</TD></TR>
- </TABLE></DIV>
+ </TABLE></DIV></FORM>
 </TR></TD>
 </TABLE>
 </DIV>

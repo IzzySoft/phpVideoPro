@@ -1,6 +1,6 @@
 <?php
  /***************************************************************************\
- * phpVideoPro                                   (c) 2001 by Itzchak Rehberg *
+ * phpVideoPro                              (c) 2001,2002 by Itzchak Rehberg *
  * written by Itzchak Rehberg <izzysoft@qumran.org>                          *
  * http://www.qumran.org/homes/izzy/                                         *
  * --------------------------------------------------------------------------*
@@ -12,6 +12,12 @@
 
  /* $Id$ */
 
+ /** Controls for long lists split into parts based on user-specified limit
+  * @package Api
+  * @class nextmatch
+  * @author Izzy (izzysoft@qumran.org)
+  * @copyright (c) 2002 by Itzchak Rehberg and IzzySoft
+  */
  class nextmatch {
    VAR $totals, $start, $limit,      // total records, startpoint and limit
        $list,$listcount,             // array/count of retrieved data
@@ -20,6 +26,15 @@
        $img_dir,                     // image directory for controls
        $prev_exists, $next_exists;   // is there a prev/next page?
 
+   /** Constructor: initializes base properties plus creates all data
+    *  (all other methods are private and not to be called directly,
+    *  therefore they are not documented here ;)
+    * @constructor nextmatch
+    * @param string query SQL statement
+    * @param string tpl_dir template directory
+    * @param optional string script target script name to link to
+    * @param optional integer start start with dataset x (skip all earlier)
+    */
    function nextmatch($query,$tpl_dir,$script="",$start=0) { // init
      GLOBAL $db, $pvp, $base_path, $base_url;
      $this->list = eval("return($query);");
@@ -104,5 +119,58 @@
    }
 
  } // end class nextmatch
+
+ /** Total records found
+  * @class nextmatch
+  * @attribute integer totals
+  */
+ /** Startpoint of selected subset
+  * @class nextmatch
+  * @attribute integer start
+  */
+ /** Selection limit
+  * @class nextmatch
+  * @attribute integer limit
+  */
+ /** List of selected subset
+  * @class nextmatch
+  * @attribute array list
+  */
+ /** Count of selected subsets data
+  * @class nextmatch
+  * @attribute integer listcount
+  */
+ /** Controls: link to first page
+  * @class nextmatch
+  * @attribute integer first
+  */
+ /** Controls: link to previous page
+  * @class nextmatch
+  * @attribute integer left
+  */
+ /** Controls: link to next page
+  * @class nextmatch
+  * @attribute integer right
+  */
+ /** Controls: link to last page
+  * @class nextmatch
+  * @attribute integer last
+  */
+ /** Target script name to link to
+  * @class nextmatch
+  * @attribute integer script
+  */
+ /** Image directory for controls
+  * @class nextmatch
+  * @attribute integer img_dir
+  */
+ /** Is there a prev page?
+  * @class nextmatch
+  * @attribute integer prev_exists
+  */
+ /** Is there a next page?
+  * @class nextmatch
+  * @attribute integer next_exists
+  */
 
 ?>

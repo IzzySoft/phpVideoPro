@@ -2,13 +2,15 @@
 # /*  $Id$ */
 
 [title]
-0.5.2 (2003)
+0.5.2 (August 7, 2003)
 [text]
 <ul>
  <li>finally fixed the menu for NS4 again
  <li>quotation characters should now be handled correctly for movie title
      and staff member names
- <li>RegionCode could not be un-set - fixed.
+ <li>RegionCode could not be unset - fixed.
+ <li>movie technical data now can be edited/administrated (see new item in
+     admin menu)
 </ul>
 
 [title]

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.6.10 (2004)
+0.6.10 (November 12, 2004)
 [text]
 <ul>
  <li>updated Dutch translations (Thanx to Ron Dekker)

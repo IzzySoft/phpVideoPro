@@ -26,7 +26,9 @@
      $this->maxlines = $maxlines;
      $this->width  = $width * $this->mm_conv;
      $this->height = $height * $this->mm_conv;
-     $this->entry  = $entry;
+     if (!is_array($entry)) {
+      $this->entry = array("$entry");
+     } else { $this->entry  = $entry; }
      $this->nr_coord   = $this->convert_coord($nr_coord);
      $this->main_coord = $this->convert_coord($main_coord);
      $this->symb_coord = $this->convert_coord($symb_coord);
@@ -151,22 +153,24 @@
    function make_text($movies) {
      GLOBAL $db;
      $moviecount = count($movies);
-     preg_match_all("/\{\S+\}/",$this->entry,$matches);
-     $matchcount = count($matches[0]);
      for ($i=0;$i<$moviecount;$i++) {
-       $ttext = $this->entry;
        $movie = $db->get_movie($movies[$i]);
-       for ($k=0;$k<$matchcount;$k++) { // replace placeholders
-         $var  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
-	 $rvar = $movie[$var];
-	 if ($var == "length") { // convert to hh:mm
-	   $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
-	   $hours   = floor($rvar / 60);
-	   $rvar    = "$hours:$minutes";
-	 }
-	 $ttext = preg_replace("/\{$var\}/",$rvar,$ttext);
-       }
-       $text[] = $ttext;
+       for ($lines=0;$lines<count($this->entry);$lines++) {
+         preg_match_all("/\{\S+\}/",$this->entry[$lines],$matches);
+         $matchcount = count($matches[0]);
+         $ttext = $this->entry[$lines];
+         for ($k=0;$k<$matchcount;$k++) { // replace placeholders
+           $var  = substr($matches[0][$k],1,strlen($matches[0][$k])-2);
+	   $rvar = $movie[$var];
+           if ($var == "length") { // convert to hh:mm
+             $minutes = $rvar % 60; if ($minutes<10) $minutes = "0$minutes";
+	     $hours   = floor($rvar / 60);
+	     $rvar    = "$hours:$minutes";
+	   }
+	   $ttext = preg_replace("/\{$var\}/",$rvar,$ttext);
+         }
+         $text[] = $ttext;
+       } // for $lines
      }
      return $text;
    }

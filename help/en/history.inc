@@ -9,6 +9,9 @@
      see the "HowTo" section on how to create them, then create them, and send
      them to me :)
  <li>added Swedish language file (thanks to Tony!)
+ <li>Now filters can be REALLY edited (found out that up to v0.2.7 one could
+     only reset or add to filters - but unsetting/changing just a single item
+     was not possible)
 </ul>
 
 [title]

@@ -9,6 +9,8 @@
  <li>forgot to remove some debug code with the last release (edit menu)
  <li>solved problem in category editor with category names containing single
      quotes (patch supplied by Didier CLERC)
+ <li>menu now stays fixed on top of screen (as long as the browser supports the
+     CSS setting ;)
 </ul>
 
 [title]

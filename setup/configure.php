@@ -8,7 +8,7 @@
 // $referer = substr(dirname($HTTP_REFERER),strlen(dirname($HTTP_REFERER))-6);
 // if ($referer=="/setup" || $referer=="") {
 if ($menue) {
-  $page_id = "configure";
+  $page_id = "configuration";
   if ($update) {
     include ("inc/config.inc");
     include ("inc/config_internal.inc");

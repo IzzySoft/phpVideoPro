@@ -3,7 +3,28 @@
 
 ################################################################################
 # internals - don't edit below this unless you exactly know what you are doing!
-$nav_script = $base_url . "inc/navcond.js";
+// retrieve browser information
+include($base_path . "inc/browser.inc");
+$browser = new browser;
+$agent->name    = strtolower($browser->getbrowser());
+$agent->major   = $browser->getMajor();
+$agent->minor   = $browser->getMinor();
+$agent->version = $browser->getVer();
+echo "<!-- detected " . $agent->name . " version " . $agent->version . " ($HTTP_USER_AGENT) -->\n";
+if ($agent->name == "netscape") {
+ if ($agent->version < 5) {
+  $oldmenue = TRUE;
+ }
+} else {
+  $oldmenue = FALSE;
+}
+if ($oldmenue) {
+  $nav_script = $base_path . "inc/oldmenue.inc";
+} else {
+  $nav_script = $base_path . "inc/newmenue.inc";
+}
+
+// set some technical values
 $rw_media   = "1";
 $max["actors"]         =  5;
 $max["categories"]     =  3;

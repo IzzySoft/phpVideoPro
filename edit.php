@@ -3,7 +3,7 @@
   /* $Id$ */
 
   if ($new_entry) {
-    $page_id = "new_entry";
+    $page_id = "add_entry";
     $edit    = TRUE;
   } elseif ($edit) {
     $page_id = "edit";

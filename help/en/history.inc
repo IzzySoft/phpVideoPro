@@ -8,7 +8,20 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
-  <li><b>0.1.3 (July 26, 2001)</b><br>
+  <LI><b>0.1.4 (2001)</b><br>
+      <ul>
+       <li>worked on the menue stuff. Menue should be "compatible"
+           with most browsers. I've tested it successfully with
+           Netscape 4.76, M$IEx 5.0, Mozilla 0.9.1. However,
+           Konqueror 2.1.1, Opera 5.0 and M$IEx 4.01 still turned
+           out to have problems: both show the menue, but it won't
+           work.<BR>
+           Using different menues for Netscape < 4 and the rest
+           of the world to get all of them working.
+       <li>Help menue now has an additional entry: help for the
+           current page
+      </ul>
+  <LI><b>0.1.3 (July 26, 2001)</b><br>
       <ul>
        <li>implemented help system and wrote English help files
        <li>out-sourced stylesheet for maybe planned template support

@@ -92,5 +92,6 @@ INSERT INTO lang VALUES('intro','en','Intro');
 INSERT INTO lang VALUES('menues','en','Menues');
 INSERT INTO lang VALUES('back','en','Back');
 INSERT INTO lang VALUES('close','en','Close');
+INSERT INTO lang VALUES('help_about','en','Help about');
 
 

@@ -58,10 +58,9 @@ $db->User     = $pvp->config->db->user     = $database["user"];
 $db->Password = $pvp->config->db->password = $database["password"];
 if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 
-include (dirname(__FILE__) . "/class.preferences.inc");
-$pvp->preferences = new preferences;
-
 if (!$pvpinstall) {
+ include (dirname(__FILE__) . "/class.preferences.inc");
+ $pvp->preferences = new preferences;
  $db->query("SELECT value FROM pvp_config WHERE name='version'");
  $db->next_record();
  $version  = $db->f('value');

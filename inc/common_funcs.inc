@@ -90,7 +90,7 @@
  }
 
  # initiate the translations only once
- $translations = $db->get_translations( $pvp->preferences->lang );
+ if (!$pvpinstall) $translations = $db->get_translations( $pvp->preferences->lang );
 
  function translate($key,$vars=FALSE) {
    GLOBAL $translations;

@@ -66,7 +66,6 @@ if (!$pvpinstall) {
  $db->query("SELECT value FROM pvp_config WHERE name='version'");
  $db->next_record();
  $version  = $db->f('value');
- $pre      = "p7";
  if ($pre) $version .= $pre;
  if ($runupdate) {
   $charset = 'iso-8859-1';

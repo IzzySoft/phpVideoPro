@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -45,6 +45,7 @@
     li("label",2);
     li("listgen",2);
   headline("other_pages");
+   li("tplset_applicat");
    li("view_entry");
    li("media_change");
    li("change_rc");

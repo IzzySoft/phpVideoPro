@@ -1,15 +1,15 @@
 <? /* stafflist - call with ?stafftype=<director|actor|music> */
    /* $Id$ */
 
-  $page_id = $stafftype . "_list";
-  $stafftable = $stafftype . "s";
+  $page_id = $stafftype;
+//  $stafftable = $stafftype . "s";
   include("inc/header.inc");
   $filter = get_filters();
 
   function getStaffClause($i) {
     GLOBAL $staff,$stafftype;
     switch ($stafftype) {
-      case "actor"      : $staff_clause = " (v.actor1_id='" . $staff[$i]->id ."'"
+      case "actors"     : $staff_clause = " (v.actor1_id='" . $staff[$i]->id ."'"
                                         . " AND v.actor1_list='1') OR"
 					. " (v.actor2_id='" . $staff[$i]->id ."'"
                                         . " AND v.actor2_list='1') OR"
@@ -20,8 +20,11 @@
 					. " (v.actor5_id='" . $staff[$i]->id ."'"
                                         . " AND v.actor5_list='1'))";
 					break;
-      case "director"  : $staff_clause = " (v.director_id='" . $staff[$i]->id ."'"
+      case "directors" : $staff_clause = " (v.director_id='" . $staff[$i]->id ."'"
                                        . " AND v.director_list='1'))";
+                         break;
+      case "music"     : $staff_clause = " (v.music_id='" . $staff[$i]->id ."'"
+                                       . " AND v.music_list='1'))";
                          break;
       default          : break;
     }
@@ -29,7 +32,7 @@
   }
   
   // retrieve all staff members
-  dbquery("SELECT id,name,firstname FROM $stafftable ORDER BY name");
+  dbquery("SELECT id,name,firstname FROM $stafftype ORDER BY name");
   $i = 0;
   while ( $db->next_record() ) {
     $staff[$i]->id        = $db->f('id');
@@ -49,10 +52,11 @@
   for ($i=0;$i<count($staff);$i++) {
     $query  = "SELECT v.cass_id,v.part,v.title,v.length,v.year,v.aq_date,c.name,m.sname,v.mtype_id,";
     switch ($stafftype) {
-      case "actor"    : $query .= "v.actor1_id,v.actor2_id,v.actor3_id,v.actor4_id,v.actor5_id,"
+      case "actors"   : $query .= "v.actor1_id,v.actor2_id,v.actor3_id,v.actor4_id,v.actor5_id,"
                                 . "v.actor1_list,v.actor2_list,v.actor3_list,v.actor4_list,v.actor5_list";
 			break;
-      case "director" : $query .= "v.director_id,v.director_list"; break;
+      case "directors": $query .= "v.director_id,v.director_list"; break;
+      case "music"    : $query .= "v.music_id,v.music_list"; break;
       default         : break;
     }
     $query .= " FROM video v, cat c, mtypes m";

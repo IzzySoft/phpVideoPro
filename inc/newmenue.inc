@@ -296,8 +296,9 @@ function getPageOffsetTop(el) {
 
 <div id="viewMenu" class="menu">
 <a class="menuItem" href="<? echo $base_url ?>medialist.php"><? echo lang("medialist") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=actor"><? echo lang("actors") ?></a>
-<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=director"><? echo lang("directors") ?></a>
+<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=actors"><? echo lang("actors") ?></a>
+<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=directors"><? echo lang("directors") ?></a>
+<a class="menuItem" href="<? echo $base_url ?>stafflist.php?stafftype=music"><? echo lang("composer") ?></a>
 <div class="menuItemSep"></div>
 <a class="menuItem" href="<? echo $base_url ?>taperest.php"><? echo lang("taperest_absolute") ?></a>
 <a class="menuItem" href="<? echo $base_url ?>taperest.php?usefilter=1"><? echo lang("taperest_filtered") ?></a>

@@ -27,8 +27,9 @@
   dhtmlMenu = new NavBarMenu(140, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("view") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("medialist") ?>", "<? echo $base_url ?>medialist.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("actors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=actor"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("directors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=director"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("actors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=actors"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("directors") ?>", "<? echo $base_url ?>stafflist.php?stafftype=directors"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("composer") ?>", "<? echo $base_url ?>stafflist.php?stafftype=music"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_absolute") ?>", "<? echo $base_url ?>taperest.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("taperest_filtered") ?>", "<? echo $base_url ?>taperest.php?usefilter=1"));
@@ -39,11 +40,15 @@
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   myNavBar1.addMenu(dhtmlMenu);
 
-  dhtmlMenu = new NavBarMenu(62, 80);
+  dhtmlMenu = new NavBarMenu(62, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help") ?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("index") ?>", "JavaScript:open_help('')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("about") ?>", "JavaScript:open_help('about')"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "JavaScript:open_help('history')"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("history") ?>", "JavaScript:open_help('history')"));<?
+if ($page_id) { ?>
+  dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<? echo lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<? echo $page_id ?>')"));<?
+} ?>
   myNavBar1.addMenu(dhtmlMenu);
 
   //set menu colors

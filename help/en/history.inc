@@ -14,12 +14,14 @@
            with most browsers. I've tested it successfully with
            Netscape 4.76, M$IEx 5.0, Mozilla 0.9.1. However,
            Konqueror 2.1.1, Opera 5.0 and M$IEx 4.01 still turned
-           out to have problems: both show the menue, but it won't
+           out to have problems: they show the menue, but it won't
            work.<BR>
-           Using different menues for Netscape < 4 and the rest
-           of the world to get all of them working.
+           Using different menues for Netscape &lt;= 4 and the rest
+           of the world to get all (or at least most) of them working.
        <li>Help menue now has an additional entry: help for the
            current page
+       <li>added list of actors, list of directors, list of composers
+       <li>updated help system accordingly
       </ul>
   <LI><b>0.1.3 (July 26, 2001)</b><br>
       <ul>

@@ -28,6 +28,7 @@ INSERT INTO lang VALUES('actors','en','Actors');
 INSERT INTO lang VALUES('director','en','Director');
 INSERT INTO lang VALUES('directors','en','Directors');
 INSERT INTO lang VALUES('composer','en','Composer');
+INSERT INTO lang VALUES('music','en','Composer');
 INSERT INTO lang VALUES('min','en','min');
 INSERT INTO lang VALUES('max','en','max');
 INSERT INTO lang VALUES('s/w','en','b/w');
@@ -95,7 +96,7 @@ INSERT INTO lang VALUES('menues','en','Menues');
 INSERT INTO lang VALUES('back','en','Back');
 INSERT INTO lang VALUES('close','en','Close');
 INSERT INTO lang VALUES('help_about','en','Help about');
-INSERT INTO lang VALUES('actor_list','en','List of Actors');
-INSERT INTO lang VALUES('director_list','en','List of Directors');
-
+INSERT INTO lang VALUES('actors_list','en','List of Actors');
+INSERT INTO lang VALUES('directors_list','en','List of Directors');
+INSERT INTO lang VALUES('music_list','en','List of Composers');
 

@@ -11,6 +11,9 @@
     li("unset_filter",2);
    li("view");
     li("medialist",2);
+    li("actors",2);
+    li("directors",2);
+    li("music",2);
     li("taperest_absolute",2);
     li("taperest_filtered",2);
   headline("howto");

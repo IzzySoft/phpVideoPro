@@ -64,15 +64,6 @@ inuti det eventuellt standard-valda stylesheet'et och namnen
 är självförklarande.
 
 [text]
-<b>*feedback_ok# / *feedback_err#:</b> Dessa inställningar är inte
-renderade inuti något stylesheet. Dem används för systemanrop på
-användarens begäran, till exempel påståenden som "notering skapades
-utan problem" när man skapar en ny notering i databasen, eller "Error
-&lt;någon förklaring&gt;" när något gick fel, för
-att understryka dessa meddelanden i sammanhang med den vanliga formulär-
-data dem visas med.
-
-[text]
 <b>*template_set#:</b> med början från v0.1.5, är phpVideoPro baserat
 på mallar.
 Jag (författaren) bara stod till förfogande med ett initialt set av

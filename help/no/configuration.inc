@@ -53,13 +53,6 @@ beskjed om dette, og referer til den manglende frasen og hvor feilen har oppst†t
 og navnene forklarer seg selv.
 
 [text]
-<b>*feedback_ok# / *feedback_err#:</b> Disse opsjonene blir ikke lagt inn i noen
-maler. De er brukt n†r systemet ber om svar fra brukeren, f.eks. utsagn som
-"Elementet ble opprettet." ved opprettelse av et nytt element i databasen, eller
-"Feil &lt;feilbeskrivelse&gt;" n†r noe g†r galt, for † forsterke meldingene i
-kontrast til den vanlige informasjonen.
-
-[text]
 <b>*template_set#:</b> fra v0.1.5, er phpVideoPro basert p† maler.
 Jeg (utvikleren) har laget en mal; man s† snart andre maler er tilgjelgelig
 (som kun vil skje n†r <b>DU</b> lager dem - jeg er ikke god til design), kan du

@@ -68,13 +68,6 @@ Deze instellingen worden in de standaard stylesheet opgenomen en de velden zijn,
 denk ik, overduidelijk.
 
 [text]
-<b>*feedback_ok# / *feedback_err#:</b> 
-Deze instellingen worden niet opgenomen in een stylesheet. Ze worden gebruikt
-om te tonen aan de gebruiker. De meldingen worden gebruikt om aan te geven dat een
-veld niet goed is ingevuld of om bijvoorbeeld aan te geven dat een film succesvol is
-toegevoegd.
-
-[text]
 <b>*template_set#:</b> Vanaf versie 0.1.5 is phpVideoPro gebaseerd op templates.
 Ik (de auteur) heb een template meegeleverd; zodra er nieuwe templates beschikbaar
 komen (wat alleen zal gebeuren indien JIJ deze maakt, dan is er hier de mogelijkheid

@@ -142,3 +142,7 @@ INSERT INTO lang VALUES('label','en','Label');
 INSERT INTO lang VALUES('print','en','Print');
 INSERT INTO lang VALUES('medialist_num','en','Medialist in numerical order');
 INSERT INTO lang VALUES('medialist_alpha','en','Medialist in alphabetical order');
+INSERT INTO lang VALUES('lines_per_page','en','Lines per page');
+INSERT INTO lang VALUES('lines_per_page_comment','en','This is for the printing functions to determine how many lines of text fit on one sheet of paper.');
+INSERT INTO lang VALUES('date_format','en','Date format');
+INSERT INTO lang VALUES('date_format_comment','en','What format to use for date display. Available formats are: y-m-d, d.m.y and d/m/y');

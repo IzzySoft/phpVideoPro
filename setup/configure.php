@@ -43,6 +43,8 @@ if ($menue) {
     dbquery("UPDATE preferences SET value='$default_lang' WHERE name='lang'");
     dbquery("UPDATE preferences SET value='$template_set' WHERE name='template'");
     dbquery("UPDATE preferences SET value='$display_limit' WHERE name='display_limit'");
+    dbquery("UPDATE preferences SET value='$page_length' WHERE name='page_length'");
+    dbquery("UPDATE preferences SET value='$date_format' WHERE name='date_format'");
     $colorcode = rawurlencode( serialize($colors) );
     dbquery("UPDATE preferences SET value='$colorcode' WHERE name='colors'");
     if ($install_lang && $install_lang != "-") {
@@ -127,6 +129,22 @@ if ($menue) {
   dbquery("SELECT value FROM preferences WHERE name='display_limit'");
   if ( $db->next_record() ) {
     $display_limit = $db->f('value');
+  } else {
+    debug("E","No display limit in db?!?");
+  }
+
+  #-----------------------------------------[ get page length ]---
+  dbquery("SELECT value FROM preferences WHERE name='page_length'");
+  if ( $db->next_record() ) {
+    $page_length = $db->f('value');
+  } else {
+    debug("E","No display limit in db?!?");
+  }
+
+  #-----------------------------------------[ get date format ]---
+  dbquery("SELECT value FROM preferences WHERE name='date_format'");
+  if ( $db->next_record() ) {
+    $date_format = $db->f('value');
   } else {
     debug("E","No display limit in db?!?");
   }
@@ -290,6 +308,18 @@ if ($menue) {
   $t->set_var("item_comment",lang("display_limit_comment"));
   $t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
   $t->parse("item","itemblock");
+
+  # lines per page
+  $t->set_var("item_name",lang("lines_per_page"));
+  $t->set_var("item_comment",lang("lines_per_page_comment"));
+  $t->set_var("item_input",$color_input . " NAME=\"page_length\" VALUE=\"$page_length\">");
+  $t->parse("item","itemblock",TRUE);
+
+  # date_format
+  $t->set_var("item_name",lang("date_format"));
+  $t->set_var("item_comment",lang("date_format_comment"));
+  $t->set_var("item_input",$color_input . " NAME=\"date_format\" VALUE=\"$date_format\">");
+  $t->parse("item","itemblock",TRUE);
 
   # complete misc block
   $t->parse("list","listblock",TRUE);

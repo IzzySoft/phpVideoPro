@@ -142,3 +142,7 @@ INSERT INTO lang VALUES('label','de','Etikett');
 INSERT INTO lang VALUES('print','de','Drucken');
 INSERT INTO lang VALUES('medialist_num','de','Numerisch sortierte Medienliste');
 INSERT INTO lang VALUES('medialist_alpha','de','Alphabetisch sortierte Medienliste');
+INSERT INTO lang VALUES('lines_per_page','de','Zeilen pro Seite');
+INSERT INTO lang VALUES('lines_per_page_comment','de','Dieser Wert gibt an, wieviele Textzeilen auf ein Blatt Papier passen (für den Listendruck).');
+INSERT INTO lang VALUES('date_format','de','Datumsformat');
+INSERT INTO lang VALUES('date_format_comment','de','Gibt an, in welchem Format Datumsangaben angezeigt werden sollen. Zur Verfügung stehen die Formate y-m-d, d.m.y and d/m/y');

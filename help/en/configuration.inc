@@ -54,7 +54,8 @@ delete all translations from the database and not touch any file; so if you
 have the language file available, you can re-install it at any time. In case
 you edited some translations e.g. with the built-in translation editor, you
 may want to export these changes first (using the same) to have them available
-lateron.
+lateron. Remark: English translations cannot be deleted: they are needed as
+fall-back for other languages.
 
 [text]
 <b>*select_primary_lang#:</b> Amongst the installed languages, you can select

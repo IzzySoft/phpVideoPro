@@ -78,7 +78,7 @@ if ( isset($update) ) {
       $sql_file = dirname(__FILE__) . "/lang_" . $refresh_lang . ".sql";
       queryf($sql_file,"Refresh of language phrases",1);
     }
-    if ($delete_lang && $delete_lang != "-") {
+    if ($delete_lang && $delete_lang != "-" && $delete_lang != "en") {
       $db->delete_translations($delete_lang);
     }
   }

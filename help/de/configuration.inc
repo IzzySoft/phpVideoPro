@@ -67,7 +67,9 @@ wobei die Sprachdatei selbst nicht berührt wird. Sind Änderungen an den
 jeweiligen Übersetzungen gemacht worden (z.B. mit Hilfe des eingebauten
 Translation-Editors), sollten diese allerdings mit selbigem zuvor in eine
 Datei gesichert werden. So läßt sich sicherstellen, die Übersetzungen zu einem
-beliebigen zukünftigen Zeitpunkt wieder re-installieren zu können.
+beliebigen zukünftigen Zeitpunkt wieder re-installieren zu können. Hinweis: die
+Englischen Übersetzungen können nicht gelöscht werden - sie werden als "FallBack"
+für alle anderen Sprachen benötigt.
 
 [text]
 <b>*select_primary_lang#:</b> Aus den vorhandenen Sprachen kann eine als

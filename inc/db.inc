@@ -949,12 +949,47 @@
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
 		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat"),
-		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass") );
+		       array("name"=>"media","sql"=>"SELECT count(id) AS media FROM cass"),
+		       array("name"=>"countries","sql"=>"SELECT count(DISTINCT country) AS countries FROM video")
+		     );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);
        $this->next_record();
        $item = $value["name"];
        $stats[$item] = $this->f("$item");
+     }
+     $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
+		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
+		       array("name"=>"composer","sql"=>"SELECT count(id) AS rank, music_id AS item FROM video WHERE music_id>0 GROUP BY music_id ORDER BY rank DESC"),
+		       array("name"=>"category","sql"=>"SELECT count(id) AS rank, cat1_id AS item FROM video GROUP BY cat1_id ORDER BY rank DESC")
+                     );
+     foreach($details as $value) {
+       $this->dbquery($value["sql"]);
+       for ($i=1;$i<4;++$i) {
+         $this->next_record();
+	 $item = $this->f('item'); $rank = "rank_" . $value["name"] . "_" . $i;
+	 if (!strlen( trim($item) )) $item = lang("unknown");
+	 $stats[$rank] =  "$item (" . $this->f('rank') . ")";
+       }
+     }
+     $details = array ( array ("name"=>"director","func"=>"get_director"),
+                        array ("name"=>"composer","func"=>"get_music"),
+                        array ("name"=>"category","func"=>"get_category")
+                      );
+     foreach($details as $value) {
+       for ($i=1;$i<4;++$i) {
+         $sperson = "rank_" . $value["name"] . "_" . $i;
+         $person  = $stats[$sperson];
+         $pos = strpos($person," (");
+         $person_id = substr($person,0,$pos);
+         $rank = substr($person,$pos);
+	 $func = $value["func"];
+         $name = $this->$func($person_id);
+	 switch($func) {
+	   case "get_category" : $stats[$sperson] = $name . $rank; break;
+	   default             : $stats[$sperson] = $name[fullname] . $rank; break;
+	 }
+       }
      }
      return $stats;
    }

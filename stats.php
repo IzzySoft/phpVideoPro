@@ -42,15 +42,30 @@
   $t->set_var("item_name",lang("media"));
   $t->set_var("item_input",$stats[media]);
   $t->parse("item","itemblock",TRUE);
+  $t->set_var("item_name",lang("countries"));
+  $t->set_var("item_input",$stats[countries]);
+  $t->parse("item","itemblock",TRUE);
   $t->parse("list","listblock");
 
-/*
   $t->set_var("list_head",lang("stat_ranks"));
   $t->set_var("item_name",lang("countries"));
-  $t->set_var("item_input","$stats[country1_name]: $stats[country1_num]");
+  $rank = "$stats[rank_country_1]<BR>$stats[rank_country_2]<BR>$stats[rank_country_3]";
+  $t->set_var("item_input","$rank");
   $t->parse("item","itemblock");
+  $t->set_var("item_name",lang("director_persons"));
+  $rank = "$stats[rank_director_1]<BR>$stats[rank_director_2]<BR>$stats[rank_director_3]";
+  $t->set_var("item_input","$rank");
+  $t->parse("item","itemblock",TRUE);
+  $t->set_var("item_name",lang("compose_persons"));
+  $rank = "$stats[rank_composer_1]<BR>$stats[rank_composer_2]<BR>$stats[rank_composer_3]";
+  $t->set_var("item_input","$rank");
+  $t->parse("item","itemblock",TRUE);
+  $t->set_var("item_name",lang("categories"));
+  $rank = "$stats[rank_category_1]<BR>$stats[rank_category_2]<BR>$stats[rank_category_3]";
+  $t->set_var("item_input","$rank");
+  $t->parse("item","itemblock",TRUE);
   $t->parse("list","listblock",TRUE);
-*/
+
   $t->pparse("out","stat");
 
   include("inc/footer.inc");

@@ -18,8 +18,9 @@
 <TR><TD>
 
 <DIV STYLE="margin:3">
+<TABLE BORDER="0" CELLSPACING="3"><TR>
 <!-- BEGIN listblock -->
-<TABLE ALIGN="CENTER" WIDTH="300" BORDER="1">
+<TD><TABLE ALIGN="CENTER" WIDTH="300" BORDER="1">
  <TR><TH>{list_head}</TH></TR>
  <TR CLASS="content"><TD>
   <TABLE WIDTH="100%">
@@ -28,8 +29,9 @@
     <TD><DIV ALIGN="RIGHT">{item_input}</DIV></TD></TR>
   <!-- END itemblock -->
   </TABLE></TD></TR>
-</TABLE><BR>
+</TABLE></TD><TD>
 <!-- END listblock -->
+</TR></TABLE>
 </DIV>
 
 </TD></TR>

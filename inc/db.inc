@@ -412,6 +412,16 @@
        case "directors" : $restrict = "v.director_id=$name[id] AND v.director_list=1";
 			  $type = "director_rev";
 			  break;
+       case "music"     : $restrict = "v.music_id=$name[id] AND v.music_list=1";
+			  $type = "music_rev";
+			  break;
+       case "actors"    : $restrict = "((v.actor1_id=$name[id] AND v.actor1_list=1)"
+                                    . " OR  (v.actor2_id=$name[id] AND v.actor2_list=1)"
+                                    . " OR  (v.actor3_id=$name[id] AND v.actor3_list=1)"
+                                    . " OR  (v.actor4_id=$name[id] AND v.actor4_list=1)"
+                                    . " OR  (v.actor5_id=$name[id] AND v.actor5_list=1))";
+			  $type = "actor_rev";
+			  break;
        default:
      }
      if (strlen($filter)) $restrict .= " AND ($filter)";

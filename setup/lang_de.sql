@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.6.9
+# German Language File created by phpVideoPro v0.6.11
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -197,7 +197,7 @@ INSERT INTO lang VALUES ('info_common','de','Allgemeine Information','');
 INSERT INTO lang VALUES ('info_common_info','de','<DIV ALIGN=\"center\">Dies ist Version %1 von phpVideoPro, installiert auf %2.</div>','');
 INSERT INTO lang VALUES ('info_noupdate','de','<DIV ALIGN=\"center\">Die installierte Version von phpVideoPro (%1) ist auf dem aktuellen Stand - es steht keine neue Version zum Download zur Verfügung. Für den Download des Tarballs der installierten Version bitte <A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">diesem Link</a> folgen.</div>','');
 INSERT INTO lang VALUES ('intro','de','Einleitung','');
-INSERT INTO lang VALUES ('intro_usage','de','<P>Informationen für neue Benutzer:<ul><li>Die Navigation innerhalb von phpVideoPro ist fast immer über die Menübar am Anfang der Seite möglich</li><li>Die meisten Seiten verfügen über eine zugehörige Hilfeseite. Diese lässt sich entweder über das \"Hilfe\" Menü, oder aber (sofern vorhanden) über den \"?\" Button aufrufen</li><li>Das folgende Formular erlaubt den direkten Sprung zu einem Filmeintrag (wenn die Nummer bekannt ist). Für eine Auflistung aller Filme gibt es die Medien-Liste (Menüpunkt \"Medienliste\" im Menü \"Anzeigen\").</li></ul></p>','');
+INSERT INTO lang VALUES ('intro_usage','de','<P>Informationen für neue Benutzer:</P><ul><li>Die Navigation innerhalb von phpVideoPro ist fast immer über die Menübar am Anfang der Seite möglich</li><li>Die meisten Seiten verfügen über eine zugehörige Hilfeseite. Diese lässt sich entweder über das \"Hilfe\" Menü, oder aber (sofern vorhanden) über den \"?\" Button aufrufen</li><li>Das folgende Formular erlaubt den direkten Sprung zu einem Filmeintrag (wenn die Nummer bekannt ist). Für eine Auflistung aller Filme gibt es die Medien-Liste (Menüpunkt \"Medienliste\" im Menü \"Anzeigen\").</li></ul>','');
 INSERT INTO lang VALUES ('intro_usage_skip','de','<P>Wer diesen Einleitungs-Text nicht mehr benötigt, kann ihn bei seinen bevorzugten Einstellungen (Menü \"Bearbeiten\", Punkt \"Einstellungen\") abschalten.</p>','');
 INSERT INTO lang VALUES ('intro_usage_title','de','Einleitung für neue Benutzer','');
 INSERT INTO lang VALUES ('invalid_backup_dir','de','Das konfigurierte Backup-Verzeichnis existiert nicht!','');

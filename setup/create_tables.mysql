@@ -35,7 +35,7 @@ CREATE TABLE cass (
 
 CREATE TABLE cat (
    id int(5) NOT NULL auto_increment,
-   name varchar(30),
+   name varchar(30) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE name (name)
 );
@@ -49,7 +49,7 @@ CREATE TABLE cat (
 CREATE TABLE colors (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   sname varchar(5),
+   sname varchar(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -76,7 +76,7 @@ CREATE TABLE directors (
 CREATE TABLE mtypes (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   sname varchar(5),
+   sname varchar(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -103,7 +103,7 @@ CREATE TABLE music (
 CREATE TABLE pict (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   sname varchar(5),
+   sname varchar(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
@@ -117,7 +117,7 @@ CREATE TABLE pict (
 CREATE TABLE tone (
    id int(5) NOT NULL auto_increment,
    name varchar(30),
-   sname varchar(5),
+   sname varchar(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );

@@ -1334,20 +1334,23 @@
              $pids .= ",".$this->f('id');
            }
            $pids = substr($pids,1);
-           $restrict .= "director_id IN ($pids) AND"; break;
+           if (!empty($pids)) $restrict .= "director_id IN ($pids) AND";
+	   break;
          default       : 
            $this->query("SELECT id FROM actors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
            while ( $this->next_record() ) {
              $pids .= ",".$this->f('id');
            }
            $pids = substr($pids,1);
-           for ($i=1;$i<6;++$i) {
-             if ($i==1) $restrict .= "(";
-             $restrict .= "v.actor$i"."_id IN ($pids)";
-             if ($i<5) $restrict .= " OR ";
+           if (!empty($pids)) {
+             for ($i=1;$i<6;++$i) {
+               if ($i==1) $restrict .= "(";
+               $restrict .= "v.actor$i"."_id IN ($pids)";
+               if ($i<5) $restrict .= " OR ";
+	     }
            }
        }
-       $restrict .= ") AND ";
+       if (!empty($pids)) $restrict .= ") AND ";
      }
      $restrict .= "comment LIKE '%$comment%'";
      if ($minlen) $restrict .= " AND length>=$minlen";

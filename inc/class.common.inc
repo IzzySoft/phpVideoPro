@@ -147,7 +147,7 @@ class common {
     while ( list ($key,$line) = each ($lines)) {
       if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG SRC=\"\\1\">",$matches[0][$i]);
+          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" SRC=\"\\1\">",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
@@ -161,6 +161,12 @@ class common {
       if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
           $sub  = eregi_replace("\[href\](.*)\[\/href\]","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
+          $line = str_replace($matches[0][$i],$sub,$line);
+        }
+      }
+      if ( preg_match_all("/\[url\]\S+\[\/url\]/i",$line,$matches) ) {
+        for ($i=0;$i<count($matches[0]);++$i) {
+          $sub  = eregi_replace("\[url\](.*)\[\/url\]","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }

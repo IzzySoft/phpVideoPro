@@ -22,6 +22,7 @@
  # S - SQL statements
  # V - Variables set
  # W - Warnings
+ # R - detailed Reports on failures (if available)
  $debug["log"]  = "EW";
  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
 

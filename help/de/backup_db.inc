@@ -51,6 +51,24 @@ sie gegebenenfalls. Die Checkbox "*clean_restore#" muss derzeit auf jeden Fall
 angewählt sein - andernfalls kommt es ziemlich schnell zu dem Fehler, dass eine
 duplikate MediaNr auftritt.
 
+[text]
+Der Restore-Prozess erkennt auch automatisch neue Kategorien. D.h., wenn z.B.
+ein Backup von Filmdaten aus einer anderen Datenbank, in der neue Kategorien
+hinzugefügt wurden, importiert wird, werden diese in der aktuellen Datenbank
+auch automatisch angelegt. Die Entscheidung, ob es sich um eine neue Kategorie
+handelt, wird auf Basis des <i>*cat_internal_name#</i> getroffen (siehe
+<i><A HREF="{PHP_SELF}?topic=admin_cats">*admin_cats#</A></i>) - daher sollte
+sicher gestellt werden, dass dieser für vorhandene Einträge nicht geändert
+wird. Wird eine neue Kategorie gefunden, so wird diese mit einer neuen ID und
+dem gegebenen <i>*cat_internal_name#</i> in die Kategorien-Tabelle eingefügt.
+Die ebenfalls im Datensatz gespeicherte Übersetzung wird immer der
+<i><b>Englischen</b></i> Sprache zugeordnet - dies ist kein Bug, sondern ein
+Feature: Eine Englische Übersetzung wird generell als "FallBack" benötigt,
+damit jedem Benutzer - unabhängig von der von ihm gewählten Sprache - eine
+Übersetzung zur Verfügung steht. Natürlich können diese Übersetzungen später
+unter Zuhilfenahme des Translation Editors (siehe <i><A HREF="{PHP_SELF}?topic=admin_translations">*admin_translations#</A></i>;
+zu finden im Administrations-Menü) bearbeitet werden.
+
 [title]
 Restore (komplett)
 

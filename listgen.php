@@ -35,6 +35,7 @@
    switch ($order) {
      case "title" : $listtitle = lang("medialist_alpha"); $pfile="movie"; break;
      case "cat"   : $listtitle = lang("catlist_alpha"); $pfile="cat"; break;
+     case "dir"   : $listtitle = lang("directors_list"); $pfile="person"; break;
      default      : $listtitle = lang("medialist_num"); $pfile="movie"; break;
    }
    $listtitle .= " (" . $pvp->common->formatDate(date('Y'),date('m'),date('d')) . ")";
@@ -66,7 +67,9 @@
  $list   = "<SELECT NAME=\"order\">"
          . "<OPTION VALUE=\"num\">" . lang("medialist_num"). "</OPTION>"
 	 . "<OPTION VALUE=\"title\">" . lang("medialist_alpha") . "</OPTION>"
-	 . "<OPTION VALUE=\"cat\">" . lang("catlist_alpha") . "</OPTION></SELECT>";
+	 . "<OPTION VALUE=\"cat\">" . lang("catlist_alpha") . "</OPTION>"
+	 . "<OPTION VALUE=\"dir\">" . lang("directors_list") . "</OPTION>"
+	 . "</SELECT>";
  $format = "<SELECT NAME=\"outputtype\"><OPTION VALUE=\"ascii\">ASCII</OPTION>"
 	 . "<OPTION VALUE=\"html\">HTML</OPTION>"
          . "<OPTION VALUE=\"csv\">CSV</OPTION></SELECT>";

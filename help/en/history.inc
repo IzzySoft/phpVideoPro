@@ -12,6 +12,7 @@
      field
  <li>added advices to the HTML header to turn all caches off (also in Proxies)
      to work around some strange behaviours of MSIE
+ <li>fixed screwed-up title names in IMDB result list (hopefully no side effects ;)
 </ul>
 
 [title]

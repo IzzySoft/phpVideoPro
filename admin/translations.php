@@ -26,7 +26,6 @@
  $t->set_block("list","mdatablock","mdatalist");
  $t->set_block("list","emptyblock","emptylist");
  $t->set_var("listtitle",lang($page_id));
-# $t->set_var("formtarget",$PHP_SELF);
  $t->set_var("formtarget",$PHP_SELF ."\" enctype=\"multipart/form-data");
 
  #======================================================[ init target lang ]==
@@ -73,7 +72,7 @@
           . "UPDATE languages SET charset='$tchar' WHERE lang_id='$targetlang';\n";
    for ($i=0;$i<$totals;++$i) {
      $msgid = $trans["xlist"][$i];
-     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes($trans[$msgid])."');\n";
+     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes(str_replace("\n"," ",$trans[$msgid]))."');\n";
    }
    header("Content-type: application/octet-stream");
    header("Content-Disposition: attachment; filename=lang_".$targetlang.".sql");
@@ -91,7 +90,6 @@
    if ($update) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
    $orig   = $list["$msgid"];
    $target = $db->get_singletrans($targetlang,"",$msgid);
-#   if ($target[$msgid]) $target[$msgid] = htmlentities($target[$msgid]);
    if ($orig) $orig = htmlentities($orig);
    $t->set_var("code",$msgid);
    $t->set_var("orig",$orig);
@@ -123,5 +121,4 @@
  include("../inc/header.inc");
  $t->pparse("out","list");
  include("../inc/footer.inc");
-
 ?>

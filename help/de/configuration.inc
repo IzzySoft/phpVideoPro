@@ -58,6 +58,18 @@ Sprachdatei importiert. Die Möglichkeit, bestehende Einträge beizubehalten, und
 nur neue zu importieren, gibt es derzeit noch nicht.
 
 [text]
+<b>*delete_lang#:</b> Sei es zu Testzwecken, für eine Präsentation für
+fremdsprachige Freunde/Bekannte, oder einfach nur so: manchmal kommt man an den
+Punkt, einfach Übersetzungen für zu viele Sprachen installiert zu haben, und
+möchte nun endlich wieder Ordnung schaffen. Dafür ist dies der richtige Platz:
+Für die ausgewählte Sprache werden alle Übersetzungen aus der Datenbank entfernt,
+wobei die Sprachdatei selbst nicht berührt wird. Sind Änderungen an den
+jeweiligen Übersetzungen gemacht worden (z.B. mit Hilfe des eingebauten
+Translation-Editors), sollten diese allerdings mit selbigem zuvor in eine
+Datei gesichert werden. So läßt sich sicherstellen, die Übersetzungen zu einem
+beliebigen zukünftigen Zeitpunkt wieder re-installieren zu können.
+
+[text]
 <b>*select_primary_lang#:</b> Aus den vorhandenen Sprachen kann eine als
 "Primärsprache" ausgewählt werden. Das heißt, phpVideoPro versucht alle
 Bildschirmausgaben in dieser Sprache durchzuführen. Ist die Übersetzung für

@@ -46,6 +46,17 @@ At some point in the future I may add a function to only add new phrases and
 not delete anything from the db - but that's not done yet.
 
 [text]
+<b>*delete_lang#:</b> Maybe for testing, maybe for presentation to alien
+visitors or maybe just for fun: sometimes you may have installed translations
+for too many languages and now you want to clean up. This is the place for it:
+Select the language you want to get rid of, and submit the form. It will only
+delete all translations from the database and not touch any file; so if you
+have the language file available, you can re-install it at any time. In case
+you edited some translations e.g. with the built-in translation editor, you
+may want to export these changes first (using the same) to have them available
+lateron.
+
+[text]
 <b>*select_primary_lang#:</b> Amongst the installed languages, you can select
 your favorite one. If your native language is available, I guess you'ld prefer
 that :) For all phrases missing in your favorite languages file, there will be

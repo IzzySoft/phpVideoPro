@@ -21,7 +21,7 @@
 <TR CLASS="content"><TD>
 <!-- BEGIN titleblock -->
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
- <TR><TH><DIV ALIGN="center">{title}</DIV></TH></TR>
+ <TR><TH><DIV ALIGN="center"><A NAME="{t_name}"></A>{title}</DIV></TH></TR>
  <!-- BEGIN textblock -->
  <TR><TD><DIV ALIGN="justify">{text}</DIV></TD></TR>
  <!-- END textblock -->

@@ -133,12 +133,20 @@ class common {
   }
 
   #==========================================[ text formatting functions ]===
-  /** Search a text block for URLs and make them clickable
+  /** Search a text block for URLs and make them clickable plus cater for the
+   *  [img],[imgr] and [href] tags
    * @class common
    * @method make_clickable
-   * @copyright function make_clickable taken from text_to_links() in the
-       SourceForge Snipplet Library
-       http://sourceforge.net/snippet/detail.php?type=snippet&id=100004
+   * @copyright initial code for function make_clickable taken from
+   *   text_to_links() in the SourceForge Snipplet Library
+   *   http://sourceforge.net/snippet/detail.php?type=snippet&id=100004
+   *   but then adapted and extended for the [href] and [img] tags
+   * @version Since for now (until v0.4.4p1) we also convert urls given
+   *   without enclosing [href] tags to clickable urls, both [img] and [imgr]
+   *   tags must be local, i.e. must NOT contain any http or www.* references
+   *   since this would screw up things. Therefore we have to drop the former
+   *   behaviour and to force the use of [href] tags to enable [img] and [imgr]
+   *   tags to refer to images on other servers
    * @param string data textblock to format
    * @return string newText formatted text block
    */
@@ -150,9 +158,28 @@ class common {
     while ( list ($key,$line) = each ($lines)) {
       $line = eregi_replace("([ \t]|^)www\."," http://www.",$line);
       $line = eregi_replace("([ \t]|^)ftp\."," ftp://ftp.",$line);
-      $line = eregi_replace("(http://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
-      $line = eregi_replace("(https://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
-      $line = eregi_replace("(ftp://[^ )\r\n]+)","<A href=\"\\1\" target=\"_blank\">\\1</A>",$line);
+      $line = eregi_replace("(http://[^ )\r\n]+)","[href]\\1[/href]",$line);
+      $line = eregi_replace("(https://[^ )\r\n]+)","[href]\\1[/href]",$line);
+      $line = eregi_replace("(ftp://[^ )\r\n]+)","[href]\\1[/href]",$line);
+      if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
+        for ($i=0;$i<count($matches[0]);++$i) {
+          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG SRC=\"\\1\">",$matches[0][$i]);
+          $line = str_replace($matches[0][$i],$sub,$line);
+        }
+      }
+      if ( preg_match_all("/\[imgr\]\S+\[\/imgr\]/i",$line,$matches) ) {
+        for ($i=0;$i<count($matches[0]);++$i) {
+          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" SRC=\"\\1\">",$matches[0][$i]);
+          $line = str_replace($matches[0][$i],$sub,$line);
+        }
+      }
+      $line = eregi_replace("\[imgr\](.*)\[\/img\]","<IMG ALIGN=\"right\" SRC=\"\\1\">",$line);
+      if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$line,$matches) ) {
+        for ($i=0;$i<count($matches[0]);++$i) {
+          $sub  = eregi_replace("\[href\](.*)\[\/href\]","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
+          $line = str_replace($matches[0][$i],$sub,$line);
+        }
+      }
       $newText .= "$line\n";
     }
     return $newText;
@@ -227,7 +254,6 @@ class common {
     if ($keep) {
       if ($allowed) { $ignored = $allowed . "|" . $keep; } else { $ignored = $keep; }
     } else { $ignored = $allowed; }
-    echo "Ignore: '$ignored'<br>";
     $str = preg_replace("'<script[^>]*?>.*?</script>'si", "", $str);
     $str = preg_replace("'<iframe[^>]*?>.*?</iframe>'si", "", $str);
     $str = preg_replace("'<head[^>]*?>.*?</head>'si", "", $str);

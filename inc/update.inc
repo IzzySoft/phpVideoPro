@@ -1,95 +1,17 @@
 <?
- $dmsg = "";
- ##############################################################################
- # check wether a given person exists in the db and aquire his/her id. If not
- # found in db, insert him/her first
- function insert_person($person,$query,$sub_query,$name="",$fname="") {
-   GLOBAL $db,$dmsg,$colors;
-   if ( strlen( trim($name . $fname) ) < 1) {
-     $dmsg .=  $colors["ok"] . "<li>$person not specified, no action taken.</Font>\n";
-    return 0;
-   }
-   $dmsg  .= $colors["ok"] . " <li>" . stripslashes($query) . "</Font>";
-   $db->query($query);
-   if ( $db->next_record() ) {
-     $id = $db->f('id');
-     $dmsg  .= " (Got: '$id')</Font>\n";
-   } else {
-     $dmsg  .= "<BR>" . $colors["err"] . "$person not found in db! Trying to insert...</Font><BR>\n";
-     if ( $db->query($sub_query) ) {
-       $db->query($query);
-       if ( $db->next_record() ) {
-         $id = $db->f('id');
-         $dmsg  .= $colors["ok"] . "$person \"$name, $fname\" inserted into db (id: $id).</Font>\n";
-       } else {
-         $dmsg  .= $colors["err"] . "Something strange happened: inserted $person \"$name, $fname\" into db, but could not find him/her afterwards!</Font>\n";
-       }
-     } else {
-       $dmsg .= $colors["err"] . "Insertion of $person \"$name, $fname\ into db failed!</Font>\n";
-     }
-   }
-   return $id;
- }
+ include ("inc/sql_helpers.inc");
  ##############################################################################
  # create a dump of posted data for debugging purposes and send them to the
  # debug output function
- $ddump = "Saving data:<p>\n<ul>"
-    . " <li>Title: '$title'"
-    . " <li>MediaType: '$media_tname'"
-    . " <li>MTypeID: '$mtype_id'"
-    . " <li>Country: '$country'"
-    . " <li>MediaNr: '$nr'"
-    . " <li>Cass_ID: '$cass_id'"
-    . " <li>Part: '$part'"
-    . " <li>Director: '$director_name, $director_fname'"
-    . " <li>Length: '$length'"
-    . " <li>Composer: '$composer_name, $composer_fname'"
-    . " <li>Year: '$year'"
-    . " <li>ToneID: '$tone_id'"
-    . " <li>Cat1_ID: '$cat1_id'"
-    . " <li>Cat2_ID: '$cat2_id'"
-    . " <li>Cat3_ID: '$cat3_id'"
-    . " <li>ColorID: '$color_id'"
-    . " <li>Aquired: '$recdate'"
-    . " <li>ScreenID: '$pict_id'"
-    . " <li>Source: '$src'"
-    . " <li>FSK: '$fsk'"
-    . " <li>Actor1: '$actor1_name, $actor1_fname'"
-    . " <li>Actor2: '$actor2_name, $actor2_fname'"
-    . " <li>Actor3: '$actor3_name, $actor3_fname'"
-    . " <li>Actor4: '$actor4_name, $actor4_fname'"
-    . " <li>Actor5: '$actor5_name, $actor5_fname'"
-    . " <li>Visible1: '$vis_actor1'"
-    . " <li>Visible2: '$vis_actor2'"
-    . " <li>Visible3: '$vis_actor3'"
-    . " <li>Visible4: '$vis_actor4'"
-    . " <li>Visible5: '$vis_actor5'"
-    . " <li>Comment: '$comment'"
-    . "</ul>";
- debug("V",$ddump);
- ##############################################################################
- # prepare for db update: check wether all given actors/director etc. are in db
- # and obtain their IDs, construct the SQL update statement as well as debug
- # output, and finally do the update
- $dmsg     .= $colors["ok"] . "<b>Preparing Update</b>:</Font><p>";
- $dmsg     .= "<ul>\n";
- $query     = "SELECT id FROM directors WHERE name='$director_name' AND firstname='$director_fname'";
- $sub_query = "INSERT INTO directors (name,firstname) VALUES ('$director_name','$director_fname')";
- $dir_id    = insert_person("director",$query,$sub_query,$director_name,$director_fname);
- $query     = "SELECT id FROM music WHERE name='$composer_name' AND firstname='$composer_fname'";
- $sub_query = "INSERT INTO music (name,firstname) VALUES ('$composer_name','$composer_fname')";
- $mus_id    = insert_person("composer",$query,$sub_query,$composer_name,$composer_fname);
- for ($i=1;$i<=$max["actors"];$i++) {
-   $act       = "actor" . $i;
-   $aname     = $act . "_name";
-   $fname     = $act . "_fname";
-   $aid       = "act" . $i . "_id";
-   $query     = "SELECT id FROM actors WHERE name='" . ${$aname} . "' AND firstname='" . ${$fname} . "'";
-   $sub_query = "INSERT INTO actors (name,firstname) VALUES ('" . ${$aname} . "','" . ${$fname} . "')";
-   ${$aid}    = insert_person($act,$query,$sub_query,${$aname},${$fname});
+ $ddump = "Saving data:<p>\n<ul>";
+ while (list($key, $val) = each($HTTP_POST_VARS)) {
+   $ddump .= "<li>$key => $val<br>";
  }
- $dmsg .= "</ul>\n";
- debug("S",$dmsg);
+ $ddump .= "</ul></TD><TD>\n";
+ debug("V",$ddump);
+
+ include("inc/sql_set_persons.inc");
+
  if ($cat2_id < 0) $cat2_id="";
  if ($cat3_id < 0) $cat3_id="";
  if ($pict_id < 0) $pict_id="";
@@ -142,5 +64,4 @@
    }
  }
  
-// $edit=1;
 ?>

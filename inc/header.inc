@@ -1,5 +1,7 @@
 <? /* page header */
   include("inc/config.inc");
+  include("inc/common_funcs.inc");
+  include("inc/sql_helpers.inc");
   function check_empty(&$field) {
     if ($field == "") $field = "&nbsp";
   }
@@ -8,16 +10,11 @@
   }
   include("inc/db_mysql.inc");
   $db = new DB_Sql;
-  $db->Host     = "localhost";
-  $db->Database = "videopro";
-  $db->User     = "root";
-  $db->Password = "achat";
+  $db->Host     = $database["host"];
+  $db->Database = $database["database"];
+  $db->User     = $database["user"];
+  $db->Password = $database["password"];
   if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug = 1;
-  function debug($level,$msg) {
-    GLOBAL $debug;
-    if ( strpos(strtoupper($debug["log"]),strtoupper($level))===false ) return;
-    echo $msg;
-  }
   $pagename = "phpVideoPro v$version";
   switch ( strtolower($page_id) ) {
     case "about"     : $pagename .= " [ About ]"; break;
@@ -25,6 +22,7 @@
     case "view"      : $pagename .= " [ Viewing entry $nr ]"; break;
     case "history"   : $pagename .= " [ History ]"; break;
     case "medialist" : $pagename .= " [ MediaList ]"; break;
+    case "new_entry" : $pagename .= " [ Add entry ]"; break;
     case "taperest"  : $pagename .= " [ Free space on media ]"; break;
     default          : break;
   }
@@ -37,7 +35,7 @@
      A:link{ text-decoration:none }
      A:visted{ text-decoration:none }
      A:active{ text-decoration:none }
-     body { margin-top: 0px; margin-right: 0px; margin-left: 0px }
+     body { margin-top: 0px; margin-right: 0px; margin-left: 0px; background-color: <? echo $colors["page_background"] ?> }
      .tablink { color: #000000; }
      TH { background-color:#cccccc; }
    -->

@@ -18,7 +18,6 @@ coming *around* 0.2.0 (not yet sure if before or after):
 - setup: check for existence and readability of SQL files before execution
 - fields for counter settings (start/end of movie for old tape recorders
   (feature request by user via sourceforge))
-- splitting date field into day-month-year
 
 coming *after* 0.2.0:
 - limit list display to user-definable amount of data sets

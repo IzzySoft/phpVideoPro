@@ -222,18 +222,26 @@ class common {
 
    function initDate($date=0) {
      switch (strtolower(gettype($date))) {
-       case "string"  : $date[year] = substr($date,0,4);
-                        $date[mon]  = substr($date,4,2);
-                        $date[mday] = substr($date,6,2);
-       case "array"   : $this->date = getdate( mktime(0,0,0,$date[mon],$date[mday],$date[year]) ); break;
+       case "string"  : $tdate[year] = substr($date,0,4);
+                        $tdate[mon]  = substr($date,5,2);
+                        $tdate[mday] = substr($date,8,2);
+			$tdate[string] = $date;
+			$this->date = $tdate; break;
+       case "array"   : $this->date = $date; break;
        default        : $this->date = getdate(); break;
      }
-     if (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
-     if (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
-     $this->date[string] = $this->date[year] . $this->date[mon] . $this->date[mday];
+                        while (strlen($this->date[mon])<2) $this->date[mon] = "0" . $this->date[mon];
+                        while (strlen($this->date[mday])<2) $this->date[mday] = "0" . $this->date[mday];
+                        while (strlen($this->date[year])<4) $this->date[year] = "0" . $this->date[year];
+                        $this->date[string] = $this->date[year] . "-" . $this->date[mon] . "-" . $this->date[mday];
    }
 
-   function setRecDate($date) {
+   function setRecDate($year,$month="",$day="") {
+     if (strlen($month)) {
+       $date = array(year=>$year,mon=>$month,mday=>$day);
+     } else {
+       $date = $year;
+     }
      $this->initDate($date);
    }
 
@@ -242,6 +250,16 @@ class common {
        case "string" : return $this->date[string]; break;
        default       : return $this->date; break;
      }
+   }
+   
+   function makeRecDateArr($year,$month="",$day="") {
+     $this->setRecDate($year,$month,$day);
+     return $this->getRecDate("array");
+   }
+
+   function makeRecDateStr($year,$month="",$day="") {
+     $this->setRecDate($year,$month,$day);
+     return $this->getRecDate("string");
    }
 
  } // end class common

@@ -52,6 +52,10 @@
 
  ##############################################################################
  # check wether the specified date is valid
+ if (!$recday)  $recday  = "0";
+ if (!$recmon)  $recmon  = "0";
+ if (!$recyear) $recyear = "0";
+ $recdate = $pvp->common->makeRecDateStr($recyear,$recmon,$recday);
  check_date($recdate,0);
 
  include("inc/sql_set_persons.inc");

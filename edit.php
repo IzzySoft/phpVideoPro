@@ -56,6 +56,7 @@
 
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
+    $dinput = "INPUT";
     dbquery("SELECT id,name,sname FROM mtypes");
     $i = 0;
     while ( $db->next_record() ){
@@ -96,7 +97,7 @@
      $i++;
     }
   } else {
-    $input = "INPUT TYPE=\"button\"";
+    $input = $dinput = "INPUT TYPE=\"button\"";
     // $input .= " readonly"; // HTML 4.0 - not supported by Netscape 4.x
   }
 
@@ -202,7 +203,7 @@
  } // end if (!$new_entry)
   ##########################################################################
   # set some useful defaults
-  if ( trim($recdate)=="" ) $recdate = date("Y-m-d");
+  if ( trim($recdate)=="" ) $recdate = $pvp->common->getRecDate("string");
   switch ( strtolower($page_id) ) {
     case "view"      : if ( trim($recdate)=="0000-00-00" ) $recdate = lang("unknown"); break;
   }
@@ -317,7 +318,12 @@ EndHiddenFields;
     $t->set_var("mlength_free","<INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev"));
   }
   $t->set_var("date_name",lang("date_rec"));
-  $t->set_var("date","<$input NAME=\"recdate\" VALUE=\"$recdate\">");
+  $recdate_arr = $pvp->common->makeRecDateArr($recdate);
+  $tdate .= "<$dinput NAME=\"recday\" VALUE=\"" . $recdate_arr[mday] . "\" " . $form["addon_day"] . ">.";
+  $tdate .= "<$dinput NAME=\"recmon\" VALUE=\"" . $recdate_arr[mon] . "\" " . $form["addon_month"] . ">.";
+  $tdate .= "<$dinput NAME=\"recyear\" VALUE=\"" . $recdate_arr[year] . "\" " . $form["addon_year"] . ">";
+#  echo "<br><br><b>" . htmlentities($tdate) . "<br>\n";
+  $t->set_var("date",$tdate);
   $t->set_var("tone_name",lang("tone"));
   if ($edit) {
     $field = "<SELECT NAME=\"tone_id\">";

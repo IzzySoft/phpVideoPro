@@ -18,6 +18,7 @@
  <li>charset is now maintained by the language files (and not accessible
      via the configuration screen any more)
  <li>fresh installation was broken (fixed)
+ <li>splitted date field into day-month-year
 </ul>
 
 [title]

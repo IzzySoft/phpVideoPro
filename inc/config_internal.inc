@@ -37,6 +37,8 @@ $min["media_size"]     = 10; // min length of recordable media in minutes
 $form["addon_country"] = "SIZE=\"30\" MAXLENGTH=\"" . $max["country_chars"] . "\"";
 $form["addon_name"]    = "SIZE=\"30\" MAXLENGTH=\"" . $max["name_chars"] . "\"";
 $form["addon_year"]    = "SIZE=\"4\" MAXLENGTH=\"4\"";
+$form["addon_month"]   = "SIZE=\"2\" MAXLENGTH=\"2\"";
+$form["addon_day"]     = "SIZE=\"2\" MAXLENGTH=\"2\"";
 $form["addon_fsk"]     = "SIZE=\"2\" MAXLENGTH=\"2\"";
 $form["addon_filmlen"] = "SIZE=\"" . $max["filmlen_chars"] . "\" MAXLENGTH=\"" . $max["filmlen_chars"] . "\"";
 $form["addon_src"]     = "SIZE=\"" . $max["srclen_chars"] . "\" MAXLENGTH=\"" . $max["srclen_chars"] . "\"";

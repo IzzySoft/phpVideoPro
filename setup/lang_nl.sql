@@ -3,7 +3,7 @@
 # Original by Tom Albers
 # ========================================================
 
-UPDATE languages SET charset='iso-8859-1' WHERE lang_id='nl';
+UPDATE languages SET charset='UTF-8' WHERE lang_id='nl';
 INSERT INTO lang VALUES ('about','nl','Over...','');
 INSERT INTO lang VALUES ('actor','nl','Acteur','');
 INSERT INTO lang VALUES ('actors','nl','Acteurs','');
@@ -23,7 +23,7 @@ INSERT INTO lang VALUES ('configuration','nl','Configuratie','');
 INSERT INTO lang VALUES ('content','nl','Inhoud','');
 INSERT INTO lang VALUES ('counter_start_stop','nl','Teller Start/Stop','');
 INSERT INTO lang VALUES ('country','nl','Land','');
-INSERT INTO lang VALUES ('create','nl','Creeër','');
+INSERT INTO lang VALUES ('create','nl','CreeÃ«r','');
 INSERT INTO lang VALUES ('create_success','nl','Opgeslagen!','');
 INSERT INTO lang VALUES ('cut_off','nl','Afgelopen op','');
 INSERT INTO lang VALUES ('date_rec','nl','Datum opname/koop','');

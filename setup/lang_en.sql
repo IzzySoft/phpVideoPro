@@ -2,7 +2,7 @@
 # English Translation phrases for phpVideoPro
 # ========================================================
 
-UPDATE languages SET charset='iso-8859-1' WHERE lang_id='en';
+UPDATE languages SET charset='UTF-8' WHERE lang_id='en';
 INSERT INTO lang VALUES ('not_yet_implemented','en','Sorry - not yet implemented.','Hint displayed when hitting a not yet implemented feature');
 INSERT INTO lang VALUES('medium','en','Medium','The term <i>Medium</i> refers to a physical medium, such as a tape or DVD');
 INSERT INTO lang VALUES('nr','en','Nr','Abbreviation for the term <i>number</i>');

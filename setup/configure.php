@@ -53,7 +53,7 @@ if ( isset($update) ) {
   if ($admin) {
     unset($rw_media);
     for ($i=0;$i<count($mtypes);$i++) {
-      $id    = $mtypes[$i][id];
+      $id    = $mtypes[$i]['id'];
       $mtype = "mtype_".$id;
       if (${$mtype}) {
         if (strlen($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
@@ -105,7 +105,7 @@ $lang_avail = $db->get_languages(1);
 for ($i=0;$i<count($lang_avail);$i++) {
   $langu[$lang_avail[$i]["id"]] = $lang_avail[$i]["name"];
 }
-if ($scan_langfile) $lang_unavail = $db->get_languages(0);
+if (isset($scan_langfile) && $scan_langfile) $lang_unavail = $db->get_languages(0);
 $lang_installed = $db->get_installedlang();
 
 #======================================================[ get preferences ]===
@@ -244,11 +244,12 @@ if ($admin) {
   #--[ rw_media ]--
   $t->set_var("item_name",lang("rw_media"));
   $t->set_var("item_comment",lang("rw_media_comment"));
-  unset ($id,$name,$input);
+  unset ($id,$name);
+  $input = "";
   $mtypes = $db->get_mtypes();
   for ($i=0;$i<count($mtypes);$i++) {
-    $id[$i]   = $mtypes[$i][id];
-    $name[$i] = $mtypes[$i][sname];
+    $id[$i]   = $mtypes[$i]['id'];
+    $name[$i] = $mtypes[$i]['sname'];
     if ($pvp->common->medium_is_rw($id[$i])) { $checked[$i] = " CHECKED"; } else { $checked[$i] = ""; }
     $input .= "<INPUT TYPE=\"checkbox\" NAME=\"mtype_" . $id[$i] . "\" . $checked[$i] class=\"checkbox\">&nbsp;$name[$i]&nbsp;";
   }
@@ -284,11 +285,12 @@ if ($admin) {
 #--[ movie_tone_default ]--
 $t->set_var("item_name",lang("movie_tone_default"));
 $t->set_var("item_comment",lang("movie_tone_default_comment"));
-unset($id,$input);
+unset($id);
+$input = "";
 $pict = $db->get_tone();
 for ($i=0;$i<count($pict);$i++) {
-  $id     = $pict[$i][id];
-  $name   = lang($pict[$i][name]);
+  $id     = $pict[$i]['id'];
+  $name   = lang($pict[$i]['name']);
   $input .= "<INPUT TYPE='radio' NAME='movie_tone' VALUE='$id'";
   if ($pvp->preferences->get("default_movie_toneid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
@@ -299,11 +301,12 @@ $t->parse("item","itemblock",TRUE);
 #--[ movie_color_default ]--
 $t->set_var("item_name",lang("movie_color_default"));
 $t->set_var("item_comment",lang("movie_color_default_comment"));
-unset($id,$input);
+unset($id);
+$input = "";
 $pict = $db->get_color();
 for ($i=0;$i<count($pict);$i++) {
-  $id     = $pict[$i][id];
-  $name   = lang($pict[$i][name]);
+  $id     = $pict[$i]['id'];
+  $name   = lang($pict[$i]['name']);
   $input .= "<INPUT TYPE='radio' NAME='movie_color' VALUE='$id'";
   if ($pvp->preferences->get("default_movie_colorid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
@@ -466,7 +469,7 @@ $t->parse("list","listblock",TRUE);
 #--[ complete the whole thing ]--
 if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" CLASS=\"submit\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
-if ($menue && !$update) {
+if ($menue && !(isset($update))) {
   include ($base_path . "inc/header.inc");
   if ($admin) {
 ?>

@@ -22,7 +22,7 @@
 
 <TABLE ALIGN="center" WIDTH="100%" BORDER="1" STYLE="margin:5">
 <!-- BEGIN listblock -->
- <TR><TH>{list_head}</TH></TR>
+ <TR><TH><TABLE WIDTH="100%" BORDER="0"><TR><TH>{list_head}</TH><TH><DIV ALIGN="right">{help_icon}</DIV></TH></TR></TABLE></TH></TR>
  <TR CLASS="content"><TD>
   <TABLE WIDTH="100%">
   <!-- BEGIN itemblock -->

@@ -24,7 +24,7 @@
       $output .= ">";
     } else {
       $output .= "<INPUT TYPE=\"button\" NAME=\"" . ${$visible} . "\" VALUE=\"";
-      if (${$visible}) { $output .= "Yes\">"; } else { $output .= "No\">"; }
+      if (${$visible}) { $output .= lang("yes") ."\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"" . ${$visible} ."\" VALUE=\"${$visible}\">";
     }
     $output .= "</CENTER>";
@@ -40,7 +40,7 @@
       $output .= ">";
     } else {
       $output .= "<INPUT TYPE=\"button\" NAME=\"$name\" VALUE=\"";
-      if ($list) { $output .= "Yes\">"; } else { $output .= "No\">"; }
+      if ($list) { $output .= lang("yes") . "\">"; } else { $output .= lang("no") . "\">"; }
       $output .= "<INPUT TYPE=\"hidden\" NAME=\"$name\" VALUE=\"$list\">";
     }
     $output .= "</CENTER>";
@@ -110,9 +110,9 @@
 
   echo "<H2 Align=Center>";
   switch ( strtolower($page_id) ) {
-    case "edit"      : echo "Edit entry $nr"; break;
-    case "view"      : echo "View entry $nr"; break;
-    case "new_entry" : echo "Add entry"; break;
+    case "edit"      : echo lang("edit_entry",$nr); break;
+    case "view"      : echo lang("view_entry",$nr); break;
+    case "new_entry" : echo lang("add_entry"); break;
     default          : break;
   }
   echo "</H2>\n";
@@ -205,7 +205,7 @@
   # set some useful defaults
   if ( trim($recdate)=="" ) $recdate = date("Y-m-d");
   switch ( strtolower($page_id) ) {
-    case "view"      : if ( trim($recdate)=="0000-00-00" ) $recdate = "unknown"; break;
+    case "view"      : if ( trim($recdate)=="0000-00-00" ) $recdate = lang("unknown"); break;
   }
   if ($create) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
@@ -224,7 +224,7 @@
 <Table Width="90%" Align="Center" Border="1">
  <TR><TH ColSpan=4><? echo "<$input NAME=\"title\" VALUE=\"$title\" " . $form["addon_title"] . ">" ?></TH></TR>
  <TR>
-  <TD Width=20%>MediaType</TD><TD Width=30%><?
+  <TD Width=20%><? echo lang("mediatype") ?></TD><TD Width=30%><?
   if ($new_entry) {
     echo "<SELECT NAME=\"mtype_id\">";
     for ($i=0;$i<count($mtypes);$i++) {
@@ -237,12 +237,12 @@
     echo "<INPUT TYPE=\"button\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
     echo "<INPUT TYPE=\"hidden\" NAME=\"media_tname\" VALUE=\"$media_tname\">";
   } ?></TD>
-  <TD Width=20%>Country</TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
+  <TD Width=20%><? echo lang("country") ?></TD><TD Width=30%><? form_input("country",$country,$form["addon_country"]); ?></TD></TR>
  <TR>
-  <TD Width=20%>MediaNr</TD><TD Width=30%><?
+  <TD Width=20%><? echo lang("medianr") ?></TD><TD Width=30%><?
     if ($new_entry) {
       echo "<INPUT NAME=\"cass_id\" " . $form["addon_cass_id"] . ">&nbsp;-&nbsp;<INPUT NAME=\"part\" " . $form["addon_part"] . ">";
-      echo "&nbsp;&nbsp;&nbsp;highest entries in db:&nbsp;<SELECT>";
+      echo "&nbsp;&nbsp;&nbsp;" . lang("highest_db_entries") . ":&nbsp;<SELECT>";
       for ($i=0;$i<count($lastnum);$i++) {
         echo "<OPTION NAME=\"lastnum\" VALUE=\"\">" . $lastnum[$i][entry] . "</OPTION>";
       }
@@ -250,11 +250,11 @@
     } else {
       echo "<INPUT TYPE=\"button\" NAME=\"nr\" VALUE=\"$nr\"><INPUT TYPE=\"hidden\" NAME=\"nr\" VALUE=\"$nr\">";
     } ?></TD>
-  <TD>Year</TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
+  <TD><? echo lang("year") ?></TD><TD><? form_input("year",$year,$form["addon_year"]); ?></TD></TR>
  <TR>
-  <TD>Length</TD><TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0><TR><TD><? form_input("length",$length,$form["addon_filmlen"]); ?> min</TD><TD>LongPlay:&nbsp;<INPUT NAME="lp" <?
-  if ($edit) { ?>TYPE="checkbox" VALUE="1"<? if ($lp) echo " CHECKED"; echo ">"; } else { ?>TYPE="button" VALUE="<? if ($lp) { echo "Yes\">"; } else { echo "No\">"; } } ?></TD></TR></TABLE>
-  <TD>Category 1-2-3</TD><TD><?
+  <TD><? echo lang("length") ?></TD><TD><TABLE WIDTH="100%" CellPadding=0 CellSpacing=0><TR><TD><? form_input("length",$length,$form["addon_filmlen"]); echo " " . lang("min"); ?></TD><TD><? echo lang("longplay") ?>:&nbsp;<INPUT NAME="lp" <?
+  if ($edit) { ?>TYPE="checkbox" VALUE="1"<? if ($lp) echo " CHECKED"; echo ">"; } else { ?>TYPE="button" VALUE="<? if ($lp) { echo lang("yes") . "\">"; } else { echo lang("no") . "\">"; } } ?></TD></TR></TABLE>
+  <TD><? echo lang("category") ?> 1-2-3</TD><TD><?
   for ($i=1;$i<=$max["categories"];$i++) {
    if ($edit) {
     echo "<SELECT NAME=\"cat" . $i . "_id\">";
@@ -277,13 +277,13 @@
   <TD ColSpan=2>
    <Table Width=100% Border=0 CellPadding=0 CellSpacing=0><?
     if ($new_entry) {
-      echo "<TR><TD>MediaLength</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> min</TD></TD>\n";
+      echo "<TR><TD>" . lang("medialength") . "</TD><TD><INPUT NAME=\"mlength\" VALUE=\"240\" " . $form["addon_filmlen"] . "> " . lang("minute_abbrev") . "</TD></TD>\n";
     } else {
-      echo "<TR><TD>Free</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> min</TD></TD>\n";
+      echo "<TR><TD>" . lang("free") . "</TD><TD><INPUT TYPE=\"button\" NAME=\"free\" VALUE=\"$free\"> " . lang("minute_abbrev") . "</TD></TD>\n";
     } ?>
-    <TR><TD>Acquired</TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
+    <TR><TD><? echo lang("date_rec") ?></TD><TD><? echo "<$input NAME=\"recdate\" VALUE=\"$recdate\">" ?></TD></TR>
     <TR><TD ColSpan="2"><HR></TD></TR>
-    <TR><TD WIDTH=30%>Tone</TD><TD><?
+    <TR><TD WIDTH=30%><? echo lang("tone") ?></TD><TD><?
     if ($edit) {
       echo "<SELECT NAME=\"tone_id\">";
       for ($i=0;$i<count($ttypes);$i++) {
@@ -295,7 +295,7 @@
     } else {
       echo "<$input NAME=\"tone\" VALUE=\"$tone\">";
     } ?></TD></TR>
-    <TR><TD>Picture</TD><TD><?
+    <TR><TD><? echo lang("picture") ?></TD><TD><?
     if ($edit) {
       echo "<SELECT NAME=\"color_id\">";
       for ($i=0;$i<count($scolors);$i++) {
@@ -308,9 +308,9 @@
       echo "<$input NAME=\"color\" VALUE=\"$color\">";
     }
     ?></TD></TR>
-    <TR><TD Width=40%>Screen</TD><TD Width=60%><?
+    <TR><TD Width=40%><? echo lang("screen") ?></TD><TD Width=60%><?
     if ($edit) {
-      echo "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">unknown</OPTION>";
+      echo "<SELECT NAME=\"pict_id\"><OPTION VALUE=\"-1\">" . lang("unknown") . "</OPTION>";
       for ($i=0;$i<count($picts);$i++) {
         echo "<OPTION VALUE=\"" . $picts[$i][id] . "\"";
         if ($picts[$i][name]==$pict_format) echo  "SELECTED";
@@ -318,25 +318,25 @@
       }
       echo "</SELECT>";
     } else {
-      echo "<$input NAME=\"pict_format\" VALUE=\"$pict_format\">";
+      echo "<$input NAME=\"pict_format\" VALUE=\"" . lang($pict_format) . "\">";
     }
     ?></TD></TR>
-    <TR><TD Width=40%>Source</TD><TD Width=60%><? form_input("src",$src,$form["addon_src"]); ?></TD></TR>
-    <TR><TD>FSK</TD><TD><? form_input("fsk",$fsk,$form["addon_fsk"]); ?></TD></TR>
+    <TR><TD Width=40%><? echo lang("source") ?></TD><TD Width=60%><? if (strlen(trim($src))) { form_input("src",$src,$form["addon_src"]); } else { form_input("dummy",lang("unknown"),$form["addon_src"]); } ?></TD></TR>
+    <TR><TD><? echo lang("fsk") ?></TD><TD><? form_input("fsk",$fsk,$form["addon_fsk"]); ?></TD></TR>
    </Table></TD>
   <TD ColSpan=2>
    <Table Width=100%>
-    <TR><TD><B>Staff</B></TD><TD>Name</TD><TD>First Name</TD><TD ALIGN="center">in List</TD></TR>
-    <TR><TD>Director</TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); ?></TD>
+    <TR><TD><B><? echo lang("staff") ?></B></TD><TD><? echo lang("name") ?></TD><TD><? echo lang("first_name") ?></TD><TD ALIGN="center"><? echo lang("in_list") ?></TD></TR>
+    <TR><TD><? echo lang("director") ?></TD><TD><? form_input("director_name",$director_name,$form["addon_name"]); ?></TD>
         <TD><? form_input("director_fname",$director_fname,$form["addon_name"]); ?></TD>
         <TD><? echo vis_staff('director_list',$director_list); ?></TD></TR>
-    <TR><TD>Composer</TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); ?></TD>
+    <TR><TD><? echo lang("composer") ?></TD><TD><? form_input("composer_name",$composer_name,$form["addon_name"]); ?></TD>
         <TD><? form_input("composer_fname",$composer_fname,$form["addon_name"]); ?></TD>
         <TD><? echo vis_staff('music_list',$music_list); ?></TD></TR>
     <TR><TD COLSPAN="4"><HR></TD></TR>
     <?php for ($i=1;$i<=$max["actors"];$i++) {
       $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
-      echo "<TR><TD>Actor $i</TD><TD>";
+      echo "<TR><TD>" . lang("actor") . " $i</TD><TD>";
       form_input($name,$actor[$i][name],$form["addon_name"]);
       echo "</TD><TD>";
       form_input($fname,$actor[$i][fname],$form["addon_name"]);
@@ -347,7 +347,7 @@
   </TR>
  <TR><TD ColSpan=4 Align=Center>
    <TABLE WIDTH="100%" BORDER="0">
-     <TR><TH><HR>Comments<HR></TH></TR>
+     <TR><TH><HR><? echo lang("comments") ?><HR></TH></TR>
      <TR><TD><?
      if ($edit) {
        echo "<CENTER><TEXTAREA ROWS=\"5\" COLS=\"120\" NAME=\"comment\">$comment</TEXTAREA></CENTER>";
@@ -359,12 +359,12 @@
  <TR><TD ColSpan=4>
    <INPUT TYPE="hidden" NAME="nr" VALUE="<?php echo $nr ?>">
    <Table Width="100%"><? if ($new_entry) { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="Cancel"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="create" VALUE="Create"></TD></TR><? } elseif ($edit) { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="Cancel"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="Update"></TD></TR><? } else { ?>
-    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="Edit"></TD>
-        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="delete" VALUE="Delete"></TD></TR><? } ?>
+    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? echo lang("cancel") ?>"></TD>
+        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="create" VALUE="<? echo lang("create") ?>"></TD></TR><? } elseif ($edit) { ?>
+    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="cancel" VALUE="<? lang("cancel") ?>"></TD>
+        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="update" VALUE="<? echo lang("update") ?>"></TD></TR><? } else { ?>
+    <TR><TD Width="50%"><INPUT TYPE="submit" NAME="edit" VALUE="<? echo lang("edit") ?>"></TD>
+        <TD Width="50%" ALIGN="right"><INPUT TYPE="submit" NAME="delete" VALUE="<? echo lang("delete") ?>"></TD></TR><? } ?>
    </TABLE>
  </TD></TR>
 </Table>

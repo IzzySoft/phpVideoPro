@@ -31,6 +31,29 @@ INSERT INTO lang VALUES('max','en','max');
 INSERT INTO lang VALUES('s/w','en','b/w');
 INSERT INTO lang VALUES('farbe','en','Color');
 INSERT INTO lang VALUES('3d','en','3D');
+INSERT INTO lang VALUES('edit_entry','en','Edit entry %1');
+INSERT INTO lang VALUES('view_entry','en','View entry %1');
+INSERT INTO lang VALUES('add_entry','en','Add entry');
+INSERT INTO lang VALUES('unknown','en','unknown');
+INSERT INTO lang VALUES('country','en','Country');
+INSERT INTO lang VALUES('medianr','en','MediaNr');
+INSERT INTO lang VALUES('highest_db_entries','en','highest entries in db');
+INSERT INTO lang VALUES('no','en','No');
+INSERT INTO lang VALUES('yes','en','Yes');
+INSERT INTO lang VALUES('medialength','en','MediaLength');
+INSERT INTO lang VALUES('minute_abbrev','en','min');
+INSERT INTO lang VALUES('source','en','Source');
+INSERT INTO lang VALUES('staff','en','Staff');
+INSERT INTO lang VALUES('name','en','Name');
+INSERT INTO lang VALUES('first_name','en','First Name');
+INSERT INTO lang VALUES('in_list','en','in List');
+INSERT INTO lang VALUES('comments','en','Comments');
+INSERT INTO lang VALUES('cancel','en','Cancel');
+INSERT INTO lang VALUES('create','en','Create');
+INSERT INTO lang VALUES('update','en','Update');
+INSERT INTO lang VALUES('edit','en','Edit');
+INSERT INTO lang VALUES('delete','en','Delete');
+
 
 # when finished, activate language
 UPDATE languages SET available='Yes' WHERE lang_id='en';

@@ -150,6 +150,24 @@
        }
        $$value = $this->f("$value");
      }
+     $movie[actors12] = $movie[actor1];
+     if ( strlen($movie[actor2]) ) {
+       if ( strlen($movie[actors12]) ) $movie[actors12] .= ", ";
+       $movie[actors12] .= $movie[actor2];
+     }
+     $movie[actor35] = $movie[actor3];
+     for ($i=4;$i<6;$i++) {
+       $actor = "actor$i";
+       if ( strlen($movie[$actor]) ) {
+         if ( strlen($movie[actors35]) ) $movie[actors35] .= ", ";
+	 $movie[actors35] .= $movie[$actor];
+       }
+     }
+     $movie[actors] = $movie[actors12];
+     if ( strlen($movie[$actors35]) ) {
+       if ( strlen($movie[actors]) ) $movie[actors] .= ", ";
+       $movie[actors] .= $movie[actors35];
+     }
      $this->query("SELECT firstname,name FROM directors WHERE id=$director_id");
      $this->next_record();
      $movie[director] = trim( $this->f('firstname') . " " . $this->f('name') );

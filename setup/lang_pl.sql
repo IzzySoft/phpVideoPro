@@ -134,4 +134,5 @@ INSERT INTO lang VALUES('hit_back_to_correct','pl','Wci¶nij "Wstecz" w celu popr
 INSERT INTO lang VALUES('goto_entry','pl','Bezpo¶rednio do wpisu:');
 INSERT INTO lang VALUES('start_page','pl','Strona startowa');
 INSERT INTO lang VALUES('invalid_fsk','pl','Warto¶æ %1 jest nieprawid³owa. %1 oznacza Rodzicielski Przewodnik, np. od ilu lat film jest dozwolony.');
+INSERT INTO lang VALUES('counter_start_stop','pl','Licznik Start/Stop');
 

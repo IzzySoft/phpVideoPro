@@ -91,24 +91,12 @@
     # and finally we may have to correct the free space remaining on that medium (if rewritable)
     if ( $pvp->common->medium_is_rw($mtype_id) ) {
       $details .= "<li>" . lang("recalc_free"). ". ";
-      $time_left = $db->get_mediaspace($cass_id);
-      if ( strlen($time_left) ) {
-        $list = $db->get_movieid($mtype_id,$cass_id);
-	for ($i=0;$i<count($list);$i++) {
-          $lp = $list[$i][lp];
-          if ( strlen($lp) ) {
-            $time_left -= $list[$i][length] / 2;
-          } else {
-            $time_left -= $list[$i][length];
-          }
-        }
-	if ( $db->update_freetime($cass_id,$time_left) ) {
-          $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
-        } else {
-          $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
-        }
+      if ( $db->update_freetime($cass_id,$mtype_id) ) {
+	$time_left = $db->get_mediumfreetime($cass_id);
+	if ( !strlen($time_left) ) $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+        $details .= lang("time_left",$time_left) . " " . $colors["ok"] . lang("ok") . ".</Font><BR>\n";
       } else {
-        $details .= $colors["err"] . lang("no_entry_in_tapelist") . "!</Font><br>\n";
+        $details .= $colors["err"] . lang("tapelist_update_failed") . "!</Font><br>\n";
       }
     }
     # and that's all.

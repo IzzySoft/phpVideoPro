@@ -26,7 +26,8 @@
  $t->set_block("list","mdatablock","mdatalist");
  $t->set_block("list","emptyblock","emptylist");
  $t->set_var("listtitle",lang($page_id));
- $t->set_var("formtarget",$PHP_SELF);
+# $t->set_var("formtarget",$PHP_SELF);
+ $t->set_var("formtarget",$PHP_SELF ."\" enctype=\"multipart/form-data");
 
  #======================================================[ init target lang ]==
  if (!$targetlang) {
@@ -85,7 +86,7 @@
    if ($submit) $db->set_translation($msgid,${$msgid."_trans"},$targetlang);
    $orig   = $list["$msgid"];
    $target = $db->get_singletrans($targetlang,"",$msgid);
-   if ($target[$msgid]) $target[$msgid] = htmlentities($target[$msgid]);
+#   if ($target[$msgid]) $target[$msgid] = htmlentities($target[$msgid]);
    if ($orig) $orig = htmlentities($orig);
    $t->set_var("code",$msgid);
    $t->set_var("orig",$orig);
@@ -98,7 +99,7 @@
  if ($submit) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
- $t->set_var("charset",$charset);
+ $t->set_var("charset","$charset,iso-8859-1");
  $t->set_var("code",lang("trans_code"));
  $t->set_var("orig",lang("orig_trans","en"));
  $t->set_var("trans",lang("target_trans",$targetlang));

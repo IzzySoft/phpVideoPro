@@ -28,6 +28,7 @@
 
  #-----------------------------------------------------[ set up debugging ]---
  if ( !strpos(strtoupper($debug["log"]),"D")===false ) $db->Debug=1;
+ error_reporting(0); // initially turn all off
  function set_phpdebug($level) {
    $pdbug = error_reporting();
    error_reporting($pdbug | $level);

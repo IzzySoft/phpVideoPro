@@ -1,4 +1,4 @@
-<? /* list of actors, directors, composers */
+<? /* Explanation of the Applicat template set */
  ?>
 <? /* $Id$ */ ?>
 
@@ -24,9 +24,9 @@ application or in the help section.
 Button explanation
 
 [text]
-<TABLE ALIGN="center" WIDTH="90%">
+<TABLE ALIGN="center" WIDTH="90%" BORDER="1">
  <COLGROUP><COL WIDTH="14"><COL WIDTH="1*"><COL WIDTH="1*"></COLGROUP>
- <TR><TD>&nbsp;</TD><TD><DIV ALIGN="center"><B>Application</B></DIV></TD>
+ <TR><TD></TD><TD><DIV ALIGN="center"><B>Application</B></DIV></TD>
      <TD><DIV ALIGN="center"><B>Help</B></DIV></TD></TR>
  <TR><TD><INPUT TYPE="image" NAME="button_back" CLASS="imgbut" SRC="{base_url}templates/applicat/images/win_back.gif" WIDTH="14" HEIGHT="13"
 ></TD>
@@ -50,5 +50,12 @@ Button explanation
      <TD><DIV ALIGN="center">-</DIV></TD></TR>
 </TABLE>
 
-[eof]
+[title]
+Settings
 
+[text]
+No special settings are required for the <I>Applicat</I> template set, except
+that you may want to (de)activate it using the
+<I><A HREF="{PHP_SELF}?topic=configuration">*configuration#</A></I> menu.
+
+[eof]

@@ -259,3 +259,4 @@ INSERT INTO lang VALUES('expire_cookies_comment','de','Wie lange sollen die Cook
 INSERT INTO lang VALUES('day','de','Tag');
 INSERT INTO lang VALUES('week','de','Woche');
 INSERT INTO lang VALUES('month','de','Monat');
+INSERT INTO lang VALUES('preferences','de','Einstellungen');

@@ -9,6 +9,8 @@
      the DB as usual. DB preferences (= defaults) are managed via the
      admin-&gt;configuration menue, while edit-&gt;configuration manages
      the user preferences, i.e. by cookies.
+ <li>renamed the "configuration" item in edit menue to "preferences" - this
+     reflects the issue much better ;)
 </ul>
 
 [title]

@@ -400,7 +400,7 @@ $t->parse("list","listblock",TRUE);
 
 #--[ complete the whole thing ]--
 $t->set_var("update","<INPUT TYPE=\"SUBMIT\" NAME=\"update\" VALUE=\"" . lang("update") . "\">");
-if ($menue && !$update) include ("inc/header.inc");
+if ($menue && !$update) include ($base_path . "inc/header.inc");
 $t->pparse("out","config");
 
 include($base_path . "inc/footer.inc");

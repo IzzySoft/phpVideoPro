@@ -56,7 +56,6 @@
   dhtmlMenu.addItem(new NavBarMenuItem("Edit", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("Add new Entry", "<? echo $base_url ?>new.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("Change Tape Nr", "<? echo $base_url ?>change_nr.php"));
-  dhtmlMenu.addItem(new NavBarMenuItem("Delete Entry", "<? echo $base_url ?>delete.php"));
   myNavBar1.addMenu(dhtmlMenu);
 
   dhtmlMenu = new NavBarMenu(60, 140);
@@ -69,7 +68,8 @@
   dhtmlMenu.addItem(new NavBarMenuItem("View", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("Medialist", "<? echo $base_url ?>medialist.php"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
-  dhtmlMenu.addItem(new NavBarMenuItem("Taperest", "<? echo $base_url ?>taperest.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("Taperest (absolute)", "<? echo $base_url ?>taperest.php"));
+  dhtmlMenu.addItem(new NavBarMenuItem("Taperest (filtered)", "<? echo $base_url ?>taperest.php?usefilter=1"));
   dhtmlMenu.addItem(new NavBarMenuItem("Duplicate", "<? echo $base_url ?>dupes.php"));
   myNavBar1.addMenu(dhtmlMenu);
 

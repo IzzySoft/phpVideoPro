@@ -3,9 +3,11 @@
   $page_id = "taperest";
   include("inc/config.inc");
   include("inc/header.inc");
+  if ($usefilter) $filter = get_filters();
 
   if (!$minfree) { ?>
     <FORM NAME="space" METHOD="post" ACTION="<? echo $PHP_SELF ?>">
+      <INPUT TYPE="hidden" NAME="usefilter" VALUE="<? echo $usefilter ?>">
       <TABLE WIDTH="70%" ALIGN="center">
         <TR><TD>Enter minimum of free space on medium to display:</TD>
             <TD><INPUT NAME="minfree"></TD>
@@ -15,9 +17,16 @@
     exit;
   }
 
-  $query = "SELECT id,free FROM cass WHERE free>='$minfree' ORDER BY free DESC";
-  debug("S",$colors["ok"] . "$query</Font><br>\n");
-  $db->query($query);
+  $where = "WHERE free>='$minfree'";
+  if ( strlen($filter) ) {
+    dbquery("SELECT cass_id FROM video v WHERE $filter");
+    $i=0;
+    while ( $db->next_record() ) {
+      if ($i) { $tapelist .= "," . $db->f('cass_id'); } else { $tapelist = $db->f('cass_id'); }
+    }
+    $where .= " AND id IN ($tapelist)";
+  }
+  dbquery("SELECT id,free FROM cass $where ORDER BY free DESC");
   $i = 0;
   while ( $db->next_record() ) {
     $i++;

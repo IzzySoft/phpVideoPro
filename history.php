@@ -30,6 +30,8 @@
        <li>added functionality to delete an existing entry. DB should be reorganized
            during this process (e.g. actors deleted from actors table if no other
            db entry is referring to them).
+       <li>added filtered taperest list (list of remaining time on tapes which only
+           includes tapes that match the filter criteria)
       </ul>
   <LI><b>0.1.0 (June 29, 2001)</b><br>
       Since feature freeze is in effect, there are only bugfixes and works

@@ -11,6 +11,14 @@ available - some of them are only reachable via the admin menue's
 "*configuration#" menue since they should only be touched by an administrator -
 while others are somehow "preferences" that should be based on an user's wishes.
 
+[text]
+Starting with v0.3.8, phpVideoPro optionally can use cookies for the preferences
+management. In this case, you set up defaults via the *admin# -&gt;
+*configuration# menue (make sure to enable cookies here), and advice the users
+to use the *edit# -&gt; *preferences# menue to set their preferences (cookies
+then are used for filter settings as well). You may then protect your admin/
+directory by an .htaccess file to give access to authorized users only.
+
 [title]
 *language_settings#
 
@@ -67,7 +75,7 @@ additional template sets available (which will only happen when <b>YOU</b>
 write them - I'm not a good designer), this is the place to make your choice.
 
 [title]
-*general#
+*config_media#
 
 [text]
 <b>*rw_media#:</b> For some media types, such as original video tapes or DVDs,
@@ -114,6 +122,25 @@ Nevertheless, there may be some fans of "oldies" out there who mostly record
 movies from the 1920's which, of course, ship in black-and-white mode. Those
 of you may want to change this behaviour and like to initiate the color mode
 for new movies with "*s/w#". Do this here.
+
+[title]
+*cookies#
+
+[text]
+<b>*enable_cookies#:</b> Without having this box checked, phpVideoPro won't
+use any cookies at all, i.e. preferences will allways be saved to and loaded
+from the database - thus overwriting the defaults, even if set from the *edit#
+-&gt; *preferences# menue. So make sure to set this, if multiple users should
+access your installation at the same time.
+
+[title]
+<b>*expire_cookies#:</b> Here you may define the lifetime of your cookies. If
+setting this to "*session#", cookies are always deleted when the browser is
+closed - and with a new session, the defaults are loaded from the database
+again. In the other cases, cookies remain active for the time frame you set.
+
+[title]
+*general#
 
 [text]
 <b>*display_limit#:</b> Past versions of phpVideoPro displayed lists, e.g. with

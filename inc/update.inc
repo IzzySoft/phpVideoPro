@@ -30,10 +30,10 @@
  debug("S",$colors["ok"] . "<p><b>Executing Final Query:</b><br>$update</p></Font>");
  if ( $db->query($update) ) {
    debug("S",$colors["ok"] . "Query completed successfully.</Font>\n");
-   $save_result = $colors["ok"] . "Entry updated successfully.</Font><BR>\n";
+   $save_result = $colors["ok"] . lang("update_success") . ".</Font><BR>\n";
  } else {
    debug("E",$colors["err"] . "Query failed to execute!</Font>\n");
-   $save_result = $colors["err"] . "Failed to update entry!</Font><BR>\n";
+   $save_result = $colors["err"] . lang("update_failed") . "!</Font><BR>\n";
  };
  ##############################################################################
  # updating free time on media for Recorded Video Tapes

@@ -65,6 +65,7 @@ INSERT INTO lang VALUES('hit_back_to_correct','de','Bitte auf den "Zurück" Butto
 INSERT INTO lang VALUES('dupe_id_entered','de','Es existiert bereits ein Datensatz mit der angegebenen MediaNr in der Datenbank. Zur Korrektur der Eingabe bitte den "Zurück" Button des Browsers betätigen. Hinweis: direkt neben dem Eingabefeld für die MediaNr befindet sich eine Auswahlbox. Diese gibt die höchste vergebene ID für jedes Medium an. Normalerweise ist es eine gute Idee, für ein neues Medium die erste (vierstellige) Zahl, bzw. für einen neuen Film auf dem gleichen Medium die zweite (zweistellige) Zahl um 1 zu erhöhen.');
 INSERT INTO lang VALUES('create_success','de','Datensatz erfolgreich erstellt');
 INSERT INTO lang VALUES('update_failed','de','Datensatz konnte nicht aktualisiert werden');
+INSERT INTO lang VALUES('update_success','de','Datensatz erfolgreich aktualisiert');
 INSERT INTO lang VALUES('about','de','About');
 INSERT INTO lang VALUES('history','de','History');
 INSERT INTO lang VALUES('deleting_entry','de','Lösche Datensatz %1');

@@ -44,6 +44,15 @@
    if (!$$field) $$field = 0;
  }
 
+ # region code settings
+ $rccount = count($rc);
+ if ($rccount) {
+   for ($i=0;$i<$rccount;++$i) {
+     $mrc[$rc[$i]] = 1;
+   }
+   $movie[rc] = $mrc;
+ }
+
  # prepare the movie array
  $fields = array("mtype_id","cass_id","part","title","length","country","year",
                  "cat1_id","cat2_id","cat3_id","director_list","music_list",

@@ -132,7 +132,7 @@
   // values:
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
-	      "commercials","tone","tone_id","color","disktype");
+	      "commercials","tone","tone_id","color","disktype","rc");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -220,8 +220,9 @@
 
   // main block
   #---[ Obtain disktype data ]---
+  $mdisktype = $db->get_disktypes($mtype_id);
   if ($edit) {
-    $disktypes = $db->get_disktypes($mtype_id);
+    $disktypes = $mdisktype;
     $dtcount   = count($disktypes);
   } elseif ($disktype) {
     $disktypes = $db->get_disktypes($mtype_id,$disktype);
@@ -263,6 +264,28 @@ EndHiddenFields;
   $t->set_var("title","<$input NAME=\"title\" VALUE=\"$title\" " . $formAddon . ">");
   #---[ media data ]---
   $t->set_var("mtype_name",lang("mediatype"));
+  if ($mdisktype[0]->rc) {
+    $t->set_var("rc_name",lang("region_code"));
+    if ($agent->name=="konqueror") $t->set_var("konq_fix"," STYLE='margin-right:-10'");
+    if ($new_entry && !$disktype) { // editable only for new DVDs
+      for ($i=0;$i<7;++$i) {
+        $rcname .= "<INPUT TYPE='checkbox' NAME='rc[]' VALUE='$i' CLASS='checkbox'";
+        if ($rc[$i]) $rcname .= " CHECKED";
+        $rcname .= ">&nbsp;$i";
+        if ($i<6) $rcname .= "&nbsp;";
+      }
+    } else {
+      $rccount = count($rc);
+      if ( !$rccount ) {
+        $rcname  = form_input("rc",lang("unknown"),"CLASS='techinput'");
+      } else {
+        for ($i=0;$i<7;++$i) {
+          if ($rc[$i]) $rcname .= form_input("rc",$i,"CLASS='yesnobutton'");
+        }
+      }
+    }
+    $t->set_var("rc",$rcname);
+  }
   if ($new_entry) {
     $field  = "<INPUT TYPE='button' NAME='media_tname' VALUE='$media_tname' CLASS='catinput'>";
     $field .= "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>";
@@ -339,7 +362,7 @@ EndHiddenFields;
   $t->set_var("label_name",lang("label"));
   $field = "<INPUT NAME=\"label\"";
   if ($edit) { 
-    $field .= "TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
+    $field .= " TYPE=\"checkbox\" VALUE=\"1\" class=\"checkbox\"";
     if ($label) $field .= " CHECKED";
     $field .= ">";
   } else {

@@ -25,10 +25,9 @@
    </TABLE>
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
     <COLGROUP><COL WIDTH="40%"><COL WIDTH="30%"><COL WIDTH="15%"><COL WIDTH="15%"></COLGROUP>
-    <TR><TD>{length_name}</TD><TD>{length}</TD>
-        <TD>{longplay_name}</TD><TD>{longplay}</TD></TR>
     <TR><TD>{counter_name}</TD><TD>{counter}</TD>
         <TD>{label_name}</TD><TD>{label}</TD></TR>
+    <TR><TD>{rc_name}</TD><TD COLSPAN="3"{konq_fix}>{rc}</TD></TR>
     <TR><TD>{commercial_name}</TD><TD ColSpan="3">{commercial}</TD></TR>
    </TABLE>
   </TD>
@@ -44,6 +43,12 @@
   <TD>
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
     <COLGROUP><COL WIDTH="40%"><COL WIDTH="60%"></COLGROUP>
+    <TR><TD>{length_name}</TD>
+        <TD><TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+          <TD WIDTH="50%">{length}</TD>
+          <TD WIDTH="25%">{longplay_name}</TD>
+          <TD WIDTH="25%">{longplay}</TD></TR>
+        </TABLE></TD></TR>
     <TR><TD>{mlength_free_name}</TD><TD>{mlength_free}</TD></TR>
     <TR><TD>{date_name}</TD><TD>{date}</TD></TR>
     <TR><TD>{tone_name}</TD><TD>{tone}</TD></TR>

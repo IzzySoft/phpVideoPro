@@ -1047,6 +1047,7 @@
      $movie[previous] = $this->get_preventry($movie[mtype_id],$movie[cass_id],$movie[part]);
      $movie[next]     = $this->get_nextentry($movie[mtype_id],$movie[cass_id],$movie[part]);
      $movie[disktype] = $this->get_disktype_id($movie[mtype_id],$movie[cass_id]);
+     $movie[rc]       = $this->get_rc($movie[mtype_id],$movie[cass_id]);
      return $movie;
    }
 
@@ -1397,6 +1398,7 @@
        $this->update_freetime($cass_id,$mtype_id);
      }
      if ($disktype) $this->set_disktype($cass_id,$mtype_id,$disktype);
+     if ( count($rc) ) $this->set_rc($mtype_id,$cass_id,$rc);
      return $success;
    }
 
@@ -1479,7 +1481,8 @@
     * @method get_disktypes
     * @param integer mtype_id Media Type ID
     * @param optional integer id ID for a specific entry
-    * @return array disktypes (array of objects, properties: id,name,size,lp,rc)
+    * @return array disktypes (array of objects, properties:
+    *   int id, string name, string size, int lp, array rc)
     */
    function get_disktypes($mtype_id,$id="") {
      $query = "SELECT name,id,size,lp,rc FROM disks WHERE ";
@@ -1529,6 +1532,52 @@
      } else {
        return $this->dbquery("INSERT INTO cass (id,mtype_id,disks_id) VALUES($cass_id,$mtype_id,$disktype_id)");
      }
+   }
+
+   /** Set region code(s) for a specific medium
+    * @class sql
+    * @method set_rc
+    * @param integer mtype_id
+    * @param integer cass_id
+    * @param array rc
+    * @return boolean success
+    */
+   function set_rc($mtype_id,$cass_id,$rc) {
+     if ( count($rc) ) {
+       $rcs = ",";
+       for ($i=0;$i<7;++$i) {
+         if ($rc[$i]) $rcs .= $i . ",";
+       }
+     } else {
+       return TRUE;
+     }
+     $this->dbquery("SELECT id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->next_record();
+     if ( $id = $this->f('id') ) {
+       return $this->dbquery("UPDATE cass SET rc='$rcs' WHERE id=$id AND mtype_id=$mtype_id");
+     } else {
+       return $this->dbquery("INSERT INTO cass (id,mtype_id,rc) VALUES ($cass_id,$mtype_id,'$rcs')");
+     }
+   }
+
+   /** Retrieve region code for a given medium
+    * @class sql
+    * @method get_rc
+    * @param integer mtype_id
+    * @param integer cass_id
+    * @return array rc
+    */
+   function get_rc($mtype_id,$cass_id) {
+     $this->dbquery("SELECT rc FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->next_record();
+     $rcs = $this->f('rc');
+     $rcs = substr( $rcs,1,strlen($rcs)-2 );
+     $rct  = explode(",",$rcs);
+     $rccount = count($rct);
+     for ($i=0;$i<$rccount;++$i) {
+       $rc[$rct[$i]] = 1;
+     }
+     return $rc;
    }
 
    /** Get all media types and return them as array

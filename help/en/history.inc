@@ -9,6 +9,7 @@
  <li>longplay is now only displayed for disk types that support it (i.e. right
      now only for tapes) or if no disk type is set (i.e. the same plus not
      updated DVD/VCD entries) - for all others it is automatically set to "No"
+ <li>added support for region codes (DVDs only)
 </ul>
 
 [title]

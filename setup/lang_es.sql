@@ -28,23 +28,16 @@ INSERT INTO lang VALUES ('admin_users','es','Administar las cuentas de usuarios'
 INSERT INTO lang VALUES ('back','es','Atras');
 INSERT INTO lang VALUES ('backup_db','es','Copia de seguridad de la base de datos');
 INSERT INTO lang VALUES ('backup_db_complete','es','Copia la base de datos completa (incl.datos tecnicos y preferencias) ');
-INSERT INTO lang VALUES ('backup_db_moviedel','es','Copia solamente los datos relevantes a 
-la película, e inserta una instrucción de 
-remover para datos viejos, antes de la 
-inserción de la instrucción de remover para 
-datos nuevos (copiados). ');
-INSERT INTO lang VALUES ('backup_db_movies','es','Copia solamente los datos relevantes a 
-la película (peliculas, actores, (etc.)');
+INSERT INTO lang VALUES ('backup_db_moviedel','es','Copia solamente los datos relevantes a  la película, e inserta una instrucción de  remover para datos viejos, antes de la  inserción de la instrucción de remover para  datos nuevos (copiados). ');
+INSERT INTO lang VALUES ('backup_db_movies','es','Copia solamente los datos relevantes a  la película (peliculas, actores, (etc.)');
 INSERT INTO lang VALUES ('backup_db_runscript','es','¿Desea crear la escritura ahora?');
 INSERT INTO lang VALUES ('cancel','es','Cancelar');
 INSERT INTO lang VALUES ('categories','es','Categorías');
 INSERT INTO lang VALUES ('category','es','Categoría');
-INSERT INTO lang VALUES ('catlist_alpha','es','Lista de medio en orden alfabético, y sorteada
-por categoría');
+INSERT INTO lang VALUES ('catlist_alpha','es','Lista de medio en orden alfabético, y sorteada por categoría');
 INSERT INTO lang VALUES ('cat_action','es','Acción');
 INSERT INTO lang VALUES ('cat_adventure','es','Aventura');
 INSERT INTO lang VALUES ('cat_agents','es','Agentes');
-INSERT INTO lang VALUES ('cat_animal','es','Animal');
 INSERT INTO lang VALUES ('cat_animals','es','Animales');
 INSERT INTO lang VALUES ('cat_bible','es','Bíblia');
 INSERT INTO lang VALUES ('cat_biography','es','Biográfia');
@@ -75,8 +68,7 @@ INSERT INTO lang VALUES ('cat_sf','es','Ciencia ficción');
 INSERT INTO lang VALUES ('cat_show','es','Espectáculo');
 INSERT INTO lang VALUES ('cat_spy','es','Películas de espionaje');
 INSERT INTO lang VALUES ('cat_thriller','es','Intriga');
-INSERT INTO lang VALUES ('cat_trans_update_failed','es','Falló la actualización para las traducciones 
-en la siguiente categoría: %1');
+INSERT INTO lang VALUES ('cat_trans_update_failed','es','Falló la actualización para las traducciones  en la siguiente categoría: %1');
 INSERT INTO lang VALUES ('cat_travesty','es','Travestía');
 INSERT INTO lang VALUES ('cat_update_failed','es','Falló la actualización en las siguientes categorías: %1');
 INSERT INTO lang VALUES ('cat_vacation','es','Vacación');
@@ -88,8 +80,7 @@ INSERT INTO lang VALUES ('cat_xmas','es','Navideñas');
 INSERT INTO lang VALUES ('change_disktype','es','Cámbie el disco por tipo %1');
 INSERT INTO lang VALUES ('change_media_length','es','Cámbiar la duración del medio');
 INSERT INTO lang VALUES ('change_media_length_for','es','Ingrese la capacidad para %1');
-INSERT INTO lang VALUES ('change_nr','es','Cambiar el tipo de MedioNum/TipoMedio
-a %1');
+INSERT INTO lang VALUES ('change_nr','es','Cambiar el tipo de MedioNum/TipoMedio a %1');
 INSERT INTO lang VALUES ('change_rc','es','Cámbie el Código de region');
 INSERT INTO lang VALUES ('change_rc_for','es','Cámbie el Código de region a %1');
 INSERT INTO lang VALUES ('check_completed','es','Comprobación completa');
@@ -122,61 +113,35 @@ INSERT INTO lang VALUES ('day','es','Día');
 INSERT INTO lang VALUES ('db_stats','es','Estadísticas');
 INSERT INTO lang VALUES ('delete','es','Remover');
 INSERT INTO lang VALUES ('delete_lang','es','Remover un lenguaje');
-INSERT INTO lang VALUES ('delete_lang_comment','es','Remover toda las frases de un lenguaje especifico, de la base de datos. Esto no 
-removerá el archivo del lenguaje, así podrá reingresar las frases nuevamente luego (si usted no remueve el archivo usted mismo).');
+INSERT INTO lang VALUES ('delete_lang_comment','es','Remover toda las frases de un lenguaje especifico, de la base de datos. Esto no  removerá el archivo del lenguaje, así podrá reingresar las frases nuevamente luego (si usted no remueve el archivo usted mismo).');
 INSERT INTO lang VALUES ('delete_orphans','es','Removiendo %1 huérfana(s):');
 INSERT INTO lang VALUES ('delete_remaining','es','Ahora se están removiendo los datos sobrantes de la película en la base de datos.');
 INSERT INTO lang VALUES ('deleting_entry','es','Removiendo entrada %1');
 INSERT INTO lang VALUES ('del_access','es','Puede remover entradas');
 INSERT INTO lang VALUES ('del_access_short','es','borrar');
-INSERT INTO lang VALUES ('desc_admin_orphans','es','\"Entradas huérfanas\" son datos sin asignación, ejemplo: Actores, directores y/o compositores 
-que están en la BD y no están relacionados con alguna película. Son típicamente el resultado
-de cambiar un nombre mal escrito después de haberlo guardado - pero nunca el resultado de haber removido entradas de películas. 
-Por lo tanto, es una buena idea es remover 
-esas entradas huérfanas: Primero para liberar recursos,  y segundo ayuda a prevenir una 
-bajada del rendimiento de la BD.');
-INSERT INTO lang VALUES ('desc_backup_db','es','Siempre es bueno tener una copia de seguridad 
-a mano. De esta manera, todos sus datos 
-que haya guardado en la BD son extraídos, y 
-un archivo con el comando SQL es creado. 
-Puede usar dicho archivo en cualquier momento para llenar una base de datos que esté vacía 
-(ej: Para duplicación). Asegúrese de no actualizar una BD de una versión mas reciente, con una copia más antigua de phpVideoPro -
-¡Esto puede crear problemas
-<BR>');
+INSERT INTO lang VALUES ('desc_admin_orphans','es','\"Entradas huérfanas\" son datos sin asignación, ejemplo: Actores, directores y/o compositores  que están en la BD y no están relacionados con alguna película. Son típicamente el resultado de cambiar un nombre mal escrito después de haberlo guardado - pero nunca el resultado de haber removido entradas de películas.  Por lo tanto, es una buena idea es remover  esas entradas huérfanas: Primero para liberar recursos,  y segundo ayuda a prevenir una  bajada del rendimiento de la BD.');
+INSERT INTO lang VALUES ('desc_backup_db','es','Siempre es bueno tener una copia de seguridad  a mano. De esta manera, todos sus datos  que haya guardado en la BD son extraídos, y  un archivo con el comando SQL es creado.  Puede usar dicho archivo en cualquier momento para llenar una base de datos que esté vacía  (ej: Para duplicación). Asegúrese de no actualizar una BD de una versión mas reciente, con una copia más antigua de phpVideoPro - ¡Esto puede crear problemas <BR>');
 INSERT INTO lang VALUES ('directors','es','Directores');
 INSERT INTO lang VALUES ('directors_list','es','Lista de directores');
 INSERT INTO lang VALUES ('director_persons','es','Directores');
-INSERT INTO lang VALUES ('disktype_add_failed','es','Lo siento, no pude añadir el tipo de disco
-nuevo.');
+INSERT INTO lang VALUES ('disktype_add_failed','es','Lo siento, no pude añadir el tipo de disco nuevo.');
 INSERT INTO lang VALUES ('disktype_change','es','Cambie el tipo de disco');
-INSERT INTO lang VALUES ('disktype_contains_media','es','Este tipo de disco no puede ser removido en 
-este momento, ya que el siguiente medio
-todavía lo esta refiriendo.');
-INSERT INTO lang VALUES ('disktype_name_empty','es','El nombre del tipo de disco no puede estar en blanco. Por favor regrese y corrija esto para 
-el tipo de disco #%1');
+INSERT INTO lang VALUES ('disktype_contains_media','es','Este tipo de disco no puede ser removido en  este momento, ya que el siguiente medio todavía lo esta refiriendo.');
+INSERT INTO lang VALUES ('disktype_name_empty','es','El nombre del tipo de disco no puede estar en blanco. Por favor regrese y corrija esto para  el tipo de disco #%1');
 INSERT INTO lang VALUES ('disktype_update_failed','es','Lo siento, no pude actualizar el siguiente tipo de disco #s: %1');
 INSERT INTO lang VALUES ('disk_size','es','Tamaño de disco');
 INSERT INTO lang VALUES ('disk_type','es','Tipo de disco');
 INSERT INTO lang VALUES ('display','es','Pantalla');
 INSERT INTO lang VALUES ('display_limit','es','Limite del pantalla');
-INSERT INTO lang VALUES ('display_limit_comment','es','(Cuantas lineas se mostrarán por página para 
-las listas)');
+INSERT INTO lang VALUES ('display_limit_comment','es','(Cuantas lineas se mostrarán por página para  las listas)');
 INSERT INTO lang VALUES ('dl_pvp_latest','es','Versión mas reciente de D/L');
 INSERT INTO lang VALUES ('dupes','es','Entradas duplicadas');
-INSERT INTO lang VALUES ('dupe_id_entered','es','Ya existe una entrada en la BD para el identificador  del medio introducido. Oprima \"Atrás\" en el navegador (browser) y corrija lo que ingresó. Sugestión: 
-Hay una cajilla para seleccionar, al lado del campo donde especifico el numero de medio. 
-Esta cajilla le informará el número 
-identificador de película mas alto. 
-Normalmente es una buena elección para un 
-medio nuevo, el incrementar por uno el primer número de 4 dígitos, o para una nueva película
-en el mismo tipe de medio, incrementar por uno
-el segundo numero de 2 dígitos.');
+INSERT INTO lang VALUES ('dupe_id_entered','es','Ya existe una entrada en la BD para el identificador  del medio introducido. Oprima \"Atrás\" en el navegador (browser) y corrija lo que ingresó. Sugestión:  Hay una cajilla para seleccionar, al lado del campo donde especifico el numero de medio.  Esta cajilla le informará el número  identificador de película mas alto.  Normalmente es una buena elección para un  medio nuevo, el incrementar por uno el primer número de 4 dígitos, o para una nueva película en el mismo tipe de medio, incrementar por uno el segundo numero de 2 dígitos.');
 INSERT INTO lang VALUES ('dupe_titles_found','es',' %1 Título(s) encontrado(s)con posibles duplicados:');
 INSERT INTO lang VALUES ('edit','es','Editar');
 INSERT INTO lang VALUES ('edit_entry','es','Editar entrada %1');
 INSERT INTO lang VALUES ('enable_cookies','es','¿Activar \"cookies\"?');
-INSERT INTO lang VALUES ('enable_cookies_comment','es','¿desea guardar las preferencias del usuario 
-(ej. filtros) utlizando cookies?');
+INSERT INTO lang VALUES ('enable_cookies_comment','es','¿desea guardar las preferencias del usuario  (ej. filtros) utlizando cookies?');
 INSERT INTO lang VALUES ('ended_sessions','es','Sesión termidada.');
 INSERT INTO lang VALUES ('enter_min_free','es','Ingrese el mínimo de espacio libre en el medio a que se mostrará:');
 INSERT INTO lang VALUES ('enter_new_medianr','es','Por favor ingrese el NmrMedio para este %1.');
@@ -206,19 +171,14 @@ INSERT INTO lang VALUES ('howto_help','es','Como crear un archivo de ayuda');
 INSERT INTO lang VALUES ('howto_label','es','Como crear/configurar un templete de etiquetas');
 INSERT INTO lang VALUES ('howto_lang','es','Como crear un arhivo de lenguaje nuevo ');
 INSERT INTO lang VALUES ('howto_templates','es','Como crear un grupo de templete nuevo.');
-INSERT INTO lang VALUES ('incomplete_date','es','Si no sabe la fecha exacta, pero por ejemplo,
-sólo sabe que lo adquirió en el año 2000, substituya con ceros los datos desconocidos. - ejemplo: \"00\" \"00\" \"2000\".');
+INSERT INTO lang VALUES ('incomplete_date','es','Si no sabe la fecha exacta, pero por ejemplo, sólo sabe que lo adquirió en el año 2000, substituya con ceros los datos desconocidos. - ejemplo: \"00\" \"00\" \"2000\".');
 INSERT INTO lang VALUES ('index','es','Indice');
 INSERT INTO lang VALUES ('info_common','es','Información común');
 INSERT INTO lang VALUES ('info_common_info','es','<DIV ALIGN=\"center\">Esta es la versión %1 de phpVideoPro, funcinando en %2.</DIV>');
-INSERT INTO lang VALUES ('info_noupdate','es','<DIV ALIGN=\"center\"> La versión instalada de phpVideoPro (%1) es reciente - no hay nuevas versiones disponibles para descargar. Para descargar el paquete de la versión instalada, 
-por favor vaya a este eslabón: <A HREF=http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">descargar aquí</A>.</DIV>');
+INSERT INTO lang VALUES ('info_noupdate','es','<DIV ALIGN=\"center\"> La versión instalada de phpVideoPro (%1) es reciente - no hay nuevas versiones disponibles para descargar. Para descargar el paquete de la versión instalada,  por favor vaya a este eslabón: <A HREF=http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">descargar aquí</A>.</DIV>');
 INSERT INTO lang VALUES ('info_update','es','Actualizar información');
 INSERT INTO lang VALUES ('intro','es','Introducción');
-INSERT INTO lang VALUES ('invalid_fsk','es','El valor ingresado en PG (\"%1\") es inválido. 
-PG significa Guia Parentesco, es decir, 
-la edad mínima que se necesita para tener 
-acceso a esta película.');
+INSERT INTO lang VALUES ('invalid_fsk','es','El valor ingresado en PG (\"%1\") es inválido.  PG significa Guia Parentesco, es decir,  la edad mínima que se necesita para tener  acceso a esta película.');
 INSERT INTO lang VALUES ('invalid_media_nr','es','El NmrMedio especificado esta incompleto o es inválido. Debe especificar un <b>número</b> dentro de <b>ambos</b> campos de NmrMedio.');
 INSERT INTO lang VALUES ('in_list','es','en la lista');
 INSERT INTO lang VALUES ('is_rw','es','se puede volver a escribir');
@@ -232,21 +192,18 @@ INSERT INTO lang VALUES ('layout_label','es','Escoger esquema');
 INSERT INTO lang VALUES ('left_offset','es','Compensación izquierda');
 INSERT INTO lang VALUES ('length','es','Largo');
 INSERT INTO lang VALUES ('lines_per_page','es','Lineas por página');
-INSERT INTO lang VALUES ('lines_per_page_comment','es','Esto es para que la función de impresión pueda determinar cuantas líneas de texto caben
-en una hoja de papel.');
+INSERT INTO lang VALUES ('lines_per_page_comment','es','Esto es para que la función de impresión pueda determinar cuantas líneas de texto caben en una hoja de papel.');
 INSERT INTO lang VALUES ('line_count','es','Líneas');
 INSERT INTO lang VALUES ('list','es','Lista');
 INSERT INTO lang VALUES ('listgen','es','Generador de listados');
 INSERT INTO lang VALUES ('lists','es','Listas');
 INSERT INTO lang VALUES ('login','es','Registro para iniciar la sesión');
-INSERT INTO lang VALUES ('login_failed','es','Su registro falló. Quizas ingresó mal su contraseña, o la cuenta de ususario solicitad
-no existe.');
+INSERT INTO lang VALUES ('login_failed','es','Su registro falló. Quizas ingresó mal su contraseña, o la cuenta de ususario solicitad no existe.');
 INSERT INTO lang VALUES ('login_required','es','Sus privilegios no son suficientes para la acción solicitada. Puede iniciar la sesión con una cuenta apropiada.<P />');
-INSERT INTO lang VALUES ('logout_user','es','Sesión iniciada como \"%1\". <A HREF=\"%2\"> 
-Cerrar sesión</A>');
+INSERT INTO lang VALUES ('logout_user','es','Sesión iniciada como \"%1\". <A HREF=\"%2\">  Cerrar sesión</A>');
 INSERT INTO lang VALUES ('longplay','es','Larga duración');
 INSERT INTO lang VALUES ('lower_left_corner','es','Esquine derecha, abajo (x/y)');
-INSERT INTO lang VALUES ('max','es','maximo');
+INSERT INTO lang VALUES ('max','es','max.');
 INSERT INTO lang VALUES ('max_fontsize','es','Tamaño máximo de tipografia');
 INSERT INTO lang VALUES ('media','es','Medio');
 INSERT INTO lang VALUES ('medialength','es','Duración del medio');
@@ -258,8 +215,7 @@ INSERT INTO lang VALUES ('mediatype','es','Tipo de medio');
 INSERT INTO lang VALUES ('media_change','es','Cambie NmrMedio');
 INSERT INTO lang VALUES ('media_copy','es','Copie datos a NmrMedio');
 INSERT INTO lang VALUES ('medium','es','Médium');
-INSERT INTO lang VALUES ('medium_deleted','es','No hay peliculas en este médium - 
-Médium removido.');
+INSERT INTO lang VALUES ('medium_deleted','es','No hay peliculas en este médium -  Médium removido.');
 INSERT INTO lang VALUES ('medium_not_deleted','es','Médium no fue removido.');
 INSERT INTO lang VALUES ('medium_overview','es','Descripción para %1');
 INSERT INTO lang VALUES ('menues','es','Menus');
@@ -269,14 +225,11 @@ INSERT INTO lang VALUES ('movies','es','Películas');
 INSERT INTO lang VALUES ('movies_left_in_cat','es','La categoría %1 todavía contiene %2 película(s), por lo tanto no podrá ser removida. Disculpe.');
 INSERT INTO lang VALUES ('movies_left_reference','es','Esta entrada no puede ser removida. Hay %1 película(s) en la BD que tienen referencia a estas.');
 INSERT INTO lang VALUES ('movie_color_default','es','Color por defecto del formato de una película.');
-INSERT INTO lang VALUES ('movie_color_default_comment','es','Este será usado como formato pre-establecido 
-para color para una nueva entrada.');
+INSERT INTO lang VALUES ('movie_color_default_comment','es','Este será usado como formato pre-establecido  para color para una nueva entrada.');
 INSERT INTO lang VALUES ('movie_onlabel_default','es','Información por defecto para la etiqueta ');
-INSERT INTO lang VALUES ('movie_onlabel_default_comment','es','Por defecto para las entradas nuevas: ¿la información para esta película deberá ser incluida cuando la(s) etiqueta(s) de este 
-medio sean generadas?');
+INSERT INTO lang VALUES ('movie_onlabel_default_comment','es','Por defecto para las entradas nuevas: ¿la información para esta película deberá ser incluida cuando la(s) etiqueta(s) de este  medio sean generadas?');
 INSERT INTO lang VALUES ('movie_tone_default','es','Formato de sonido por defecto de una película.');
-INSERT INTO lang VALUES ('movie_tone_default_comment','es','Este será usado como formato pre-establecido 
-para sonido para una nueva entrada.');
+INSERT INTO lang VALUES ('movie_tone_default_comment','es','Este será usado como formato pre-establecido  para sonido para una nueva entrada.');
 INSERT INTO lang VALUES ('music','es','Compositor');
 INSERT INTO lang VALUES ('music_list','es','Lista de compositores');
 INSERT INTO lang VALUES ('name','es','Nombre');
@@ -284,18 +237,14 @@ INSERT INTO lang VALUES ('never','es','nunca');
 INSERT INTO lang VALUES ('new_disktype','es','Nuevo Tipo de Disco .');
 INSERT INTO lang VALUES ('new_medianr','es','Nuevo NmrMedia');
 INSERT INTO lang VALUES ('new_movie_on','es','New %1');
-INSERT INTO lang VALUES ('no','es','No');
-INSERT INTO lang VALUES ('nobody_named','es','No hay una película por %1 que se llame %2 %3
-en esta BD, por lo tanot se elimino esta 
-entrada de la tabla %1.');
+INSERT INTO lang VALUES ('nobody_named','es','No hay una película por %1 que se llame %2 %3 en esta BD, por lo tanot se elimino esta  entrada de la tabla %1.');
 INSERT INTO lang VALUES ('none','es','Ninguno');
 INSERT INTO lang VALUES ('not_ok','es','Falló');
 INSERT INTO lang VALUES ('not_yet_implemented','es','Disculpe, todavía no ha sido implementado.');
 INSERT INTO lang VALUES ('no_add_lang','es','No hay lenguajes adicionales disponibles.');
 INSERT INTO lang VALUES ('no_entries_found','es','No se encontraron entradas');
 INSERT INTO lang VALUES ('no_entry_in_tapelist','es','Fallo - no se encontraron entradas en la lista de cintas.');
-INSERT INTO lang VALUES ('no_orphans_found','es','¡Enhorabuena! No tienes esqueletos en tu 
-gabinete. ¿Algo más?');
+INSERT INTO lang VALUES ('no_orphans_found','es','¡Enhorabuena! No tienes esqueletos en tu  gabinete. ¿Algo más?');
 INSERT INTO lang VALUES ('no_space_of','es','No hay un médium con un mínimo de %1 espacio libre en la BD.');
 INSERT INTO lang VALUES ('nr','es','Número');
 INSERT INTO lang VALUES ('of_aquiration','es','de adquisición');
@@ -312,29 +261,42 @@ INSERT INTO lang VALUES ('preferences','es','Preferencias');
 INSERT INTO lang VALUES ('print','es','Imprimir');
 INSERT INTO lang VALUES ('printer','es','Impresora');
 INSERT INTO lang VALUES ('printer_add_failed','es','Ocurrio un error al añadir esta impresora.');
-INSERT INTO lang VALUES ('printer_comment','es','Si quieres imprimir los formularios (usados para etiquetas PS), necesitas los márgenes exactos para tu impresora.');
+INSERT INTO lang VALUES ('printer_comment','es','Si desea imprimir los formularios (usados para etiquetas PS), necesitmos los márgenes exactos de su impresora.');
+INSERT INTO lang VALUES ('printer_name','es','Nombre');
+INSERT INTO lang VALUES ('printer_upd_failed','es','Actualización falló para las siguientes impresoras: %1');
 INSERT INTO lang VALUES ('print_label','es','Imprimir etiqueta:');
-INSERT INTO lang VALUES ('read_access','es','Buscar entradas');
-INSERT INTO lang VALUES ('read_access_short','es','buscar');
-INSERT INTO lang VALUES ('recalc_free','es','Recalculando el espacio libre disponible en el soporte');
-INSERT INTO lang VALUES ('refresh_lang','es','Actualizar lista de idiomas');
+INSERT INTO lang VALUES ('pstpl_name','es','Nombre de Templete');
+INSERT INTO lang VALUES ('pstpl_type','es','Tipo de Templete');
+INSERT INTO lang VALUES ('read_access','es','Puede buscar entradas');
+INSERT INTO lang VALUES ('recalc_free','es','Recalculando el espacio libre disponible en  este medio');
+INSERT INTO lang VALUES ('refresh_lang','es','Actualizar lista de lenguaje');
 INSERT INTO lang VALUES ('refresh_lang_comment','es','(reescriba las frases del fichero de idioma en la BD)');
-INSERT INTO lang VALUES ('remove_empty_media','es','Eliminar soporte vacío');
-INSERT INTO lang VALUES ('remove_empty_media_comment','es','¿Eliminar el soporte para un mejor mantenimiento del espacio libre, cuando la última película sea borrada del mismo?');
-INSERT INTO lang VALUES ('rw_media','es','Soporte editable');
-INSERT INTO lang VALUES ('rw_media_comment','es','El soporte mantendra fijo su espacio libre (desde que se graba).');
+INSERT INTO lang VALUES ('region_code','es','CódigoDeRegion');
+INSERT INTO lang VALUES ('remove_empty_media','es','Remover el medio vacío');
+INSERT INTO lang VALUES ('remove_empty_media_comment','es','¿Desea remover el medio del mantenimiento de espacio libre cuando la cuando la última  película sea eliminada del mismo?');
+INSERT INTO lang VALUES ('rw_media','es','Medio editable');
+INSERT INTO lang VALUES ('rw_media_comment','es','El medio mantendra espacio libre para  (ya que usted graba ellos).');
 INSERT INTO lang VALUES ('s/w','es','b/n');
-INSERT INTO lang VALUES ('scan_new_lang_comment','es','(Si creas tus propios ficheros de idioma y lo pones dentro del directorio setup, phpVideoPro los podra usar)');
-INSERT INTO lang VALUES ('scan_new_lang_files','es','¿Buscar nuevos ficheros de idiomas?');
+INSERT INTO lang VALUES ('save_lang_file','es','Guarde traducción escogida al archivo');
+INSERT INTO lang VALUES ('scan_new_lang_comment','es','(Si creó su propios archivos de lenguaje y lo puso dentro del directorio \"setup\", esto le dirá a phpVideoPro donde encontrarlos)');
+INSERT INTO lang VALUES ('scan_new_lang_files','es','¿Escanear para nuevos archivos de lenguajes?');
 INSERT INTO lang VALUES ('screen','es','Formato de la pantalla');
-INSERT INTO lang VALUES ('select_add_lang','es','Seleccionar un idioma adicional a instalar');
-INSERT INTO lang VALUES ('select_add_lang_comment','es','(Ingles ya instalado - ver siguiente. Para otros idiomas ya instalados, ver siguiente también.)');
-INSERT INTO lang VALUES ('select_primary_lang','es','Seleccionar idioma principal');
-INSERT INTO lang VALUES ('select_primary_lang_comment','es','(para las frases desconocidas, siempre las podras dejar en ingles');
+INSERT INTO lang VALUES ('search','es','Búsqueda');
+INSERT INTO lang VALUES ('search_movie','es','BúsquedaDePelicula');
+INSERT INTO lang VALUES ('select_add_lang','es','Seleccióne un lenguaje adicional a instalar');
+INSERT INTO lang VALUES ('select_add_lang_comment','es','(Inglés ya instalado y siempre lo estará - vea el siguiente ítem. Para otros lenguajes ya instalados, vea el siguiente ítem también.)');
+INSERT INTO lang VALUES ('select_primary_lang','es','Seleccionar lenguaje principal');
+INSERT INTO lang VALUES ('select_primary_lang_comment','es','(para las frases que falten, siempre habrá un  por defecto inglés)');
+INSERT INTO lang VALUES ('sel_target_lang','es','Seleccione el lenguaje (al cual traducir):');
 INSERT INTO lang VALUES ('session','es','Sesión');
-INSERT INTO lang VALUES ('session_expired','es','Tu sesión ha expirado - iniciala de nuevo.');
+INSERT INTO lang VALUES ('session_expired','es','Tu sesión ha expirado - inicie nuevamente.');
 INSERT INTO lang VALUES ('session_purgetime','es','¿Despues de cuanto tiempo sin uso se considera una sesión inactiva?');
-INSERT INTO lang VALUES ('session_purgetime_comment','es','¿Cuanto tiempo puede estar un usuario sin actividad antes de cerrar la sesión?');
+INSERT INTO lang VALUES ('session_purgetime_comment','es','¿Cuanto tiempo debe mentenerse valida una  sesión sin actividad?');
+INSERT INTO lang VALUES ('sess_dla','es','¿Accedido último?');
+INSERT INTO lang VALUES ('sess_end','es','Terminó');
+INSERT INTO lang VALUES ('sess_id','es','ID de sesión');
+INSERT INTO lang VALUES ('sess_ip','es','IP Remoto');
+INSERT INTO lang VALUES ('sess_start','es','Comenzó');
 INSERT INTO lang VALUES ('set_filter','es','Activar Filtro');
 INSERT INTO lang VALUES ('site_info','es','Información del sitio');
 INSERT INTO lang VALUES ('site_info_comment','es','¿Qué información del sitio se mostrara en la barra del título del navegador?');
@@ -346,26 +308,36 @@ INSERT INTO lang VALUES ('stats','es','Estadísticas');
 INSERT INTO lang VALUES ('stat_categories','es','Categorías (usadas/todas)');
 INSERT INTO lang VALUES ('stat_counts','es','Contadores');
 INSERT INTO lang VALUES ('stat_ranks','es','Clasificación');
-INSERT INTO lang VALUES ('submit','es','Enviar');
-INSERT INTO lang VALUES ('sure_to_delete','es','¿Estas seguro de querer borrar todos los datos de %1');
+INSERT INTO lang VALUES ('submit','es','Someter');
+INSERT INTO lang VALUES ('sure_to_delete','es','¿Estas seguro de querer borrar todos los datos de %1 ?');
 INSERT INTO lang VALUES ('tapelist_update_failed','es','Error al actualizar lista de cintas');
 INSERT INTO lang VALUES ('taperest_absolute','es','Cintas (todas)');
 INSERT INTO lang VALUES ('taperest_filtered','es','Cintas (filtradas)');
-INSERT INTO lang VALUES ('template_set','es','Usar una plantilla');
-INSERT INTO lang VALUES ('time_left','es','Quedan %1 minutos');
+INSERT INTO lang VALUES ('target_trans','es','Traducciones para su lenguaje escogido (%1)');
+INSERT INTO lang VALUES ('techdata','es','Doatos técnicos');
+INSERT INTO lang VALUES ('template_file','es','Archivo de templete');
+INSERT INTO lang VALUES ('template_set','es','Colección de Templete');
+INSERT INTO lang VALUES ('time_left','es','Queda(n) %1 minuto(s)');
 INSERT INTO lang VALUES ('title','es','Título');
 INSERT INTO lang VALUES ('tone','es','Formato del tono');
+INSERT INTO lang VALUES ('trans_code','es','Código de traducción');
+INSERT INTO lang VALUES ('trans_sample','es','Eslabón a la muestra');
+INSERT INTO lang VALUES ('unit','es','Unidad');
 INSERT INTO lang VALUES ('unknown','es','desconocido');
 INSERT INTO lang VALUES ('unset_filter','es','Desactivar filtro');
 INSERT INTO lang VALUES ('update','es','Actualizar');
-INSERT INTO lang VALUES ('update_failed','es','Error al actualizar la entrada');
+INSERT INTO lang VALUES ('update_failed','es','Falló el actualizar la entrada');
 INSERT INTO lang VALUES ('update_success','es','Entrada actualizada correctamente');
-INSERT INTO lang VALUES ('upd_access','es','Actualizar entradas ya existentes');
+INSERT INTO lang VALUES ('upd_access','es','Es posible que atualize entradas ya existentes');
 INSERT INTO lang VALUES ('upd_access_short','es','act');
+INSERT INTO lang VALUES ('upper_right_corner','es','Esquina a la derecha arriba (x/y)');
 INSERT INTO lang VALUES ('user','es','Usuario');
-INSERT INTO lang VALUES ('user_deleted','es','Borrado correcto del usuario #%1, \"%2\" (%3)');
-INSERT INTO lang VALUES ('user_delete_failed','es','Borrado del usuario #%1, \"%2\" (%3) fallido');
-INSERT INTO lang VALUES ('user_delete_report','es','Resultados del proceso de borrado del usuario');
+INSERT INTO lang VALUES ('user_deleted','es','El usuario #%1, \"%2\" (%3) fue eliminado 
+ con éxito');
+INSERT INTO lang VALUES ('user_delete_failed','es','El remover al usuario #%1, \"%2\" (%3) 
+ falló');
+INSERT INTO lang VALUES ('user_delete_report','es','Resultados del proceso de remover el 
+ usuario');
 INSERT INTO lang VALUES ('user_update_failed','es','Actualización fallida para los siguientes usuarios: %1');
 INSERT INTO lang VALUES ('view','es','Ver');
 INSERT INTO lang VALUES ('view_entry','es','Ver entrada %1');

@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.5.7 (2004)
+[text]
+<ul>
+ <li>some adjustments (and fixes) to the PostgreSQL code
+ <li>fixed the "implode" error on staff list display with empty DB
+ <li>improved order clause for staff lists
+</ul>
+
+[title]
 0.5.6 (December 18, 2003)
 [text]
 <ul>

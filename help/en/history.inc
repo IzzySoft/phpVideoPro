@@ -8,6 +8,7 @@
  <li>added delete confirmations to some admin screens that were missing it
  <li>first-time installation missed two columns in cass table since v0.5.1 - fixed.
  <li>fixed endless loop in stats
+ <li>fixed some SQL for updates on PostgreSQL (tnx to Peter Bieringer!)
 </ul>
 
 [title]

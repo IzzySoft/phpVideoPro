@@ -8,6 +8,8 @@
  <li>worked around a Netscape 4.x JavaScript bug with the label printing
      function in "*view_entry#" (thanx to Michael Hasselberg for providing
      this fix!)
+ <li>taperest list now shows the movie's number (linked to the movies entry)
+     within the contents column
 </ul>
 
 [title]

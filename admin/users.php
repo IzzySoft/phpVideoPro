@@ -38,9 +38,20 @@
  }
 
  #=======================================================[ build the form ]===
+?>
+<SCRIPT LANGUAGE="JavaScript">
+ function delconfirm(url) {
+  check = confirm("<?=lang("confirm_delete")?>");
+  if (check == true) window.location.href=url;
+ }
+</SCRIPT>
+<?
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_users.tpl"));
  $t->set_block("template","itemblock","item");
+ $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+ $edit_img  = $tpl_dir . "/images/edit.png";
+ $trash_img = $tpl_dir . "/images/trash.png";
 
  $users = $db->get_users();
  $usercount = count($users);
@@ -53,8 +64,9 @@
    $t->set_var("upd",$pvp->common->make_checkbox("upd_".$users[$i]->id,$users[$i]->upd));
    $t->set_var("del",$pvp->common->make_checkbox("del_".$users[$i]->id,$users[$i]->del));
    $t->set_var("isadmin",$pvp->common->make_checkbox("admin_".$users[$i]->id,$users[$i]->admin));
-   $t->set_var("edit",$pvp->link->linkurl("useredit.php?id=".$users[$i]->id,lang("edit")));
-   $t->set_var("delete",$pvp->link->linkurl("useredit.php?delete=".$users[$i]->id,lang("delete")));
+   $t->set_var("edit",$pvp->link->linkurl("useredit.php?id=".$users[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
+   $url = $pvp->link->slink("useredit.php?delete=".$users[$i]->id);
+   $t->set_var("delete","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
    $t->parse("item","itemblock",TRUE);
  }
 
@@ -75,8 +87,8 @@
  $t->set_var("head_upd",lang("upd_access_short"));
  $t->set_var("head_del",lang("del_access_short"));
  $t->set_var("head_isadmin",lang("admin_access_short"));
- $t->set_var("head_edit",lang("edit"));
- $t->set_var("head_delete",lang("delete"));
+# $t->set_var("head_edit",lang("edit"));
+# $t->set_var("head_delete",lang("delete"));
  $hidden = "<INPUT TYPE='hidden' NAME='lines' VALUE='$usercount'>";
  if (!$pvp->config->enable_cookies) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='$sess_id'>";
  $t->set_var("hidden",$hidden);

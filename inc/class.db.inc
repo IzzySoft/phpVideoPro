@@ -159,7 +159,7 @@
    function set_avlang($id,$flag,$type) {
      if ( ($flag < 0) || ($flag > 1) ) return FALSE;
      if ( (strtolower($type)!="audio") && (strtolower($type)!="subtitle") ) return FALSE;
-     $query = "UPDATE languages SET $type=$flag WHERE lang_id='$id')";
+     $query = "UPDATE languages SET $type=$flag WHERE lang_id='$id'";
      return $this->query($query);
    }
 

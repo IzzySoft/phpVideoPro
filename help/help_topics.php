@@ -20,7 +20,10 @@
    li("admin");
     li("admin_cats",2);
     li("admin_translations",2);
+    li("admin_pstemplates",2);
+    li("admin_printers",2);
     li("admin_users",2);
+    li("admin_sessions",2);
     li("admin_filter",2);
     li("backup_db",2);
     li("configuration",2);

@@ -1012,6 +1012,21 @@
      }
    }
 
+   /** Retrieve a list of all movie ids (unfiltered)
+    *  Needed for the backup procedure
+    * @class sql
+    * @method get_movieids_all
+    * @return array id_list
+    */
+   function get_movieids_all() {
+     $query = "SELECT id FROM video";
+     $this->dbquery($query);
+     while ($this->next_record()) {
+       $list[] = $this->f('id');
+     }
+     return $list;
+   }
+
    /** Get all data for a movie entry and return it as array
     * @class sql
     * @method get_movie

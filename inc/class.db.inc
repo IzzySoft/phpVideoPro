@@ -1949,7 +1949,7 @@
        $list = FALSE;
      }
      if ($list) {
-       $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list)";
+       $query = "SELECT id,name,firstname FROM $stafftype WHERE id IN ($list) ORDER BY name,firstname";
        if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
          else { $totals = $this->lim_query($query,$start); }
        $i=0;

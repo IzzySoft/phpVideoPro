@@ -61,6 +61,7 @@ INSERT INTO preferences (name,value) VALUES ('colors','a%3A5%3A%7Bs%3A15%3A%22pa
 INSERT INTO preferences (name,value) VALUES ('template','default');
 INSERT INTO preferences (name,value) VALUES ('display_limit','30');
 INSERT INTO preferences (name,value) VALUES ('date_format','y-m-d');
+INSERT INTO preferences (name,value) VALUES ('page_length','85');
 
 #
 # list of languages and their keys

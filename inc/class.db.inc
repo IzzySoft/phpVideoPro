@@ -795,13 +795,26 @@
    }
 
    ############################################################################
-   /** Update freetime on a medium
+   /** Update freetime on a medium. If $free is not specified, recalc freetime
     * @class sql
     * @method update_freetime
     * @param integer id media id
-    * @param integer free free time
+    * @param optional integer mtype_id media type id (defaults to 1)
+    * @param optional integer free free time
     */
-   function update_freetime($id,$free) {
+   function update_freetime($id,$mtype_id="1",$free="") {
+     if ($free=="") {
+       $free  = $this->get_mediaspace($id);
+       $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
+       $this->dbquery($query);
+       $i=0;
+       while ( $this->next_record() ) {
+         ++$i;
+	 $length = $this->f('length');
+	 if ( $this->f('lp') ) $length /= 2;
+	 $free -= $length;
+       }
+     }
      return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id");
    }
 

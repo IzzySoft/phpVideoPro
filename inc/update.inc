@@ -67,23 +67,7 @@
  # updating free time on media for Recorded Video Tapes
  if ( $pvp->common->medium_is_rw($mtype_id) ) { // calc free space only for writable media
    $media_length = $db->get_mediaspace($cass_id);
-   if ( !$media_length ) {
-     debug("E",$colors["err"] . "Could not obtain media info for cass_id '$cass_id'!</Font><BR>\n");
-   } else {
-     if ( $media_length<$min["media_size"] ) debug("W",$colors["err"] . "Invalid Media size '$media_length' (should be at least '" . $min["media_size"] . "')!</Font><BR>\n");
-     $query = "SELECT length,lp FROM video WHERE cass_id=$cass_id AND mtype_id=$mtype_id";
-     debug("S",$colors["ok"] . "$query</Font><BR>\n");
-     dbquery($query);
-     $i=0;
-     while ( $db->next_record() ) {
-       $i++;
-       $mlength = $db->f('length');
-       if ( $db->f('lp') ) $mlength /= 2;
-       $media_length -= $mlength;
-     }
-     if ($i==0) debug("W",$colors["err"] . "No items found on media '$cass_id', so tape must be empty. If so, you'ld better delete it instead of updating without contents. Otherwise, there may be a problem!</Font><BR>\n");
-     $db->update_freetime($cass_id,$media_length);
-   }
+   $db->update_freetime($cass_id,$mtype_id);
  }
  
 ?>

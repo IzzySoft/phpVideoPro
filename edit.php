@@ -39,35 +39,35 @@
 
   if ($edit) {
     $input = "INPUT SIZE=\"30\"";
-    $db->query("SELECT name,id FROM mtypes");
+    dbquery("SELECT name,id FROM mtypes");
     $i = 0;
     while ( $db->next_record() ){
      $mtypes[$i][id]   = $db->f('id');
      $mtypes[$i][name] = $db->f('name');
      $i++;
     }
-    $db->query("SELECT name,id FROM tone");
+    dbquery("SELECT name,id FROM tone");
     $i = 0;
     while ( $db->next_record() ){
      $ttypes[$i][id]   = $db->f('id');
      $ttypes[$i][name] = $db->f('name');
      $i++;
     }
-    $db->query("SELECT name,id FROM cat");
+    dbquery("SELECT name,id FROM cat");
     $i = 0;
     while ( $db->next_record() ){
      $cats[$i][id]   = $db->f('id');
      $cats[$i][name] = $db->f('name');
      $i++;
     }
-    $db->query("SELECT name,id FROM colors");
+    dbquery("SELECT name,id FROM colors");
     $i = 0;
     while ( $db->next_record() ){
      $colors[$i][id]   = $db->f('id');
      $colors[$i][name] = $db->f('name');
      $i++;
     }
-    $db->query("SELECT name,id FROM pict");
+    dbquery("SELECT name,id FROM pict");
     $i = 0;
     while ( $db->next_record() ){
      $picts[$i][id]   = $db->f('id');
@@ -94,12 +94,6 @@
     echo $field;
   }
   
-  function name_sep($name,$fname) {
-    GLOBAL $edit;
-    if ( ( strlen(trim($name)) ) && ( strlen(trim($fname)) ) || $edit ) echo ",&nbsp;";
-    if ( !( strlen(trim($name)) ) || !( strlen(trim($fname)) ) ) echo "&nbsp;";
-  }
-  
 ?>
 
 <? if ($update) { include("inc/update.inc"); } ?>
@@ -107,15 +101,13 @@
 <H2 Align=Center><? if ($edit) { echo "Edit"; } else { echo "View";} echo " entry $nr"; ?></H2>
 <?
   echo "<CENTER>$save_result</CENTER>";
-//  $cass_id = (int) substr($nr,0,4); $part = (int) substr($nr,6);
   $query   = "SELECT title,length,year,aq_date,source,director_id,director_list,music_id,music_list,country,"
            . "cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,"
            . "actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,lp,fsk,comment,"
            . "color_id,tone_id,pict_id"
            . " FROM video"
            . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
-  debug("S",$colors["ok"] . "<b>Executing query:</b> $query</Font><br>\n");
-  $db->query($query);
+  dbquery($query);
   $db->next_record();
 
   // values:
@@ -135,26 +127,26 @@
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor" . $i . "_id";
     $query   = "SELECT name,firstname FROM actors WHERE id=\"${$act_id}\"";
-    $db->query($query); $db->next_record();
+    dbquery($query); $db->next_record();
     $actor[$i][name]  = $db->f('name');
     $actor[$i][fname] = $db->f('firstname');
   }
-  $db->query("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
+  dbquery("SELECT name,sname FROM mtypes WHERE id=$mtype_id");
   $db->next_record();
   $mediatype = $db->f('sname'); $media_tname = $db->f('name');
-  $db->query("SELECT name,firstname FROM directors WHERE id='$director_id'");
+  dbquery("SELECT name,firstname FROM directors WHERE id='$director_id'");
   $db->next_record();
   $director_name = $db->f('name'); $director_fname = $db->f('firstname');
-  $db->query("SELECT name,firstname FROM music WHERE id='$music_id'");
+  dbquery("SELECT name,firstname FROM music WHERE id='$music_id'");
   $db->next_record();
   $composer_name = $db->f('name'); $composer_fname = $db->f('firstname');
-  $db->query("SELECT name FROM tone WHERE id=$tone_id");
+  dbquery("SELECT name FROM tone WHERE id=$tone_id");
   $db->next_record();
   $tone = $db->f('name');
-  $db->query("SELECT name FROM colors WHERE id=$color_id");
+  dbquery("SELECT name FROM colors WHERE id=$color_id");
   $db->next_record();
   $color = $db->f('name');
-  $db->query("SELECT name FROM pict WHERE id=$pict_id");
+  dbquery("SELECT name FROM pict WHERE id=$pict_id");
   $db->next_record();
   $pict_format = $db->f('name');
   $pict_format = trim($pict_format);
@@ -162,13 +154,13 @@
   for ($i=1;$i<4;$i++) {
     $cat_nr  = "cat" . $i . "_id";
     $query   = "SELECT name FROM cat WHERE id=\"${$cat_nr}\"";
-    $db->query($query); $db->next_record();
+    dbquery($query); $db->next_record();
     $cat[$i] = $db->f('name');
   }
   $free = "0";
   if ($mediatype == "RVT") {
     $query = "SELECT free FROM cass WHERE id='$cass_id'";
-    $db->query($query); $db->next_record();
+    dbquery($query); $db->next_record();
     $free  = $db->f('free');
   }
 ################################################################

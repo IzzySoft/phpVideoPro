@@ -31,11 +31,11 @@ It is not that difficult as you might think, and requires only a few steps:
      your language.
  <LI>Once you are done with this, you can go and tell phpVideoPro that there's
      a new sheriff in town: start your web browser and open phpVideoPro, then
-     go to the configuration menue (Edit -> Configuration), check the box to
-     "scan for new language files" and hit "Update" button. A few seconds
+     go to the configuration menue ("*edit# -&gt; *configuration#"), check the
+     box to "*scan_new_lang_files#" and hit the "*update#" button. A few seconds
      later, the configuration menue should reappear and list your language in
-     "Select additional language to install".
- <LI>Select to install your language and hit "Update" again, then you can also
+     "*select_add_lang#".
+ <LI>Select to install your language and hit "*update#" again, then you can also
      select this as your primary language - and you are done!
 </OL>
 
@@ -48,7 +48,7 @@ lead to some complications on updates, where you (at least for now) would have
 to check all the phrases again amually. After making changes to the language
 file (or receiving an update to it), you need to update it into phpVideoPro:
 Just select your language in the <A HREF="{PHP_SELF}?topic=configuration">configuration
-menue</A> item "Refresh language" box and hit "Update" again - all old phrases
+menue</A> item "*refresh_lang#" box and hit "*update#" again - all old phrases
 (for the selected language only, of course) are then deleted from the database
 and will be replaced by the phrases from within your language file.
 

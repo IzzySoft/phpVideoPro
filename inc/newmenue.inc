@@ -32,7 +32,7 @@ a.menuButton, a.menuButtonActive {
   color: #000000;
   cursor: default;
   font-family: "MS Sans Serif", Arial, Tahoma, sans-serif;
-  font-size: 8pt;
+  font-size: 11;
   font-style: normal;
   font-weight: normal;
   padding: 2px;
@@ -77,7 +77,7 @@ a.menuItem {
   cursor: default;
   display: block;
   font-family: "MS Sans Serif", Arial, Tahoma,sans-serif;
-  font-size: 8pt;
+  font-size: 11;
   font-style: normal;
   font-weight: normal;
   margin: 0px;

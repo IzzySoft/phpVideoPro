@@ -280,3 +280,13 @@ CREATE TABLE pvp_sessions (
   ended VARCHAR(50),
   PRIMARY KEY (id)
 );
+
+#
+# Table structure for pvp_options (option management)
+#
+CREATE TABLE pvp_options (
+  id int(5) NOT NULL auto_increment,
+  name varchar(30) NOT NULL,
+  value text,
+  PRIMARY KEY  (id)
+);

@@ -1,5 +1,10 @@
 # $Id$
 #
+# Data for pvp_options
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://german.imdb.com/');
+
 # Data for pvp_users
 #
 INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment) VALUES ('admin','421b47ffd946ca083b65cd668c6b17e6',1,1,1,1,1,'Administrator');
@@ -93,6 +98,7 @@ INSERT INTO preferences (name,value) VALUES ('default_movie_toneid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
 INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
 INSERT INTO preferences (name,value) VALUES ('printer_id','1');
+INSERT INTO preferences (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 
 #
 # list of languages and their keys

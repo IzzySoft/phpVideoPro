@@ -250,3 +250,12 @@ INSERT INTO lang VALUES('movie_color_default_comment','de','Wenn ein neuer Eintr
 INSERT INTO lang VALUES('site_info_comment','de','für die Anzeige in der Titelbar');
 INSERT INTO lang VALUES('movie_onlabel_default','de','Defaulteinstellung Etiketten-Info');
 INSERT INTO lang VALUES('movie_onlabel_default_comment','de','Defaulteinstellung für neue Einträge: Sollen Informationen für diesen Film auf Etiketten für dieses Medium erscheinen?');
+INSERT INTO lang VALUES('config_media','de','Medien und Filme');
+INSERT INTO lang VALUES('cookies','de','Kekse');
+INSERT INTO lang VALUES('enable_cookies','de','Cookies aktivieren?');
+INSERT INTO lang VALUES('enable_cookies_comment','de','Sollen benutzerspezifische Einstellungen (z.B. Filter) über Cookies verwaltet werden?');
+INSERT INTO lang VALUES('expire_cookies','de','Haltbarkeitsdatum der Kekse');
+INSERT INTO lang VALUES('expire_cookies_comment','de','Wie lange sollen die Cookies auf dem Rechner des Benutzers gespeichert bleiben?');
+INSERT INTO lang VALUES('day','de','Tag');
+INSERT INTO lang VALUES('week','de','Woche');
+INSERT INTO lang VALUES('month','de','Monat');

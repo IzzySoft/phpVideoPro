@@ -56,6 +56,10 @@ if ( isset($update) ) {
     $db->set_config("rw_media",$rw_media);
     if (!$remove_media) $remove_media = "0";
     $db->set_config("remove_empty_media",$remove_media);
+    if (!$enable_cookies) $enable_cookies = "0";
+    $db->set_config("enable_cookies",$enable_cookies);
+    if (!$expire_cookies) $expire_cookies = "0";
+    $db->set_config("expire_cookies",$expire_cookies);
     $db->set_config("site",$site_info);
     if ($install_lang && $install_lang != "-") {
       $sql_file = dirname(__FILE__) . "/lang_" . $install_lang . ".sql";
@@ -105,6 +109,8 @@ $movie_tone     = $pvp->preferences->default_movie_toneid;
 $movie_color    = $pvp->preferences->default_movie_colorid;
 $onlabel_default= $pvp->preferences->default_movie_onlabel;
 $remove_media   = $db->get_config("remove_empty_media");
+$enable_cookies = $db->get_config("enable_cookies");
+$expire_cookies = $db->get_config("expire_cookies");
 $site_info      = $db->get_config("site");
 
 #==========================================[ get available template sets ]===
@@ -237,8 +243,8 @@ $t->parse("item","itemblock",TRUE);
 #--[ complete color block ]--
 $t->parse("list","listblock",TRUE);
 
-#---------------------------------------------[ setup block 3: misc stuff ]---
-$t->set_var("list_head",lang("general"));
+#-----------------------------------------[ setup block 3: movies & media ]---
+$t->set_var("list_head",lang("config_media"));
 
 if ($admin) {
   #--[ rw_media ]--
@@ -310,11 +316,52 @@ for ($i=0;$i<count($pict);$i++) {
 $t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);
 
+#--[ complete media block ]--
+$t->parse("list","listblock",TRUE);
+
+#------------------------------------------------[ setup block 4: cookies ]---
+if ($admin) {
+  $t->set_var("list_head",lang("cookies"));
+
+  #--[ enable_cookies ]--
+  $t->set_var("item_name",lang("enable_cookies"));
+  $t->set_var("item_comment",lang("enable_cookies_comment"));
+  if ($enable_cookies) {
+    $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"enable_cookies\" VALUE=\"1\" CHECKED>");
+  } else {
+    $t->set_var("item_input","<INPUT TYPE=\"checkbox\" NAME=\"enable_cookies\" VALUE=\"1\">");
+  }
+  $t->parse("item","itemblock");
+
+  #--[ expiration time for cookies ]==
+  $t->set_var("item_name",lang("expire_cookies"));
+  $t->set_var("item_comment",lang("expire_cookies_comment"));
+  $select = "<SELECT NAME='expire_cookies'><OPTION VALUE='0'";
+  if (!$expire_cookies) $select .= " SELECTED";
+  $select .= ">" . lang("session") . "</OPTION><OPTION VALUE='86400'";
+  if ($expire_cookies=="86400") $select .= " SELECTED";
+  $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604000'";
+  if ($expire_cookies=="604000") $select .= " SELECTED";
+  $select .= ">1 " . lang("week") . "</OPTION><OPTION VALUE='2592000'";
+  if ($expire_cookies=="2592000") $select .= " SELECTED";
+  $select .= ">1 " . lang("month") . "</OPTION><OPTION VALUE='31536000'";
+  if ($expire_cookies=="31536000") $select .= " SELECTED";
+  $select .= ">1 " . lang("year") . "</OPTION></SELECT>";
+  $t->set_var("item_input",$select);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ complete cookie block ]--
+  $t->parse("list","listblock",TRUE);
+}
+
+#---------------------------------------------[ setup block 5: misc stuff ]---
+$t->set_var("list_head",lang("general"));
+
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));
 $t->set_var("item_comment",lang("display_limit_comment"));
 $t->set_var("item_input",$color_input . " NAME=\"display_limit\" VALUE=\"$display_limit\">");
-$t->parse("item","itemblock",TRUE);
+$t->parse("item","itemblock");
 
 #--[ lines per page ]--
 $t->set_var("item_name",lang("lines_per_page"));

@@ -266,6 +266,27 @@
    }
 
    ############################################################################
+   # options
+   ############################################################################
+   /** Get list of options
+    * @class sql
+    * @method get_options
+    * @param optional string name name of option to retrieve values for
+    * @return array array of option arrays ($list[name][$i]=value)
+    */
+   function get_options($name="") {
+     $query = "SELECT name,value"
+            . "  FROM pvp_options";
+     if (strlen($name)) { $query .= " WHERE name='$name'"; }
+     $this->query($query);
+     while ( $this->next_record() ) {
+       $optname = $this->f('name');
+       $list["$optname"][] = $this->f('value');
+     }
+     return $list;
+   }
+
+   ############################################################################
    # preferences
    ############################################################################
    /** Get preferences from DB (used by class preferences; use that class to

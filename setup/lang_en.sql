@@ -337,7 +337,7 @@ INSERT INTO lang VALUES('sess_ip','en','Remote IP','The remote IP address is sto
 INSERT INTO lang VALUES('sess_start','en','Started','Column name for the session start time');
 INSERT INTO lang VALUES('sess_dla','en','Last accessed','Column name for the time of last activity for the session');
 INSERT INTO lang VALUES('sess_end','en','Ended','Column name for the session end (i.e. when someone logs off).');
-INSERT INTO lang VALUES('old_sessions','en','Sessions older than <INPUT NAME="%1" VALUE="" CLASS="yesnobutton"> days','This is an input field to select specific sessions');
+INSERT INTO lang VALUES('old_sessions','en','Sessions older than <INPUT NAME="%1" VALUE="" CLASS="yesnoinput"> days','This is an input field to select specific sessions');
 INSERT INTO lang VALUES('ended_sessions','en','Ended Sessions','Description for selecting all sessions that are logged off.');
 INSERT INTO lang VALUES('new_movie_on','en','New %1','See edit menu: you may want to add a new movie to your collection. %1 is replaced by the media type.');
 INSERT INTO lang VALUES('last_entry','en','Last entry','When you decided to add a new movie via the edit menu, phpVideoPro tells you the highest number assigned with that media type to assist you in finding a reasonable number for the new entry.');

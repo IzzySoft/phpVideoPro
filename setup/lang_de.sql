@@ -357,7 +357,7 @@ INSERT INTO lang VALUES ('no_orphans_found','de','Glückwunsch! Keine Leiche (me
 INSERT INTO lang VALUES ('no_restore_file','de','Ooops: Die ausgewählte Datei ist verschwunden?','');
 INSERT INTO lang VALUES ('no_space_of','de','Es konnte kein Medium mit mindestens %1 Minuten freiem Platz in der Datenbank gefunden werden.','');
 INSERT INTO lang VALUES ('of_aquiration','de','der Aufnahme','');
-INSERT INTO lang VALUES ('old_sessions','de','Sitzungen älter als <INPUT NAME=\"%1\" VALUE=\"\" CLASS=\"yesnobutton\"> Tage','');
+INSERT INTO lang VALUES ('old_sessions','de','Sitzungen älter als <INPUT NAME=\"%1\" VALUE=\"\" CLASS=\"yesnoinput\"> Tage','');
 INSERT INTO lang VALUES ('orig_disktype','de','Ursprünglicher Disk-Typ','');
 INSERT INTO lang VALUES ('orig_medianr','de','ursprüngliche MediaNr','');
 INSERT INTO lang VALUES ('orig_trans','de','Original-Text (%1)','');

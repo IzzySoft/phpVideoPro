@@ -17,6 +17,9 @@
        <li>some cosmetical fixes on view/edit and filter screen
        <li>update to "source" field went into the Nirwana - fixed.
        <li>made some forgotten pages template driven
+       <li>update from a version &lt; 0.1.4 to &gt; 0.1.4 did not
+           work by a single step - one had to call the update page
+	   twice. fixed.
       </ul>
   <LI><b>0.1.5 (August 5, 2001)</b><br>
       alpha-release "camouflage":

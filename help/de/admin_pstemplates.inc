@@ -38,17 +38,25 @@ Hier wird der ausgewählte Eintrag bearbeitet (oder ein neuer hinzugefügt). Die
 einzelnen Felder sollten "selbstredend" bezeichnet sein:
 
 [text]
-<b>*pstpl_name#:</b>" der Name hat keinerlei technische Relevanz: die Templates
-können also frei nach Gusto benannt werden.<BR>
-<b>*pstpl_type#:</b> legt fest, auf welche "Label-Sheets" (Druckvorlagen) ein
-hiermit erstelltes Etikett passt, und in welcher Liste es somit angezeigt wird<BR>
-<b>*graphic_file#:</b> das zu verwendende Hintergrundbild (EPS-Format!)<BR>
-<b>*template_file#:</b> welche PS Template Datei die Struktur des Templates
-beschreibt (und z.B. auch, welche Daten wo auf selbigem erscheinen)<BR>
-<b>*lower_left_corner#:</b> die Koordinaten der unteren linken Ecke dieses
-Templates (normalerweise x=0 und y=0, also ganz unten links)<BR>
-<b>*upper_right_corner#:</b> Koordinaten der oberen rechten Ecke, d.h. der
-Abstand selbiger von der unteren linken Ecke in Punkten.
+<table align="center" style="border:1px solid #000000;" width="95%">
+ <tr><td><b>*pstpl_name#:</b></td>
+     <td>der Name hat keinerlei technische Relevanz: die Templates können also
+         frei nach Gusto benannt werden.</td></tr>
+ <tr><td><b>*pstpl_type#:</b></td>
+     <td>legt fest, auf welche "Label-Sheets" (Druckvorlagen) ein hiermit
+         erstelltes Etikett passt, und in welcher Liste es somit angezeigt wird</td></tr>
+ <tr><td><b>*graphic_file#:</b></td>
+     <td>das zu verwendende Hintergrundbild (EPS-Format!)</td></tr>
+ <tr><td><b>*template_file#:</b></td>
+     <td>welche PS Template Datei die Struktur des Templates beschreibt (und
+         z.B. auch, welche Daten wo auf selbigem erscheinen)</td></tr>
+ <tr><td><b>*lower_left_corner#:</b></td>
+     <td>die Koordinaten der unteren linken Ecke dieses Templates (normalerweise
+         x=0 und y=0, also ganz unten links)</td></tr>
+ <tr><td><b>*upper_right_corner#:</b></td>
+     <td>Koordinaten der oberen rechten Ecke, d.h. der Abstand selbiger von der
+         unteren linken Ecke in Punkten.</td></tr>
+</table>
 
 [text]
 Wer sich jetzt über diese Maßangaben wundert: PostScript rechnet in Bildpunkten,

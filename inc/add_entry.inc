@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -31,18 +31,8 @@
 
  include("inc/sql_set_persons.inc");
 
- if ($cat2_id < 0) $cat2_id="0";
- if ($cat3_id < 0) $cat3_id="0";
- if ($pict_id < 0) $pict_id="0";
  (int) $cass_id;
  (int) $part;
-
- # no *_list field shall be NULL
- $idfields = array("label","director_list","music_list","vis_actor1","vis_actor2",
-             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id");
- foreach ($idfields as $field) {
-   if (!$$field) $$field = 0;
- }
 
  # region code settings
  $rccount = count($rc);

@@ -294,10 +294,10 @@ if ($topic) { $title .= lang($topic); } else { $title .= lang("index"); }
 header('Content-type: text/html; charset=$charset');
 echo "<HTML><HEAD>\n";
 echo " <TITLE>$title</TITLE>\n";
-echo " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">\n";
-include($pvp->tpl_dir . "/default.css");
+echo " <meta http-equiv='Content-Type' content='text/html; charset=$charset'>\n";
+echo " <link href='".$pvp->tpl_url."/default.css' rel='stylesheet' type='text/css'>";
 if ( file_exists($pvp->tpl_dir . "/top.js") )
-  echo " <script language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
+  echo " <script type='text/javascript' language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
 echo "</HEAD><BODY>\n";
 
 $pm = new pagemaker;

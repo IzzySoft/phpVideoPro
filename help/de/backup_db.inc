@@ -31,7 +31,7 @@ PostgreSQL realisieren. Sicherungen in diesem Format lassen sich auch mit
 diesem Frontent wieder herstellen (<i>"*restore_db_internal#"</i>).
 
 [text]
-Mit der Aktivierung der Checkbox <b><i>"*backup_compress#"</b></i> ist optional
+Mit der Aktivierung der Checkbox <b><i>"*backup_compress#"</i></b> ist optional
 eine Kompression der Backup-Datei möglich, sofern die verwendete Installation
 von PHP mit Unterstützung für <code>gzip</code> kompiliert wurde (einfach
 ausprobieren - schlimmsten Falles gibt es halt eine Fehlermeldung). Nach einem
@@ -126,7 +126,7 @@ Wiederherstellen eines System-Backups aus einer <code>*.pvp</code> Datei
 
 [text]
 Hierbei werden die Einstellungen in der Datenbank mit denen aus dem Backup
-überschrieben. Die Checkbox "<i>*clean_restore#</b>" hat an dieser Stelle
+überschrieben. Die Checkbox "<i>*clean_restore#</i>" hat an dieser Stelle
 keine Bedeutung.
 
 [title]

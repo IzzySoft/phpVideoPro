@@ -24,7 +24,8 @@ bzw. nächsten Eintrag verlinkt ist. Sollte er einmal nicht verlinkt sein, dann
 gibt es gerade keinen weiteren Eintrag in dieser Richtung.
 
 [title]
-Kopieren bzw. verschieben eines Eintrags, Anpassen der Länge eines Mediums
+Kopieren bzw. verschieben eines Eintrags, Anpassen der Länge eines Mediums,
+Disk-Typs bzw. Regional-Codes
 
 [text]
 Hin und wieder kann es nötig werden, einen Eintrag zu kopieren bzw. verschieben.
@@ -42,6 +43,17 @@ Medium unterschiedlicher Länge verschoben bzw. kopiert wird. Sie wird auch
 gebraucht, wenn gerade ein Medientyp neu als "(wieder)beschreibbar" deklariert
 wurde, der vorher nur "lesbar" war. In diesem Fall muss ggf. für alle betroffenen
 Medien auf diese Weise die Länge erfasst werden.
+[text]
+Weitere gewünschte Änderungen könnten den Disk-Typ (für VCDs und DVDs) bzw. die
+Regional-Codes (für DVDs) betreffen. Hierzu ist die Möglichkeit analog zu obigem
+auch wieder hinter Buttons versteckt - hinter welchen, hängt von den bisher zum
+Medium erfassten Daten ab. Wurde noch kein Disk-Typ gesetzt, erreicht man die
+entsprechende Seite über die Zähler-Buttons (die dann anschließend für dieses
+Medium nicht mehr auftauchen - machen ja eigentlich auch keinen Sinn für alles
+andere als Video-Kassetten), andernfalls über den Button des gesetzten Disk-Typs.
+Für Regional-Codes ist die Seite hinter dem RegionCode Button verborgen, wobei
+in diesem Fall auch der Disk-Typ gleich mit gesetzt wird - sofern das nicht
+bereits geschehen ist.
 
 [title]
 IMDB Informationen
@@ -88,6 +100,12 @@ Felder. Ist darüber hinaus eine ".png" Datei gleichen Namens vorhanden, wird
 diese dem Etikett zugrunde gelegt - andernfalls wird ein leeres (weißes)
 Etikett erstellt (und natürlich beschriftet). Details sind der Seite
 <A HREF="{PHP_SELF}?topic=howto_label">*howto_label#</A> zu entnehmen.
+
+[text]
+Eine andere Möglichkeit zum Etiketten-Druck findet sich im Menü "Drucken" als
+"PS-Labels": hier können sogar selbstklebende (Zweckform-) Etiketten zum Einsatz
+kommen. Nähere Informationen dazu an der <A HREF="{PHP_SELF}?topic=pslabel">betreffenden
+Stelle</A>.
 
 [eof]
 

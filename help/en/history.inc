@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>added some indices to the database to speed up certain processes
+ <li>added count for each media type to stats page
 </ul>
 
 [title]

@@ -130,14 +130,14 @@
    * @method retrieve_filter
    * @return object filter (urlencoded and serialized)
    */
-  function retrieve_filter() {
+  function retrieve_filter($user_id="") {
     GLOBAL $pvp,$db;
     if ($pvp->config->enable_cookies && !$this->admin) {
       $pref = $pvp->cookie->get("filter");
       if (strlen($pref)) { return($pref); }
-        else { return $db->get_preferences("filter"); }
+        else { return $db->get_preferences("filter",$user_id); }
     } else {
-      return $db->get_preferences("filter");
+      return $db->get_preferences("filter",$user_id);
     }
   }
 

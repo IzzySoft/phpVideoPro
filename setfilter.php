@@ -107,7 +107,7 @@
 </HEAD></HTML><? */
  }
 
- $filter = $pvp->preferences->retrieve_filter();
+ $filter = $pvp->preferences->retrieve_filter($pvp->auth->user_id);
  if ( $filter ) { // there are already filters defined
    $filter = unserialize ( rawurldecode( $filter ) );
  }

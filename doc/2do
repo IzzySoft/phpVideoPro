@@ -18,7 +18,6 @@ coming *next*:
 - store user-based preferences into a different table if no cookies are used
 
 coming *sometimes* (maybe):
-- add check to disk type deletion
 - movie language setting(s)
 - honour date format settings in all places
 - move colors for notifications directly to the stylesheets to make them

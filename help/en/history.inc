@@ -9,6 +9,10 @@
      alphabetically
  <li>translations for a specific language can now be removed via the
      configuration screen (via the admin menu)
+ <li>added check to disk type deletion. If you now try to delete a disk type
+     that is still referenced by some media, it will not be deleted anymore.
+     Instead, you will be presented with a list of these media and now can
+     decide to change them and delete the disk type afterwards.
 </ul>
 
 [title]

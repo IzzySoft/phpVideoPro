@@ -32,7 +32,7 @@
 
  #==================================================[ (re)set the filters ]===
  if ($reset) { // user wants to unset all filter
-   $db->unset_preferences("filter");
+   $pvp->preferences->set("filter","");
  } elseif ($save) { // new filter values were submitted
    $mtypes = $db->get_mtypes();
    for ($i=0;$i<count($mtypes);$i++) {
@@ -88,14 +88,14 @@
      $filter->composer->$mus_id[$i] = TRUE;
    }
    $save = rawurlencode( serialize($filter) );
-   $db->set_preferences("filter",$save);
+   $pvp->preferences->set("filter",$save);
 /* ?>
 <HTML><HEAD>
   <meta http-equiv="refresh" content="0; URL=<? echo $base_url . "index.php" ?>">
 </HEAD></HTML><? */
  }
 
- $filter = $db->get_preferences("filter");
+ $filter = $pvp->preferences->get("filter");
  if ( $filter ) { // there are already filters defined
    $filter = unserialize ( rawurldecode( $filter ) );
  }

@@ -112,7 +112,7 @@
   */
  function get_filters() {
   global $pvp;
-  return $pvp->preferences->get("filter");
+  return $pvp->preferences->get_filters();
  }
 
  ##############################################################################

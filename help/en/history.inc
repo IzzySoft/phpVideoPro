@@ -11,6 +11,8 @@
      the user preferences, i.e. by cookies.
  <li>renamed the "configuration" item in edit menue to "preferences" - this
      reflects the issue much better ;)
+ <li>filters are now working via cookies as well - so multiple users now can
+     use different filter settings simultaneously!
 </ul>
 
 [title]

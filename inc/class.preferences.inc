@@ -112,6 +112,22 @@
    return $query;
   }
 
+  /** Retrieve the filter object either from cookie or DB (helper to get_filters())
+   * @class preferences
+   * @method retrieve_filter
+   * @return object filter (urlencoded and serialized)
+   */
+  function retrieve_filter() {
+    GLOBAL $pvp,$db;
+    if ($pvp->config->enable_cookies && !$this->admin) {
+      $pref = $pvp->cookie->get("filter");
+      if (strlen($pref)) { return($pref); }
+        else { return $db->get_preferences("filter"); }
+    } else {
+      return $db->get_preferences("filter");
+    }
+  }
+
   /** get filter settings from db
    * @class preferences
    * @method get_filters
@@ -119,9 +135,9 @@
    */
   function get_filters() {
    global $db, $filter;
-   $db->query("SELECT value FROM preferences WHERE name='filter'");
-   if ( $db->next_record() ) { // there are already filters defined
-     $filter = unserialize ( rawurldecode( $db->f('value') ) );
+   $filter = $this->retrieve_filter();
+   if ( strlen($filter) ) { // there are already filters defined
+     $filter = unserialize ( rawurldecode($filter) );
      $i=0;
      if ($filter->length_min)  { $sql[$i] = " v.length>'" . $filter->length_min . "'"; $i++; }
      if ($filter->length_max)  { $sql[$i] = " v.length<'" . $filter->length_max . "'"; $i++; }

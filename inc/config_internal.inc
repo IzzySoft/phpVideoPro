@@ -89,6 +89,7 @@
    unset ($plang);
   }
   $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
+  $pvp->pstpl_dir = $base_path . "pslabels";
   $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");
   $defaults["scolor"] = $pvp->preferences->get("default_movie_colorid");
  }

@@ -10,6 +10,15 @@
 
 <Table Width=90% Align=Center>
  <TR><TD><UL>
+  <LI><b>0.1.0 (2001)</b><br>
+      Since feature freeze is in effect, there are only bugfixes and works
+      on the documentation:
+      <ul>
+       <li>added README (with hints for installation and notes on
+           copyright and license)
+       <li>while outsourcing some functions used in more than one file,
+           update was broken (duplicate function declaration), fixed.
+      </ul>
   <LI><b>0.0.3 (June 27, 2001)</b><br>
       started adding new features:
       <ul>

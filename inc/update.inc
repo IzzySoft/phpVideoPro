@@ -1,5 +1,4 @@
 <?
- include ("inc/sql_helpers.inc");
  ##############################################################################
  # create a dump of posted data for debugging purposes and send them to the
  # debug output function

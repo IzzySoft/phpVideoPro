@@ -13,19 +13,22 @@ bearbeiten sollte. Andere hingegen sind eher als benutzerabhängige Präferenzen
 zu betrachten und daher auch über das Standard-Menü zu erreichen.
 
 [text]
-Seit Version 0.3.8 kann phpVideoPro Cookies zur Verwaltung der Preferences
-(persönlichen Einstellungen, wie Filter, Template-Set, Datensätze pro Seite bei
-Listen etc.) verwenden. Um diese Funktion zu nutzen, muss die Schaltfläche
-"*enable_cookies#" aktiviert sein. Über das "*Admin#" Menü wird unter
-"*configuration#" die Konfiguration verwaltet, und es werden die
-Default-Einstellungen für die Preferences hier vorgenommen. Diese werden bei
-"neuen" Benutzern sodann aus der Datenbank geladen. Änderungen, die der Benutzer
-sodann unter "*edit#" -&gt; "*preferences#" vornimmt, werden in Cookies
-gespeichert und auch, sofern gespeicherte Cookies vorhanden sind, aus diesen
-geladen. Die Standard Filter Einstellungen werden über "*admin#" -&gt;
-"*admin_filter#" vorgenommen. Es ist eine gute Idee, das admin/ Verzeichnis
-sodann durch eine ".htaccess" Datei zu schützen, um nur authorisierten Benutzern
-den Zugriff auf Konfiguration und Default-Einstellungen zu geben.
+phpVideoPro verwendet Cookies zur Verwaltung der Preferences (persönlichen
+Einstellungen, wie Filter, Template-Set, Datensätze pro Seite bei Listen etc.).
+Um diese Funktion zu nutzen, muss die Schaltfläche "*enable_cookies#" aktiviert
+sein. Über das "*Admin#" Menü wird unter "*configuration#" die Konfiguration
+verwaltet, und es werden die Default-Einstellungen für die Preferences hier
+vorgenommen. Diese werden bei "neuen" Benutzern sodann aus der Datenbank
+geladen. Änderungen, die der Benutzer sodann unter "*edit#" -&gt;
+"*preferences#" vornimmt, werden in Cookies gespeichert und auch, sofern
+gespeicherte Cookies vorhanden sind, aus diesen geladen. Die Standard Filter
+Einstellungen werden über "*admin#" -&gt; "*admin_filter#" vorgenommen. Damit
+nur authorisierte Benutzer Zugriff auf Konfiguration und Default-Einstellungen
+haben, sind die entsprechenden Administrationsseiten über das Session-Management
+geschützt: nur mit der "Admin" Berechtigung kann hier Zugriff erlangt werden.
+Auch wenn das Administrationsmenü ohne diese Berechtigung überhaupt nicht
+angezeigt wird, wird selbige auf den jeweiligen Seiten nochmals überprüft: sie
+lässt sich also nicht einfach durch die direkte Angabe der URL umgehen.
 
 [title]
 *language_settings#
@@ -33,13 +36,13 @@ den Zugriff auf Konfiguration und Default-Einstellungen zu geben.
 [text]
 <b>*scan_new_lang_files#:</b> Zur Speicherung der für das Übersetzungsmodul
 benötigten Daten verwendet phpVideoPro seine Datenbank. Will man also eine
-neue Sprache hinzufügen, muß diese aktualisiert werden. Dies geschieht über
-SQL Dateien, die ich im Folgenden der Einfachheit halber "Sprachdateien"
-nennen möchte. Eine neue Sprachdatei muß dem System zunächst bekannt gemacht
-werden - dies geschieht durch das Aktivieren dieser Box (und natürlich
-anschließendes Versenden des Formulars). Die weiteren Schritte folgen unten.
-Wie eine neue Sprachdatei erstellt werden kann, findet sich in der Hilfe zum
-Punkt "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>".
+neue Sprache hinzufügen, muss die entsprechende Sprachdatei (eine Textdatei,
+die die benötigten SQL Statements hierfür enthält) importiert werden. Dazu
+muss diese dem System zunächst bekannt gemacht werden - dies geschieht durch
+das Aktivieren dieser Box (und natürlich anschließendes Versenden des Formulars).
+Die weiteren Schritte folgen unten. Wie eine neue Sprachdatei (z.B. für eine
+neue Sprache, die bislang noch nicht von phpVideoPro unterstützt wird) erstellt
+werden kann, findet sich in der Hilfe zum Punkt "<A HREF="{PHP_SELF}?topic=howto_lang">*howto_lang#</A>".
 
 [text]
 <b>*select_add_lang#:</b> Natürlich können hier nur verfügbare Sprachen
@@ -51,7 +54,7 @@ installierte Sprache zu aktualisieren, gibt es den nächsten Punkt.
 [text]
 <b>*refresh_lang#:</b> Steht eine neuere Version einer bereits installierten
 Sprachdatei zur Verfügung (oder hat man selbst eine vorhandene Sprachdatei
-angepaßt), können hiermit die entsprechenden Einträge in der Datenbank
+angepasst), können hiermit die entsprechenden Einträge in der Datenbank
 aktualisiert werden. Dabei werden alle bestehenden Einträge für die ausgewählte
 Sprache zunächst aus der Datenbank gelöscht, und sodann die Einträge aus der
 Sprachdatei importiert. Die Möglichkeit, bestehende Einträge beizubehalten, und
@@ -92,11 +95,10 @@ anderen Medien wiederum, wie z.B. selbst bespielten Videokassetten, gehört die
 Verwaltung verbleibender freier Zeit zu den elementaren Funktionen, die von
 einer Software wie phpVideoPro (mit Recht) erwartet werden. Manch einer erstellt
 sich seine VideoCDs selbst, ein anderer kauft sie ausschließlich. In einigen
-seltenen Fällen erstellen Anwender mittlerweile gar ihre DVDs selbst, und
-benötigen daher auch für diese die Restzeit-Verwaltung. Um jedem gerecht zu
-werden, ist daher seit v0.3.4 dieser Punkt konfigurierbar geworden. Es sind
-hier also die Medien zu markieren, für die Restzeiten verwaltet (und angezeigt)
-werden sollen.
+mittlerweile gar nicht mehr so seltenen Fällen erstellen Anwender gar ihre DVDs
+selbst, und benötigen daher auch für diese die Restzeit-Verwaltung. Um jedem
+gerecht zu werden, ist dieser Punkt konfigurierbar. Es sind hier also die
+Medien zu markieren, für die Restzeiten verwaltet (und angezeigt) werden sollen.
 
 [text]
 <b>*remove_empty_media#:</b> Auch hier soll unterschiedlichen Vorgehensweisen
@@ -122,8 +124,8 @@ betreffende Medium eingeschlossen werden sollen. Hier läßt sich festlegen, wie
 die Einstellung für neue Einträge vorbelegt sein soll.
 
 [text]
-<b>*movie_tone_default#:</b> Bislang war das immer "Mono" - aber ich denke,
-das ist kaum der richtige Wert. Der hier eingestellte Wert wird als Vorgabe
+<b>*movie_tone_default#:</b> Bislang war das immer "Mono" - aber ich denke, das
+ist kaum mehr der richtige Wert. Der hier eingestellte Wert wird als Vorgabe
 für neue Einträge verwendet. Wer also ausschließlich (oder überwiegend) DVDs
 mit Dolby 5.1 erwirbt, sollte hier auch Dolby 5.1 einstellen.
 
@@ -145,10 +147,9 @@ Cookies verwendet. Das heißt dann allerdings auch, das Änderungen, die ein
 Benutzer im Menü "*edit#" -&gt; "*preferences#" vornimmt, ebenfalls in die
 Datenbank geschrieben werden, und somit die Voreinstellungen überschreiben.
 Gleiches gilt auch für die Filtereinstellungen. Mit anderen Worten: phpVideoPro
-verhält sich damit wie in den vorangegangenen Versionen, und es kann zu
-Problemen führen, sollten mehrere Benutzer dieselbe Installation simultan
-verwenden. Für eine Einzelplatz-Installation kann jedoch genau dieses Verhalten
-erwünscht sein.
+verhält sich damit wie in seinen ersten Versionen, und es kann zu Problemen
+führen, sollten mehrere Benutzer dieselbe Installation simultan verwenden. Für
+eine Einzelplatz-Installation kann jedoch genau dieses Verhalten erwünscht sein.
 
 [text]
 <b>*expire_cookies#:</b> Hiermit wird definiert, nach welchem Zeitraum erstellte
@@ -174,12 +175,8 @@ des Gast-Kontos.
 *general#
 
 [text]
-<b>*template_set#:</b> Seit Version 0.1.5 basiert phpVideoPro auf Templates
-(das Design betreffend). Als Autor habe ich lediglich ein einziges Set solcher
-Templates der Distribution beigefügt; sobald jedoch weitere Templatesets
-verfügbar sind (d.h., sobald jemand ein solches erstellt und mir zugeschickt
-hat - ich selber werde wahrscheinlich zumindest in absehbarer Zeit kein
-weiteres erstellen :), lassen diese sich hier auswählen, und phpVideoPro erhält
+<b>*template_set#:</b> Das Design betreffend basiert phpVideoPro auf Templates.
+Hier lässt sich das gewünschte Template-Set auswählen, und phpVideoPro erhält
 auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
@@ -207,30 +204,24 @@ Seitenränder des zu verwendenden Druckers bekannt sein. Ist der gewünschte
 Drucker in der Liste nicht enthalten, kann zunächst einer der vorhandenen
 "getestet" werden: manche Drucker sind bezüglich Ihrer "Rand-Einstellungen"
 kompatibel (so viele Möglichkeiten gibt es ja auch nicht). Ist ein "kompatibler"
-Drucker dabei, wäre eine Nachricht an <A HREF="mailto:izzysoft@qumran.org">mich</A>
-hilfreich mit Angabe des genutzten und des ausgewählten Druckers. Zukünftige
-Versionen von phpVideoPro könnten dann eine "Drucker-Kompatibilitäts-Liste"
-enthalten.<BR>
+Drucker dabei, wäre eine Nachricht an mich hilfreich mit Angabe des genutzten
+und des ausgewählten Druckers. Zukünftige Versionen von phpVideoPro könnten
+dann eine "Drucker-Kompatibilitäts-Liste" enthalten.<BR>
 Passt keine der vorhandenen Druck-Einstellungen, muss Wohl oder Übel ein neuer
-Drucker in die Datenbank eingetragen werden. Erfahrene Anwender können hierzu
-die Tabelle "printers" anpassen: entscheidend sind hier lediglich die Einträge
-in den Spalten "top_offset" und "left_offset" (vielleicht erstelle ich ja mal
-ein FrontEnd hierfür ;). <b><i>ACHTUNG:</i></b> an dieser Tabelle vorgenommene
-Änderungen können beim nächsten Update verloren gehen! Ist daher die korrekte
-Einstellung gefunden, diese bitte mit zugehörigem Drucker-Namen an
-<A HREF="mailto:izzysoft@qumran.org">mich</A> schicken, damit sie permanenten
-Eingang in die Liste finden!
+Drucker in die Datenbank eingetragen werden. Das hierfür zu verwendende Formular
+findet sich im Administrations-Menü unter dem Punkt <i>*admin_printers#</i>
+(näheres siehe <i><A HREF="{PHP_SELF}?topic=admin_printers">hier</A></i>).
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie
 z.B. unter dem Menüpunkt "*medialist#" zu finden, stets in voller Länge, d.h.
 mit allen Datensätzen an. Bei umfangreichen Datensammlungen führte dies nicht
 nur zu langen Ladezeiten, sondern konnte durchaus auch recht unübersichtlich
-werden. Mit Version 0.2.3 wurde daher eingeführt, diese Liste in mehrere
-"Häppchen" unterteilen zu können. Die Größe dieser "Häppchen" läßt sich mit
-diesem Punkt einstellen: er gibt an, wie viele Zeilen die jeweilige Tabelle
-haben soll. Innerhalb der Listen läßt sich mit vier Buttons navigieren: diese
-führen jeweils zur ersten/letzten bzw. vorigen/nächsten Seite.
+werden. Daher lassen sich diese Listen nun in mehrere "Häppchen" unterteilen.
+Die Größe dieser "Häppchen" lässt sich mit diesem Punkt einstellen: er gibt an,
+wie viele Zeilen die jeweilige Tabelle haben soll. Innerhalb der Listen ist eine
+Navigation mittels vier Buttons möglich: diese führen jeweils zur ersten/letzten
+bzw. vorigen/nächsten Seite.
 
 [text]
 Zugegebenermaßen scheint es bei den Besetzungslisten (Darsteller, Regisseure
@@ -249,20 +240,19 @@ als Standard vorgegeben, kann dort jedoch auch jedesmal angepasst werden.
 
 [text]
 <b>*date_format#:</b> In welchem Format sollen Datumsangaben präsentiert werden.
-Dies ist erst seit phpVideoPro v0.2.6 konfigurierbar; mittlerweile sollten
-jedoch alle Menüs, Formulare und Listen entsprechen angepasst sein. Habe ich
-dennoch einen Punkt übersehen, bitte ich um einen kurzen Hinweis (ich würde an
-dieser Stelle ja ein kostenloses Update als Preis anbieten - aber angesichts der
-Lizenz dieses Produktes nähme das eh niemand ernst :)
+Möglicherweise wird dieses Format noch nicht in allen Menüs, Formulare und
+Listen berücksichtigt. Sollte dies jemandem auffallen, bitte ich um einen kurzen
+Hinweis zwecks Korrektur (ich würde an dieser Stelle ja ein kostenloses Update
+als Preis anbieten - aber angesichts der Lizenz dieses Produktes nähme das
+ohnehin niemand ernst :)
 
 [text]
-<b>*site_info#:</b> Bis einschließlich v0.3.4 folgte die Titelzeile des
-Web-Browsers für phpVideoPro dem Muster "phpVideoPro v&lt;Version&gt; [
-&lt;Job&gt; ]". Seit v0.3.5 gibt es einen neuen, konfigurierbaren Teil dieser
-Titelzeile, welcher zwischen der Version und dem Job eingefügt wird:
-"@ site_info". Dies ist z.B. hilfreich, wenn man verschiedene Installationen
-zur selben Zeit in verschiedenen Browser-Fenstern geöffnet hat.
-
+<b>*site_info#:</b> Während der Beginn der Titelzeile des Browserfensters
+generell dem Muster "phpVideoPro v&lt;Version&gt;" und das Ende derselben " [
+&lt;Job&gt; ]" folgt, lässt sich der Teil dazwischen an dieser Stelle
+konfigurieren: "@ &lt;site_info&gt;" wird sodann dazwischen eingefügt. Dies ist
+z.B. hilfreich zur Orientierung, wenn man verschiedene Installationen zur
+selben Zeit in verschiedenen Browser-Fenstern geöffnet hat.
 
 [eof]
 

@@ -15,10 +15,10 @@
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
+<FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
 <TR><TD>
 
  <TABLE STYLE="margin:3;text-align:center" BORDER="1"><TR CLASS="content"><TD>
- <FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center" BORDER="0" WIDTH="400">
     {hidden}
     <TR><TH WIDTH="45%"><DIV ALIGN="center">{orig}</DIV></TH>
@@ -28,12 +28,12 @@
         <TD WIDTH="10%">&nbsp;</TD>
         <TD WIDTH="45%"><DIV ALIGN="center">{n_disktype}</DIV></TD></TR>
   </TABLE>
- </FORM></TD></TR></TABLE>
+ </TD></TR></TABLE>
 
 </TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}0.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR>
 <TR><TD><DIV STYLE="margin:3;text-align:center">{change}</DIV></TD></TR>
-</TABLE>
+</FORM></TABLE>
 </DIV>
 </TD></TR></TABLE>

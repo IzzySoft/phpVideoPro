@@ -10,6 +10,9 @@
  <li>Italian and French translations now up-to-date - thanks to Lorenzo and Didier
  <li>Update from &lt; v0.6.1 as well as fresh install was broken for
      PostgreSQL - fixed (thanks to Didier)
+ <li>language names are now displayed using their native names and spelling - so
+     if somebody accidentally changed the "prefered language" it should be
+     easier to find "the way back" to a language he can read ;)
 </ul>
 
 [title]

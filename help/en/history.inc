@@ -8,6 +8,8 @@
  <li>fixed another cookie-overwritten var on the configuration page which made
      change of printer impossible with cookies enabled
  <li>added printer specification for Canon S520 to PSLabel system
+ <li>created final work-around for a Konqueror Cookie bug affecting the prefered
+     language setting (see second item of v0.4.3 below)
 </ul>
 
 [title]

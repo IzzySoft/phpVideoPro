@@ -13,7 +13,7 @@
  /* $Id$ */
 
  $page_id = "backup_db";
- if ($backup) $silent = 1;
+ if ($_POST["backup"]) $silent = 1;
  include(dirname(__FILE__) . "/../inc/includes.inc");
  include("../inc/class.xfer.inc");
  if (!$pvp->auth->admin) kickoff();
@@ -24,9 +24,9 @@
  }
 
  function fout($str) {
-   GLOBAL $compress,$out;
+   GLOBAL $out;
    $str .= "\n";
-   if ($compress) { $out .= $str; }
+   if ($_POST["compress"]) { $out .= $str; }
    else { echo $str; }
  }
 

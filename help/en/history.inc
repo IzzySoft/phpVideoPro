@@ -25,6 +25,11 @@
      engine is not yet completed and thus still experimental.
  <li>added some new labels for the new PS engine. Side labels already look
      really great (and work great as well)!
+ <li>fixed a problem with cookies: when set-up to expire at end of session,
+     they expired immediately when set
+ <li>when a session has expired, there's an appropriate hint now on the login
+     page - and the initial page in that case doesn't display a "logged in as
+     guest" anymore
 </ul>
 
 [title]

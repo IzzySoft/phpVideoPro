@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.5 (2002)
+0.2.5 (June 17, 2002)
 [text]
 <ul>
  <li>made label configs based on defaults by including default configs
@@ -16,6 +16,7 @@
      function (no effect on Konqueror whyever - but works fine with Mozilla)
  <li>added HowTo on creation/configuration of label templates (in help system)
  <li>added ability to print multiple labels on one page
+ <li>added help on label printing
 </ul>
 
 [title]

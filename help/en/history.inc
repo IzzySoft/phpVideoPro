@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.7 (July 2002)
+0.2.7 (July 4, 2002)
 [text]
 <ul>
  <li>updated German and English help files to reflect latest changes. Still need

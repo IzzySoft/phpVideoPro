@@ -88,31 +88,31 @@ if ( !isset($_REQUEST["oldversion"]) ) {
 $pvp->preferences->admin();
 #-----------------[ Get SQL statements from their files and execute them ]---
   switch ($_REQUEST["oldversion"]) {
-    case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Update from v0.1.0 to v0.1.1");
-    case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Update from v0.1.1 to v0.1.2");
+    case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Upgrade to v0.1.1");
+    case "0.1.1"    : queryf("0-1-1_to_0-1-2.sql","Upgrade to v0.1.2");
     case "0.1.2"    :
     case "0.1.3"    :
-    case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Update from v0.1.5 to v0.1.6");
+    case "0.1.4"    : queryf("0-1-4_to_0-1-5.sql","Upgrade to v0.1.6");
     case "0.1.5"    :
     case "0.1.6"    :
-    case "0.1.7"    : queryf("0-1-7_to_0-2-0.sql","Update from v0.1.7 to v0.2.0");
-    case "0.2.0"    : queryf("0-2-0_to_0-2-1." . $database["type"],"Update from v0.2.0 to v0.2.1");
-    case "0.2.1"    : queryf("0-2-1_to_0-2-2." . $database["type"],"Update from v0.2.1 to v0.2.2");
-    case "0.2.2"    : queryf("0-2-2_to_0-2-3.sql","Update from v0.2.2 to v0.2.3");
+    case "0.1.7"    : queryf("0-1-7_to_0-2-0.sql","Upgrade to v0.2.0");
+    case "0.2.0"    : queryf("0-2-0_to_0-2-1." . $database["type"],"Upgrade to v0.2.1");
+    case "0.2.1"    : queryf("0-2-1_to_0-2-2." . $database["type"],"Upgrade to v0.2.2");
+    case "0.2.2"    : queryf("0-2-2_to_0-2-3.sql","Upgrade to v0.2.3");
     case "0.2.3"    :
     case "0.2.4"    :
-    case "0.2.5"    : queryf("0-2-5_to_0-2-6.sql","Update from v0.2.5 to v0.2.6");
-    case "0.2.6"    : queryf("0-2-6_to_0-2-7." . $database["type"],"Update from v0.2.6 to v0.2.7");
-    case "0.2.7"    : queryf("0-2-7_to_0-2-8.sql","Update from v0.2.7 to v0.2.8");
+    case "0.2.5"    : queryf("0-2-5_to_0-2-6.sql","Upgrade to v0.2.6");
+    case "0.2.6"    : queryf("0-2-6_to_0-2-7." . $database["type"],"Upgrade to v0.2.7");
+    case "0.2.7"    : queryf("0-2-7_to_0-2-8.sql","Upgrade to v0.2.8");
                       queryf("categories.sql","Refresh of categories");
     case "0.2.8"    :
     case "0.3.0"    :
     case "0.3.1"    :
     case "0.3.2"    :
-    case "0.3.3"    : queryf("0-3-3_to_0-3-4.".$database["type"],"Update from v0.3.3 to v0.3.4");
+    case "0.3.3"    : queryf("0-3-3_to_0-3-4.".$database["type"],"Upgrade to v0.3.4");
     case "0.3.4"    :
     case "0.3.5"    :
-    case "0.3.6"    : queryf("0-3-6_to_0-3-7.".$database["type"],"Update from v0.3.6 to v0.3.7");
+    case "0.3.6"    : queryf("0-3-6_to_0-3-7.".$database["type"],"Upgrade to v0.3.7");
 		      $colors = $pvp->preferences->colors;
 		      unset($colors["page_background"]);
 		      unset($colors["table_background"]);
@@ -120,34 +120,34 @@ $pvp->preferences->admin();
 		      $pvp->preferences->set("colors",rawurlencode( serialize($colors) ));
     case "0.3.7"    :
     case "0.3.8"    :
-    case "0.4.0"    : queryf("0-4-0_to_0-4-1.".$database["type"],"Update from v0.4.0 to v0.4.1");
+    case "0.4.0"    : queryf("0-4-0_to_0-4-1.".$database["type"],"Upgrade to v0.4.1");
     case "0.4.1"    : queryf("pslabel.".$database["type"],"Set up of PSLabel tables");
     case "0.4.2"    :
     case "0.4.3"    :
-    case "0.4.4"    : queryf("0-4-2_to_0-4-5.sql","Update from v0.4.2/3/4 to v0.4.5");
+    case "0.4.4"    : queryf("0-4-2_to_0-4-5.sql","Upgrade to v0.4.5");
                       $commenturl = 1;
     case "0.4.5"    :
-    case "0.4.6"    : queryf("0-4-6_to_0-4-7.sql","Update from v0.4.6 to v0.4.7");
-    case "0.4.7"    : queryf("0-4-7_to_0-4-8.sql","Update from v0.4.7 to v0.4.8");
+    case "0.4.6"    : queryf("0-4-6_to_0-4-7.sql","Upgrade to v0.4.7");
+    case "0.4.7"    : queryf("0-4-7_to_0-4-8.sql","Upgrade to v0.4.8");
     case "0.4.8"    : 
                       include ("cleanconfig.php");
-    case "0.5.0"    : queryf("0-5-0_to_0-5-1.".$database["type"],"Update from v0.5.0 to v0.5.1");
+    case "0.5.0"    : queryf("0-5-0_to_0-5-1.".$database["type"],"Upgrade to v0.5.1");
     case "0.5.1"    :
     case "0.5.2"    :
-    case "0.5.3"    : queryf("0-5-3_to_0-5-4.sql","Update from v0.5.3 to v0.5.4");
-    case "0.5.4"    : queryf("0-5-4_to_0-5-5.sql","Update from v0.5.4 to v0.5.5");
+    case "0.5.3"    : queryf("0-5-3_to_0-5-4.sql","Upgrade to v0.5.4");
+    case "0.5.4"    : queryf("0-5-4_to_0-5-5.sql","Upgrade to v0.5.5");
     case "0.5.5"    : 
     case "0.5.6"    :
     case "0.5.7"    :
     case "0.5.8"    :
-    case "0.6.0"    : queryf("0-6-0_to_0-6-1.".$database["type"],"Update from v0.5.x to v0.6.1");
-    case "0.6.1"    : queryf("0-6-1_to_0-6-2.".$database["type"],"Update from v0.6.1 to v0.6.2");
+    case "0.6.0"    : queryf("0-6-0_to_0-6-1.".$database["type"],"Upgrade to v0.6.1");
+    case "0.6.1"    : queryf("0-6-1_to_0-6-2.".$database["type"],"Upgrade to v0.6.2");
     case "0.6.2"    : $db2utf8 = TRUE;
-    case "0.6.3"    : queryf("0-6-3_to_0-6-4.sql","Update from v0.6.3 to v0.6.4");
+    case "0.6.3"    : queryf("0-6-3_to_0-6-4.sql","Upgrade to v0.6.4");
     case "0.6.4"    :
-    case "0.6.5"    : queryf("0-6-5_to_0-6-6.".$database["type"],"Update from v0.6.5 to v0.6.6");
+    case "0.6.5"    : queryf("0-6-5_to_0-6-6.".$database["type"],"Upgrade to v0.6.6");
     case "0.6.6"    :
-    case "0.6.7"    : queryf("0-6-6_to_0-6-7.sql","Update from v0.6.6 to v0.6.7");
+    case "0.6.7"    : queryf("0-6-6_to_0-6-7.sql","Upgrade to v0.6.8");
                       queryf("lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.2.6 (2002)
+0.2.6 (June 2002)
 [text]
 <ul>
  <li>added list printing functionality. Right now, it prepares the lists for
@@ -13,10 +13,13 @@
      everything else will follow)
  <li>added/updated some help pages
  <li>some work on the db class in preparation for code cleanup (all direct
-     db queries should only be here: "abstraction layer" to ease changes to db)
+     db queries should only be here: "abstraction layer" to ease changes to db),
+     same for preferences (to be continued ;)
  <li>$db-&gt;get_movie() now uses outer joins (speeds up list building by at
      least factor 2!). Side effect: you have to make sure your DB type supports
-     this (e.g. PostgreSQL 7.0 does NOT, here it was added with 7.1 afaik)
+     this (e.g. PostgreSQL 7.0 does NOT, here it was added with 7.1 afaik).
+     With this release, only label and list generation are affected; but with
+     the next versions, all pages will switch to the new db-class layout.
 </ul>
 
 [title]

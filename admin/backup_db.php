@@ -24,24 +24,37 @@
  $t->set_var("listtitle",lang("backup_db"));
 
  if ($backup) {
-   $tables = $db->table_names();
-   $tablecount = count($tables);
    header("content-type: application/octet-stream");
    header("Content-Disposition: attachment; filename=pvp-backup.sql");
    echo "######################################\n"
       . "# Backup created by phpVideoPro v$version\n"
       . "######################################\n\n";
+   switch ($btype) {
+     case "moviedel" : $purge = TRUE;
+     case "movies"   :
+       $tabs = array("video","cass","music","directors","actors");
+       foreach ($tabs as $val) {
+         $tables[]["table_name"] = $val;
+       }
+       break;
+     default         :
+       $tables = $db->table_names();
+   }
+   $tablecount = count($tables);
    for ($i=0;$i<$tablecount;++$i) {
      $name = $tables[$i]["table_name"];
      $meta = $db->metadata($name);
      $db->dbquery("SELECT * FROM $name");
-     echo "#\n# table '$name'\n#\n\n";
+     echo "#\n\n# table '$name'\n#\n";
+     if ($purge) echo "DELETE FROM $name;\n";
      while ( $db->next_record() ) {
        $fieldcount = count($meta);
        $fields = $cols = "";
        for ($k=0;$k<$fieldcount;++$k) {
          $field   = $meta[$k]["name"];
 	 $col     = "'" . str_replace("'","\'",$db->f("$field")) . "'";
+	 $col     = str_replace("\\\'","\'",$col);
+#	 $col     = "'" . $db->f("$field") . "'";
 	 $fields .= $field;
 	 $cols   .= $col;
 	 if ( ($fieldcount - $k) > 1 ) {
@@ -58,6 +71,15 @@
    $t->set_var("title",lang("intro"));
    $t->set_var("details",lang("desc_backup_db"));
    $t->parse("item","itemblock");
+   $t->set_var("title",lang("preferences"));
+   $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CHECKED>".lang("backup_db_complete")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='movies'>".lang("backup_db_movies")."<BR>"
+          . "<INPUT TYPE='radio' NAME='btype' VALUE='moviedel'>".lang("backup_db_moviedel")."<BR>";
+   $t->set_var("details",$radio);
+   $t->parse("item","itemblock",TRUE);
+   $t->set_var("title",lang("backup_db_runscript"));
+   $t->set_var("details","");
+   $t->parse("item","itemblock",TRUE);
    $t->set_var("button","<INPUT TYPE='submit' NAME='backup' VALUE='".lang("yes")."'>");
    $t->set_var("formtarget",$PHP_SELF);
    include("../inc/header.inc");

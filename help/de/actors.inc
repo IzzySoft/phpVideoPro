@@ -14,5 +14,11 @@ Erfassen eines Datensatzes). Durch klicken auf die MediaNr gelangt man zur
 Detailansicht, von der aus der Eintrag sodann bearbeitet oder auch gelöscht
 werden kann.
 
+[text]
+Da die Liste ziemlich lang werden kann, wurde sie auf mehrere Seiten unterteilt.
+Wie viele Datensätze maximal pro Seite dargestellt werden sollen, läßt sich über
+"*display_limit#" im Menü <A HREF="{PHP_SELF}?topic=configuration">*configuration#</A>
+festlegen.
+
 [eof]
 

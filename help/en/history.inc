@@ -9,6 +9,9 @@
  <li>hopefully fixed all of the PHP notices (due to uninitialized vars etc.)
  <li>added ALT tags to most images (where missing)
  <li>some more changes to make generated code more HTML 4.01 compliant
+ <li>when using a password manager (e.g. with Mozilla) to store the login
+     data for phpVideoPro, the browser always overwrote the "Login" field
+     in the user editor
 </ul>
 
 [title]

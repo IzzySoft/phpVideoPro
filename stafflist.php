@@ -61,26 +61,25 @@
     $same_name = FALSE;
     $row = 0;
     dbquery($query);
-    while ($db->next_record()) {
-     $mtype[$row]    = $db->f('sname');
-     $mtype_id[$row] = $db->f('mtype_id');
-     $cass_id[$row]  = $db->f('cass_id');
-     $nr[$row]       = $cass_id[$row];
-     $part[$row]     = $db->f('part');
-     while (strlen($nr[$row])<4) { $nr[$row] = "0" . $nr[$row]; }
-     $nr[$row]      .= "-";
-     if (strlen($part[$row])<2) {
-       $nr[$row] .= "0" . $part[$row];
-     } else { $nr[$row] .= $part[$row]; }
-     $movie_id[$row] = urlencode($mtype[$row] . " " . $nr[$row]);
-     $title[$row]    = $db->f('title'); check_empty($title[$row]);
-     $length[$row]   = $db->f('length'); check_empty($length[$row]);
-     $year[$row]     = $db->f('year'); check_empty($year[$row]);
-     $aq_date[$row]  = $db->f('aq_date');  check_empty($aq_date[$row]);
-     $category[$row] = $db->f('name'); check_empty($category[$row]);
-    }
     $same_name = FALSE;
-    for ($k=0;$k<count($mtype);$k++) {
+    while ($db->next_record()) {
+     $mtype    = $db->f('sname');
+     $mtype_id = $db->f('mtype_id');
+     $cass_id  = $db->f('cass_id');
+     $nr       = $cass_id;
+     $part     = $db->f('part');
+     while (strlen($nr)<4) { $nr = "0" . $nr; }
+     $nr      .= "-";
+     if (strlen($part)<2) {
+       $nr .= "0" . $part;
+     } else { $nr .= $part; }
+     $movie_id = urlencode($mtype . " " . $nr);
+     $title    = $db->f('title'); check_empty($title);
+     $length   = $db->f('length'); check_empty($length);
+     $year     = $db->f('year'); check_empty($year);
+     $aq_date  = $db->f('aq_date');  check_empty($aq_date);
+     $category = $db->f('name'); check_empty($category);
+
      if ($same_name) {
        $t->set_var("name","&nbsp;");
        $t->set_var("namesep","&nbsp;");
@@ -90,12 +89,12 @@
        $t->set_var("namesep",", ");
        $t->set_var("firstname",$staff[$i]->firstname);
      }
-     $t->set_var("title",$title[$k]);
-     $t->set_var("category",$category[$k]);
-     $t->set_var("length",$length[$k]);
-     $t->set_var("url","edit.php?nr=$movie_id[$k]&cass_id=$cass_id[$k]&part=$part[$k]&mtype_id=$mtype_id[$k]");
-     $t->set_var("mtype",$mtype[$k]);
-     $t->set_var("nr",$nr[$k]);
+     $t->set_var("title",$title);
+     $t->set_var("category",$category);
+     $t->set_var("length",$length);
+     $t->set_var("url","edit.php?nr=$movie_id&cass_id=$cass_id&part=$part&mtype_id=$mtype_id");
+     $t->set_var("mtype",$mtype);
+     $t->set_var("nr",$nr);
      $t->parse("itemlist","itemblock",TRUE);
      $same_name = TRUE;
     }

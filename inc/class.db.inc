@@ -407,6 +407,7 @@
     * @param string name
     * @param mixed value
     * @param optional integer user_id
+    * @return integer success return value from sql::dbquery on update/insert
     * @see preferences::filter
     */
    function set_preferences($name,$value,$user_id="") {
@@ -423,9 +424,9 @@
      }
      $this->query("SELECT value FROM $preftab WHERE name='$name' $restrict");
      if ( $this->next_record() ) {
-       $this->dbquery("UPDATE $preftab SET value='$value' WHERE name='$name' $restrict");
+       return $this->dbquery("UPDATE $preftab SET value='$value' WHERE name='$name' $restrict");
      } else {
-       $this->dbquery($insert);
+       return $this->dbquery($insert);
      }
    }
 
@@ -476,15 +477,16 @@
     * @class sql
     * @method set_config
     * @param string name config vars name
+    * @return integer success return value from sql::dbquery on update/insert
     */
    function set_config($name,$value) {
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
      $this->query("SELECT value FROM pvp_config WHERE name='$name'");
      if ( $this->next_record() ) {
-       $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
+       return $this->dbquery("UPDATE pvp_config SET value='$value' WHERE name='$name'");
      } else {
-       $this->dbquery("INSERT INTO pvp_config (name,value) VALUES ('$name','$value')");
+       return $this->dbquery("INSERT INTO pvp_config (name,value) VALUES ('$name','$value')");
      }
    }
 
@@ -2592,6 +2594,26 @@
      $printerlist[] = $printer;
    }
    return $printerlist;
+ }
+
+ /** replace all printers (restore from a backup)
+  * @method printerReplace
+  * @param array printerlist new list of printers
+  * @return boolean success
+  */
+ function printerReplace($list) {
+   if ( !$this->query("TRUNCATE TABLE printers") ) return FALSE;
+   $pcount = count($list);
+   $errors = 0;
+   for ($i=0;$i<$pcount;++$i) {
+     $query = "INSERT INTO printers (id,name,unit_id,top_offset,left_offset) "
+            . "VALUES (".$list[$i]->id.",'".$list[$i]->name."',"
+            . $list[$i]->unit_id.",".$list[$i]->top_offset.","
+            . $list[$i]->left_offset.")";
+     if (! $this->query($query) ) ++$errors;
+   }
+   if ($errors) return FALSE;
+   return TRUE;
  }
 
  /** set printer specifics

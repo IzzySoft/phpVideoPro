@@ -379,3 +379,5 @@ INSERT INTO lang VALUES('no_backup_avail','en','No Backup file available to rest
 INSERT INTO lang VALUES('no_restore_file','en','Sorry: the selected file does no longer exist!','Hint on the Backup/Restore page');
 INSERT INTO lang VALUES('imp_errors','en','Import of %2 records finnished with %1 errors.','Result message after import');
 INSERT INTO lang VALUES('imp_success','en','Import of %1 records successfully completed.','Result message after import');
+INSERT INTO lang VALUES('backup_file_corrupt','en','The selected Backup-File is corrupt - cannot restore from this!','Hint on backup/restore page');
+INSERT INTO lang VALUES('clean_restore','en','CleanUp (remove) old data before restore','Selection on backup/restore page');

@@ -1,5 +1,5 @@
 # ========================================================
-# Russian Language File created by phpVideoPro v0.7.2
+# Russian Language File created by phpVideoPro v0.7.3
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='ru';
@@ -39,12 +39,14 @@ INSERT INTO lang VALUES ('backup_db_moviedel','ru','Откат данных ис
  и предложение стереть старые данные перед вставкой новых(сохранённых)данных','');
 INSERT INTO lang VALUES ('backup_db_movies','ru','Откат данных исключительно относящихся к фильму
  (фильм,актёры и т.д.)','');
-INSERT INTO lang VALUES ('backup_db_movie_internal','ru','Делайте копию всех кинофильмов, используя phpVideoPro внутренний формат','');
+INSERT INTO lang VALUES ('backup_db_movie_internal','ru','Скопируйте все кинофильмы, используя phpVideoPro внутренний формат','');
 INSERT INTO lang VALUES ('backup_db_runscript','ru','Хотите создать скрипт сейчас?','');
+INSERT INTO lang VALUES ('backup_db_sysconf','ru','Скопируйте системную конфигурацию и стандартые данные','');
 INSERT INTO lang VALUES ('backup_file_corrupt','ru','Отобранный резервный файл испорчен - не может восстановить от этого!','');
 INSERT INTO lang VALUES ('backup_file_unreadable','ru','Не могу читать резервный файл - удостоверяются, что разрешения файла установлены правильно!','');
 INSERT INTO lang VALUES ('button_restore','ru','Восстановить','');
 INSERT INTO lang VALUES ('cache_enable','ru','Позволите кэширование браузера/полномочия?','');
+INSERT INTO lang VALUES ('cache_enable_comment','ru','Желательно не оставлять данные, а вызывать их заного','');
 INSERT INTO lang VALUES ('cancel','ru','Отменить','');
 INSERT INTO lang VALUES ('categories','ru','Категории','');
 INSERT INTO lang VALUES ('category','ru','Категория','');

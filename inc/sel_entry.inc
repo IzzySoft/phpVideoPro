@@ -20,23 +20,22 @@
  }
 
  #======================[ if the form was submitted, redirect to edit.php ]===
- if ($sel_entry && $mtype_id && $cass_id) {
-   if (!$part) {
-     header("Location: ".$pvp->link->slink($baseurl ."medium.php?mtype_id=$mtype_id&cass_id=$cass_id"));
-     exit;
+ if ($sel_entry && $mtype_id) {
+   if ($cass_id) {
+     if (!$part) {
+       header("Location: ".$pvp->link->slink($baseurl ."medium.php?mtype_id=$mtype_id&cass_id=$cass_id"));
+     } else {
+       $nr       = $cass_id;
+       while (strlen($nr)<4) { $nr = "0" . $nr; }
+       $nr      .= "-";
+       if (strlen($part)<2) {
+         $nr .= "0" . $part;
+       } else { $nr .= $part; }
+       header("Location: ".$pvp->link->slink("edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr"));
+     }
    } else {
-     $nr       = $cass_id;
-     while (strlen($nr)<4) { $nr = "0" . $nr; }
-     $nr      .= "-";
-     if (strlen($part)<2) {
-       $nr .= "0" . $part;
-     } else { $nr .= $part; }
+     header("Location: ".$pvp->link->slink("search.php?submit=1&mtype_id=$mtype_id"));
    }
-?>
-<HTML><HEAD>
-  <meta http-equiv="refresh" content="0; URL=<?=$pvp->link->slink("edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr")?>">
-</HEAD></HTML>
-<?
    exit;
  }
 

@@ -12,7 +12,9 @@
      PostgreSQL - fixed (thanks to Didier)
  <li>language names are now displayed using their native names and spelling - so
      if somebody accidentally changed the "prefered language" it should be
-     easier to find "the way back" to a language he can read ;)
+     easier to find "the way back" to a language he can read ;) Only concerns
+     the language selection (users primary language) - admins should have a
+     chance without knowing all the languages (but English).
 </ul>
 
 [title]

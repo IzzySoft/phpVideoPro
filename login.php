@@ -22,7 +22,7 @@
  if (isset($redir)) {
    $url = $redir;
  }
- if (!strlen($url))  $url = $base_url . "/index.php";
+ if (!strlen($url))  $url = $base_url . "index.php";
  if (isset($login_hint)) $login_hint = lang("$login_hint");
  if ($sess_id && $logout) {
    $pvp->session->end($sess_id);

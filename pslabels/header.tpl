@@ -44,6 +44,7 @@
 %% language adaptations for label text fields
 /lang_director { ({_lang_director_}) } bdef
 /lang_actor { ({_lang_actor_}) } bdef
+/lang_composer { ({_lang_composer_}) } bdef
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% ENDE VARAIBLER TEIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -72,20 +72,13 @@ Contents:
  There are a few things you have to make sure first (without them the whole
  program, including this setup, won't work at all):
  1. have a webserver running (I just tested it with Apache)
- 2. have PHP running, at least v4.0b3 (a version less than this won't work;
+ 2. have PHP running, at least v4.1 (a version less than this won't work;
     I recommend using Apache with PHP as loadable module, and that's
     the only combination I've tested)
  3. make sure your PHP has built in support for the database you want to use
     (this has to be one supported by the program, of course)! (if requirements
     1. and 2. are met, point your browser to the setup/phpinfo.php file via
     http to see what features are supported by your PHP setup)
- 4. with PHP 4.2 and higher, you may have to set register_globals=On in your
-    php.ini -- sorry for that, just discovered it today. If you don't want to
-    use this setting for the whole site, please refer to the history on v0.4.2
-    in the online help.
-    With v0.5.1, this should hopefully be fixed and worked around - but this
-    work-around is not yet approved. So if you have set register_globals=off,
-    please let me know if everything works fine without any changes!
 
 ===============================================================================
 

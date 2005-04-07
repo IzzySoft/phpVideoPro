@@ -192,6 +192,7 @@ INSERT INTO lang VALUES ('howto_label','de','Wie erstelle/konfiguriere ich Vorla
 INSERT INTO lang VALUES ('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?','');
 INSERT INTO lang VALUES ('howto_templates','de','Wie erstelle ich ein neues Template Set?','');
 INSERT INTO lang VALUES ('imdb_movie_id','de','IMDB Film ID','');
+INSERT INTO lang VALUES ('imdb_search_empty_result','de','Sorry - phpVideoPro konnte keinen entsprechenden Eintrag in der IMDB finden.<BR>Vielleicht hilft ein erneuter Versuch mit anderen Suchbegriffen?','');
 INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
 INSERT INTO lang VALUES ('imdb_transfer2edit','de','Daten übertragen','');

@@ -27,6 +27,7 @@
 
  # Was the movie name given on the main form?
  if (empty($_REQUEST["nsubmit"]) && empty($_REQUEST["isubmit"]) && !empty($_REQUEST["name"])) {
+   $auto_search = TRUE;
    if (is_numeric($_REQUEST["name"]) && strlen($_REQUEST["name"])>5) {
      $_REQUEST["mid"] = $_REQUEST["name"];
      $_REQUEST["isubmit"] = 1;
@@ -51,25 +52,36 @@
  $t->set_block("template","queryblock","query");
 
  $t->set_var("listtitle",lang("imdb_title_search"));
+ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
  if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
  #=================================================[ Get IMDB ID for movie ]===
   $search = new imdbsearch ();
   $search->usecache   = $usecache;
   $search->storecache = $usecache;
-  $search->setsearchname ($HTTP_GET_VARS["name"]);
+  $search->setsearchname ($_REQUEST["name"]);
   $results = $search->results ();
   $open = FALSE;
-  foreach ($results as $res) {
-    $moviename = "<a href='".$_SERVER["PHP_SELF"]."?mid=".$res->imdbid()."'>"
-           . $res->title()." (".$res->year().")"."</a>";
-    $t->set_var("moviename",$moviename);
-    $link  = "<a href='http://".$search->imdbsite."/title/tt".$res->imdbid()
-           . "' target='_blank'><img src='".$base_url."images/imdb_movie.gif' "
-           . "border='0' alt='Open IMDB page'></a>";
-    $t->set_var("links",$link);
-    $t->parse("resultitem","resitemblock",$open);
-    $open = TRUE;
+  if (empty($results)) { // found nothing on IMDB?
+    if ($auto_search) {
+      $t->set_var("links","&nbsp;");
+    } else {
+      $t->set_var("links","<A HREF='JavaScript:history.back()'>".lang("back")."</A>");
+    }
+    $t->set_var("moviename",lang("imdb_search_empty_result"));
+    $t->parse("resultitem","resitemblock");
+  } else { // successful search - display result list
+    foreach ($results as $res) {
+      $moviename = "<a href='".$_SERVER["PHP_SELF"]."?mid=".$res->imdbid()."'>"
+             . $res->title()." (".$res->year().")"."</a>";
+      $t->set_var("moviename",$moviename);
+      $link  = "<a href='http://".$search->imdbsite."/title/tt".$res->imdbid()
+             . "' target='_blank'><img src='".$base_url."images/imdb_movie.gif' "
+             . "border='0' alt='Open IMDB page'></a>";
+      $t->set_var("links",$link);
+      $t->parse("resultitem","resitemblock",$open);
+      $open = TRUE;
+    }
   }
   $t->parse("resultlist","resultblock");
   $t->pparse("out","template");
@@ -83,7 +95,6 @@
    $movie->usecache   = $usecache;
    $movie->storecache = $usecache;
    $movie->setid ($movieid);
-   $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
    #-=[ Title incl. Also Known As ]=-
    $title  = "<SELECT NAME='title'>";
    $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";

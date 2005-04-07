@@ -970,7 +970,8 @@
     $url = $this->url;
    }else{
    $url = "http://".$this->imdbsite."/find?q=".urlencode($this->name).
-          "&restrict=Movies+only&GO.x=0&GO.y=0&GO=search;tt=1";
+#          "&restrict=Movies+only&GO.x=0&GO.y=0&GO=search;tt=1";
+          ";tt=on;nm=on;mx=20";
    }
    return $url;
   }
@@ -1006,6 +1007,7 @@
    $i = 0;
 #echo "Walking searchstring for this page:";
 #echo "<div style='border:1px solid black'>".htmlentities($this->page)."</div>";
+#echo "<div style='border:1px solid black'>".$this->page."</div>";
    foreach( $searchstring as $srch){
 #echo "<ul><li>Testing ".htmlentities($srch)."</li>";
     $res_e = 0;
@@ -1028,8 +1030,8 @@
       $this->resu[$i] = $tmpres;
     }
 #echo "</ul>\n";
-   }	
-#echo "Search completed.<br>";
+   }
+#echo "Search completed, '".count($this->resu)."' results.<br>\n";
    return $this->resu;
   }
 } // end class imdbsearch

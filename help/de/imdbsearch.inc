@@ -15,17 +15,30 @@ an dieser Stelle.
 Start der Suche
 
 [text]
-Wurde der Filmtitel bereits vor dem "Klick" auf den IMDB-Button im
-<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> Formular eingegeben, wird
-diese Seite übersprungen und mit dem <a href="#found">nächsten Schritt</a>
-fortgefahren.
+Wurde der Filmtitel (oder dessen IMDB ID) bereits vor dem "Klick" auf den
+IMDB-Button im <A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> Formular
+eingegeben, wird diese Seite übersprungen und mit dem <a href="#found">nächsten
+Schritt</a> fortgefahren.
 
 [text]
 Andernfalls ist im Eingabefeld auf dieser Seite der Name des gesuchten Filmes
-einzugeben, und anschließend der "<i>*submit#</i>" Button zu betätigen.
-phpVideoPro nimmt dann Kontakt zur IMDB auf, und versucht selbigen aufzufinden.
-Abhängig von der Geschwindigkeit des verfügbaren Internet-Zugangs (und der
-Reaktionszeit der IMDB) kann dies ein kleines Weilchen dauern.
+einzugeben, und anschließend der nebenstehende "<i>*submit#</i>" Button zu
+betätigen. phpVideoPro nimmt dann Kontakt zur IMDB auf, und versucht selbigen
+aufzufinden. Abhängig von der Geschwindigkeit des verfügbaren Internet-Zugangs
+(und der Reaktionszeit der IMDB) kann dies ein kleines Weilchen dauern.
+
+[text]
+Schneller ist man in der Regel, sofern man die IMDB ID des gesuchten Filmes
+kennt: Diese ist dann in das zweite Feld einzutragen, und der zugehörige
+"<i>*submit#</i>" Button anzuklicken. In diesem Fall wird die Auswahlliste
+definitiv übersprungen, und man gelangt sofort zur Seite mit den
+<A HREF="#details">Details</A> des Filmes.
+
+[text]
+Anmerkung: Man kann die IMDB ID auch in das Titelfeld im
+<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> Formular eingeben. Dann
+betrachtet phpVideoPro alle rein numerischen Angaben, die aus mehr als fünf
+Zeichen bestehen, als IMDB ID.
 
 [title|1|found]
 Gefundene Filme

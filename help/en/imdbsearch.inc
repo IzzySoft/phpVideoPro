@@ -19,9 +19,22 @@ the <a href="#found">next step.
 
 [text]
 Otherwise, just enter the name of the movie you are editing into the input
-field, and click the "<i>*submit#</i>" button. phpVideoPro then will contact
-the IMDB and tries to find the requested movie. This may take a while, depending
-on the speed of your internet connection (and the response time of the IMDB).
+field, and click the associated "<i>*submit#</i>" button. phpVideoPro then will
+contact the IMDB and tries to find the requested movie. This may take a while,
+depending on the speed of your internet connection (and the response time of
+the IMDB).
+
+[text]
+In most cases you will be much faster if you know the IMDB ID of the movie.
+Enter this in the second field given in this form, and press the associated
+button - this will definitively skip the list of movies, and directly lead you
+to the <A HREF="#details">details</A> page.
+
+[text]
+Hint: You also may enter the IMDB ID into the movie title field on the
+<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> form. In this case,
+phpVideoPro considers all plain numeric statements longer than 5 digits as
+representing an IMDB ID.
 
 [title|1|found]
 Movies found
@@ -38,7 +51,7 @@ If you've got the right movie, just click on its name. This will bring you to
 the next screen with the details we could retrieve from the IMDB. Again, some
 patience may be needed - since we have to query the IMDB one more time.
 
-[title]
+[title|1|details]
 Movie details
 
 [text]

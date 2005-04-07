@@ -10,6 +10,11 @@
  <li>Movie list returned by the IMDB search sometimes had the movie titles
      messed up - hopefully finally fixed.
  <li>Added search by IMDB ID to the IMDB movie search
+ <li>Changed the search specifications given to imdb to obtain more results
+     (with the old specs we sometimes got no result even if there where
+     matching entries)
+ <li>If the IMDB returned no hits for our search this ended up in an empty
+     result table. Now we say what happened ;)
 </ul>
 
 [title]

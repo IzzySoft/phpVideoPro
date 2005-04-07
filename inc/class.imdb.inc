@@ -33,13 +33,14 @@
    * @constructor imdb_config
    */	
   function imdb_config(){
-   GLOBAL $pvp,$base_path,$base_url;
+   GLOBAL $pvp,$base_path,$base_url,$db;
    $imdbsite = $pvp->preferences->get("imdb_url");
    $url  = explode("/",$imdbsite);
    $this->imdbsite = $url[count($url)-2];
    $this->cachedir = $base_path.'testdata/cache/';
-   $this->usecache = false; // use cached page to retrieve the information if available?
-   $this->storecache = false; // store the pages retrieved for later use?
+   $this->usecache = $this->storecache = $db->get_config("imdb_cache_use");
+#   $this->usecache = false; // use cached page to retrieve the information if available?
+#   $this->storecache = false; // store the pages retrieved for later use?
    $this->photodir = $base_path.'moviepic/imdb/';
    $this->photoroot = $base_url.'moviepic/imdb/';
   }
@@ -1003,21 +1004,32 @@
 
    $searchstring = array( '<A HREF="/title/tt', '<A href="/title/tt', '<a href="/Title?', '<a href="/title/tt');
    $i = 0;
+#echo "Walking searchstring for this page:";
+#echo "<div style='border:1px solid black'>".htmlentities($this->page)."</div>";
    foreach( $searchstring as $srch){
+#echo "<ul><li>Testing ".htmlentities($srch)."</li>";
     $res_e = 0;
     $res_s = 0;
     $len = strlen($srch);
     while ((($res_s = strpos ($this->page, $srch, $res_e)) > 10)) {
       $res_e = strpos ($this->page, "(", $res_s);
       $tmpres = new imdb ( substr($this->page, $res_s+$len, 7));
-      $tmpres->main_title=substr ($this->page, $res_s + 28, $res_e - $res_s - 28);
-      if ($pos = strpos($tmpres->main_title,">"))
-        $tmpres->main_title = substr($tmpres->main_title,$pos+1);
-      $tmpres->main_year=substr($this->page, $res_e+1, 4);
+      $ts = strpos($this->page, ">",$res_e) +1;
+      $te = strpos($this->page,"<",$ts);
+      $tmpres->main_title = substr($this->page,$ts,$te-$ts);
+#      $tmpres->main_title=substr ($this->page, $res_s + 28, $res_e - $res_s - 28);
+#      if ($pos = strpos($tmpres->main_title,">"))
+#        $tmpres->main_title = substr($tmpres->main_title,$pos+1);
+      $ts = strpos($this->page,"(",$te) +1;
+      $te = strpos($this->page,")",$ts);
+      $tmpres->main_year=substr($this->page,$ts,$te-$ts);
+#      $tmpres->main_year=substr($this->page, $res_e+1, 4);
       $i++;
       $this->resu[$i] = $tmpres;
     }
+#echo "</ul>\n";
    }	
+#echo "Search completed.<br>";
    return $this->resu;
   }
 } // end class imdbsearch

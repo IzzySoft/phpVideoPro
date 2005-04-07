@@ -7,6 +7,9 @@
 <ul>
  <li>Fixed a typo in the setup wizzard (SQL syntax on Grant)
  <li>In some rare cases, URLs have been set up incorrectly. Fixed.
+ <li>Movie list returned by the IMDB search sometimes had the movie titles
+     messed up - hopefully finally fixed.
+ <li>Added search by IMDB ID to the IMDB movie search
 </ul>
 
 [title]

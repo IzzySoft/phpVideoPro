@@ -81,7 +81,7 @@
 <!-- END movieblock -->
 
 <!-- BEGIN queryblock -->
-<FORM NAME="queryform">
+<FORM NAME="queryform" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
  <TR><TD>{mname}</TD><TD><INPUT NAME="name" CLASS="titleinput"></TD>
      <TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="nsubmit" VALUE="{submit}"></DIV></TD></TR>

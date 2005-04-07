@@ -25,6 +25,15 @@
   ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
  }
 
+ # Was the movie name given on the main form?
+ if (empty($_REQUEST["nsubmit"]) && empty($_REQUEST["isubmit"]) && !empty($_REQUEST["name"])) {
+   if (is_numeric($_REQUEST["name"]) && strlen($_REQUEST["name"])>5) {
+     $_REQUEST["mid"] = $_REQUEST["name"];
+     $_REQUEST["isubmit"] = 1;
+   }
+   else $_REQUEST["nsubmit"] = 1;
+ }
+
  #========================================================[ Template setup ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"imdbsearch.tpl"));
@@ -43,7 +52,7 @@
 
  $t->set_var("listtitle",lang("imdb_title_search"));
 
- if (isset($_REQUEST["name"])) {
+ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
  #=================================================[ Get IMDB ID for movie ]===
   $search = new imdbsearch ();
   $search->usecache   = $usecache;
@@ -64,7 +73,7 @@
   }
   $t->parse("resultlist","resultblock");
   $t->pparse("out","template");
- } elseif (isset($_REQUEST["mid"])) {
+ } elseif (!empty($_REQUEST["mid"]) && !empty($_REQUEST["isubmit"])) {
  #==============================================[ Get movie data from IMDB ]===
    $movieid = $_REQUEST["mid"];
    $movie = new imdb ($movieid);
@@ -281,6 +290,8 @@
    $t->pparse("out","template");
  } else {
  #=================================================[ Nothing to do for us! ]===
+   $t->set_var("mname",lang("imdb_tx_title"));
+   $t->set_var("mid",lang("imdb_movie_id"));
    $t->set_var("submit",lang("submit"));
    $t->parse("query","queryblock");
    $t->pparse("out","template");

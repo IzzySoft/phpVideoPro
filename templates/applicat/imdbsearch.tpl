@@ -83,8 +83,10 @@
 <!-- BEGIN queryblock -->
 <FORM NAME="queryform">
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
- <TR><TD><INPUT NAME="name" CLASS="titleinput"></TD></TR>
- <TR><TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></TD></TR>
+ <TR><TD>{mname}</TD><TD><INPUT NAME="name" CLASS="titleinput"></TD>
+     <TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="nsubmit" VALUE="{submit}"></DIV></TD></TR>
+ <TR><TD>{mid}</TD><TD><INPUT NAME="mid" CLASS="titleinput"></TD>
+     <TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="isubmit" VALUE="{submit}"></DIV></TD></TR>
 </TABLE>
 </FORM>
 <!-- END queryblock -->

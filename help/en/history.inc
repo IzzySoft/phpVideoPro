@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.4 (2005)
+0.7.4 (April/May 2005)
 [text]
 <ul>
  <li>Fixed a typo in the setup wizzard (SQL syntax on Grant)
@@ -11,10 +11,11 @@
      messed up - hopefully finally fixed.
  <li>Added search by IMDB ID to the IMDB movie search
  <li>Changed the search specifications given to imdb to obtain more results
-     (with the old specs we sometimes got no result even if there where
+     (with the old specs we sometimes got no result even if there were
      matching entries)
  <li>If the IMDB returned no hits for our search this ended up in an empty
      result table. Now we say what happened ;)
+ <li>Added reset button to initial IMDB search screen
 </ul>
 
 [title]

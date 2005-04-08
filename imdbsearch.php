@@ -301,6 +301,7 @@
    $t->pparse("out","template");
  } else {
  #=================================================[ Nothing to do for us! ]===
+   $t->set_var("reset",lang("reset"));
    $t->set_var("mname",lang("imdb_tx_title"));
    $t->set_var("mid",lang("imdb_movie_id"));
    $t->set_var("submit",lang("submit"));

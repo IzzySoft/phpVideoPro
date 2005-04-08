@@ -87,6 +87,7 @@
      <TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="nsubmit" VALUE="{submit}"></DIV></TD></TR>
  <TR><TD>{mid}</TD><TD><INPUT NAME="mid" CLASS="titleinput"></TD>
      <TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="isubmit" VALUE="{submit}"></DIV></TD></TR>
+ <TR><TD COLSPAN="3"><DIV ALIGN="center"><INPUT TYPE="reset" NAME="reset" VALUE="{reset}"></DIV></TD></TR>
 </TABLE>
 </FORM>
 <!-- END queryblock -->

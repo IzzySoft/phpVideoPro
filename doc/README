@@ -97,11 +97,12 @@ Contents:
     Simple advice: use "tar xzf <tarfile>" to unpack it into the current
     directory. Probably you have already done this - since you are reading
     this file :)
- 2. optionally edit inc/config.inc to reflect your structures. Alternatively,
-    this can be done with the configuration wizzard as well: in that case you
-    only need to copy the new created config to its place lateron.
-    The other settings (Hu? Ah, other files ;) you should leave unchanged. If
-    you need more customization, you can do so later via the web interface.
+ 2. rename inc/config.sample to inc/config.inc and optionally edit it to
+    reflect your structures. Alternatively, this can be done with the
+    configuration wizzard as well: in that case you only need to copy the new
+    created config to its place lateron. The other settings (Hu? Ah, other
+    files ;) you should leave unchanged. If you need more customization, you
+    can do so later via the web interface.
  3. now, point your browser to <phpvideopro>/setup/install/index.php, which
     starts the *INSTALLATION WIZZARD*. This wizzard will create your database
     (and, if necessary, also the user) and install the "skeleton" (all the
@@ -160,9 +161,9 @@ Contents:
 ------------
 
   When updating from a previous version of phpVideoPro, the steps to do
-  follow easier rules. After updating the files (and checking config.inc for
-  possible changes), point your browser to the setup/index.php and just
-  follow the update link there.
+  follow easier rules. After updating the files (and comparing your config.inc
+  with the new config.sample for possible changes), point your browser to the
+  setup/index.php and just follow the update link there.
 
 ===============================================================================
 

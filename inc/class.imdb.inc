@@ -970,8 +970,9 @@
     $url = $this->url;
    }else{
    $url = "http://".$this->imdbsite."/find?q=".urlencode($this->name).
-#          "&restrict=Movies+only&GO.x=0&GO.y=0&GO=search;tt=1";
-          ";tt=on;nm=on;mx=20";
+#          "&restrict=Movies+only&GO.x=0&GO.y=0&GO=search;tt=1"; // Sevec ori
+          ";tt=on;nm=on;mx=20"; // Izzy
+#          ";more=tt;nr=1"; // @moonface variant (untested)
    }
    return $url;
   }
@@ -992,9 +993,14 @@
           return $this->results($header);
           break(4);
         }
+        #--- @moonface variant (not tested)
+        # $idpos = strpos($header, "/Title?") + 7;
+        # $this->resu[0] = new imdb( substr($header, $idpos,7));
+        #--- end @moonface / start sevec variant
         $url = explode("/",$header);
         $id  = substr($url[count($url)-2],2);
         $this->resu[0] = new imdb($id);
+        #--- end Sevec variant
         return $this->resu;
        }else{
         return NULL;

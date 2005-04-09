@@ -16,6 +16,8 @@
  <li>If the IMDB returned no hits for our search this ended up in an empty
      result table. Now we say what happened ;)
  <li>Added reset button to initial IMDB search screen
+ <li>inc/config.inc is now named inc/config.sample in the distribution tarball
+     to avoid accidental overwriting your configuration
 </ul>
 
 [title]

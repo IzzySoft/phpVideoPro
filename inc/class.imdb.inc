@@ -38,9 +38,8 @@
    $url  = explode("/",$imdbsite);
    $this->imdbsite = $url[count($url)-2];
    $this->cachedir = $base_path.'testdata/cache/';
-   $this->usecache = $this->storecache = $db->get_config("imdb_cache_use");
-#   $this->usecache = false; // use cached page to retrieve the information if available?
-#   $this->storecache = false; // store the pages retrieved for later use?
+   $this->storecache = $db->get_config("imdb_cache_enable");
+   $this->usecache = $db->get_config("imdb_cache_use");
    $this->photodir = $base_path.'moviepic/imdb/';
    $this->photoroot = $base_url.'moviepic/imdb/';
   }

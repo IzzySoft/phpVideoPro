@@ -586,4 +586,10 @@ INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','en','When you got all n
 INSERT INTO lang VALUES ('imdb_tx_music','en','Composer','Option name on configuration/preferences page for items to transfer from IMDB');
 INSERT INTO lang VALUES ('imdb_movie_id','en','IMDB movie ID','Name of a field for IMDB search');
 INSERT INTO lang VALUES ('imdb_search_empty_result','en','Sorry, but we found no corresponding entry in the IMDB.<BR>You may want to try again with different search terms.','');
+INSERT INTO lang VALUES ('imdb_cache_enable','en','Enable caching of IMDB data?','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_enable_comment','en','Lookup of movie details on IMDB can be time intensive, since phpVideoPro needs to retrieve multiple pages. Although, caching only makes sense if you tend to lookup the same movie data more than once - so normally you should not need that. If you switch this option active, make sure you define a cache directory that is writeable for your webserver.','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_dir','en','Directory to store the IMDB Cache to','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_dir_comment','en','This directory must be r/w for the WebServer and specifically used for this purpose. Path may be relative to the phpVideoPro installation base path (recommended). Do <b><i>not</i></b> use your systems temporary directory for this.','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_use','en','Use cached data on new requests?','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_use_comment','en','While above statement controls the <b><i>storing</i></b> of IMDB data into the local cache, this option controls whether phpVideoPro uses this cache for lookups. If enabled, and cache data exist, phpVideoPro will not contact the IMDB for details on the specific movie but use the cached data instead.','Option on the configuration screen');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

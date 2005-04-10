@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.7.1
+# German Language File created by phpVideoPro v0.7.4
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -191,12 +191,20 @@ INSERT INTO lang VALUES ('howto_help','de','Wie erstelle ich eine Hilfedatei?','
 INSERT INTO lang VALUES ('howto_label','de','Wie erstelle/konfiguriere ich Vorlagen für Labels?','');
 INSERT INTO lang VALUES ('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?','');
 INSERT INTO lang VALUES ('howto_templates','de','Wie erstelle ich ein neues Template Set?','');
+INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
+INSERT INTO lang VALUES ('imdb_cache_dir','de','Verzeichnis zum Speichern der IMDB Cache Daten','');
+INSERT INTO lang VALUES ('imdb_cache_dir_comment','de','Für dieses Verzeichnis muss der Webserver sowohl Lese- als auch Schreibberechtigung haben. Desweiteren sollte es ausschließlich für diesen Zweck genutzt werden (also keine anderen Daten enthalten). Der hier angegebene Pfad kann relativ zum Basisverzeichnis der phpVideoPro Installation sein - aber auch außerhalb des DOCUMENT_ROOT des Webservers liegen. <b><i>Keinesfalls</i></b> sollte hierfür das temporäre Systemverzeichnis (<code>/tmp</code> unter Linux) genutzt werden.','');
+INSERT INTO lang VALUES ('imdb_cache_enable','de','IMDB Cache aktivieren?','');
+INSERT INTO lang VALUES ('imdb_cache_enable_comment','de','Ist der IMDB Cache aktiviert, werden bei Abfragen der Filmdaten aus der IMDB (über die Filmsuche) die gefundenen Details im IMDB Cache Verzeichnis abgelegt. Auf diese Weise kann bei erneuter Suche nach dem gleichen Film der zeitintensive Bezug aller Daten aus der IMDB (für den mehrere Dokumente von der IMDB Site abgerufen werden müssen) gespart werden, indem auf die gecachten Informationen zugegriffen wird. Sinn macht dies eigentlich nur zu Testzwecken: Im Normalfall werden diese Daten ohnehin nur einmal abgerufen.','');
+INSERT INTO lang VALUES ('imdb_cache_use','de','Daten aus dem IMDB Cache bei Abfragen nutzen?','');
+INSERT INTO lang VALUES ('imdb_cache_use_comment','de','Während obige Option das <b><i>Speichern</i></b> der Daten kontrolliert, lässt sich hier einstellen, ob diese auch bei erneuten Abfragen benutzt werden sollen. Sind <b><i>beide</i></b> Optionen aktiviert werden bereits im Cache vorhandene Daten nicht erneut von der IMDB Site abgerufen.','');
 INSERT INTO lang VALUES ('imdb_movie_id','de','IMDB Film ID','');
 INSERT INTO lang VALUES ('imdb_search_empty_result','de','Sorry - phpVideoPro konnte keinen entsprechenden Eintrag in der IMDB finden.<BR>Vielleicht hilft ein erneuter Versuch mit anderen Suchbegriffen?','');
-INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
 INSERT INTO lang VALUES ('imdb_transfer2edit','de','Daten übertragen','');
 INSERT INTO lang VALUES ('imdb_tx','de','Welche Daten sollen von der IMDB in die Datenbank von phpVideoPro übernommen werden?','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose','de','IMDB Suchfenster nach Datentransfer automatisch schließen?','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','de','Wenn die von der IMDB bezogenen Daten in das Bearbeitungsformular von phpVideoPro übertragen wurden, wird das Suchfenster nicht länger benötigt. Bei Bedarf kann es jedoch z.B. als Referenz geöffnet bleiben.','');
 INSERT INTO lang VALUES ('imdb_tx_actor','de','Schauspieler','');
 INSERT INTO lang VALUES ('imdb_tx_cat','de','Kategorien','');
 INSERT INTO lang VALUES ('imdb_tx_comment','de','phpVideoPro bietet die Möglichkeit, beim Anlegen eines neuen bzw. editieren eines existenten Datensatzes für einen Film Daten aus der IMDB abzurufen und zu übernehmen. Hier kann festgelegt werden, welche Daten standardmäßig übernommen werden sollen.','');
@@ -208,8 +216,6 @@ INSERT INTO lang VALUES ('imdb_tx_music','de','Musik','');
 INSERT INTO lang VALUES ('imdb_tx_pg','de','FSK','');
 INSERT INTO lang VALUES ('imdb_tx_title','de','Filmtitel','');
 INSERT INTO lang VALUES ('imdb_tx_year','de','Jahr','');
-INSERT INTO lang VALUES ('imdb_txwin_autoclose','de','IMDB Suchfenster nach Datentransfer automatisch schließen?','');
-INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','de','Wenn die von der IMDB bezogenen Daten in das Bearbeitungsformular von phpVideoPro übertragen wurden, wird das Suchfenster nicht länger benötigt. Bei Bedarf kann es jedoch z.B. als Referenz geöffnet bleiben.','');
 INSERT INTO lang VALUES ('imdb_url','de','Zu verwendende IMDB Site','');
 INSERT INTO lang VALUES ('imdb_url2','de','Alternative IMDB Site','');
 INSERT INTO lang VALUES ('imdb_url2_comment','de','Obwohl es lokalisierte Versionen der IMDB gibt (z.B. german.imdb.com), sind die eigentlichen Filmdaten dort nicht in die jeweilige Landessprache übersetzt worden - sondern lediglich die \"Bedienelemente\" der Webseiten. Das macht das Parsen nach den benötigten Daten komplizierter (ohne das das Ergebnis den Aufwand rechtfertigen könnte), weshalb phpVideoPro hierfür eine <b><i>Englische</i></b> IMDB-Site benötigt, die hier auszuwählen ist. Allerdings funktioniert bei der lokalisierten Site auch die Suche nach einem Filmtitel in der Landessprache: für die Suche empfiehlt sich daher die lokalisierte Version.','');

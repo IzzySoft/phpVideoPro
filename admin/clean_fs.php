@@ -44,10 +44,25 @@
  }
  $orphans = count($orphan);
 
+ #======================================[ Find other orphaned image files ]===
+ if (is_dir($pvp->config->photopath))  {
+   $orphan2 = array();
+   $reldir  = substr($pvp->config->photopath,strlen($base_path));
+   $thisdir = dir($pvp->config->photopath);
+   while( $file=$thisdir->read() ) {
+     if ($file!="." && $file!="..") {
+       $fname = $reldir . $file;
+       if (!$db->image_is_refered($fname)) $orphan2[] = $fname;
+     }
+   }
+ }
+ $orphans2 = count($orphan2);
+
  #====================[ Prepare the display and optionally do the cleanup ]===
+ #-----------------------------------------------------[ IMDB image files ]---
  $details = "";
  for ($i=0;$i<$orphans;++$i) {
-  $details .= $orphan[$i];
+  $details .= $pvp->link->linkurl($base_url.$orphan[$i],$orphan[$i]);
   if ($delete) {
     $rc = unlink($base_path.$orphan[$i]);
     if ($rc) { $details .= "<SPAN CLASS='ok'> " .lang("ok") ."</SPAN>";
@@ -60,15 +75,36 @@
   }
   $details .= "<br>\n";
  }
+ if (!empty($details))
+   $details = "<B>$orphans ".lang("imdb_image_files").":</B><BR>" . $details;
+ #----------------------------------------------------[ other image files ]---
+ $details2 = "";
+ for ($i=0;$i<$orphans2;++$i) {
+  $details2 .= $pvp->link->linkurl($base_url.$orphan2[$i],$orphan2[$i]);
+  if ($delete) {
+    $rc = unlink($base_path.$orphan2[$i]);
+    if ($rc) { $details2 .= "<SPAN CLASS='ok'> " .lang("ok") ."</SPAN>";
+    } else { $details2 .= "<SPAN CLASS='error'> " .lang("not_ok") ."</SPAN>"; }
+  } else {
+    $mid = substr($orphan2[$i],strrpos($orphan2[$i],"/")+1);
+    $mid = substr($mid,0,strlen($mid)-4);
+    $imdbsite = $pvp->preferences->get("imdb_url");
+  }
+  $details2 .= "<br>\n";
+ }
+ if (!empty($details2))
+   $details .= "<B>$orphans2 ".lang("local_image_files").":</B><BR>".$details2;
+
+ #=======================================================[ Prepare output ]===
  if (empty($details)) {
    $details = lang("no_orphans_found");
    $t->set_var("button","");
  }
 
  if (isset($delete) && $orphans) {
-   $t->set_var("title",lang("delete_orphans",$orphans));
+   $t->set_var("title",lang("delete_orphans",$orphans+$orphans2));
  } else {
-   $t->set_var("title",lang("orphans_found",$orphans));
+   $t->set_var("title",lang("orphans_found",$orphans+$orphans2));
  }
  $t->set_var("details",$details);
  $t->parse("item","itemblock",TRUE);

@@ -196,6 +196,39 @@ user pushed the transfer button and thus transfered the wanted data to the edit
 form, that window is no longer needed, and hence could be closed. Whether it is
 closed automatically after a successful transfer or not, you can define here.
 
+[text]
+<b>*imdb_cache_enable#:</b> The IMDB caching functions actually are only of
+interest for developers testing purposes. Once this cache is activated, all
+documents retrieved from the IMDB site(s) are stored into the
+<i>*imdb_cache_dir#</i> (see below). So if the IMDB LookUp seems to be broken
+again, this gives the developer the chance to find out what the guys at
+*.imdb.com changed again in their structures - and so we can adjust our code.
+For the daily use of phpVideoPro, there are normally no advantages of using the
+cache: Since the user stores the retrieved data into the local database, it is
+very unlikely (s)he wishes to check for the same data again.
+
+[text]
+<b>*imdb_cache_dir#:</b> This is the directory phpVideoPro goes to store the
+cached data into. Since for this action the webserver needs to read and write
+data here, it needs to have the necessary permissions. The IMDB data are freely
+available to everybody, so usually we do not need to be too much concerned about
+security and can give these permissions (change into the directory, read and
+write files) to everybody with a valid account on the machine. On Linux/Unix,
+this would be done by issuing the following command:
+<code>chmod 0777 <i>DirectoryName</i></code> (note that you need to be
+<code>root</code> to do this). But if you are concerned, you can give these
+permissions to the webserver only, which would look like this:<br>
+<code>chown wwwrun.www <i>DirectoryName</i><br>chmod 0700 <i>DirectoryName</i></code><br>
+Of course you need to replace the user (wwwrun), group (www), and directory
+name (DirectoryName) dummies of the example by their real values.
+
+[text]
+<b>*imdb_cache_use#:</b> How the IMDB caching in phpVideoPro works, we already
+explained above (at <i>*imdb_cache_enable#</i>). But that item just controls
+the <b><i>storing</i></b> part of the process. If you <b><i>additionally</i></b>
+enable this option, the cache is also used for look-ups: Data already found in
+the cache will not again be requested from the IMDB site, but taken from here.
+
 #=======================================================[ General Settings ]===
 [title|1|general]
 *general#

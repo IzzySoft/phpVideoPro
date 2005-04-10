@@ -223,6 +223,43 @@ betätigt, wird dieses Fenster nicht länger benötigt, und kann daher geschloss
 werden. Mit diesem Punkt in der Konfiguration läßt sich festlegen, ob dies
 geschehen soll.
 
+[text]
+<b>*imdb_cache_enable#:</b> Die IMDB Caching Funktionen sind eigentlich nur für
+Testzwecke interessant: Ist der Cache aktiviert, werden die von der IMDB-Site
+bezogenen Details zum Film (also Schauspieler, Plot, etc.) in selbigem abgelegt.
+Genau genommen heißt das: phpVideoPro legt von den entsprechenden HTML-Dokumenten
+eine Kopie im IMDB Cache Verzeichnis ab. Sollte also wieder einmal etwas mit
+dem IMDB LookUp fehlschlagen, können die Entwickler auf diese Weise schneller
+feststellen, welche Spezifikationen auf der IMDB-Site wieder einmal verändert
+wurden, und dann den Code der IMDB Klassen entsprechend anpassen. Für den
+täglichen Umgang mit phpVideoPro bringt dies kaum Vorteile, da der Anwender die
+aus der IMDB bezogenen Daten ja in die eigene Datenbank kopiert, und den selben
+Film kaum ein zweites Mal abrufen wird.
+
+[text]
+<b>*imdb_cache_dir#:</b> In diesem Verzeichnis werden die IMDB-Daten bei
+aktiviertem IMDB-Cache (s.o.) gespeichert. Da sowohl die Lese- als auch die
+Schreibzugriffe vom Prozess des Webservers durchgeführt werden, muss dieser
+auch Lese- und Schreibrechte auf das hier angegebene Verzeichnis besitzen. Da
+die Daten der IMDB ohnehin für jeden einsehbar sind, kann eine entsprechende
+Berechtigung unter Linux/Unix am einfachsten mit dem Befehl
+<code>chmod 0777 <i>Verzeichnisname</i></code> erteilt werden (was kurz gesagt
+heißt: Jeder Benutzer des lokalen Systems darf in dieses Verzeichnis wechseln,
+sich den Inhalt anzeigen lassen, sowie Dateien lesen und schreiben). Wer dennoch
+Sicherheitsbedenken hat, übereignet das Verzeichnis dem Benutzer des Webservers
+und gibt nur diesem die entsprechenden Rechte. Das könnte z.B. so aussehen:<br>
+<code>chown wwwrun.www <i>Verzeichnisname</i><br>chmod 0700 <i>Verzeichnisname</i></code>
+
+[text]
+<b>*imdb_cache_use#:</b> Die Funktion des IMDB Cache in phpVideoPro wurde bereits
+weiter oben (unter <i>*imdb_cache_enable#</i>) beschrieben. Dort ging es
+allerdings nur um das <b><i>Speichern</i></b> der Cachedaten. Wird zusätzlich
+die Funktion <i>*imdb_cache_use#</i> aktiviert, wird der Cache auch bei LookUps
+verwendet - d.h., wenn für einen Film bereits alle Daten im Cache abgelegt sind,
+wird die IMDB für diesen nicht mehr kontaktiert. Stattdessen werden die
+entsprechenden Daten dem Cache entnommen.
+
+
 #=======================================================[ General Settings ]===
 [title|1|general]
 *general#

@@ -65,6 +65,12 @@ if ( isset($update) ) {
     }
     if (!isset($_POST["http_cache_enable"])) $_POST["http_cache_enable"] = 0;
     $db->set_config("http_cache_enable",$_POST["http_cache_enable"]);
+    if (!isset($_POST["imdb_cache_enable"])) $_POST["imdb_cache_enable"] = 0;
+    $db->set_config("imdb_cache_enable",$_POST["imdb_cache_enable"]);
+    if (!isset($_POST["imdb_cache_dir"])) $_POST["imdb_cache_dir"] = "";
+    $db->set_config("imdb_cache_dir",$_POST["imdb_cache_dir"]);
+    if (!isset($_POST["imdb_cache_use"])) $_POST["imdb_cache_enable"] = 0;
+    $db->set_config("imdb_cache_use",$_POST["imdb_cache_use"]);
     $db->set_config("rw_media",$rw_media);
     if (!$_POST["remove_media"]) $remove_media = "0"; else $remove_media = "1";
     $db->set_config("remove_empty_media",$remove_media);
@@ -132,6 +138,9 @@ for ($i=0;$i<$count;++$i) {
   ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
 }
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
+$imdb_cache_enable = $db->get_config("imdb_cache_enable");
+$imdb_cache_dir = $db->get_config("imdb_cache_dir");
+$imdb_cache_use = $db->get_config("imdb_cache_use");
 $cdisplay_limit = $pvp->preferences->get("display_limit");
 $cpage_length   = $pvp->preferences->get("page_length");
 $cdate_format   = $pvp->preferences->get("date_format");
@@ -459,6 +468,36 @@ if ($imdb_txwin_autoclose) $input .= " CHECKED";
 $input .= ">".lang("yes");
 $t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);
+
+if ($admin) {
+  #--[ Enable Caching ]--
+  $t->set_var("item_name",lang("imdb_cache_enable"));
+  $t->set_var("item_comment",lang("imdb_cache_enable_comment"));
+  $input = "<INPUT TYPE='radio' NAME='imdb_cache_enable' VALUE='0'";
+  if (!$imdb_cache_enable) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_cache_enable' VALUE='1'";
+  if ($imdb_cache_enable) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ Cache directory ]--
+  $t->set_var("item_name",lang("imdb_cache_dir"));
+  $t->set_var("item_comment",lang("imdb_cache_dir_comment"));
+  $t->set_var("item_input","<INPUT SIZE='20' NAME='imdb_cache_dir' VALUE='$imdb_cache_dir'>");
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ Use the Cache for new requests? ]--
+  $t->set_var("item_name",lang("imdb_cache_use"));
+  $t->set_var("item_comment",lang("imdb_cache_use_comment"));
+  $input = "<INPUT TYPE='radio' NAME='imdb_cache_use' VALUE='0'";
+  if (!$imdb_cache_enable) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_cache_use' VALUE='1'";
+  if ($imdb_cache_enable) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+}
 
 #--[ complete imdb block ]--
 $t->parse("list","listblock",TRUE);

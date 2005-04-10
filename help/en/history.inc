@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.7.5 (2005)
+[text]
+<ul>
+ <li>IMDBSearch details page was blocked due to last changes. Fixed.
+ <li>Making the IMDB caching function of phpVideoPro available to the user
+     (up to know, it was only used by the developers and hence missing on the
+     configuration screen). Note that only the admin can control it.
+</ul>
+
+[title]
 0.7.4 (April 10, 2005)
 [text]
 <ul>

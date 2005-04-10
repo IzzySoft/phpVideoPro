@@ -37,7 +37,11 @@
    $imdbsite = $pvp->preferences->get("imdb_url");
    $url  = explode("/",$imdbsite);
    $this->imdbsite = $url[count($url)-2];
-   $this->cachedir = $base_path.'testdata/cache/';
+   $cachedir = $db->get_config("imdb_cache_dir");
+   if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
+   if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
+   if (strrpos($cachedir,"/")!=strlen($cachedir)-1) $cachedir .= "/";
+   $this->cachedir = $cachedir;
    $this->storecache = $db->get_config("imdb_cache_enable");
    $this->usecache = $db->get_config("imdb_cache_use");
    $this->photodir = $base_path.'moviepic/imdb/';

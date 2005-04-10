@@ -67,6 +67,8 @@ if ( isset($update) ) {
     $db->set_config("http_cache_enable",$_POST["http_cache_enable"]);
     if (!isset($_POST["imdb_cache_enable"])) $_POST["imdb_cache_enable"] = 0;
     $db->set_config("imdb_cache_enable",$_POST["imdb_cache_enable"]);
+    if (!isset($_POST["imdb_cache_expire"])) $_POST["imdb_cache_expire"] = 0;
+    $db->set_config("imdb_cache_expire",$_POST["imdb_cache_expire"]);
     if (!isset($_POST["imdb_cache_dir"])) $_POST["imdb_cache_dir"] = "";
     $db->set_config("imdb_cache_dir",$_POST["imdb_cache_dir"]);
     if (!isset($_POST["imdb_cache_use"])) $_POST["imdb_cache_enable"] = 0;
@@ -139,6 +141,7 @@ for ($i=0;$i<$count;++$i) {
 }
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $imdb_cache_enable = $db->get_config("imdb_cache_enable");
+$imdb_cache_expire = $db->get_config("imdb_cache_expire");
 $imdb_cache_dir = $db->get_config("imdb_cache_dir");
 $imdb_cache_use = $db->get_config("imdb_cache_use");
 $cdisplay_limit = $pvp->preferences->get("display_limit");
@@ -479,6 +482,23 @@ if ($admin) {
   if ($imdb_cache_enable) $input .= " CHECKED";
   $input .= ">".lang("yes");
   $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ expiration time for cache ]==
+  $t->set_var("item_name",lang("imdb_cache_expire"));
+  $t->set_var("item_comment",lang("imdb_cache_expire_comment"));
+  $select = "<SELECT NAME='imdb_cache_expire'><OPTION VALUE='0'";
+  if (!$imdb_cache_expire) $select .= " SELECTED";
+  $select .= ">" . lang("never") . "</OPTION><OPTION VALUE='86400'";
+  if ($imdb_cache_expire=="86400") $select .= " SELECTED";
+  $select .= ">1 " . lang("day") . "</OPTION><OPTION VALUE='604800'";
+  if ($imdb_cache_expire=="604800") $select .= " SELECTED";
+  $select .= ">1 " . lang("week") . "</OPTION><OPTION VALUE='2592000'";
+  if ($imdb_cache_expire=="2592000") $select .= " SELECTED";
+  $select .= ">1 " . lang("month") . "</OPTION><OPTION VALUE='31536000'";
+  if ($imdb_cache_expire=="31536000") $select .= " SELECTED";
+  $select .= ">1 " . lang("year") . "</OPTION></SELECT>";
+  $t->set_var("item_input",$select);
   $t->parse("item","itemblock",TRUE);
 
   #--[ Cache directory ]--

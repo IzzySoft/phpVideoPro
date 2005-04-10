@@ -592,4 +592,6 @@ INSERT INTO lang VALUES ('imdb_cache_dir','en','Directory to store the IMDB Cach
 INSERT INTO lang VALUES ('imdb_cache_dir_comment','en','This directory must be r/w for the WebServer and specifically used for this purpose. Path may be relative to the phpVideoPro installation base path (recommended). Do <b><i>not</i></b> use your systems temporary directory for this.','Option on the configuration screen');
 INSERT INTO lang VALUES ('imdb_cache_use','en','Use cached data on new requests?','Option on the configuration screen');
 INSERT INTO lang VALUES ('imdb_cache_use_comment','en','While above statement controls the <b><i>storing</i></b> of IMDB data into the local cache, this option controls whether phpVideoPro uses this cache for lookups. If enabled, and cache data exist, phpVideoPro will not contact the IMDB for details on the specific movie but use the cached data instead.','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_expire','en','Purge IMDB cache','Option on the configuration screen');
+INSERT INTO lang VALUES ('imdb_cache_expire_comment','en','If the IMDB caching function is enabled, the size of the cache dir will grow. Use this option to specify when files should "expire", i.e. the maximum age they allowed to reach.','Option on the configuration screen');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

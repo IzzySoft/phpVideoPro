@@ -208,6 +208,15 @@ cache: Since the user stores the retrieved data into the local database, it is
 very unlikely (s)he wishes to check for the same data again.
 
 [text]
+<b>*imdb_cache_expire#:</b> When the IMDB cache is enabled (see
+<i>*imdb_cache_enable#</i> above), for each movie there will be multiple files
+stored in the cache. Thus, the cache permanently increases in size. If one uses
+the cache, (s)he may want to automatically have old files purged (i.e. deleted)
+from the cache. This option lets you select how many days after its retrieval a
+cache file will be automatically removed. The actual removal then will take
+place on the next query sent by the IMDB lookup.
+
+[text]
 <b>*imdb_cache_dir#:</b> This is the directory phpVideoPro goes to store the
 cached data into. Since for this action the webserver needs to read and write
 data here, it needs to have the necessary permissions. The IMDB data are freely

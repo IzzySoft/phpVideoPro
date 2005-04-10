@@ -237,6 +237,15 @@ aus der IMDB bezogenen Daten ja in die eigene Datenbank kopiert, und den selben
 Film kaum ein zweites Mal abrufen wird.
 
 [text]
+<b>*imdb_cache_expire#:</b> Ist der IMDB Cache aktiviert (siehe oben unter
+<i>*imdb_cache_enable#</i>), werden für jede Film-Abfrage mehrere Dateien in
+selbigem angelegt. Es ist somit absehbar, dass die Größe des Caches permanent
+zunimmt. Daher lässt sich mit dieser Option festlegen, nach welchem Zeitraum
+eine so angelegte Cache-Datei automatisch wieder vom System entfernt (d.h.
+gelöscht) wird. Die Prüfung (und ggf. Löschung) findet dann jeweils beim
+nächsten LookUp statt.
+
+[text]
 <b>*imdb_cache_dir#:</b> In diesem Verzeichnis werden die IMDB-Daten bei
 aktiviertem IMDB-Cache (s.o.) gespeichert. Da sowohl die Lese- als auch die
 Schreibzugriffe vom Prozess des Webservers durchgeführt werden, muss dieser

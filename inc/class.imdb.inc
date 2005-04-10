@@ -26,6 +26,7 @@
   var $cachedir;
   var $usecache;
   var $storecache;
+  var $cache_expire;
   var $photodir;
   var $photoroot;
 
@@ -44,6 +45,7 @@
    $this->cachedir = $cachedir;
    $this->storecache = $db->get_config("imdb_cache_enable");
    $this->usecache = $db->get_config("imdb_cache_use");
+   $this->cache_expire = $db->get_config("imdb_cache_expire");
    $this->photodir = $base_path.'moviepic/imdb/';
    $this->photoroot = $base_url.'moviepic/imdb/';
   }
@@ -242,6 +244,24 @@
   function imdb ($id) {
    $this->imdb_config();
    $this->setid($id);
+   if ($this->storecache && ($this->cache_expire > 0)) $this->purge();
+  }
+
+  /** Check cache and purge outdated files
+   * @method purge
+   */
+  function purge() {
+    if (is_dir($this->cachedir))  {
+      $thisdir = dir($this->cachedir);
+      $now = time();
+      while( $file=$thisdir->read() ) {
+        if ($file!="." && $file!="..") {
+          $fname = $this->cachedir . $file;
+          $mod = filemtime($fname);
+          if ($mod && ($now - $mod > $this->cache_expire)) unlink($fname);
+        }
+      }
+    }
   }
 
   /** Get the URL to the movie title page

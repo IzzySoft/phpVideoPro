@@ -21,6 +21,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_filter")?>", "<?=$pvp->link->slink($base_url.'admin/filters.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphans")?>", "<?=$pvp->link->slink($base_url.'admin/orphans.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("admin_orphan_fs")?>", "<?=$pvp->link->slink($base_url.'admin/clean_fs.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("backup_db")?>", "<?=$pvp->link->slink($base_url.'admin/backup_db.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("configuration")?>", "<?=$pvp->link->slink($base_url.'admin/configure.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));

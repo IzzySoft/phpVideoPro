@@ -1,6 +1,6 @@
 <?
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -49,6 +49,9 @@
  if (strpos($base_url,"/")!==0) $base_url = "/".$base_url;
  if ( (substr($backup_path,0,1)!="/") && (substr($backup_path,0,1)!="\\") )
    $backup_path = $base_path.$backup_path;
+ $pvp->config->photopath = $base_path."moviepic/";
+ $pvp->config->imdb_photopath = $base_path."moviepic/imdb/";
+ $pvp->config->imdb_photourl  = $base_url."moviepic/imdb/";
 
  #=========================================[ retrieve browser information ]===
  include($base_path . "inc/class.browser.inc");

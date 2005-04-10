@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -46,8 +46,8 @@
    $this->storecache = $db->get_config("imdb_cache_enable");
    $this->usecache = $db->get_config("imdb_cache_use");
    $this->cache_expire = $db->get_config("imdb_cache_expire");
-   $this->photodir = $base_path.'moviepic/imdb/';
-   $this->photoroot = $base_url.'moviepic/imdb/';
+   $this->photodir = $pvp->config->imdb_photopath;
+   $this->photoroot = $pvp->config->imdb_photourl;
   }
  }
 

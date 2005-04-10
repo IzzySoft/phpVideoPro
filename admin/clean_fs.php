@@ -38,11 +38,7 @@
    while( $file=$thisdir->read() ) {
      if ($file!="." && $file!="..") {
        $fname = $reldir . $file;
-       $searchmovievals["comment"] = $fname;
-       $movies = $db->searchmovies();
-       if (!count($movies)) {
-         $orphan[] = $fname;
-       }
+       if (!$db->image_is_refered($fname)) $orphan[] = $fname;
      }
    }
  }

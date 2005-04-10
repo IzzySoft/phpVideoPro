@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -2837,6 +2837,23 @@
    $this->dbquery($query);
    if ($this->affected_rows()<0) return FALSE;
    return $id;
+ }
+
+ ############################################################################
+ # Misc Stuff
+ ############################################################################
+
+ /** Check whether an image file is refered to from DB
+  * @method image_is_refered
+  * @param string img
+  * @return boolean
+  */
+ function image_is_refered($img) {
+   $query = "SELECT count(id) AS refs FROM video WHERE comment LIKE '%$img%'";
+   $this->query($query);
+   $this->next_record();
+   if ($this->f('refs')) return TRUE;
+   return FALSE;
  }
 
  } // end class sql

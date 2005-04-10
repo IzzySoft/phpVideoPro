@@ -13,7 +13,7 @@
  /* $Id$ */
 
 header('Content-type: text/html; charset=$charset');
-if (!$pvp->config->cache_enable) { // turn off all caches
+if (!$pvp->config->http_cache_enable) { // turn off all caches
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    # Date from the past
   header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); # up-to-date
   header("Cache-Control: no-store, no-cache, must-revalidate");  # HTTP/1.1

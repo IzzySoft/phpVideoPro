@@ -10,6 +10,7 @@
      (up to know, it was only used by the developers and hence missing on the
      configuration screen). Note that only the admin can control it.
  <li>Added auto-purging for IMDB cache (optional and configurable)
+ <li>Added admin page for cleaning up orphaned (IMDB) images
 </ul>
 
 [title]

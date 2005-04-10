@@ -4,8 +4,11 @@
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://german.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://italian.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://akas.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://uk.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://akas.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_country');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');
@@ -95,7 +98,9 @@ INSERT INTO pvp_config (name,value) VALUES ('site','MySite');
 INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
 INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','0');
 INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
-INSERT INTO pvp_config (name,value) VALUES ('cache_enable','0');
+INSERT INTO pvp_config (name,value) VALUES ('http_cache_enable','0');
+INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_enable','0');
+INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_use','0');
 
 #
 # set default preferences

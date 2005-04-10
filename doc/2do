@@ -18,7 +18,6 @@ coming *soon*:
   the possibility to "order by rating")
 - replace "\" with "/" when creating links (in case the server runs in Windows)
 - lock tables during backup/restore
-- take care for orphaned (IMDB) images
 
 coming *next*:
 - PS template(s) for DVD covers

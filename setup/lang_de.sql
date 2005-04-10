@@ -202,6 +202,7 @@ INSERT INTO lang VALUES ('imdb_cache_expire','de','IMDB Cache säubern','Option 
 INSERT INTO lang VALUES ('imdb_cache_expire_comment','de','Wenn der IMDB Cache aktiviert ist, kann die Größe des Cache-Verzeichnisses recht flott wachsen. Hier kann festgelegt werden, ab welchem "Datei-Alter" die Cache-Daten automatisch gelöscht werden.','Option on the configuration screen');
 INSERT INTO lang VALUES ('imdb_cache_use','de','Daten aus dem IMDB Cache bei Abfragen nutzen?','');
 INSERT INTO lang VALUES ('imdb_cache_use_comment','de','Während obige Option das <b><i>Speichern</i></b> der Daten kontrolliert, lässt sich hier einstellen, ob diese auch bei erneuten Abfragen benutzt werden sollen. Sind <b><i>beide</i></b> Optionen aktiviert werden bereits im Cache vorhandene Daten nicht erneut von der IMDB Site abgerufen.','');
+INSERT INTO lang VALUES ('imdb_image_files','de','IMDB Bilddateien','');
 INSERT INTO lang VALUES ('imdb_movie_id','de','IMDB Film ID','');
 INSERT INTO lang VALUES ('imdb_search_empty_result','de','Sorry - phpVideoPro konnte keinen entsprechenden Eintrag in der IMDB finden.<BR>Vielleicht hilft ein erneuter Versuch mit anderen Suchbegriffen?','');
 INSERT INTO lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
@@ -359,6 +360,7 @@ INSERT INTO lang VALUES ('line_count','de','Zeilen','');
 INSERT INTO lang VALUES ('list','de','Liste','');
 INSERT INTO lang VALUES ('listgen','de','Listengenerator','');
 INSERT INTO lang VALUES ('lists','de','Listen','');
+INSERT INTO lang VALUES ('local_image_files','de','Lokale Bilddateien','');
 INSERT INTO lang VALUES ('locale','de','Lokale','');
 INSERT INTO lang VALUES ('login_failed','de','Anmeldung fehlgeschlagen. Entweder liegt ein Tippfehler beim Passwort vor, oder das angegebene Konto existiert nicht.<P />','');
 INSERT INTO lang VALUES ('login_required','de','Der gewünschte Vorgang kann aufgrund mangelnder Berechtigungen nicht durchgeführt werden. Eine erneute Anmeldung mit einem entsprechenden Konto kann dies Problem lösen.','');

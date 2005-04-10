@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -31,7 +31,7 @@
       <COLGROUP><COL WIDTH="25%"><COL WIDTH="25%"><COL WIDTH="25%"><COL WIDTH="25%"></COLGROUP>
       <TR><TD ALIGN="center"><A HREF="install/index.php">Fresh Installation/Restore</A></TD>
           <TD ALIGN="center"><A HREF="update/index.php">Update existing installation</A></TD>
-          <TD ALIGN="center"><A HREF="configure.php">Configure existing installation</A></TD>
+          <TD ALIGN="center"><A HREF="../admin/configure.php">Configure existing installation</A></TD>
           <TD ALIGN="center"><A HREF="../login.php">Enter the application</A></TD></TR>
      </TABLE></DIV></TD></TR>
 </TABLE></BODY></HTML>

@@ -18,7 +18,6 @@
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
- $usecache = $db->get_config("imdb_cache_use");
  $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
  for ($i=0;$i<$count;++$i) {
@@ -57,8 +56,6 @@
  if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
  #=================================================[ Get IMDB ID for movie ]===
   $search = new imdbsearch ();
-  $search->usecache   = $usecache;
-  $search->storecache = $usecache;
   $search->setsearchname ($_REQUEST["name"]);
   $results = $search->results ();
   $open = FALSE;
@@ -85,15 +82,13 @@
   }
   $t->parse("resultlist","resultblock");
   $t->pparse("out","template");
- } elseif (!empty($_REQUEST["mid"]) && !empty($_REQUEST["isubmit"])) {
+ } elseif (!empty($_REQUEST["mid"])) {
  #==============================================[ Get movie data from IMDB ]===
    $movieid = $_REQUEST["mid"];
    $movie = new imdb ($movieid);
    $imdbsite = $pvp->preferences->get("imdb_url2");
    $url  = explode("/",$imdbsite);
    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
-   $movie->usecache   = $usecache;
-   $movie->storecache = $usecache;
    $movie->setid ($movieid);
    #-=[ Title incl. Also Known As ]=-
    $title  = "<SELECT NAME='title'>";

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -44,6 +44,7 @@
    */
   function url_path($path) {
     GLOBAL $base_path, $base_url;
+    $path = str_replace($pvp->config->os_slash,"/",$base_path);
     $pos = strpos($base_path,$base_url);
     $url = substr($path,$pos)."/";
     return $url;

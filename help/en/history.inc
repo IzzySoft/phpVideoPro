@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.5 (April 1x, 2005)
+0.7.5 (April 13, 2005)
 [text]
 <ul>
  <li>IMDBSearch details page was blocked due to last changes. Fixed.
@@ -11,6 +11,13 @@
      configuration screen). Note that only the admin can control it.
  <li>Added auto-purging for IMDB cache (optional and configurable)
  <li>Added admin page for cleaning up orphaned images
+ <li>added code for table locking to the backup (class xfer). Left it disabled
+     since MySQL has problems to correctly identify a locked table refered to
+     with an alias (e.g. "SELECT...FROM my_table m" results in "error: table
+     m not locked" even if my_table is locked -- tried only with MySQL 4.0.18).
+     If you want play with it (e.g. with PostgreSQL or a newer release of MySQL),
+     you may just change the default for $lock_db in the constructor of the
+     xfer class (inc/class.xfer.inc).
 </ul>
 
 [title]

@@ -37,6 +37,19 @@
   }
 
   ############################################################################
+  /** Calculate URL path from absolute file path (inside PVP tree)
+   * @method url_path
+   * @param string path absolute path
+   * @return string url_path absolute URL path including trailing slash
+   */
+  function url_path($path) {
+    GLOBAL $base_path, $base_url;
+    $pos = strpos($base_path,$base_url);
+    $url = substr($path,$pos)."/";
+    return $url;
+  }
+
+  ############################################################################
   # Link to other PVP documents
   /** Provide a link with session info, if necessary
    * @class link

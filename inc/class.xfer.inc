@@ -23,8 +23,9 @@
   /** Initialization
    * @constructor xfer
    * @param string mode ("import" or "export")
+   * @param boolean lock_db Whether to lock all tables during import/export (default: FALSE)
    */
-  function xfer($mode) {
+  function xfer($mode,$lock_db=FALSE) {
     $this->compressionOff();
     $this->mode = $mode;
     switch ($mode) {
@@ -32,9 +33,52 @@
       case "export" : $this->initExport(); break;
       default : die("Wrong mode for Xfer Module: '$mode'!");
     }
+    $this->lock_db = $lock_db;
   }
 
  #====================================================[ Helpers (private!) ]===
+ #---------------------------------------------------------[ Table Locking ]---
+ /** Lock all tables for a consistent export/import
+  * @method lockDB
+  * @return boolean success
+  */
+ function lockDB() {
+   GLOBAL $db;
+   if (!$this->lock_db) return TRUE;
+   $tables = $db->table_names();
+   $tablecount = count($tables);
+   $success = TRUE;
+   for ($i=0;$i<$tablecount;++$i) {
+     $name = $tables[$i]["table_name"];
+     if (!$db->lock($name)) {
+       $success = FALSE;
+       $this->unlockDB();
+       break;
+     }
+   }
+   return $success;
+ }
+
+ /** UnLock all tables
+  * @method unlockDB
+  * @return boolean success
+  */
+ function unlockDB() {
+   GLOBAL $db;
+   if (!$this->lock_db) return TRUE;
+   return $db->unlock();
+ }
+
+ /** Unlock and return message
+  * @method ureturn
+  * @param string msg
+  * @return string msg
+  */
+ function ureturn($msg) {
+   $this->unlockDB();
+   return $msg;
+ }
+
  #--------------------------------------------------------[ Initialization ]---
   /** Initialize data arrays for imports
    * @class xfer
@@ -431,10 +475,12 @@
   function fileImport($file,$dir="",$append=TRUE) {
     GLOBAL $pvp,$db;
     if ($this->mode!="import") return FALSE;
+    if (!$this->lockDB()) // Lock DB before import
+      return $this->errorMsg( lang("db_lock_failed") );
     if ( !$append ) {
       if ( !$pvp->auth->admin )
-        return $this->errorMsg( lang("db_clean_admin_required") );
-      if ( !$db->drop_all_movies() ) return $this->errorMsg( lang("movie_drop_failed") );
+        $this->ureturn( $this->errorMsg( lang("db_clean_admin_required") ) );
+      if ( !$db->drop_all_movies() ) $this->ureturn( $this->errorMsg( lang("movie_drop_failed") ) );
     }
     if (!empty($dir) && !empty($file)) {
       if (substr($dir,strlen($dir))=="/") $file = $dir.$file;
@@ -443,32 +489,32 @@
     if ( !$this->fileRead($file) ) return $this->readErr;
     switch ($this->fileType) {
       case "SysConf" :
-        if ($this->configPut()) return $this->okMsg( lang("imp_success",$this->items) );
+        if ($this->configPut()) $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
           else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
-          return $this->errorMsg($msg);
+          $this->ureturn( $this->errorMsg($msg) );
         }
         break;
       case "Cats"    :
         if ($this->catPut(!$append)) {
-          return $this->okMsg( lang("imp_success",$this->items) );
+          $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
         } else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
-          return $this->errorMsg($msg);
+          $this->ureturn( $this->errorMsg($msg) );
         }
         break;
       case "Movie"   :
         if ($this->moviePut($append)) {
-          return $this->okMsg( lang("imp_success",$this->items) );
+          $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
         } else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "<UL>".$this->report."</UL>";
-          return $this->errorMsg($msg);
+          $this->ureturn( $this->errorMsg($msg) );
         }
         break;
-      default       : return $this->errorMsg( lang("xfer_unknown_filetype") );
+      default       : $this->ureturn( $this->errorMsg( lang("xfer_unknown_filetype") ) );
     }
   }
 
@@ -479,6 +525,8 @@
    */
   function fileExport($mode,$id="") {
     GLOBAL $db;
+    if (!$this->lockDB()) // Lock DB before export
+      return $this->errorMsg( lang("db_lock_failed") );
     $stamp = date('ymd');
     switch ($mode) {
       case "SysConf": $this->configGet(); $name="sysconf"; break;
@@ -496,6 +544,7 @@
         $name = "movies";
         break;
     }
+    $this->unlockDB();
     $file = $name."_".$stamp.".pvp";
     $this->fileSend($file,$mode);
   }

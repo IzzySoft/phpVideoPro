@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -17,14 +17,14 @@
  foreach ($postit as $var) {
    $$var = $_POST[$var];
  }
+ $page_id = "delete";
+ include("inc/includes.inc");
 
  #==================================================[ Kick-back on Cancel ]===
  if ($cancel) {
-   header("Location: ".dirname(__FILE__)."/edit.php?nr=" . urlencode("$nr") . "&cass_id=$cass_id&part=$part&mtype_id=$mtype_id");
+   header("Location: ".$pvp->link->url_path(dirname(__FILE__))."edit.php?nr=" . urlencode("$nr") . "&cass_id=$cass_id&part=$part&mtype_id=$mtype_id");
    exit;
  }
- $page_id = "delete";
- include("inc/includes.inc");
 
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->delete) kickoff();

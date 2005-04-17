@@ -430,6 +430,7 @@ INSERT INTO lang VALUES ('printer_add_success','de','Drucker erfolgreich hinzuge
 INSERT INTO lang VALUES ('printer_comment','de','Für den Druck auf Formularen (wie z.B. von PSLabels verwendet), werden die exakten Offsets des verwendeten Druckers benötigt.','');
 INSERT INTO lang VALUES ('printer_upd_failed','de','Das Aktualisieren folgender Drucker schlug fehl: %1','');
 INSERT INTO lang VALUES ('print_label','de','Etikett drucken:','');
+INSERT INTO lang VALUES ('pvp_homepage','de','Projekt Homepage','');
 INSERT INTO lang VALUES ('read_access','de','Darf Daten einsehen','');
 INSERT INTO lang VALUES ('read_access_short','de','les','');
 INSERT INTO lang VALUES ('recalc_free','de','Berechne freien Platz auf dem Medium','');

@@ -602,4 +602,5 @@ INSERT INTO lang VALUES ('movie_pict_default','en','Default screen format for ne
 INSERT INTO lang VALUES ('movie_pict_default_comment','en','This will be used as default screen format when adding a new entry.','Option on the configuration screen');
 INSERT INTO lang VALUES ('movie_lang_default','en','Default audio language for new movies','Option on the configuration screen');
 INSERT INTO lang VALUES ('movie_lang_default_comment','en','This will be used as default audio language when adding a new entry.','Option on the configuration screen');
+INSERT INTO lang VALUES ('pvp_homepage','en','Project homepage','Description for the link to the phpVideoPro homepage in the help menu');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

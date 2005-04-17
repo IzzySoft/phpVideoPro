@@ -605,5 +605,6 @@ INSERT INTO lang VALUES ('movie_lang_default_comment','en','This will be used as
 INSERT INTO lang VALUES ('pvp_homepage','en','Project homepage','Description for the link to the phpVideoPro homepage in the help menu');
 INSERT INTO lang VALUES ('bubble_help_enable','en','Activate BubbleHelp?','Option on the configuration screen');
 INSERT INTO lang VALUES ('bubble_help_enable_comment','en','If enabled, context-sensitive help is displayed for some items if you move the mouse over them (e.g. on the window buttons of the Applicat template set).','Option on the configuration screen');
-INSERT INTO lang VALUES ('help_for_block','en','Help for this block','BubbleHelp displayed on the help icon (if available -- e.g. on the configuration screen)');
+INSERT INTO lang VALUES ('help_for_block','en','Help for this block','BubbleHelp displayed on the help icon (if available; e.g. on the configuration screen)');
+INSERT INTO lang VALUES ('fsk_is_nan','en','The selected value for PG is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon next to the PG for more details.','JavaScript ErrorMsg popup when entering not-numeric PG');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

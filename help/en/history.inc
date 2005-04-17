@@ -11,6 +11,8 @@
  <li>help menu now also contains link to project homepage
  <li>added FSK/PG to media list
  <li>added (optional) bubble help (see configuration page)
+ <li>when transfering data searched with the IMDB, now made sure that there
+     was a numeric value chosen for FSK/PG (see online help for details).
 </ul>
 
 [title]

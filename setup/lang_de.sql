@@ -180,6 +180,7 @@ INSERT INTO lang VALUES ('free','de','Frei','');
 INSERT INTO lang VALUES ('free_space_on_media','de','Auf folgenden Medien sind noch mindestens %1 Minuten frei:','');
 INSERT INTO lang VALUES ('free_space_title','de','Verfügbarer Platz auf Medien','');
 INSERT INTO lang VALUES ('fsk','de','FSK','');
+INSERT INTO lang VALUES ('fsk_is_nan','de','Der für FSK gewählte Wert ist nicht numerisch,\\\\nphpVideoPro erfordert aber einen numerischen Wert.\\\\nFür detaillierte Informationen bitte auf das zugehörige\\\\nInfo-Ikon klicken.','');
 INSERT INTO lang VALUES ('general','de','Allgemein','');
 INSERT INTO lang VALUES ('goto_entry','de','Zeige folgenden Eintrag an:','');
 INSERT INTO lang VALUES ('graphic_file','de','Bilddatei','');

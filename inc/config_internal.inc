@@ -38,6 +38,7 @@
  if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
  #=====================================================[ setup path names ]===
+ $pvp->projectpage = "http://www.qumran.org/homes/izzy/software/pvp/";
  $base_path = dirname(dirname(__FILE__))."/";
  if (substr(php_uname(), 0, 7) == "Windows") {
    $pvp->config->os_slash = "\\";

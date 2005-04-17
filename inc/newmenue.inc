@@ -123,7 +123,7 @@ if (isset($_REQUEST["sess_id"])) {
 <a class="menuItem" href="JavaScript:open_help('')"><?=lang("index") ?></a>
 <a class="menuItem" href="JavaScript:open_help('about')"><?=lang("about") ?></a>
 <a class="menuItem" href="JavaScript:open_help('history')"><?=lang("history") ?></a>
-<a class="menuItem" href="http://www.qumran.org/homes/izzy/pvp/" TARGET="_blank"><?=lang("pvp_homepage") ?></a>
+<a class="menuItem" href="<?=$pvp->projectpage?>" TARGET="_blank"><?=lang("pvp_homepage") ?></a>
 <? if ($page_id) {
 ?><div class="menuItemSep"></div>
 <a class="menuItem" href="JavaScript:open_help('<?=$page_id ?>')"><?=lang("help_about") . " \"" . lang($page_id) . "\"" ?></a>

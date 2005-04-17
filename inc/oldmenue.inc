@@ -86,7 +86,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("index")?>", "JavaScript:open_help('')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("about")?>", "JavaScript:open_help('about')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("history")?>", "JavaScript:open_help('history')"));<?
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("pvp_homepage")?>", "http://www.qumran.org/homes/izzy/pvp/"));<?
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("pvp_homepage")?>", "<?=$pvp->projectpage?>"));<?
 if ($page_id) { ?>
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<?=$page_id?>')"));<?

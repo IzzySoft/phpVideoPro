@@ -598,4 +598,8 @@ INSERT INTO lang VALUES ('admin_orphan_fs','en','Removal of orphaned files','Tit
 INSERT INTO lang VALUES ('desc_admin_orphan_fs','en','"Orphaned files" are data without assignment, i.e. here: images to whom is nowhere refered to from any movie. The most likely reasons for this are: <UL><LI>You retrieved images with an IMDB search request but decided to not use them</LI><LI>You edited a record and changed/removed the image from the description</LI><LI>You deleted a record, and this stupid application did not care for the image</LI></UL>However: If you think you will not assign these images to any movie record, you can let phpVideoPro delete the listed files here.','Introduction to the "CleanUp FileSystem" page (see administration menu)');
 INSERT INTO lang VALUES ('imdb_image_files','en','IMDB image files','Image files automatically downloaded at IMDBSearch');
 INSERT INTO lang VALUES ('local_image_files','en','Local image files','Image files manually stored into the ImgPath configured with phpVideoPro');
+INSERT INTO lang VALUES ('movie_pict_default','en','Default screen format for new movies','Option on the configuration screen');
+INSERT INTO lang VALUES ('movie_pict_default_comment','en','This will be used as default screen format when adding a new entry.','Option on the configuration screen');
+INSERT INTO lang VALUES ('movie_lang_default','en','Default audio language for new movies','Option on the configuration screen');
+INSERT INTO lang VALUES ('movie_lang_default_comment','en','This will be used as default audio language when adding a new entry.','Option on the configuration screen');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

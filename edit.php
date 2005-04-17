@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -570,11 +570,13 @@ EndHiddenFields;
   }
   $t->set_var("picture",$field);
   $t->set_var("screen_name",lang("screen"));
+  if ($new_entry) $pict_id = $pvp->preferences->get("default_movie_pictid");
   if ($edit) {
     $field = "<SELECT NAME='pict_id'" . $form["addon_tech"] . "><OPTION VALUE='-1'>" . lang("unknown") . "</OPTION>";
     for ($i=0;$i<count($picts);$i++) {
       $field .= "<OPTION VALUE='" . $picts[$i]['id'] . "'";
-      if (isset($pict_format) && $picts[$i]['name']==$pict_format) $field .=  "SELECTED";
+      if ($new_entry && $picts[$i]['id']==$pict_id) $field .= " SELECTED";
+      if (isset($pict_format) && $picts[$i]['name']==$pict_format) $field .=  " SELECTED";
       $field .= ">" . $picts[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
@@ -606,11 +608,13 @@ EndHiddenFields;
   if ($edit) {
     $audio_langs = $db->get_avlang("audio");
     $audio_ts = "";
+    if ($new_entry) $lang_id = $pvp->preferences->get("default_movie_langid");
     for ($i=0;$i<AUDIO_TS;++$i) {
       $atsname = "audio_ts".$i;
       $audio_ts .= "<SELECT NAME='$atsname' CLASS='techinput'><OPTION VALUE='-'>-</OPTION>";
       for ($k=0;$k<count($audio_langs);$k++) {
         $audio_ts .= "<OPTION VALUE='".$audio_langs[$k]->id."'";
+        if ($i==0 && $new_entry && $lang_id==$audio_langs[$k]->id) $audio_ts .= " SELECTED";
         if ( isset($audio[$i]) && $audio_langs[$k]->id == $audio[$i] ) $audio_ts .= " SELECTED";
         $audio_ts .= ">".$audio_langs[$k]->name."</OPTION>";
       }

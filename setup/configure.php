@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -50,6 +50,8 @@ if ( isset($update) ) {
   $pvp->preferences->set("date_format",$_POST["cdate_format"]);
   $pvp->preferences->set("default_movie_toneid",$_POST["movie_tone"]);
   $pvp->preferences->set("default_movie_colorid",$_POST["movie_color"]);
+  $pvp->preferences->set("default_movie_langid",$_POST["movie_lang"]);
+  $pvp->preferences->set("default_movie_pictid",$_POST["movie_pict"]);
   if ($_POST["label_default"]) { $onlabel = "1"; } else { $onlabel = "0"; }
   $pvp->preferences->set("default_movie_onlabel",$onlabel);
   $pvp->preferences->set("printer_id",$_POST["cprinter_id"]);
@@ -149,6 +151,8 @@ $cpage_length   = $pvp->preferences->get("page_length");
 $cdate_format   = $pvp->preferences->get("date_format");
 $movie_tone     = $pvp->preferences->get("default_movie_toneid");
 $movie_color    = $pvp->preferences->get("default_movie_colorid");
+$movie_lang     = $pvp->preferences->get("default_movie_langid");
+$movie_pict     = $pvp->preferences->get("default_movie_pictid");
 $label_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
@@ -354,6 +358,43 @@ for ($i=0;$i<count($pict);$i++) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
 }
 $t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
+
+#--[ movie_pict_default ]--
+$t->set_var("item_name",lang("movie_pict_default"));
+$t->set_var("item_comment",lang("movie_pict_default_comment"));
+unset($id);
+$input = "";
+$pict = $db->get_pict();
+$add['id'] = 0;
+$add['name'] = "unknown";
+$pict[] = $add;
+unset ($add);
+for ($i=0;$i<count($pict);$i++) {
+  $id     = $pict[$i]['id'];
+  $name   = lang($pict[$i]['name']);
+  $input .= "<INPUT TYPE='radio' NAME='movie_pict' VALUE='$id'";
+  if ($pvp->preferences->get("default_movie_pictid")==$id) {
+    $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
+}
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
+
+#--[ movie_lang_default ]--
+$t->set_var("item_name",lang("movie_lang_default"));
+$t->set_var("item_comment",lang("movie_lang_default_comment"));
+unset($id);
+$pict = $db->get_avlang("audio");
+unset ($add);
+$select  = "<SELECT NAME=\"movie_lang\">";
+$select .= "<OPTION VALUE=\"\">-- " . lang("none") . " --</OPTION>";
+for ($i=0;$i<count($pict);$i++) {
+  $select .= "<OPTION VALUE=\"" . $pict[$i]->id . "\"";
+  if ($movie_lang==$pict[$i]->id)  $select .= " SELECTED";
+  $select .= ">" .$pict[$i]->name. "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
 
 #--[ complete media block ]--

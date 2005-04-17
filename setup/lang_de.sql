@@ -385,8 +385,12 @@ INSERT INTO lang VALUES ('movies_left_in_cat','de','Die Kategorie %1 enthält no
 INSERT INTO lang VALUES ('movies_left_reference','de','Dieser Eintrag kann nicht gelöscht werden: er wird von %1 Film(en) in der DB referenziert.','');
 INSERT INTO lang VALUES ('movie_color_default','de','Default Farbformat eines Films','');
 INSERT INTO lang VALUES ('movie_color_default_comment','de','Wenn ein neuer Eintrag angelegt wird, ist dies die Voreinstellung für das Farbformat.','');
+INSERT INTO lang VALUES ('movie_lang_default','de','Defaulteinstellung für die erste Tonspur','');
+INSERT INTO lang VALUES ('movie_lang_default_comment','de','Voreinstellung für die erste Tonspur bei neuen Einträgen','');
 INSERT INTO lang VALUES ('movie_onlabel_default','de','Defaulteinstellung Etiketten-Info','');
 INSERT INTO lang VALUES ('movie_onlabel_default_comment','de','Defaulteinstellung für neue Einträge: Sollen Informationen für diesen Film auf Etiketten für dieses Medium erscheinen?','');
+INSERT INTO lang VALUES ('movie_pict_default','de','Default Bildschirmformat','');
+INSERT INTO lang VALUES ('movie_pict_default_comment','de','Voreinstellung für das Bildschirmformat bei neuen Einträgen','');
 INSERT INTO lang VALUES ('movie_tone_default','de','Default Tonformat eines Films','');
 INSERT INTO lang VALUES ('movie_tone_default_comment','de','Wenn ein neuer Eintrag angelegt wird, ist dies die Voreinstellung für das Tonformat.','');
 INSERT INTO lang VALUES ('music','de','Musik','');

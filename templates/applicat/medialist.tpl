@@ -25,23 +25,25 @@
    <TR><TH><A HREF="{scriptname}{crits}">{mtype}</A></TH>
        <TH><A HREF="{scriptname}{crits}">{nr}</A></TH>
        <TH><A HREF="{scriptname}?order=title{ocrits}">{title}</A></TH>
+       <TH><A HREF="{scriptname}?order=fsk{ocrits}">{fsk}</A></TH>
        <TH><A HREF="{scriptname}?order=length{ocrits}">{length}</A></TH>
        <TH><A HREF="{scriptname}?order=year{ocrits}">{year}</A></TH>
        <TH><A HREF="{scriptname}?order=date{ocrits}">{date}</A></TH>
        <TH><A HREF="{scriptname}?order=cat{ocrits}">{category}</A></TH>
    </TR>
    <!-- BEGIN mdatablock -->
-   <TR CLASS="content"><TD>{mtype}</TD>
+   <TR CLASS="content"><TD STYLE="text-align:center;">{mtype}</TD>
        <TD><A HRef="{url}">{nr}</A></TD>
        <TD>{title}</TD>
-       <TD>{length}</TD>
-       <TD>{year}</TD>
-       <TD>{date}</TD>
+       <TD STYLE="text-align:right;">{fsk}</TD>
+       <TD STYLE="text-align:right;">{length}</TD>
+       <TD STYLE="text-align:center;">{year}</TD>
+       <TD STYLE="text-align:center;">{date}</TD>
        <TD>{category}</TD>
    </TR>
    <!-- END mdatablock -->
    <!-- BEGIN emptyblock -->
-   <TR CLASS="content"><TD COLSPAN="7"><DIV ALIGN="center">{no_data}</DIV></TD></TR>
+   <TR CLASS="content"><TD COLSPAN="8"><DIV ALIGN="center">{no_data}</DIV></TD></TR>
    <!-- END emptyblock -->
   </Table>
  </TD></TR>

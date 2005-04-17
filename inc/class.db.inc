@@ -1325,6 +1325,7 @@
      $where  = "";
      switch ($order) {
        case "title"  : $orderby = "v.title,v.mtype_id DESC,v.cass_id"; break;
+       case "fsk"    : $orderby = "v.fsk,v.mtype_id DESC,v.cass_id"; break;
        case "length" : $orderby = "v.length,v.mtype_id DESC,v.cass_id"; break;
        case "year"   : $orderby = "v.year,v.mtype_id DESC,v.cass_id"; break;
        case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.cass_id"; break;

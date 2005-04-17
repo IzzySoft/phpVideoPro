@@ -29,6 +29,7 @@
 #   $movie_id[$i] = urlencode($mtype[$i] . " " . $nr[$i]);
    $movie_id[$i] = urlencode($nr[$i]);
    $title[$i]    = $list[$i]['title']; check_empty($title[$i]);
+   $fsk[$i]      = $list[$i]['fsk']; if (!$fsk[$i]) $fsk[$i]="&nbsp;";
    $length[$i]   = $list[$i]['length']; check_empty($length[$i]);
    $year[$i]     = $list[$i]['year']; if (!$year[$i]) $year[$i] = ""; check_empty($year[$i]);
    $t_aq_date      = $list[$i]['aq_date'];  check_empty($t_aq_date);
@@ -48,6 +49,7 @@
    $t->set_var("mtype",$mtype[$i]);
    $t->set_var("nr",$nr[$i]);
    $t->set_var("title",$title[$i]);
+   $t->set_var("fsk",$fsk[$i]);
    $t->set_var("length",$length[$i]);
    $t->set_var("year",$year[$i]);
    $t->set_var("date",$aq_date[$i]);
@@ -60,6 +62,7 @@
  $t->set_var("mtype",lang("medium"));
  $t->set_var("nr",lang("nr"));
  $t->set_var("title",lang("title"));
+ $t->set_var("fsk",lang("fsk"));
  $t->set_var("length",lang("length"));
  $t->set_var("year",lang("year"));
  $t->set_var("date",lang("date_rec"));

@@ -7,6 +7,7 @@
 <ul>
  <li>Cancel deletion of a movie record lead to HTML 404 error due to wrong
      path. Fixed.
+ <li>added preferences for default screen format and default audio language
 </ul>
 
 [title]

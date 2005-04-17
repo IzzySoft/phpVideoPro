@@ -15,7 +15,7 @@ Initial screen
 [text]
 If you already entered the movie title on the edit screen before clicking on the
 IMDB button, this screen will be skipped. Instead, phpVideoPro proceeds with
-the <a href="#found">next step.
+the <a href="#found">next step</a>.
 
 [text]
 Otherwise, just enter the name of the movie you are editing into the input
@@ -68,11 +68,24 @@ presented by the IMDB - so in the title drop-down list, these are added
 <b><i>after</i></b> the official title.
 
 [text]
-Depending on the country you are living in, the "PG" ("<i>Parental Guide</i>" -
-meaning the minimum age of the audience to watch this movie) may be different,
-so chose the correct value out of this list. Moreover, the recorded lenght of
-the movie may be different from the original one (e.g. due to commercials or
-cuttings of the TV station), so you can edit that here as well.
+Depending on the country you are living in, the "<b><i>PG</i></b>"
+("<i>Parental Guide</i>" -- meaning the minimum age of the audience to watch
+this movie) may be different. In addition to that, some countries use the same
+"ratings" but mean different things: e.g. the rating "PG" can mean everything
+between 6 and 12 years, depending on the rating authority. Since someone
+visiting your phpVideoPro site does not necessarily know what local authority
+to apply to <i>your</i> values, phpVideoPro only supports <i>numeric values</i>
+-- which also makes it possible to search for PG ranges, without depending on
+the country stuff. So if you live in a country using non-numeric PG values, you
+may be able to find out a suitable value by comparing the numeric values given
+by other countries' authorities, and by using some common sense. I hope I do
+not need any legal disclaimer here -- I am not responsible for any data
+entered. When in doubt, please consult your local authority :-)
+
+[text]
+Next, the recorded <b><i>lenght</i></b> of the movie may be different from the
+original one (e.g. due to commercials or cuttings of the TV station), so you
+can edit that here as well.
 
 [text]
 As for the <b><i>categories</i></b>, phpVideoPro tries to find the matching

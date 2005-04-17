@@ -81,8 +81,19 @@ Abhängig vom "Heimatland", sind von der jeweiligen "<b><i>FSK</i></b>"
 ("<i>Freiwillige SelbstKontrolle</i>") andere "Mindest-Alter" für den Konsum
 des Filmmaterials vorgesehen. Hier kann der zutreffende Wert ausgewählt werden,
 welcher sich natürlich auf der "<i>*add_entry#</i>" Seite auch manuell ändern
-lässt. Die <b><i>Länge</i></b> des Filmes kann (z.B. aufgrund von Werbefetzen
-oder Kürzungen seitens der Sendeanstalt) vom Original abweichen, und lässt sich
+lässt. Zu beachten ist hier, dass phpVideoPro einen numerischen Wert erfordert
+(damit sich z.B. eine Filmsuche auf eine bestimmte Altersgruppe beschränken
+lässt) - während in verschiedenen Ländern seltsame "Buchstaben-Ratings"
+existieren, die (wohl zur Verwirrung der Russen) durchaus gleich heißen, und
+dennoch grundverschieden sein können ("PG" kann z.B. je nach Land alles von
+6 bis 12 Jahren bedeuten). In der Regel lässt sich aus den in der Liste
+vorhandenen numerischen Werten doch recht gut eine Abschätzung treffen - und
+ein wenig gesunden Menschenverstand setze ich eigentlich bei jedem Anwender
+von phpVideoPro voraus ;)
+
+[text]
+Die <b><i>Länge</i></b> des Filmes kann (z.B. aufgrund von Werbefetzen oder
+Kürzungen seitens der Sendeanstalt) vom Original abweichen, und lässt sich
 daher hier korrigieren.
 
 [text]

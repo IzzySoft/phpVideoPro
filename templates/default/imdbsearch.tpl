@@ -17,7 +17,7 @@
  <TR><TH>{title_chk}</TH><TH COLSPAN="2"><DIV ALIGN="center">{mtitle}</DIV></TH></TR>
  <TR><TD>{country_chk}</TD><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>
  <TR><TD>{year_chk}</TD><TD><B>{nyear}:</B></TD><TD>{myear}</TD></TR>
- <TR><TD>{pg_chk}</TD><TD><B>{npg}:</B></TD>
+ <TR><TD>{pg_chk}</TD><TD><B>{npg}:{fsk_help}</B></TD>
    <TD><SELECT NAME="pg">
  <!-- BEGIN pgblock -->
     <OPTION VALUE="{pgval}">{mpg}</OPTION>

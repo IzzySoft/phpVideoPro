@@ -55,6 +55,8 @@ if ( isset($update) ) {
   if ($_POST["label_default"]) { $onlabel = "1"; } else { $onlabel = "0"; }
   $pvp->preferences->set("default_movie_onlabel",$onlabel);
   $pvp->preferences->set("printer_id",$_POST["cprinter_id"]);
+  if (!isset($_POST["bubble_help_enable"])) $_POST["bubble_help_enable"] = 0;
+  $pvp->preferences->set("bubble_help_enable",$_POST["bubble_help_enable"]);
   $mtypes = $db->get_mtypes();
   if ($admin) {
     unset($rw_media);
@@ -159,6 +161,7 @@ $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
 $session_purgetime = $db->get_config("session_purgetime");
 $http_cache_enabled  = $db->get_config("http_cache_enable");
+$bubble_help_enabled  = $pvp->preferences->get("bubble_help_enable");
 $cprinter_id     = $pvp->preferences->get("printer_id");
 $site_info      = $db->get_config("site");
 
@@ -580,6 +583,17 @@ for ($i=0;$i<count($tpldir);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock");
+
+#--[ bubble help ]--
+$t->set_var("item_name",lang("bubble_help_enable"));
+$t->set_var("item_comment",lang("bubble_help_enable_comment"));
+$input = "<INPUT TYPE='radio' NAME='bubble_help_enable' VALUE='0'";
+if (!$bubble_help_enabled) $input .= " CHECKED";
+$input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='bubble_help_enable' VALUE='1'";
+if ($bubble_help_enabled) $input .= " CHECKED";
+$input .= ">".lang("yes");
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
 
 #--[ printer_id ]--
 $t->set_var("item_name",lang("printer"));

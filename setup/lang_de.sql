@@ -39,6 +39,8 @@ INSERT INTO lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erste
 INSERT INTO lang VALUES ('backup_db_sysconf','de','Systemkonfiguration und Default-Einstellungen sichern','');
 INSERT INTO lang VALUES ('backup_file_corrupt','de','Die ausgewählte Backup-Datei ist defekt!','');
 INSERT INTO lang VALUES ('backup_file_unreadable','de','Kann die Sicherungsdatei nicht lesen - sind die Zugriffsrechte korrekt gesetzt?','');
+INSERT INTO lang VALUES ('bubble_help_enable','de','BubbleHelp aktivieren?','');
+INSERT INTO lang VALUES ('bubble_help_enable_comment','de','Ist BubbleHelp aktiviert, wird an einigen Stellen kontext-sensitive Kurzhilfe angezeigt, sobald man mit der Maus darüber kommt (z.B. bei den Window-Buttons des Applicat Template Sets).','');
 INSERT INTO lang VALUES ('cache_enable','de','Browser/Proxy caching erlauben?','');
 INSERT INTO lang VALUES ('cache_enable_comment','de','Da phpVideoPro Webseiten bei jedem Aufruf dynamisch generiert, macht es durchaus Sinn, sowohl den Browsern als auch den Proxies das Cachen dieser Seiten zu verbieten. Was oftmals auch sehr hilfreich für Benutzer des MSIE ist...','');
 INSERT INTO lang VALUES ('cancel','de','Abbrechen','');
@@ -183,6 +185,7 @@ INSERT INTO lang VALUES ('goto_entry','de','Zeige folgenden Eintrag an:','');
 INSERT INTO lang VALUES ('graphic_file','de','Bilddatei','');
 INSERT INTO lang VALUES ('help','de','Hilfe','');
 INSERT INTO lang VALUES ('help_about','de','Hilfe zum Thema','');
+INSERT INTO lang VALUES ('help_for_block','de','Hilfe für diesen Block','');
 INSERT INTO lang VALUES ('hide_cat','de','Kategorie ausblenden','');
 INSERT INTO lang VALUES ('highest_db_entries','de','letzte DB-Einträge','');
 INSERT INTO lang VALUES ('hit_back_to_correct','de','Bitte auf den \"Zurück\" Button des Browsers klicken, um die Eingabe zu korrigieren.','');

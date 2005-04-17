@@ -94,8 +94,9 @@
    */
   function linkhelp($topic) {
     GLOBAL $pvp;
+    if ($pvp->preferences->get("bubble_help_enable")) $title = " TITLE='".lang("help_for_block")."'";
     $link = "<A HREF=\"JavaScript:open_help('$topic');\"><IMG BORDER='0' SRC='"
-          . $pvp->tpl_url."/images/info.gif'></A>";
+          . $pvp->tpl_url."/images/info.gif'".$title."></A>";
     return $link;
   }
 

@@ -71,6 +71,20 @@ class Template {
       $this->set_var("search_title",lang("search_movie"));
       $this->set_var("help_title",lang("help"));
       $this->set_var("logoff_title",lang("login"));
+      if ($pvp->preferences->get("bubble_help_enable")) {
+        $self = dirname($_SERVER["PHP_SELF"]);
+        $pos  = strrpos($self,"/");
+        if (substr($self,$pos+1)=="help") {
+          $this->set_var("btn_index",lang("index"));
+          $this->set_var("btn_back",lang("back"));
+          $this->set_var("btn_close",lang("close"));
+        } else {
+          $this->set_var("home_title",lang("start_page"));
+          $this->set_var("search_title",lang("search"));
+          $this->set_var("help_title",lang("help"));
+          $this->set_var("logoff_title",lang("login"));
+        }
+      } // end bubble help
     }
   }
 

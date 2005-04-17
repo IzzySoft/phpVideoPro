@@ -10,6 +10,7 @@
  <li>added preferences for default screen format and default audio language
  <li>help menu now also contains link to project homepage
  <li>added FSK/PG to media list
+ <li>added (optional) bubble help (see configuration page)
 </ul>
 
 [title]

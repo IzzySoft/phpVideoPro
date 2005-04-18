@@ -494,6 +494,7 @@ INSERT INTO lang VALUES ('top_offset','de','Offset oben','');
 INSERT INTO lang VALUES ('trans_sample','de','Beispiel-Links','');
 INSERT INTO lang VALUES ('unit','de','Einheit','');
 INSERT INTO lang VALUES ('unknown','de','unbekannt','');
+INSERT INTO lang VALUES ('unlink_file_failed','de','Löschen fehlgeschlagen - bitte Zugriffsrechte prüfen oder manuell löschen.','');
 INSERT INTO lang VALUES ('unset_filter','de','Filter löschen','');
 INSERT INTO lang VALUES ('update','de','Aktualisieren','');
 INSERT INTO lang VALUES ('update_failed','de','Datensatz konnte nicht aktualisiert werden','');

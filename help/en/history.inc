@@ -13,6 +13,11 @@
  <li>added (optional) bubble help (see configuration page)
  <li>when transfering data searched with the IMDB, now made sure that there
      was a numeric value chosen for FSK/PG (see online help for details).
+ <li>on cleaning orphaned image files (see admin menu), (sub)directories
+     have been handled as files. Now they are ignored.
+ <li>same location: on missing permissions (e.g. files belonging to a user
+     other than the webserver, and the latter is not allowed to delete them)
+     a bunch of PHP errormessages have been displayed. Fixed.
 </ul>
 
 [title]

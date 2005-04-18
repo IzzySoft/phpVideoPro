@@ -160,6 +160,7 @@ INSERT INTO lang VALUES ('display_limit','de','Datensätze pro Seite','');
 INSERT INTO lang VALUES ('display_limit_comment','de','gibt an, wie viele Zeilen pro Seite bei Listen angezeigt werden sollen','');
 INSERT INTO lang VALUES ('dl_pvp_latest','de','D/L neueste Version','');
 INSERT INTO lang VALUES ('dupes','de','Duplikate Einträge','');
+INSERT INTO lang VALUES ('dupes_strict','de','Duplikate Einträge (streng)','');
 INSERT INTO lang VALUES ('dupe_id_entered','de','Es existiert bereits ein Datensatz mit der angegebenen MediaNr in der Datenbank. Zur Korrektur der Eingabe bitte den \"Zurück\" Button des Browsers betätigen. Hinweis: direkt neben dem Eingabefeld für die MediaNr befindet sich eine Auswahlbox. Diese gibt die höchste vergebene ID für jedes Medium an. Normalerweise ist es eine gute Idee, für ein neues Medium die erste (vierstellige) Zahl, bzw. für einen neuen Film auf dem gleichen Medium die zweite (zweistellige) Zahl um 1 zu erhöhen.','');
 INSERT INTO lang VALUES ('dupe_titles_found','de','Es wurden %1 Titel mit möglichen Duplikaten gefunden:','');
 INSERT INTO lang VALUES ('edit','de','Bearbeiten','');

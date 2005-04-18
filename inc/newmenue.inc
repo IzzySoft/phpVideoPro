@@ -107,6 +107,7 @@ if (isset($_REQUEST["sess_id"])) {
  echo $pvp->link->linkurl($base_url."taperest.php?usefilter=1",lang("taperest_filtered"),"class='menuItem'") ."\n";
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."dupes.php",lang("dupes"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."dupes.php?strict=1",lang("dupes_strict"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."stats.php",lang("db_stats"),"class='menuItem'") ."\n";
 ?>
 </div>

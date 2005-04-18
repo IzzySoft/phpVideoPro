@@ -66,6 +66,7 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_absolute")?>", "<?=$pvp->link->slink($base_url.'taperest.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("taperest_filtered")?>", "<?=$pvp->link->slink($base_url.'taperest.php?usefilter=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes_strict")?>", "<?=$pvp->link->slink($base_url.'dupes.php?strict=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes")?>", "<?=$pvp->link->slink($base_url.'dupes.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$pvp->link->slink($base_url.'stats.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);

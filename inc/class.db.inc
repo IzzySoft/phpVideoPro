@@ -1818,15 +1818,23 @@
 
    /** Get a list of duplicate titles
     * @method get_dupetitles
+    * @param optional boolean strict if set to TRUE (default), a movie is not
+    *  considered a duplicate if one of the following criteria is met:<ul>
+    *    <li>different FSK (intended audience differs)</li>
+    *    <li>different year (maybe a new version/remake)</li>
+    *    <li>different audio tracks, and no movie covers all of the others</li>
+    *  </ul>
     * @return array array of titles:
     *  array[$i]['title']; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
     *  where $i counts the distinct titles, and $k the copies per title
     */
-   function get_dupetitles() {
+   function get_dupetitles($strict=1) {
      $query  = "SELECT o.title as titel, o.id as o_id, o.mtype_id as o_mtypeid,"
              . " o.cass_id as o_cassnr, o.part as o_part, o.length as o_len,"
-             . " d.id as d_id, d.mtype_id as d_mtypeid, d.cass_id as d_cassnr,"
-             . " d.part as d_part, d.length as d_len"
+             . " o.audio as o_audio, o.fsk as o_fsk, o.year as o_year,"
+             . " d.id as d_id, d.mtype_id as d_mtypeid,"
+             . " d.cass_id as d_cassnr, d.part as d_part, d.length as d_len,"
+             . " d.audio AS d_audio, d.fsk as d_fsk, d.year as d_year"
              . " FROM video o, video d"
              . " WHERE o.title=d.title AND o.id<d.id"
              . " ORDER BY o_id ASC";
@@ -1834,6 +1842,20 @@
      $i = -1;
      while ( $this->next_record() ) {
        $title = $this->f('titel');
+       if ($strict) {
+         if ($this->f('o_fsk')!=$this->f('d_fsk')) continue;
+         if ($this->f('o_year')!=$this->f('d_year')) continue;
+       // now check if audio_lang is the same or one movie contains all
+       // audio tracks of the other -- otherwise this is no dupe
+         if(isset($audio_all)) unset($audio_all);
+         $audio_str = substr($this->f('o_audio'),1,strlen($this->f('o_audio')-2));
+         $audio_arr = explode(",",$audio_str); $ac1 = count($audio_arr);
+         foreach ($audio_arr as $val) $audio_all[$val] = 1;
+         $audio_str = substr($this->f('d_audio'),1,strlen($this->f('d_audio'))-2);
+         $audio_arr = explode(",",$audio_str); $ac2 = count($audio_arr);
+         foreach ($audio_arr as $val) $audio_all[$val] = 1; $ac3 = count($audio_all);
+         if ( !($this->f('o_audio')=='' || $this->f('d_audio')=='') && !( $ac3==$ac1 || $ac3==$ac2 ) ) continue;
+       }
        if ( $i==-1 || $dupes[$i]['title']!=$title ) {
          ++$i; $k=0;
          $dupes[$i]['title'] = $title;

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -29,7 +29,8 @@
    $id = $mtypelist[$i]['id'];
    $mtypes[$id]['sname'] = $mtypelist[$i]['sname'];
  }
- $dupes  = $db->get_dupetitles();
+ if ($_REQUEST["strict"]==1) $strict = 1; else $strict = 0;
+ $dupes  = $db->get_dupetitles($strict);
  $dupecount = count($dupes);
 
  for ($i=0;$i<$dupecount;++$i) {

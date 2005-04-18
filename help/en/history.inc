@@ -18,6 +18,12 @@
  <li>same location: on missing permissions (e.g. files belonging to a user
      other than the webserver, and the latter is not allowed to delete them)
      a bunch of PHP errormessages have been displayed. Fixed.
+ <li>added a <B><I>strict</I></B> duplicate check. Other than with the "normal"
+     check, this considers two movies <i>not</i> as duplicates if their data
+     are different for at least one of the following criteria:<ul>
+      <li>FSK/PG (intended audience differs)</li>
+      <li>year (maybe a new version/remake)</li>
+      <li>audio tracks (and no movie covers all tracks of the others)</li></ul>
 </ul>
 
 [title]

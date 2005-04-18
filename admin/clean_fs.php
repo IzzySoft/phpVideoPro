@@ -36,7 +36,7 @@
    $reldir  = substr($pvp->config->imdb_photopath,strlen($base_path));
    $thisdir = dir($pvp->config->imdb_photopath);
    while( $file=$thisdir->read() ) {
-     if ($file!="." && $file!="..") {
+     if ($file!="." && $file!=".." && is_file($pvp->config->imdb_photopath.$file)) {
        $fname = $reldir . $file;
        if (!$db->image_is_refered($fname)) $orphan[] = $fname;
      }
@@ -50,7 +50,7 @@
    $reldir  = substr($pvp->config->photopath,strlen($base_path));
    $thisdir = dir($pvp->config->photopath);
    while( $file=$thisdir->read() ) {
-     if ($file!="." && $file!="..") {
+     if ($file!="." && $file!=".." && is_file($pvp->config->photopath.$file)) {
        $fname = $reldir . $file;
        if (!$db->image_is_refered($fname)) $orphan2[] = $fname;
      }
@@ -64,9 +64,9 @@
  for ($i=0;$i<$orphans;++$i) {
   $details .= $pvp->link->linkurl($base_url.$orphan[$i],$orphan[$i]);
   if ($delete) {
-    $rc = unlink($base_path.$orphan[$i]);
+    $rc = @unlink($base_path.$orphan[$i]);
     if ($rc) { $details .= "<SPAN CLASS='ok'> " .lang("ok") ."</SPAN>";
-    } else { $details .= "<SPAN CLASS='error'> " .lang("not_ok") ."</SPAN>"; }
+    } else { $details .= "<SPAN CLASS='error'> " .lang("unlink_file_failed") ."</SPAN>"; }
   } else {
     $mid = substr($orphan[$i],strrpos($orphan[$i],"/")+1);
     $mid = substr($mid,0,strlen($mid)-4);
@@ -82,9 +82,9 @@
  for ($i=0;$i<$orphans2;++$i) {
   $details2 .= $pvp->link->linkurl($base_url.$orphan2[$i],$orphan2[$i]);
   if ($delete) {
-    $rc = unlink($base_path.$orphan2[$i]);
+    $rc = @unlink($base_path.$orphan2[$i]);
     if ($rc) { $details2 .= "<SPAN CLASS='ok'> " .lang("ok") ."</SPAN>";
-    } else { $details2 .= "<SPAN CLASS='error'> " .lang("not_ok") ."</SPAN>"; }
+    } else { $details2 .= "<SPAN CLASS='error'> " .lang("unlink_file_failed") ."</SPAN>"; }
   } else {
     $mid = substr($orphan2[$i],strrpos($orphan2[$i],"/")+1);
     $mid = substr($mid,0,strlen($mid)-4);

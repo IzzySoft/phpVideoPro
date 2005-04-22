@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.6 ( 2005)
+0.7.6 (April 22, 2005)
 [text]
 <ul>
  <li>Cancel deletion of a movie record lead to HTML 404 error due to wrong

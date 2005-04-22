@@ -14,10 +14,6 @@ account" izzysoft@qumran.org.
 coming *soon*:
 - export-button for selected movie (view_entry) and selected movies (movie list)
   for transfer, similiar to a "partial backup"
-- movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
-  the possibility to "order by rating")
-- replace "\" with "/" when creating links (in case the server runs in Windows)
-- lock tables during backup/restore
 
 coming *next*:
 - PS template(s) for DVD covers
@@ -32,6 +28,9 @@ coming *next*:
   (links to start external Shell scripts, *.Cmd files or the like)
 
 coming *sometimes* (maybe):
+- storing the movies IMDB ID into the db, if known
+- movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
+  the possibility to "order by rating")
 - honour date format settings in all places
 - add "sample-links" to translation editor
 - new database field: "lent to" (to find out where your media *really* are :)

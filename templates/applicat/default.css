@@ -45,6 +45,7 @@ H5, H6 { font-style: italic; }
 H5 { font-size: 100%; }
 H6 { font-size: 100%; }
 PRE, TT, INPUT, TEXTAREA, SELECT { font-family: monospace; font-size: 11px; }
+INPUT, TEXTAREA { cursor:text; }
 HR  {
   width: 100%;
   height: 1px;

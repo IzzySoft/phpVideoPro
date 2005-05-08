@@ -1,8 +1,6 @@
-# ==========================================================
-# Dutch Language File created by phpVideoPro v0.6.9
-# Original by Tom Albers (for v0.2)
-# revised and extensively updated by Ron Dekker (for v0.6.9)
-# ==========================================================
+# ========================================================
+# Dutch Language File created by phpVideoPro v0.7.6
+# ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='nl';
 INSERT INTO lang VALUES ('about','nl','Over...',' ');
@@ -22,6 +20,7 @@ INSERT INTO lang VALUES ('admin_disktypes','nl','Wijzig disktypes',' ');
 INSERT INTO lang VALUES ('admin_filter','nl','Standaard filter settings',' ');
 INSERT INTO lang VALUES ('admin_movietech','nl','Wijzig technische film gegevens',' ');
 INSERT INTO lang VALUES ('admin_orphans','nl','Verwijder wees items',' ');
+INSERT INTO lang VALUES ('admin_orphan_fs','nl','Verwijderen van \"wees\" bestanden','');
 INSERT INTO lang VALUES ('admin_printers','nl','Wijzig printers',' ');
 INSERT INTO lang VALUES ('admin_pstemplates','nl','Wijzig PSLabel template',' ');
 INSERT INTO lang VALUES ('admin_required','nl','Voor deze actie heeft u admin rechten nodig!','');
@@ -37,6 +36,10 @@ INSERT INTO lang VALUES ('backup_db_movie_internal','nl','Backup alle films in p
 INSERT INTO lang VALUES ('backup_db_sysconf','nl','Bakcup configuratie een standaardinstellingen','');
 INSERT INTO lang VALUES ('backup_file_corrupt','nl','Het geselecteerde backup bestand is beschadigd',' ');
 INSERT INTO lang VALUES ('backup_file_unreadable','nl','Geen leesrechten op het backup bestand (Controleer de rechten van het bestan\")',' ');
+INSERT INTO lang VALUES ('bubble_help_enable','nl','Activeer BubbleHelp','');
+INSERT INTO lang VALUES ('bubble_help_enable_comment','nl','Indien geactiveerd, verschijnt helpinformatie over sommige items waar met de muis over heen gegaan wordt. (bijv. bij de windows knoppen in de Applicat template\". ','');
+INSERT INTO lang VALUES ('cache_enable','nl','Activeren browser/proxy caching?','');
+INSERT INTO lang VALUES ('cache_enable_comment','nl','Omdat phpVideoPro een dynamisch applicatie is met gegenereerde pagina\'s uit de database bij elk browserverzoek. Daarom is het wellicht verstandig om caching uit te schakelen, vooral voor Microsoft Internet Explorer gebruikers...  ','');
 INSERT INTO lang VALUES ('cancel','nl','Annuleer',' ');
 INSERT INTO lang VALUES ('categories','nl','Categorieën',' ');
 INSERT INTO lang VALUES ('category','nl','Categorie',' ');
@@ -121,6 +124,7 @@ INSERT INTO lang VALUES ('delete_remaining','nl','Verwijderen van de overgebleve
 INSERT INTO lang VALUES ('deleting_entry','nl','Verwijder item %1',' ');
 INSERT INTO lang VALUES ('del_access','nl','Mag items verwijderen',' ');
 INSERT INTO lang VALUES ('desc_admin_orphans','nl','\"Wees items\" is data zonder verwijzing. Bijv. Acteurs en componisten die geen link hebben naar een film. Dit komt meestal door verkeerd gespelde invoer die, nadat het is opgeslagen, weer gewijzigd wordt. Het verwijderen zal nooit leiden tot het verwijderen van de film. Het is het beste om deze wezen te verwijderen. Het spaart ruimte en voorkomt dat de database traag wordt. ',' ');
+INSERT INTO lang VALUES ('desc_admin_orphan_fs','nl','\"Wees bestanden\" is data zonder een verwijzing. Bijv. een image zonder verwijzing naar een film. Dit komt meestal door: <UL><LI>Je hebt een image binnengekregen via een IMDB zoekopdracht maar deze informatie niet gebruikt</LI><LI>Je hebt een record gewijzigd een de image verwijzing aangepast of verwijderd</LI><LI>Je hebt een record verwijderd en dit programma was niet zo slim om ook de image te verwijderen</LI></UL>Echter: als je denkt dat je deze images niet meer wilt koppelen aan een film dan kan phpVideoPro bijgaande lijst verwijderen.','');
 INSERT INTO lang VALUES ('desc_backup_db','nl','Het is verstandig om altijd een backup van de database te hebben. Het heeft de voorkeur om uw eigen tools hiervoor te gebruiken.
  (<code>mysql_dump</code>, code>pgsql_dump</code> etc.)
  In dit geval kan het zijn dat uw database staat op een server waar u geen shell toegang heeft. Kies daarom nu voor een \"Complete Backup\". Het slaat uw gehele database op als een SQL script<BR>Wilt u alleen de filmdata om die bijv. te gebruiken in een andere database, kies dan  alleen voor de films in het interne phpVideoPro formaat. U kunt op deze manier zelfs migreren tussen MySQL en PostgreSQL. Het terugzetten van een volledige backup van een oudere versie van phpVideoPro naar een recentere versie zal leiden tot het updaten (achteraf) van de database. De interne phpVideoPro backup is compatibel tussen de versies. (Toekomsige versies is nog niet zeker)<BR>U kunt de backup comprimeren als uw installatie van PHP is gecompileerd met gzip ondersteuning. Activeer de compressie box om tot 90% te besparen op de bestands grootte.<BR>    
@@ -141,6 +145,7 @@ INSERT INTO lang VALUES ('display_limit','nl','Toon limiet',' ');
 INSERT INTO lang VALUES ('display_limit_comment','nl','(hoeveel regels per pagina voor het overzicht)',' ');
 INSERT INTO lang VALUES ('dl_pvp_latest','nl','Download de laatse versie',' ');
 INSERT INTO lang VALUES ('dupes','nl','Dubbele items',' ');
+INSERT INTO lang VALUES ('dupes_strict','nl','Dubbele items (strkt)','');
 INSERT INTO lang VALUES ('dupe_id_entered','nl','Er is al een film opgeslagen onder dit mediumnummer. Ga terug en pas dit aan. Tip: Er is een Selectie veld naast het invoerveld waar het media nummer. Dit selectie veld geeft aan het hoogste bestaande film id. Het is een juiste keuze om bij nieuwe media de eerste vier getallen met een te verhogen. Voor een nieuwe film op bestaande media verhoogt u de tweede twee getallen met een. ',' ');
 INSERT INTO lang VALUES ('dupe_titles_found','nl','Gevonden %1 titel(s) die mogelijk dubbel zijn.',' ');
 INSERT INTO lang VALUES ('edit','nl','Wijzig',' ');
@@ -161,10 +166,13 @@ INSERT INTO lang VALUES ('free','nl','Vrij',' ');
 INSERT INTO lang VALUES ('free_space_on_media','nl','De volgende mediums hebben minimaal %1 vrije ruimte:',' ');
 INSERT INTO lang VALUES ('free_space_title','nl','Vrije ruimte op medium',' ');
 INSERT INTO lang VALUES ('fsk','nl','OudersControle OC (Min-Max leeftijd)',' ');
+INSERT INTO lang VALUES ('fsk_is_nan','nl','De geselecteerde,nbut waarde voor PG (Parent Guide) is niet numeriek. phpVideoPro verwacht een numerieke waarde. nClick het informatie icoon naast de PG voor meer informatie.','');
 INSERT INTO lang VALUES ('general','nl','Algemeen',' ');
 INSERT INTO lang VALUES ('goto_entry','nl','Ga direct naar:',' ');
 INSERT INTO lang VALUES ('graphic_file','nl','Imagebestand',' ');
 INSERT INTO lang VALUES ('help_about','nl','Help over',' ');
+INSERT INTO lang VALUES ('help_for_block','nl','Help voor dit blok','');
+INSERT INTO lang VALUES ('hide_cat','nl','Verberg category','');
 INSERT INTO lang VALUES ('highest_db_entries','nl','Hoogste items in database',' ');
 INSERT INTO lang VALUES ('history','nl','Geschiedenis',' ');
 INSERT INTO lang VALUES ('hit_back_to_correct','nl','Druk op de \"Terug\" knop om de fout te herstellen.',' ');
@@ -175,7 +183,36 @@ INSERT INTO lang VALUES ('howto_help','nl','How maak ik een nieuw help bestand',
 INSERT INTO lang VALUES ('howto_label','nl','Hoe maak of configureer ik label templates',' ');
 INSERT INTO lang VALUES ('howto_lang','nl','Hoe maak ik een nieuw taal bestand',' ');
 INSERT INTO lang VALUES ('howto_templates','nl','Hoe maak ik een nieuwe template',' ');
+INSERT INTO lang VALUES ('imdbsearch','nl','Haal de film inforamtie op bij de IMDB site','');
+INSERT INTO lang VALUES ('imdb_cache_dir','nl','Directory waar de IMDB cache opgeslagen moet worden.','');
+INSERT INTO lang VALUES ('imdb_cache_dir_comment','nl','Deze directory moet lees-/schrijfbaar zijn voor de webserver en alleen hier voor gebruikt worden. Het pad (path) kan relatief zijn t.o.v. de phpVideoPro basis pad (path) installatie (gaanbevolen). Hebruik hiervoor <b><i>nooit</i></b> je temp directory van je systeem.','');
+INSERT INTO lang VALUES ('imdb_cache_enable','nl','Activeren IMDB data caching?','');
+INSERT INTO lang VALUES ('imdb_cache_enable_comment','nl','Het opvragen van de informatie bij IMDB kan enige tijd kosten omdat meerdere pagina\'s opgehaald moeten worden. Caching heeft alleen nut als je meerdere malen dezelfde informatie moet ophalen, dit doe je normaalgesproken niet dus heb je de caching ook niet nodig. Activeer je het toch zorg er dan voor dat de cache directory beschreven kan worden door de webserver!','');
+INSERT INTO lang VALUES ('imdb_cache_expire','nl','Verwijder IMDB cache','');
+INSERT INTO lang VALUES ('imdb_cache_expire_comment','nl','Als de IMDB caching geactiveerd is dan zal de omvang van je cache directory groeien. Gebruik deze optie om aan te geven waanneer de cache data mag komen te vervallen (maximale bewaartijd).','');
+INSERT INTO lang VALUES ('imdb_cache_use','nl','Cache data gebruiken bij nieuwe opvragingen?','');
+INSERT INTO lang VALUES ('imdb_cache_use_comment','nl','Bovengenoemde opties regelen <b><i>het opslaan</i></b> van de IMDB data in de locale cache. Deze optie regelt of phpVideoPro de cache gebruikt voor het opzoeken. Indien geactiveerd en de gewenste informatie in de cache aanwezig is dan zal phpVideoPro geen verbinding maken met de IMDB database maar de informatie uit de cache gebruiken.','');
+INSERT INTO lang VALUES ('imdb_image_files','nl','IMDB image bestanden','');
+INSERT INTO lang VALUES ('imdb_movie_id','nl','IMDB film ID','');
+INSERT INTO lang VALUES ('imdb_search_empty_result','nl','Sorry, er is geen overeenkomstige data gevonden in de IMDB database..<BR>Je kunt het met een andere zoekterm proberen.','');
+INSERT INTO lang VALUES ('imdb_title_search','nl','Zoek de film in de IMDB database','');
+INSERT INTO lang VALUES ('imdb_transfer2edit','nl','Verplaats de data naar wijzigingsscherm','');
+INSERT INTO lang VALUES ('imdb_tx','nl','Te verplaatsen data van de IMDB database','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose','nl','Automatisch sluiten van het scherm na de data verplaatsing?','');
+INSERT INTO lang VALUES ('imdb_txwin_autoclose_comment','nl','Wanneer alle benodigde informatie van IMDB verplaatst is naar het wijzigingsscherm, is het zoek scherm niet meer nodig. Desondanks kun je het houden voor referentie of andere redenen.','');
+INSERT INTO lang VALUES ('imdb_tx_actor','nl','Acteurs','');
+INSERT INTO lang VALUES ('imdb_tx_cat','nl','Categoriën','');
+INSERT INTO lang VALUES ('imdb_tx_comment','nl','Wanneer je een film wilt toevoegen of wijzigen geeft phpVideoPro je de mogelijkheid om informatie op te halen uit de IMDB database. Hier kun je bepalen welke informatie je standaard wilt laten verplaatsen naar het wijzigingsscherm van phpVideoPro.','');
+INSERT INTO lang VALUES ('imdb_tx_comments','nl','Commentaar','');
+INSERT INTO lang VALUES ('imdb_tx_country','nl','Land','');
+INSERT INTO lang VALUES ('imdb_tx_director','nl','Regisseur','');
+INSERT INTO lang VALUES ('imdb_tx_length','nl','Duur','');
+INSERT INTO lang VALUES ('imdb_tx_music','nl','Componist','');
+INSERT INTO lang VALUES ('imdb_tx_title','nl','Titel','');
+INSERT INTO lang VALUES ('imdb_tx_year','nl','Jaar','');
 INSERT INTO lang VALUES ('imdb_url','nl','Welke IMDB site te gebruiken',' ');
+INSERT INTO lang VALUES ('imdb_url2','nl','Alternatieve IMDB site','');
+INSERT INTO lang VALUES ('imdb_url2_comment','nl','Ook al zijn er locale IMDB\'s (per land), de informatie op deze sites blijft in het Engels. Alleen de veld-omschrijvingen zijn in de locale taal. Om de gegevens in phpVideoPro te krijgen in het noodzakelijk dat de veld-omschrijvingen in het engels zijn. Daarom hebben we een<b><i>Engelse</i></b> IMDB site nodig. Kies een geschikte site.','');
 INSERT INTO lang VALUES ('imdb_url_comment','nl','De Intenet Movie DataBase geeft informatie over veel films. Er zijn ook landen sites beschikbaar. Zo is de Nederlande site geschikt om te zoeken naar Nederlandse films. De Amerikaanse site is het beste voor Engelse films. Kies een site die het beste past bij de films in uw database.',' ');
 INSERT INTO lang VALUES ('imp_errors','nl','Importeren van %2 record(s) gestopt met %1 fout(en).',' ');
 INSERT INTO lang VALUES ('imp_success','nl','Importeren van %1 record(s) is succesvol gereed.',' ');
@@ -208,6 +245,7 @@ INSERT INTO lang VALUES ('list','nl','Overzicht',' ');
 INSERT INTO lang VALUES ('listgen','nl','Overzichten',' ');
 INSERT INTO lang VALUES ('lists','nl','Overzichten',' ');
 INSERT INTO lang VALUES ('locale','nl','Lokaal',' ');
+INSERT INTO lang VALUES ('local_image_files','nl','Lokale imagebestanden','');
 INSERT INTO lang VALUES ('login','nl','Login naam',' ');
 INSERT INTO lang VALUES ('login_failed','nl','Login mislukt. Verkeerde naam of wachtwoord gebruikt of de gebruiker bestaat niet.',' ');
 INSERT INTO lang VALUES ('login_required','nl','Uw rechten zijn onvoldoende voor de gewenste actie. U kunt nu opnieuw inloggen als een andere gebruiker met de juiste rechten.<P />',' ');
@@ -231,8 +269,12 @@ INSERT INTO lang VALUES ('movies_left_in_cat','nl','Categorie %1 bevat nog steed
 INSERT INTO lang VALUES ('movies_left_reference','nl','Deze regel kan niet verwijderd worden. Er is/zijn nog steeds %1 film(s) in de database die er naar verwijzen.',' ');
 INSERT INTO lang VALUES ('movie_color_default','nl','Standaard kleurformaat voor een film',' ');
 INSERT INTO lang VALUES ('movie_color_default_comment','nl','Dit is de standaard kleurinstelling voor een nieuwe entry',' ');
+INSERT INTO lang VALUES ('movie_lang_default','nl','Standaard audio taal voor nieuwe films','');
+INSERT INTO lang VALUES ('movie_lang_default_comment','nl','Dit zal gebruikt worden als standaard audio taal als er een nieuw record wordt toegevoegd ','');
 INSERT INTO lang VALUES ('movie_onlabel_default','nl','Standaard label info',' ');
 INSERT INTO lang VALUES ('movie_onlabel_default_comment','nl','Standaard voor nieuwe items: moet de informatie van deze film gebruikt worden wanneer labels voor dit medium gemaakt worden?',' ');
+INSERT INTO lang VALUES ('movie_pict_default','nl','Standaard schermformaat voor nieuwe films','');
+INSERT INTO lang VALUES ('movie_pict_default_comment','nl','Dit zal gebruikt worden als standaard schermformaat als er een nieuw record wordt toegevoegd ','');
 INSERT INTO lang VALUES ('movie_tone_default','nl','Standaard geluidstype voor een film. ',' ');
 INSERT INTO lang VALUES ('movie_tone_default_comment','nl','Dit zal gebruikt worden als standaard geluidstype voor een nieuw item',' ');
 INSERT INTO lang VALUES ('music','nl','Componist',' ');
@@ -271,14 +313,17 @@ INSERT INTO lang VALUES ('printer_add_failed','nl','Er is een fout opgetreden bi
 INSERT INTO lang VALUES ('printer_comment','nl','Als u op formulieren wilt printen (zoals bij PS Labels), dan moeten wij de juiste marges weten','');
 INSERT INTO lang VALUES ('printer_name','nl','Naam','');
 INSERT INTO lang VALUES ('printer_upd_failed','nl','Bijwerken mislukt voor de volgende printers: %1','');
+INSERT INTO lang VALUES ('pslabel','nl','PostScript Label','');
 INSERT INTO lang VALUES ('pstpl_name','nl','Template naam','');
 INSERT INTO lang VALUES ('pstpl_type','nl','Template type','');
+INSERT INTO lang VALUES ('pvp_homepage','nl','Project HomePagina','');
 INSERT INTO lang VALUES ('read_access','nl','Mag items bekijken','');
 INSERT INTO lang VALUES ('read_access_short','nl','lr','');
 INSERT INTO lang VALUES ('recalc_free','nl','Vrije ruimte aan het herberekenen voor dit medium.',' ');
 INSERT INTO lang VALUES ('refresh_lang','nl','Overschrijf taalbestand',' ');
 INSERT INTO lang VALUES ('refresh_lang_comment','nl','(Indien er een wijziging heeft plaats gevonden in het taalbestand (wellicht doordat u een taalfout heeft gevonden), dan kunt u hier het taalbestand opnieuw laten inlezen)',' ');
 INSERT INTO lang VALUES ('region_code','nl','RegioCode','');
+INSERT INTO lang VALUES ('remove_cat','nl','Verwijder categorie','');
 INSERT INTO lang VALUES ('remove_empty_media','nl','Verwijderen lege media','');
 INSERT INTO lang VALUES ('remove_empty_media_comment','nl','Moet media verwijderd worden als de laatste film verwijderd is?','');
 INSERT INTO lang VALUES ('restore_db_internal','nl','Restore van een PVP backupbestand','');
@@ -338,6 +383,7 @@ INSERT INTO lang VALUES ('top_offset','nl','Bovenmarge','');
 INSERT INTO lang VALUES ('trans_code','nl','Te vertalen data','');
 INSERT INTO lang VALUES ('unit','nl','Eenheid','');
 INSERT INTO lang VALUES ('unknown','nl','Onbekend',' ');
+INSERT INTO lang VALUES ('unlink_file_failed','nl','Deleten mislukt -controleer permissies of verwijder handmatig.','');
 INSERT INTO lang VALUES ('unset_filter','nl','Filter opnieuw instellen',' ');
 INSERT INTO lang VALUES ('update','nl','Aanpassen',' ');
 INSERT INTO lang VALUES ('update_failed','nl','Bijwerken items mislukt',' ');
@@ -345,6 +391,7 @@ INSERT INTO lang VALUES ('update_success','nl','Items succesvol opgeslagen!',' '
 INSERT INTO lang VALUES ('upd_access','nl','Mag bestaande items bijwerken','');
 INSERT INTO lang VALUES ('upper_right_corner','nl','Rechterbovenhoek (x/y)','');
 INSERT INTO lang VALUES ('user','nl','Gebruiker','');
+INSERT INTO lang VALUES ('user_create_login_required','nl','Je moet een loginnaam opgeven voor de gebruiker!','');
 INSERT INTO lang VALUES ('user_deleted','nl','Succesvol verwijder gebruiker #%1, \"%2\" (%3)','');
 INSERT INTO lang VALUES ('user_delete_failed','nl','Verwijderen van gebruiker #%1, \"%2\" (%3) mislukt','');
 INSERT INTO lang VALUES ('user_delete_report','nl','Resultaat van het verwijderen van gebruikers','');

@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.7.7 (2005)
+[text]
+<ul>
+ <li>Added authorization check to stats and search page
+</ul>
+
+[title]
 0.7.6 (April 22, 2005)
 [text]
 <ul>

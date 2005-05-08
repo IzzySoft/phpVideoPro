@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -14,6 +14,11 @@
 
  $page_id = "search_movie";
  include("inc/includes.inc");
+
+ #==================================================[ Check authorization ]===
+ if ( !$pvp->auth->browse ) {
+   kickoff(); // kick-off unauthorized visitors
+ }
 
  #=================================================[ Register global vars ]===
  $postit = array ("submit","mtype_id","cat_id","audio_id","subtitle_id","ptype",

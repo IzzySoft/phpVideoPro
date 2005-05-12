@@ -29,7 +29,6 @@ TH {
 TH A { color:blue; }
 TH.help { background-color: #e5e5e5; text-align: center; }
 TD { font-size: 12px; }
-INPUT, TEXTAREA { cursor:text; }
 INPUT, TEXTAREA, SELECT {
   font-family: sans-serif;
   font-size: 12px;

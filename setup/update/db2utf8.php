@@ -116,7 +116,7 @@
 <HTML><HEAD>
  <TITLE><?=$title?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<? include("../templates/default/default.css"); ?>
+<? include("../../templates/default/default.css"); ?>
 </HEAD>
 <BODY>
 <FORM NAME="coding" METHOD="post" ACTION="<?=$PHP_SELF?>">
@@ -132,7 +132,7 @@
 
 
  # =====================================[ Set up phpVideoPro configuration ]===
- include ("../inc/includes.inc");
+ include ("../../inc/includes.inc");
  $title = "phpVideoPro Setup: Converting database entries to UTF-8";
 
  #-----------------------------------------------------------------------------

@@ -71,7 +71,8 @@ class Template {
       $this->set_var("search_title",lang("search_movie"));
       $this->set_var("help_title",lang("help"));
       $this->set_var("logoff_title",lang("login"));
-      if ($pvp->preferences->get("bubble_help_enable")) {
+#      if ($pvp->preferences->get("bubble_help_enable")) {
+      if (method_exists($pvp->preferences,"get") && $pvp->preferences->get("bubble_help_enable")) {
         $self = dirname($_SERVER["PHP_SELF"]);
         $pos  = strrpos($self,"/");
         if (substr($self,$pos+1)=="help") {

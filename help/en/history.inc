@@ -6,6 +6,9 @@
 [text]
 <ul>
  <li>Added authorization check to stats and search page
+ <li>Updated Dutch language file (thanx to Ron!)
+ <li>Moviesearch was broken when looking for a director. Fixed.
+ <li>Initial installation was broken (call to undefined method). Fixed.
 </ul>
 
 [title]

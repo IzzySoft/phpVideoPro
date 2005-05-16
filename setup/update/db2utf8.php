@@ -116,7 +116,7 @@
 <HTML><HEAD>
  <TITLE><?=$title?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<? include("../../templates/default/default.css"); ?>
+ <LINK HREF="../../templates/default/default.css" REL="stylesheet" TYPE="text/css">
 </HEAD>
 <BODY>
 <FORM NAME="coding" METHOD="post" ACTION="<?=$PHP_SELF?>">

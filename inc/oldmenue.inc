@@ -1,4 +1,4 @@
-<script language="JavaScript" src="<? echo $base_url ?>inc/navcond.js"></script>
+<script language="JavaScript" src="<?=$base_url?>inc/navcond.js"></script>
 <script language="JavaScript">
   var myNavBar1 = new NavBar(0);
   var dhtmlMenu;
@@ -86,9 +86,9 @@
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help")?>", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("index")?>", "JavaScript:open_help('')"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("about")?>", "JavaScript:open_help('about')"));
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("history")?>", "JavaScript:open_help('history')"));<?
-  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("pvp_homepage")?>", "<?=$pvp->projectpage?>"));<?
-if ($page_id) { ?>
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("history")?>", "JavaScript:open_help('history')"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("pvp_homepage")?>", "<?=$pvp->projectpage?>"));
+<? if ($page_id) { ?>
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("help_about") . " '" . lang($page_id) . "'"  ?>", "JavaScript:open_help('<?=$page_id?>')"));<?
 } ?>
@@ -117,4 +117,3 @@ if ($page_id) { ?>
   }
 
 </script>
-      

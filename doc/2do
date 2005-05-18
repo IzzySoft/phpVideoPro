@@ -14,20 +14,24 @@ account" izzysoft@qumran.org.
 coming *soon*:
 - export-button for selected movie (view_entry) and selected movies (movie list)
   for transfer, similiar to a "partial backup"
+- table names: consequent use of the pvp_ prefix for all tables (for users
+  who only have one database with their provider)
 
 coming *next*:
-- PS template(s) for DVD covers
-- form(s) to edit label sheets (for PSLabels)
 - settings for NTSC/PAL
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
 - separate the view_entry template from the edit template to move all formating
   information from the PHP code into the template
 - add Audio/Subtitle to filter settings
-- add optional "Bubble Help" (via HTML "TITLE" attribute)
+- more optional "Bubble Help" (via HTML "TITLE" attribute)
 - support for file-based formats like DivX, including play controls
   (links to start external Shell scripts, *.Cmd files or the like)
+- PlugIn structure for 3rd party addons (like the PS templates), making PVP
+  more modular and allowing removal of unwanted features
 
 coming *sometimes* (maybe):
+- PS template(s) for DVD covers
+- form(s) to edit label sheets (for PSLabels)
 - storing the movies IMDB ID into the db, if known
 - movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
   the possibility to "order by rating")

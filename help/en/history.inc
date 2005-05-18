@@ -9,6 +9,8 @@
  <li>Updated Dutch language file (thanx to Ron!)
  <li>Moviesearch was broken when looking for a director. Fixed.
  <li>Initial installation was broken (call to undefined method). Fixed.
+ <li>On initial installation, DB creation can now be skipped (if DB already
+     exists; make sure the privileges fit!)
 </ul>
 
 [title]

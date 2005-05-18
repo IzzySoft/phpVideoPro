@@ -25,6 +25,10 @@
 <DIV ALIGN="center">
  <INPUT TYPE="hidden" NAME="{submit_name}" VALUE="1">
  <A HREF="JavaScript:document.configform.submit();"><IMG BORDER="0" SRC="{submit_button}"></A>
+<!-- BEGIN skipblock -->
+ <INPUT TYPE="hidden" NAME="{submit_name}_skip" VALUE="0">
+ <A HREF="JavaScript:document.configform.{submit_name}_skip.value=1;document.configform.submit();"><IMG BORDER="0" SRC="{skip_button}"></A>
+<!-- END skipblock -->
 </DIV>
 
 </FORM>

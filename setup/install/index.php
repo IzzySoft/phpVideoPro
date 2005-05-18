@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -31,6 +31,7 @@
  $t->set_block("formblock","formitemblock","formitem");
 
  $t->set_block("template","infoblock","infolist");
+ $t->set_block("template","skipblock","skiplist");
 # $t->set_block("movieblock","pgblock","pglist");
 # $t->set_block("movieblock","acatblock","acatlist");
 # $t->set_block("acatblock","catblock","catlist");
@@ -41,6 +42,7 @@
 
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("submit_button",$pvp->tpl_url."/images/button-next.gif");
+ $t->set_var("skip_button",$pvp->tpl_url."/images/button-skip.gif");
 
  if (isset($_POST["config"])) {
  #=================================================[ Write new config file ]===
@@ -148,7 +150,10 @@
    $info = "No we go to create the database. For this, we need special "
          . "privileges - so below, please specify a privileged user with all "
          . "administrative rights (i.e. CREATE DATABASE, CREATE TABLE, etc.). "
-         . "If in doubt: for MySQL, this usually is the <code>root</code> user.";
+         . "If in doubt: for MySQL, this usually is the <code>root</code> user. "
+         . "In case the database already exists, use the <I>Skip</I> button to "
+         . "submit this form (this will only skip the DB creation; all tables "
+         . "will of course be created and filled <I>in the existing DB</I>, though).";
    $t->set_var("info_body",$info);
    $t->parse("infolist","infoblock");
    $t->set_var("field","User");
@@ -164,6 +169,7 @@
    $t->set_var("descript","Please chose if you want to create a fresh (blank) database, or want to restore from a previous backup. In the latter case, you should have placed your <code>restore.sql</code> file in the <code>setup/</code> directory, as described on the Backup page.");
    $t->parse("formitem","formitemblock",TRUE);
    $t->parse("formlist","formblock");
+   $t->parse("skiplist","skipblock");
    $t->pparse("out","template");
  } elseif (isset($_POST["dbcreate"])) {
  #===================================================[ Set up the database ]===
@@ -171,44 +177,46 @@
    $t->set_var("nobeamspan","1");
    $t->set_var("listtitle","phpVideoPro Installation: Setting up the DB");
    $t->set_var("submit_name","tables_done");
-   $dbc = new sql();
-   $dbc->User = $_POST["db_user"];
-   $dbc->Password = $_POST["db_pass"];
-   $dbc->Host     = $database["host"];
-   switch ($database["type"]) {
-     case "mysql": $dbc->Database = "mysql";
-                   $dbcrea = "CREATE DATABASE ".$database["database"];
-                   $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"];
-                   if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"]."'";
-                   break;
-     case "pgsql": $dbc->Database = "template1";
-                   $dbcrea = "CREATE DATABASE ".$database["database"]." WITH ENCODING 'UNICODE'";
-                   $dbgra  = "GRANT ALL ON DATABASE ".$database["database"]." TO ".$database["user"];
-                   $dbc->query("SELECT usename FROM pg_user WHERE usename='".$database["user"]."'");
-                   $dbc->next_record();
-                   if ($dbc->f('usename')!=$database["user"]) {
-                     $query = "CREATE USER ".$database["user"];
-                     if (!empty($database["password"])) $query .= " WITH PASSWORD '".$database["password"]."'";
-                     $dbc->query($query);
-                   }
-                   break;
-     default     : break;
-   }
    $failed = FALSE;
-   $info   = "<UL>";
-   if (@$dbc->query($dbcrea)) {
-     $info .= " <LI><SPAN CLASS='ok'>Database successfully created.</SPAN></LI>\n";
-     if (@$dbc->query($dbgra)) {
-       $info .= " <LI><SPAN CLASS='ok'>Granted rights to final user.</SPAN></LI>\n";
-     } else {
-       $info .= " <LI><SPAN CLASS='error'>Could not grant privileges to final user! Process stopped.</SPAN></LI>\n";
+   if (!$_POST["dbcreate_skip"]) {
+     $dbc = new sql();
+     $dbc->User = $_POST["db_user"];
+     $dbc->Password = $_POST["db_pass"];
+     $dbc->Host     = $database["host"];
+     switch ($database["type"]) {
+       case "mysql": $dbc->Database = "mysql";
+                     $dbcrea = "CREATE DATABASE ".$database["database"];
+                     $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"];
+                     if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"]."'";
+                     break;
+       case "pgsql": $dbc->Database = "template1";
+                     $dbcrea = "CREATE DATABASE ".$database["database"]." WITH ENCODING 'UNICODE'";
+                     $dbgra  = "GRANT ALL ON DATABASE ".$database["database"]." TO ".$database["user"];
+                     $dbc->query("SELECT usename FROM pg_user WHERE usename='".$database["user"]."'");
+                     $dbc->next_record();
+                     if ($dbc->f('usename')!=$database["user"]) {
+                       $query = "CREATE USER ".$database["user"];
+                       if (!empty($database["password"])) $query .= " WITH PASSWORD '".$database["password"]."'";
+                       $dbc->query($query);
+                     }
+                     break;
+       default     : break;
+     }
+     $info   = "<UL>";
+     if (@$dbc->query($dbcrea)) {
+       $info .= " <LI><SPAN CLASS='ok'>Database successfully created.</SPAN></LI>\n";
+       if (@$dbc->query($dbgra)) {
+         $info .= " <LI><SPAN CLASS='ok'>Granted rights to final user.</SPAN></LI>\n";
+       } else {
+         $info .= " <LI><SPAN CLASS='error'>Could not grant privileges to final user! Process stopped.</SPAN></LI>\n";
+         $failed = TRUE;
+       }
+     } else { // db not created
+       $info .= " <LI><SPAN CLASS='error'>Database could not be created! Process stopped.</SPAN></LI>\n";
        $failed = TRUE;
      }
-   } else { // db not created
-     $info .= " <LI><SPAN CLASS='error'>Database could not be created! Process stopped.</SPAN></LI>\n";
-     $failed = TRUE;
+     unset($dbc);
    }
-   unset($dbc);
    if (!$failed) { #-=[ Create Tables ]=-
      $create_script = "create_tables." . $database["type"];
      $sql[] = array ( "script"=>$create_script, "comment"=>"Creation of Tables" );

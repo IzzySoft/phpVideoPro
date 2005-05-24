@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.7 (2005)
+0.7.7 (May 2005)
 [text]
 <ul>
  <li>Added authorization check to stats and search page
@@ -11,6 +11,8 @@
  <li>Initial installation was broken (call to undefined method). Fixed.
  <li>On initial installation, DB creation can now be skipped (if DB already
      exists; make sure the privileges fit!)
+ <li>Changing user preferences (edit-&gt;preferences) using the M$IE resulted
+     in the user being logged out. Fixed.
 </ul>
 
 [title]

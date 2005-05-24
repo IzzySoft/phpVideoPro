@@ -116,11 +116,11 @@ if ( isset($update) ) {
     closedir($handle);
   }
   #-----------------------------[ IMDB Options ]---
-  $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
-  for ($i=0;$i<$count;++$i) {
-    if (!isset($_POST[$imdbtx["imdb_tx"][$i]])) $val = 0; else $val = 1;
-    $pvp->preferences->set($imdbtx["imdb_tx"][$i],$val);
+  $imdb_tx = $db->imdb_tx_setup();
+  foreach ($imdb_tx as $var=>$val) {
+    if (isset ($_POST[$var])) $imdb_tx[$var] = 1; else $imdb_tx[$var] = 0;
   }
+  $pvp->preferences->imdb_tx_set($imdb_tx);
   header("Location: " .$pvp->link->slink($url));
   exit;
 }
@@ -139,9 +139,9 @@ $lang_preferred = $pvp->preferences->get("lang");
 $template_set   = $pvp->preferences->get("template");
 $imdb_url       = $pvp->preferences->get("imdb_url");
 $imdb_url2      = $pvp->preferences->get("imdb_url2");
-$imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
-for ($i=0;$i<$count;++$i) {
-  ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
+$imdbtx         = $pvp->preferences->imdb_tx_get();
+foreach ($imdbtx as $var=>$val) {
+  ${$var} = $val;
 }
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $imdb_cache_enable = $db->get_config("imdb_cache_enable");

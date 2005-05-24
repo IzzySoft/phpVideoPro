@@ -109,6 +109,48 @@
     }
   }
 
+
+  ##############################################[ set/get imdb_tx options ]###
+  /** Set imdb_tx preferences
+   * @method imdb_tx_set
+   * @param array imdb_arr (name:=value)
+   */
+  function imdb_tx_set($imdb_arr) {
+    GLOBAL $pvp,$db;
+    if ($this->admin) {
+      foreach ($imdb_arr as $var=>$val) {
+        $db->set_preferences($var,$val);
+      }
+    } else {
+      if ($pvp->cookie->active) {
+        $pvp->cookie->set("imdb_tx",rawurlencode(serialize($imdb_arr)));
+      } else {
+        foreach ($imdb_arr as $var=>$val) {
+          $db->set_preferences($var,$val,$pvp->auth->user_id);
+        }
+      }
+    }
+  }
+
+  /** Set imdb_tx preferences
+   * @method imdb_tx_set
+   * @return array imdb_tx (var:=value)
+   */
+  function imdb_tx_get() {
+    GLOBAL $pvp,$db;
+    if ($this->admin) {
+      return $db->imdb_tx_setup();
+    } else {
+      if ($pvp->cookie->active) {
+        $raw = $pvp->cookie->get("imdb_tx");
+        if (empty($raw)) return $db->imdb_tx_setup();
+        return unserialize( rawurldecode( $raw ) );
+      } else {
+        return $db->imdb_tx_setup($pvp->auth->user_id);
+      }
+    }
+  }
+
   ##############################################################[ filters ]###
   /** get id for a filter part (helper to get_filters())
    * @class preferences

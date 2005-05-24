@@ -349,6 +349,20 @@
      return $list;
    }
 
+   /** Setup the imdb_tx option array
+    * @method imdb_tx_setup
+    * @param optional integer user_id
+    * @return array (var:=val)
+    */
+   function imdb_tx_setup($user_id="") {
+     if (empty($user_id) || !$user_id) $user_id = "";
+     $opts = $this->get_options("imdb_tx");
+     foreach ($opts["imdb_tx"] as $val) {
+       $tx[$val] = $this->get_preferences($val,$user_id);
+     }
+     return $tx;
+   }
+
    ############################################################################
    # preferences
    ############################################################################

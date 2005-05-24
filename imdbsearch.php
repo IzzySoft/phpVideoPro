@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -18,10 +18,10 @@
  include("inc/includes.inc");
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
- $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
- $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
- for ($i=0;$i<$count;++$i) {
-  ${$imdbtx["imdb_tx"][$i]} = $pvp->preferences->get($imdbtx["imdb_tx"][$i]);
+ $imdb_tx_prefs = $pvp->preferences->imdb_tx_get();
+ $autoclose = $imdb_tx_prefs["imdb_txwin_autoclose"];
+ foreach ($imdb_tx_prefs as $var=>$val) {
+   ${$var} = $val;
  }
 
  # Was the movie name given on the main form?

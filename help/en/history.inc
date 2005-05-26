@@ -13,6 +13,11 @@
      exists; make sure the privileges fit!)
  <li>Changing user preferences (edit-&gt;preferences) using the M$IE resulted
      in the user being logged out. Fixed.
+ <li>When a new category was added (admin->categories), we did not set the
+     main translation (i.e. English was set only if it was prefered lang),
+     so the phrase did not appear in the translation editor
+     (admin->translations). Fixed.
+ <li>Disabling of unwanted categories did not work. Fixed.
 </ul>
 
 [title]

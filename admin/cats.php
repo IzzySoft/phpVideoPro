@@ -43,7 +43,7 @@
        die ( display_error(lang("cat_handle_empty",$_POST[$cat_id])) );
      } else {
        $db->set_translation($_POST[$cat_name],"",$pvp->preferences->get("lang"));
-       if (isset($_POST[$cat_enabled])) $catXenabled = $_POST[$cat_enabled]; else $catXenabled = 9;
+       if (isset($_POST[$cat_enabled])) $catXenabled = $_POST[$cat_enabled]; else $catXenabled = 0;
        if ( !$db->update_category($_POST[$cat_id],$_POST[$cat_name],$catXenabled) ) $cat .= "$i,";
        if ( !$db->set_translation($_POST[$cat_name],$_POST[$cat_trans],$pvp->preferences->get("lang")) ) $trans .= "$i,";
      }
@@ -51,6 +51,7 @@
    if ( strlen(trim($new_name)) && strlen(trim($new_trans)) ) {
      if ( !$db->add_category($new_name) ) $cat .= "?,";
      if ( !$db->set_translation($new_name,$new_trans,$pvp->preferences->get("lang")) ) $trans .= "$i,";
+     if ($pvp->preferences->get("lang")!="en") $db->set_translation($new_name,$new_trans,"en");
    }
    if (isset($cat)) {
      $cat = substr($cat,0,strlen($cat)-1);

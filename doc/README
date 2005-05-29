@@ -165,6 +165,13 @@ Contents:
   with the new config.sample for possible changes), point your browser to the
   setup/index.php and just follow the update link there.
 
+  When updating from v0.7.6 or earlier, make sure to delete all PVP cookies
+  whose names start with "imdb_tx" from your browser(s) cache (and if other
+  people use your installation, tell them to do so as well). According to the
+  specifications, browsers only capable of a certain amount of cookies per
+  domain, so we combined a few settings to be placed into one cookie (instead
+  of using multiple cookies).
+
 ===============================================================================
 
 6.) Administrative hints

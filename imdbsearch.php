@@ -19,11 +19,11 @@
  include("inc/header.inc");
  require_once ("inc/class.imdb.inc");
  $imdb_tx_prefs = $pvp->preferences->imdb_tx_get();
- $autoclose = $imdb_tx_prefs["imdb_txwin_autoclose"];
+ $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
+ if (empty($autoclose)) $autoclose = 0;
  foreach ($imdb_tx_prefs as $var=>$val) {
    ${$var} = $val;
  }
-
  # Was the movie name given on the main form?
  if (empty($_REQUEST["nsubmit"]) && empty($_REQUEST["isubmit"]) && !empty($_REQUEST["name"])) {
    $auto_search = TRUE;

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -14,6 +14,13 @@
 
 # $page_id = "admin_cats";
  include("inc/includes.inc");
+
+ #==================================================[ Check authorization ]===
+ if ( !$pvp->auth->browse) {
+   kickoff(); // kick-off unauthorized visitors
+ }
+
+ #======================================================[ Setup page vars ]===
  $mtype_id = $_REQUEST["mtype_id"];
  $cass_id  = $_REQUEST["cass_id"];
  $mtype  = $db->get_mtypes("id=$mtype_id");

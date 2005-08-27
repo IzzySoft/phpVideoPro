@@ -13,10 +13,11 @@
  /* $Id$ */
 
  $page_id = "login";
- $details = array("sess_id","logout","login","passwd","url","redir","login_hint");
+ $details = array("sess_id","logout","login","passwd","url","login_hint");
  foreach ($details as $var) {
    $$var = $_REQUEST[$var];
  }
+ if (!isset($url)) $redir = urldecode($_REQUEST["redir"]);
  include("inc/includes.inc");
  if ($sess_id &!$pvp->session->verify($sess_id)) $login_hint = "session_expired";
  if (isset($redir)) {

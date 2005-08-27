@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -177,8 +177,9 @@
   */
  function kickoff() {
    GLOBAL $base_url;
-   $from = $_SERVER['REQUEST_URI'];
-   header("Location: $base_url"."login.php?login_hint=login_required&redir=$from");
+   $from = $_SERVER['HTTP_REFERER'];
+   header("Location: $base_url"."login.php?login_hint=login_required&redir="
+          .urlencode($from));
    exit;
  }
 

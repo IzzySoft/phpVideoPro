@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -595,6 +595,31 @@
    return $rows;
   }
 
+  /** Get rows for the cast table on the page
+   * @method get_table_rows_cast
+   * @param string html
+   * @param string table_start
+   * @return mixed rows (FALSE if table not found, array[0..n] of strings otherwise)
+   */
+  function get_table_rows_cast ( $html, $table_start ){
+   $row_s = strpos ( $html, ">".$table_start."<");
+   $row_e = $row_s;
+   if ( $row_s == 0 )  return FALSE;
+   $endtable = strpos($html, "</table>", $row_s);
+   $i=0;
+   while ( ($row_e + 5 < $endtable) && ($row_s != 0) ){
+	$row_s = strpos ( $html, "<tr", $row_s);
+	$row_e = strpos ($html, "</tr>", $row_s);
+	$temp = trim(substr ($html, $row_s + 62 , $row_e - $row_s - 62));
+	if ( strncmp( $temp, "<td valign=",10) == 0 ){
+		$rows[$i] = $temp;
+		$i++;
+	}
+	$row_s = $row_e;
+   }
+   return $rows;
+  }
+
   /** Get content of table row cells
    * @method get_row_cels
    * @param string row (as returned by imdb::get_table_rows)
@@ -665,7 +690,7 @@
    if ($this->credits_cast == "") {
     if ($this->page["Credits"] == "") $this->openpage ("Credits");
    }
-   $cast_rows = $this->get_table_rows($this->page["Credits"], "Cast");
+   $cast_rows = $this->get_table_rows_cast($this->page["Credits"], "Cast");
    for ( $i = 0; $i < count ($cast_rows); $i++){
 	$cels = $this->get_row_cels ($cast_rows[$i]);
 	if (!isset ($cels[0])) return array();
@@ -770,7 +795,8 @@
   function photo () {
    if ($this->main_photo == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
-    $tag_s = strpos ($this->page["Title"], "<img border=\"0\" alt=\"cover\"");
+#    $tag_s = strpos ($this->page["Title"], "<img border=\"0\" alt=\"cover\"");
+    $tag_s = strpos ($this->page["Title"], "<a name=\"poster\"");
     if ($tag_s == 0) return FALSE;
     $tag_s = strpos ($this->page["Title"], "http://ia.imdb.com/media",$tag_s);
     $tag_e = strpos ($this->page["Title"], '"', $tag_s);

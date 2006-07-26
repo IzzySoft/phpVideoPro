@@ -2,6 +2,18 @@
 # /*  $Id$ */
 
 [title]
+0.7.8
+[text]
+<ul>
+ <li>added missing auth check to medium.php
+ <li>kickoff (on auth failure) sometimes lead to "broken pages" (e.g. when
+     trying to edit an entry without being logged in)
+ <li>edit.php (and new.php) now redirect to index instead of displaying
+     errors when called w/o parameters
+ <li>added some vulnerability checks
+</ul>
+
+[title]
 0.7.7 (May 29, 2005)
 [text]
 <ul>

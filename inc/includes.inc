@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,6 +13,7 @@
  /* $Id$ */
 
   $inc_path = dirname(__FILE__);
+  include($inc_path . "/vul_check.inc");
   include($inc_path . "/config.inc");
   include($inc_path . "/config_internal.inc");
   include($inc_path . "/common_funcs.inc");

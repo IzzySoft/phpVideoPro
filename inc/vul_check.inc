@@ -50,15 +50,15 @@
  }
  function vul_num($var) {
    if (!empty($_POST[$var])) {
-     if (!is_numeric($_POST[$var])) vul_kick(); }
+     if (preg_match("/\D/",$_POST[$var])) vul_kick(); }
    if (!empty($_GET[$var])) {
-     if (!is_numeric($_GET[$var])) vul_kick(); }
+     if (preg_match("/\D/",$_GET[$var])) vul_kick(); }
  }
  function vul_alnum($var) {
    if (!empty($_POST[$var])) {
-     if (preg_match("/[^A_Za-z0-9_-]/",$_POST[$var])) $vul_kick(); }
+     if (preg_match("/[^\w-]/",$_POST[$var])) $vul_kick(); }
    if (!empty($_GET[$var])) {
-     if (preg_match("/[^A_Za-z0-9_-]/",$_GET[$var])) vul_kick(); }
+     if (preg_match("/[^\w-]/",$_GET[$var])) vul_kick(); }
  }
 
  #==========================================================[ common vars ]===
@@ -107,5 +107,6 @@
    }
    vul_num("vis_actor4");
    vul_num("vis_actor5");
+   vul_num("lp");
  }
 ?>

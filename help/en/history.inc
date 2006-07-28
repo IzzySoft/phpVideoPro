@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.8
+0.7.8 (July 28, 2006)
 [text]
 <ul>
  <li>added missing auth check to medium.php
@@ -10,7 +10,8 @@
      trying to edit an entry without being logged in)
  <li>edit.php (and new.php) now redirect to index instead of displaying
      errors when called w/o parameters
- <li>added some vulnerability checks
+ <li>added some vulnerability checks. If they cause problems, just go to
+     the inc/includes.inc and comment out the include command for vul_check.inc
 </ul>
 
 [title]

@@ -10,6 +10,7 @@
      trying to edit an entry without being logged in)
  <li>edit.php (and new.php) now redirect to index instead of displaying
      errors when called w/o parameters
+ <li>fixed IMDB handling due to changes on the IMDB site again
  <li>added some vulnerability checks. If they cause problems, just go to
      the inc/includes.inc and comment out the include command for vul_check.inc
 </ul>

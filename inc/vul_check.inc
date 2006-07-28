@@ -13,7 +13,7 @@
  /* $Id$ */
 
  #=========================================================[ helper funcs ]===
- function vul_kick() {
+ function vul_kick($var="") {
    $protocol = $_SERVER['SERVER_PROTOCOL'];
    header("$protocol 403 Forbidden");
    header("Status: 403 Forbidden");
@@ -39,7 +39,8 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
 <TABLE WIDTH="90%" ALIGN="center">
- <TR><TD><P ALIGN='justify'>Access to this page was denied due to wrong parameters. The intrusion detection of this application triggered an alert: Looks like you want to attack the system and place your own code here. We don't like that, so we aborted your request. If you think that's not your fault (i.e. you did not intentionally manipulate the URL string or POST data, but used the application in a "normal way" only), you may want to report this to the author(s) to fix the problem.</P></TD></TR>
+ <TR><TD><P ALIGN='justify'>Access to this page was denied due to wrong parameters. The intrusion detection of this application triggered an alert: Looks like you want to attack the system and place your own code here. We don't like that, so we aborted your request. If you think that's not your fault (i.e. you did not intentionally manipulate the URL string or POST data, but used the application in a "normal way" only), you may want to report this to the author(s) to fix the problem.</P>
+         <P>Offended variable: <?=$var?> = '<?=htmlentities($_REQUEST[$var])?>'</P></TD></TR>
 </TABLE></TD></TR>
 </TABLE>
 </DIV>
@@ -50,33 +51,37 @@
  }
  function vul_num($var) {
    if (!empty($_POST[$var])) {
-     if (preg_match("/\D/",$_POST[$var])) vul_kick(); }
+     $test = (string) $_POST[$var];
+     if (preg_match("/[^\d-]/",$test)) vul_kick($var); }
    if (!empty($_GET[$var])) {
-     if (preg_match("/\D/",$_GET[$var])) vul_kick(); }
+     $test = (string) $_GET[$var];
+     if (preg_match("/[^\d-]/",$test)) vul_kick($var); }
  }
  function vul_alnum($var) {
    if (!empty($_POST[$var])) {
-     if (preg_match("/[^\w-]/",$_POST[$var])) $vul_kick(); }
+     $test = (string) $_POST[$var];
+     if (preg_match("/[^\w\s-]/",$test)) vul_kick($var); }
    if (!empty($_GET[$var])) {
-     if (preg_match("/[^\w-]/",$_GET[$var])) vul_kick(); }
+     $test = (string) $_GET[$var];
+     if (preg_match("/[^\w\s-]/",$test)) vul_kick($var); }
  }
 
  #==========================================================[ common vars ]===
  if (!empty($_GET["lang"]) && strlen($_GET["lang"]) > 2) vul_kick();
  vul_alnum("order");
  vul_alnum("tpl");
- if (!empty($_REQUEST["nr"])) vul_alnum("nr");
- if (!empty($_REQUEST["id"])) vul_num("id");
- if (!empty($_REQUEST["mtype_id"])) vul_num("mtype_id");
- if (!empty($_REQUEST["cass_id"])) vul_num("cass_id");
- if (!empty($_REQUEST["id"])) vul_num("id");
+ vul_alnum("nr");
+ vul_num("id");
+ vul_num("mtype_id");
+ vul_num("cass_id");
+ vul_num("id");
 
  #===========================================================[ search.php ]===
  if (basename($_SERVER["SCRIPT_NAME"])=="search.php") {
-   if (!empty($_REQUEST["minlen"])) vul_num("minlen");
-   if (!empty($_REQUEST["maxlen"])) vul_num("maxlen");
-   if (!empty($_REQUEST["minfsk"])) vul_num("minfsk");
-   if (!empty($_REQUEST["maxfsk"])) vul_num("maxfsk");
+   vul_num("minlen");
+   vul_num("maxlen");
+   vul_num("minfsk");
+   vul_num("maxfsk");
  }
 
  #============================================================[ login.php ]===
@@ -108,5 +113,42 @@
    vul_num("vis_actor4");
    vul_num("vis_actor5");
    vul_num("lp");
+ }
+
+ #============================================================[ users.php ]===
+ if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {
+   vul_num("lines");
+   for ($i=0;$i<$_REQUEST["lines"];++$i) {
+     vul_num("user_$i");
+     vul_alnum("user_${i}_login");
+     vul_alnum("user_${i}_comment");
+     vul_alnum("browse_$i");
+     vul_alnum("add_$i");
+     vul_alnum("upd_$i");
+     vul_alnum("del_$i");
+     vul_alnum("admin_$i");
+   }
+ }
+
+ #=========================================================[ useredit.php ]===
+ if (basename($_SERVER["SCRIPT_NAME"])=="useredit.php") {
+   vul_alnum("ulogin");
+   vul_alnum("comment");
+   vul_alnum("pwd1");
+   vul_alnum("pwd2");
+   vul_alnum("browse");
+   vul_alnum("add");
+   vul_alnum("upd");
+   vul_alnum("del");
+   vul_alnum("admin");
+   vul_alnum("update");
+   vul_alnum("adduser");
+ }
+
+ #=========================================================[ taperest.php ]===
+ if (basename($_SERVER["SCRIPT_NAME"])=="taperest.php") {
+   vul_alnum("usefilter");
+   vul_num("minfree");
+   vul_alnum("getrest");
  }
 ?>

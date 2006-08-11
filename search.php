@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -28,6 +28,34 @@
    if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = "";
  }
  unset($postit);
+
+ #=============================================[ Setup special JavaScript ]===
+ $fsk_nan = lang("fsk_is_nan");
+ $len_nan = lang("len_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_fsk() {
+     dsf = document.searchform;
+     if (isNaN(dsf.minfsk.value)) {
+       dsf.minfsk.value = '';
+       alert('$fsk_nan');
+     }
+     if (isNaN(dsf.maxfsk.value)) {
+       dsf.maxfsk.value = '';
+       alert('$fsk_nan');
+     }
+   }
+   function check_len() {
+     dsf = document.searchform;
+     if (isNaN(dsf.minlen.value)) {
+       dsf.minlen.value = '';
+       alert('$len_nan');
+     }
+     if (isNaN(dsf.maxlen.value)) {
+       dsf.maxlen.value = '';
+       alert('$len_nan');
+     }
+   }
+//--></SCRIPT>";
 
  #======================================================[ Display Results ]===
  if ($start||$submit||$order) {
@@ -93,6 +121,7 @@
  #==========================================================[ Search Form ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"search.tpl"));
+ $t->set_var("js",$js);
  $t->set_var("listtitle",lang("search_movie"));
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
  $t->set_var("submit",lang("search"));
@@ -141,12 +170,12 @@
  $t->set_var("comment_name",lang("comments"));
  $t->set_var("comment_field","<INPUT NAME='comment' ".$form["addon_name"].">");
  $t->set_var("length_name",lang("length"));
- $t->set_var("length_min","<INPUT NAME='minlen' ".$form["addon_year"].">");
- $t->set_var("length_max","<INPUT NAME='maxlen' ".$form["addon_year"].">");
+ $t->set_var("length_min","<INPUT NAME='minlen' ".$form["addon_year"]."onChange='check_len();'>");
+ $t->set_var("length_max","<INPUT NAME='maxlen' ".$form["addon_year"]."onChange='check_len();'>");
  $t->set_var("min",lang("minute_abbrev"));
  $t->set_var("fsk_name",lang("fsk"));
- $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"].">");
- $t->set_var("fsk_max","<INPUT NAME='maxfsk' ".$form["addon_fsk"].">");
+ $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"]."onChange='check_fsk();'>");
+ $t->set_var("fsk_max","<INPUT NAME='maxfsk' ".$form["addon_fsk"]."onChange='check_fsk();'>");
  if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("inc/header.inc");
  $t->pparse("out","template");

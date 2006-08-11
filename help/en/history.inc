@@ -6,6 +6,7 @@
 [text]
 <ul>
  <li>for a fresh installation, command to create the config.inc was incomplete
+ <li>fresh installation failed with $database["host"] = "localhost" and MySQL
 </ul>
 
 [title]

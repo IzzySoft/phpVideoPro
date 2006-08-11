@@ -82,6 +82,9 @@
    vul_num("maxlen");
    vul_num("minfsk");
    vul_num("maxfsk");
+   vul_alnum("pname");
+   vul_alnum("title");
+   vul_alnum("comment");
  }
 
  #============================================================[ login.php ]===

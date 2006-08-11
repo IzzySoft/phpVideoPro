@@ -609,4 +609,5 @@ INSERT INTO lang VALUES ('help_for_block','en','Help for this block','BubbleHelp
 INSERT INTO lang VALUES ('fsk_is_nan','en','The selected value for PG is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon next to the PG for more details.','JavaScript ErrorMsg popup when entering not-numeric PG');
 INSERT INTO lang VALUES ('unlink_file_failed','en','Failed to delete - check permissions or delete manually.','Error message on failed file deletion');
 INSERT INTO lang VALUES ('dupes_strict','en','Duplicate entries (strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
+INSERT INTO lang VALUES ('len_is_nan','en','The selected value for Length is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon for more details.','JavaScript ErrorMsg popup when entering not-numeric length value');
 # INSERT INTO lang VALUES ('intro_usage','en','','');

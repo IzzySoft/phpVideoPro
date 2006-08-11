@@ -358,6 +358,7 @@ INSERT INTO lang VALUES ('last_entry','de','Letzter Eintrag','');
 INSERT INTO lang VALUES ('last_medianr','de','Höchste für diesen MedienTyp vergebene Nummer:','');
 INSERT INTO lang VALUES ('layout_label','de','Layout wählen','');
 INSERT INTO lang VALUES ('left_offset','de','Offset Links','');
+INSERT INTO lang VALUES ('len_is_nan','de','Der für die Länge eingebene Wert ist nicht numerisch,\\\\nphpVideoPro kann hierfür jedoch nur numerische Werte verarbeiten.\\\\nDetailliertere Infos in der Online-Hilfe..','JavaScript ErrorMsg popup when entering not-numeric length value');
 INSERT INTO lang VALUES ('length','de','Länge','');
 INSERT INTO lang VALUES ('lines_per_page','de','Zeilen pro Seite','');
 INSERT INTO lang VALUES ('lines_per_page_comment','de','Dieser Wert gibt an, wieviele Textzeilen auf ein Blatt Papier passen (für den Listendruck).','');

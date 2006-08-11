@@ -1,4 +1,4 @@
-<H2 ALIGN="center">{listtitle}</H2>
+<H2 ALIGN="center">{listtitle}</H2>{js}
 <FORM NAME="searchform" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN="center" BORDER="1" STYLE="table-layout:fixed" WIDTH="70%">
  <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>

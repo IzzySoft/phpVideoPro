@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -113,8 +113,8 @@
                . "<CODE>$tempname</CODE>. Before you can continue, you need "
                . "to move it to your phpVideoPro directory. For this task, "
                . "as privileged user (on *nix systems usually <CODE>root</CODE>), "
-               . "issue the command<BR><BR><DIV ALIGN='center'><CODE>mv $tempname $base_path"
-               . "inc</CODE></DIV><BR><B><I>Afterwards</I></B>, please hit the "
+               . "issue the commands<BR><BR><DIV ALIGN='left' STYLE='margin-left:20px'><CODE>mv $tempname ${base_path}config.inc"
+               . "<BR>chmod 0644 ${base_path}config.inc</CODE></DIV><BR><B><I>Afterwards</I></B>, please hit the "
                . "button to continue with the next step.";
        } else { // failed to save file
          $failed = TRUE;

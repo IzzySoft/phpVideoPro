@@ -113,8 +113,8 @@
                . "<CODE>$tempname</CODE>. Before you can continue, you need "
                . "to move it to your phpVideoPro directory. For this task, "
                . "as privileged user (on *nix systems usually <CODE>root</CODE>), "
-               . "issue the commands<BR><BR><DIV ALIGN='left' STYLE='margin-left:20px'><CODE>mv $tempname ${base_path}config.inc"
-               . "<BR>chmod 0644 ${base_path}config.inc</CODE></DIV><BR><B><I>Afterwards</I></B>, please hit the "
+               . "issue the command<BR><BR><DIV ALIGN='left' STYLE='margin-left:20px'><CODE>mv $tempname ${base_path}config.inc"
+               . "</CODE></DIV><BR><B><I>Afterwards</I></B>, please hit the "
                . "button to continue with the next step.";
        } else { // failed to save file
          $failed = TRUE;

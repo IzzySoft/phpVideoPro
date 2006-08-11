@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.7.9
+[text]
+<ul>
+ <li>for a fresh installation, command to create the config.inc was incomplete
+</ul>
+
+[title]
 0.7.8 (July 28, 2006)
 [text]
 <ul>

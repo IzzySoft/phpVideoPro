@@ -113,7 +113,7 @@
                . "<CODE>$tempname</CODE>. Before you can continue, you need "
                . "to move it to your phpVideoPro directory. For this task, "
                . "as privileged user (on *nix systems usually <CODE>root</CODE>), "
-               . "issue the command<BR><BR><DIV ALIGN='left' STYLE='margin-left:20px'><CODE>mv $tempname ${base_path}config.inc"
+               . "issue the command<BR><BR><DIV ALIGN='left' STYLE='margin-left:20px'><CODE>mv $tempname ${base_path}inc/config.inc"
                . "</CODE></DIV><BR><B><I>Afterwards</I></B>, please hit the "
                . "button to continue with the next step.";
        } else { // failed to save file
@@ -186,7 +186,7 @@
      switch ($database["type"]) {
        case "mysql": $dbc->Database = "mysql";
                      $dbcrea = "CREATE DATABASE ".$database["database"];
-                     $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"];
+                     $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"]."@".$database["host"];
                      if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"]."'";
                      break;
        case "pgsql": $dbc->Database = "template1";

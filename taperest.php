@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,21 +13,38 @@
  /* $Id$ */
 
   $page_id = "taperest";
+  include("inc/includes.inc");
+  vul_num("usefilter");
+  vul_alnum("getrest");
+  if (!$pvp->auth->browse) kickoff();
+  if (!$pvp->common->req_is_num("minfree"))
+    $pvp->common->die_error( lang("input_errors_occured",1)."<UL>".str_replace("\\n"," ",lang("len_is_nan"))."</UL>" );
   $minfree = $_REQUEST["minfree"];
   if (isset($_REQUEST["use_filter"])) $usefilter = $_REQUEST["use_filter"];
     else $usefilter = FALSE;
   if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
-  include("inc/includes.inc");
-  if (!$pvp->auth->browse) kickoff();
   $t = new Template($pvp->tpl_dir);
   if ($usefilter) $filter = $pvp->preferences->get("filter"); else $filter = "";
   include("inc/class.nextmatch.inc");
 
+ #=============================================[ Setup special JavaScript ]===
+ $len_nan = lang("len_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_len() {
+     dsf = document.space;
+     if (isNaN(dsf.minfree.value)) {
+       dsf.minfree.value = '';
+       alert('$len_nan');
+     }
+   }
+//--></SCRIPT>";
+
   #======================================[ Request initial data from user ]===
   if (!$minfree) {
     include("inc/header.inc");
-    $t->set_var("listtitle",lang($page_id));
     $t->set_file(array("taperest_init"=>"taperest_init.tpl"));
+    $t->set_var("listtitle",lang($page_id));
+    $t->set_var("js",$js);
     $t->set_var("form_target",$_SERVER["PHP_SELF"]);
     $t->set_var("use_filter",$usefilter);
     $t->set_var("min_free",lang("enter_min_free"));

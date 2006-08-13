@@ -76,17 +76,6 @@
  vul_num("cass_id");
  vul_num("id");
 
- #===========================================================[ search.php ]===
- if (basename($_SERVER["SCRIPT_NAME"])=="search.php") {
-   vul_num("minlen");
-   vul_num("maxlen");
-   vul_num("minfsk");
-   vul_num("maxfsk");
-   vul_alnum("pname");
-   vul_alnum("title");
-   vul_alnum("comment");
- }
-
  #============================================================[ login.php ]===
  if (!empty($_REQUEST["login_hint"])) vul_alnum("login_hint");
 # if (basename($_SERVER["SCRIPT_NAME"])=="login.php") {

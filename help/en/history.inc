@@ -8,6 +8,7 @@
  <li>for a fresh installation, command to create the config.inc was incomplete
  <li>fresh installation failed with $database["host"] = "localhost" and MySQL
  <li>added JavaScript plausibility check for fsk and len on search page
+ <li>IMDB site again made some changes (actors list). So we keep up with that...
 </ul>
 
 [title]

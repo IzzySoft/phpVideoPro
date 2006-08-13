@@ -51,7 +51,7 @@
     if (strlen($part)<2) {
       $nr .= "0" . $part;
     } else { $nr .= $part; }
-    $movie_id = urlencode($mtype . " " . $nr);
+    $movie_id = urlencode($nr);
     $title    = $movies[$k]['title']; check_empty($title);
     $length   = $movies[$k]['length']; check_empty($length);
     $year     = $movies[$k]['year']; check_empty($year);

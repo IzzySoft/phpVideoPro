@@ -522,6 +522,7 @@ class common {
    header("$protocol 403 Forbidden");
    header("Status: 403 Forbidden");
    header("Connection: close");
+   header('Content-type: text/html; charset=$charset');
    $t->pparse("out","template");
    exit;
   }

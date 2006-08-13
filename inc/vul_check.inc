@@ -62,7 +62,7 @@
      $test = stripslashes((string) $_POST[$var]);
      if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
    if (!empty($_GET[$var])) {
-     $test = stripslashes(string) $_GET[$var]);
+     $test = stripslashes((string) $_GET[$var]);
      if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
  }
 
@@ -105,12 +105,5 @@
    vul_alnum("admin");
    vul_alnum("update");
    vul_alnum("adduser");
- }
-
- #=========================================================[ taperest.php ]===
- if (basename($_SERVER["SCRIPT_NAME"])=="taperest.php") {
-   vul_alnum("usefilter");
-   vul_num("minfree");
-   vul_alnum("getrest");
  }
 ?>

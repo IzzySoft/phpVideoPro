@@ -497,11 +497,11 @@ class common {
    */
   function req_is_alnum($var) {
    if (!empty($_POST[$var])) {
-     $test = (string) $_POST[$var];
-     if (preg_match("/[^\w\s-]/",$test)) return FALSE; }
+     $test = stripslashes((string) $_POST[$var]);
+     if (preg_match("/[^\w\s-']/",$test)) return FALSE; }
    if (!empty($_GET[$var])) {
-     $test = (string) $_GET[$var];
-     if (preg_match("/[^\w\s-]/",$test)) return FALSE; }
+     $test = stripslashes((string) $_GET[$var]);
+     if (preg_match("/[^\w\s-']/",$test)) return FALSE; }
    return TRUE;
   }
 

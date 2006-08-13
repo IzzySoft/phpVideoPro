@@ -59,11 +59,11 @@
  }
  function vul_alnum($var) {
    if (!empty($_POST[$var])) {
-     $test = (string) $_POST[$var];
-     if (preg_match("/[^\w\s-]/",$test)) vul_kick($var); }
+     $test = stripslashes((string) $_POST[$var]);
+     if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
    if (!empty($_GET[$var])) {
-     $test = (string) $_GET[$var];
-     if (preg_match("/[^\w\s-]/",$test)) vul_kick($var); }
+     $test = stripslashes(string) $_GET[$var]);
+     if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
  }
 
  #==========================================================[ common vars ]===
@@ -74,38 +74,8 @@
  vul_num("id");
  vul_num("mtype_id");
  vul_num("cass_id");
+ vul_num("part");
  vul_num("id");
-
- #============================================================[ login.php ]===
- if (!empty($_REQUEST["login_hint"])) vul_alnum("login_hint");
-# if (basename($_SERVER["SCRIPT_NAME"])=="login.php") {
-# }
-
- #=============================================================[ edit.php ]===
- if (basename($_SERVER["SCRIPT_NAME"])=="edit.php") {
-   vul_num("part");
-   vul_num("commercials_id");
-   vul_num("recday");
-   vul_num("recmon");
-   vul_num("recday");
-   vul_num("tone_id");
-   vul_num("color_id");
-   vul_num("pict_id");
-   vul_alnum("director_list");
-   vul_alnum("music_list");
-   vul_alnum("label");
-   for ($i=1;$i<4;++$i) {
-     vul_num("cat${i}_id");
-     vul_num("vis_actor$i");
-     vul_alnum("subtitle$i");
-   }
-   for ($i=4;$i<9;++$i) {
-     vul_alnum("subtitle$i");
-   }
-   vul_num("vis_actor4");
-   vul_num("vis_actor5");
-   vul_num("lp");
- }
 
  #============================================================[ users.php ]===
  if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {

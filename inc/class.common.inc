@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -468,6 +468,41 @@ class common {
     if ($checked && $confirm) $checkbox .= " CHECKED";
     $checkbox .= ">";
     return $checkbox;
+  }
+
+   #===============================================[ input verification ]===
+  /** is the context of a given $_REQUEST variable numeric?
+   *  checks $_GET and $_POST (numeric is here: 0..9 and the "-" sign)
+   * @class common
+   * @method req_is_num
+   * @param varname name of the $_REQUEST variable to check
+   * @return boolean TRUE when none of the $_GET and $_POST violate numeric
+   */
+  function req_is_num($var) {
+   if (!empty($_POST[$var])) {
+     $test = (string) $_POST[$var];
+     if (preg_match("/[^\d-]/",$test)) return FALSE; }
+   if (!empty($_GET[$var])) {
+     $test = (string) $_GET[$var];
+     if (preg_match("/[^\d-]/",$test)) return FALSE; }
+   return TRUE;
+  }
+
+  /** is the context of a given $_REQUEST variable alpha-numeric?
+   *  checks $_GET and $_POST (numeric is here: [word], whitespace and the "-" sign)
+   * @class common
+   * @method req_is_alnum
+   * @param varname name of the $_REQUEST variable to check
+   * @return boolean TRUE when none of the $_GET and $_POST violate alnum
+   */
+  function req_is_alnum($var) {
+   if (!empty($_POST[$var])) {
+     $test = (string) $_POST[$var];
+     if (preg_match("/[^\w\s-]/",$test)) return FALSE; }
+   if (!empty($_GET[$var])) {
+     $test = (string) $_GET[$var];
+     if (preg_match("/[^\w\s-]/",$test)) return FALSE; }
+   return TRUE;
   }
 
    #===================================================[ misc functions ]===

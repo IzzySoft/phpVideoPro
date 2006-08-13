@@ -610,4 +610,9 @@ INSERT INTO lang VALUES ('fsk_is_nan','en','The selected value for PG is not num
 INSERT INTO lang VALUES ('unlink_file_failed','en','Failed to delete - check permissions or delete manually.','Error message on failed file deletion');
 INSERT INTO lang VALUES ('dupes_strict','en','Duplicate entries (strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
 INSERT INTO lang VALUES ('len_is_nan','en','The selected value for Length is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon for more details.','JavaScript ErrorMsg popup when entering not-numeric length value');
-# INSERT INTO lang VALUES ('intro_usage','en','','');
+INSERT INTO lang VALUES ('name_not_string','en','One of the entered names contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
+INSERT INTO lang VALUES ('title_not_string','en','The entered title contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
+INSERT INTO lang VALUES ('comment_not_string','en','The entered comment contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
+INSERT INTO lang VALUES ('input_errors_occured','en','phpVideoPro encountered %1 problem(s) while processing your input:','Input check on several pages on form submission');
+INSERT INTO lang VALUES ('error_occured','en','phpVideoPro Error','Input check on several pages on form submission (page title)');
+#INSERT INTO lang VALUES ('','en','','');

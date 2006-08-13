@@ -518,3 +518,8 @@ INSERT INTO lang VALUES ('xfer_unknown_filetype','de','Der Datentyp dieses Backu
 INSERT INTO lang VALUES ('xfer_wrong_mode','de','Programmfehler: Der eingestellte Transfermodus ist für die gewünschte Aktion nicht zulässig. Erforderlich wäre der Modus \"%1\", eingestellt ist jedoch \"%2\". Bitte unbedingt einen Report mit den Schritten, die zu diesem Fehler geführt haben, an den Autoren schicken!','');
 INSERT INTO lang VALUES ('year','de','Jahr','');
 INSERT INTO lang VALUES ('yes','de','Ja','');
+INSERT INTO lang VALUES ('name_not_string','de','Ein eingebener Name enthält ungültige Zeichen (Es sind nur Buchstaben, Ziffern und das "-" erlaubt).','');
+INSERT INTO lang VALUES ('title_not_string','de','Der eingegebene Titel enthält ungültige Zeichen (Es sind nur Buchstaben, Ziffern und das "-" erlaubt).','');
+INSERT INTO lang VALUES ('comment_not_string','de','Der eingegebene Kommentar enthält ungültige Zeichen (Es sind nur Buchstaben, Ziffern und das "-" erlaubt).','');
+INSERT INTO lang VALUES ('input_errors_occured','de','phpVideoPro stieß bei der Bearbeitung der Eingaben auf %1 Problem(e):','');
+INSERT INTO lang VALUES ('error_occured','de','phpVideoPro Fehlermeldung','');

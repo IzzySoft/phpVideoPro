@@ -610,7 +610,9 @@
    while ( ($row_e + 5 < $endtable) && ($row_s != 0) ){
 	$row_s = strpos ( $html, "<tr", $row_s);
 	$row_e = strpos ($html, "</tr>", $row_s);
-	$temp = trim(substr ($html, $row_s + 62 , $row_e - $row_s - 62));
+	$temp = trim(substr ($html, $row_s , $row_e - $row_s));
+        $row_x = strpos( $temp, '<td valign="middle"' );
+        $temp = trim(substr($temp,$row_x));
 	if ( strncmp( $temp, "<td valign=",10) == 0 ){
 		$rows[$i] = $temp;
 		$i++;

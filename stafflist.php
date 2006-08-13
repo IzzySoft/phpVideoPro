@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,11 +13,13 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
- $stafftype = $_GET["stafftype"];
- $start     = $_GET["start"];
  $page_id = $stafftype;
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
+ vul_alnum("stafftype");
+ vul_num("start");
+ $stafftype = $_GET["stafftype"];
+ $start     = $_GET["start"];
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("list"=>"stafflist.tpl"));
  $t->set_block("list","itemblock","itemlist");

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -15,6 +15,7 @@
  #========================================================[ initial setup ]==
  $page_id = "medialist";
  include("inc/includes.inc");
+ vul_num("start");
  if (!$pvp->auth->browse) kickoff();
  $filter = get_filters();
  if (isset($_GET["start"])) $start = $_GET["start"];

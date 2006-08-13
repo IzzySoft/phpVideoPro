@@ -18,7 +18,7 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-
+{js}
  <FORM NAME="medialength" METHOD="post" ACTION="{form_target}">
   {hidden_fields}
   <TABLE STYLE="margin:3;text-align:center" BORDER="1" WIDTH="400">

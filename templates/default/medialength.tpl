@@ -1,6 +1,6 @@
  <H2 ALIGN="center">{listtitle}</H2>
  <CENTER>{save_result}</CENTER>
-
+{js}
  <FORM NAME="medialength" METHOD="post" ACTION="{form_target}">
   {hidden_fields}
   <TABLE ALIGN="center" BORDER="0" WIDTH="400">

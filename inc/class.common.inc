@@ -475,7 +475,7 @@ class common {
    *  checks $_GET and $_POST (numeric is here: 0..9 and the "-" sign)
    * @class common
    * @method req_is_num
-   * @param varname name of the $_REQUEST variable to check
+   * @param string varname name of the $_REQUEST variable to check
    * @return boolean TRUE when none of the $_GET and $_POST violate numeric
    */
   function req_is_num($var) {
@@ -492,7 +492,7 @@ class common {
    *  checks $_GET and $_POST (numeric is here: [word], whitespace and the "-" sign)
    * @class common
    * @method req_is_alnum
-   * @param varname name of the $_REQUEST variable to check
+   * @param string varname name of the $_REQUEST variable to check
    * @return boolean TRUE when none of the $_GET and $_POST violate alnum
    */
   function req_is_alnum($var) {
@@ -503,6 +503,27 @@ class common {
      $test = (string) $_GET[$var];
      if (preg_match("/[^\w\s-]/",$test)) return FALSE; }
    return TRUE;
+  }
+
+  /** die with error message (and w/o menu)
+   * issues a HTTP 403 (forbidden) code and displays the error message
+   * @class common
+   * @method die_error
+   * @param string msg Error message to display (full translated variant)
+   */
+  function die_error($msg) {
+   GLOBAL $pvp,$charset;
+   $t = new Template($pvp->tpl_dir);
+   $t->set_file(array("template"=>"error.tpl"));
+   $t->set_var("listtitle",lang("error_occured"));
+   $t->set_var("charset",$charset);
+   $t->set_var("details",$msg);
+   $protocol = $_SERVER['SERVER_PROTOCOL'];
+   header("$protocol 403 Forbidden");
+   header("Status: 403 Forbidden");
+   header("Connection: close");
+   $t->pparse("out","template");
+   exit;
   }
 
    #===================================================[ misc functions ]===

@@ -615,4 +615,5 @@ INSERT INTO lang VALUES ('title_not_string','en','The entered title contains inv
 INSERT INTO lang VALUES ('comment_not_string','en','The entered comment contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('input_errors_occured','en','phpVideoPro encountered %1 problem(s) while processing your input:','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('error_occured','en','phpVideoPro Error','Input check on several pages on form submission (page title)');
+INSERT INTO lang VALUES ('loginpwd_whitespace','en','Login and/or Password contain (white)spaces. This is not valid.','Errormessage on login');
 #INSERT INTO lang VALUES ('','en','','');

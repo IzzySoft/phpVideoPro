@@ -523,3 +523,4 @@ INSERT INTO lang VALUES ('title_not_string','de','Der eingegebene Titel enthält
 INSERT INTO lang VALUES ('comment_not_string','de','Der eingegebene Kommentar enthält ungültige Zeichen (Es sind nur Buchstaben, Ziffern und das "-" erlaubt).','');
 INSERT INTO lang VALUES ('input_errors_occured','de','phpVideoPro stieß bei der Bearbeitung der Eingaben auf %1 Problem(e):','');
 INSERT INTO lang VALUES ('error_occured','de','phpVideoPro Fehlermeldung','');
+INSERT INTO lang VALUES ('loginpwd_whitespace','de','Login und/oder Password enthalten Leerzeichen.','');

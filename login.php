@@ -21,6 +21,11 @@
  foreach ($details as $var) {
    $$var = $_REQUEST[$var];
  }
+ if (preg_match("/\s/","${login}${passwd}")) {
+   $msg = lang("input_errors_occured",1) . "<UL>\n"
+        . "<LI>".lang("loginpwd_whitespace")."</LI>\n</UL>";
+   $pvp->common->die_error($msg);
+ }
  $url = $pvp->common->safeinput($_REQUEST["url"]);
  if (empty($url)) $redir = urldecode($_REQUEST["redir"]);
  if ($sess_id &!$pvp->session->verify($sess_id)) $login_hint = "session_expired";

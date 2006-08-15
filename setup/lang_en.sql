@@ -616,4 +616,5 @@ INSERT INTO lang VALUES ('comment_not_string','en','The entered comment contains
 INSERT INTO lang VALUES ('input_errors_occured','en','phpVideoPro encountered %1 problem(s) while processing your input:','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('error_occured','en','phpVideoPro Error','Input check on several pages on form submission (page title)');
 INSERT INTO lang VALUES ('loginpwd_whitespace','en','Login and/or Password contain (white)spaces. This is not valid.','Errormessage on login');
+INSERT INTO lang VALUES ('medianr_is_nan','en','The MediaNr must be numeric\\\\n(i.e. letters and special chars are not allowed).','Error msg on invalid MediaNr input on several forms');
 #INSERT INTO lang VALUES ('','en','','');

@@ -1,5 +1,5 @@
  <H2 ALIGN="center">{listtitle}</H2>
-
+{js}
  <FORM NAME="label" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center">
     <TR><TH>{mtype}</TH>

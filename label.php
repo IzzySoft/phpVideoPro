@@ -1,13 +1,13 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
- # Label generator                                                           #
+ # Label generator (libGD)                                                   #
  #############################################################################
 
  /* $Id$ */
@@ -22,8 +22,21 @@
  $page_id = "label";
  $labels_pp = 8; // how many labels per page
  include("inc/includes.inc");
- if (!$pvp->auth->browse) kickoff();
  include("inc/class.label.inc");
+
+ #=======================================================[ security check ]===
+ if (!$pvp->auth->browse) kickoff();
+ vul_alnum("create");
+ $vuls = 0;
+ if (isset($mtype_id_0)) { // form submit
+   for ($i=0;$i<$labels_pp;++$i) {
+     vul_num("mtype_id_$i");
+     vul_alnum("label_$i");
+     if (!$pvp->common->req_is_num("medianr_$i")) ++$vuls;
+   }
+ }
+ if ($vuls>0) $pvp->common->die_error(lang("input_errors_occured",$vuls)
+   ."<UL>\n<LI>".str_replace("\\n"," ",lang("medianr_is_nan"))."</LI>\n</UL>");
 
  #========================[ create exactly one label and send it as image ]===
  if (isset($cass_id)) { // we directly go to create one label
@@ -34,6 +47,7 @@
    $label->write($cass_id,$text);
    $label->prn();
    $label->destroy();
+
  #===============[ create multiple labels and output as HTML via template ]===
  } elseif (isset($create)) { // we have to create multiple labels
    $t = new Template($pvp->tpl_dir);
@@ -53,8 +67,20 @@
    }
    include("inc/header.inc");
    $t->pparse("out","list");
+
  #===============================[ query user input for multi-label-print ]===
  } else { // no arguments - so we have to prompt for them
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $nr_nan = lang("medianr_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_nr(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('$nr_nan');
+     }
+   }
+//--></SCRIPT>";
+ #----------------------------------------------------------[ create form ]---
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"label_init.tpl"));
    $t->set_block("list","definitionblock","definitionlist");
@@ -71,7 +97,7 @@
    }
    for ($i=0;$i<$labels_pp;$i++) {
      $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</SELECT>";
-     $medianr = "<INPUT NAME=\"medianr_$i\"" . $form["addon_tech"] . ">";
+     $medianr = "<INPUT NAME=\"medianr_$i\"" . $form["addon_tech"] . " onChange='check_nr(this);'>";
      $label   = "<SELECT NAME=\"label_$i\">$labellist</SELECT>";
      $t->set_var("mtype",$mtype);
      $t->set_var("medianr",$medianr);
@@ -80,6 +106,7 @@
        else $t->parse("definitionlist","definitionblock");
    }
    include("inc/header.inc");
+   $t->set_var("js",$js);
    $t->set_var("mtype",lang("mediatype"));
    $t->set_var("medianr",lang("medianr"));
    $t->set_var("label",lang("label"));

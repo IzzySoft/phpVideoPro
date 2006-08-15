@@ -1,0 +1,4 @@
+DirectoryIndex index.php
+AddType application/x-httpd-php .php .inc
+php_flag register_globals Off
+#php_flag magic_quotes_gpc Off

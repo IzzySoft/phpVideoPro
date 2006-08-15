@@ -1,11 +1,13 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
+ # ------------------------------------------------------------------------- #
+ # Download Medialist/Stafflist/Categorylist in csv/ascii/html format        #
  #############################################################################
 
  /* $Id$ */
@@ -21,8 +23,24 @@
  $page_id = "listgen";
  if ($outputtype) $silent = TRUE;
  include("inc/includes.inc");
- if (!$pvp->auth->browse) kickoff();
  if (!$pagelength) $pagelength = $pvp->preferences->get("page_length");
+
+ #=======================================================[ security check ]===
+ if (!$pvp->auth->browse) kickoff();
+ if (!empty($_REQUEST["order"])) { // set via SELECT, so we know the values
+   $arr = array("num","title","cat","dir","music","actor");
+   if (!in_array($_POST["order"],$arr)) vul_kick("order");
+   if (!empty($_GET["order"]) && !in_array($_GET["order"],$arr)) vul_kick("order");
+ }
+ if (!empty($_REQUEST["outputtype"])) { // set via SELECT, so we know the values
+   $arr = array("csv","html","ascii");
+   if (!in_array($_POST["outputtype"],$arr)) vul_kick("outputtype");
+   if (!empty($_GET["outputtype"]) && !in_array($_GET["outputtype"],$arr))
+     vul_kick("outputtype");
+ }
+ if (!$pvp->common->req_is_alnum("pagelength"))
+   $pvp->common->die_error(lang("input_errors_occured",1)."<UL>\n<LI>"
+     .str_replace("\\n"," ",lang("len_is_nan"))."</LI>\n</UL>");
 
  #=========================================[ create and send list for d/l ]===
  if ($outputtype) {

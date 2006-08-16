@@ -2,13 +2,17 @@
 # /*  $Id$ */
 
 [title]
-0.7.9
+0.7.9 (August 16, 2006)
 [text]
 <ul>
  <li>for a fresh installation, command to create the config.inc was incomplete
  <li>fresh installation failed with $database["host"] = "localhost" and MySQL
- <li>added JavaScript plausibility check for fsk and len on search page
+ <li>added JavaScript plausibility check for fsk, len, etc. to several forms
  <li>IMDB site again made some changes (actors list). So we keep up with that...
+ <li>added an .htaccess file to provide the recommended settings. Note that
+     this requires the option "AllowOverride Options" or "AllowOverride All"
+     for the installation directory in your apache config
+ <li>updated the doc/README to reflect this (.htaccess)
 </ul>
 
 [title]

@@ -1,4 +1,10 @@
+# Make sure your Apache config has set either "AllowOverride Options" or
+# "AllowOverride All" for this directory! Otherwise these options are
+# ignored, and you need to make sure that your php.ini contains the following
+# (or compatible) settings.
+
 DirectoryIndex index.php
 AddType application/x-httpd-php .php .inc
 php_flag register_globals Off
+php_value arg_separator.input ";&"
 #php_flag magic_quotes_gpc Off

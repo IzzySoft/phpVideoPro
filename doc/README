@@ -1,7 +1,7 @@
 $Id$
 
 This is the README file I wrote for phpVideoPro v0.1.3 (and last updated for
-v0.6.7). As you may know, programmers get very lazy on writing documentation -
+v0.7.9). As you may know, programmers get very lazy on writing documentation -
 so starting with point 3.), the information in this file may or may not fit
 newer versions, since I may have forgotten to update it. Don't be angry at me if
 this happens - just drop me a note about it - or even better, update this file
@@ -26,11 +26,12 @@ Contents:
   1.) CopyRight
   2.) Warranty
   3.) Requirements
-  4.) Pre-Requisites / Installation
-  5.) Updating
-  6.) Administrative hints
-  7.) Known bugs / limitations
-  8.) Download and Sites
+  4.) Pre-Requisites
+  5.) Installation
+  6.) Updating
+  7.) Administrative hints
+  8.) Known bugs / limitations
+  9.) Download and Sites
 
 ===============================================================================
 
@@ -86,7 +87,38 @@ Contents:
 
 ===============================================================================
 
-4.) Pre-Requisites / Installation
+4.) Pre-Requisites
+------------------
+
+ First, we need to check that Apache and PHP are set up correctly for the
+ application. There are a few settings for additional security which are to
+ recommend. If your Apache installation allows to adjust "Options" by
+ directory for the target location of your installation (i.e. for that
+ directory "AllowOverride Options" or "AllowOverride All" is set), you can
+ directly jump to the next chapter (Installation), since the distribution
+ contains a ".htaccess" file with the correct settings.
+
+ Still here? Okay, looks like your Apache is not set up such. This leaves you
+ with three options: a) to change your apache2.conf according what is said in
+ above paragraph, b) globally change your php.ini and apache2.conf with the
+ settings you find in the .htaccess file mentioned (and delete/rename that
+ file afterwards to avoid complications), or c) add a special "<Directory...>"
+ entry to your apache configuration which contains the content of the
+ .htaccess file. All of these options have their pros and cons: a) makes sure
+ that if I add some changes to the .htaccess file, you never need to care about
+ this in the future, but marginally slows down the webserver (I don't think
+ you will notice that), b) is slightly faster, but changes those values also
+ for all other web applications, which may not be desired, and c) has the pro
+ from b) without its con - but b+c leave you with the need to check these
+ values for future updates (just check the timestamp of the file to see IF
+ there are changes).
+
+ In short: I would recommend you option a - you don't notice the minimal
+ slow down, and don't have to care about the changes in the future.
+
+===============================================================================
+
+5.) Installation
 ---------------------------------
 
  If above mentioned requirements are met, we can start setting up phpVideoPro.
@@ -132,19 +164,7 @@ Contents:
     files for the English [en] support, since these files ARE ALLWAYS
     REQUIRED by phpVideoPro). The worst thing to happen is, that the whole
     application may be English only, regardless of your configuration.
- 6. To *SAFEGUARD YOUR INSTALLATION* you should add the .inc file extension
-    in your web servers config to be recognized as a PHP file. For Apache,
-    search the config for the line
-    AddType application/x-httpd-php .php
-    and add the line
-    AddType application/x-httpd-php .inc
-    next to it, so nobody can browse your configuration file (if tried, the
-    result then would just be an empty browser window - without this setting,
-    the result would be the source code of the *.inc file).
-    Moreover, you may want to protect the setup/install (see above) and
-    setup/update directories by placing an .htaccess file (or adding the
-    appropriate statements to your Apache config directly).
- 7. For the *DATA RETRIEVAL FROM IMDB*, phpVideoPro needs a directory to store
+ 6. For the *DATA RETRIEVAL FROM IMDB*, phpVideoPro needs a directory to store
     the images in (as shipped, this is moviepic/imdb/). This directory must
     be readable and writable for the web server process, which - depending on
     the distribution used, runs under different users. To make this work
@@ -157,7 +177,7 @@ Contents:
 
 ===============================================================================
 
-5.) Updating
+6.) Updating
 ------------
 
   When updating from a previous version of phpVideoPro, the steps to do
@@ -174,7 +194,7 @@ Contents:
 
 ===============================================================================
 
-6.) Administrative hints
+7.) Administrative hints
 ------------------------
 
   Starting with v0.3.8, phpVideoPro supports a kind of "multi-user" environment.
@@ -189,9 +209,9 @@ Contents:
   For this, it is recommended to set up defaults via the admin->configuration
   menue, and optionally protect the admin part by placing an appropriate
   .htaccess file into the admin/ directory - so only authorized users can
-  change configuration issues. Make sure to enable cookies in this form,
-  otherwise the edit->preferences use the database as storage instead (but a
-  separate table).
+  change configuration issues (though this part should be covered by phpVideoPros
+  own user management). Make sure to enable cookies in this form, otherwise the
+  edit->preferences use the database as storage instead (but a separate table).
 
   With v0.4.1, the multi-user capatibilities of phpVideoPro grew a lot. Now it
   contains a complete user management, including "permissions". By default, two
@@ -202,7 +222,7 @@ Contents:
 
 ===============================================================================
 
-7.) Known bugs / limitations
+8.) Known bugs / limitations
 ----------------------------
 
   Any bugs are not known to me (or not to mention here - because I tend to fix

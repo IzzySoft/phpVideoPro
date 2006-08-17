@@ -496,12 +496,14 @@ class common {
    * @return boolean TRUE when none of the $_GET and $_POST violate alnum
    */
   function req_is_alnum($var) {
+#   $vuls = "/[^\w\s-'\pL]/u";
+   $vuls = "/[^\w\s-\/\?\.,\"!\(\)'\pL]/u";
    if (!empty($_POST[$var])) {
      $test = stripslashes((string) $_POST[$var]);
-     if (preg_match("/[^\w\s-']/",$test)) return FALSE; }
+     if (preg_match($vuls,$test)) return FALSE; }
    if (!empty($_GET[$var])) {
      $test = stripslashes((string) $_GET[$var]);
-     if (preg_match("/[^\w\s-']/",$test)) return FALSE; }
+     if (preg_match($vuls,$test)) return FALSE; }
    return TRUE;
   }
 

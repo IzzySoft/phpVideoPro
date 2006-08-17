@@ -58,12 +58,14 @@
      if (preg_match("/[^\d-]/",$test)) vul_kick($var); }
  }
  function vul_alnum($var) {
+#   $vuls  = "/[\/<>#\\;\[\]]\|\{\}\*/u";
+   $vuls = "/[^\w\s-\pL]/u";
    if (!empty($_POST[$var])) {
      $test = stripslashes((string) $_POST[$var]);
-     if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
+     if (preg_match($vuls,$test)) vul_kick($var); }
    if (!empty($_GET[$var])) {
      $test = stripslashes((string) $_GET[$var]);
-     if (preg_match("/[^\w\s-']/",$test)) vul_kick($var); }
+     if (preg_match($vuls,$test)) vul_kick($var); }
  }
 
  #==========================================================[ common vars ]===

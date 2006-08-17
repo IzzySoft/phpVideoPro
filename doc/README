@@ -78,9 +78,14 @@ Contents:
     I recommend using Apache with PHP as loadable module, and that's
     the only combination I've tested)
  3. make sure your PHP has built in support for the database you want to use
-    (this has to be one supported by phpVideoPro, of course)! (if requirements
-    1. and 2. are met, point your browser to the setup/phpinfo.php file via
-    http to see what features are supported by your PHP setup)
+    (this has to be one supported by phpVideoPro, of course)! If requirements
+    1. and 2. are met, you can find out by creating a file called "test.php"
+    (or whatever you like), containing only one line:
+    <?php phpinfo(); ?>
+    Point your browser to it via http (e.g. "http://localhost/test.php" -
+    depending on where you put the file and how you named your (local) web
+    service). The resulting page will tell you what features are supported by
+    your PHP setup
  4. Supported databases are:
     - MySQL version 3.28.32 or higher
     - PostgreSQL 7.1 (?) or higher (may be lower, too - YOU need to report this)

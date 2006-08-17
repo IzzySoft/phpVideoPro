@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -24,14 +24,31 @@
  foreach ($imdb_tx_prefs as $var=>$val) {
    ${$var} = $val;
  }
+ $vuls = array();
  # Was the movie name given on the main form?
  if (empty($_REQUEST["nsubmit"]) && empty($_REQUEST["isubmit"]) && !empty($_REQUEST["name"])) {
    $auto_search = TRUE;
    if (is_numeric($_REQUEST["name"]) && strlen($_REQUEST["name"])>5) {
      $_REQUEST["mid"] = $_REQUEST["name"];
      $_REQUEST["isubmit"] = 1;
+   } else {
+     if (!$pvp->common->req_is_alnum("name")) $vuls[] = lang("name_not_string");
+     $_REQUEST["nsubmit"] = 1;
    }
-   else $_REQUEST["nsubmit"] = 1;
+ } else {
+   vul_alnum("isubmit");
+   vul_alnum("nsubmit");
+   vul_alnum("reset");
+   if (!$pvp->common->req_is_num("mid"))
+     $vuls[] = str_replace("\\n"," ",lang("id_is_nan"));
+ }
+ if ($vc=count($vuls)) {
+   $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+   for ($i=0;$i<$vc;++$i) {
+     $msg .= "<LI>".$vuls[$i]."</LI>\n";
+   }
+   $msg .= "</UL>";
+   $pvp->common->die_error($msg);
  }
 
  #========================================================[ Template setup ]===
@@ -306,6 +323,17 @@
    $t->pparse("out","template");
  } else {
  #=================================================[ Nothing to do for us! ]===
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $nr_nan = lang("id_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_nr(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('$nr_nan');
+     }
+   }
+//--></SCRIPT>";
+   $t->set_var("js",$js);
    $t->set_var("reset",lang("reset"));
    $t->set_var("mname",lang("imdb_tx_title"));
    $t->set_var("mid",lang("imdb_movie_id"));

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -40,6 +40,21 @@
  if (!isset($_REQUEST["mtype_id"])) {
    header("Location: ".$base_url."index.php");
    exit;
+ }
+
+ #=============================================[ vulnerability protection ]===
+ $vuls = array();
+ foreach ($_REQUEST as $var) {
+   if ($var != "comment" && $var != "referer" && !$pvp->common->req_is_alnum($var))
+     $vuls[] = $var;
+ }
+ if ($vc = count($vuls)) {
+   $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+   for ($i=0;$i<$vc;++$i) {
+     $msg .= "<LI>Variable ".$vuls[$i]."</LI>\n";
+   }
+   $msg .= "</UL>";
+   $pvp->common->die_error($msg);
  }
 
  #==================================================[ Check authorization ]===
@@ -206,8 +221,37 @@
 ################################################################
 # Form Start
   include("inc/header.inc");
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $nr_nan = lang("medianr_is_nan");
+ $fsk_nan = lang("fsk_is_nan");
+ $len_nan = lang("len_is_nan");
+ $date_nan = lang("date_is_nan");
 ?>
  <script TYPE="text/javascript" language="JavaScript"><!--
+   function check_nr(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('<?=$nr_nan?>');
+     }
+   }
+   function check_fsk(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('<?=$fsk_nan?>');
+     }
+   }
+   function check_len(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('<?=$len_nan?>');
+     }
+   }
+   function check_date(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('<?=$date_nan?>');
+     }
+   }
    function mklabel(labelconf) {
      if (labelconf != "-") {
        url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&labelconf="?>' + labelconf;
@@ -218,6 +262,7 @@
  //-->
  </script>
 <?
+ #-------------------------------------------[ start filling the template ]---
   $t = new Template($pvp->tpl_dir);
   $t->set_file(array("edit"=>"edit.tpl"));
   $t->set_var("form_name","movieform");
@@ -384,7 +429,7 @@ EndHiddenFields;
   $t->set_var("country",$field);
   $t->set_var("medianr_name",lang("medianr"));
   if ($new_entry) {
-    $field  = "<INPUT TYPE='button' NAME='cass_id' VALUE='$cass_id' " . $form["addon_cass_id"]." CLASS='medianrbutton'" . ">&nbsp;-&nbsp;<INPUT NAME='part' VALUE='$next_part' " . $form["addon_part"]." CLASS='partinput'" . ">";
+    $field  = "<INPUT TYPE='button' NAME='cass_id' VALUE='$cass_id' " . $form["addon_cass_id"]." CLASS='medianrbutton'" . ">&nbsp;-&nbsp;<INPUT NAME='part' VALUE='$next_part' " . $form["addon_part"]." CLASS='partinput'" . " onChange='check_nr(this);'>";
     $field .= "&nbsp;&nbsp;&nbsp;" . lang("last_entry") . ":&nbsp;";
     $field .= "<INPUT TYPE='button' NAME='lastnum' VALUE='$last_part' CLASS='yesnobutton'>";
   } else {
@@ -394,7 +439,7 @@ EndHiddenFields;
   $t->set_var("year_name",lang("year"));
   if (!isset($year)) $year = "";
   if ($edit) {
-    $field = form_input("year",$year,$form["addon_year"]." CLASS='yesnoinput'");
+    $field = form_input("year",$year,$form["addon_year"]." CLASS='yesnoinput' onChange='check_date(this);'");
   } else {
     if (!$year) $year="&nbsp;";
     $field = vform_input("year",$year,4);
@@ -403,7 +448,7 @@ EndHiddenFields;
   $t->set_var("length_name",lang("length"));
   if (!isset($length)) $length = "";
   if ($edit)
-    $t->set_var("length",form_input("length",$length,$form["addon_filmlen"]." CLASS='yesnoinput'") . " " . lang("min"));
+    $t->set_var("length",form_input("length",$length,$form["addon_filmlen"]." CLASS='yesnoinput' onChange='check_len(this);'") . " " . lang("min"));
   else
     $t->set_var("length",vform_input("length","$length ".lang("min"),MOVIELEN_LEN+4));
   if ((isset($disktype[0]) && $disktype[0]->lp) || !$dtcount) {
@@ -512,7 +557,7 @@ EndHiddenFields;
   # Remaining free time
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
-    $t->set_var("mlength_free","<INPUT NAME='mlength' VALUE='240' " . $form["addon_filmlen"]." CLASS='yesnoinput'" . "> " . lang("minute_abbrev"));
+    $t->set_var("mlength_free","<INPUT NAME='mlength' VALUE='240' " . $form["addon_filmlen"]." CLASS='yesnoinput'" . " onChange='check_len(this);'> " . lang("minute_abbrev"));
   } else { // hide free time for non-editable media
     if ($pvp->common->medium_is_rw($mtype_id)) {
       $t->set_var("mlength_free_name",lang("free"));
@@ -531,9 +576,9 @@ EndHiddenFields;
     $tdate = "";
     if ($edit) {
       $recdate_arr = $pvp->common->makeRecDateArr($recdate);
-      $tdate .= "<$dinput NAME='recday' VALUE='" . $recdate_arr['mday'] . "' " . $form["addon_day"]." CLASS='partinput'" . ">.";
-      $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr['mon'] . "' " . $form["addon_month"]." CLASS='partinput'" . ">.";
-      $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr['year'] . "' " . $form["addon_year"]." CLASS='yesnoinput'" . ">";
+      $tdate .= "<$dinput NAME='recday' VALUE='" . $recdate_arr['mday'] . "' " . $form["addon_day"]." CLASS='partinput'" . " onChange='check_date(this);'>.";
+      $tdate .= "<$dinput NAME='recmon' VALUE='" . $recdate_arr['mon'] . "' " . $form["addon_month"]." CLASS='partinput'" . " onChange='check_date(this);'>.";
+      $tdate .= "<$dinput NAME='recyear' VALUE='" . $recdate_arr['year'] . "' " . $form["addon_year"]." CLASS='yesnoinput'" . " onChange='check_date(this);'>";
     } else {
       $recdate = $pvp->common->formatDate($recdate);
       $tdate = vform_input("recdate",$recdate,"",TECH_BTN_WID);
@@ -597,7 +642,7 @@ EndHiddenFields;
   $t->set_var("fsk_name",lang("fsk"));
   if (!isset($fsk)) $fsk = "";
   if ($edit) {
-    $t->set_var("fsk",form_input("fsk",$fsk,$form["addon_fsk"]." CLASS='partinput'"));
+    $t->set_var("fsk",form_input("fsk",$fsk,$form["addon_fsk"]." CLASS='partinput' onChange='check_fsk(this);'"));
   } else {
     if (!$fsk) $fsk="&nbsp;";
     $t->set_var("fsk",vform_input("fsk",$fsk,FSK_LEN));

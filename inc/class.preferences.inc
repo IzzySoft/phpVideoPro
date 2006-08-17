@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -132,8 +132,8 @@
     }
   }
 
-  /** Set imdb_tx preferences
-   * @method imdb_tx_set
+  /** Get imdb_tx preferences
+   * @method imdb_tx_get
    * @return array imdb_tx (var:=value)
    */
   function imdb_tx_get() {

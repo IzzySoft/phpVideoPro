@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -15,6 +15,7 @@
  $page_id = "change_rc";
  include("inc/includes.inc");
  #=================================================[ Register global vars ]===
+ vul_num("n_disktype");
  $details = array ("change","o_disktype","n_disktype","rc");
  foreach ($details as $var) {
    if (isset($_POST[$var])) $$var = $_POST[$var];

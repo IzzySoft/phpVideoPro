@@ -1,6 +1,7 @@
  <H2 ALIGN="center">{listtitle}</H2>
 
  <TABLE ALIGN="center" Style="table-layout:fixed"><TR><TD>
+{js}
  <FORM NAME="label" METHOD="post" ACTION="{form_target}">
   <INPUT TYPE=HIDDEN NAME="ltype_id" VALUE="{ltype}">
   {sess_id}

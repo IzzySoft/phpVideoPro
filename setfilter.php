@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -12,24 +12,45 @@
 
  /* $Id$ */
 
- #========================================================[ initial setup ]===
- if (!isset($admin)) $admin = FALSE;
- while ( list($vn,$vv)=each($_REQUEST) ) {
-   $$vn = $vv;
- }
- if (!isset($reset)) $reset = FALSE;
- if (!isset($save)) $save = FALSE;
+ if (!isset($admin)) $admin = FALSE; // setting from admin/filters.php
  $page_id = "filter";
  if ($admin) $root = "../"; else $root = "";
  include($root . "inc/includes.inc");
+
+ #==================================================[ Check authorization ]===
  if ($admin) {
    if (!$pvp->auth->admin) { // kick-off unauthorized visitors
      header("Location: " .$pvp->link->slink($base_url."login.php"));
      exit;
    }
    $pvp->preferences->admin();
+ } else {
+   if (!$pvp->auth->browse) kickoff();
  }
 
+ #==================================[ check vulnerabilities / wrong input ]===
+ if (isset($_REQUEST["save"])) { // form submit
+   # since some values are dynamic (number known only on runtime), here we
+   # only check the static ones and finish the check later
+   $vuls = array();
+   if (!$pvp->common->req_is_num("length_min") || !$pvp->common->req_is_num("length_max"))
+     $vuls[] = str_replace("\\n"," ",lang("len_is_nan"));
+   if (!empty($_REQUEST["aquired_min"])) check_date($_REQUEST["aquired_min"],0);
+   if (!empty($_REQUEST["aquired_max"])) check_date($_REQUEST["aquired_max"],0);
+   vul_alnum("lp");
+   if (!$pvp->common->req_is_num("fsk_min") || !$pvp->common->req_is_num("fsk_max"))
+     $vuls[] = str_replace("\\n"," ",lang("fsk_is_nan"));
+   if (!$pvp->common->req_is_alnum("title")) $vuls[] = lang("title_not_string");
+ }
+
+ #========================================================[ initial setup ]===
+ while ( list($vn,$vv)=each($_REQUEST) ) { // register post variables
+   $$vn = $vv;
+ }
+ if (!isset($reset)) $reset = FALSE;
+ if (!isset($save)) $save = FALSE;
+
+ #---------------------------------------------------------[ helper funcs ]---
  function sort_ar($a1,$a2) {
    if($a1['name']<$a2['name']) return -1;
      else if ($a1['name']>$a2['name']) return 1;
@@ -45,6 +66,7 @@
  $t->set_block("listblock","itemblock","itemlist");
 
  #==================================================[ (re)set the filters ]===
+ unset($filter);
  if ($reset) { // user wants to unset all filter
    $pvp->preferences->set("filter","");
  } elseif ($save) { // new filter values were submitted
@@ -52,6 +74,7 @@
    for ($i=0;$i<count($mtypes);$i++) {
      $id = $mtypes[$i]['id'];
      $field = "mtype_" . $id;
+     vul_alnum($field);
      if (${$field}) $filter->mtype->$id = TRUE; else $filter->mtype->$id = FALSE;
    }
    $filter->length_min  = $length_min;
@@ -62,18 +85,21 @@
    for ($i=0;$i<count($pict);$i++) {
      $id    = $pict[$i]['id'];
      $field = "pict_" . $id;
+     vul_alnum($field);
      if (${$field}) $filter->pict->$id = TRUE; else $filter->pict->$id = FALSE;
    }
    $pict = $db->get_color();
    for ($i=0;$i<count($pict);$i++) {
      $id    = $pict[$i]['id'];
      $field = "color_" . $id;
+     vul_alnum($field);
      if (${$field}) $filter->color->$id = TRUE; else $filter->color->$id = FALSE;
    }
    $pict = $db->get_tone();
    for ($i=0;$i<count($pict);$i++) {
      $id    = $pict[$i]['id'];
      $field = "tone_" . $id;
+     vul_alnum($field);
      if (${$field}) $filter->tone->$id = TRUE; else $filter->tone->$id = FALSE;
    }
    $filter->lp = $lp;
@@ -101,6 +127,16 @@
    for ($i=0;$i<count($mus_id);$i++) {
      $filter->composer->$mus_id[$i] = TRUE;
    }
+   #--------------------------------------[ finish vulcheck before saving ]---
+   if ($vc=count($vuls)) {
+     $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+     for ($i=0;$i<$vc;++$i) {
+       $msg .= "<LI>".$vuls[$i]."</LI>\n";
+     }
+     $msg .= "</UL>";
+     $pvp->common->die_error($msg);
+   }
+   #----------------------------------------------------------[ save data ]---
    $save = rawurlencode( serialize($filter) );
    $pvp->preferences->set("filter",$save);
    header("Location: ".$_SERVER["PHP_SELF"]);

@@ -1,7 +1,7 @@
 <?php
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -13,11 +13,46 @@
 
  /* $Id$ */
 
- #========================================================[ initial setup ]===
- $silent = $cass_id || isset($create);
  $page_id = "pslabel";
  $labels_pp = 8; // how many labels per page
  include("inc/includes.inc");
+
+ #=============================================================[ security ]===
+ if (!$pvp->auth->browse) kickoff();
+ vul_num("ltype_id");
+ vul_alnum("layout");
+ $vuls = array();
+ for ($i=0;$i<$labels_pp;++$i) {
+   if (isset($_REQUEST["mtype_id_$i"])) {
+     vul_num("mtype_id_$i");
+     ${"mtype_id_${i}"} = $_REQUEST["mtype_id_$i"];
+   }
+   if (isset($_REQUEST["label_$i"])) {
+     vul_num("label_$i");
+     ${"label_${i}"} = $_REQUEST["label_$i"];
+   }
+   if (!$pvp->common->req_is_num("medianr_$i")) $vuls[] = str_replace("\\n"," ",lang("medianr_is_nan"));
+     else ${"medianr_$i"} = $_REQUEST["medianr_$i"];
+ }
+ if (!$pvp->common->req_is_num("maxfontsize")) $vuls[] = str_replace("\\n"," ",lang("fontsize_is_nan"));
+ if ($vc=count($vuls)) {
+   $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+   for ($i=0;$i<$vc;++$i) {
+     $msg .= "<LI>".$vuls[$i]."</LI>\n";
+   }
+   $msg .= "</UL>";
+   $pvp->common->die_error($msg);
+ }
+
+ #==============================================[ Register form variables ]===
+ $postit = array("ltype_id","layout","create","maxfontsize");
+ foreach ($postit as $var) {
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var];
+ }
+ unset($postit);
+
+ #========================================================[ initial setup ]===
+ $silent = $cass_id || isset($create);
  include("inc/class.label.inc");
  $printer_id = $pvp->preferences->get("printer_id");
 
@@ -183,10 +218,28 @@ echo "showpage\n";
 #
  #== Step 2 =====================[ query user input for multi-label-print ]===
  } elseif  (isset($layout)) { // we have to get layout details
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $nr_nan = lang("medianr_is_nan");
+ $fontsize_nan = lang("fontsize_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_nr(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('$nr_nan');
+     }
+   }
+   function check_fontsize(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '12';
+       alert('$fontsize_nan');
+     }
+   }
+//--></SCRIPT>";
    include("inc/header.inc");
    $t = new Template($pvp->tpl_dir);
    $t->set_file(array("list"=>"ps_layout.tpl"));
    $t->set_block("list","definitionblock","definitionlist");
+   $t->set_var("js",$js);
    $ltypes = $db->get_lsheet($ltype_id); // get no. of rows and cols on label sheet and label type
  #== TODO: Abgleich label - sheet - template - layout etc
   $mtypes = $db->get_mtypes();
@@ -206,7 +259,7 @@ echo "showpage\n";
      for ($col=0; $col<$ltypes['cols']; ++$col) {
        $i = $row * $ltypes['cols'] + $col;
        $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</SELECT>";
-       $medianr = "<INPUT NAME=\"medianr_$i\"" . $form["addon_tech"] . ">";
+       $medianr = "<INPUT NAME=\"medianr_$i\" onChange='check_nr(this);' " . $form["addon_tech"] . ">";
        $label   = "<SELECT NAME=\"label_$i\">$epslist</SELECT>";
        $t->set_var("mtype_$col",$mtype);
        $t->set_var("medianr_$col",$medianr);
@@ -226,7 +279,7 @@ echo "showpage\n";
    $t->set_var("form_target",$_SERVER["PHP_SELF"]);
    $t->set_var("ltype",$ltype_id);
    $t->set_var("create",lang("create"));
-   $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12'" .$form["addon_fsk"]. ">";
+   $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12' onChange='check_fontsize(this);' " .$form["addon_fsk"]. ">";
    $t->set_var("max_fontsize",$ifontsize);
    $t->set_var("max_fontsize_desc",lang("max_fontsize"));
    if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");

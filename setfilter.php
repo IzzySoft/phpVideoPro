@@ -151,6 +151,23 @@
    $filter = unserialize ( rawurldecode( $filter ) );
  }
  #===============================================[ Create the Form Fields ]===
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $fsk_nan = lang("fsk_is_nan");
+ $len_nan = lang("len_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_len(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('$len_nan');
+     }
+   }
+   function check_fsk(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('$fsk_nan');
+     }
+   }
+//--></SCRIPT>";
  #------------------------------------------------------------[ left side ]---
  #--[ mtype ]--
  unset ($id,$name);
@@ -171,12 +188,12 @@
  #--[ length ]--
  $input = lang("min") . ":&nbsp;<INPUT NAME=\"length_min\"";
  if ( isset($filter->length_min) ) $input .= " VALUE=\"" . $filter->length_min . "\"";
- $input .= $form["addon_filmlen"] . ">";
+ $input .= $form["addon_filmlen"] . " onChange='check_len(this);'>";
  $t->set_var("input",$input);
  $t->parse("inputlist","inputblock");
  $input = lang("max") . ":&nbsp;<INPUT NAME=\"length_max\"";
  if ( isset($filter->length_max) ) $input .= " VALUE=\"" . $filter->length_max . "\"";
- $input .= $form["addon_filmlen"] . ">";
+ $input .= $form["addon_filmlen"] . " onChange='check_len(this);'>";
  $t->set_var("input",$input);
  $t->parse("inputlist","inputblock",TRUE);
  $t->parse("length","t_item");
@@ -256,12 +273,12 @@
  #--[ fsk ]--
  $input = lang("min") . ":&nbsp;<INPUT NAME=\"fsk_min\"";
  if ( isset($filter->fsk_min) ) $input .= " VALUE=\"" . $filter->fsk_min . "\"";
- $input .= $form["addon_fsk"] . ">";
+ $input .= $form["addon_fsk"] . " onChange='check_fsk(this);'>";
  $t->set_var("input",$input);
  $t->parse("inputlist","inputblock");
  $input = lang("max") . ":&nbsp;<INPUT NAME=\"fsk_max\"";
  if ( isset($filter->fsk_max) ) $input .= " VALUE=\"" . $filter->fsk_max . "\"";
- $input .= $form["addon_fsk"] . ">";
+ $input .= $form["addon_fsk"] . " onChange='check_fsk(this);'>";
  $t->set_var("input",$input);
  $t->parse("inputlist","inputblock",TRUE);
  $t->parse("fsk","t_item");
@@ -354,6 +371,7 @@
  $t->set_var("reset",lang("reset"));
  $t->set_var("update",lang("update"));
  if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+ $t->set_var("js",$js);
  $t->pparse("out","t_list");
 
  include($root . "inc/footer.inc");

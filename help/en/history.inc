@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.7.10
+[text]
+<ul>
+ <li>PSLabels have not been working when register_globals=off
+ <li>Setup of filters was partly broken (duh, and nobody noticed ;)
+ <li>added vulnerability and plausibility checks to more pages
+</ul>
+
+[title]
 0.7.9 (August 16, 2006)
 [text]
 <ul>

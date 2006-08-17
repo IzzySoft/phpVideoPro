@@ -525,3 +525,5 @@ INSERT INTO lang VALUES ('xfer_unknown_filetype','de','Der Datentyp dieses Backu
 INSERT INTO lang VALUES ('xfer_wrong_mode','de','Programmfehler: Der eingestellte Transfermodus ist für die gewünschte Aktion nicht zulässig. Erforderlich wäre der Modus \"%1\", eingestellt ist jedoch \"%2\". Bitte unbedingt einen Report mit den Schritten, die zu diesem Fehler geführt haben, an den Autoren schicken!','');
 INSERT INTO lang VALUES ('year','de','Jahr','');
 INSERT INTO lang VALUES ('yes','de','Ja','');
+INSERT INTO lang VALUES ('fontsize_is_nan','de','Schriftgröße muss numerisch sein!\\\\n(d.h.: Es sind nur Ziffern erlaubt)','');
+INSERT INTO lang VALUES ('id_is_nan','de','ID muss numerisch sein!\\\\n(d.h. es sind nur Ziffern erlaubt)','');

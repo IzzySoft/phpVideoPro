@@ -617,4 +617,6 @@ INSERT INTO lang VALUES ('input_errors_occured','en','phpVideoPro encountered %1
 INSERT INTO lang VALUES ('error_occured','en','phpVideoPro Error','Input check on several pages on form submission (page title)');
 INSERT INTO lang VALUES ('loginpwd_whitespace','en','Login and/or Password contain (white)spaces. This is not valid.','Errormessage on login');
 INSERT INTO lang VALUES ('medianr_is_nan','en','The MediaNr must be numeric\\\\n(i.e. letters and special chars are not allowed).','Error msg on invalid MediaNr input on several forms');
+INSERT INTO lang VALUES ('fontsize_is_nan','en','Fontsize must be given in numeric values\\\\n(i.e. only digits are allowed here).','Input check on e.g. PSLabel form');
+INSERT INTO lang VALUES ('id_is_nan','en','ID must be numeric!\\\\n(i.e. only digits are allowed)','(JavaScript) error message on form input');
 #INSERT INTO lang VALUES ('','en','','');

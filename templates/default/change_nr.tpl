@@ -1,5 +1,5 @@
  <H2 ALIGN="center">{listtitle}</H2>
-
+{js}
  <FORM NAME="medianr" METHOD="post" ACTION="{form_target}">
   <TABLE ALIGN="center" BORDER="0" WIDTH="400">
     <TR><TH COLSPAN="3"><DIV ALIGN="center">{latest}</DIV></TH></TR>

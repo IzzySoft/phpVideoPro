@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -15,9 +15,27 @@
  $page_id = "media_change";
  include("inc/includes.inc");
 
+ #=================================================[ Vulnerability checks ]===
+ vul_num("old_mtype");
+ vul_num("new_mtype");
+ vul_alnum("copy");
+ vul_alnum("change");
+ $vuls = array();
+ if (!$pvp->common->req_is_num("old_cass_id") || !$pvp->common->req_is_num("old_part")
+   || !$pvp->common->req_is_num("new_cass_id") || !$pvp->common->req_is_num("new_part"))
+   $vuls[] = str_replace("\\n"," ",lang("medianr_is_nan"));
+ if ($vc=count($vuls)) {
+   $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+   for ($i=0;$i<$vc;++$i) {
+     $msg .= "<LI>".$vuls[$i]."</LI>\n";
+   }
+   $msg .= "</UL>";
+   $pvp->common->die_error($msg);
+ }
+
  #=================================================[ Register global vars ]===
  $details = array ("copy","change","old_mtype","old_cass_id","old_part",
-                   "new_mtype","new_cass_id","new_part","cancel");
+                   "new_mtype","new_cass_id","new_part");
  foreach ($details as $var) {
    if (isset($_POST[$var])) $$var = $_POST[$var];
  }
@@ -74,23 +92,34 @@
  }
 
  #============================[ Otherwise: Create the form for user input ]===
+ #---------------------------------------------[ Setup special JavaScript ]---
+ $nr_nan = lang("medianr_is_nan");
+ $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_nr(nr,ori) {
+     if (isNaN(nr.value)) {
+       nr.value = ori;
+       alert('$nr_nan');
+     }
+   }
+//--></SCRIPT>";
+ #--------------------------------------------------------[ Generate form ]---
  $movie = $db->get_movie($id);
 
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"change_nr.tpl"));
+ $t->set_var("js",$js);
  $t->set_var("listtitle",lang("change_nr",$movie['mtype_short']. " " .$movie['cass_id']. "-" .$movie['part']));
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("latest",lang("highest_db_entries"));
  $t->set_var("latest_box",$pvp->common->make_lastnum_selectbox("lastnum"));
  $t->set_var("orig",lang("orig_medianr"));
  $t->set_var("o_mtype",$pvp->common->make_mtype_selectbox("old_mtype",$movie['mtype_id']));
- $t->set_var("o_medianr","<INPUT NAME='old_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."'>");
- $t->set_var("o_part","<INPUT NAME='old_part' ".$form["addon_part"]." VALUE='".$movie['part']."'>");
+ $t->set_var("o_medianr","<INPUT NAME='old_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."' onChange='check_nr(this,".$movie['cass_id'].");'>");
+ $t->set_var("o_part","<INPUT NAME='old_part' ".$form["addon_part"]." VALUE='".$movie['part']."' onChange='check_nr(this,".$movie['part'].");'>");
  $t->set_var("new",lang("new_medianr"));
  $t->set_var("n_mtype",$pvp->common->make_mtype_selectbox("new_mtype",$movie['mtype_id']));
- $t->set_var("n_medianr","<INPUT NAME='new_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."'>");
- $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie['part']."'>");
- $t->set_var("cancel","<INPUT TYPE='cancel' NAME='cancel' VALUE='".lang("cancel")."'>");
+ $t->set_var("n_medianr","<INPUT NAME='new_cass_id' ".$form["addon_cass_id"]."  VALUE='".$movie['cass_id']."' onChange='check_nr(this,".$movie['cass_id'].");'>");
+ $t->set_var("n_part","<INPUT NAME='new_part' ".$form["addon_part"]." VALUE='".$movie['part']."' onChange='check_nr(this,".$movie['part'].");'>");
  $t->set_var("copy","<INPUT CLASS='submit' TYPE='submit' NAME='copy' VALUE='".lang("media_copy")."'>");
  $change = "<INPUT CLASS='submit' TYPE='submit' NAME='change' VALUE='".lang("media_change")."'>";
  if (!$pvp->cookie->active) $change .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";

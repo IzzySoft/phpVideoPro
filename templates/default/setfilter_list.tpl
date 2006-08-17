@@ -1,4 +1,5 @@
 <H2 Align=Center>{listtitle}</H2>
+{js}
 <FORM NAME="filter" METHOD="post" ACTION="{form_target}">
  <TABLE Width="90%" Align="Center" Border="1">
   <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ -->

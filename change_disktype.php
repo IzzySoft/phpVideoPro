@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -14,12 +14,16 @@
 
  $page_id = "disktype_change";
  include("inc/includes.inc");
+ #=================================================[ Vulnerability checks ]===
+ vul_alnum("o_disktype");
+ vul_num("n_disktype");
+ vul_alnum("change");
+ 
  #=================================================[ Register global vars ]===
- $details = array ("change","o_disktype","n_disktype","submit");
+ $details = array ("change","o_disktype","n_disktype");
  foreach ($details as $var) {
    if (isset($_POST[$var])) $$var = $_POST[$var];
  }
- if (!isset($submit)) $submit = FALSE;
  if (!isset($change)) $change = FALSE;
  $details = array ("mtype_id","cass_id","part");
  foreach ($details as $var) {

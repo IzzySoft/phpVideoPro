@@ -8,6 +8,9 @@
  <li>PSLabels have not been working when register_globals=off
  <li>Setup of filters was partly broken (duh, and nobody noticed ;)
  <li>added vulnerability and plausibility checks to more pages
+ <li>added a sample .htaccess file (named .htaccess_sample) to the
+     setup/install/ directory. It contains information on how to protect your
+     installation against unauthorized access of the install wizard.
 </ul>
 
 [title]

@@ -150,7 +150,9 @@ Contents:
     protect the setup/install/ directory against unprivileged use. Either
     * remove the directory
     * move it somewhere outside your web tree
-    * protect it via the web server (e.g. with .htaccess file when using Apache)
+    * protect it via the web server (e.g. with .htaccess file when using
+      Apache - a sample file, .htaccess_sample, with instructions you find
+      already within this directory)
     * change its permissions with "chmod 0700 install" if the web server
       user is not its owner
  5. If you are concerned about *DISK SPACE*, you may want to remove the

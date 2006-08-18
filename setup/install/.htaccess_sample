@@ -1,0 +1,29 @@
+# Sample .htaccess file to protect this directory. If you want to use it:
+# 1) check the file location specified for "AuthUserFile", since you may
+#    want to change it. Make sure it is not inside your webtree. Of course
+#    you can use a Realm (AuthName) that is already defined on your system:
+#    If that's the case, and no new users should be added here, skip the next
+#    item and go directly to 3)
+# 2) You may need to create the AuthUserFile and/or add new users to it (i.e.
+#    the users who should be able to access this directory with their browsers).
+#    Make sure you have the right privileges (be root).
+#    In the following examples, we go to add a user named "john" to the password
+#    list. If the file does not yet exist, you must enter
+#       htpasswd -cp <AuthUserFile> john
+#    If it already exists (i.e. for every additional user), it is the same
+#    command but without the "c" parameter:
+#       htpasswd -p <AuthUserFile> john
+#    In both cases, you will be prompted for the password (hence the "p"
+#    option). See "man htpasswd" for more detailed information.
+# 3) Now all pre-requisites solved, you can rename this file (you are reading
+#    now) to ".htaccess" (and optionally remove all lines starting with a "#"):
+#       mv .htaccess_sample .htaccess
+# 4) That's it - try if it works by pointing your browser to this directory.
+#    A password dialog should pop up (yeah, that's what we wanted!). Enter the
+#    user information (in our example "john" and the password you specified
+#    on the prompt), and the server should let you in.
+
+AuthName "Priviledged Users"
+AuthType Basic
+AuthUserFile /etc/httpd/.htprivil
+require valid-user

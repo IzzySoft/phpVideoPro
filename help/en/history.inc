@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.7.10
+0.8.0 (October 10, 2006)
 [text]
 <ul>
  <li>PSLabels have not been working when register_globals=off
@@ -11,6 +11,9 @@
  <li>added a sample .htaccess file (named .htaccess_sample) to the
      setup/install/ directory. It contains information on how to protect your
      installation against unauthorized access of the install wizard.
+ <li>using French translations, adding new entries was impossible (translation
+     broke JavaScript code). Fixed - but you need to re-load the French
+     translations for this.
 </ul>
 
 [title]

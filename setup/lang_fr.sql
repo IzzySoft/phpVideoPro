@@ -166,7 +166,7 @@ INSERT INTO lang VALUES ('enable_cookies','fr','Autoriser les cookies ?','');
 INSERT INTO lang VALUES ('enable_cookies_comment','fr','Gérer les préférences utilisateurs (ex:options de filtres) par des cookies ?','');
 INSERT INTO lang VALUES ('ended_sessions','fr','Sessions Terminées','');
 INSERT INTO lang VALUES ('enter_min_free','fr','Entrer le minimum d\'espace disque libre à  afficher :','');
-INSERT INTO lang VALUES ('enter_new_medianr','fr','Merci d\'entrer le Numéro du medium pour ce nouveau %1','');
+INSERT INTO lang VALUES ('enter_new_medianr','fr','Merci de taper le Numéro du support pour ce nouveau %1','');
 INSERT INTO lang VALUES ('expire_cookies','fr','Durée de vie des cookies','');
 INSERT INTO lang VALUES ('expire_cookies_comment','fr','Combien de temps un cookie doit-il rester dans le navigateur de l\'utilisateur ?','');
 INSERT INTO lang VALUES ('farbe','fr','Couleur','');

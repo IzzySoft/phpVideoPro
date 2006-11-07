@@ -44,7 +44,10 @@
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
     <COLGROUP><COL WIDTH="150"><COL WIDTH="*"></COLGROUP>
     <TR><TD>{mtype_name}</TD><TD>{mtype}</TD></TR>
-    <TR><TD>{medianr_name}</TD><TD>{medianr}</TD></TR>
+    <TR><TD>{medianr_name}</TD><TD>
+      <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0"><TR>
+        <TD WIDTH="50%"{konq_fix}>{medianr}</TD><TD WIDTH="50%">{minfo_link}</TD></TR>
+      </TABLE></TD></TR>
     <TR><TD>{counter_name}</TD><TD>
       <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0"><TR>
         <TD WIDTH="50%"{konq_fix}>{counter}</TD><TD WIDTH="25%">{label_name}</TD><TD WIDTH="25%">{label}</TD></TR>

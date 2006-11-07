@@ -23,7 +23,7 @@
     <TR CLASS="content"><TD STYLE='vertical-align:middle'><TABLE BORDER="0">
 <!-- BEGIN techblock -->
         <TR><TD><DIV ALIGN="right">{tname}</DIV></TD>
-            <TD>{tdata}</TD><TD>{tunit}</TD></TR>
+            <TD><DIV ALIGN="right">{tdata}</DIV></TD><TD>{tunit}</TD></TR>
 <!-- END techblock -->
         </TABLE></TD><TD STYLE='vertical-align:middle'><TABLE BORDER="0">
 <!-- BEGIN movieblock -->
@@ -31,6 +31,7 @@
 <!-- END movieblock -->
         </TABLE></TD></TR>
   </TABLE>
+  <DIV ALIGN="center">{formactions}</DIV>
  </FORM>
 
 </TD></TR>

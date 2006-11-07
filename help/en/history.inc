@@ -2,6 +2,18 @@
 # /*  $Id$ */
 
 [title]
+0.8.1
+[text]
+<ul>
+ <li>in medium.php, the length field was duplicated. Fixed.
+ <li>replaced the cass table by the new pvp_media table supporting more
+     media information such as owner, where it is stored, and whom it is
+     lent to
+ <li>medium.php now shows more info on the medium plus allows editing them
+     (guess what - just what we added to the pvp_media table)
+</ul>
+
+[title]
 0.8.0 (October 10, 2006)
 [text]
 <ul>

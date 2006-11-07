@@ -90,24 +90,21 @@
    }
    return $field;
  }
- function rcbutton ($name,$value,$onclick="") {
+ function rcbutton () {
    GLOBAL $pvp,$edit,$minfo;
    if ($edit) {
      $field = "";
-     $mrc = explode(",",$minfo->rc);
-     for ($i=0;$i<7;++$i) { $rc[] = 0; }
-     for ($i=0;$i<count($mrc);++$i) { $rc[$mrc[$i]] = 1; }
      for ($i=0;$i<7;++$i) {
        $field .= "<INPUT TYPE='checkbox' NAME='rc[]' VALUE='$i' CLASS='checkbox'";
-       if (isset($rc[$i]) && $rc[$i]) $field .= " CHECKED";
+       if (isset($minfo->rc[$i]) && $minfo->rc[$i]) $field .= " CHECKED";
        $field .= ">$i";
        if ($i<6) $field .= "&nbsp;";
      }
    } else {
-     $field = "<INPUT TYPE='button' NAME='$name' VALUE='$value' CLASS='yesnobutton'";
-     if (!$edit && $onclick) $field .= " onClick=\"window.location.href='"
-       . $pvp->link->slink($onclick) . "'\"";
-     $field .= ">";
+     for ($i=0;$i<7;++$i) {
+       if (isset($minfo->rc[$i]) && $minfo->rc[$i])
+         $field .= "<INPUT TYPE='button' NAME='rc[]' VALUE='$i' CLASS='checkbox'>";
+     }
    }
    return $field;
  }
@@ -121,11 +118,12 @@
    foreach ($check as $val) {
      if ($minfo->$val != $_POST["$val"]) $sinfo->$val = $_POST["$val"];
    }
-   $db->set_mediainfo($mtype_id,$cass_id,$sinfo);
+   $rc = $_POST["rc"];
+   $rccount = count($rc);
    for ($i=0;$i<$rccount;++$i) {
-     $rcn[$rc[$i]] = 1;
+     $sinfo->rc[$rc[$i]] = 1;
    }
-   $db->set_rc($mtype_id,$cass_id,$rcn);
+   $db->set_mediainfo($mtype_id,$cass_id,$sinfo);
    $minfo = $db->get_mediainfo($mtype_id,$cass_id);
  }
 

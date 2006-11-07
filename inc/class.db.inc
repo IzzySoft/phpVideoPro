@@ -1912,8 +1912,9 @@
      $disk->disks_id   = $this->f('disks_id');
      $disk->size       = $this->f('size');
      $disk->free       = $this->f('free');
-     $disk->rc         = substr($this->f('rc'),1);
-     if (!empty($disk->rc)) $disk->rc = substr($disk->rc,0,strlen($disk->rc)-1);
+     $disk->rc_str     = substr($this->f('rc'),1);
+     if (!empty($disk->rc_str))
+       $disk->rc_str = substr($disk->rc_str,0,strlen($disk->rc_str)-1);
      $disk->owner_id   = $this->f('owner');
      $disk->storeplace = $this->f('storeplace');
      $disk->lentto     = $this->f('lentto');
@@ -1922,6 +1923,7 @@
      $dt = $this->get_disktypes("",$disk->disks_id);
      $disk->type       = $dt[0]->name;
      $disk->rcsupport  = $dt[0]->rc;
+     if ($disk->rcsupport) $disk->rc = $this->get_rc($mtype_id,$id);
      if ($pvp->common->medium_is_rw($mtype_id)) { $disk->rw = lang("yes"); }
        else { $disk->rw = lang("no"); }
      return $disk;
@@ -1929,7 +1931,7 @@
 
    /** Set media information (update changes)
     *  The object can be incomplete: Only the values set will be updated
-    *  (RC not catered yet; INSERT not catered yet)
+    *  (INSERT/add not catered yet)
     * @method set_mediainfo
     * @param integer mtype_id
     * @param integer id
@@ -1959,6 +1961,8 @@
          $query .= "SET ".substr($add,1)." WHERE id=$id AND mtype_id=$mtype_id";
          $this->dbquery($query);
        }
+       if (isset($disk->rc) && is_array($disk->rc))
+         $this->set_rc($mtype_id,$id,$disk->rc);
      } else {
      }
    }

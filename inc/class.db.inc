@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -596,9 +596,9 @@
     *  properties: id,login,pwd (md5 hash), admin,browse,ins,upd,del, comment)
     *  or FALSE if no users in DB
     */
-   function get_users($user_id=0) {
+   function get_users($user_id="") {
      $query = "SELECT id,login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users";
-     if ($user_id) $query .= " WHERE id=$user_id";
+     if ($user_id!="") $query .= " WHERE id=$user_id";
      $this->query($query);
      $i=0;
      while ( $this->next_record() ) {
@@ -1894,13 +1894,82 @@
    # Media Specific Stuff
    ############################################################################
 
+   /** Get media information
+    * @method get_mediainfo
+    * @param integer mtype_id
+    * @param integer id
+    * @return object disk
+    */
+   function get_mediainfo($mtype_id,$id) {
+     GLOBAL $pvp;
+     $query = "SELECT disks_id,size,free,rc,owner,storeplace,lentto"
+            . "  FROM pvp_media"
+            . " WHERE id=$id AND mtype_id=$mtype_id";
+     $this->dbquery($query);
+     $this->next_record();
+     $disk->id         = $id;
+     $disk->mtype_id   = $mtype_id;
+     $disk->disks_id   = $this->f('disks_id');
+     $disk->size       = $this->f('size');
+     $disk->free       = $this->f('free');
+     $disk->rc         = substr($this->f('rc'),1);
+     if (!empty($disk->rc)) $disk->rc = substr($disk->rc,0,strlen($disk->rc)-1);
+     $disk->owner_id   = $this->f('owner');
+     $disk->storeplace = $this->f('storeplace');
+     $disk->lentto     = $this->f('lentto');
+     $owner = $this->get_users($disk->owner_id);
+     $disk->owner      = $owner->login;
+     $dt = $this->get_disktypes("",$disk->disks_id);
+     $disk->type       = $dt[0]->name;
+     $disk->rcsupport  = $dt[0]->rc;
+     if ($pvp->common->medium_is_rw($mtype_id)) { $disk->rw = lang("yes"); }
+       else { $disk->rw = lang("no"); }
+     return $disk;
+   }
+
+   /** Set media information (update changes)
+    *  The object can be incomplete: Only the values set will be updated
+    *  (RC not catered yet; INSERT not catered yet)
+    * @method set_mediainfo
+    * @param integer mtype_id
+    * @param integer id
+    * @param object disk
+    */
+   function set_mediainfo($mtype_id,$id,$disk) {
+     $this->query("SELECT owner FROM pvp_media WHERE id=$id AND mtype_id=$mtype_id");
+     $this->next_record();
+     if ($this->f('owner')||$this->f('owner')==0) {
+       $query  = "UPDATE pvp_media ";
+       $update = TRUE;
+     } else {
+       $query  = "INSERT INTO pvp_media ";
+       $update = FALSE;
+     }
+     if ($update) {
+       $check = array("size","owner_id");
+       $add   = "";
+       foreach ($check as $val) {
+         if (isset($disk->$val)) $add .= ",$val=".$disk->$val;
+       }
+       $check = array("storeplace","lentto");
+       foreach ($check as $val) {
+         if (isset($disk->$val)) $add .= ",$val='".$disk->$val."'";
+       }
+       if (strlen($add)) {
+         $query .= "SET ".substr($add,1)." WHERE id=$id AND mtype_id=$mtype_id";
+         $this->dbquery($query);
+       }
+     } else {
+     }
+   }
+
    /** Obtain all media numbers that have a certain disk type assigned
     * @method get_mediaForDisktype
     * @param integer id disktype-ID
     * @return array media (array of objects w/ properties mtype_id, cass_id)
     */
    function get_mediaForDisktype($id) {
-     $this->dbquery("SELECT mtype_id,id FROM cass WHERE disks_id=$id");
+     $this->dbquery("SELECT mtype_id,id FROM pvp_media WHERE disks_id=$id");
      while ( $this->next_record() ) {
        $m->cass_id  = $this->f('id');
        $m->mtype_id = $this->f('mtype_id');
@@ -1946,7 +2015,7 @@
      $mt->type = 0; $mt->rc = array();
      if (empty($mtype_id) || empty($media_id)) return $mt;
      $media_id = (int) $media_id;
-     $this->dbquery("SELECT disks_id,rc FROM cass WHERE mtype_id=$mtype_id AND id=$media_id");
+     $this->dbquery("SELECT disks_id,rc FROM pvp_media WHERE mtype_id=$mtype_id AND id=$media_id");
      if (!$this->num_rows()) return $mt;
      $this->next_record();
      $mt->type = $this->f('disks_id');
@@ -1962,7 +2031,7 @@
     * @return boolean success
     */
    function delete_disktype($id) {
-     if ( $this->dbquery("UPDATE cass SET disks_id=NULL WHERE disks_id=$id") ) {
+     if ( $this->dbquery("UPDATE pvp_media SET disks_id=NULL WHERE disks_id=$id") ) {
        return $this->dbquery("DELETE FROM disks WHERE id=$id");
      } else {
        return FALSE;
@@ -1998,7 +2067,7 @@
     * @return integer disktype_id
     */
    function get_disktype_id($mtype_id,$cass_id) {
-     $this->dbquery("SELECT disks_id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->dbquery("SELECT disks_id FROM pvp_media WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      return $this->f('disks_id');
    }
@@ -2011,12 +2080,13 @@
     * @return boolean success
     */
    function set_disktype($cass_id,$mtype_id,$disktype_id) {
-     $this->dbquery("SELECT id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     GLOBAL $pvp;
+     $this->dbquery("SELECT id FROM pvp_media WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      if ( $id = $this->f('id') ) {
-       return $this->dbquery("UPDATE cass SET disks_id=$disktype_id WHERE id=$id AND mtype_id=$mtype_id");
+       return $this->dbquery("UPDATE pvp_media SET disks_id=$disktype_id WHERE id=$id AND mtype_id=$mtype_id");
      } else {
-       return $this->dbquery("INSERT INTO cass (id,mtype_id,disks_id) VALUES($cass_id,$mtype_id,$disktype_id)");
+       return $this->dbquery("INSERT INTO pvp_media (id,mtype_id,disks_id,owner) VALUES($cass_id,$mtype_id,$disktype_id,".$pvp->auth->user_id.")");
      }
    }
 
@@ -2028,6 +2098,7 @@
     * @return boolean success
     */
    function set_rc($mtype_id,$cass_id,$rc) {
+     GLOBAL $pvp;
      if ( count($rc) ) {
        $rcs = ",";
        for ($i=0;$i<7;++$i) {
@@ -2036,12 +2107,12 @@
      } else {
        $rcs = "";
      }
-     $this->dbquery("SELECT id FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->dbquery("SELECT id FROM pvp_media WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      if ( $id = $this->f('id') ) {
-       return $this->dbquery("UPDATE cass SET rc='$rcs' WHERE id=$id AND mtype_id=$mtype_id");
+       return $this->dbquery("UPDATE pvp_media SET rc='$rcs' WHERE id=$id AND mtype_id=$mtype_id");
      } else {
-       return $this->dbquery("INSERT INTO cass (id,mtype_id,rc) VALUES ($cass_id,$mtype_id,'$rcs')");
+       return $this->dbquery("INSERT INTO pvp_media (id,mtype_id,rc,owner) VALUES ($cass_id,$mtype_id,'$rcs',".$pvp->auth->user_id.")");
      }
    }
 
@@ -2052,7 +2123,7 @@
     * @return array rc
     */
    function get_rc($mtype_id,$cass_id) {
-     $this->dbquery("SELECT rc FROM cass WHERE id=$cass_id AND mtype_id=$mtype_id");
+     $this->dbquery("SELECT rc FROM pvp_media WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      $rcs = $this->f('rc');
      if (!$rcs) return "";
@@ -2105,15 +2176,17 @@
     * @param integer space complete space on media (media length)
     */
    function insert_medium($cass_id,$mtype_id,$space) {
+     GLOBAL $pvp;
+     # add the fields storeplace + lentto *!*
      $free = $this->get_mediaspace($cass_id,$mtype_id);
-     if ($free=="") { // medium not yet in cass table
+     if ($free=="") { // medium not yet in pvp_media table
        if (!$space) $space = 240;
-       $this->dbquery("INSERT INTO cass (id,mtype_id,type,free) VALUES ($cass_id,$mtype_id,$space,0)");
+       $this->dbquery("INSERT INTO pvp_media (id,mtype_id,size,free,owner) VALUES ($cass_id,$mtype_id,$space,0,".$pvp->auth->user_id.")");
      }
    }
 
    /** Delete a medium from the media table.
-    *  Removes the entry from cass table only if the medium is empty (or $force is set)
+    *  Removes the entry from pvp_media table only if the medium is empty (or $force is set)
     * @method delete_medium
     * @param integer cass_id media id
     * @param integer mtype_id media type id
@@ -2125,7 +2198,7 @@
      $this->next_record();
      if ( $this->f('mcount') < 1 ) $force = TRUE;
      if ($force) {
-       $this->dbquery("DELETE FROM cass WHERE id=$cass_id");
+       $this->dbquery("DELETE FROM pvp_media WHERE id=$cass_id");
        return TRUE;
      }
      return FALSE;
@@ -2138,9 +2211,18 @@
     * @return mixed either freetime (integer) or empty string
     */
    function get_mediumfreetime($id,$mtype_id) {
-     $this->query("SELECT free FROM cass WHERE id=$id AND mtype_id=$mtype_id");
-     if ( $this->next_record() ) return $this->f('free');
-       else return "";
+     $free  = $this->get_mediaspace($id,$mtype_id);
+     if ( empty($free) ) return "";
+     $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
+     $this->dbquery($query);
+     $i=0;
+     while ( $this->next_record() ) {
+       ++$i;
+       $length = $this->f('length');
+       if ( $this->f('lp') ) $length /= 2;
+       $free -= $length;
+     }
+     return $free;
    }
 
    /** Get space on a medium
@@ -2150,9 +2232,9 @@
     * @param optional string field fieldname ("type" or "free", defaults to type)
     * @return mixed either freetime (integer) or empty string
     */
-   function get_mediaspace($id,$mtype_id,$field="type") {
-     $this->dbquery("SELECT $field FROM cass WHERE id=$id AND mtype_id=$mtype_id");
-     if ( $this->next_record() ) return $this->f("$field");
+   function get_mediaspace($id,$mtype_id,$col="size") {
+     $this->dbquery("SELECT $col FROM pvp_media WHERE id=$id AND mtype_id=$mtype_id");
+     if ( $this->next_record() ) return $this->f("size");
      return "";
    }
 
@@ -2164,13 +2246,13 @@
     * @param optional string field fieldname ("type" or "free", defaults to type)
     * @return mixed either freetime (integer) or empty string
     */
-   function set_mediaspace($id,$mtype_id,$space,$field="type") {
-     GLOBAL $valid;
+   function set_mediaspace($id,$mtype_id,$space,$col="size") {
+     GLOBAL $valid,$pvp;
      if ( !$valid->num($space) ) return FALSE;
-     if ( $this->get_mediaspace($id,$mtype_id) ) {
-       $query = "UPDATE cass SET $field=$space WHERE id=$id AND mtype_id=$mtype_id";
+     if ( $this->get_mediaspace($id,$mtype_id,$col) ) {
+       $query = "UPDATE pvp_media SET $col=$space WHERE id=$id AND mtype_id=$mtype_id";
      } else {
-       $query = "INSERT INTO cass (id,mtype_id,$field) VALUES ($id,$mtype_id,$space)";
+       $query = "INSERT INTO pvp_media (id,mtype_id,$col,owner) VALUES ($id,$mtype_id,$space,".$pvp->auth->user_id.")";
      }
      if ( $this->dbquery($query) ) {
        return $this->update_freetime($id,$mtype_id);
@@ -2188,20 +2270,11 @@
    function update_freetime($id,$mtype_id="1",$free="") {
      GLOBAL $valid;
      if ($free=="") {
-       $free  = $this->get_mediaspace($id,$mtype_id);
-       $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
-       $this->dbquery($query);
-       $i=0;
-       while ( $this->next_record() ) {
-         ++$i;
-	 $length = $this->f('length');
-	 if ( $this->f('lp') ) $length /= 2;
-	 $free -= $length;
-       }
+       $free = $this->get_mediumfreetime($id,$mtype_id);
      } else {
        if ( !$valid->num($free) ) return FALSE;
      }
-     return $this->dbquery("UPDATE cass SET free=$free WHERE id=$id AND mtype_id=$mtype_id");
+     return $this->dbquery("UPDATE pvp_media SET free=$free WHERE id=$id AND mtype_id=$mtype_id");
    }
 
    /** Get list of free space on media. If $start is set, the result set is
@@ -2223,7 +2296,7 @@
        }
        $restrict .=  " AND id IN ($tapelist)";
      }
-     $query = "SELECT id,mtype_id,free FROM cass WHERE $restrict ORDER BY free";
+     $query = "SELECT id,mtype_id,free FROM pvp_media WHERE $restrict ORDER BY free";
      if ($start==="") { $this->dbquery($query); $totals = $this->num_rows(); }
        else { $totals = $this->lim_query($query,$start); }
      $i=0;

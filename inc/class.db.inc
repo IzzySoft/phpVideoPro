@@ -1139,7 +1139,7 @@
     */
    function drop_all_movies() {
      if (!$this->query("TRUNCATE TABLE video")) return FALSE;
-     if (!$this->query("TRUNCATE TABLE cass")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE pvp_media")) return FALSE;
      if (!$this->query("TRUNCATE TABLE music")) return FALSE;
      if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
      if (!$this->query("TRUNCATE TABLE actors")) return FALSE;
@@ -1965,6 +1965,93 @@
          $this->set_rc($mtype_id,$id,$disk->rc);
      } else {
      }
+   }
+
+   /** Transfer ownership of media from one user to another for all
+    *  of the first users media
+    * @method user_media_xfer
+    * @param integer from_user_id
+    * @param integer to_user_id
+    * @return boolean success
+    */
+   function user_media_xfer($fromid,$toid) {
+     $query = "UPDATE pvp_media SET owner=$toid WHERE owner=$fromid";
+     return $this->dbquery($query);
+   }
+
+   /** Delete all media owned by a given user (including content)
+    * @method user_media_delete
+    * @param integer owner_id
+    * @return boolean success
+    */
+   function user_media_delete($owner_id) {
+     $mid_list = "";
+     $this->query("SELECT id FROM pvp_media WHERE owner=$owner_id");
+     while ($this->next_record()) {
+       $mid[] = $this->f('id');
+       $mid_list .= ",".$this->f('id');
+     }
+     $mc = count($mid);
+     if ($mc>0) {
+       $mid_list = substr($mid_list,1); // strip leading comma
+       for ($i=0;$i<$mc;++$i) { // delete the movies from affected media
+         // check directors from affected videos
+         $did_list = "";
+         $query = "SELECT DISTINCT director_id FROM video WHERE cass_id IN ($mid_list)";
+         $this->query($query);
+         while ($this->next_record()) {
+           $dd = $this->f('director_id');
+           if (!empty($dd)) $did_list = ",".$this->f('director_id');
+         }
+         if (!empty($did_list))
+           $this->query("DELETE FROM directors WHERE id IN (".substr($did_list,1).")");
+         // check for composers
+         $did_list = "";
+         $query = "SELECT DISTINCT music_id FROM video WHERE cass_id IN ($mid_list)";
+         $this->query($query);
+         while ($this->next_record()) {
+           $dd = $this->f('music_id');
+           if (!empty($dd)) $did_list = ",".$this->f('music_id');
+         }
+         if (!empty($did_list))
+           $this->query("DELETE FROM music WHERE id IN (".substr($did_list,1).")");
+         // check for actors
+         $did_list = "";
+         $query = "SELECT DISTINCT actor1_id FROM video WHERE cass_id IN ($mid_list)";
+         $this->query($query);
+         while ($this->next_record()) {
+           $aid[] = $this->f('actor1_id');
+           $did_list .= ",".$this->f('actor1_id');
+         }
+         for ($i=1;$i<6;++$i) {
+           $query = "SELECT DISTINCT actor${i}_id FROM video WHERE cass_id IN ($mid_list)";
+           $this->query($query);
+           while ($this->next_record()) {
+             if (!in_array($this->f("actor${i}_id"),$aid)) {
+               $aid[] = $this->f("actor${i}_id");
+               $did_list .= ",".$this->f("actor${i}_id");
+             }
+           }
+         }
+         $ac = count($aid);
+         for ($i=0;$i<$ac;++$i) {
+           if (!empty($aid[$i])) {
+             $query = "SELECT count(id) AS idc FROM video WHERE (actor1_id=".$aid[$i]
+                    . " OR actor2_id=".$aid[$i]." OR actor3_id=".$aid[$i]
+                    . " OR actor4_id=".$aid[$i]." OR actor5_id=".$aid[$i]
+                    . ") AND cass_id NOT IN ($mid_list)";
+             $this->query($query);
+             $this->next_record();
+             if ($this->f('idc')==0) {
+               $this->query("DELETE FROM actors WHERE id=".$aid[$i]);
+             }
+           }
+         }
+         // delete the movies
+         $this->query("DELETE FROM video WHERE cass_id IN ($mid_list)");
+       }
+     }
+     return $this->query("DELETE FROM pvp_media WHERE owner=$owner_id");
    }
 
    /** Obtain all media numbers that have a certain disk type assigned

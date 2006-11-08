@@ -283,7 +283,7 @@ INSERT INTO lang VALUES('password','en','Password','A login is not enough - you 
 INSERT INTO lang VALUES('password_retype','en','Retype Password','Password confirmation request on the "edit users" page');
 INSERT INTO lang VALUES('admin_useredit','en','Edit user account','Page title when editing a user account');
 INSERT INTO lang VALUES('confirm_userdelete','en','You are about to delete user #%1','Page title');
-INSERT INTO lang VALUES('confirm_userdeletion','en','Do you really want to delete user "%1" (%2)?','Confirmation request on data deletion (to avoid accidental deletion)');
+INSERT INTO lang VALUES('confirm_userdeletion','en','You are about to delete user "%1" (%2). What shall be done with the users media?','Confirmation request on data deletion (ask action for his data)');
 INSERT INTO lang VALUES('user_delete_report','en','Results of user deletion process','Page title of the progress report');
 INSERT INTO lang VALUES('user_deleted','en','Successfully deleted user #%1, "%2" (%3)','The place holders stand for the userID (%1), the login (%2) and the optional comment you assigned to the user (%3).');
 INSERT INTO lang VALUES('user_delete_failed','en','Deletion of user #%1, "%2" (%3) failed','The place holders stand for the userID (%1), the login (%2) and the optional comment you assigned to the user (%3).');
@@ -609,7 +609,7 @@ INSERT INTO lang VALUES ('help_for_block','en','Help for this block','BubbleHelp
 INSERT INTO lang VALUES ('fsk_is_nan','en','The selected value for PG is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon next to the PG for more details.','JavaScript ErrorMsg popup when entering not-numeric PG');
 INSERT INTO lang VALUES ('unlink_file_failed','en','Failed to delete - check permissions or delete manually.','Error message on failed file deletion');
 INSERT INTO lang VALUES ('dupes_strict','en','Duplicate entries (strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
-INSERT INTO lang VALUES ('len_is_nan','en','The selected value for Length is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon for more details.','JavaScript ErrorMsg popup when entering not-numeric length value');
+INSERT INTO lang VALUES ('len_is_nan','en','The selected value for Length is not numeric,\\\\nbut phpVideoPro requires a numeric value.','JavaScript ErrorMsg popup when entering not-numeric length value');
 INSERT INTO lang VALUES ('name_not_string','en','One of the entered names contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('title_not_string','en','The entered title contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('comment_not_string','en','The entered comment contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
@@ -619,4 +619,10 @@ INSERT INTO lang VALUES ('loginpwd_whitespace','en','Login and/or Password conta
 INSERT INTO lang VALUES ('medianr_is_nan','en','The MediaNr must be numeric\\\\n(i.e. letters and special chars are not allowed).','Error msg on invalid MediaNr input on several forms');
 INSERT INTO lang VALUES ('fontsize_is_nan','en','Fontsize must be given in numeric values\\\\n(i.e. only digits are allowed here).','Input check on e.g. PSLabel form');
 INSERT INTO lang VALUES ('id_is_nan','en','ID must be numeric!\\\\n(i.e. only digits are allowed)','(JavaScript) error message on form input');
+INSERT INTO lang VALUES ('date_is_nan','en','Date, month and year must be numeric!\\\\n(i.e. only digits are allowed)','(JavaScript) error message on form input');
+INSERT INTO lang VALUES ('media_info','en','Media Info','name of link to media info on the movie entry screen');
+INSERT INTO lang VALUES ('owner','en','Owner','how we call the owner of a medium');
+INSERT INTO lang VALUES ('storeplace','en','Stored at','the physical place a medium resides');
+INSERT INTO lang VALUES ('lentto','en','Lent to','if we temporarily gave away some medium');
+INSERT INTO lang VALUES ('own_to_user','en','Transfer to','name of select box for media of user to delete');
 #INSERT INTO lang VALUES ('','en','','');

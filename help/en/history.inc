@@ -11,6 +11,9 @@
      lent to
  <li>medium.php now shows more info on the medium plus allows editing them
      (guess what - just what we added to the pvp_media table)
+ <li>on user deletion, you now have the choice to also delete all the users
+     media (and movies) or, alternatively, transfer their ownership to one
+     of the other users
 </ul>
 
 [title]

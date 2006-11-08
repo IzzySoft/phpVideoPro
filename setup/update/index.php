@@ -170,12 +170,13 @@ $pvp->preferences->admin();
     case "0.7.7"    :
     case "0.7.8"    :
     case "0.7.9"    : queryf("0-7-5_to_0-7-6.sql","Upgrade to v0.8.0");
-                      queryf("../lang_en.sql","Refresh of English language support");
                       $langs = $db->get_installedlang();
                       if (in_array("fr",$langs)) {
                         $db->delete_translations("fr");
                         queryf("../lang_fr.sql","Refresh of French language support");
                       }
+    case "0.8.0"    : queryf("0-8-0_to_0-8-1.".$database["type"],"Upgrade to v0.8.1");
+                      queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

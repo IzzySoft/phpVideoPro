@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -46,7 +46,7 @@
      if ($k) { $details .= ", "; } else { $details = ""; }
      $details .= "<A HREF='edit.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part&nr=$nr'>";
      $details .= "$mtype $cass_id" .  "-" . $part . "</A> ("
-              . $dupes[$i][$k]->len . " min)";
+              . $dupes[$i][$k]->len . " min [".ucfirst($dupes[$i][$k]->owner)."])";
    }
    $t->set_var("title",$dupes[$i]['title']);
    $t->set_var("details",$details);

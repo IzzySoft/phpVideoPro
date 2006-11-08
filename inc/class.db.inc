@@ -1887,6 +1887,23 @@
        $dupes[$i][$k]->part     = $this->f('d_part');
        $dupes[$i][$k]->len      = $this->f('d_len');
      }
+     $dc = count($dupes);
+     for ($i=0;$i<$dc;++$i) {
+       $kc = count($dupes[$i]);
+       for ($k=0;$k<$kc;++$k) {
+         if (!empty($dupes[$i][$k]->mtype_id)) {
+           $query = "SELECT owner FROM pvp_media"
+                  . " WHERE id=".$dupes[$i][$k]->cass_nr
+                  . "   AND mtype_id=".$dupes[$i][$k]->mtype_id;
+           $this->query($query);
+           $this->next_record();
+           $owner_id = $this->f('owner');
+           $this->query("SELECT login FROM pvp_users WHERE id=$owner_id");
+           $this->next_record();
+           $dupes[$i][$k]->owner = $this->f('login');
+         }
+       }
+     }
      return $dupes;
    }
    

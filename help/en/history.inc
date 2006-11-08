@@ -14,6 +14,11 @@
  <li>on user deletion, you now have the choice to also delete all the users
      media (and movies) or, alternatively, transfer their ownership to one
      of the other users
+ <li>duplicate list now also shows owner for each entry
+ <li>add_movie &amp; get_movie now cater for the new properties (owner,
+     storeplace,lentto). So also the backup/restore should consider these
+     (not thoroughly tested - reports welcome!). Restore will not yet work
+     correctly into a databse with different user settings!
 </ul>
 
 [title]

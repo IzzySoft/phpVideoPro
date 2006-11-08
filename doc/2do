@@ -39,8 +39,6 @@ Interesting things not scheduled at all:
   the possibility to "order by rating")
 - honour date format settings in all places
 - add "sample-links" to translation editor
-- new database fields: "lent to" (to find out where your media *really* are :)
-  and "location" (which shelf or room one stored the media)
 - make menu template-driven
 - configurable format of counter display: as is in db / in minutes / in hh:mm
   (same for length field)

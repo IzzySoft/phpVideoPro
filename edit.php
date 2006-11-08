@@ -384,6 +384,8 @@ EndHiddenFields;
     $t->set_var("js",$js);
   }
   #---[ media data ]---
+  if (!$edit)
+    $t->set_var("minfo_link",$pvp->link->linkurl("medium.php?mtype_id=$mtype_id&cass_id=$cass_id",lang("media_info")));
   $t->set_var("mtype_name",lang("mediatype"));
   if ($mdisktype[0]->rc) {
     $t->set_var("rc_name",lang("region_code"));

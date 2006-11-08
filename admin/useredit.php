@@ -22,6 +22,13 @@
  if (isset($_REQUEST["delete"])) $delete = $_REQUEST["delete"]; else $delete = 0;
  if (isset($_POST["pwd1"])) $pwd1 = $_POST["pwd1"]; else $pwd1 = "";
  if (isset($_POST["pwd2"])) $pwd2 = $_POST["pwd2"]; else $pwd2 = "";
+ if (isset($_POST["data_action"])) $data_action = $_POST["data_action"];
+ if (isset($_POST["owner_id"])) $owner_id = $_POST["owner_id"];
+
+ #-------------------------------------------------------------[ VulCheck ]---
+ $va = array("1","2"); // valid data_actions
+ if (!in_array($data_action,$va)) $data_action = 0;
+ if (!is_numeric($owner_id) && !empty($owner_id)) $owner_id = $data_action = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if ($pvp->auth->user->login == "guest") kickoff();
@@ -92,7 +99,24 @@
  } elseif ($delete) {
    $user = $db->get_users($delete);
    if (isset($_POST["confirmed"])) {
-     if ( $db->del_user($delete) ) {
+     switch ($data_action) {
+     case 1  : // delete user's media
+       $success = $db->user_media_delete($delete);
+       break;
+     case 2  : // own to $owner_id
+       $success = $db->user_media_xfer($delete,$owner_id);
+       break;
+     default : // hacker was here
+       $save_result = "<SPAN CLASS='error'>Hacker ($ht): " .lang("user_delete_failed",$delete,$user->login,$user->comment) . "</SPAN><BR>\n";
+       $t->set_file(array("template"=>"delete.tpl"));
+       $t->set_var("listtitle",lang("user_delete_report"));
+       $t->set_var("details",$save_result);
+       header('refresh: 4; url=users.php');
+       include("../inc/header.inc");
+       $t->pparse("out","template");
+       exit;
+     }
+     if ( $success && $db->del_user($delete) ) {
        $save_result = "<SPAN CLASS='ok'>" .lang("user_deleted",$delete,$user->login,$user->comment) . ".</SPAN><BR>\n";
      } else {
        $save_result = "<SPAN CLASS='error'>" .lang("user_delete_failed",$delete,$user->login,$user->comment) . "</SPAN><BR>\n";
@@ -109,9 +133,19 @@
      $t->set_var("listtitle",lang("confirm_userdelete",$delete));
      $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
      $t->set_var("delete",$delete);
-     $t->set_var("yes",lang("yes"));
-     $t->set_var("no",lang("no"));
-     $t->set_var("delete_yn","<SPAN CLASS='error'>".lang("confirm_userdeletion",$user->login,$user->comment)."</SPAN>");
+     $t->set_var("yes",lang("delete"));
+     $t->set_var("no",lang("cancel"));
+     $msg = "<P ALIGN='center'>".lang("confirm_userdeletion",ucfirst($user->login),$user->comment)
+          . "</P><TABLE ALIGN='center'><TR><TD><INPUT TYPE='radio' NAME='data_action' VALUE='1'>".lang("delete")
+          . "<BR><INPUT TYPE='radio' NAME='data_action' VALUE='2' CHECKED>"
+          . lang("own_to_user")." <SELECT NAME='owner_id'>";
+     $users = $db->get_users(); $uc = count($users);
+     for ($i=0;$i<$uc;++$i) {
+       if ($users[$i]->id != $delete)
+         $msg .= "<OPTION VALUE='".$users[$i]->id."'>".ucfirst($users[$i]->login)."</OPTION>";
+     }
+     $msg .= "</SELECT></TD></TR></TABLE>";
+     $t->set_var("delete_yn",$msg);
      if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
      include("../inc/header.inc");
      $t->pparse("out","template");

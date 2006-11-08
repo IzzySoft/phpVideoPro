@@ -1210,7 +1210,7 @@
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
 	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,audio,subtitle,"
-            . "comment,mtype_id,"
+            . "comment,video.mtype_id as mtype_id,"
 	    . "d.name as dname,d.firstname as dfname,"
 	    . "m.name as mname,m.firstname as mfname,"
 	    . "a1.name as a1name,a1.firstname as a1fname,"
@@ -1222,11 +1222,12 @@
 	    . "c.name as cname,c.sname as csname,"
 	    . "t.name as tname,t.sname as tsname,"
 	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
-	    . "cass_id,part "
+	    . "cass_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
+            . "pm.lentto AS lentto "
 	    . "FROM video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
-	    . "LEFT JOIN mtypes mt ON mtype_id=mt.id "
+	    . "LEFT JOIN mtypes mt ON video.mtype_id=mt.id "
 	    . "LEFT JOIN colors c ON color_id=c.id "
 	    . "LEFT JOIN tone t ON tone_id=t.id "
 	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
@@ -1236,16 +1237,18 @@
 	    . "LEFT JOIN actors a2 ON actor2_id=a2.id "
 	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
 	    . "LEFT JOIN actors a4 ON actor4_id=a4.id "
-	    . "LEFT JOIN actors a5 ON actor5_id=a5.id" . $where;
+	    . "LEFT JOIN actors a5 ON actor5_id=a5.id "
+            . "LEFT JOIN pvp_media pm ON (video.mtype_id=pm.mtype_id AND video.cass_id=pm.id)"
+            . $where;
      $this->query($query);
      $rc = $this->num_rows(); # somehow the while loop does not work here???
      for ( $rcc=0;$rcc<$rc;++$rcc ) {
        $this->next_record();
-       $moviedetails = array("title","label","length","country","year","counter1",
-                     "counter2","aq_date","source","director_list",
+       $moviedetails = array("owner","title","label","length","country","year",
+                     "counter1","counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","cass_id","part",
-		     "mtype_id","tone_id","color_id");
+		     "mtype_id","tone_id","color_id","storeplace","lentto");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
@@ -1786,7 +1789,7 @@
        $this->insert_medium($cass_id,$mtype_id,$space);
        $this->update_freetime($cass_id,$mtype_id);
      }
-     if ($disktype) $this->set_disktype($cass_id,$mtype_id,$disktype);
+     $this->set_disktype($cass_id,$mtype_id,$disktype,$owner,$storeplace,$lentto);
      if ( isset($rc) && count($rc) ) $this->set_rc($mtype_id,$cass_id,$rc);
      return $success;
    }
@@ -2187,14 +2190,22 @@
     * @param integer disktype_id
     * @return boolean success
     */
-   function set_disktype($cass_id,$mtype_id,$disktype_id) {
+   function set_disktype($cass_id,$mtype_id,$disktype_id,$owner_id,$storeplace,$lentto) {
      GLOBAL $pvp;
+     if ($owner_id == "") $owner_id = $pvp->auth->user_id;
      $this->dbquery("SELECT id FROM pvp_media WHERE id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      if ( $id = $this->f('id') ) {
-       return $this->dbquery("UPDATE pvp_media SET disks_id=$disktype_id WHERE id=$id AND mtype_id=$mtype_id");
+       $set = "disks_id=$disktype_id,owner=$owner_id";
+       if (!empty($storeplace)) $set .= ",storeplace='$storeplace'";
+       if (!empty($lentto)) $set .= ",lentto='$lentto'";
+       return $this->dbquery("UPDATE pvp_media SET $set WHERE id=$id AND mtype_id=$mtype_id");
      } else {
-       return $this->dbquery("INSERT INTO pvp_media (id,mtype_id,disks_id,owner) VALUES($cass_id,$mtype_id,$disktype_id,".$pvp->auth->user_id.")");
+       $set  = "disks_id,owner";
+       $data = "$disktype_id,$owner_id";
+       if (!empty($storeplace)) { $set .= ",storeplace"; $data .=",'$storeplace'"; }
+       if (!empty($lentto)) { $set .= ",lentto"; $data .=", '$lentto'"; }
+       return $this->dbquery("INSERT INTO pvp_media (id,mtype_id,$set) VALUES($cass_id,$mtype_id".",$data)");
      }
    }
 

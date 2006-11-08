@@ -115,7 +115,6 @@ INSERT INTO lang VALUES ('config_media','fr','Films et média','');
 INSERT INTO lang VALUES ('confirm_delete','fr','Voulez-vous vraiment supprimer ces enregistrements ?','');
 INSERT INTO lang VALUES ('confirm_prilang','fr','Voulez-vous vraiment changer la langue par défaut pour TOUS les (nouveaux) utilisateurs ?','');
 INSERT INTO lang VALUES ('confirm_userdelete','fr','Vous allez supprimer l\'utilisateur #%1','');
-INSERT INTO lang VALUES ('confirm_userdeletion','fr','Voulez-vous vraiment supprimer l\'utilisateur \"%1\" (%2) ?','');
 INSERT INTO lang VALUES ('content','fr','Contenu','');
 INSERT INTO lang VALUES ('cookies','fr','Cookies','');
 INSERT INTO lang VALUES ('counter_start_stop','fr','Compteur Début/Fin','');

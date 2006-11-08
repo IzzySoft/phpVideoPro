@@ -101,7 +101,6 @@ INSERT INTO lang VALUES ('compose_persons','iw','מלחינים','');
 INSERT INTO lang VALUES ('configuration','iw','מיחשוב','');
 INSERT INTO lang VALUES ('config_media','iw','מיחשוב סרטים ותקליטורים-קלטות','');
 INSERT INTO lang VALUES ('confirm_userdelete','iw','אתה עומד למחוק משמש  מספר %1','');
-INSERT INTO lang VALUES ('confirm_userdeletion','iw','?(באמת תרצה למחוק משמש \"%1\"(%2','');
 INSERT INTO lang VALUES ('content','iw','הרכב','');
 INSERT INTO lang VALUES ('cookies','iw','עוגיתות','');
 INSERT INTO lang VALUES ('counter_start_stop','iw','ממנה התחל/עצור','');

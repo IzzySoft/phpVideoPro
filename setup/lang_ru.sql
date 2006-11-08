@@ -123,7 +123,6 @@ INSERT INTO lang VALUES ('config_media','ru','Фильмы и носители',
 INSERT INTO lang VALUES ('confirm_delete','ru','Вы действительно хотите удалить эту запись?','');
 INSERT INTO lang VALUES ('confirm_prilang','ru','Вы действительно хотите изменить первичный язык по умолчанию для ВСЕХ (новых) пользователей?','');
 INSERT INTO lang VALUES ('confirm_userdelete','ru','Вы сейчас удаляете пользователя #%1','');
-INSERT INTO lang VALUES ('confirm_userdeletion','ru','Вы действительно хотите удалить пользователя \"%1\" (%2)?','');
 INSERT INTO lang VALUES ('content','ru','Содержимое','');
 INSERT INTO lang VALUES ('counter_start_stop','ru','Счетчик Старт/Стоп','');
 INSERT INTO lang VALUES ('countries','ru','Страны','');

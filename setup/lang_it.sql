@@ -118,7 +118,6 @@ INSERT INTO lang VALUES ('config_media','it','Film e media','');
 INSERT INTO lang VALUES ('confirm_delete','it','Desideri veramente cancellare questo record?','');
 INSERT INTO lang VALUES ('confirm_prilang','it','Desideri veramente cambiare la lingua originale di default per tutti i nuovi utenti?','');
 INSERT INTO lang VALUES ('confirm_userdelete','it','Stai per cancellare l\'utente #%1','');
-INSERT INTO lang VALUES ('confirm_userdeletion','it','Desideri veramente cancellare l\'utente \"%1\" (%2)?','');
 INSERT INTO lang VALUES ('content','it','Contenuti','');
 INSERT INTO lang VALUES ('cookies','it','Cookies','');
 INSERT INTO lang VALUES ('counter_start_stop','it','Inizio/stop contatore','');

@@ -100,7 +100,6 @@ INSERT INTO lang VALUES ('configuration','es','Configuración','');
 INSERT INTO lang VALUES ('config_media','es','Peliculas y Medio','');
 INSERT INTO lang VALUES ('confirm_delete','es','¿Esta seguro que desea eliminar este registro?','');
 INSERT INTO lang VALUES ('confirm_userdelete','es','Está al eliminar al usuario #%1','');
-INSERT INTO lang VALUES ('confirm_userdeletion','es','¿Realmente desea eliminar al usuario \"%1\" (%2)?','');
 INSERT INTO lang VALUES ('content','es','Contenido','');
 INSERT INTO lang VALUES ('cookies','es','\"Cookies\"','');
 INSERT INTO lang VALUES ('counter_start_stop','es','Comienze/Pare el contador','');

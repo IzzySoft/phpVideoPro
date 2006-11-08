@@ -101,7 +101,6 @@ INSERT INTO lang VALUES ('config_media','nl','Films en Media',' ');
 INSERT INTO lang VALUES ('confirm_delete','nl','Wilt u werkelijk dit record verwijderen?',' ');
 INSERT INTO lang VALUES ('confirm_prilang','nl','Wilt u werkelijk de standaard taal voor alle (nieuwe) gebruikers wijzigen? ',' ');
 INSERT INTO lang VALUES ('confirm_userdelete','nl','U gaat de volgende gebruiker verwijderen #%1',' ');
-INSERT INTO lang VALUES ('confirm_userdeletion','nl','Wilt u werkelijk de volgende gebruiker verwijderen  \"%1\" (%2)?',' ');
 INSERT INTO lang VALUES ('content','nl','Inhoud',' ');
 INSERT INTO lang VALUES ('counter_start_stop','nl','Teller Start/Stop',' ');
 INSERT INTO lang VALUES ('countries','nl','Landen',' ');

@@ -27,3 +27,23 @@ INSERT INTO pvp_media (id,mtype_id,disks_id,size,free,rc)
   SELECT id,mtype_id,disks_id,type,free,rc FROM cass;
 DROP INDEX cass_free_idx ON cass;
 DROP TABLE cass;
+
+ALTER TABLE actors COMMENT='Actor names';
+ALTER TABLE cat COMMENT='Categories';
+ALTER TABLE colors COMMENT='Types of movie colors, such as b/w, color, etc.';
+ALTER TABLE directors COMMENT='Director names';
+ALTER TABLE mtypes COMMENT='Media types used, e.g. DVD, VCD';
+ALTER TABLE disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
+ALTER TABLE music COMMENT='Names of composers/artists';
+ALTER TABLE pict COMMENT='Screen/picture formats, e.g. 4:3 or 16:9';
+ALTER TABLE tone COMMENT='Audio formats, e.g. Stereo, DD 5.1';
+ALTER TABLE commercials COMMENT='Are there commercials in the recording?';
+ALTER TABLE video COMMENT='Movie data';
+ALTER TABLE preferences COMMENT='Global preferences';
+ALTER TABLE pvp_userprefs COMMENT='User preferences';
+ALTER TABLE pvp_config COMMENT='General configuration of the application';
+ALTER TABLE lang COMMENT='Translations';
+ALTER TABLE languages COMMENT='Languages and their settings';
+ALTER TABLE pvp_users COMMENT='User and authorization data';
+ALTER TABLE pvp_sessions COMMENT='Session management data';
+ALTER TABLE pvp_options COMMENT='Global options';

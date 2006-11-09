@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -31,6 +31,22 @@
    else { echo $str; }
  }
 
+ #=============================================[ vulnerability protection ]===
+ $vuls = array();
+ foreach ($_REQUEST as $var) {
+   if ($var != "comment" && $var != "referer" && !$pvp->common->req_is_alnum($var))
+     $vuls[] = $var;
+ }
+ if ($vc = count($vuls)) {
+   $msg = lang("input_errors_occured",$vc) . "<UL>\n";
+   for ($i=0;$i<$vc;++$i) {
+     $msg .= "<LI>Variable ".$vuls[$i]."</LI>\n";
+   }
+   $msg .= "</UL>";
+   $pvp->common->die_error($msg);
+ }
+
+ #=======================================================[ setup template ]===
  $t = new Template($pvp->tpl_dir);
 
  $t->set_file(array("template"=>"backup_db.tpl"));

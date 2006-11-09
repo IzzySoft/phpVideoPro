@@ -118,6 +118,8 @@
    foreach ($check as $val) {
      if ($minfo->$val != $_POST["$val"]) $sinfo->$val = $_POST["$val"];
    }
+   if (isset($sinfo->owner_id) && $minfo->owner_id != $pvp->auth->user_id)
+     unset($sinfo->owner_id);
    $rc = $_POST["rc"];
    $rccount = count($rc);
    for ($i=0;$i<$rccount;++$i) {

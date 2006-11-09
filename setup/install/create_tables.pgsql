@@ -128,7 +128,7 @@ CREATE TABLE music (
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE actors IS 'Names of composers/artists';
+COMMENT ON TABLE music IS 'Names of composers/artists';
 
 # --------------------------------------------------------
 #

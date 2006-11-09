@@ -1,0 +1,29 @@
+# ========================================================
+# Updating Database for phpVideoPro from v0.8.0 to v0.8.1
+# ========================================================
+
+# prepare default lang update
+DELETE FROM lang WHERE lang='en';
+
+# version update
+UPDATE pvp_config SET value='0.8.1' WHERE name='version';
+
+CREATE TABLE pvp_media (
+   id INT(4) NOT NULL auto_increment,
+   mtype_id INT(3) DEFAULT 1 NOT NULL,
+   disks_id INT(3),
+   size INT(3),
+   free INT (3),
+   rc VARCHAR(25),
+   owner INT(5) NOT NULL DEFAULT 0,
+   storeplace VARCHAR(255),
+   lentto VARCHAR(100),
+   PRIMARY KEY (id,mtype_id)
+);
+ALTER TABLE pvp_media COMMENT='Media info (DVDs, tapes, etc)';
+CREATE INDEX media_free_idx ON pvp_media(free,id);
+
+INSERT INTO pvp_media (id,mtype_id,disks_id,size,free,rc)
+  SELECT id,mtype_id,disks_id,type,free,rc FROM cass;
+DROP INDEX cass_free_idx ON cass;
+DROP TABLE cass;

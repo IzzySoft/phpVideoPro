@@ -1,10 +1,10 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
- # This program is free software; you can redistribute and/or modify it      
+ # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # Help System: Create the Help Index                                        #
@@ -49,6 +49,7 @@
    li("start_page");
    li("view_entry");
    li("imdbsearch");
+   li("medium");
    li("media_change");
    li("change_rc");
    li("disktype_change");

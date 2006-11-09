@@ -13,23 +13,27 @@ CREATE TABLE actors (
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-
+ALTER TABLE actors COMMENT='Actor names';
 
 # --------------------------------------------------------
 #
-# Table structure for table 'cass'
+# Table structure for table 'pvp_media'
 #
 
-CREATE TABLE cass (
+CREATE TABLE pvp_media (
    id INT(4) NOT NULL auto_increment,
    mtype_id INT(3) DEFAULT 1 NOT NULL,
    disks_id INT(3),
-   type INT(3),
-   free INT(3),
+   size INT(3),
+   free INT (3),
    rc VARCHAR(25),
+   owner INT(5) NOT NULL DEFAULT 0,
+   storeplace VARCHAR(255),
+   lentto VARCHAR(100),
    PRIMARY KEY (id,mtype_id)
 );
-CREATE INDEX cass_free_idx ON cass(free,id);
+ALTER TABLE pvp_media COMMENT='Media info (DVDs, tapes, etc)';
+CREATE INDEX media_free_idx ON pvp_media(free,id);
 
 
 # --------------------------------------------------------
@@ -44,7 +48,7 @@ CREATE TABLE cat (
    PRIMARY KEY (id),
    UNIQUE name (name)
 );
-
+ALTER TABLE cat COMMENT='Categories';
 
 # --------------------------------------------------------
 #
@@ -58,7 +62,7 @@ CREATE TABLE colors (
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-
+ALTER TABLE colors COMMENT='Types of movie colors, such as b/w, color, etc.';
 
 # --------------------------------------------------------
 #
@@ -71,7 +75,7 @@ CREATE TABLE directors (
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-
+ALTER TABLE directors COMMENT='Director names';
 
 # --------------------------------------------------------
 #
@@ -85,11 +89,11 @@ CREATE TABLE mtypes (
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-
+ALTER TABLE mtypes COMMENT='Media types used, e.g. DVD, VCD';
 
 # --------------------------------------------------------
 #
-# Table structure for table 'mtypes'
+# Table structure for table 'disks'
 #
 CREATE TABLE disks (
   id INT(3) NOT NULL auto_increment,
@@ -100,7 +104,7 @@ CREATE TABLE disks (
   rc INT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
-
+ALTER TABLE disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
 
 # --------------------------------------------------------
 #
@@ -113,7 +117,7 @@ CREATE TABLE music (
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-
+ALTER TABLE music COMMENT='Names of composers/artists';
 
 # --------------------------------------------------------
 #
@@ -127,7 +131,7 @@ CREATE TABLE pict (
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-
+ALTER TABLE pict COMMENT='Screen/picture formats, e.g. 4:3 or 16:9';
 
 # --------------------------------------------------------
 #
@@ -141,7 +145,7 @@ CREATE TABLE tone (
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-
+ALTER TABLE tone COMMENT='Audio formats, e.g. Stereo, DD 5.1';
 
 # --------------------------------------------------------
 #
@@ -153,7 +157,7 @@ CREATE TABLE commercials (
    name VARCHAR(30),
    PRIMARY KEY (id)
 );
-
+ALTER TABLE commercials COMMENT='Are there commercials in the recording?';
 
 # --------------------------------------------------------
 #
@@ -202,9 +206,9 @@ CREATE TABLE video (
    comment TEXT,
    PRIMARY KEY (id)
 );
+ALTER TABLE video COMMENT='Movie data';
 CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
 CREATE UNIQUE INDEX video_unique_medium_idx ON video(mtype_id,cass_id,part);
-
 
 # --------------------------------------------------------
 #
@@ -217,7 +221,7 @@ CREATE TABLE preferences (
    value TEXT,
    PRIMARY KEY (id)
 );
-
+ALTER TABLE preferences COMMENT='Global preferences';
 # --------------------------------------------------------
 #
 # Table structure for table 'pvp_userprefs'
@@ -229,6 +233,7 @@ CREATE TABLE pvp_userprefs (
    value TEXT,
    PRIMARY KEY (id)
 );
+ALTER TABLE pvp_userprefs COMMENT='User preferences';
 
 # --------------------------------------------------------
 #
@@ -241,6 +246,7 @@ CREATE TABLE pvp_config (
    value TEXT,
    PRIMARY KEY (id)
 );
+ALTER TABLE pvp_config COMMENT='General configuration of the application';
 
 # --------------------------------------------------------
 #
@@ -254,6 +260,7 @@ CREATE TABLE lang (
   comment TEXT,
   PRIMARY KEY (message_id,lang)
 );
+ALTER TABLE lang COMMENT='Translations';
 
 # --------------------------------------------------------
 #
@@ -269,6 +276,7 @@ CREATE TABLE languages (
   subtitle INT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (lang_id)
 );
+ALTER TABLE languages COMMENT='Languages and their settings';
 
 #
 # Table structure for table pvp_users (user management and authorization)
@@ -287,6 +295,7 @@ CREATE TABLE pvp_users (
   UNIQUE login (login),
   PRIMARY KEY (id)
 );
+ALTER TABLE pvp_users COMMENT='User and authorization data';
 
 #
 # Table structure for pvp_sessions (session management)
@@ -300,6 +309,7 @@ CREATE TABLE pvp_sessions (
   ended VARCHAR(50),
   PRIMARY KEY (id)
 );
+ALTER TABLE pvp_sessions COMMENT='Session management data';
 
 #
 # Table structure for pvp_options (option management)
@@ -310,3 +320,4 @@ CREATE TABLE pvp_options (
   value TEXT,
   PRIMARY KEY  (id)
 );
+ALTER TABLE pvp_options COMMENT='Global options';

@@ -1191,6 +1191,7 @@
     * @version array description:<pre>
     *  Media data: mtype_id, mtype, mtype_short, cass_id, part,
     *              previous, next (see get_preventry/get_nextentry)
+    *              owner_id, storeplace, lentto
     *  Tech  data: color, color_short, color_id, tone, tone_short, tone_id,
     *              pict, pict_short, pict_id, commercials, commercials_id,
     *              lp, label
@@ -1244,7 +1245,7 @@
      $rc = $this->num_rows(); # somehow the while loop does not work here???
      for ( $rcc=0;$rcc<$rc;++$rcc ) {
        $this->next_record();
-       $moviedetails = array("owner","title","label","length","country","year",
+       $moviedetails = array("owner_id","title","label","length","country","year",
                      "counter1","counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","cass_id","part",
@@ -1789,7 +1790,7 @@
        $this->insert_medium($cass_id,$mtype_id,$space);
        $this->update_freetime($cass_id,$mtype_id);
      }
-     $this->set_disktype($cass_id,$mtype_id,$disktype,$owner,$storeplace,$lentto);
+     $this->set_disktype($cass_id,$mtype_id,$disktype,$owner_id,$storeplace,$lentto);
      if ( isset($rc) && count($rc) ) $this->set_rc($mtype_id,$cass_id,$rc);
      return $success;
    }
@@ -1951,28 +1952,20 @@
 
    /** Set media information (update changes)
     *  The object can be incomplete: Only the values set will be updated
-    *  (INSERT/add not catered yet)
     * @method set_mediainfo
     * @param integer mtype_id
     * @param integer id
     * @param object disk
     */
    function set_mediainfo($mtype_id,$id,$disk) {
+     GLOBAL $pvp;
      $this->query("SELECT owner FROM pvp_media WHERE id=$id AND mtype_id=$mtype_id");
      $this->next_record();
-     if ($this->f('owner')||$this->f('owner')==0) {
+     $add   = "";
+     if ($this->f('owner')||$this->f('owner')==0) { // this is an update
        $query  = "UPDATE pvp_media ";
-       $update = TRUE;
-     } else {
-       $query  = "INSERT INTO pvp_media ";
-       $update = FALSE;
-     }
-     if ($update) {
-       $check = array("size","owner_id");
-       $add   = "";
-       foreach ($check as $val) {
-         if (isset($disk->$val)) $add .= ",$val=".$disk->$val;
-       }
+       if (isset($disk->size)) { $add .= ",size=".$disk->size; }
+       if (isset($disk->owner_id)) { $add .= ",owner=".$disk->owner_id; }
        $check = array("storeplace","lentto");
        foreach ($check as $val) {
          if (isset($disk->$val)) $add .= ",$val='".$disk->$val."'";
@@ -1981,10 +1974,21 @@
          $query .= "SET ".substr($add,1)." WHERE id=$id AND mtype_id=$mtype_id";
          $this->dbquery($query);
        }
-       if (isset($disk->rc) && is_array($disk->rc))
-         $this->set_rc($mtype_id,$id,$disk->rc);
-     } else {
+     } else { // no entry yet - go insert it!
+       $query  = "INSERT INTO pvp_media (id,mtype_id";
+       $add    = "VALUES ($id,$mtype_id";
+       if (isset($disk->disks_id)) { $query .= ",disks_id"; $add .= ",".$disk->disks_id; }
+       if (isset($disk->size)) { $query .= ",size"; $add .= ",".$disk->size; }
+       if (isset($disk->free)) { $query .= ",free"; $add .= ",".$disk->free; }
+       if (!isset($disk->owner_id)) $disk->owner_id = $pvp->auth->user_id;
+       $query .= ",owner"; $add .= ",".$disk->owner_id;
+       if (isset($disk->storeplace)) { $query .= ",storeplace"; $add .= ",'".$disk->storeplace."'"; }
+       if (isset($disk->lentto)) { $query .= ",lentto"; $add .= ",'".$disk->lentto."'"; }
+       $query .= ") $add)";
+       $this->dbquery($query);
      }
+     if (isset($disk->rc) && is_array($disk->rc))
+       $this->set_rc($mtype_id,$id,$disk->rc);
    }
 
    /** Transfer ownership of media from one user to another for all

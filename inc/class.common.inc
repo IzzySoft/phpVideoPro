@@ -187,23 +187,23 @@ class common {
           } else {
             $imgurl = "\\1";
           }
-          $sub  = eregi_replace("\[url\](.*)\[\/url\]","<A HREF=\"$imgurl\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
+          $sub  = eregi_replace("\[url\](.*)\[\/url\]","<A HREF=\"$imgurl\" TARGET=\"_blank\" ALT=''>\\1</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" STYLE=\"margin-right:4\" SRC=\"\\1\">",$matches[0][$i]);
+          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" STYLE=\"margin-right:4\" SRC=\"\\1\" ALT=''>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       if ( preg_match_all("/\[imgr\]\S+\[\/imgr\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" STYLE=\"margin-left:4\" SRC=\"\\1\">",$matches[0][$i]);
+          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" STYLE=\"margin-left:4\" SRC=\"\\1\" ALT=''>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      $line = eregi_replace("\[imgr\](.*)\[\/img\]","<IMG ALIGN=\"right\" SRC=\"\\1\">",$line);
+      $line = eregi_replace("\[imgr\](.*)\[\/img\]","<IMG ALIGN=\"right\" SRC=\"\\1\" ALT=''>",$line);
       $newText .= "$line\n";
     }
     return $newText;
@@ -500,10 +500,10 @@ class common {
    $vuls = "/[^\w\s-\/\?\.,\"!\(\)'\pL]/u";
    if (!empty($_POST[$var])) {
      $test = stripslashes((string) $_POST[$var]);
-     if (preg_match($vuls,$test)) return FALSE; }
+     if (@preg_match($vuls,$test)) return FALSE; }
    if (!empty($_GET[$var])) {
      $test = stripslashes((string) $_GET[$var]);
-     if (preg_match($vuls,$test)) return FALSE; }
+     if (@preg_match($vuls,$test)) return FALSE; }
    return TRUE;
   }
 

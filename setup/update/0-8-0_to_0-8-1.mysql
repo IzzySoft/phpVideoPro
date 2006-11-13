@@ -52,6 +52,15 @@ INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment)
 DROP TABLE pvp_users_bak;
 
 
+# New table for the users grants
+CREATE TABLE pvp_usergrants (
+  grantor INT(5) NOT NULL,
+  grantee INT(5) NOT NULL,
+  grants VARCHAR(25) NOT NULL,
+  PRIMARY KEY (grantor,grantee,grants)
+);
+ALTER TABLE pvp_usergrants COMMENT='Privileges user grant to other users';
+
 # Add comments to all tables
 ALTER TABLE actors COMMENT='Actor names';
 ALTER TABLE cat COMMENT='Categories';

@@ -388,3 +388,18 @@ CREATE TABLE pvp_options (
   PRIMARY KEY  (id)
 );
 COMMENT ON TABLE pvp_options IS 'Global options';
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_usergrants'
+#
+CREATE TABLE pvp_usergrants (
+  grantor INT NOT NULL,
+  grantee INT NOT NULL,
+  grants VARCHAR NOT NULL
+);
+ALTER TABLE pvp_usergrants ADD CONSTRAINT pk_usergrants PRIMARY KEY (grantor,grantee,grants);
+COMMENT ON TABLE pvp_usergrants IS 'Privileges user grant to other users';
+COMMENT ON COLUMN pvp_usergrants.grantor IS 'Owner who gives permission to his collection';
+COMMENT ON COLUMN pvp_usergrants.grantee IS 'To whom the permission is given';
+COMMENT ON COLUMN pvp_usergrants.grants IS 'Which permission is given';

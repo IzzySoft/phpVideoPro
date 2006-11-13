@@ -321,3 +321,14 @@ CREATE TABLE pvp_options (
   PRIMARY KEY  (id)
 );
 ALTER TABLE pvp_options COMMENT='Global options';
+
+#
+# Table structure for table 'pvp_usergrants'
+#
+CREATE TABLE pvp_usergrants (
+  grantor INT(5) NOT NULL,
+  grantee INT(5) NOT NULL,
+  grants VARCHAR(25) NOT NULL,
+  PRIMARY KEY (grantor,grantee,grants)
+);
+ALTER TABLE pvp_usergrants COMMENT='Privileges user grant to other users';

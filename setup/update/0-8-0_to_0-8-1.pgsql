@@ -64,6 +64,19 @@ INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment)
 DROP TABLE pvp_users_bak;
 
 
+# Add the table for the user grants
+CREATE TABLE pvp_usergrants (
+  grantor INT NOT NULL,
+  grantee INT NOT NULL,
+  grants VARCHAR NOT NULL
+);
+ALTER TABLE pvp_usergrants ADD CONSTRAINT pk_usergrants PRIMARY KEY (grantor,grantee,grants);
+COMMENT ON TABLE pvp_usergrants IS 'Privileges user grant to other users';
+COMMENT ON COLUMN pvp_usergrants.grantor IS 'Owner who gives permission to his collection';
+COMMENT ON COLUMN pvp_usergrants.grantee IS 'To whom the permission is given';
+COMMENT ON COLUMN pvp_usergrants.grants IS 'Which permission is given';
+
+
 # Add comments to all tables and columns
 COMMENT ON TABLE actors IS 'Actor names';
 COMMENT ON TABLE cat IS 'Categories';

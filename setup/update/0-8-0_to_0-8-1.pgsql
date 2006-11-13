@@ -8,6 +8,7 @@ DELETE FROM lang WHERE lang='en';
 # version update
 UPDATE pvp_config SET value='0.8.1' WHERE name='version';
 
+# New structure for the old 'cass' table - now 'pvp_media':
 CREATE TABLE pvp_media (
    id INT,
    mtype_id INT DEFAULT 1,
@@ -41,6 +42,29 @@ INSERT INTO pvp_media (id,mtype_id,disks_id,size,free,rc)
 DROP INDEX cass_free_idx;
 DROP TABLE cass;
 
+
+# We need the PUBLIC user havind id 0, so we re-create the pvp_users table
+# to avoid conflicts where this ID is already in use
+ALTER TABLE pvp_users RENAME TO pvp_users_bak;
+CREATE TABLE pvp_users (
+  id SERIAL,
+  login VARCHAR(20) UNIQUE,
+  pwd VARCHAR(32),
+  admin INT NOT NULL,
+  browse INT NOT NULL,
+  ins INT NOT NULL,
+  upd INT NOT NULL,
+  del INT NOT NULL,
+  comment VARCHAR(255),
+  PRIMARY KEY (id)
+);
+INSERT INTO pvp_users (id,login,pwd,admin,browse,ins,upd,del,comment) VALUES (0,'PUBLIC','',0,1,0,0,0,'Systems publicity');
+INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment)
+  SELECT login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users_bak;
+DROP TABLE pvp_users_bak;
+
+
+# Add comments to all tables and columns
 COMMENT ON TABLE actors IS 'Actor names';
 COMMENT ON TABLE cat IS 'Categories';
 COMMENT ON COLUMN cat.name IS 'Internal name of the category';

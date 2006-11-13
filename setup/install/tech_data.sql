@@ -22,6 +22,7 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 
 # Data for pvp_users
 #
+INSERT INTO pvp_users (id,login,pwd,admin,browse,ins,upd,del,comment) VALUES (0,'PUBLIC','',0,1,0,0,0,'Systems publicity');
 INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment) VALUES ('admin','421b47ffd946ca083b65cd668c6b17e6',1,1,1,1,1,'Administrator');
 INSERT INTO pvp_users (login,admin,browse,ins,upd,del,comment) VALUES ('guest',0,1,0,0,0,'Alien Visitor');
 #

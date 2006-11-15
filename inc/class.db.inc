@@ -680,6 +680,7 @@
     * @return boolean success
     */
    function del_user($id) {
+     $this->dbquery("DELETE FROM pvp_usergrants WHERE grantee=$id OR grantor=$id");
      $this->dbquery("DELETE FROM pvp_users WHERE id=$id");
      if ( $this->affected_rows() < 0 ) return FALSE;
      return TRUE;

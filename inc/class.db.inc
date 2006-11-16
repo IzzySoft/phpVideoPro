@@ -686,6 +686,97 @@
      return TRUE;
    }
 
+   /** Get list of usergrants
+    * @method get_usergrants
+    * @param optional array grantor array of INT (IDs)
+    * @param optional array grantee array of INT (IDs)
+    * @param optional array grant array of string (grants)
+    * @return mixed grants
+    * <pre>array[] of user_id when grantor/grantee and grant given
+    *  array[] of grant when grantor and grantee given
+    *  array[grantor][] of user_id (grantee) when only grants given
+    *  array[grantor|grantee][] of grant when grantor or grantee given
+    *  array[grantor][grantee][] of grant when no params given
+    *  boolean when all params given</pre>
+    */
+   function get_usergrants($grantor=array(),$grantee=array(),$grant=array()) {
+     if (empty($grant)) { // no grants specified
+       if (empty($grantee)) { // no grantee given
+         if (empty($grantor)) { // no param specified
+           $this->query("SELECT grantor,grantee,grants FROM pvp_usergrants");
+           while ($this->next_record()) {
+             $grantor = $this->f('grantor');
+             $grantee = $this->f('grantee');
+             $list[$grantor][$grantee][] = $this->f('grants');
+           }
+         } else { // only grantor specified
+           $glist = implode(",",$grantor);
+           $this->query("SELECT grantee,grants FROM pvp_usergrants WHERE grantor IN ($glist)");
+           while ($this->next_record()) {
+             $grantee = $this->f('grantee');
+             $list[$grantee][] = $this->f('grants');
+           }
+         }
+       } else { // we have grantee and NO grant
+         if (empty($grantor)) { // only grantee
+           $grantees = implode(",",$grantee);
+           $this->query("SELECT grantor,grants FROM pvp_usergrants WHERE grantee IN ($grantees)");
+           while ($this->next_record()) {
+             $grantor = $this->f('grantor');
+             $list[$grantor][] = $this->f('grants');
+           }
+         } else { // grantor and grantee, but no grants
+           $grantors = implode(",",$grantor);
+           $grantees = implode(",",$grantee);
+           $this->query("SELECT grants FROM pvp_usergrants WHERE grantee IN ($grantees) AND grantor IN ($grantors)");
+           while ($this->next_record()) {
+             $list[] = $this->f('grants');
+           }
+         }
+       }
+     } else { // grants specified
+       if (empty($grantee)) { // grants but NO grantee
+         if (empty($grantor)) { // grants only
+           $grants   = implode(",",$grant);
+           $grants   = "'".str_replace(",","','",$grants)."'";
+           $this->query("SELECT grantor,grantee FROM pvp_usergrants WHERE grants IN ($grants)");
+           while ($this->next_record()) {
+             $grantor = $this->f('grantor');
+             $list[$grantor][] = $this->f('grantee');
+           }
+         } else { // grants and grantor, no grantee
+           $grantors = implode(",",$grantor);
+           $grants   = implode(",",$grant);
+           $grants   = "'".str_replace(",","','",$grants)."'";
+           $this->query("SELECT grantee FROM pvp_usergrants WHERE grantor IN ($grantors) AND grants IN ($grants)");
+           while ($this->next_record()) {
+             $list[] = $this->f('grantee');
+           }
+         }
+       } else { // we have grantee and grant
+         if (empty($grantor)) { // only grantee and grant
+           $grantees = implode(",",$grantee);
+           $grants   = implode(",",$grant);
+           $grants   = "'".str_replace(",","','",$grants)."'";
+           $this->query("SELECT grantor FROM pvp_usergrants WHERE grantee IN ($grantees) AND grants IN ($grants)");
+           while ($this->next_record()) {
+             $list[] = $this->f('grantor');
+           }
+         } else { // all params given
+           $grantors = implode(",",$grantor);
+           $grantees = implode(",",$grantee);
+           $grants   = implode(",",$grant);
+           $grants   = "'".str_replace(",","','",$grants)."'";
+           $this->query("SELECT COUNT(*) AS gnum FROM pvp_usergrants WHERE grantor IN ($grantors) AND grantee IN ($grantees) AND grants IN ($grants)");
+           $this->next_record();
+           $gnum = $this->f('gnum');
+           return ($gnum>0);
+         }
+       }
+     }
+     return $list;
+   }
+
    ############################################################################
    # people and their names
    ############################################################################

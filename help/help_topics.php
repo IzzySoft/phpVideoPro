@@ -34,12 +34,14 @@
     li("configuration",2);
    li("filter");
    li("view");
+    li("start_page",2);
     li("medialist",2);
     li("actors",2);
     li("directors",2);
     li("music",2);
     li("taperest_absolute",2);
     li("taperest_filtered",2);
+    li("dupes",2);
     li("stats",2);
    li("print");
     li("label",2);

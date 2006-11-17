@@ -532,3 +532,5 @@ INSERT INTO lang VALUES ('owner','de','Eigentümer','');
 INSERT INTO lang VALUES ('storeplace','de','Standort','');
 INSERT INTO lang VALUES ('lentto','de','Verliehen an','');
 INSERT INTO lang VALUES ('own_to_user','de','Übereignen an','');
+INSERT INTO lang VALUES ('dupes_own_strict','de','Duplikate Einträge (eigene+streng)','');
+INSERT INTO lang VALUES ('dupes_own','de','Duplikate Einträge (eigene)','');

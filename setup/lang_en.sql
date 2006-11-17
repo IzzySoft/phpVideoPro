@@ -625,4 +625,6 @@ INSERT INTO lang VALUES ('owner','en','Owner','how we call the owner of a medium
 INSERT INTO lang VALUES ('storeplace','en','Stored at','the physical place a medium resides');
 INSERT INTO lang VALUES ('lentto','en','Lent to','if we temporarily gave away some medium');
 INSERT INTO lang VALUES ('own_to_user','en','Transfer to','name of select box for media of user to delete');
+INSERT INTO lang VALUES ('dupes_own_strict','en','Duplicate entries (own+strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
+INSERT INTO lang VALUES ('dupes_own','en','Duplicate entries (own)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
 #INSERT INTO lang VALUES ('','en','','');

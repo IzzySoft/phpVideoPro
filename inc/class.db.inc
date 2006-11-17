@@ -1939,7 +1939,13 @@
     *  array[$i]['title']; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
     *  where $i counts the distinct titles, and $k the copies per title
     */
-   function get_dupetitles($strict=1) {
+   function get_dupetitles($strict=1,$owner=1) {
+     GLOBAL $pvp;
+     if ($owner) { // only check for the owners records
+       $valid_owners = array($pvp->auth->user_id);
+     } elseif (!$pvp->auth->admin) {
+       $valid_owners = $this->get_usergrants(array(),$pvp->auth->user_id,'SELECT');
+     }
      $query  = "SELECT o.title as titel, o.id as o_id, o.mtype_id as o_mtypeid,"
              . " o.cass_id as o_cassnr, o.part as o_part, o.length as o_len,"
              . " o.audio as o_audio, o.fsk as o_fsk, o.year as o_year,"
@@ -1984,8 +1990,9 @@
        $dupes[$i][$k]->len      = $this->f('d_len');
      }
      $dc = count($dupes);
-     for ($i=0;$i<$dc;++$i) {
+     for ($i=0;$i<$dc;++$i) { // check the owner
        $kc = count($dupes[$i]);
+       $have_unset = FALSE;
        for ($k=0;$k<$kc;++$k) {
          if (!empty($dupes[$i][$k]->mtype_id)) {
            $query = "SELECT owner FROM pvp_media"
@@ -1994,11 +2001,25 @@
            $this->query($query);
            $this->next_record();
            $owner_id = $this->f('owner');
-           $this->query("SELECT login FROM pvp_users WHERE id=$owner_id");
-           $this->next_record();
-           $dupes[$i][$k]->owner = $this->f('login');
+           if (!isset($valid_owners) || in_array($owner_id,$valid_owners)) {
+             $this->query("SELECT login FROM pvp_users WHERE id=$owner_id");
+             $this->next_record();
+             $dupes[$i][$k]->owner = $this->f('login');
+           } else {
+             if (count($dupes[$i])>3) unset ($dupes[$i][$k]);
+             else {
+               unset($dupes[$i]);
+               $have_unset = TRUE;
+             }
+           }
          }
        }
+     }
+     if ($have_unset) {
+       for ($i=0;$i<$dc;++$i) {
+         if (isset($dupes[$i])) $list[] = $dupes[$i];
+       }
+       return $list;
      }
      return $dupes;
    }

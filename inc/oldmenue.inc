@@ -68,6 +68,8 @@
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes_strict")?>", "<?=$pvp->link->slink($base_url.'dupes.php?strict=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes")?>", "<?=$pvp->link->slink($base_url.'dupes.php')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes_own_strict")?>", "<?=$pvp->link->slink($base_url.'dupes.php?strict=1&own=1')?>"));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("dupes_own")?>", "<?=$pvp->link->slink($base_url.'dupes.php?own=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("db_stats")?>", "<?=$pvp->link->slink($base_url.'stats.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 

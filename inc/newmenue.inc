@@ -108,6 +108,8 @@ if (isset($_REQUEST["sess_id"])) {
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."dupes.php",lang("dupes"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."dupes.php?strict=1",lang("dupes_strict"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."dupes.php?own=1",lang("dupes_own"),"class='menuItem'") ."\n";
+ echo $pvp->link->linkurl($base_url."dupes.php?strict=1&own=1",lang("dupes_own_strict"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."stats.php",lang("db_stats"),"class='menuItem'") ."\n";
 ?>
 </div>

@@ -17,6 +17,10 @@
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->browse) kickoff();
 
+ #==================================================[ Check vulnerability ]===
+ vul_num("strict");
+ vul_num("own");
+
  #==================================================[ Initialize Template ]===
  include("inc/header.inc");
  $t = new Template($pvp->tpl_dir);
@@ -30,7 +34,8 @@
    $mtypes[$id]['sname'] = $mtypelist[$i]['sname'];
  }
  if ($_REQUEST["strict"]==1) $strict = 1; else $strict = 0;
- $dupes  = $db->get_dupetitles($strict);
+ if ($_REQUEST["own"]==1) $own = 1; else $own = 0;
+ $dupes  = $db->get_dupetitles($strict,$own);
  $dupecount = count($dupes);
 
  for ($i=0;$i<$dupecount;++$i) {

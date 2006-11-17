@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
-# $page_id = "dupes";
+ $page_id = "dupes";
  include("inc/includes.inc");
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->browse) kickoff();

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -95,7 +95,7 @@
   function linkhelp($topic) {
     GLOBAL $pvp;
     if ($pvp->preferences->get("bubble_help_enable")) $title = " TITLE='".lang("help_for_block")."'";
-    $link = "<A HREF=\"JavaScript:open_help('$topic');\"><IMG BORDER='0' SRC='"
+    $link = "<A HREF=\"JavaScript:open_help('$topic');\"><IMG BORDER='0' ALT='".lang("help_for_block")."' SRC='"
           . $pvp->tpl_url."/images/info.gif'".$title." STYLE='cursor:help;'></A>";
     return $link;
   }

@@ -727,6 +727,7 @@
            }
          } else { // grantor and grantee, but no grants
            $grantors = implode(",",$grantor);
+           $grantee[] = 0; // if grantor gave to public, he gave to everybody
            $grantees = implode(",",$grantee);
            $this->query("SELECT grants FROM pvp_usergrants WHERE grantee IN ($grantees) AND grantor IN ($grantors)");
            while ($this->next_record()) {
@@ -745,25 +746,28 @@
              $list[$grantor][] = $this->f('grantee');
            }
          } else { // grants and grantor, no grantee
-           $grantors = implode(",",$grantor);
-           $grants   = implode(",",$grant);
+           $grantors = @implode(",",$grantor);
+           $grants   = @implode(",",$grant);
            $grants   = "'".str_replace(",","','",$grants)."'";
            $this->query("SELECT grantee FROM pvp_usergrants WHERE grantor IN ($grantors) AND grants IN ($grants)");
            while ($this->next_record()) {
              $list[] = $this->f('grantee');
            }
+           $list += $grantor; // everybody has grants to himself
          }
        } else { // we have grantee and grant
          if (empty($grantor)) { // only grantee and grant
-           $grantees = implode(",",$grantee);
-           $grants   = implode(",",$grant);
+           $grantees = @implode(",",$grantee);
+           $grants   = @implode(",",$grant);
            $grants   = "'".str_replace(",","','",$grants)."'";
            $this->query("SELECT grantor FROM pvp_usergrants WHERE grantee IN ($grantees) AND grants IN ($grants)");
            while ($this->next_record()) {
              $list[] = $this->f('grantor');
            }
+           $list[] = 0; // public gives to everybody
          } else { // all params given
            $grantors = implode(",",$grantor);
+           $grantee[] = 0; // if grantor gave to public, he gave to everybody
            $grantees = implode(",",$grantee);
            $grants   = implode(",",$grant);
            $grants   = "'".str_replace(",","','",$grants)."'";
@@ -1431,6 +1435,7 @@
     * @see sql::get_movie()
     */
    function get_movielist($order="",$restrict="",$start="") {
+     GLOBAL $pvp;
      $filter = get_filters();
      $where  = "";
      switch ($order) {
@@ -1450,6 +1455,15 @@
        } else {
          $where = " WHERE $filter";
        }
+     }
+     if (!$pvp->auth->admin) { // which collections we may access?
+       $grants = $this->get_usergrants(array(),array($pvp->auth->user_id,0),array("SELECT"));
+       $owners = implode(",",$grants);
+       $query .= ", pvp_media m";
+       if (empty($where)) $where = " WHERE"; else $where .= " AND";
+       $where .= " m.owner IN ($owners) AND v.cass_id=m.id AND v.mtype_id=m.mtype_id";
+     }
+     if (!empty($owners)) {
      }
      $query .= $where;
      $query .= " ORDER BY $orderby";
@@ -1935,6 +1949,8 @@
     *    <li>different year (maybe a new version/remake)</li>
     *    <li>different audio tracks, and no movie covers all of the others</li>
     *  </ul>
+    * @param optional boolean owner default TRUE - whether to restrict the
+    *  check to the records owned by the logged-in user
     * @return array array of titles:
     *  array[$i]['title']; array[$i][$k]-&gt;id,mtype_id,cass_nr,part,len
     *  where $i counts the distinct titles, and $k the copies per title
@@ -1944,7 +1960,7 @@
      if ($owner) { // only check for the owners records
        $valid_owners = array($pvp->auth->user_id);
      } elseif (!$pvp->auth->admin) {
-       $valid_owners = $this->get_usergrants(array(),$pvp->auth->user_id,'SELECT');
+       $valid_owners = $this->get_usergrants(array(),array(0,$pvp->auth->user_id),array('SELECT'));
      }
      $query  = "SELECT o.title as titel, o.id as o_id, o.mtype_id as o_mtypeid,"
              . " o.cass_id as o_cassnr, o.part as o_part, o.length as o_len,"

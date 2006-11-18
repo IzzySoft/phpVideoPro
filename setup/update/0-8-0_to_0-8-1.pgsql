@@ -58,7 +58,8 @@ CREATE TABLE pvp_users (
   comment VARCHAR(255),
   PRIMARY KEY (id)
 );
-INSERT INTO pvp_users (id,login,pwd,admin,browse,ins,upd,del,comment) VALUES (0,'PUBLIC','',0,1,0,0,0,'Systems publicity');
+INSERT INTO pvp_users (id,login,pwd,admin,browse,ins,upd,del,comment) VALUES (0,'PUBLIC','x',0,1,0,0,0,'Systems publicity');
+UPDATE pvp_users SET id=0 WHERE login='PUBLIC';
 INSERT INTO pvp_users (login,pwd,admin,browse,ins,upd,del,comment)
   SELECT login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users_bak;
 DROP TABLE pvp_users_bak;

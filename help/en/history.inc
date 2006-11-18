@@ -19,6 +19,11 @@
      storeplace,lentto). So also the backup/restore should consider these
      (not thoroughly tested - reports welcome!). Restore will not yet work
      correctly into a databse with different user settings!
+ <li>added vulnerability check to backup and dupecheck pages
+ <li>two new dupecheck types: "only my own" and "only my own + strict"
+ <li>added help page for the dupe checks
+ <li>medialist now only displays records the user has permission on.
+     A restriction to only own records is not yet available.
 </ul>
 
 [title]

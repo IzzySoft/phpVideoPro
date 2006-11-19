@@ -140,7 +140,6 @@
      $pvp->common->die_error($msg);
    }
    #----------------------------------------------------------[ save data ]---
-#echo "<pre>";print_r($filter);die("</pre>");
 
    $save = rawurlencode( serialize($filter) );
    $pvp->preferences->set("filter",$save);
@@ -154,7 +153,6 @@
  $filter = $pvp->preferences->retrieve_filter($pvp->auth->user_id);
  if ( $filter ) { // there are already filters defined
    $filter = unserialize ( rawurldecode( $filter ) );
-#echo "<pre>";print_r($filter);die("</pre>");
  }
  #===============================================[ Create the Form Fields ]===
  #---------------------------------------------[ Setup special JavaScript ]---
@@ -360,7 +358,8 @@
  #-----------------------------------------------------------[ lower side ]---
  $t->set_var("grant_desc",lang("grant_filter_desc"));
  $t->set_var("grant_sel_name","grants");
- $user = $db->get_usergrants(array(),array($pvp->auth->user_id),array("SELECT"));
+ $user = $db->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT"));
+ $user = array_values(array_unique($user));
  $uc = count($user);
  for ($i=0;$i<$uc;++$i) {
    $udet = $db->get_users($user[$i]);

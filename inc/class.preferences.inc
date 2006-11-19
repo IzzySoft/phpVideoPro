@@ -35,7 +35,8 @@
               "imdb_tx_title","imdb_tx_year","imdb_tx_pg","imdb_tx_length",
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
               "imdb_tx_country","imdb_txwin_autoclose","imdb_tx_music",
-              "default_movie_langid","default_movie_pictid","bubble_help_enable");
+              "default_movie_langid","default_movie_pictid","bubble_help_enable",
+              "showuser");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }
@@ -277,6 +278,19 @@
    // if we get here, there's no filter defined
    return "";
   } // end get_filters()
+
+  /** Which collections the user wants to see?
+   * @method get_owner_filter
+   * @return string owner_ids for WHERE..IN clause or empty string
+   */
+  function get_owner_filter() {
+   $filter = $this->retrieve_filter();
+   if ( strlen($filter) ) { // there are already filters defined
+     $filter = unserialize ( rawurldecode($filter) );
+     if (empty($filter->showuser)) return "";
+     return implode(",",$filter->showuser);
+    }
+  }
 
  /** Color settings for HTML code
   * @class preferences

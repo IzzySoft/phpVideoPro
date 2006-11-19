@@ -1750,15 +1750,21 @@
     * @return object next entry: mtype_id, media_rn, part
     */
    function get_nextentry($mtype_id,$media_nr,$part) {
+     GLOBAL $pvp;
+     $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
      $next->mtype_id = $mtype_id;
      $next->media_nr = $media_nr;
      $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part>$part");
-     if ($this->next_record()) {
+     if ($this->next_record()) { // check on the same medium
        $next->part = $this->f('part');
        if($next->part) return $next;
      }
-     $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id>$media_nr");
+     $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
+            . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+            . "   AND m.owner IN ($gusers)"
+            . "   AND v.mtype_id=$mtype_id AND v.cass_id>$media_nr";
+     $this->query($query); // check for next valid medium
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
        if ($next->media_nr) { # Work around MySQL bug returning "Null" sometimes
@@ -1778,7 +1784,11 @@
      do {
        ++$next->mtype_id;
      } while ( (!isset($mt[$next->mtype_id])) && ($next->mtype_id<$maxid) );
-     $this->query("SELECT MIN(cass_id) AS medianr FROM video WHERE mtype_id=".$next->mtype_id);
+     $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
+            . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+            . "   AND m.owner IN ($gusers)"
+            . "   AND v.mtype_id=".$next->mtype_id;
+     $this->query($query); // switch to next media type
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
        if ($next->media_nr) {
@@ -1799,18 +1809,24 @@
     * @return object next entry: mtype_id, media_rn, part
     */
    function get_preventry($mtype_id,$media_nr,$part) {
+     GLOBAL $pvp;
+     $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
      $prev->mtype_id = $mtype_id;
      $prev->media_nr = $media_nr;
-     if ($part>1) {
+     if ($part>1) { // check on the same medium
        $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part<$part");
        if ($this->next_record()) {
          $prev->part = $this->f('part');
          if ($prev->part) return $prev; // MySQL sometimes returns empty rows
        }
      }
-     if ($media_nr>1) {
-       $this->query("SELECT MAX(cass_id) AS medianr FROM video WHERE mtype_id=$mtype_id AND cass_id<$media_nr");
+     if ($media_nr>1) { // check for previous medium
+       $query = "SELECT MAX(v.cass_id) AS medianr FROM video v,pvp_media m"
+              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+              . "   AND m.owner IN ($gusers)"
+              . "   AND v.mtype_id=$mtype_id AND v.cass_id<$media_nr";
+       $this->query($query);
        if ($this->next_record()) {
          $prev->media_nr = $this->f('medianr');
          if (!is_numeric($prev->media_nr)) return FALSE;

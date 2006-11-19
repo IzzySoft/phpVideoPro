@@ -23,7 +23,8 @@
  <li>two new dupecheck types: "only my own" and "only my own + strict"
  <li>added help page for the dupe checks
  <li>medialist now only displays records the user has permission on.
-     A restriction to only own records is not yet available.
+     A restriction to e.g. only own records is now possible via the filter
+     settings.
 </ul>
 
 [title]

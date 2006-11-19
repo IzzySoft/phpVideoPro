@@ -1457,14 +1457,22 @@
          $where = " WHERE $filter";
        }
      }
-     if (!$pvp->auth->admin) { // which collections we may access?
+     $showusers = $pvp->preferences->get_owner_filter();
+     if ($pvp->auth->admin) { // which collections we may access?
+       if (!empty($showusers)) {
+         $query .= ", pvp_media m";
+         if (empty($where)) $where = " WHERE"; else $where .= " AND";
+         $where .= " m.owner IN ($showusers) AND v.cass_id=m.id AND v.mtype_id=m.mtype_id";
+       }
+     } else {
        $grants = $this->get_usergrants(array(),array($pvp->auth->user_id,0),array("SELECT"));
        $owners = implode(",",$grants);
        $query .= ", pvp_media m";
        if (empty($where)) $where = " WHERE"; else $where .= " AND";
        $where .= " m.owner IN ($owners) AND v.cass_id=m.id AND v.mtype_id=m.mtype_id";
-     }
-     if (!empty($owners)) {
+       if (strlen($showusers)>0) {
+         $where .= " AND m.owner IN ($showusers)";
+       }
      }
      $query .= $where;
      $query .= " ORDER BY $orderby";

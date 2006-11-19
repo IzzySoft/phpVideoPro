@@ -366,7 +366,7 @@
    $udet = $db->get_users($user[$i]);
    $t->set_var("gval",$user[$i]);
    $t->set_var("gname",ucfirst($udet->login));
-   if (in_array($user[$i],$filter->showuser)) $t->set_var("gselected"," SELECTED");
+   if (is_array($filter->showuser) && in_array($user[$i],$filter->showuser)) $t->set_var("gselected"," SELECTED");
    else $t->set_var("gselected","");
    $t->parse("grantlist","grantblock",$i);
  }

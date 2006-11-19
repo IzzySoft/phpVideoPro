@@ -598,7 +598,7 @@
     */
    function get_users($user_id="") {
      $query = "SELECT id,login,pwd,admin,browse,ins,upd,del,comment FROM pvp_users";
-     if ($user_id!="") $query .= " WHERE id=$user_id";
+     if ($user_id!=="") $query .= " WHERE id=$user_id";
      $this->query($query);
      $i=0;
      while ( $this->next_record() ) {
@@ -613,7 +613,7 @@
        $users[$i]->comment= $this->f('comment');
        ++$i;
      }
-     if ($user_id && $i) {
+     if ($user_id!=="" && $i) {
        return $users[0];
      }
      if ($i) { return $users; } else { return FALSE; }
@@ -753,7 +753,7 @@
            while ($this->next_record()) {
              $list[] = $this->f('grantee');
            }
-           $list += $grantor; // everybody has grants to himself
+           $list = array_merge($list,$grantor); // everybody has grants to himself
          }
        } else { // we have grantee and grant
          if (empty($grantor)) { // only grantee and grant
@@ -765,6 +765,7 @@
              $list[] = $this->f('grantor');
            }
            $list[] = 0; // public gives to everybody
+           $list = array_merge($list,$grantee); // everybody grants everything to himself
          } else { // all params given
            $grantors = implode(",",$grantor);
            $grantee[] = 0; // if grantor gave to public, he gave to everybody

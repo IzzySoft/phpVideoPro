@@ -64,6 +64,7 @@
  $t->set_block("t_item","inputblock","inputlist");
  $t->set_block("tone_list","listblock","listlist");
  $t->set_block("listblock","itemblock","itemlist");
+ $t->set_block("t_list","grantblock","grantlist");
 
  #==================================================[ (re)set the filters ]===
  unset($filter);
@@ -127,6 +128,8 @@
    for ($i=0;$i<count($mus_id);$i++) {
      $filter->composer->$mus_id[$i] = TRUE;
    }
+   unset($filter->showuser);
+   for ($i=0;$i<count($grants);++$i) $filter->showuser[] = $grants[$i];
    #--------------------------------------[ finish vulcheck before saving ]---
    if ($vc=count($vuls)) {
      $msg = lang("input_errors_occured",$vc) . "<UL>\n";
@@ -137,6 +140,8 @@
      $pvp->common->die_error($msg);
    }
    #----------------------------------------------------------[ save data ]---
+#echo "<pre>";print_r($filter);die("</pre>");
+
    $save = rawurlencode( serialize($filter) );
    $pvp->preferences->set("filter",$save);
    header("Location: ".$_SERVER["PHP_SELF"]);
@@ -149,6 +154,7 @@
  $filter = $pvp->preferences->retrieve_filter($pvp->auth->user_id);
  if ( $filter ) { // there are already filters defined
    $filter = unserialize ( rawurldecode( $filter ) );
+#echo "<pre>";print_r($filter);die("</pre>");
  }
  #===============================================[ Create the Form Fields ]===
  #---------------------------------------------[ Setup special JavaScript ]---
@@ -350,6 +356,20 @@
    $option .= ">$name, $firstname</OPTION>";
  }
  $t->set_var("composer","<SELECT NAME=\"mus_id[]\" SIZE=\"7\" MULTIPLE class=\"multiselect\">$option</SELECT>");
+
+ #-----------------------------------------------------------[ lower side ]---
+ $t->set_var("grant_desc",lang("grant_filter_desc"));
+ $t->set_var("grant_sel_name","grants");
+ $user = $db->get_usergrants(array(),array($pvp->auth->user_id),array("SELECT"));
+ $uc = count($user);
+ for ($i=0;$i<$uc;++$i) {
+   $udet = $db->get_users($user[$i]);
+   $t->set_var("gval",$user[$i]);
+   $t->set_var("gname",ucfirst($udet->login));
+   if (in_array($user[$i],$filter->showuser)) $t->set_var("gselected"," SELECTED");
+   else $t->set_var("gselected","");
+   $t->parse("grantlist","grantblock",$i);
+ }
 
  #=========================================================[ build target ]===
  include($root . "inc/header.inc");

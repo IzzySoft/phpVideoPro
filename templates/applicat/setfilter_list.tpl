@@ -43,6 +43,16 @@
          <TD WIDTH="10%">{composer_name}</TD><TD WIDTH="40%">{composer}</TD></TR>
     </TABLE></TD>
   </TR>
+  <TR><TD COLSPAN="2"><!-- ============================= Lower side ================ -->
+    <TABLE BORDER="1" ALIGN="center">
+      <TR CLASS="content"><TD>{grant_desc}</TD>
+        <TD><SELECT NAME="{grant_sel_name}[]" MULTIPLE CLASS="multiselect">
+<!-- BEGIN grantblock -->
+              <OPTION VALUE="{gval}"{gselected}>{gname}</OPTION>
+<!-- END grantblock -->
+            </SELECT></TD></TR>
+    </TABLE>
+  </TD></TR>
  </TABLE>
 </DIV>
 </TD></TR>

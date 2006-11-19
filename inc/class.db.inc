@@ -754,6 +754,7 @@
              $list[] = $this->f('grantee');
            }
            $list = array_merge($list,$grantor); // everybody has grants to himself
+           $list = array_values(array_unique($list));
          }
        } else { // we have grantee and grant
          if (empty($grantor)) { // only grantee and grant
@@ -766,6 +767,7 @@
            }
            $list[] = 0; // public gives to everybody
            $list = array_merge($list,$grantee); // everybody grants everything to himself
+           $list = array_values(array_unique($list));
          } else { // all params given
            $grantors = implode(",",$grantor);
            $grantee[] = 0; // if grantor gave to public, he gave to everybody

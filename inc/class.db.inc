@@ -1669,7 +1669,9 @@
     *  integer part if called w/ both params
     */
    function get_firstmovienum($mtype_id="",$cass_id="") {
-     if (is_numeric($mtype_id) && is_numeric($cass_id)) {
+     GLOBAL $pvp;
+     $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
+     if (is_numeric($mtype_id) && is_numeric($cass_id)) { // search on same medium
        $this->dbquery("SELECT MIN(part) AS min_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
        if ( $this->next_record() ) {
          return $this->f('min_part');
@@ -1678,15 +1680,19 @@
        }
      }
      $mtypes = $this->get_mtypes();
-     for ($i=0;$i<count($mtypes);$i++) {
-       $this->dbquery("SELECT MIN(cass_id) as min_id FROM video WHERE mtype_id=" . $mtypes[$i]['id']);
+     for ($i=0;$i<count($mtypes);$i++) { // search first medium
+       $query = "SELECT MIN(v.cass_id) AS min_id FROM video v,pvp_media m"
+              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+              . "   AND v.mtype_id=".$mtypes[$i]['id'];
+       if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+       $this->dbquery($query);
        $this->next_record();
        $firstnum[$i]['mtype']   = $mtypes[$i]['sname'];
        $firstnum[$i]['mtype_id']= $mtypes[$i]['id'];
        $firstnum[$i]['cass_id'] = $this->f('min_id');
        while ( strlen($firstnum[$i]['cass_id'])<4 ) { $firstnum[$i]['cass_id'] = "0" . $firstnum[$i]['cass_id']; }
      }
-     for ($i=0;$i<count($firstnum);$i++) {
+     for ($i=0;$i<count($firstnum);$i++) { // search on preselected media
        $this->dbquery("SELECT MIN(part) as min_part FROM video WHERE cass_id=" . $firstnum[$i]['cass_id'] . " AND mtype_id=" . $firstnum[$i]['mtype_id']);
        $this->next_record();
        $firstnum[$i]['part']    = $this->f('min_part');
@@ -1700,12 +1706,15 @@
     * @method get_lastmovienum
     * @param optional integer mtype_id
     * @param optional integer cass_id
+    * @param optional boolean restrict_access honour ownership?
     * @return mixed lastnum
     *  array lastnum if called w/o params (i:mtype, i:mtype_id, i:cass_id,
     *  i:part, i:entry; where i:entry = "mtype cass_id-part")
     *  integer part if called w/ both params (only 1 entry when called w/ 1st)
     */
-   function get_lastmovienum($mtype_id="",$cass_id="") {
+   function get_lastmovienum($mtype_id="",$cass_id="",$restrict_access=FALSE) {
+     GLOBAL $pvp;
+     $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (is_numeric($mtype_id) ) {
        if ( is_numeric($cass_id)) {
          $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
@@ -1724,15 +1733,19 @@
      } else {
        $mtypes = $this->get_mtypes();
      }
-     for ($i=0;$i<count($mtypes);++$i) {
-       $this->dbquery("SELECT MAX(cass_id) as max_id FROM video WHERE mtype_id=" . $mtypes[$i]['id']);
+     for ($i=0;$i<count($mtypes);++$i) { // search on all media
+       $query = "SELECT MAX(v.cass_id) AS max_id FROM video v,pvp_media m"
+              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+              . "   AND v.mtype_id=".$mtypes[$i]['id'];
+       if ($restrict_access && !$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+       $this->dbquery($query);
        $this->next_record();
        $lastnum[$i]['mtype']   = $mtypes[$i]['sname'];
        $lastnum[$i]['mtype_id']= $mtypes[$i]['id'];
        $lastnum[$i]['cass_id'] = $this->f('max_id');
        while ( strlen($lastnum[$i]['cass_id'])<4 ) { $lastnum[$i]['cass_id'] = "0" . $lastnum[$i]['cass_id']; }
      }
-     for ($i=0;$i<count($lastnum);$i++) {
+     for ($i=0;$i<count($lastnum);$i++) { // search on preselected media
        $this->dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i]['cass_id'] . " AND mtype_id=" . $lastnum[$i]['mtype_id']);
        $this->next_record();
        $lastnum[$i]['part']    = $this->f('max_part');

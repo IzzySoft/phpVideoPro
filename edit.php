@@ -348,7 +348,7 @@
       $next = "<A HREF='" .$pvp->link->slink($_SERVER["PHP_SELF"]."?mtype_id=".$movie['next']->mtype_id
             . "&cass_id=".$movie['next']->media_nr."&part=".$movie['next']->part)
             . "'><IMG SRC='".$tpl_dir."/images/right.gif' BORDER='0' ALT='&gt;'></A>";
-      $lm = $db->get_lastmovienum(); $lmc = count($lm);
+      $lm = $db->get_lastmovienum("","",TRUE); $lmc = count($lm);
       do {
         --$lmc;
       } while ( ($lm[$lmc]["cass_id"]==0) && ($lmc != 0) );

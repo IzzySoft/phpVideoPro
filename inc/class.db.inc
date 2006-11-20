@@ -1762,8 +1762,8 @@
      }
      $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-            . "   AND m.owner IN ($gusers)"
             . "   AND v.mtype_id=$mtype_id AND v.cass_id>$media_nr";
+     if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
      $this->query($query); // check for next valid medium
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
@@ -1786,8 +1786,8 @@
      } while ( (!isset($mt[$next->mtype_id])) && ($next->mtype_id<$maxid) );
      $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-            . "   AND m.owner IN ($gusers)"
             . "   AND v.mtype_id=".$next->mtype_id;
+     if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
      $this->query($query); // switch to next media type
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
@@ -1824,8 +1824,8 @@
      if ($media_nr>1) { // check for previous medium
        $query = "SELECT MAX(v.cass_id) AS medianr FROM video v,pvp_media m"
               . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-              . "   AND m.owner IN ($gusers)"
               . "   AND v.mtype_id=$mtype_id AND v.cass_id<$media_nr";
+       if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
        $this->query($query);
        if ($this->next_record()) {
          $prev->media_nr = $this->f('medianr');

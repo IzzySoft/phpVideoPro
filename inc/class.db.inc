@@ -1253,17 +1253,24 @@
     * @return mixed either id (integer) or array of IDs
     */
    function get_movieid($mtype_id,$cass_id,$part="") {
-     $query = "SELECT id FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id";
+     GLOBAL $pvp;
+     $query  = "SELECT v.id FROM video v, pvp_media m"
+             . " WHERE v.cass_id=m.id"
+             . "   AND v.mtype_id=$mtype_id AND v.cass_id=$cass_id";
+     if (!$pvp->auth->admin) {
+       $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
+       $query .= " AND m.owner IN ($gusers)";
+     }
      if ($part=="") {
        $id = array();
-       $query .= " ORDER BY part";
+       $query .= " ORDER BY v.part";
        $this->query($query);
        while( $this->next_record() ) {
          $id[] = $this->f('id');
        }
        return $id;
      } else {
-       $this->query($query . " AND part=$part");
+       $this->query($query . " AND v.part=$part");
        $this->next_record();
        return $this->f('id');
      }
@@ -1859,7 +1866,7 @@
      do {
        --$prev->mtype_id;
      } while ( (!isset($mt[$prev->mtype_id])) && ($prev->mtype_id>$minid) );
-     $last = $this->get_lastmovienum();
+     $last = $this->get_lastmovienum("","",TRUE);
      for ($i=0;$i<count($last);++$i) {
        if ($last[$i]['mtype_id']==$prev->mtype_id) {
          $prev->part = $last[$i]['part'];

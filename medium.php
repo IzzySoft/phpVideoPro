@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
-# $page_id = "admin_cats";
+ $page_id = "medium";
  include("inc/includes.inc");
 
  #==================================================[ Check authorization ]===
@@ -41,15 +41,6 @@
  $mid    = $db->get_movieid($mtype_id,$cass_id);
  $cass_id = (int) $cass_id;
  if ($_POST["edit"]) $edit = TRUE; else $edit = FALSE;
-
- $t = new Template($pvp->tpl_dir);
- $t->set_file(array("template"=>"medium.tpl"));
- $t->set_block("template","techblock","tech");
- $t->set_block("template","movieblock","movie");
- $t->set_var("listtitle",lang("medium_overview",$medium));
- $t->set_var("techdata",lang("techdata"));
- $t->set_var("moviedata",lang("movies"));
- $t->set_var("form_target",$_SERVER["PHP_SELF"]);
 
  function techbutton ($name,$value,$onclick="") {
    GLOBAL $pvp,$edit;
@@ -130,70 +121,84 @@
  }
 
  #=======================================================[ prepare output ]===
- $owner = ucfirst($minfo->owner);
- if (empty($owner)) $owner = lang("unknown");
- $t->set_var("tname",lang("owner").":&nbsp;");
- $t->set_var("tunit","&nbsp;");
- $t->set_var("tdata",ownerbox("owner",$owner));
- $t->parse("tech","techblock");
- $t->set_var("tname",lang("storeplace").":&nbsp;");
- $t->set_var("tunit","&nbsp;");
- $t->set_var("tdata",namebutton("storeplace",$minfo->storeplace));
- $t->parse("tech","techblock",TRUE);
- $t->set_var("tname",lang("lentto").":&nbsp;");
- $t->set_var("tunit","&nbsp;");
- $t->set_var("tdata",namebutton("lentto",$minfo->lentto));
- $t->parse("tech","techblock",TRUE);
- if ($minfo->rcsupport && ($minfo->rc!=""||$edit)) {
-   $t->set_var("tname",lang("region_code").":&nbsp;");
+ $t = new Template($pvp->tpl_dir);
+ $t->set_var("listtitle",lang("medium_overview",$medium));
+ if (empty($mid) && !$db->get_usergrants(array(0,$minfo->owner_id),array($pvp->auth->user_id),array("SELECT"))) {
+   $t->set_file(array("template"=>"error.tpl"));
+   $t->set_var("details",lang("medium_no_access"));
+ } else {
+   $t->set_file(array("template"=>"medium.tpl"));
+   $t->set_block("template","techblock","tech");
+   $t->set_block("template","movieblock","movie");
+   $t->set_var("techdata",lang("techdata"));
+   $t->set_var("moviedata",lang("movies"));
+   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
+
+   $owner = ucfirst($minfo->owner);
+   if (empty($owner)) $owner = lang("unknown");
+   $t->set_var("tname",lang("owner").":&nbsp;");
    $t->set_var("tunit","&nbsp;");
-   $t->set_var("tdata",rcbutton("rc",$minfo->rc));
-   $t->parse("tech","techblock",TRUE);
- }
- if ($minfo->size!=""||$edit) {
-   $t->set_var("tname",lang("medialength").":&nbsp;");
-   $t->set_var("tunit",lang("minute_abbrev"));
-   $t->set_var("tdata",techbutton("size",$minfo->size,"medialength.php?cass_id=$cass_id&mtype_id=$mtype_id"));
-   $t->parse("tech","techblock",TRUE);
- }
- if ($minfo->free!="" && !$edit) {
-   $t->set_var("tname",lang("free").":&nbsp;");
-   $t->set_var("tunit",lang("minute_abbrev"));
-   $t->set_var("tdata",techbutton("free",$minfo->free));
-   $t->parse("tech","techblock",TRUE);
- }
- if (!$edit) {
-   $t->set_var("tname",lang("is_rw").":&nbsp;");
+   $t->set_var("tdata",ownerbox("owner",$owner));
+   $t->parse("tech","techblock");
+   $t->set_var("tname",lang("storeplace").":&nbsp;");
    $t->set_var("tunit","&nbsp;");
-   $t->set_var("tdata",techbutton("rw",$minfo->rw));
+   $t->set_var("tdata",namebutton("storeplace",$minfo->storeplace));
    $t->parse("tech","techblock",TRUE);
- }
+   $t->set_var("tname",lang("lentto").":&nbsp;");
+   $t->set_var("tunit","&nbsp;");
+   $t->set_var("tdata",namebutton("lentto",$minfo->lentto));
+   $t->parse("tech","techblock",TRUE);
+   if ($minfo->rcsupport && ($minfo->rc!=""||$edit)) {
+     $t->set_var("tname",lang("region_code").":&nbsp;");
+     $t->set_var("tunit","&nbsp;");
+     $t->set_var("tdata",rcbutton("rc",$minfo->rc));
+     $t->parse("tech","techblock",TRUE);
+   }
+   if ($minfo->size!=""||$edit) {
+     $t->set_var("tname",lang("medialength").":&nbsp;");
+     $t->set_var("tunit",lang("minute_abbrev"));
+     $t->set_var("tdata",techbutton("size",$minfo->size,"medialength.php?cass_id=$cass_id&mtype_id=$mtype_id"));
+     $t->parse("tech","techblock",TRUE);
+   }
+   if ($minfo->free!="" && !$edit) {
+     $t->set_var("tname",lang("free").":&nbsp;");
+     $t->set_var("tunit",lang("minute_abbrev"));
+     $t->set_var("tdata",techbutton("free",$minfo->free));
+     $t->parse("tech","techblock",TRUE);
+   }
+   if (!$edit) {
+     $t->set_var("tname",lang("is_rw").":&nbsp;");
+     $t->set_var("tunit","&nbsp;");
+     $t->set_var("tdata",techbutton("rw",$minfo->rw));
+     $t->parse("tech","techblock",TRUE);
+   }
 
  #----------------------------------------------[ Set form action buttons ]---
- $hidden = "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>"
-         . "<INPUT TYPE='hidden' NAME='cass_id' VALUE='$cass_id'>";
- if ($edit) {
-   $actions = "<INPUT NAME='save' VALUE='".lang("update")."' TYPE='submit'>&nbsp;"
-            . "<INPUT NAME='cancel' VALUE='".lang("cancel")."' TYPE='submit' onClick='JavaScript:back()'>"
-            . $hidden;
-   $t->set_var("formactions",$actions);
- } else {
-   $actions = "<INPUT NAME='edit' VALUE='".lang("edit")."' TYPE='submit'>".$hidden;
-   $t->set_var("formactions",$actions);
- }
+   $hidden = "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>"
+           . "<INPUT TYPE='hidden' NAME='cass_id' VALUE='$cass_id'>";
+   if ($edit) {
+     $actions = "<INPUT NAME='save' VALUE='".lang("update")."' TYPE='submit'>&nbsp;"
+              . "<INPUT NAME='cancel' VALUE='".lang("cancel")."' TYPE='submit' onClick='JavaScript:back()'>"
+              . $hidden;
+     $t->set_var("formactions",$actions);
+   } else {
+     $actions = "<INPUT NAME='edit' VALUE='".lang("edit")."' TYPE='submit'>".$hidden;
+     $t->set_var("formactions",$actions);
+   }
 
  #=============================================[ obtain movie information ]===
- $mcount = count($mid);
- for ($i=0;$i<$mcount;++$i) {
-   $movie = $db->get_movie($mid[$i]);
-   $url   = $base_url ."index.php?sel_entry=1&mtype_id=$mtype_id&cass_id=$cass_id&part=".$movie['part'];
-   $mlink = $pvp->link->linkurl($url,$movie['part']."&nbsp;");
-   $mdata = $movie['title']." (".$movie['cat1']. ", ".$movie['length']." ".lang("minute_abbrev").")";
-   $t->set_var("mlink",$mlink);
-   $t->set_var("mdata",$mdata);
-   if ($i) $t->parse("movie","movieblock",TRUE);
-     else $t->parse("movie","movieblock");
- }
+   $mcount = count($mid);
+   for ($i=0;$i<$mcount;++$i) {
+     $movie = $db->get_movie($mid[$i]);
+     $url   = $base_url ."index.php?sel_entry=1&mtype_id=$mtype_id&cass_id=$cass_id&part=".$movie['part'];
+     $mlink = $pvp->link->linkurl($url,$movie['part']."&nbsp;");
+     $mdata = $movie['title']." (".$movie['cat1']. ", ".$movie['length']." ".lang("minute_abbrev").")";
+     $t->set_var("mlink",$mlink);
+     $t->set_var("mdata",$mdata);
+     if ($i) $t->parse("movie","movieblock",TRUE);
+       else $t->parse("movie","movieblock");
+   }
+ } // end !empty($mid)
 
  include("inc/header.inc");
  $t->pparse("out","template");

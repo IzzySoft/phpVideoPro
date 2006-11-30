@@ -1618,10 +1618,12 @@
     * @param string table table name for staff member
     * @param array name name as formatted by sql::format_name()
     * @param optional string filter filter restriction
+    * @param optional boolean forceall override grants (default FALSE) needed for deletion process
     * @return array list of movies
     * @see sql::get_movie(), sql::get_movielist()
     */
-   function get_movienamelist($table,$name,$filter="") {
+   function get_movienamelist($table,$name,$filter="",$forceall=FALSE) {
+     GLOBAL $pvp;
      switch ($table) {
        case "directors" : $restrict = "v.director_id=".$name['id']." AND v.director_list=1";
 			  $revname = "director_rev"; $fullname = "director";
@@ -1644,10 +1646,16 @@
      if (strlen($filter)) $restrict .= " AND ($filter)";
      $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,v.year,v.aq_date,"
 	    . "v.mtype_id,mt.name as mtname,mt.sname as mtsname,"
-	    . "cat1.name as cat1name "
-	    . "FROM video v, mtypes mt, cat cat1 "
+	    . "cat1.name as cat1name, m.owner as owner_id, u.login as owner "
+	    . "FROM video v, mtypes mt, cat cat1, pvp_media m, pvp_users u "
 	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
+            . "AND v.cass_id=m.id AND v.mtype_id=m.mtype_id "
+            . "AND m.owner=u.id "
 	    . "AND $restrict";
+     if (!$pvp->auth->admin && !$forceall) {
+       $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
+       $query .= " AND m.owner in ($gusers)";
+     }
      $this->query($query);
      while ( $this->next_record() ) {
        $movie[$revname]   = $name['reverse'];
@@ -1656,7 +1664,7 @@
        $movie[$firstname] = $name['firstname'];
        $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
        $movie['cat1'] = lang($this->f('cat1name'));
-       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id");
+       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id","owner");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }

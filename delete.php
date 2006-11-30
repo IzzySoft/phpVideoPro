@@ -34,7 +34,17 @@
  $t->set_file(array("delete"=>"delete.tpl",
                     "yn"=>"delete_yn.tpl"));
  $t->set_var("listtitle",lang("deleting_entry",$nr));
-  
+
+ $minfo = $db->get_mediainfo($mtype_id,$cass_id);
+ if ($minfo->owner_id!=$pvp->auth->user_id
+   && !$db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("DELETE"))) {
+   // logged-in user has no permission on this medium
+   $t->set_var("details",lang("no_delete_permission"));
+   $t->pparse("out","delete");
+   include("inc/footer.inc");
+   exit;
+ }
+
  #=========================================================[ Helper Funcs ]===
  function kill($table,$id) {
    GLOBAL $details, $db;

@@ -2628,15 +2628,24 @@
     *  (array formatted by sql::format_name())
     */
    function get_visstafflist($stafftype,$filter="",$start="") {
+     GLOBAL $pvp;
      if (strlen($filter)) $restrict = "AND $filter";
+     if (!$pvp->auth->admin) {
+       $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
+       $from = "FROM video v, pvp_media m"
+             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+             . " AND m.owner IN ($gusers) AND";
+     } else {
+       $from = "FROM video v WHERE";
+     }
      switch ($stafftype) {
        case "music"     : $query[] = "SELECT DISTINCT music_id FROM video v WHERE music_list=1 $restrict"; $field[] = "music_id"; break;
        case "directors" : $query[] = "SELECT DISTINCT director_id FROM video v WHERE director_list=1 $restrict"; $field[] = "director_id"; break;
-       case "actors"    : $query[] = "SELECT DISTINCT actor1_id FROM video v WHERE actor1_list=1 $restrict"; $field[] = "actor1_id";
-                          $query[] = "SELECT DISTINCT actor2_id FROM video v WHERE actor2_list=1 $restrict"; $field[] = "actor2_id";
-                          $query[] = "SELECT DISTINCT actor3_id FROM video v WHERE actor3_list=1 $restrict"; $field[] = "actor3_id";
-                          $query[] = "SELECT DISTINCT actor4_id FROM video v WHERE actor4_list=1 $restrict"; $field[] = "actor4_id";
-                          $query[] = "SELECT DISTINCT actor5_id FROM video v WHERE actor5_list=1 $restrict"; $field[] = "actor5_id"; break;
+       case "actors"    : $query[] = "SELECT DISTINCT actor1_id $from actor1_list=1 $restrict"; $field[] = "actor1_id";
+                          $query[] = "SELECT DISTINCT actor2_id $from actor2_list=1 $restrict"; $field[] = "actor2_id";
+                          $query[] = "SELECT DISTINCT actor3_id $from actor3_list=1 $restrict"; $field[] = "actor3_id";
+                          $query[] = "SELECT DISTINCT actor4_id $from actor4_list=1 $restrict"; $field[] = "actor4_id";
+                          $query[] = "SELECT DISTINCT actor5_id $from actor5_list=1 $restrict"; $field[] = "actor5_id"; break;
      }
      for ($i=0;$i<count($query);$i++) {
        $this->dbquery($query[$i]);

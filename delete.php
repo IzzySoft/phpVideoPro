@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -71,7 +71,7 @@
    # now we have to check if any other links to director, composer and/or actors exist
    if ($director_id) { // ignore id# 0
      $name = $db->get_director($director_id);
-     $rec  = $db->get_movienamelist("directors",$name);
+     $rec  = $db->get_movienamelist("directors",$name,"",TRUE);
      if ( count($rec) < 2 ) {
        $firstname = $name["firstname"]; $name = $name["name"];
        $details = "<li>" . lang("nobody_named",lang("director_person"),$firstname,$name);
@@ -80,7 +80,7 @@
    }
    if ($music_id) { // ignore id# 0
      $name = $db->get_music($music_id);
-     $rec  = $db->get_movienamelist("music",$name);
+     $rec  = $db->get_movienamelist("music",$name,"",TRUE);
      if ( count($rec) < 2 ) {
        $firstname = $name["firstname"]; $name = $name["name"];
        $details = "<li>" . lang("nobody_named",lang("compose_person"),$firstname,$name);
@@ -91,7 +91,7 @@
      $aid = $actor_id[$i];
      if ($aid) { // ignore id #0
        $name = $db->get_actor($aid);
-       $rec  = $db->get_movienamelist("actors",$name);
+       $rec  = $db->get_movienamelist("actors",$name,"",TRUE);
        if ( count($rec) < 2 ) {
          $firstname = $name["firstname"]; $name = $name["name"];
          $details .= "<li>" . lang("nobody_named",lang("actor"),$firstname,$name);

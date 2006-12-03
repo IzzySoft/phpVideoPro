@@ -630,4 +630,5 @@ INSERT INTO lang VALUES ('dupes_own','en','Duplicate entries (own)','Movies that
 INSERT INTO lang VALUES ('grant_filter_desc','en','Show records from','Description for the filter page');
 INSERT INTO lang VALUES ('medium_no_access','en','Sorry: This medium either does not exist, or is empty, or you have no permission to access its content.','Error message for media info');
 INSERT INTO lang VALUES ('no_delete_permission','en','This medium is not your own, and the owner gave you no permission to delete his records - sorry.','Message when trying to delete a movie without having the required object privileges');
+INSERT INTO lang VALUES ('update_failed_permission','en','Failed to update entry due to missing permissions','Status message displayed on failure of an update.');
 #INSERT INTO lang VALUES ('','en','','');

@@ -537,3 +537,4 @@ INSERT INTO lang VALUES ('dupes_own','de','Duplikate Einträge (eigene)','');
 INSERT INTO lang VALUES ('grant_filter_desc','de','Zeige Einträge von','');
 INSERT INTO lang VALUES ('medium_no_access','de','Sorry: Das gewünschte Medium existiert entweder nicht, ist leer, oder es bestehen ungenügende Zugriffsrechte.','');
 INSERT INTO lang VALUES ('no_delete_permission','de','Sorry: Dieses Medium gehört einem anderen Benutzer, und die zum Löschen dieses Eintrags benötigten Privilegien wurden nicht erteilt.','');
+INSERT INTO lang VALUES ('update_failed_permission','de','Datensatz konnte aufgrund fehlender Berechtigungen nicht aktualisiert werden','');

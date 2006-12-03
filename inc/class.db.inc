@@ -2107,31 +2107,33 @@
     */
    function get_mediainfo($mtype_id,$id) {
      GLOBAL $pvp;
+     if (empty($mtype_id) || empty($id)) return FALSE;
      $query = "SELECT disks_id,size,free,rc,owner,storeplace,lentto"
             . "  FROM pvp_media"
             . " WHERE id=$id AND mtype_id=$mtype_id";
      $this->dbquery($query);
-     $this->next_record();
-     $disk->id         = $id;
-     $disk->mtype_id   = $mtype_id;
-     $disk->disks_id   = $this->f('disks_id');
-     $disk->size       = $this->f('size');
-     $disk->free       = $this->f('free');
-     $disk->rc_str     = substr($this->f('rc'),1);
-     if (!empty($disk->rc_str))
-       $disk->rc_str = substr($disk->rc_str,0,strlen($disk->rc_str)-1);
-     $disk->owner_id   = $this->f('owner');
-     $disk->storeplace = $this->f('storeplace');
-     $disk->lentto     = $this->f('lentto');
-     $owner = $this->get_users($disk->owner_id);
-     $disk->owner      = $owner->login;
-     $dt = $this->get_disktypes("",$disk->disks_id);
-     $disk->type       = $dt[0]->name;
-     $disk->rcsupport  = $dt[0]->rc;
-     if ($disk->rcsupport) $disk->rc = $this->get_rc($mtype_id,$id);
-     if ($pvp->common->medium_is_rw($mtype_id)) { $disk->rw = lang("yes"); }
-       else { $disk->rw = lang("no"); }
-     return $disk;
+     if ($this->next_record()) { // skip not existing media
+       $disk->id         = $id;
+       $disk->mtype_id   = $mtype_id;
+       $disk->disks_id   = $this->f('disks_id');
+       $disk->size       = $this->f('size');
+       $disk->free       = $this->f('free');
+       $disk->rc_str     = substr($this->f('rc'),1);
+       if (!empty($disk->rc_str))
+         $disk->rc_str = substr($disk->rc_str,0,strlen($disk->rc_str)-1);
+       $disk->owner_id   = $this->f('owner');
+       $disk->storeplace = $this->f('storeplace');
+       $disk->lentto     = $this->f('lentto');
+       $owner = $this->get_users($disk->owner_id);
+       $disk->owner      = $owner->login;
+       $dt = $this->get_disktypes("",$disk->disks_id);
+       $disk->type       = $dt[0]->name;
+       $disk->rcsupport  = $dt[0]->rc;
+       if ($disk->rcsupport) $disk->rc = $this->get_rc($mtype_id,$id);
+       if ($pvp->common->medium_is_rw($mtype_id)) { $disk->rw = lang("yes"); }
+         else { $disk->rw = lang("no"); }
+       return $disk;
+     } else return FALSE;
    }
 
    /** Set media information (update changes)

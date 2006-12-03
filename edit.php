@@ -171,7 +171,7 @@
   } elseif ($create) {
     $minfo = $db->get_mediainfo($mtype_id,$cass_id);
     // make sure nobody "got permission" by manipulating _POST variables
-    if ($pvp->auth->admin || $pvp->auth->add && ($pvp->auth->user_id==$minfo->owner_id || $db->get_usergrants(array($movie['owner_id']),array(0,$pvp->auth->user_id),array("INSERT"))))
+    if ($pvp->auth->admin || $pvp->auth->add && (empty($minfo->owner_id) || $pvp->auth->user_id==$minfo->owner_id || $db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("INSERT"))))
       include("inc/add_entry.inc");
     else $save_result = "<SPAN CLASS='error'>" . lang("update_failed_permission") . "!</SPAN><BR>\n";
     unset($minfo);

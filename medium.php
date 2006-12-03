@@ -38,8 +38,8 @@
  $cass_id  = $_REQUEST["cass_id"];
  $mtype  = $db->get_mtypes("id=$mtype_id");
  $medium = $mtype[0]["sname"] ." ". $cass_id;
- $mid    = $db->get_movieid($mtype_id,$cass_id);
  $cass_id = (int) $cass_id;
+ $mid    = $db->get_movieid($mtype_id,$cass_id);
  if ($_POST["edit"]) $edit = TRUE; else $edit = FALSE;
 
  function techbutton ($name,$value,$onclick="") {
@@ -64,7 +64,7 @@
  }
  function ownerbox ($name,$value,$onclick="") {
    GLOBAL $pvp,$edit,$minfo,$db;
-   if ($edit && ($minfo->owner_id == $pvp->auth->user_id)) {
+   if ($edit && ($minfo->owner_id == $pvp->auth->user_id ||$pvp->auth->admin)) {
      $field = "<SELECT NAME='owner_id'>";
      $users = $db->get_users(); $uc = count($users);
      for ($i=0;$i<$uc;++$i) {
@@ -78,6 +78,23 @@
      if ($onclick) $field .= " onClick=\"window.location.href='"
        . $pvp->link->slink($onclick) . "'\"";
      $field .= ">";
+   }
+   return $field;
+ }
+ function disktypebox ($name,$value) {
+   GLOBAL $pvp,$edit,$minfo,$db,$mtype_id;
+   if ($edit && ($pvp->auth->admin || $minfo->owner_id==$pvp->auth->user_id || $db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("UPDATE")))) {
+     $field  = "<SELECT NAME='disktype_id'>";
+     $dt     = $db->get_disktypes($mtype_id);
+     $dtc = count($dt);
+     for ($i=0;$i<$dtc;++$i) {
+       $field .= "<OPTION VALUE='".$dt[$i]->id."'";
+       if ($dt[$i]->id==$value) $field .= " SELECTED";
+       $field .= ">".$dt[$i]->name."</OPTION>";
+     }
+     $field .= "</SELECT>";
+   } else {
+     $field  = "<INPUT TYPE='button' NAME='$name' VALUE='".$minfo->type."' CLASS='namebutton'>";
    }
    return $field;
  }
@@ -134,39 +151,46 @@
    $t->set_var("moviedata",lang("movies"));
    $t->set_var("form_target",$_SERVER["PHP_SELF"]);
 
-   $owner = ucfirst($minfo->owner);
+   $owner = ucfirst($minfo->owner);                         // Owner
    if (empty($owner)) $owner = lang("unknown");
    $t->set_var("tname",lang("owner").":&nbsp;");
    $t->set_var("tunit","&nbsp;");
    $t->set_var("tdata",ownerbox("owner",$owner));
    $t->parse("tech","techblock");
-   $t->set_var("tname",lang("storeplace").":&nbsp;");
+   $t->set_var("tname",lang("storeplace").":&nbsp;");       // StorePlace
    $t->set_var("tunit","&nbsp;");
    $t->set_var("tdata",namebutton("storeplace",$minfo->storeplace));
    $t->parse("tech","techblock",TRUE);
-   $t->set_var("tname",lang("lentto").":&nbsp;");
+   $t->set_var("tname",lang("lentto").":&nbsp;");           // Lent To
    $t->set_var("tunit","&nbsp;");
    $t->set_var("tdata",namebutton("lentto",$minfo->lentto));
    $t->parse("tech","techblock",TRUE);
-   if ($minfo->rcsupport && ($minfo->rc!=""||$edit)) {
+   $dt = $db->get_disktypes($mtype_id);
+   if (count($dt) && !empty($dt[0]->name)) {                // DiskType
+     $t->set_var("tname",lang("disk_type").":&nbsp;");
+     $t->set_var("tunit","&nbsp;");
+     $t->set_var("tdata",disktypebox("disktype",$minfo->disks_id));
+     $t->parse("tech","techblock",TRUE);
+   }
+   if ($minfo->rcsupport && ($minfo->rc!=""||$edit)) {      // RC
      $t->set_var("tname",lang("region_code").":&nbsp;");
      $t->set_var("tunit","&nbsp;");
      $t->set_var("tdata",rcbutton("rc",$minfo->rc));
      $t->parse("tech","techblock",TRUE);
    }
-   if ($minfo->size!=""||$edit) {
+   if ($minfo->size!=""||$edit) {                           // Media Length
      $t->set_var("tname",lang("medialength").":&nbsp;");
      $t->set_var("tunit",lang("minute_abbrev"));
      $t->set_var("tdata",techbutton("size",$minfo->size,"medialength.php?cass_id=$cass_id&mtype_id=$mtype_id"));
      $t->parse("tech","techblock",TRUE);
    }
-   if ($minfo->free!="" && !$edit) {
+   if ($minfo->free!="" && !$edit) {                        // Free Space
      $t->set_var("tname",lang("free").":&nbsp;");
      $t->set_var("tunit",lang("minute_abbrev"));
      $t->set_var("tdata",techbutton("free",$minfo->free));
      $t->parse("tech","techblock",TRUE);
    }
-   if (!$edit) {
+   if (!$edit) {                                            // Is R/W
      $t->set_var("tname",lang("is_rw").":&nbsp;");
      $t->set_var("tunit","&nbsp;");
      $t->set_var("tdata",techbutton("rw",$minfo->rw));
@@ -176,14 +200,17 @@
  #----------------------------------------------[ Set form action buttons ]---
    $hidden = "<INPUT TYPE='hidden' NAME='mtype_id' VALUE='$mtype_id'>"
            . "<INPUT TYPE='hidden' NAME='cass_id' VALUE='$cass_id'>";
-   if ($edit) {
-     $actions = "<INPUT NAME='save' VALUE='".lang("update")."' TYPE='submit'>&nbsp;"
-              . "<INPUT NAME='cancel' VALUE='".lang("cancel")."' TYPE='submit' onClick='JavaScript:back()'>"
-              . $hidden;
-     $t->set_var("formactions",$actions);
-   } else {
-     $actions = "<INPUT NAME='edit' VALUE='".lang("edit")."' TYPE='submit'>".$hidden;
-     $t->set_var("formactions",$actions);
+   if ($pvp->auth->admin || $minfo->owner_id==$pvp->auth->user_id || $db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("UPDATE"))) {
+     // allow edit only when permission is given
+     if ($edit) {
+       $actions = "<INPUT NAME='save' VALUE='".lang("update")."' TYPE='submit'>&nbsp;"
+                . "<INPUT NAME='cancel' VALUE='".lang("cancel")."' TYPE='submit' onClick='JavaScript:back()'>"
+                . $hidden;
+       $t->set_var("formactions",$actions);
+     } else {
+       $actions = "<INPUT NAME='edit' VALUE='".lang("edit")."' TYPE='submit'>".$hidden;
+       $t->set_var("formactions",$actions);
+     }
    }
 
  #=============================================[ obtain movie information ]===

@@ -25,6 +25,8 @@
  <li>medialist now only displays records the user has permission on.
      A restriction to e.g. only own records is now possible via the filter
      settings.
+ <li>the separate change_rc and change_disktype pages have been removed.
+     their functionality is now part of the medium.php page
 </ul>
 
 [title]

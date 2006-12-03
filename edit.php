@@ -484,7 +484,7 @@ EndHiddenFields;
     } else {
       $dttext = $disktypes[0]->name;
       if ($disktypes[0]->size) $dttext .= " (" .$disktypes[0]->size. ")";
-      $dt = "<INPUT TYPE='button' NAME='disktype' VALUE='$dttext' CLASS='techbutton' onClick=\"window.location.href='" .$pvp->link->slink("change_disktype.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part"). "'\">";
+      $dt = "<INPUT TYPE='button' NAME='disktype' VALUE='$dttext' CLASS='techbutton' onClick=\"window.location.href='" .$pvp->link->slink("medium.php?mtype_id=$mtype_id&cass_id=$cass_id"). "'\">";
     }
     $t->set_var("counter",$dt);
   } else {

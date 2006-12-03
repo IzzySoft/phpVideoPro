@@ -359,7 +359,6 @@
  $t->set_var("grant_desc",lang("grant_filter_desc"));
  $t->set_var("grant_sel_name","grants");
  $user = $db->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT"));
- $user = array_values(array_unique($user));
  $uc = count($user);
  for ($i=0;$i<$uc;++$i) {
    $udet = $db->get_users($user[$i]);

@@ -35,7 +35,7 @@
      for ($i=0;$i<$mcount;++$i) {
        $mt = $db->get_mtypes("id=".$media[$i]->mtype_id);
        $sname = $mt[0]['sname'];
-       $save_result .= " '".$pvp->link->linkurl("/change_disktype.php?mtype_id=".$media[$i]->mtype_id."&cass_id=".$media[$i]->cass_id,"$sname ".$media[$i]->cass_id)."'";
+       $save_result .= " '".$pvp->link->linkurl("/medium.php?mtype_id=".$media[$i]->mtype_id."&cass_id=".$media[$i]->cass_id,"$sname ".$media[$i]->cass_id)."'";
      }
      $save_result .= "</SPAN><BR>";
    } else {

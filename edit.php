@@ -402,11 +402,11 @@ EndHiddenFields;
       if ( is_array($rc) ) {
         $rcname = "";
         for ($i=0;$i<7;++$i) {
-          if (isset($rc[$i]) && $rc[$i]) $rcname .= "<INPUT TYPE='button' NAME='rc' VALUE='$i' CLASS='yesnobutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
+          if (isset($rc[$i]) && $rc[$i]) $rcname .= "<INPUT TYPE='button' NAME='rc' VALUE='$i' CLASS='yesnobutton' onClick=\"window.location.href='medium.php?mtype_id=$mtype_id&cass_id=$cass_id'\">";
         }
       }
       if (!isset($rcname)) $rcname = "";
-      if (!$rcname) $rcname  = "<INPUT TYPE='button' NAME='rc' VALUE='".lang("unknown")."' CLASS='techbutton' onClick=\"window.location.href='change_rc.php?mtype_id=$mtype_id&cass_id=$cass_id&part=$part'\">";
+      if (!$rcname) $rcname  = "<INPUT TYPE='button' NAME='rc' VALUE='".lang("unknown")."' CLASS='techbutton' onClick=\"window.location.href='medium.php?mtype_id=$mtype_id&cass_id=$cass_id'\">";
     }
     $t->set_var("rc",$rcname);
   }

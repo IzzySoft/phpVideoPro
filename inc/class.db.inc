@@ -1255,7 +1255,7 @@
    function get_movieid($mtype_id,$cass_id,$part="") {
      GLOBAL $pvp;
      $query  = "SELECT v.id FROM video v, pvp_media m"
-             . " WHERE v.cass_id=m.id"
+             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
              . "   AND v.mtype_id=$mtype_id AND v.cass_id=$cass_id";
      if (!$pvp->auth->admin) {
        $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));

@@ -24,6 +24,7 @@
  if (!empty($_POST["edit"]) && $_POST["edit"]!=lang("edit")) $vuls[] = "Post[edit]";
  if (!empty($_POST["save"]) && $_POST["save"]!=lang("update")) $vuls[] = "Post[update]";
  if (!empty($_POST["cancel"]) && $_POST["cancel"]!=lang("cancel")) $vuls[] = "Post[cancel]";
+ if (!empty($_POST["disktype_id"]) && !is_numeric($_POST["disktype_id"])) $vuls[] = "Post[disktype_id]";
  if ($vc=count($vuls)) {
    $msg = lang("input_errors_occured",$vc) . "<UL>\n";
    for ($i=0;$i<$vc;++$i) {
@@ -84,7 +85,7 @@
  function disktypebox ($name,$value) {
    GLOBAL $pvp,$edit,$minfo,$db,$mtype_id;
    if ($edit && ($pvp->auth->admin || $minfo->owner_id==$pvp->auth->user_id || $db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("UPDATE")))) {
-     $field  = "<SELECT NAME='disktype_id'>";
+     $field  = "<SELECT NAME='disks_id'>";
      $dt     = $db->get_disktypes($mtype_id);
      $dtc = count($dt);
      for ($i=0;$i<$dtc;++$i) {
@@ -122,7 +123,7 @@
 
  #==============================================[ Was the form submitted? ]===
  if (isset($_POST["save"])) {
-   $check = array("size","owner_id","storeplace","lentto");
+   $check = array("size","owner_id","storeplace","lentto","disks_id");
    foreach ($check as $val) {
      if ($minfo->$val != $_POST["$val"]) $sinfo->$val = $_POST["$val"];
    }

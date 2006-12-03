@@ -112,7 +112,6 @@
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
     while ( strlen($part)<2)     { $part    = "0" . $part;    }
     $nr = $cass_id . "-" . $part;
-#    $nr = $mediatype . " " . $cass_id . "-" . $part;
   }
 
   if ($edit) {
@@ -768,8 +767,10 @@ EndHiddenFields;
       $labellist .= "<OPTION VALUE='$confname'>" . ucwords(str_replace("_"," ",$confname)) . "</OPTION>";
     }
     $labellist .= "</SELECT>";
-    $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='edit' VALUE='"   . lang("edit")   . "'>");
-    $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='delete' VALUE='" . lang("delete") . "'>");
+    if ($pvp->auth->admin || $pvp->auth->update && ($pvp->auth->user_id==$movie['owner_id'] || $db->get_usergrants(array($movie['owner_id']),array(0,$pvp->auth->user_id),array("UPDATE"))))
+      $t->set_var("button_li","<INPUT CLASS='submit' TYPE='submit' NAME='edit' VALUE='"   . lang("edit")   . "'>");
+    if ($pvp->auth->admin || $pvp->auth->delete && ($pvp->auth->user_id==$movie['owner_id'] || $db->get_usergrants(array($movie['owner_id']),array(0,$pvp->auth->user_id),array("DELETE"))))
+      $t->set_var("button_re","<INPUT CLASS='submit' TYPE='submit' NAME='delete' VALUE='" . lang("delete") . "'>");
     $t->set_var("print_label","$labellist");
   }
   $t->pparse("out","edit");

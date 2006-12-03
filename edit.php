@@ -158,9 +158,24 @@
     if ($vsize) $width = $vsize; else $width = $maxchars*0.7."em";
     return "<DIV CLASS='virtual_button' STYLE='text-align:center;width:$width'>$value</DIV>";
   }
-  
-  if ($update) { include("inc/update.inc"); }
-  elseif ($create) { include("inc/add_entry.inc"); }
+
+  #==================================================[ process form action ]===
+  if ($update) {
+    $id    = $db->get_movieid($mtype_id,$cass_id,$part);
+    $movie = $db->get_movie($id);
+    // make sure nobody "got permission" by manipulating _POST variables
+    if ($pvp->auth->admin || $pvp->auth->update && ($pvp->auth->user_id==$movie['owner_id'] || $db->get_usergrants(array($movie['owner_id']),array(0,$pvp->auth->user_id),array("UPDATE"))))
+      include("inc/update.inc");
+    else $save_result = "<SPAN CLASS='error'>" . lang("update_failed_permission") . "!</SPAN><BR>\n";
+    unset($id,$movie);
+  } elseif ($create) {
+    $minfo = $db->get_mediainfo($mtype_id,$cass_id);
+    // make sure nobody "got permission" by manipulating _POST variables
+    if ($pvp->auth->admin || $pvp->auth->add && ($pvp->auth->user_id==$minfo->owner_id || $db->get_usergrants(array($movie['owner_id']),array(0,$pvp->auth->user_id),array("INSERT"))))
+      include("inc/add_entry.inc");
+    else $save_result = "<SPAN CLASS='error'>" . lang("update_failed_permission") . "!</SPAN><BR>\n";
+    unset($minfo);
+  }
 
   ##########################################################################
   # get all needed data from db (if not $new_entry ;)
@@ -213,7 +228,6 @@
   if ($create) {
     while ( strlen($cass_id)<4 ) { $cass_id = "0" . $cass_id; }
     while ( strlen($part)<2)     { $part    = "0" . $part;    }
-#    $nr = $mediatype . " " . $cass_id . "-" . $part;
     $nr = $cass_id . "-" . $part;
   }
 

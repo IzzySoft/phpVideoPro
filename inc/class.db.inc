@@ -2148,6 +2148,7 @@
      $add   = "";
      if ($this->f('owner')||$this->f('owner')==0) { // this is an update
        $query  = "UPDATE pvp_media ";
+       if (isset($disk->disks_id)) { $add .= ",disks_id=".$disk->disks_id; }
        if (isset($disk->size)) { $add .= ",size=".$disk->size; }
        if (isset($disk->owner_id)) { $add .= ",owner=".$disk->owner_id; }
        $check = array("storeplace","lentto");

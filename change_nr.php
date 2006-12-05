@@ -59,11 +59,20 @@
 
  #==================[ On submit: Do the changes & re-route to edit screen ]===
  if ( isset($copy) || isset($change) ) {
+   $error = "";
    if ( !$valid->medianr($new_mtype,$new_cass_id,$new_part) ) {
      $error = lang("invalid_media_nr") . "</P>\n";
+   } else {
+     $minfo = $db->get_mediainfo($new_mtype,$new_cass_id);
+     if (! ($pvp->auth->admin || empty($minfo->owner) || $minfo->owner_id==$pvp->auth->user_id
+       || $db->get_usergrants(array($minfo->owner_id),array(0,$pvp->auth->user_id),array("INSERT")) )) {
+       $error = lang("update_failed_permission"); }
+   }
+   if (!empty($error)) {
      header('Content-type: text/html; charset=utf-8');
      echo "<HTML><HEAD>\n <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
         . " <meta http-equiv='cache-control' content='no-cache'>\n <TITLE>Error</TITLE>\n"
+        . " <link href='".$pvp->tpl_url."/default.css' rel='stylesheet' type='text/css'>\n"
         . "</HEAD><BODY>\n";
      display_error($error);
      echo "</BODY></HTML>";
@@ -74,7 +83,6 @@
  } else {
    include("inc/header.inc");
  }
-
  if ( isset($change) ) {
    $db->move_movie($movie_id,$new_mtype,$new_cass_id,$new_part);
    $new_nr = make_nr($new_cass_id,$new_part);

@@ -686,6 +686,25 @@
      return TRUE;
    }
 
+   /** Set usergrants
+    * @method set_usergrants
+    * @param integer grantor user ID of grantor
+    * @param integer grantee user ID of grantee
+    * @param string grant grant level
+    * @return boolean success
+    */
+   function set_usergrants($grantor,$grantee,$grant) {
+     $this->dbquery("DELETE FROM pvp_usergrants WHERE grantor=$grantor AND grantee=$grantee");
+     $query = "INSERT INTO pvp_usergrants (grantor,grantee,grants) VALUES (";
+     switch ($grant) {
+       case "DELETE" : $this->dbquery("$query $grantor,$grantee,'DELETE')");
+       case "UPDATE" : $this->dbquery("$query $grantor,$grantee,'UPDATE')");
+       case "INSERT" : $this->dbquery("$query $grantor,$grantee,'INSERT')");
+       case "SELECT" : $this->dbquery("$query $grantor,$grantee,'SELECT')");
+     }
+     return TRUE;
+   }
+
    /** Get list of usergrants
     * @method get_usergrants
     * @param optional array grantor array of INT (IDs)

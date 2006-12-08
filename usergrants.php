@@ -23,6 +23,16 @@
  if (!$pvp->auth->add) kickoff();
  $save_result = "";
 
+ #==================================================[ vulnerability check ]===
+ vul_num("delete");
+ vul_num("lines");
+ for ($i=0;$i<$lines;++$i) {
+   vul_num("user_$i");
+   vul_alnum("access_$i");
+ }
+ vul_num("adduser");
+ vul_alnum("access_add");
+
  #==================================================[ process the changes ]===
  if (isset($_POST["update"])) {
    for ($i=$lines;$i>0;--$i) {
@@ -41,6 +51,11 @@
    } else {
      $save_result = "<SPAN CLASS='ok'>" . lang("update_success") . ".</SPAN><BR>\n";
    }
+ } elseif (isset($_GET["delete"])) {
+   if ( $db->set_usergrants($pvp->auth->user_id,$_GET["delete"],"") )
+     $save_result = "<SPAN CLASS='ok'>" . lang("update_success") . ".</SPAN><BR>\n";
+   else
+     $save_result = "<SPAN CLASS='error'>" .lang("user_update_failed",$error) . "</SPAN><BR>\n";
  }
 
  #=======================================================[ build the form ]===

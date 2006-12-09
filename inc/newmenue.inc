@@ -83,6 +83,9 @@ if (isset($_REQUEST["sess_id"])) {
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."search.php",lang("search_movie"),"class='menuItem'") ."\n";
  echo "<div class='menuItemSep'></div>\n";
+ if ($pvp->auth->add) {
+   echo $pvp->link->linkurl($base_url."usergrants.php",lang("user_grants"),"class='menuItem'") ."\n";
+ }
  echo $pvp->link->linkurl($base_url."configure.php",lang("preferences"),"class='menuItem'") ."\n";
 ?>
 </div>

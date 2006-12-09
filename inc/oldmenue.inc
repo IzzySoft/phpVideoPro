@@ -45,6 +45,9 @@
   } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("search_movie")?>", "<?=$pvp->link->slink($base_url.'search.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
+  <? if ($pvp->auth->add) { ?>
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("user_grants")?>", "<?=$pvp->link->slink($base_url.'usergrants.php')?>"));
+<?  } ?>
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("preferences")?>", "<?=$pvp->link->slink($base_url.'configure.php')?>"));
   myNavBar1.addMenu(dhtmlMenu);
 

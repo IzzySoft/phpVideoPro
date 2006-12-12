@@ -27,6 +27,12 @@
      settings.
  <li>the separate change_rc and change_disktype pages have been removed.
      their functionality is now part of the medium.php page
+ <li>on the screen displaying the movie details (aka "view_entry"), the
+     edit/delete buttons now are only created if the permissions required to
+     perform those actions are granted to the logged-in user
+ <li>updated translations: Russian, Dutch
+ <li>added translations: Portuguese (Thanx to Filipe Marques)
+ <li>on the search page, chosing a media type resulted in error page
 </ul>
 
 [title]

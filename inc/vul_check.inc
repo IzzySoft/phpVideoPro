@@ -74,7 +74,7 @@
  vul_alnum("tpl");
  vul_alnum("nr");
  vul_num("id");
- vul_num("mtype_id");
+ if ($page_id!="search_movie") vul_num("mtype_id"); // array on the search page
  vul_num("cass_id");
  vul_num("part");
  vul_num("id");

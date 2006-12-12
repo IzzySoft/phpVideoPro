@@ -21,8 +21,7 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE ALIGN="center" BORDER="0" STYLE="margin:3" CELLPADDING="0" CELLSPACING="0"><TR><TD>
-<TABLE ALIGN="center" BORDER="1">
+<TABLE BORDER="1" STYLE="margin-left:auto; margin-right:auto;margin-bottom:5px;">
  <TR><TH><DIV ALIGN="center">{head_users}</DIV></TH>
      <TH COLSPAN="4"><DIV ALIGN="center">{head_access}</DIV></TH>
      <TH><DIV ALIGN="center">{head_actions}</DIV></TH></TR>
@@ -42,13 +41,12 @@
      <TD><DIV ALIGN="center">{delete}</DIV></TD>
      </TR>
 <!-- END itemblock -->
-</TABLE></TD></TR><TR><TD>
+</TABLE></TD></TR>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD><TABLE WIDTH="100%" BORDER="0" STYLE="margin:3">
- <TR><TD><DIV ALIGN="center">{update}</DIV></TD></TR>
-</TABLE></TD></TR>
+ <TR><TD STYLE="text-align:center;">{update}</TD></TR>
 </TABLE>
 
 {hidden}

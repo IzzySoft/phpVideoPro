@@ -201,6 +201,7 @@ $pvp->preferences->admin();
     case "0.8.0"    : if (!isset($_POST["owner_id"])) initiate_owner();
                       queryf("0-8-0_to_0-8-1.".$database["type"],"Upgrade to v0.8.1");
                       queryf("../lang_en.sql","Refresh of English language support");
+                      $db->query("UPDATE pvp_users SET id=0 WHERE login='PUBLIC'");
                       $db->query("UPDATE pvp_media SET owner=".$_POST["owner_id"]);
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

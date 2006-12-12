@@ -45,6 +45,29 @@ function get_version() {
   return $oldversion;
 }
 
+#=================================================[ Initiate media owner ]===
+# Starting with v0.8.1, every user has his own set of media. Before, this
+# was not the case - so the "old" media must belong to somebody...
+function initiate_owner() {
+  GLOBAL $db;
+  $users = $db->get_users();
+  $uc = count($users);
+  echo "<h3>Welcome to version 0.8.1</h3>";
+  echo "<p align='justify'>Starting with this version, every user maintains his/her "
+     . "own set of media. Since this was not the case before, we need to know "
+     . "who shall own all media created so far. Of course, ownership can be "
+     . "changed later on at any time for any medium. For the initial "
+     . "assignment, please chose the owner:</p><p><br></p>\n";
+  echo "<div align='center'>\n <form name='owner_select' method='post' action='"
+     . $_SERVER["PHP_SELF"]."?oldversion=0.8.0'><select name='owner_id'>";
+  for ($i=0;$i<$uc;++$i) {
+    echo "<option value='".$users[$i]->id."'>".ucfirst($users[$i]->login)."</option>";
+  }
+  echo "</select>\n <input type='submit' name='submit' value='OK'></form></div>\n";
+  echo "</TD></TR></TABLE>\n";
+  die ("</BODY></HTML>");
+}
+
 #====================================================[ Output page intro ]===
 echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
 echo "<HTML><HEAD>\n";
@@ -175,8 +198,10 @@ $pvp->preferences->admin();
                         $db->delete_translations("fr");
                         queryf("../lang_fr.sql","Refresh of French language support");
                       }
-    case "0.8.0"    : queryf("0-8-0_to_0-8-1.".$database["type"],"Upgrade to v0.8.1");
+    case "0.8.0"    : if (!isset($_POST["owner_id"])) initiate_owner();
+                      queryf("0-8-0_to_0-8-1.".$database["type"],"Upgrade to v0.8.1");
                       queryf("../lang_en.sql","Refresh of English language support");
+                      $db->query("UPDATE pvp_media SET owner=".$_POST["owner_id"]);
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

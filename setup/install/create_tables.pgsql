@@ -2,6 +2,7 @@
 # Database for phpVideoPro
 # ========================================================
 
+BEGIN;
 # --------------------------------------------------------
 #
 # Table structure for table 'actors'
@@ -228,16 +229,15 @@ COMMENT ON COLUMN video.aq_date IS 'Date the movie was recorded/bought/...';
 COMMENT ON COLUMN video.source IS 'Where we got it (station/shop/friends name)';
 COMMENT ON COLUMN video.cat1_id IS 'ID of category for this movie (refers to cat table)';
 COMMENT ON COLUMN video.director_id IS 'ID of the directors name (refers to directors table)';
-COMMENT ON COLUMN video.directors_list IS 'List the director for this movie in printouts';
+COMMENT ON COLUMN video.director_list IS 'List the director for this movie in printouts';
 COMMENT ON COLUMN video.music_id IS 'ID of composer/musician (refers to music table)';
 COMMENT ON COLUMN video.actor1_id IS 'ID of some actor (refers to actors table)';
 COMMENT ON COLUMN video.country IS 'Country where the movie was made';
 COMMENT ON COLUMN video.year IS 'Year the movie was made/released';
-COMMENT ON COLUMN video.vnorm_id IS 'ID of video norm (refers to vnorms table)';
 COMMENT ON COLUMN video.tone_id IS 'ID of tone format (mono/stereo/...). Refers to tone table';
 COMMENT ON COLUMN video.color_id IS 'ID of color format (refers to colors table)';
 COMMENT ON COLUMN video.pict_id IS 'ID of picture format (4:3/16:9/...). Refers to pict table';
-COMMENT ON COLUMN video.commercials IS 'Whether the recording contains commercials (refers to commercials table)';
+COMMENT ON COLUMN video.commercials_id IS 'Whether the recording contains commercials (refers to commercials table)';
 COMMENT ON COLUMN video.lp IS 'Whether the recording used LongPlay';
 COMMENT ON COLUMN video.fsk IS 'Parental Guide information';
 COMMENT ON COLUMN video.audio IS 'Language(s) of audio track(s)';
@@ -403,3 +403,5 @@ COMMENT ON TABLE pvp_usergrants IS 'Privileges user grant to other users';
 COMMENT ON COLUMN pvp_usergrants.grantor IS 'Owner who gives permission to his collection';
 COMMENT ON COLUMN pvp_usergrants.grantee IS 'To whom the permission is given';
 COMMENT ON COLUMN pvp_usergrants.grants IS 'Which permission is given';
+
+COMMIT;

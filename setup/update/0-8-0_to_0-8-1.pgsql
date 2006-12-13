@@ -2,6 +2,7 @@
 # Updating Database for phpVideoPro from v0.8.0 to v0.8.1
 # ========================================================
 
+BEGIN;
 # prepare default lang update
 DELETE FROM lang WHERE lang='en';
 
@@ -104,16 +105,15 @@ COMMENT ON COLUMN video.aq_date IS 'Date the movie was recorded/bought/...';
 COMMENT ON COLUMN video.source IS 'Where we got it (station/shop/friends name)';
 COMMENT ON COLUMN video.cat1_id IS 'ID of category for this movie (refers to cat table)';
 COMMENT ON COLUMN video.director_id IS 'ID of the directors name (refers to directors table)';
-COMMENT ON COLUMN video.directors_list IS 'List the director for this movie in printouts';
+COMMENT ON COLUMN video.director_list IS 'List the director for this movie in printouts';
 COMMENT ON COLUMN video.music_id IS 'ID of composer/musician (refers to music table)';
 COMMENT ON COLUMN video.actor1_id IS 'ID of some actor (refers to actors table)';
 COMMENT ON COLUMN video.country IS 'Country where the movie was made';
 COMMENT ON COLUMN video.year IS 'Year the movie was made/released';
-COMMENT ON COLUMN video.vnorm_id IS 'ID of video norm (refers to vnorms table)';
 COMMENT ON COLUMN video.tone_id IS 'ID of tone format (mono/stereo/...). Refers to tone table';
 COMMENT ON COLUMN video.color_id IS 'ID of color format (refers to colors table)';
 COMMENT ON COLUMN video.pict_id IS 'ID of picture format (4:3/16:9/...). Refers to pict table';
-COMMENT ON COLUMN video.commercials IS 'Whether the recording contains commercials (refers to commercials table)';
+COMMENT ON COLUMN video.commercials_id IS 'Whether the recording contains commercials (refers to commercials table)';
 COMMENT ON COLUMN video.lp IS 'Whether the recording used LongPlay';
 COMMENT ON COLUMN video.fsk IS 'Parental Guide information';
 COMMENT ON COLUMN video.audio IS 'Language(s) of audio track(s)';
@@ -152,3 +152,5 @@ COMMENT ON COLUMN pvp_sessions.started IS 'Session start time';
 COMMENT ON COLUMN pvp_sessions.dla IS 'Last access time';
 COMMENT ON COLUMN pvp_sessions.ended IS 'Session end';
 COMMENT ON TABLE pvp_options IS 'Global options';
+
+COMMIT;

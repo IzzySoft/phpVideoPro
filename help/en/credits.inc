@@ -27,7 +27,9 @@ Development Crew
      Valdés-Pagés for Spanish, Denis Shvidkiy for Russian, Shalom Pollack for
      Hebrew (he deserves a very special credit for his hard work and patience -
      took us some special lessons with this special and holy tongue!),
-     Filipe Marques &lt;sopadapedra AT gmail DOT com&gt; for Portuguese</LI>
+     Filipe Marques &lt;sopadapedra AT gmail DOT com&gt; for Portuguese,
+     Kresten Kjeldgaard &lt;pvp AT gathond DOT dk&gt; for Danish plus
+     PostgreSQL verification</LI>
  <LI>SourceForge and Freshmeat for hosting the project (well, and some other
      sites promoting it)</LI>
 </UL>

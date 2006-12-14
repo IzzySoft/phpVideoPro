@@ -625,11 +625,12 @@ INSERT INTO lang VALUES ('owner','en','Owner','how we call the owner of a medium
 INSERT INTO lang VALUES ('storeplace','en','Stored at','the physical place a medium resides');
 INSERT INTO lang VALUES ('lentto','en','Lent to','if we temporarily gave away some medium');
 INSERT INTO lang VALUES ('own_to_user','en','Transfer to','name of select box for media of user to delete');
-INSERT INTO lang VALUES ('dupes_own_strict','en','Duplicate entries (own+strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
-INSERT INTO lang VALUES ('dupes_own','en','Duplicate entries (own)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
+INSERT INTO lang VALUES ('dupes_own_strict','en','Duplicate entries (own+strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours, strict checking.');
+INSERT INTO lang VALUES ('dupes_own','en','Duplicate entries (own)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours.');
 INSERT INTO lang VALUES ('grant_filter_desc','en','Show records from','Description for the filter page');
 INSERT INTO lang VALUES ('medium_no_access','en','Sorry: This medium either does not exist, or is empty, or you have no permission to access its content.','Error message for media info');
 INSERT INTO lang VALUES ('no_delete_permission','en','This medium is not your own, and the owner gave you no permission to delete his records - sorry.','Message when trying to delete a movie without having the required object privileges');
 INSERT INTO lang VALUES ('update_failed_permission','en','Failed to update entry due to missing permissions','Status message displayed on failure of an update.');
 INSERT INTO lang VALUES ('user_grants','en','Permissions on your records','title of the page where you grant permissions to others');
+INSERT INTO lang VALUES ('login_page','en','Login Page','Name of the page where you log in (for the View-Menu)');
 #INSERT INTO lang VALUES ('','en','','');

@@ -539,3 +539,4 @@ INSERT INTO lang VALUES ('medium_no_access','de','Sorry: Das gewünschte Medium 
 INSERT INTO lang VALUES ('no_delete_permission','de','Sorry: Dieses Medium gehört einem anderen Benutzer, und die zum Löschen dieses Eintrags benötigten Privilegien wurden nicht erteilt.','');
 INSERT INTO lang VALUES ('update_failed_permission','de','Datensatz konnte aufgrund fehlender Berechtigungen nicht aktualisiert werden','');
 INSERT INTO lang VALUES ('user_grants','de','Zugriffsrechte für die eigenen Daten','');
+INSERT INTO lang VALUES ('login_page','de','Login-Seite','');

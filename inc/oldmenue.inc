@@ -59,6 +59,7 @@
 
   dhtmlMenu = new NavBarMenu(140, 140);
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("view")?>", ""));
+  dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("login_page")?>", "<?=$pvp->link->slink($base_url.'login.php?logout=1')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("start_page")?>", "<?=$pvp->link->slink($base_url.'index.php')?>"));
   dhtmlMenu.addItem(new NavBarMenuItem("", ""));
   dhtmlMenu.addItem(new NavBarMenuItem("<?=lang("medialist")?>", "<?=$pvp->link->slink($base_url.'medialist.php')?>"));

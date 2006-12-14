@@ -99,6 +99,7 @@ if (isset($_REQUEST["sess_id"])) {
 
 <div id="viewMenu" class="menu">
 <?
+ echo $pvp->link->linkurl($base_url."login.php?logout=1",lang("login_page"),"class='menuItem'") ."\n";
  echo $pvp->link->linkurl($base_url."index.php",lang("start_page"),"class='menuItem'") ."\n";
  echo "<div class='menuItemSep'></div>\n";
  echo $pvp->link->linkurl($base_url."medialist.php",lang("medialist"),"class='menuItem'") ."\n";

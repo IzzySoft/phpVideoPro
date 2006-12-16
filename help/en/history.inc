@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.1
+0.8.1 "Santa" (December 17, 2006)
 [text]
 <ul>
  <li>in medium.php, the length field was duplicated. Fixed.
@@ -31,7 +31,8 @@
      edit/delete buttons now are only created if the permissions required to
      perform those actions are granted to the logged-in user
  <li>updated translations: Russian, Dutch
- <li>added translations: Portuguese (Thanx to Filipe Marques)
+ <li>added translations: Portuguese (Thanx to Filipe Marques),
+     Danish (Thanx to Kresten Kjeldgaard)
  <li>on the search page, chosing a media type resulted in error page
 </ul>
 

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -73,7 +73,7 @@
  if (!empty($subtitle)) $subtitle .= ",";
  if (!empty($audio_ts)) $audio_ts .= ",";
 
- $update  = "UPDATE video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
+ $update  = "UPDATE pvp_video SET title='$title',label=$label,country='$country',length=$length,year=$year,tone_id=$tone_id,"
           . "color_id=$color_id,aq_date='$recdate',source='$src',fsk=$fsk,comment='$comment',"
           . "actor1_list=$vis_actor1,actor2_list=$vis_actor2,actor3_list=$vis_actor3,"
           . "actor4_list=$vis_actor4,actor5_list=$vis_actor5,cat1_id=$cat1_id,cat2_id=$cat2_id,"
@@ -81,8 +81,8 @@
           . "actor1_id=$act1_id,actor2_id=$act2_id,actor3_id=$act3_id,actor4_id=$act4_id,"
           . "actor5_id=$act5_id,lp=$lp,music_list=$music_list,director_list=$director_list,"
 	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id,"
-          . "audio='$audio_ts',subtitle='$subtitle'"
-          . " WHERE cass_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
+          . "audio='$audio_ts',subtitle='$subtitle',lastchange='".date('Y-m-d H:i:s')."'"
+          . " WHERE media_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
  debug("S","<P CLASS='ok'><b>Executing Final Query:</b><br>$update</P>");
 # die($update);
  if ( dbquery($update) ) {

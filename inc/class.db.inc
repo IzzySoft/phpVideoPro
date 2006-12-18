@@ -891,7 +891,7 @@
     * @return array array of ids
     */
    function get_distinct_staffids($field) {
-     $this->dbquery("SELECT DISTINCT $field FROM video");
+     $this->dbquery("SELECT DISTINCT $field FROM pvp_video");
      while ( $this->next_record() ) {
        $id[] = $this->f("$field");
      }
@@ -1015,7 +1015,7 @@
          $catcount = count($cat);
 	 for ($i=0;$i<$catcount;++$i) {
 	   $catID = $cat[$i]['id'];
-	   $this->dbquery("SELECT COUNT(*) AS used FROM video WHERE cat1_id='$catID' OR cat2_id='$catID' OR cat3_id='$catID'");
+	   $this->dbquery("SELECT COUNT(*) AS used FROM pvp_video WHERE cat1_id='$catID' OR cat2_id='$catID' OR cat3_id='$catID'");
 	   $this->next_record();
 	   $cat[$i]['used'] = $this->f('used');
 	 }
@@ -1238,7 +1238,7 @@
        case "mtype" : $restrict = "WHERE mtype_id=$id"; break;
        default      :
      }
-     $this->dbquery("SELECT COUNT(id) AS ref FROM video $restrict");
+     $this->dbquery("SELECT COUNT(id) AS ref FROM pvp_video $restrict");
      if ( $this->next_record() ) {
        $ref = $this->f('ref');
      } else {
@@ -1256,7 +1256,7 @@
     * @return boolean success
     */
    function drop_all_movies() {
-     if (!$this->query("TRUNCATE TABLE video")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE pvp_video")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_media")) return FALSE;
      if (!$this->query("TRUNCATE TABLE music")) return FALSE;
      if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
@@ -1273,9 +1273,9 @@
     */
    function get_movieid($mtype_id,$cass_id,$part="") {
      GLOBAL $pvp;
-     $query  = "SELECT v.id FROM video v, pvp_media m"
-             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-             . "   AND v.mtype_id=$mtype_id AND v.cass_id=$cass_id";
+     $query  = "SELECT v.id FROM pvp_video v, pvp_media m"
+             . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
+             . "   AND v.mtype_id=$mtype_id AND v.media_id=$cass_id";
      if (!$pvp->auth->admin) {
        $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
        $query .= " AND m.owner IN ($gusers)";
@@ -1301,7 +1301,7 @@
     * @return array id_list
     */
    function get_movieids_all() {
-     $query = "SELECT id FROM video";
+     $query = "SELECT id FROM pvp_video";
      $this->dbquery($query);
      while ($this->next_record()) {
        $list[] = $this->f('id');
@@ -1319,7 +1319,7 @@
     *              owner_id, storeplace, lentto
     *  Tech  data: color, color_short, color_id, tone, tone_short, tone_id,
     *              pict, pict_short, pict_id, commercials, commercials_id,
-    *              lp, label
+    *              lp, label, vnorm_id, vnorm
     *  Movie data: title, length, country, year, counter1, counter2, aq_date
     *              source, fsk, comment, catX / catX_id (1..3), comment
     *  Staff data: director_list, music_list, actorX_list (where X is 1..5);
@@ -1330,13 +1330,13 @@
     *              actors, actors12, actors35 as list of actorX</pre>
     */
    function get_movie($id="") {
-     if ($id) $where = " WHERE video.id=$id";
+     if ($id) $where = " WHERE pvp_video.id=$id";
      $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
 	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,audio,subtitle,"
-            . "comment,video.mtype_id as mtype_id,"
+            . "comment,pvp_video.mtype_id as mtype_id,"
 	    . "d.name as dname,d.firstname as dfname,"
 	    . "m.name as mname,m.firstname as mfname,"
 	    . "a1.name as a1name,a1.firstname as a1fname,"
@@ -1348,12 +1348,12 @@
 	    . "c.name as cname,c.sname as csname,"
 	    . "t.name as tname,t.sname as tsname,"
 	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
-	    . "cass_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
-            . "pm.lentto AS lentto "
-	    . "FROM video "
+	    . "media_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
+            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm "
+	    . "FROM pvp_video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
-	    . "LEFT JOIN mtypes mt ON video.mtype_id=mt.id "
+	    . "LEFT JOIN mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN colors c ON color_id=c.id "
 	    . "LEFT JOIN tone t ON tone_id=t.id "
 	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
@@ -1364,7 +1364,8 @@
 	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
 	    . "LEFT JOIN actors a4 ON actor4_id=a4.id "
 	    . "LEFT JOIN actors a5 ON actor5_id=a5.id "
-            . "LEFT JOIN pvp_media pm ON (video.mtype_id=pm.mtype_id AND video.cass_id=pm.id)"
+            . "LEFT JOIN pvp_media pm ON (pvp_video.mtype_id=pm.mtype_id AND pvp_video.media_id=pm.id) "
+            . "LEFT JOIN pvp_vnorms vn ON vnorm_id=vn.id"
             . $where;
      $this->query($query);
      $rc = $this->num_rows(); # somehow the while loop does not work here???
@@ -1373,11 +1374,13 @@
        $moviedetails = array("owner_id","title","label","length","country","year",
                      "counter1","counter2","aq_date","source","director_list",
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
-		     "actor5_list","music_list","fsk","comment","cass_id","part",
-		     "mtype_id","tone_id","color_id","storeplace","lentto");
+		     "actor5_list","music_list","fsk","comment","part",
+		     "mtype_id","tone_id","color_id","storeplace","lentto",
+                     "vnorm_id","vnorm");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
+       $movie['cass_id'] = $this->f('media_id');
        $movie['title']   = stripslashes($movie['title']);
        $movie['source']  = stripslashes($movie['source']);
        $taudio = $this->f("audio");
@@ -1468,16 +1471,16 @@
      $filter = get_filters();
      $where  = "";
      switch ($order) {
-       case "title"  : $orderby = "v.title,v.mtype_id DESC,v.cass_id"; break;
-       case "fsk"    : $orderby = "v.fsk,v.mtype_id DESC,v.cass_id"; break;
-       case "length" : $orderby = "v.length,v.mtype_id DESC,v.cass_id"; break;
-       case "year"   : $orderby = "v.year,v.mtype_id DESC,v.cass_id"; break;
-       case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.cass_id"; break;
-       case "cat"    : $orderby = "v.cat1_id,v.mtype_id DESC,v.cass_id"; break;
-       default       : $orderby = "v.mtype_id DESC,v.cass_id,v.part"; break;
+       case "title"  : $orderby = "v.title,v.mtype_id DESC,v.media_id"; break;
+       case "fsk"    : $orderby = "v.fsk,v.mtype_id DESC,v.media_id"; break;
+       case "length" : $orderby = "v.length,v.mtype_id DESC,v.media_id"; break;
+       case "year"   : $orderby = "v.year,v.mtype_id DESC,v.media_id"; break;
+       case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.media_id"; break;
+       case "cat"    : $orderby = "v.cat1_id,v.mtype_id DESC,v.media_id"; break;
+       default       : $orderby = "v.mtype_id DESC,v.media_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
-     $query = "SELECT v.id FROM video v";
+     $query = "SELECT v.id FROM pvp_video v";
      if (strlen($filter)) {
        if (!empty($where)) {
          $where .= " AND $filter";
@@ -1490,14 +1493,14 @@
        if (!empty($showusers)) {
          $query .= ", pvp_media m";
          if (empty($where)) $where = " WHERE"; else $where .= " AND";
-         $where .= " m.owner IN ($showusers) AND v.cass_id=m.id AND v.mtype_id=m.mtype_id";
+         $where .= " m.owner IN ($showusers) AND v.media_id=m.id AND v.mtype_id=m.mtype_id";
        }
      } else {
        $grants = $this->get_usergrants(array(),array($pvp->auth->user_id,0),array("SELECT"));
        $owners = implode(",",$grants);
        $query .= ", pvp_media m";
        if (empty($where)) $where = " WHERE"; else $where .= " AND";
-       $where .= " m.owner IN ($owners) AND v.cass_id=m.id AND v.mtype_id=m.mtype_id";
+       $where .= " m.owner IN ($owners) AND v.media_id=m.id AND v.mtype_id=m.mtype_id";
        if (strlen($showusers)>0) {
          $where .= " AND m.owner IN ($showusers)";
        }
@@ -1663,12 +1666,12 @@
        default:
      }
      if (strlen($filter)) $restrict .= " AND ($filter)";
-     $query = "SELECT v.title,v.length,v.cass_id,v.part,v.lp,v.year,v.aq_date,"
+     $query = "SELECT v.title,v.length,v.media_id,v.part,v.lp,v.year,v.aq_date,"
 	    . "v.mtype_id,mt.name as mtname,mt.sname as mtsname,"
 	    . "cat1.name as cat1name, m.owner as owner_id, u.login as owner "
-	    . "FROM video v, mtypes mt, cat cat1, pvp_media m, pvp_users u "
+	    . "FROM pvp_video v, mtypes mt, cat cat1, pvp_media m, pvp_users u "
 	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
-            . "AND v.cass_id=m.id AND v.mtype_id=m.mtype_id "
+            . "AND v.media_id=m.id AND v.mtype_id=m.mtype_id "
             . "AND m.owner=u.id "
 	    . "AND $restrict";
      if (!$pvp->auth->admin && !$forceall) {
@@ -1683,7 +1686,8 @@
        $movie[$firstname] = $name['firstname'];
        $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
        $movie['cat1'] = lang($this->f('cat1name'));
-       $moviedetails = array("title","length","cass_id","part","lp","year","aq_date","mtype_id","owner");
+       $movie['cass_id'] = $this->f('media_id');
+       $moviedetails = array("title","length","part","lp","year","aq_date","mtype_id","owner");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
@@ -1706,7 +1710,7 @@
      GLOBAL $pvp;
      $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (is_numeric($mtype_id) && is_numeric($cass_id)) { // search on same medium
-       $this->dbquery("SELECT MIN(part) AS min_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
+       $this->dbquery("SELECT MIN(part) AS min_part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$cass_id");
        if ( $this->next_record() ) {
          return $this->f('min_part');
        } else {
@@ -1715,8 +1719,8 @@
      }
      $mtypes = $this->get_mtypes();
      for ($i=0;$i<count($mtypes);$i++) { // search first medium
-       $query = "SELECT MIN(v.cass_id) AS min_id FROM video v,pvp_media m"
-              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+       $query = "SELECT MIN(v.media_id) AS min_id FROM pvp_video v,pvp_media m"
+              . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
               . "   AND v.mtype_id=".$mtypes[$i]['id'];
        if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
        $this->dbquery($query);
@@ -1727,7 +1731,7 @@
        while ( strlen($firstnum[$i]['cass_id'])<4 ) { $firstnum[$i]['cass_id'] = "0" . $firstnum[$i]['cass_id']; }
      }
      for ($i=0;$i<count($firstnum);$i++) { // search on preselected media
-       $this->dbquery("SELECT MIN(part) as min_part FROM video WHERE cass_id=" . $firstnum[$i]['cass_id'] . " AND mtype_id=" . $firstnum[$i]['mtype_id']);
+       $this->dbquery("SELECT MIN(part) as min_part FROM pvp_video WHERE media_id=" . $firstnum[$i]['cass_id'] . " AND mtype_id=" . $firstnum[$i]['mtype_id']);
        $this->next_record();
        $firstnum[$i]['part']    = $this->f('min_part');
        while ( strlen($firstnum[$i]['part'])<2 ) { $firstnum[$i]['part'] = "0" . $firstnum[$i]['part']; }
@@ -1751,7 +1755,7 @@
      $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (is_numeric($mtype_id) ) {
        if ( is_numeric($cass_id)) {
-         $this->dbquery("SELECT MAX(part) AS max_part FROM video WHERE mtype_id=$mtype_id AND cass_id=$cass_id");
+         $this->dbquery("SELECT MAX(part) AS max_part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$cass_id");
          if ( $this->next_record() ) return $this->f('max_part');
            else return 0;
        } else {
@@ -1768,8 +1772,8 @@
        $mtypes = $this->get_mtypes();
      }
      for ($i=0;$i<count($mtypes);++$i) { // search on all media
-       $query = "SELECT MAX(v.cass_id) AS max_id FROM video v,pvp_media m"
-              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+       $query = "SELECT MAX(v.media_id) AS max_id FROM pvp_video v,pvp_media m"
+              . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
               . "   AND v.mtype_id=".$mtypes[$i]['id'];
        if ($restrict_access && !$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
        $this->dbquery($query);
@@ -1780,7 +1784,7 @@
        while ( strlen($lastnum[$i]['cass_id'])<4 ) { $lastnum[$i]['cass_id'] = "0" . $lastnum[$i]['cass_id']; }
      }
      for ($i=0;$i<count($lastnum);$i++) { // search on preselected media
-       $this->dbquery("SELECT MAX(part) as max_part FROM video WHERE cass_id=" . $lastnum[$i]['cass_id'] . " AND mtype_id=" . $lastnum[$i]['mtype_id']);
+       $this->dbquery("SELECT MAX(part) as max_part FROM pvp_video WHERE media_id=" . $lastnum[$i]['cass_id'] . " AND mtype_id=" . $lastnum[$i]['mtype_id']);
        $this->next_record();
        $lastnum[$i]['part']    = $this->f('max_part');
        while ( strlen($lastnum[$i]['part'])<2 ) { $lastnum[$i]['part'] = "0" . $lastnum[$i]['part']; }
@@ -1802,20 +1806,20 @@
      if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
      $next->mtype_id = $mtype_id;
      $next->media_nr = $media_nr;
-     $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part>$part");
+     $this->query("SELECT MIN(part) AS part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$media_nr AND part>$part");
      if ($this->next_record()) { // check on the same medium
        $next->part = $this->f('part');
        if($next->part) return $next;
      }
-     $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
-            . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-            . "   AND v.mtype_id=$mtype_id AND v.cass_id>$media_nr";
+     $query = "SELECT MIN(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
+            . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
+            . "   AND v.mtype_id=$mtype_id AND v.media_id>$media_nr";
      if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
      $this->query($query); // check for next valid medium
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
        if ($next->media_nr) { # Work around MySQL bug returning "Null" sometimes
-         $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$next->media_nr);
+         $this->query("SELECT MIN(part) AS part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=".$next->media_nr);
          $this->next_record();
          $next->part = $this->f('part');
          return $next;
@@ -1831,15 +1835,15 @@
      do {
        ++$next->mtype_id;
      } while ( (!isset($mt[$next->mtype_id])) && ($next->mtype_id<$maxid) );
-     $query = "SELECT MIN(v.cass_id) AS medianr FROM video v,pvp_media m"
-            . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+     $query = "SELECT MIN(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
+            . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
             . "   AND v.mtype_id=".$next->mtype_id;
      if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
      $this->query($query); // switch to next media type
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
        if ($next->media_nr) {
-         $this->query("SELECT MIN(part) AS part FROM video WHERE mtype_id=".$next->mtype_id." AND cass_id=".$next->media_nr);
+         $this->query("SELECT MIN(part) AS part FROM pvp_video WHERE mtype_id=".$next->mtype_id." AND media_id=".$next->media_nr);
          $this->next_record();
          $next->part = $this->f('part');
          return $next;
@@ -1862,22 +1866,22 @@
      $prev->mtype_id = $mtype_id;
      $prev->media_nr = $media_nr;
      if ($part>1) { // check on the same medium
-       $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=$media_nr AND part<$part");
+       $this->query("SELECT MAX(part) AS part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$media_nr AND part<$part");
        if ($this->next_record()) {
          $prev->part = $this->f('part');
          if ($prev->part) return $prev; // MySQL sometimes returns empty rows
        }
      }
      if ($media_nr>1) { // check for previous medium
-       $query = "SELECT MAX(v.cass_id) AS medianr FROM video v,pvp_media m"
-              . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
-              . "   AND v.mtype_id=$mtype_id AND v.cass_id<$media_nr";
+       $query = "SELECT MAX(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
+              . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
+              . "   AND v.mtype_id=$mtype_id AND v.media_id<$media_nr";
        if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
        $this->query($query);
        if ($this->next_record()) {
          $prev->media_nr = $this->f('medianr');
          if (!is_numeric($prev->media_nr)) return FALSE;
-         $this->query("SELECT MAX(part) AS part FROM video WHERE mtype_id=$mtype_id AND cass_id=".$prev->media_nr);
+         $this->query("SELECT MAX(part) AS part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=".$prev->media_nr);
          $this->next_record();
          $prev->part = $this->f('part');
          return $prev;
@@ -1950,13 +1954,13 @@
      }
      if ($lp) { $lp = 1; } else { $lp = 0; }
      $audio_ts = ",".@implode(",",$movie['audio']).",";
-     $subtitle = ",".@implode(",",$movie['subtitle']).",";
-     $insert = "INSERT INTO video (mtype_id,cass_id,part,title,label,length,aq_date,"
+     if (!empty($movie['subtitle'])) $subtitle = ",".@implode(",",$movie['subtitle']).",";
+     $insert = "INSERT INTO pvp_video (mtype_id,media_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
 	     . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,"
 	     . "actor4_list,actor5_list,tone_id,pict_id,color_id,fsk,comment,"
-	     . "lp,counter1,counter2,commercials_id,audio,subtitle) "
+	     . "lp,counter1,counter2,commercials_id,audio,subtitle,lastchange) "
 	     . "VALUES ("
 	     . "$mtype_id,$cass_id,$part,'$title',$label,$length,'$aq_date','$source',"
 	     . "$director_id,$director_list,$music_id,$music_list,'$country',"
@@ -1964,7 +1968,7 @@
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',"
-             . "$commercials_id,'$audio_ts','$subtitle')";
+             . "$commercials_id,'$audio_ts','$subtitle','".date('Y-m-d H:i:s')."')";
      $success = $this->query($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $this->insert_medium($cass_id,$mtype_id,$space);
@@ -1999,13 +2003,13 @@
        $movie = $this->get_movie($id);
        $space = $this->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
      }
-     $query = "UPDATE video SET mtype_id=$mtype_id,cass_id=$cass_id,part=$part"
+     $query = "UPDATE pvp_video SET mtype_id=$mtype_id,media_id=$cass_id,part=$part"
             . " WHERE id=$id";
      $success = $this->dbquery($query);
      if (isset($movie) && is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
      $this->update_freetime($cass_id,$mtype_id);
      if ( isset($movie) && $pvp->common->medium_is_rw($movie['mtype_id']) && $movie['cass_id']!=$cass_id ) {
-       $this->dbquery("SELECT id FROM video WHERE cass_id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
+       $this->dbquery("SELECT id FROM pvp_video WHERE media_id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
        if ( $this->next_record() ) {
          $this->update_freetime($movie['cass_id'],$movie['mtype_id']);
        } else {
@@ -2037,12 +2041,12 @@
        $valid_owners = $this->get_usergrants(array(),array(0,$pvp->auth->user_id),array('SELECT'));
      }
      $query  = "SELECT o.title as titel, o.id as o_id, o.mtype_id as o_mtypeid,"
-             . " o.cass_id as o_cassnr, o.part as o_part, o.length as o_len,"
+             . " o.media_id as o_cassnr, o.part as o_part, o.length as o_len,"
              . " o.audio as o_audio, o.fsk as o_fsk, o.year as o_year,"
              . " d.id as d_id, d.mtype_id as d_mtypeid,"
-             . " d.cass_id as d_cassnr, d.part as d_part, d.length as d_len,"
+             . " d.media_id as d_cassnr, d.part as d_part, d.length as d_len,"
              . " d.audio AS d_audio, d.fsk as d_fsk, d.year as d_year"
-             . " FROM video o, video d"
+             . " FROM pvp_video o, pvp_video d"
              . " WHERE o.title=d.title AND o.id<d.id"
              . " ORDER BY o_id ASC";
      $this->dbquery($query);
@@ -2227,7 +2231,7 @@
        for ($i=0;$i<$mc;++$i) { // delete the movies from affected media
          // check directors from affected videos
          $did_list = "";
-         $query = "SELECT DISTINCT director_id FROM video WHERE cass_id IN ($mid_list)";
+         $query = "SELECT DISTINCT director_id FROM pvp_video WHERE media_id IN ($mid_list)";
          $this->query($query);
          while ($this->next_record()) {
            $dd = $this->f('director_id');
@@ -2237,7 +2241,7 @@
            $this->query("DELETE FROM directors WHERE id IN (".substr($did_list,1).")");
          // check for composers
          $did_list = "";
-         $query = "SELECT DISTINCT music_id FROM video WHERE cass_id IN ($mid_list)";
+         $query = "SELECT DISTINCT music_id FROM pvp_video WHERE media_id IN ($mid_list)";
          $this->query($query);
          while ($this->next_record()) {
            $dd = $this->f('music_id');
@@ -2247,14 +2251,14 @@
            $this->query("DELETE FROM music WHERE id IN (".substr($did_list,1).")");
          // check for actors
          $did_list = "";
-         $query = "SELECT DISTINCT actor1_id FROM video WHERE cass_id IN ($mid_list)";
+         $query = "SELECT DISTINCT actor1_id FROM pvp_video WHERE media_id IN ($mid_list)";
          $this->query($query);
          while ($this->next_record()) {
            $aid[] = $this->f('actor1_id');
            $did_list .= ",".$this->f('actor1_id');
          }
          for ($i=1;$i<6;++$i) {
-           $query = "SELECT DISTINCT actor${i}_id FROM video WHERE cass_id IN ($mid_list)";
+           $query = "SELECT DISTINCT actor${i}_id FROM pvp_video WHERE media_id IN ($mid_list)";
            $this->query($query);
            while ($this->next_record()) {
              if (!in_array($this->f("actor${i}_id"),$aid)) {
@@ -2266,10 +2270,10 @@
          $ac = count($aid);
          for ($i=0;$i<$ac;++$i) {
            if (!empty($aid[$i])) {
-             $query = "SELECT count(id) AS idc FROM video WHERE (actor1_id=".$aid[$i]
+             $query = "SELECT count(id) AS idc FROM pvp_video WHERE (actor1_id=".$aid[$i]
                     . " OR actor2_id=".$aid[$i]." OR actor3_id=".$aid[$i]
                     . " OR actor4_id=".$aid[$i]." OR actor5_id=".$aid[$i]
-                    . ") AND cass_id NOT IN ($mid_list)";
+                    . ") AND media_id NOT IN ($mid_list)";
              $this->query($query);
              $this->next_record();
              if ($this->f('idc')==0) {
@@ -2278,7 +2282,7 @@
            }
          }
          // delete the movies
-         $this->query("DELETE FROM video WHERE cass_id IN ($mid_list)");
+         $this->query("DELETE FROM pvp_video WHERE media_id IN ($mid_list)");
        }
      }
      return $this->query("DELETE FROM pvp_media WHERE owner=$owner_id");
@@ -2523,11 +2527,11 @@
     * @return boolean wether deletion took place
     */
    function delete_medium($cass_id,$mtype_id,$force=FALSE) {
-     $this->dbquery("SELECT COUNT(id) as mcount FROM video WHERE cass_id=$cass_id AND mtype_id=$mtype_id");
+     $this->dbquery("SELECT COUNT(id) as mcount FROM pvp_video WHERE media_id=$cass_id AND mtype_id=$mtype_id");
      $this->next_record();
      if ( $this->f('mcount') < 1 ) $force = TRUE;
      if ($force) {
-       $this->dbquery("DELETE FROM pvp_media WHERE id=$cass_id");
+       $this->dbquery("DELETE FROM pvp_media WHERE id=$media_id");
        return TRUE;
      }
      return FALSE;
@@ -2542,7 +2546,7 @@
    function get_mediumfreetime($id,$mtype_id) {
      $free  = $this->get_mediaspace($id,$mtype_id);
      if ( empty($free) ) return "";
-     $query = "SELECT length,lp FROM video WHERE cass_id=$id AND mtype_id=$mtype_id";
+     $query = "SELECT length,lp FROM pvp_video WHERE media_id=$id AND mtype_id=$mtype_id";
      $this->dbquery($query);
      $i=0;
      while ( $this->next_record() ) {
@@ -2617,11 +2621,11 @@
    function get_freelist($minfree,$filter="",$start="") {
      $restrict = "free>=$minfree";
      if ( strlen($filter) ) {
-       $this->dbquery("SELECT cass_id FROM video v WHERE $filter");
+       $this->dbquery("SELECT media_id FROM pvp_video v WHERE $filter");
        $i=0;
        while ( $this->next_record() ) {
-         if ($i) { $tapelist .= "," . $this->f('cass_id'); }
-	   else { $tapelist = $this->f('cass_id'); ++$i; }
+         if ($i) { $tapelist .= "," . $this->f('media_id'); }
+	   else { $tapelist = $this->f('media_id'); ++$i; }
        }
        $restrict .=  " AND id IN ($tapelist)";
      }
@@ -2654,15 +2658,15 @@
      if (strlen($filter)) $restrict = "AND $filter";
      if (!$pvp->auth->admin) {
        $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
-       $from = "FROM video v, pvp_media m"
-             . " WHERE v.cass_id=m.id AND v.mtype_id=m.mtype_id"
+       $from = "FROM pvp_video v, pvp_media m"
+             . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
              . " AND m.owner IN ($gusers) AND";
      } else {
-       $from = "FROM video v WHERE";
+       $from = "FROM pvp_video v WHERE";
      }
      switch ($stafftype) {
-       case "music"     : $query[] = "SELECT DISTINCT music_id FROM video v WHERE music_list=1 $restrict"; $field[] = "music_id"; break;
-       case "directors" : $query[] = "SELECT DISTINCT director_id FROM video v WHERE director_list=1 $restrict"; $field[] = "director_id"; break;
+       case "music"     : $query[] = "SELECT DISTINCT music_id FROM pvp_video v WHERE music_list=1 $restrict"; $field[] = "music_id"; break;
+       case "directors" : $query[] = "SELECT DISTINCT director_id FROM pvp_video v WHERE director_list=1 $restrict"; $field[] = "director_id"; break;
        case "actors"    : $query[] = "SELECT DISTINCT actor1_id $from actor1_list=1 $restrict"; $field[] = "actor1_id";
                           $query[] = "SELECT DISTINCT actor2_id $from actor2_list=1 $restrict"; $field[] = "actor2_id";
                           $query[] = "SELECT DISTINCT actor3_id $from actor3_list=1 $restrict"; $field[] = "actor3_id";
@@ -2790,7 +2794,7 @@
    function get_stats() {
      GLOBAL $pvp;
      // ===[ counts ]===
-     $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM video"),
+     $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM pvp_video"),
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
@@ -2802,22 +2806,22 @@
        $item = $value["name"];
        $stats[$item] = $this->f("$item");
      }
-     $this->dbquery("SELECT DISTINCT mtype_id,cass_id FROM video");
+     $this->dbquery("SELECT DISTINCT mtype_id,media_id FROM pvp_video");
      $stats['media'] = $this->num_rows();
      $mt = $this->get_mtypes();
      $ct = count($mt);
      for ($i=0;$i<$ct;++$i) {
-       $this->dbquery("SELECT DISTINCT cass_id FROM video WHERE mtype_id=".$mt[$i]['id']);
+       $this->dbquery("SELECT DISTINCT media_id FROM pvp_video WHERE mtype_id=".$mt[$i]['id']);
        $ms['mcount'] = $this->num_rows();
        $ms['name']  = $mt[$i]['name'];
        $ms['sname'] = $mt[$i]['sname'];
        $stats['smedia'][] = $ms;
      }
-     $this->dbquery("SELECT DISTINCT country FROM video");
+     $this->dbquery("SELECT DISTINCT country FROM pvp_video");
      $stats['countries'] = $this->num_rows();
      for ($i=1;$i<4;++$i) {
        $cat = "cat" . $i . "_id";
-       $this->dbquery("SELECT DISTINCT $cat FROM video");
+       $this->dbquery("SELECT DISTINCT $cat FROM pvp_video");
        while ( $this->next_record() ) {
          ${$cat}[] = "a_" . $this->f("$cat"); // "a_" needed for array_merge to turn the integer into a string
        }
@@ -2826,10 +2830,10 @@
      $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
      $stats['cats_used'] = count($cats);
      // ===[ ranks ]===
-     $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
-		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
-		       array("name"=>"composer","sql"=>"SELECT count(id) AS rank, music_id AS item FROM video WHERE music_id>0 GROUP BY music_id ORDER BY rank DESC"),
-		       array("name"=>"category","sql"=>"SELECT count(id) AS rank, cat1_id AS item FROM video GROUP BY cat1_id ORDER BY rank DESC")
+     $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM pvp_video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),
+		       array("name"=>"director","sql"=>"SELECT count(id) AS rank, director_id AS item FROM pvp_video WHERE director_id>0 GROUP BY director_id ORDER BY rank DESC"),
+		       array("name"=>"composer","sql"=>"SELECT count(id) AS rank, music_id AS item FROM pvp_video WHERE music_id>0 GROUP BY music_id ORDER BY rank DESC"),
+		       array("name"=>"category","sql"=>"SELECT count(id) AS rank, cat1_id AS item FROM pvp_video GROUP BY cat1_id ORDER BY rank DESC")
                      );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);
@@ -2879,7 +2883,7 @@
      // actors is a bit complicated - we have to consider 5 fields...
      for ($i=1;$i<6;++$i) {
        $id = "actor" . $i . "_id";
-       $this->dbquery("SELECT COUNT($id) AS count,$id FROM video WHERE $id<>0 GROUP BY $id");
+       $this->dbquery("SELECT COUNT($id) AS count,$id FROM pvp_video WHERE $id<>0 GROUP BY $id");
        while ( $this->next_record() ) {
          $actor_id         = $this->f("$id");
          ${$id}[$actor_id] = $this->f("count");
@@ -3298,7 +3302,7 @@
   * @return boolean
   */
  function image_is_refered($img) {
-   $query = "SELECT count(id) AS refs FROM video WHERE comment LIKE '%$img%'";
+   $query = "SELECT count(id) AS refs FROM pvp_video WHERE comment LIKE '%$img%'";
    $this->query($query);
    $this->next_record();
    if ($this->f('refs')) return TRUE;

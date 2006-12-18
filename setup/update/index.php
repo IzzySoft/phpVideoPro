@@ -67,6 +67,23 @@ function initiate_owner() {
   echo "</TD></TR></TABLE>\n";
   die ("</BODY></HTML>");
 }
+#=============================================[ Initiate (Default) VNorm ]===
+function initiate_vnorm() {
+  echo "<h3>Welcome to version 0.8.2</h3>";
+  echo "<p align='justify'>Amongst other features, this version introduces the "
+     . "maintenance of the movies video norm. So here you can chose the defaults "
+     . "to set for this in your phpVideoPro installation. If most of your movies "
+     . "use the same video norm (which is quite usual), you also may want to "
+     . "update your records accordingly:</p><p><br></p>";
+  echo "<form name='vnorm_update' method='post' action='".$_SERVER["PHP_SELF"]
+     . "?oldversion=0.8.1'>\n<table align='center' border='0'>\n"
+     . " <tr><td>Default Video Norm:&nbsp;</td><td><select name='vnorm_id'>"
+     . "<option value='1'>PAL</option><option value='2'>NTSC</option></select></td></tr>\n"
+     . " <tr><td>Update records:</td><td><input type='checkbox' class='checkbox' name='update_rec' value='1'>"
+     . "&nbsp;Yes, please</td></tr>\n</table>\n<div align='center'><input type='submit' name='submit' value='OK'></div>\n</form>\n";
+  echo "</TD></TR></TABLE>\n";
+  die ("</BODY></HTML>");
+}
 
 #====================================================[ Output page intro ]===
 echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
@@ -203,6 +220,14 @@ $pvp->preferences->admin();
                       queryf("../lang_en.sql","Refresh of English language support");
                       $db->query("UPDATE pvp_users SET id=0 WHERE login='PUBLIC'");
                       $db->query("UPDATE pvp_media SET owner=".$_POST["owner_id"]);
+                      break;
+    case "0.8.1"    : if (!isset($_POST["vnorm_id"])) initiate_vnorm();
+                      queryf("0-8-1_to_0-8-2.".$database["type"],"Upgrade to v0.8.2");
+                      queryf("../lang_en.sql","Refresh of English language support");
+                      $db->query("INSERT INTO preferences (name,value) VALUES ('default_vnorm','".$_POST["vnorm_id"]."')");
+                      if ($_POST["update_rec"]) {
+                        $db->query("UPDATE pvp_video SET vnorm_id=".$_POST["vnorm_id"]);
+                      }
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

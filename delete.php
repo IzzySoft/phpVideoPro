@@ -112,7 +112,7 @@
    # now we delete the movie entry from db
    if (!isset($details)) $details = "";
    $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
-   kill("video",$id);
+   kill("pvp_video",$id);
    # and finally we may have to correct the free space remaining on that medium (if rewritable)
    if ( $pvp->common->medium_is_rw($mtype_id) || $movie["disktype"] ) {
      $details .= "<li>" . lang("check_media_delete"). ". ";

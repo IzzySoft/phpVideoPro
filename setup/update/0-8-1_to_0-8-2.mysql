@@ -1,0 +1,89 @@
+# ========================================================
+# Updating Database for phpVideoPro from v0.8.1 to v0.8.2
+# ========================================================
+
+# prepare default lang update
+DELETE FROM lang WHERE lang='en';
+
+# version update
+UPDATE pvp_config SET value='0.8.2' WHERE name='version';
+
+# New table for the video norms:
+CREATE TABLE pvp_vnorms (
+   id INT(3) NOT NULL,
+   name VARCHAR(20),
+   PRIMARY KEY (id)
+);
+ALTER TABLE pvp_vnorms COMMENT='List of video norms (PAL,NTSC) we support';
+
+INSERT INTO pvp_vnorms VALUES (1,'PAL');
+INSERT INTO pvp_vnorms VALUES (2,'NTSC');
+
+# New structure for the video table:
+CREATE TABLE pvp_video (
+   id INT(7) NOT NULL auto_increment,
+   mtype_id INT(5),
+   media_id INT(4),
+   part INT(2),
+   title VARCHAR(60),
+   imdb_id VARCHAR(10),
+   label INT(1) NOT NULL,
+   length INT(3),
+   counter1 VARCHAR(10),
+   counter2 VARCHAR(10),
+   aq_date VARCHAR(10),
+   source VARCHAR(15),
+   cat1_id INT(5) NOT NULL,
+   cat2_id INT(5) NOT NULL,
+   cat3_id INT(5) NOT NULL,
+   director_id INT(5),
+   director_list INT(1),
+   music_id INT(5),
+   music_list INT(1),
+   actor1_id INT(5),
+   actor2_id INT(5),
+   actor3_id INT(5),
+   actor4_id INT(5),
+   actor5_id INT(5),
+   actor1_list INT(1) NOT NULL,
+   actor2_list INT(1) NOT NULL,
+   actor3_list INT(1) NOT NULL,
+   actor4_list INT(1) NOT NULL,
+   actor5_list INT(1) NOT NULL,
+   country VARCHAR(30),
+   year INT(4),
+   vnorm_id INT(3),
+   tone_id INT(5),
+   color_id INT(5),
+   pict_id INT(5) NOT NULL,
+   commercials_id INT(5) NOT NULL,
+   lp INT(1) NOT NULL,
+   fsk INT(2),
+   audio VARCHAR(50),
+   subtitle VARCHAR(100),
+   comment TEXT,
+   private INT(1),
+   lastchange DATETIME,
+   PRIMARY KEY (id)
+);
+ALTER TABLE pvp_video COMMENT='Movies information';
+
+INSERT INTO pvp_video (id,mtype_id,media_id,part,title,label,length,counter1,
+  counter2,aq_date,source,cat1_id,cat2_id,cat3_id,director_id,director_list,
+  music_id,music_list,actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,
+  actor1_list,actor2_list,actor3_list,actor4_list,actor5_list,country,year,
+  tone_id,color_id,pict_id,commercials_id,lp,fsk,audio,subtitle,comment)
+  SELECT id,mtype_id,cass_id,part,title,label,length,counter1,counter2,aq_date,
+  source,cat1_id,cat2_id,cat3_id,director_id,director_list,music_id,music_list,
+  actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,actor2_list,
+  actor3_list,actor4_list,actor5_list,country,year,tone_id,color_id,pict_id,
+  commercials_id,lp,fsk,audio,subtitle,comment FROM video;
+UPDATE pvp_video SET private=0;
+DROP INDEX video_cat_idx ON video;
+DROP INDEX video_unique_medium_idx ON video;
+DROP TABLE video;
+
+CREATE INDEX video_cat_idx ON pvp_video (cat1_id,cat2_id,cat3_id);
+CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,media_id,part);
+CREATE INDEX video_title_idx ON pvp_video (title);
+

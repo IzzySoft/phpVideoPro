@@ -2,6 +2,13 @@
 # /*  $Id$ */
 
 [title]
+0.8.2 (2007)
+[text]
+<ul>
+ <li>now supporting video norm (PAL/NTSC) setting for each movie
+</ul>
+
+[title]
 0.8.1 "Santa" (December 17, 2006)
 [text]
 <ul>

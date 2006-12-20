@@ -1086,6 +1086,20 @@
    ############################################################################
    # technical data
    ############################################################################
+   /** Get Video Norms
+    * @method get_vnorms
+    * @return array vnorms (id,name)
+    */
+   function get_vnorms() {
+     $this->dbquery("SELECT id,name FROM pvp_vnorms");
+     while ($this->next_record()) {
+       $v["id"]   = $this->f('id');
+       $v["name"] = $this->f('name');
+       $vnorms[]  = $v;
+     }
+     return $vnorms;
+   }
+
    /** Get audio/video data and return it as array
     * @method private get_av
     * @param integer id ID of required data set
@@ -1960,7 +1974,8 @@
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
 	     . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,"
 	     . "actor4_list,actor5_list,tone_id,pict_id,color_id,fsk,comment,"
-	     . "lp,counter1,counter2,commercials_id,audio,subtitle,lastchange) "
+	     . "lp,counter1,counter2,commercials_id,audio,subtitle,lastchange,"
+             . "vnorm_id) "
 	     . "VALUES ("
 	     . "$mtype_id,$cass_id,$part,'$title',$label,$length,'$aq_date','$source',"
 	     . "$director_id,$director_list,$music_id,$music_list,'$country',"
@@ -1968,7 +1983,8 @@
 	     . "$actor3_id,$actor4_id,$actor5_id,$actor1_list,$actor2_list,"
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',"
-             . "$commercials_id,'$audio_ts','$subtitle','".date('Y-m-d H:i:s')."')";
+             . "$commercials_id,'$audio_ts','$subtitle','".date('Y-m-d H:i:s')."',"
+             . "$vnorm_id)";
      $success = $this->query($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $this->insert_medium($cass_id,$mtype_id,$space);

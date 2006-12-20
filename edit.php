@@ -130,6 +130,7 @@
       $comm[$commercials[$i]['id']] = $commercials[$i]['name'];
       $comm_id[$i] = $commercials[$i]['id'];
     }
+    $vnorms = $db->get_vnorms();
   } else {
     $input = $dinput = "INPUT TYPE='button'";
     // $input .= " readonly"; // HTML 4.0 - not supported by Netscape 4.x
@@ -186,7 +187,8 @@
   // values:
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
-	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle");
+	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle",
+              "vnorm_id","vnorm");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -617,6 +619,7 @@ EndHiddenFields;
   }
   $t->set_var("tone",$field);
   $t->set_var("picture_name",lang("picture"));
+  # Color Format
   if ($edit) {
     $field = "<SELECT NAME='color_id'" . $form["addon_tech"] . ">";
     for ($i=0;$i<count($scolors);$i++) {
@@ -629,6 +632,7 @@ EndHiddenFields;
     $field = vform_input("color",$color,"",TECH_BTN_WID);
   }
   $t->set_var("picture",$field);
+  # Screen Format
   $t->set_var("screen_name",lang("screen"));
   if ($new_entry) $pict_id = $pvp->preferences->get("default_movie_pictid");
   if ($edit) {
@@ -640,11 +644,23 @@ EndHiddenFields;
       $field .= ">" . $picts[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
+    $field2  = "<SELECT NAME='vnorm_id'><OPTION VALUE='0'>" . lang("unknown") . "</OPTION>";
+      for ($i=0;$i<count($vnorms);++$i) {
+        $field2 .= "<OPTION VALUE='".$vnorms[$i]["id"]."'";
+        if ($new_entry && $vnorms[$i]["id"] == $pvp->preferences->get("default_vnorm_id"))
+          $field2 .= " SELECTED";
+        elseif ($vnorms[$i]["id"] == $vnorm_id) $field2 .= " SELECTED";
+        $field2 .= ">".$vnorms[$i]["name"]."</OPTION>";
+      }
+    $field2 .= "</SELECT>";
   } else {
-    if (!$pict_format) $pict_format = "unknown";
+    if (!$pict_format) $pict_format = lang("unknown");
     $field = vform_input("pict_format",$pict_format,"",TECH_BTN_WID);
+    if (!$vnorm) $vnorm = lang("unknown");
+    $field2 = vform_input("vnorm",$vnorm,"",70);
   }
   $t->set_var("screen",$field);
+  $t->set_var("vnorm",$field2);
   $t->set_var("source_name",lang("source"));
   if (!isset($src)) $src = "";
   if ($edit) {

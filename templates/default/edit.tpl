@@ -55,7 +55,11 @@
     <TR><TD>{date_name}</TD><TD>{date}</TD></TR>
     <TR><TD>{tone_name}</TD><TD>{tone}</TD></TR>
     <TR><TD>{picture_name}</TD><TD>{picture}</TD></TR>
-    <TR><TD>{screen_name}</TD><TD>{screen}</TD></TR>
+    <TR><TD>{screen_name}</TD><TD>
+      <TABLE BORDER="0" CellPadding="0" CellSpacing="0">
+        <TR><TD>{screen}</TD><TD>{vnorm}</TD></TR>
+      </TABLE>
+    </TD></TR>
     <TR><TD>{source_name}</TD><TD>{source}</TD></TR>
     <TR><TD>{fsk_name}</TD><TD>{fsk}</TD></TR>
     <TR><TD VALIGN="top">{audio_name}</TD><TD>{audio}</TD></TR>

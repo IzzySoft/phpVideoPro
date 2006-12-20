@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -49,7 +49,8 @@
  $fields = array("mtype_id","cass_id","part","title","length","country","year",
                  "cat1_id","cat2_id","cat3_id","director_list","music_list",
 		 "tone_id","pict_id","color_id","fsk","comment","lp",
-		 "counter1","counter2","commercials_id","label","disktype");
+		 "counter1","counter2","commercials_id","label","disktype",
+                 "vnorm_id");
  foreach ($fields as $value) {
    if (isset(${$value})) $movie[$value] = ${$value}; else $movie[$value] = "";
  }

@@ -18,7 +18,8 @@ CREATE TABLE pvp_vnorms (
 COMMENT ON TABLE pvp_vnorms IS 'List of video norms (PAL,NTSC) we support';
 COMMENT ON COLUMN pvp_vnorms.id IS 'ID for reference';
 COMMENT ON COLUMN pvp_vnorms.name IS 'Name of the norm (e.g. PAL or NTSC)';
-ALTER TABLE pvp_norms ADD CONSTRAINT pk_vnorms PRIMARY KEY (id);
+ALTER TABLE pvp_vnorms ADD CONSTRAINT pk_vnorms PRIMARY KEY (id);
+ALTER TABLE pvp_vnorms ADD CONSTRAINT notnullcheck_vnorms_name CHECK (name IS NOT NULL);
 
 INSERT INTO pvp_vnorms VALUES (1,'PAL');
 INSERT INTO pvp_vnorms VALUES (2,'NTSC');
@@ -31,42 +32,42 @@ CREATE TABLE pvp_video (
    part INT,
    title VARCHAR(60),
    imdb_id VARCHAR(10),
-   label INT,
+   label INT DEFAULT 0,
    length INT,
    counter1 VARCHAR(10),
    counter2 VARCHAR(10),
    aq_date VARCHAR(10),
    source VARCHAR(15),
-   cat1_id INT,
-   cat2_id INT,
-   cat3_id INT,
+   cat1_id INT DEFAULT 0,
+   cat2_id INT DEFAULT 0,
+   cat3_id INT DEFAULT 0,
    director_id INT,
-   director_list INT,
+   director_list INT DEFAULT 0,
    music_id INT,
-   music_list INT,
+   music_list INT DEFAULT 0,
    actor1_id INT,
    actor2_id INT,
    actor3_id INT,
    actor4_id INT,
    actor5_id INT,
-   actor1_list INT,
-   actor2_list INT,
-   actor3_list INT,
-   actor4_list INT,
-   actor5_list INT,
+   actor1_list INT DEFAULT 0,
+   actor2_list INT DEFAULT 0,
+   actor3_list INT DEFAULT 0,
+   actor4_list INT DEFAULT 0,
+   actor5_list INT DEFAULT 0,
    country VARCHAR(30),
    year INT,
    vnorm_id INT,
    tone_id INT,
    color_id INT,
-   pict_id INT,
-   commercials_id INT,
-   lp INT,
+   pict_id INT DEFAULT 0,
+   commercials_id INT DEFAULT 0,
+   lp INT DEFAULT 0,
    fsk INT,
    audio VARCHAR(50),
    subtitle VARCHAR(100),
    comment TEXT,
-   private INT,
+   private INT DEFAULT 0,
    lastchange TIMESTAMP
 );
 COMMENT ON TABLE pvp_video IS 'Stores the movies information';
@@ -111,9 +112,12 @@ ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor2list CHECK (actor2
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor3list CHECK (actor3_list IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor4list CHECK (actor4_list IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor5list CHECK (actor5_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_directorlist CHECK (director_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_musiclist CHECK (music_list IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_pictid CHECK (pict_id IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_commercialsid CHECK (commercials_id IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_lp CHECK (lp IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_private CHECK (private IS NOT NULL);
 
 INSERT INTO pvp_video (id,mtype_id,media_id,part,title,label,length,counter1,
   counter2,aq_date,source,cat1_id,cat2_id,cat3_id,director_id,director_list,

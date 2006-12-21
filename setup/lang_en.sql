@@ -635,4 +635,5 @@ INSERT INTO lang VALUES ('user_grants','en','Permissions on your records','title
 INSERT INTO lang VALUES ('login_page','en','Login Page','Name of the page where you log in (for the View-Menu)');
 INSERT INTO lang VALUES ('movie_vnorm_default','en','Default Video Norm','Setting on the configuration screen');
 INSERT INTO lang VALUES ('movie_vnorm_default_comment','en','This is the Pre-Setting of the \"Video Norm\" field for new entries. In the US you will usually chose NTSC, while in Europe the common standard is PAL.','');
+INSERT INTO lang VALUES ('movie_private','en','Private','From the Edit screen. If you mark a movie \"private\", it will only be shown to you - even if you granted access on your collection to others.');
 #INSERT INTO lang VALUES ('','en','','');

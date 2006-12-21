@@ -1292,7 +1292,8 @@
              . "   AND v.mtype_id=$mtype_id AND v.media_id=$cass_id";
      if (!$pvp->auth->admin) {
        $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
-       $query .= " AND m.owner IN ($gusers)";
+       $query .= " AND (m.owner=".$pvp->auth->user_id
+              .  "  OR v.private=0 AND m.owner IN ($gusers))";
      }
      if ($part=="") {
        $id = array();
@@ -1514,7 +1515,9 @@
        $owners = implode(",",$grants);
        $query .= ", pvp_media m";
        if (empty($where)) $where = " WHERE"; else $where .= " AND";
-       $where .= " m.owner IN ($owners) AND v.media_id=m.id AND v.mtype_id=m.mtype_id";
+       $where .= " v.media_id=m.id AND v.mtype_id=m.mtype_id"
+              .  " AND (m.owner=".$pvp->auth->user_id
+              .  "  OR m.owner IN ($owners) AND v.private=0)";
        if (strlen($showusers)>0) {
          $where .= " AND m.owner IN ($showusers)";
        }
@@ -1690,7 +1693,8 @@
 	    . "AND $restrict";
      if (!$pvp->auth->admin && !$forceall) {
        $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
-       $query .= " AND m.owner in ($gusers)";
+       $query .= " AND (m.owner=".$pvp->auth->user_id
+              .  "  OR (m.owner in ($gusers) AND v.private=0))";
      }
      $this->query($query);
      while ( $this->next_record() ) {
@@ -1736,7 +1740,8 @@
        $query = "SELECT MIN(v.media_id) AS min_id FROM pvp_video v,pvp_media m"
               . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
               . "   AND v.mtype_id=".$mtypes[$i]['id'];
-       if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+       if (!$pvp->auth->admin)
+         $query .= "   AND (m.owner=".$pvp->auth->user_id." OR (m.owner IN ($gusers) AND v.private=0))";
        $this->dbquery($query);
        $this->next_record();
        $firstnum[$i]['mtype']   = $mtypes[$i]['sname'];
@@ -1789,7 +1794,8 @@
        $query = "SELECT MAX(v.media_id) AS max_id FROM pvp_video v,pvp_media m"
               . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
               . "   AND v.mtype_id=".$mtypes[$i]['id'];
-       if ($restrict_access && !$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+       if ($restrict_access && !$pvp->auth->admin)
+         $query .= "   AND (m.owner=".$pvp->auth->user_id." OR (m.owner IN ($gusers) AND v.private=0))";
        $this->dbquery($query);
        $this->next_record();
        $lastnum[$i]['mtype']   = $mtypes[$i]['sname'];
@@ -1828,7 +1834,8 @@
      $query = "SELECT MIN(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
             . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
             . "   AND v.mtype_id=$mtype_id AND v.media_id>$media_nr";
-     if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+     if (!$pvp->auth->admin)
+       $query .= "   AND (m.owner=".$pvp->auth->user_id." OR (m.owner IN ($gusers) AND v.private=0))";
      $this->query($query); // check for next valid medium
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
@@ -1852,7 +1859,8 @@
      $query = "SELECT MIN(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
             . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
             . "   AND v.mtype_id=".$next->mtype_id;
-     if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+     if (!$pvp->auth->admin)
+       $query .= "   AND (m.owner=".$pvp->auth->user_id." OR (m.owner IN ($gusers) AND v.private=0))";
      $this->query($query); // switch to next media type
      if ($this->next_record()) {
        $next->media_nr = $this->f('medianr');
@@ -1890,7 +1898,8 @@
        $query = "SELECT MAX(v.media_id) AS medianr FROM pvp_video v,pvp_media m"
               . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
               . "   AND v.mtype_id=$mtype_id AND v.media_id<$media_nr";
-       if (!$pvp->auth->admin) $query .= "   AND m.owner IN ($gusers)";
+       if (!$pvp->auth->admin)
+         $query .= "   AND (m.owner=".$pvp->auth->user_id." OR (m.owner IN ($gusers) AND v.private=0))";
        $this->query($query);
        if ($this->next_record()) {
          $prev->media_nr = $this->f('medianr');
@@ -2062,7 +2071,8 @@
              . " o.audio as o_audio, o.fsk as o_fsk, o.year as o_year,"
              . " d.id as d_id, d.mtype_id as d_mtypeid,"
              . " d.media_id as d_cassnr, d.part as d_part, d.length as d_len,"
-             . " d.audio AS d_audio, d.fsk as d_fsk, d.year as d_year"
+             . " d.audio AS d_audio, d.fsk as d_fsk, d.year as d_year,"
+             . " o.private AS o_private, d.private AS d_private"
              . " FROM pvp_video o, pvp_video d"
              . " WHERE o.title=d.title AND o.id<d.id"
              . " ORDER BY o_id ASC";
@@ -2092,6 +2102,7 @@
          $dupes[$i][$k]->cass_nr  = $this->f('o_cassnr');
          $dupes[$i][$k]->part     = $this->f('o_part');
          $dupes[$i][$k]->len      = $this->f('o_len');
+         $dupes[$i][$k]->private  = $this->f('o_private');
        }
        ++$k;
        $dupes[$i][$k]->id       = $this->f('d_id');
@@ -2099,6 +2110,7 @@
        $dupes[$i][$k]->cass_nr  = $this->f('d_cassnr');
        $dupes[$i][$k]->part     = $this->f('d_part');
        $dupes[$i][$k]->len      = $this->f('d_len');
+       $dupes[$i][$k]->private  = $this->f('d_private');
      }
      $dc = count($dupes);
      for ($i=0;$i<$dc;++$i) { // check the owner
@@ -2112,8 +2124,9 @@
            $this->query($query);
            $this->next_record();
            $owner_id = $this->f('owner');
-           if (!isset($valid_owners) || in_array($owner_id,$valid_owners)) {
-             $this->query("SELECT login FROM pvp_users WHERE id=$owner_id");
+           if (!isset($valid_owners) || $owner_id==$pvp->auth->user_id
+            || ( !$dupes[$i][$k]->private && in_array($owner_id,$valid_owners)) ) {
+             $this->query("SELECT login FROM pvp_users WHERE id=".$owner_id);
              $this->next_record();
              $dupes[$i][$k]->owner = $this->f('login');
            } else {

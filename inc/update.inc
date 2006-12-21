@@ -42,7 +42,8 @@
  include("inc/sql_set_persons.inc");
 
  $idfields = array("pict_id","director_list","music_list","vis_actor1","vis_actor2",
-             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id","label");
+             "vis_actor3","vis_actor4","vis_actor5","lp","cat2_id","cat3_id","label",
+             "is_private");
  foreach ($idfields as $field) {
    if (!(isset($$field))) $$field = 0;
  }
@@ -82,7 +83,7 @@
           . "actor5_id=$act5_id,lp=$lp,music_list=$music_list,director_list=$director_list,"
 	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id,"
           . "audio='$audio_ts',subtitle='$subtitle',lastchange='".date('Y-m-d H:i:s')."',"
-          . "vnorm_id='$vnorm_id'"
+          . "vnorm_id='$vnorm_id',private=$is_private"
           . " WHERE media_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
  debug("S","<P CLASS='ok'><b>Executing Final Query:</b><br>$update</P>");
 # die($update);

@@ -54,6 +54,7 @@
  foreach ($fields as $value) {
    if (isset(${$value})) $movie[$value] = ${$value}; else $movie[$value] = "";
  }
+ $movie["private"] = $is_private;
  $movie["title"] = $pvp->common->input2string($movie["title"]);
  $movie["aq_date"] = $recdate; $movie["source"] = $src; $movie["space"] = $mlength;
  $movie["director_id"] = $dir_id; $movie["music_id"] = $mus_id;

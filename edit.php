@@ -188,7 +188,7 @@
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
 	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle",
-              "vnorm_id","vnorm");
+              "vnorm_id","vnorm","private");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -570,6 +570,20 @@ EndHiddenFields;
     $field = vform_input("commercials",$commercials,"",TECH_BTN_WID);
   }
   $t->set_var("commercial",$field);
+
+  # Hide it from others? (= Private)
+  $t->set_var("hide_name",lang("movie_private"));
+  if ($edit) {
+    $field = "<INPUT TYPE='radio' NAME='is_private' VALUE='0'";
+    if (!$private) $field .= " CHECKED";
+    $field .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='is_private' VALUE='1'";
+    if ($private) $field .= " CHECKED";
+    $field .= ">".lang("yes");
+  } else {
+    if ($private) $field = vform_input("is_private",lang("yes"),"",YN_WIDTH);
+    else $field = vform_input("is_private",lang("no"),"",YN_WIDTH);
+  }
+  $t->set_var("hide",$field);
 
   # Remaining free time
   if ($new_entry) {

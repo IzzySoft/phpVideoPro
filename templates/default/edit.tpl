@@ -30,7 +30,10 @@
         <TD WIDTH="50%"{konq_fix}>{counter}</TD><TD WIDTH="25%">{label_name}</TD><TD WIDTH="25%">{label}</TD></TR>
       </TABLE></TD></TR>
     <TR><TD>{rc_name}</TD><TD>{rc}</TD></TR>
-    <TR><TD>{commercial_name}</TD><TD>{commercial}</TD></TR>
+    <TR><TD>{commercial_name}</TD><TD>
+      <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0"><TR>
+        <TD WIDTH="50%"{konq_fix}>{commercial}</TD><TD WIDTH="25%">{hide_name}</TD><TD WIDTH="25%">{hide}</TD></TR>
+      </TABLE></TD></TR>
    </TABLE>
   </TD>
   <TD>

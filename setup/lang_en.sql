@@ -633,4 +633,6 @@ INSERT INTO lang VALUES ('no_delete_permission','en','This medium is not your ow
 INSERT INTO lang VALUES ('update_failed_permission','en','Failed to update entry due to missing permissions','Status message displayed on failure of an update.');
 INSERT INTO lang VALUES ('user_grants','en','Permissions on your records','title of the page where you grant permissions to others');
 INSERT INTO lang VALUES ('login_page','en','Login Page','Name of the page where you log in (for the View-Menu)');
+INSERT INTO lang VALUES ('movie_vnorm_default','en','Default Video Norm','Setting on the configuration screen');
+INSERT INTO lang VALUES ('movie_vnorm_default_comment','en','This is the Pre-Setting of the \"Video Norm\" field for new entries. In the US you will usually chose NTSC, while in Europe the common standard is PAL.','');
 #INSERT INTO lang VALUES ('','en','','');

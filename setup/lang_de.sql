@@ -540,3 +540,4 @@ INSERT INTO lang VALUES ('no_delete_permission','de','Sorry: Dieses Medium gehö
 INSERT INTO lang VALUES ('update_failed_permission','de','Datensatz konnte aufgrund fehlender Berechtigungen nicht aktualisiert werden','');
 INSERT INTO lang VALUES ('user_grants','de','Zugriffsrechte für die eigenen Daten','');
 INSERT INTO lang VALUES ('login_page','de','Login-Seite','');
+INSERT INTO lang VALUES ('movie_vnorm_default_comment','de','Voreinstellung für das \"Video Norm\" Feld bei neuen Filmeinträgen. In den USA produzierte Medien nutzen meist NTSC, während in Europa PAL vorherrscht.','');

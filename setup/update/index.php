@@ -224,7 +224,7 @@ $pvp->preferences->admin();
     case "0.8.1"    : if (!isset($_POST["vnorm_id"])) initiate_vnorm();
                       queryf("0-8-1_to_0-8-2.".$database["type"],"Upgrade to v0.8.2");
                       queryf("../lang_en.sql","Refresh of English language support");
-                      $db->query("INSERT INTO preferences (name,value) VALUES ('default_vnorm','".$_POST["vnorm_id"]."')");
+                      $db->query("INSERT INTO preferences (name,value) VALUES ('default_vnorm_id','".$_POST["vnorm_id"]."')");
                       if ($_POST["update_rec"]) {
                         $db->query("UPDATE pvp_video SET vnorm_id=".$_POST["vnorm_id"]);
                       }

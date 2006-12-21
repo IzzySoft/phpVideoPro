@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -52,6 +52,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("default_movie_colorid",$_POST["movie_color"]);
   $pvp->preferences->set("default_movie_langid",$_POST["movie_lang"]);
   $pvp->preferences->set("default_movie_pictid",$_POST["movie_pict"]);
+  $pvp->preferences->set("default_vnorm_id",$_POST["movie_vnorm"]);
   if ($_POST["label_default"]) { $onlabel = "1"; } else { $onlabel = "0"; }
   $pvp->preferences->set("default_movie_onlabel",$onlabel);
   $pvp->preferences->set("printer_id",$_POST["cprinter_id"]);
@@ -155,6 +156,7 @@ $movie_tone     = $pvp->preferences->get("default_movie_toneid");
 $movie_color    = $pvp->preferences->get("default_movie_colorid");
 $movie_lang     = $pvp->preferences->get("default_movie_langid");
 $movie_pict     = $pvp->preferences->get("default_movie_pictid");
+$movie_vnorm    = $pvp->preferences->get("default_vnorm_id");
 $label_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
@@ -379,6 +381,19 @@ for ($i=0;$i<count($pict);$i++) {
   $input .= "<INPUT TYPE='radio' NAME='movie_pict' VALUE='$id'";
   if ($pvp->preferences->get("default_movie_pictid")==$id) {
     $input .= " CHECKED>$name &nbsp;"; } else { $input .= ">$name &nbsp;"; }
+}
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
+
+#--[ movie_vnorm_default ]--
+$t->set_var("item_name",lang("movie_vnorm_default"));
+$t->set_var("item_comment",lang("movie_vnorm_default_comment"));
+$input = "";
+$vnorms = $db->get_vnorms();
+for ($i=0;$i<count($vnorms);++$i) {
+  $input .= "<INPUT TYPE='radio' NAME='movie_vnorm' VALUE='".$vnorms[$i]["id"]."'";
+  if ($movie_vnorm==$vnorms[$i]["id"]) $input .= " CHECKED";
+  $input .= ">".$vnorms[$i]["name"]." &nbsp;";
 }
 $t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);

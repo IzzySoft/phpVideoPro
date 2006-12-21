@@ -800,7 +800,8 @@
 #    $tag_s = strpos ($this->page["Title"], "<img border=\"0\" alt=\"cover\"");
     $tag_s = strpos ($this->page["Title"], "<a name=\"poster\"");
     if ($tag_s == 0) return FALSE;
-    $tag_s = strpos ($this->page["Title"], "http://ia.imdb.com/media",$tag_s);
+#    $tag_s = strpos ($this->page["Title"], "http://ia.imdb.com/media",$tag_s);
+    $tag_s = strpos ($this->page["Title"], "http://",$tag_s);
     $tag_e = strpos ($this->page["Title"], '"', $tag_s);
     $this->main_photo = substr ($this->page["Title"], $tag_s, $tag_e - $tag_s);
     if ($tag_s == 0) return FALSE;
@@ -819,10 +820,11 @@
    if (!$photo_url) return FALSE;
    $req->setURL($photo_url);
    $req->sendRequest();
-   if ( ($req->getResponseHeader("Content-Type") == 'image/jpeg')||($req->getResponseHeader("Content-Type") == 'image/gif') ){
+   if (strpos($req->getResponseHeader("Content-Type"),'image/jpeg') === 0
+     || strpos($req->getResponseHeader("Content-Type"),'image/gif') === 0 ){
 	$fp = $req->getResponseBody();
    }else{
-	echo "<BR>*photoerror* ".$photo_url."<BR>";
+	echo "<BR>*photoerror* ".$photo_url.": Content Type is '".$req->getResponseHeader("Content-Type")."'<BR>";
 	return false;
    }
 

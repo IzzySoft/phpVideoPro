@@ -83,7 +83,7 @@
           . "actor5_id=$act5_id,lp=$lp,music_list=$music_list,director_list=$director_list,"
 	  . "counter1='$counter1',counter2='$counter2',commercials_id=$commercials_id,"
           . "audio='$audio_ts',subtitle='$subtitle',lastchange='".date('Y-m-d H:i:s')."',"
-          . "vnorm_id='$vnorm_id',private=$is_private"
+          . "vnorm_id='$vnorm_id',private=$is_private,imdb_id='$imdb_id'"
           . " WHERE media_id=$cass_id AND part=$part AND mtype_id=$mtype_id";
  debug("S","<P CLASS='ok'><b>Executing Final Query:</b><br>$update</P>");
 # die($update);

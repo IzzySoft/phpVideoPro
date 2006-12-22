@@ -50,7 +50,7 @@
                  "cat1_id","cat2_id","cat3_id","director_list","music_list",
 		 "tone_id","pict_id","color_id","fsk","comment","lp",
 		 "counter1","counter2","commercials_id","label","disktype",
-                 "vnorm_id");
+                 "vnorm_id","imdb_id");
  foreach ($fields as $value) {
    if (isset(${$value})) $movie[$value] = ${$value}; else $movie[$value] = "";
  }

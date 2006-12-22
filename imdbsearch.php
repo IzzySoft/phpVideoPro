@@ -107,6 +107,7 @@
    $url  = explode("/",$imdbsite);
    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
    $movie->setid ($movieid);
+   $t->set_var("mid",$movieid);
    #-=[ Title incl. Also Known As ]=-
    $title  = "<SELECT NAME='title'>";
    $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
@@ -266,6 +267,7 @@
   function transfer_data() {
    omf = opener.document.movieform;
    dmf = document.movieform;
+   omf.imdb_id.value = dmf.mid.value;
    if (dmf.pg_chk.checked) {
      if (isNaN(dmf.pg.value)) {
        alert('$fskNaN');

@@ -188,7 +188,7 @@
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
 	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle",
-              "vnorm_id","vnorm","private");
+              "vnorm_id","vnorm","private","imdb_id");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -382,6 +382,7 @@
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
 <INPUT TYPE="hidden" NAME="referer" VALUE="$referer">
+<INPUT TYPE="hidden" NAME="imdb_id" VALUE="$imdb_id">
 EndHiddenFields;
   if (!$new_entry) {
     $hiddenfields .= "\n<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";

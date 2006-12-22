@@ -32,6 +32,7 @@ CREATE TABLE pvp_video (
    part INT,
    title VARCHAR(60),
    imdb_id VARCHAR(10),
+   rating NUMERIC(3,1),
    label INT DEFAULT 0,
    length INT,
    counter1 VARCHAR(10),
@@ -77,6 +78,7 @@ COMMENT ON COLUMN pvp_video.media_id IS 'ID of the medium this movie resides on'
 COMMENT ON COLUMN pvp_video.part IS 'The movies number on the medium';
 COMMENT ON COLUMN pvp_video.title IS 'The name of the movie';
 COMMENT ON COLUMN pvp_video.imdb_id IS 'Movies ID in the Internet Movie DataBase (if known)';
+COMMENT ON COLUMN pvp_video.rating IS 'Rating of the movie, like at IMDB.com';
 COMMENT ON COLUMN pvp_video.label IS 'Shall the movies data appear on label prints';
 COMMENT ON COLUMN pvp_video.length IS 'Length of the movie in minutes';
 COMMENT ON COLUMN pvp_video.counter1 IS 'Counter on movie start (for old tape recorders)';

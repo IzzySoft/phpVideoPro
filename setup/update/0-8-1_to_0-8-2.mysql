@@ -27,6 +27,7 @@ CREATE TABLE pvp_video (
    part INT(2),
    title VARCHAR(60),
    imdb_id VARCHAR(10),
+   rating NUMERIC(3,1),
    label INT(1) NOT NULL DEFAULT 0,
    length INT(3),
    counter1 VARCHAR(10),

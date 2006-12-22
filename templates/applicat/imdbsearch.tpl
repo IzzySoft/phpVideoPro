@@ -33,6 +33,7 @@
 <!-- BEGIN movieblock -->
 {js}
 <FORM NAME="movieform" METHOD="post" ACTION="{formtarget}">
+<INPUT TYPE="hidden" NAME="mid" VALUE="{mid}">
 <INPUT TYPE="hidden" NAME="country" VALUE="{mcountry}">
 <INPUT TYPE="hidden" NAME="year" VALUE="{myear}">
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">

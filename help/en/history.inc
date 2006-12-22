@@ -13,6 +13,8 @@
      to v0.8.1, this will be automatically fixed. For everybody else, a fix
      will follow before the release of v0.8.2
  <li>With the IMDB class, the guys again broke the image retrieval. Fixed.
+ <li>now also storing the IMDB ID in our DB if movie data have been retrieved
+     from there. Will be used for lookups later.
 </ul>
 
 [title]

@@ -2,7 +2,7 @@
 <FORM NAME="config_form" METHOD="post" ACTION="{formtarget}">
 <TABLE ALIGN=CENTER WIDTH=90% BORDER=1>
 <!-- BEGIN listblock -->
- <TR><TH><TABLE WIDTH="100%" BORDER="0"><TR><TH>{list_head}</TH><TH><DIV ALIGN="right">{help_icon}</DIV></TH></TR></TABLE></TH></TR>
+ <TR><TH><TABLE WIDTH="100%" BORDER="0"><TR><TH>{list_head}</TH><TH WIDTH="20"><DIV ALIGN="right">{help_icon}</DIV></TH></TR></TABLE></TH></TR>
  <TR><TD>
   <TABLE WIDTH=100%>
   <!-- BEGIN itemblock -->

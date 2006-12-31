@@ -396,7 +396,7 @@ $vnorms = $db->get_vnorms();
 for ($i=0;$i<count($vnorms);++$i) {
   $input .= "<INPUT TYPE='radio' NAME='movie_vnorm' VALUE='".$vnorms[$i]["id"]."'";
   if ($movie_vnorm==$vnorms[$i]["id"]) $input .= " CHECKED";
-  $input .= ">".$vnorms[$i]["name"]." &nbsp;";
+  $input .= ">".lang($vnorms[$i]["name"])." &nbsp;";
 }
 $t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);

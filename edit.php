@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -659,13 +659,13 @@ EndHiddenFields;
       $field .= ">" . $picts[$i]['name'] . " </OPTION>";
     }
     $field .= "</SELECT>";
-    $field2  = "<SELECT NAME='vnorm_id'><OPTION VALUE='0'>" . lang("unknown") . "</OPTION>";
+    $field2  = "<SELECT NAME='vnorm_id'>";
       for ($i=0;$i<count($vnorms);++$i) {
         $field2 .= "<OPTION VALUE='".$vnorms[$i]["id"]."'";
         if ($new_entry && $vnorms[$i]["id"] == $pvp->preferences->get("default_vnorm_id"))
           $field2 .= " SELECTED";
         elseif ($vnorms[$i]["id"] == $vnorm_id) $field2 .= " SELECTED";
-        $field2 .= ">".$vnorms[$i]["name"]."</OPTION>";
+        $field2 .= ">".lang($vnorms[$i]["name"])."</OPTION>";
       }
     $field2 .= "</SELECT>";
   } else {

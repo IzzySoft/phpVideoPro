@@ -636,4 +636,6 @@ INSERT INTO lang VALUES ('login_page','en','Login Page','Name of the page where 
 INSERT INTO lang VALUES ('movie_vnorm_default','en','Default Video Norm','Setting on the configuration screen');
 INSERT INTO lang VALUES ('movie_vnorm_default_comment','en','This is the Pre-Setting of the \"Video Norm\" field for new entries. In the US you will usually chose NTSC, while in Europe the common standard is PAL.','');
 INSERT INTO lang VALUES ('movie_private','en','Private','From the Edit screen. If you mark a movie \"private\", it will only be shown to you - even if you granted access on your collection to others.');
+INSERT INTO lang VALUES ('rating','en','Rating','Movie rating like at IMDB.COM');
+INSERT INTO lang VALUES ('rating_is_nan','en','The rating has to be a numerical value between 0 and 9.9','(JavaScript) error message on form input');
 #INSERT INTO lang VALUES ('','en','','');

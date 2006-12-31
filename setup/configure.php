@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -167,6 +167,9 @@ $bubble_help_enabled  = $pvp->preferences->get("bubble_help_enable");
 $cprinter_id     = $pvp->preferences->get("printer_id");
 $site_info      = $db->get_config("site");
 
+if ($lang_preferred=='iw') $initial_input = "<span dir='LTR'>&nbsp;</span>";
+else $initial_input = "";
+
 #==========================================[ get available template sets ]===
 chdir("$base_path/templates");
 $handle=opendir (".");
@@ -296,7 +299,7 @@ if ($admin) {
   $t->set_var("item_name",lang("rw_media"));
   $t->set_var("item_comment",lang("rw_media_comment"));
   unset ($id,$name);
-  $input = "";
+  $input = $initial_input;
   $mtypes = $db->get_mtypes();
   for ($i=0;$i<count($mtypes);$i++) {
     $id[$i]   = $mtypes[$i]['id'];
@@ -337,7 +340,7 @@ if ($admin) {
 $t->set_var("item_name",lang("movie_tone_default"));
 $t->set_var("item_comment",lang("movie_tone_default_comment"));
 unset($id);
-$input = "";
+$input = $initial_input;
 $pict = $db->get_tone();
 for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i]['id'];
@@ -353,7 +356,7 @@ $t->parse("item","itemblock",TRUE);
 $t->set_var("item_name",lang("movie_color_default"));
 $t->set_var("item_comment",lang("movie_color_default_comment"));
 unset($id);
-$input = "";
+$input = $initial_input;
 $pict = $db->get_color();
 for ($i=0;$i<count($pict);$i++) {
   $id     = $pict[$i]['id'];
@@ -369,7 +372,7 @@ $t->parse("item","itemblock",TRUE);
 $t->set_var("item_name",lang("movie_pict_default"));
 $t->set_var("item_comment",lang("movie_pict_default_comment"));
 unset($id);
-$input = "";
+$input = $initial_input;
 $pict = $db->get_pict();
 $add['id'] = 0;
 $add['name'] = "unknown";
@@ -388,7 +391,7 @@ $t->parse("item","itemblock",TRUE);
 #--[ movie_vnorm_default ]--
 $t->set_var("item_name",lang("movie_vnorm_default"));
 $t->set_var("item_comment",lang("movie_vnorm_default_comment"));
-$input = "";
+$input = $initial_input;
 $vnorms = $db->get_vnorms();
 for ($i=0;$i<count($vnorms);++$i) {
   $input .= "<INPUT TYPE='radio' NAME='movie_vnorm' VALUE='".$vnorms[$i]["id"]."'";

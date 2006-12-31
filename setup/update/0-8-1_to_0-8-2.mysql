@@ -16,6 +16,7 @@ CREATE TABLE pvp_vnorms (
 );
 ALTER TABLE pvp_vnorms COMMENT='List of video norms (PAL,NTSC) we support';
 
+INSERT INTO pvp_vnorms VALUES (0,'unknown');
 INSERT INTO pvp_vnorms VALUES (1,'PAL');
 INSERT INTO pvp_vnorms VALUES (2,'NTSC');
 
@@ -53,7 +54,7 @@ CREATE TABLE pvp_video (
    actor5_list INT(1) NOT NULL DEFAULT 0,
    country VARCHAR(30),
    year INT(4),
-   vnorm_id INT(3),
+   vnorm_id INT(3) NOT NULL DEFAULT 0,
    tone_id INT(5),
    color_id INT(5),
    pict_id INT(5) NOT NULL DEFAULT 0,

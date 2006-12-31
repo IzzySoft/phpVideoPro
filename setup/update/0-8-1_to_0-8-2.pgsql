@@ -21,6 +21,7 @@ COMMENT ON COLUMN pvp_vnorms.name IS 'Name of the norm (e.g. PAL or NTSC)';
 ALTER TABLE pvp_vnorms ADD CONSTRAINT pk_vnorms PRIMARY KEY (id);
 ALTER TABLE pvp_vnorms ADD CONSTRAINT notnullcheck_vnorms_name CHECK (name IS NOT NULL);
 
+INSERT INTO pvp_vnorms VALUES (0,'unknown');
 INSERT INTO pvp_vnorms VALUES (1,'PAL');
 INSERT INTO pvp_vnorms VALUES (2,'NTSC');
 
@@ -58,7 +59,7 @@ CREATE TABLE pvp_video (
    actor5_list INT DEFAULT 0,
    country VARCHAR(30),
    year INT,
-   vnorm_id INT,
+   vnorm_id INT DEFAULT 0,
    tone_id INT,
    color_id INT,
    pict_id INT DEFAULT 0,
@@ -119,6 +120,7 @@ ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_musiclist CHECK (music_l
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_pictid CHECK (pict_id IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_commercialsid CHECK (commercials_id IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_lp CHECK (lp IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_vnormid CHECK (vnorm_id IS NOT NULL);
 ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_private CHECK (private IS NOT NULL);
 
 INSERT INTO pvp_video (id,mtype_id,media_id,part,title,label,length,counter1,

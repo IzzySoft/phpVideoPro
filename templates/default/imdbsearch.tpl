@@ -25,6 +25,7 @@
  <!-- END pgblock -->
    </SELECT></TD></TR>
  <TR><TD>{length_chk}</TD><TD><B>{nruntime}:</B></TD><TD><INPUT NAME="runtime" CLASS="yesnoinput" VALUE="{mruntime}"> min</TD></TR>
+ <TR><TD>{rating_chk}</TD><TD><B>{nrating}:</B></TD><TD><INPUT NAME="rating" CLASS="yesnoinput" VALUE="{mrating}"></TD></TR>
  <TR><TD>{cat_chk}</TD><TD><B>{ngenre}:</B></TD><TD>{mgenre}<BR>
  <!-- BEGIN acatblock -->
    <SELECT NAME="cat{catnr}_id">

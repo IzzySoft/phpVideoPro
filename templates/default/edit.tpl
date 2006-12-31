@@ -65,6 +65,7 @@
     </TD></TR>
     <TR><TD>{source_name}</TD><TD>{source}</TD></TR>
     <TR><TD>{fsk_name}</TD><TD>{fsk}</TD></TR>
+    <TR><TD>{rating_name}</TD><TD>{rating}</TD></TR>
     <TR><TD VALIGN="top">{audio_name}</TD><TD>{audio}</TD></TR>
     <TR><TD VALIGN="top">{subtitle_name}</TD><TD>{subtitle}</TD></TR>
    </TABLE>

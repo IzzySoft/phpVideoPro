@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -1364,7 +1364,7 @@
 	    . "t.name as tname,t.sname as tsname,"
 	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
 	    . "media_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
-            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,imdb_id "
+            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,imdb_id,rating "
 	    . "FROM pvp_video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
@@ -1391,7 +1391,7 @@
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","part",
 		     "mtype_id","tone_id","color_id","storeplace","lentto",
-                     "vnorm_id","vnorm","private","imdb_id");
+                     "vnorm_id","vnorm","private","imdb_id","rating");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
@@ -1979,13 +1979,14 @@
      if ($lp) { $lp = 1; } else { $lp = 0; }
      $audio_ts = ",".@implode(",",$movie['audio']).",";
      if (!empty($movie['subtitle'])) $subtitle = ",".@implode(",",$movie['subtitle']).",";
+     if (empty($rating) && $rating !== 0) $rating = "NULL";
      $insert = "INSERT INTO pvp_video (mtype_id,media_id,part,title,label,length,aq_date,"
              . "source,director_id,director_list,music_id,music_list,country,"
 	     . "year,cat1_id,cat2_id,cat3_id,actor1_id,actor2_id,actor3_id,"
 	     . "actor4_id,actor5_id,actor1_list,actor2_list,actor3_list,"
 	     . "actor4_list,actor5_list,tone_id,pict_id,color_id,fsk,comment,"
 	     . "lp,counter1,counter2,commercials_id,audio,subtitle,lastchange,"
-             . "vnorm_id,private,imdb_id) "
+             . "vnorm_id,private,imdb_id,rating) "
 	     . "VALUES ("
 	     . "$mtype_id,$cass_id,$part,'$title',$label,$length,'$aq_date','$source',"
 	     . "$director_id,$director_list,$music_id,$music_list,'$country',"
@@ -1994,7 +1995,7 @@
 	     . "$actor3_list,$actor4_list,$actor5_list,$tone_id,$pict_id,"
 	     . "$color_id,$fsk,'$comment',$lp,'$counter1','$counter2',"
              . "$commercials_id,'$audio_ts','$subtitle','".date('Y-m-d H:i:s')."',"
-             . "$vnorm_id,$private,'$imdb_id')";
+             . "$vnorm_id,$private,'$imdb_id',$rating)";
      $success = $this->query($insert);
      if ( $pvp->common->medium_is_rw($mtype_id) ) {
        $this->insert_medium($cass_id,$mtype_id,$space);

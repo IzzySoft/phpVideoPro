@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -225,7 +225,9 @@
    }
    $t->set_var("actor_chk",$pvp->common->make_checkbox("actor_chk",$imdb_tx_actor));
    #-=[ Ratings and Votings ]=-
-#   $t->set_var("mrating",$movie->rating());
+   $t->set_var("rating_chk",$pvp->common->make_checkbox("rating_chk",$imdb_tx_rating));
+   $t->set_var("nrating",lang("rating"));
+   $t->set_var("mrating",$movie->rating());
 #   $t->set_var("mvotes",$movie->votes());
 #   $t->set_var("mlanguage",$movie->language());
    #-=[ Misc stuff - maybe for the future ]=-
@@ -253,6 +255,7 @@
    $t->set_var("comments_chk",$pvp->common->make_checkbox("comments_chk",$imdb_tx_comments));
    $t->set_var("btransfer",lang("imdb_transfer2edit"));
    $fskNaN = lang("fsk_is_nan");
+   $ratNaN = lang("rating_is_nan");
    $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
   function name_split(name) {
     pos = name.lastIndexOf(' ');
@@ -274,6 +277,14 @@
        exit;
      } else {
        omf.fsk.value = dmf.pg.value;
+     }
+   }
+   if (dmf.rating_chk.checked) {
+     if (isNaN(dmf.rating.value)) {
+       alert('$ratNaN');
+       exit;
+     } else {
+       omf.rating.value = dmf.rating.value;
      }
    }
    if (dmf.title_chk.checked)    omf.title.value   = dmf.title.value;

@@ -188,7 +188,7 @@
   $mdetails = array ("title","label","length","year","country","fsk","lp",
               "comment","counter1","counter2","music_list","director_list",
 	      "commercials","tone","tone_id","color","disktype","rc","audio","subtitle",
-              "vnorm_id","vnorm","private","imdb_id");
+              "vnorm_id","vnorm","private","imdb_id","rating");
   foreach ($mdetails as $value) {
     $$value = $movie[$value];
   }
@@ -241,6 +241,7 @@
  $fsk_nan = lang("fsk_is_nan");
  $len_nan = lang("len_is_nan");
  $date_nan = lang("date_is_nan");
+ $rating_nan = lang("rating_is_nan");
 ?>
  <script TYPE="text/javascript" language="JavaScript"><!--
    function check_nr(nr) {
@@ -253,6 +254,12 @@
      if (isNaN(nr.value)) {
        nr.value = '';
        alert('<?=$fsk_nan?>');
+     }
+   }
+   function check_rating(nr) {
+     if (isNaN(nr.value)) {
+       nr.value = '';
+       alert('<?=$rating_nan?>');
      }
    }
    function check_len(nr) {
@@ -686,12 +693,16 @@ EndHiddenFields;
     $t->set_var("source",vform_input("dummy",lang("unknown"),SRC_LEN,TECH_BTN_WID));
   }
   $t->set_var("fsk_name",lang("fsk"));
+  $t->set_var("rating_name",lang("rating"));
   if (!isset($fsk)) $fsk = "";
   if ($edit) {
     $t->set_var("fsk",form_input("fsk",$fsk,$form["addon_fsk"]." CLASS='partinput' onChange='check_fsk(this);'"));
+    $t->set_var("rating",form_input("rating",$rating,$form["addon_filmlen"]." CLASS='yesnoinput' onChange='check_rating(this);'"));
   } else {
     if (!$fsk) $fsk="&nbsp;";
+    if (!$rating) $rating="&nbsp;";
     $t->set_var("fsk",vform_input("fsk",$fsk,FSK_LEN));
+    $t->set_var("rating",vform_input("rating",$rating,FSK_LEN+1));
   }
   #---[ Audio & Subtitles ]--
   $t->set_var("audio_name",lang("audio_ts"));

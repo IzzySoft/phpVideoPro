@@ -28,10 +28,12 @@ else
   $contentlang = "en";
 if (!isset($pagename)) $pagename = "phpVideoPro";
 if ( !( (isset($silent)) && $silent) ) {
+#<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+#   "http://www.w3.org/TR/html4/loose.dtd"-->
+  if ($pvp->preferences->get("lang")=='iw') echo "<HTML DIR='RTL'>";
+  else echo "<HTML>";
 ?>
-<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd"-->
-<HTML><HEAD>
+<HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
  <meta http-equiv="cache-control" content="no-cache">
  <meta http-equiv="content-language" content="<?=$contentlang?>">

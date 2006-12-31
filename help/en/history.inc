@@ -15,6 +15,8 @@
  <li>With the IMDB class, the guys again broke the image retrieval. Fixed.
  <li>now also storing the IMDB ID in our DB if movie data have been retrieved
      from there. Will be used for lookups later.
+ <li>hopefully fixed most of the display problems with Hebrew
+ <li>added movie rating (initial values can be retrieved from IMDB)
 </ul>
 
 [title]

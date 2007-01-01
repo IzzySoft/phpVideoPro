@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -222,12 +222,11 @@ $pvp->preferences->admin();
                       $db->query("UPDATE pvp_users SET id=0 WHERE login='PUBLIC'");
                       $db->query("UPDATE pvp_media SET owner=".$_POST["owner_id"]);
                       $query = "INSERT INTO pvp_media (id,mtype_id,owner)"
-                             . " SELECT v.media_id,v.mtype_id,".$_POST["owner_id"]
+                             . " SELECT v.cass_id,v.mtype_id,".$_POST["owner_id"]
                              . "   FROM video v"
-                             . "   LEFT JOIN pvp_media m ON (v.mtype_id=m.mtype_id AND v.media_id=m.id)"
+                             . "   LEFT JOIN pvp_media m ON (v.mtype_id=m.mtype_id AND v.cass_id=m.id)"
                              . "  WHERE m.id IS NULL";
                       $db->query($query); // fix orphaned movies
-                      break;
     case "0.8.1"    : if (!isset($_POST["vnorm_id"])) initiate_vnorm();
                       queryf("0-8-1_to_0-8-2.".$database["type"],"Upgrade to v0.8.2");
                       queryf("../lang_en.sql","Refresh of English language support");

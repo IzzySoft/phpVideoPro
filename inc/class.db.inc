@@ -1966,7 +1966,7 @@
      $details = array("label","cat1_id","cat2_id","cat3_id","director_list",
                       "music_list","actor1_list","actor2_list","actor3_list",
                       "actor4_list","actor5_list","pict_id","commercials_id",
-                      "lp","private");
+                      "lp","private","vnorm_id");
      foreach($details as $value) {
        if (${$value} == "") ${$value} = 0;
      }

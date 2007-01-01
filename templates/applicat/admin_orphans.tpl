@@ -15,7 +15,34 @@
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
-<TR><TD>
+<TR><TD><DIV ALIGN="center">
+
+<TABLE ALIGN="center" STYLE="margin:3">
+ <TR><TH>{ititle}</TH></TR>
+ <TR CLASS="content"><TD STYLE="text-align:justify">{idetails}</TD></TR>
+</TABLE>
+
+<TABLE ALIGN="center" STYLE="margin:3">
+ <TR><TH>{mtitle}</TH></TR>
+ <!-- BEGIN movieblock -->
+ <!-- BEGIN nomovieitem -->
+ <TR CLASS="content"><TD CLASS="content">{details}</TD></TR>
+ <!-- END nomovieitem -->
+ <!-- BEGIN havemovieitem -->
+ <TR CLASS="content"><TD>
+   <FORM ACTION="{formtarget}"' METHOD="post" NAME="orphaned_movies">
+   <DIV ALIGN="center"><TABLE ALIGN="center" BORDER="0">
+     <TR><TH>{owner_name}</TH><TH>{movie_name}</TH>
+     <!-- BEGIN movieitem -->
+     <TR><TD>{owner}</TD><TD>{imovie}</TD></TR>
+     <!-- END movieitem -->
+     <TR><TD COLSPAN="2"><DIV ALIGN="center">{mbutton}</DIV></TD></TR>
+   </TABLE></DIV>
+   </FORM>
+ </TD></TR>
+ <!-- END havemovieitem -->
+ <!-- END movieblock -->
+</TABLE>
 
 <TABLE ALIGN="center" STYLE="margin:3">
  <!-- BEGIN itemblock -->
@@ -24,6 +51,7 @@
  <!-- END itemblock -->
 </TABLE>
 
+</DIV>
 </TD></TR>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>

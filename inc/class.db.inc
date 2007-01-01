@@ -2153,6 +2153,44 @@
    # Media Specific Stuff
    ############################################################################
 
+   /** Find orphaned movies
+    *  Orphaned movies are movies which have no medium associated in the
+    *  pvp_media table
+    * @method get_orphaned_movies
+    * @return array list (array of objects w/ prop: number, link, title, id, mtype_id
+    */
+   function get_orphaned_movies() {
+     $list = array();
+     $query = "SELECT mt.sname,v.mtype_id,v.media_id,v.part,v.title"
+            . "  FROM pvp_video v"
+            . "  LEFT JOIN pvp_media m ON (v.mtype_id=m.mtype_id AND v.media_id=m.id)"
+            . "  JOIN mtypes mt ON (v.mtype_id=mt.id)"
+            . " WHERE m.id IS NULL"
+            . " ORDER BY v.media_id,v.part";
+     $this->dbquery($query);
+     while ($this->next_record()) {
+       $item->number = $this->f('sname')." ".$this->f('media_id')."-".$this->f('part');
+       $item->link   = "mtype_id=".$this->f('mtype_id')."&cass_id=".$this->f('media_id')."&part=".$this->f('part');
+       $item->title  = $this->f('title');
+       $item->id     = $this->f('media_id');
+       $item->mtype_id = $this->f('mtype_id');
+       $list[] = $item;
+     }
+     return $list;
+   }
+
+   /** Fix orphaned movies
+    * @method fix_orphaned_movie
+    * @param integer id MediaID
+    * @param integer mtype_id Media Type ID
+    * @param integer owner OwnerID
+    * @return boolean success
+    */
+   function fix_orphaned_movie($id,$mtype_id,$owner) {
+     $query = "INSERT INTO pvp_media (id,mtype_id,owner) VALUES ($id,$mtype_id,$owner)";
+     return $this->dbquery($query);
+   }
+
    /** Get media information
     * @method get_mediainfo
     * @param integer mtype_id

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -30,7 +30,7 @@ if (!isset($pagename)) $pagename = "phpVideoPro";
 if ( !( (isset($silent)) && $silent) ) {
 #<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 #   "http://www.w3.org/TR/html4/loose.dtd"-->
-  if ($pvp->preferences->get("lang")=='iw') echo "<HTML DIR='RTL'>";
+  if (!isset($nomenue) && $pvp->preferences->get("lang")=='iw') echo "<HTML DIR='RTL'>";
   else echo "<HTML>";
 ?>
 <HEAD>

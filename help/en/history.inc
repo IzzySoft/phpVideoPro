@@ -10,13 +10,14 @@
      exists to others)
  <li>duplicate check *may* break with v0.8.1 due to orphaned movies (missing
      entries in the media table). If upgrading to v0.8.2 from a version prior
-     to v0.8.1, this will be automatically fixed. For everybody else, a fix
-     will follow before the release of v0.8.2
+     to v0.8.1, this will be automatically fixed. Everybody else, please go
+     to the admin->orphaned entries screen and fix it there
  <li>With the IMDB class, the guys again broke the image retrieval. Fixed.
  <li>now also storing the IMDB ID in our DB if movie data have been retrieved
      from there. Will be used for lookups later.
  <li>hopefully fixed most of the display problems with Hebrew
  <li>added movie rating (initial values can be retrieved from IMDB)
+ <li>"admin orphaned entries" now also cares for movies w/o owner
 </ul>
 
 [title]

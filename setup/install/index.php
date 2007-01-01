@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                           #
  # http://www.qumran.org/homes/izzy/                                          #
  # -------------------------------------------------------------------------- #
@@ -233,7 +233,6 @@
          break;
        default: break;
      }
-#     $sql[] = array ( "script"=>"","comment"=>"" );
      $sqlc = count($sql);
      for ($i=0;$i<$sqlc;++$i) {
        $res = $db->queryf($sql[$i]["script"],$sql[$i]["comment"],1);
@@ -245,6 +244,7 @@
          $info .= "<LI><SPAN CLASS='ok'>".$sql[$i]["comment"]." successful.</SPAN></LI>";
        }
      }
+     if ($_POST["dbmode"]=="create") $db->query("UPDATE pvp_users SET id=0 WHERE login='PUBLIC'");
    }
    $info .= "</UL>";
    $t->set_var("info_head","Database setup process:");

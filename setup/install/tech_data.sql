@@ -44,6 +44,13 @@ INSERT INTO mtypes VALUES ( '3', 'VideoCD', 'VCD');
 INSERT INTO mtypes VALUES ( '4', 'Digital Versatile Disk', 'DVD');
 
 #
+# Data for table 'pvp_vnorms'
+#
+INSERT INTO pvp_vnorms VALUES (0,'unknown');
+INSERT INTO pvp_vnorms VALUES (1,'PAL');
+INSERT INTO pvp_vnorms VALUES (2,'NTSC');
+
+#
 # Data for table 'disks'
 #
 INSERT INTO disks (mtype_id,name) VALUES (3,'VCD');
@@ -93,7 +100,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.8.1');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.8.2');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','MySite');

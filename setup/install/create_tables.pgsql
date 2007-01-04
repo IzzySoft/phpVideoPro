@@ -105,6 +105,20 @@ COMMENT ON TABLE mtypes IS 'Media types used, e.g. DVD, VCD';
 
 # --------------------------------------------------------
 #
+# Table structure for table 'pvp_vnorms'
+#
+CREATE TABLE pvp_vnorms (
+   id INT,
+   name VARCHAR
+);
+COMMENT ON TABLE pvp_vnorms IS 'List of video norms (PAL,NTSC) we support';
+COMMENT ON COLUMN pvp_vnorms.id IS 'ID for reference';
+COMMENT ON COLUMN pvp_vnorms.name IS 'Name of the norm (e.g. PAL or NTSC)';
+ALTER TABLE pvp_vnorms ADD CONSTRAINT pk_vnorms PRIMARY KEY (id);
+ALTER TABLE pvp_vnorms ADD CONSTRAINT notnullcheck_vnorms_name CHECK (name IS NOT NULL);
+
+# --------------------------------------------------------
+#
 # Table structure for table 'disks'
 #
 CREATE TABLE disks (
@@ -171,81 +185,111 @@ COMMENT ON TABLE commercials IS 'Are there commercials in the recording?';
 
 # --------------------------------------------------------
 #
-# Table structure for table 'video'
+# Table structure for table 'pvp_video'
 #
 
-CREATE TABLE video (
+CREATE TABLE pvp_video (
    id SERIAL,
    mtype_id INT,
-   cass_id INT,
+   media_id INT,
    part INT,
    title VARCHAR(60),
-   label INT NOT NULL,
+   imdb_id VARCHAR(10),
+   rating NUMERIC(3,1),
+   label INT DEFAULT 0,
    length INT,
    counter1 VARCHAR(10),
    counter2 VARCHAR(10),
    aq_date VARCHAR(10),
    source VARCHAR(15),
+   cat1_id INT DEFAULT 0,
+   cat2_id INT DEFAULT 0,
+   cat3_id INT DEFAULT 0,
    director_id INT,
-   director_list INT,
+   director_list INT DEFAULT 0,
    music_id INT,
-   music_list INT,
-   country VARCHAR(30),
-   year INT,
-   cat1_id INT NOT NULL,
-   cat2_id INT NOT NULL,
-   cat3_id INT NOT NULL,
+   music_list INT DEFAULT 0,
    actor1_id INT,
    actor2_id INT,
    actor3_id INT,
    actor4_id INT,
    actor5_id INT,
-   actor1_list INT NOT NULL,
-   actor2_list INT NOT NULL,
-   actor3_list INT NOT NULL,
-   actor4_list INT NOT NULL,
-   actor5_list INT NOT NULL,
+   actor1_list INT DEFAULT 0,
+   actor2_list INT DEFAULT 0,
+   actor3_list INT DEFAULT 0,
+   actor4_list INT DEFAULT 0,
+   actor5_list INT DEFAULT 0,
+   country VARCHAR(30),
+   year INT,
+   vnorm_id INT DEFAULT 0,
    tone_id INT,
    color_id INT,
-   pict_id INT NOT NULL,
-   commercials_id INT NOT NULL,
-   lp INT NOT NULL,
+   pict_id INT DEFAULT 0,
+   commercials_id INT DEFAULT 0,
+   lp INT DEFAULT 0,
    fsk INT,
    audio VARCHAR(50),
    subtitle VARCHAR(100),
    comment TEXT,
-   PRIMARY KEY (id)
+   private INT DEFAULT 0,
+   lastchange TIMESTAMP
 );
-COMMENT ON TABLE video IS 'Movie data';
-COMMENT ON COLUMN video.mtype_id IS 'ID of the media type';
-COMMENT ON COLUMN video.cass_id IS 'ID of the media';
-COMMENT ON COLUMN video.part IS 'Number of the movie on the medium';
-COMMENT ON COLUMN video.title IS 'Title of the movie';
-COMMENT ON COLUMN video.label IS 'Appears on printed labels?';
-COMMENT ON COLUMN video.length IS 'Length in minutes';
-COMMENT ON COLUMN video.counter1 IS 'Counter on movie start (for old tape recorders)';
-COMMENT ON COLUMN video.counter2 IS 'Counter on movie end (for old tape recorders)';
-COMMENT ON COLUMN video.aq_date IS 'Date the movie was recorded/bought/...';
-COMMENT ON COLUMN video.source IS 'Where we got it (station/shop/friends name)';
-COMMENT ON COLUMN video.cat1_id IS 'ID of category for this movie (refers to cat table)';
-COMMENT ON COLUMN video.director_id IS 'ID of the directors name (refers to directors table)';
-COMMENT ON COLUMN video.director_list IS 'List the director for this movie in printouts';
-COMMENT ON COLUMN video.music_id IS 'ID of composer/musician (refers to music table)';
-COMMENT ON COLUMN video.actor1_id IS 'ID of some actor (refers to actors table)';
-COMMENT ON COLUMN video.country IS 'Country where the movie was made';
-COMMENT ON COLUMN video.year IS 'Year the movie was made/released';
-COMMENT ON COLUMN video.tone_id IS 'ID of tone format (mono/stereo/...). Refers to tone table';
-COMMENT ON COLUMN video.color_id IS 'ID of color format (refers to colors table)';
-COMMENT ON COLUMN video.pict_id IS 'ID of picture format (4:3/16:9/...). Refers to pict table';
-COMMENT ON COLUMN video.commercials_id IS 'Whether the recording contains commercials (refers to commercials table)';
-COMMENT ON COLUMN video.lp IS 'Whether the recording used LongPlay';
-COMMENT ON COLUMN video.fsk IS 'Parental Guide information';
-COMMENT ON COLUMN video.audio IS 'Language(s) of audio track(s)';
-COMMENT ON COLUMN video.subtitle IS 'Language(s) of subtitle(s)';
-COMMENT ON COLUMN video.comment IS 'Detailed comments on the movie';
-
-CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
-CREATE UNIQUE INDEX video_unique_medium_idx ON video(mtype_id,cass_id,part);
+COMMENT ON TABLE pvp_video IS 'Stores the movies information';
+COMMENT ON COLUMN pvp_video.id IS 'ID for reference';
+COMMENT ON COLUMN pvp_video.mtype_id IS 'The media type (refers to mtypes)';
+COMMENT ON COLUMN pvp_video.media_id IS 'ID of the medium this movie resides on';
+COMMENT ON COLUMN pvp_video.part IS 'The movies number on the medium';
+COMMENT ON COLUMN pvp_video.title IS 'The name of the movie';
+COMMENT ON COLUMN pvp_video.imdb_id IS 'Movies ID in the Internet Movie DataBase (if known)';
+COMMENT ON COLUMN pvp_video.rating IS 'Rating of the movie, like at IMDB.com';
+COMMENT ON COLUMN pvp_video.label IS 'Shall the movies data appear on label prints';
+COMMENT ON COLUMN pvp_video.length IS 'Length of the movie in minutes';
+COMMENT ON COLUMN pvp_video.counter1 IS 'Counter on movie start (for old tape recorders)';
+COMMENT ON COLUMN pvp_video.counter2 IS 'Counter on movie end (for old tape recorders)';
+COMMENT ON COLUMN pvp_video.aq_date IS 'Date the movie was recorded/bought/...';
+COMMENT ON COLUMN pvp_video.source IS 'Where we got it (station/shop/friends name)';
+COMMENT ON COLUMN pvp_video.cat1_id IS 'ID of category for this movie (refers to cat table)';
+COMMENT ON COLUMN pvp_video.director_id IS 'ID of the directors name (refers to directors table)';
+COMMENT ON COLUMN pvp_video.directors_list IS 'List the director for this movie in printouts';
+COMMENT ON COLUMN pvp_video.music_id IS 'ID of composer/musician (refers to music table)';
+COMMENT ON COLUMN pvp_video.actor1_id IS 'ID of some actor (refers to actors table)';
+COMMENT ON COLUMN pvp_video.country IS 'Country where the movie was made';
+COMMENT ON COLUMN pvp_video.year IS 'Year the movie was made/released';
+COMMENT ON COLUMN pvp_video.vnorm_id IS 'ID of video norm (refers to vnorms table)';
+COMMENT ON COLUMN pvp_video.tone_id IS 'ID of tone format (mono/stereo/...). Refers to tone table';
+COMMENT ON COLUMN pvp_video.color_id IS 'ID of color format (refers to colors table)';
+COMMENT ON COLUMN pvp_video.pict_id IS 'ID of picture format (4:3/16:9/...). Refers to pict table';
+COMMENT ON COLUMN pvp_video.commercials IS 'Whether the recording contains commercials (refers to commercials table)';
+COMMENT ON COLUMN pvp_video.lp IS 'Whether the recording used LongPlay';
+COMMENT ON COLUMN pvp_video.fsk IS 'Parental Guide information';
+COMMENT ON COLUMN pvp_video.audio IS 'Language(s) of audio track(s)';
+COMMENT ON COLUMN pvp_video.subtitle IS 'Language(s) of subtitle(s)';
+COMMENT ON COLUMN pvp_video.comment IS 'Detailed comments on the movie';
+COMMENT ON COLUMN pvp_video.private IS 'Show this movie record to all granted (0) or owner only (1)';
+COMMENT ON COLUMN pvp_video.lastchange IS 'Timestamp of last change of this record';
+ALTER TABLE pvp_video ADD CONSTRAINT pk_video PRIMARY KEY (id);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_label CHECK (label IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_cat1id CHECK (cat1_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_cat2id CHECK (cat2_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_cat3id CHECK (cat3_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor1list CHECK (actor1_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor2list CHECK (actor2_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor3list CHECK (actor3_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor4list CHECK (actor4_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_actor5list CHECK (actor5_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_directorlist CHECK (director_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_musiclist CHECK (music_list IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_pictid CHECK (pict_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_commercialsid CHECK (commercials_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_lp CHECK (lp IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_vnormid CHECK (vnorm_id IS NOT NULL);
+ALTER TABLE pvp_video ADD CONSTRAINT notnullcheck_video_private CHECK (private IS NOT NULL);
+CREATE INDEX video_cat_idx ON pvp_video (cat1_id,cat2_id,cat3_id);
+COMMENT ON INDEX video_cat_idx IS 'For faster access on searches';
+CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,cass_id,part);
+COMMENT ON INDEX video_unique_medium_idx IS 'Prevent the mess of duplicate entries on double-clicks';
+CREATE INDEX video_title_idx ON pvp_video (title);
+COMMENT ON INDEX video_title_idx IS 'Improve search speed for movie title';
 
 # --------------------------------------------------------
 #

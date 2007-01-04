@@ -93,6 +93,17 @@ ALTER TABLE mtypes COMMENT='Media types used, e.g. DVD, VCD';
 
 # --------------------------------------------------------
 #
+# Table structure for table 'pvp_vnorms'
+#
+CREATE TABLE pvp_vnorms (
+   id INT(3) NOT NULL,
+   name VARCHAR(20) NOT NULL,
+   PRIMARY KEY (id)
+);
+ALTER TABLE pvp_vnorms COMMENT='List of video norms (PAL,NTSC) we support';
+
+# --------------------------------------------------------
+#
 # Table structure for table 'disks'
 #
 CREATE TABLE disks (
@@ -161,54 +172,60 @@ ALTER TABLE commercials COMMENT='Are there commercials in the recording?';
 
 # --------------------------------------------------------
 #
-# Table structure for table 'video'
+# Table structure for table 'pvp_video'
 #
 
-CREATE TABLE video (
+CREATE TABLE pvp_video (
    id INT(7) NOT NULL auto_increment,
    mtype_id INT(5),
-   cass_id INT(4),
+   media_id INT(4),
    part INT(2),
    title VARCHAR(60),
-   label INT(1) NOT NULL,
+   imdb_id VARCHAR(10),
+   rating NUMERIC(3,1),
+   label INT(1) NOT NULL DEFAULT 0,
    length INT(3),
    counter1 VARCHAR(10),
    counter2 VARCHAR(10),
    aq_date VARCHAR(10),
    source VARCHAR(15),
+   cat1_id INT(5) NOT NULL DEFAULT 0,
+   cat2_id INT(5) NOT NULL DEFAULT 0,
+   cat3_id INT(5) NOT NULL DEFAULT 0,
    director_id INT(5),
-   director_list INT(1),
+   director_list INT(1) NOT NULL DEFAULT 0,
    music_id INT(5),
-   music_list INT(1),
-   country VARCHAR(30),
-   year INT(4),
-   cat1_id INT(5) NOT NULL,
-   cat2_id INT(5) NOT NULL,
-   cat3_id INT(5) NOT NULL,
+   music_list INT(1) NOT NULL DEFAULT 0,
    actor1_id INT(5),
    actor2_id INT(5),
    actor3_id INT(5),
    actor4_id INT(5),
    actor5_id INT(5),
-   actor1_list INT(1) NOT NULL,
-   actor2_list INT(1) NOT NULL,
-   actor3_list INT(1) NOT NULL,
-   actor4_list INT(1) NOT NULL,
-   actor5_list INT(1) NOT NULL,
+   actor1_list INT(1) NOT NULL DEFAULT 0,
+   actor2_list INT(1) NOT NULL DEFAULT 0,
+   actor3_list INT(1) NOT NULL DEFAULT 0,
+   actor4_list INT(1) NOT NULL DEFAULT 0,
+   actor5_list INT(1) NOT NULL DEFAULT 0,
+   country VARCHAR(30),
+   year INT(4),
+   vnorm_id INT(3) NOT NULL DEFAULT 0,
    tone_id INT(5),
    color_id INT(5),
-   pict_id INT(5) NOT NULL,
-   commercials_id INT(5) NOT NULL,
-   lp INT(1) NOT NULL,
+   pict_id INT(5) NOT NULL DEFAULT 0,
+   commercials_id INT(5) NOT NULL DEFAULT 0,
+   lp INT(1) NOT NULL DEFAULT 0,
    fsk INT(2),
    audio VARCHAR(50),
    subtitle VARCHAR(100),
    comment TEXT,
+   private INT(1) NOT NULL DEFAULT 0,
+   lastchange DATETIME,
    PRIMARY KEY (id)
 );
-ALTER TABLE video COMMENT='Movie data';
-CREATE INDEX video_cat_idx ON video(cat1_id,cat2_id,cat3_id);
-CREATE UNIQUE INDEX video_unique_medium_idx ON video(mtype_id,cass_id,part);
+ALTER TABLE pvp_video COMMENT='Movies information';
+CREATE INDEX video_cat_idx ON pvp_video (cat1_id,cat2_id,cat3_id);
+CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,media_id,part);
+CREATE INDEX video_title_idx ON pvp_video (title);
 
 # --------------------------------------------------------
 #

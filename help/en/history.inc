@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.2 (2007)
+0.8.2 (January 04, 2007)
 [text]
 <ul>
  <li>now supporting video norm (PAL/NTSC) setting for each movie
@@ -11,7 +11,7 @@
  <li>duplicate check *may* break with v0.8.1 due to orphaned movies (missing
      entries in the media table). If upgrading to v0.8.2 from a version prior
      to v0.8.1, this will be automatically fixed. Everybody else, please go
-     to the admin->orphaned entries screen and fix it there
+     to the admin-&gt;orphaned entries screen and fix it there
  <li>With the IMDB class, the guys again broke the image retrieval. Fixed.
  <li>now also storing the IMDB ID in our DB if movie data have been retrieved
      from there. Will be used for lookups later.

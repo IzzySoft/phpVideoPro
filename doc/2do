@@ -12,10 +12,13 @@ account" izzysoft@qumran.org.
 ------------------------------------------------------------------------------
 
 On Focus:
-- settings for NTSC/PAL
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
 - timestamps for "added" and "last changed" of records to be able to show
   "new/changed records since [date]"
+- movie rating in lists (providing the possibility to "order by rating") and
+  search (min/max rating)
+- on the view/edit entry screen, hide settings which don't apply to the
+  selected medium
 
 Not scheduled (yet):
 - add Audio/Subtitle to filter settings
@@ -34,9 +37,6 @@ Interesting things not scheduled at all:
   more modular and allowing removal of unwanted features
 - PS template(s) for DVD covers
 - form(s) to edit label sheets (for PSLabels)
-- storing the movies IMDB ID into the db, if known
-- movie rating (0-5 stars where 0 is "not rated yet"), also in list (providing
-  the possibility to "order by rating")
 - honour date format settings in all places
 - add "sample-links" to translation editor
 - make menu template-driven

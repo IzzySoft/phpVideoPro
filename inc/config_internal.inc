@@ -1,6 +1,6 @@
 <?
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -61,19 +61,6 @@
  $agent->major   = $browser->getMajor();
  $agent->minor   = $browser->getMinor();
  $agent->version = $browser->getVer();
-
- #======================================[ setup menu depending on browser ]===
- $oldmenue = FALSE;
- if ($agent->name == "mozilla") {
-  if ($agent->version < 5) {
-   $oldmenue = TRUE;
-  }
- }
- if ($oldmenue) {
-  $nav_script = $base_path . "inc/oldmenue.inc";
- } else {
-  $nav_script = $base_path . "inc/newmenue.inc";
- }
 
  #============================================[ set some technical values ]===
  $max["actors"]         =  5;

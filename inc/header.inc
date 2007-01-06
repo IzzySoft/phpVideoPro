@@ -61,17 +61,8 @@ if ( !( (isset($silent)) && $silent) ) {
   //--></script>
  <link href="<?=$pvp->tpl_url?>/default.css" rel="stylesheet" type="text/css">
 <?
- include($nav_script);
- if ($oldmenue) echo "</HEAD><BODY onLoad=\"init();\">";
- if ( !(isset($silent) && $silent) ) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
-?>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
- <tr>
-  <td><? if ($oldmenue) { ?><img src="<?=$base_url?>images/menu_bar_left.gif" width="9" height="12"><? } else { ?>&nbsp;<? } ?></td>
- </tr>
-</table>
-<?
+   include($base_path . "inc/newmenue.inc");
+   if ( !(isset($silent) && $silent) ) echo "<!-- detected " . $agent->name . " version " . $agent->version . " (".$_SERVER["HTTP_USER_AGENT"].") -->\n";
  } else { // page_id != "login" ?>
  <link href="<?=$pvp->tpl_url?>/default.css" rel="stylesheet" type="text/css">
 <?

@@ -1,0 +1,198 @@
+/*
+Menu related selectors
+*/
+.jsdomenudiv {
+	background-color: #FFFFFF;
+	background-image: url(menu_left.png);
+	background-repeat: repeat-y;
+	border: 1px solid #8A867A;
+	cursor: default;
+	padding-bottom: 1px;
+	padding-top: 1px;
+	position: absolute; /* Do not alter this line! */
+	visibility: hidden;
+	z-index: 10;
+}
+
+.jsdomenuitem {
+	background: transparent;
+	border: none;
+	color: #000000;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	padding-bottom: 3px;
+	padding-left: 30px;
+	padding-right: 15px;
+	padding-top: 3px;
+	position: relative; /* Do not alter this line! */
+}
+
+.jsdomenuitemover {
+	background-color: #C1D2EE;
+	border: 1px solid #316AC5;
+	color: #000000;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	margin-left: 1px;
+	margin-right: 1px;
+	padding-bottom: 2px;
+	padding-left: 28px;
+	padding-right: 15px;
+	padding-top: 2px;
+	position: relative; /* Do not alter this line! */
+}
+
+.jsdomenuarrow {
+	background-image: url(menu_arrow.png);
+	background-repeat: no-repeat; /* Do not alter this line! */
+	height: 7px;
+	position: absolute; /* Do not alter this line! */
+	right: 8px;
+	width: 4px;
+}
+
+.jsdomenuarrowover {
+	background-image: url(menu_arrow_o.png);
+	background-repeat: no-repeat; /* Do not alter this line! */
+	height: 7px;
+	position: absolute; /* Do not alter this line! */
+	right: 8px;
+	width: 4px;
+}
+
+.jsdomenusep {
+	padding-left: 28px;
+}
+
+.jsdomenusep hr {
+}
+
+/*
+Menu bar related selectors
+*/
+.jsdomenubardiv {
+	background-color: #ECE9D8;
+	background-image: url(menu_divider.png);
+	background-position: left;
+	background-repeat: no-repeat;
+	border: 1px outset;
+	cursor: default;
+	padding-bottom: 3px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 3px;
+	position: absolute; /* Do not alter this line! */
+	visibility: visible;
+}
+
+.jsdomenubardragdiv {
+	cursor: move;
+	display: inline;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	position: relative; /* Do not alter this line! */
+	visibility: hidden;
+	width: 9px;
+}
+
+.jsdomenubaritem {
+	background-color: #EFEDDE;
+	border: none;
+	color: #000000;
+	display: inline;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 24px;
+	padding-right: 10px;
+	padding-top: 2px;
+	position: relative; /* Do not alter this line! */
+}
+
+.jsdomenubaritemover {
+	background-color: #C1D2EE;
+	border: 1px solid #316AC5;
+	color: #000000;
+	display: inline;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 23px;
+	padding-right: 9px;
+	padding-top: 2px;
+	position: relative; /* Do not alter this line! */
+}
+
+.jsdomenubaritemclick {
+	background-color: #EFEDDE;
+	border: 1px solid #8A867A;
+	color: #000000;
+	display: inline;
+	font-family: Tahoma, Helvetica, sans, Arial, sans-serif;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-left: 23px;
+	padding-right: 9px;
+	padding-top: 2px;
+	position: relative; /* Do not alter this line! */
+}
+
+/*
+Selectors for icons. Icon size: 16x16 (see height and width setting)
+*/
+.about,.admin,.backup,.cats,.clapper,.download,.dupes,.dvd_movie,.dvds,.edit,
+.exit,.filter,.filter_new,.folderx,.help,.help2,.helpindex,.history,.homepage,
+.labels,.list,.lock,.movie,.music,.new,.orphans,.ovt_movie,.print,.rvt_movie,
+.search,.sessions,.settings,.start,.stats,.templates,.time,.translate,.users,
+.vcd_movie,.view {
+	background-repeat: no-repeat; /* Do not alter this line! */
+	position: absolute; /* Do not alter this line! */
+	left: 4px;
+	height: 16px;
+	width: 16px;
+}
+
+.about { background-image: url(about.png); }
+.admin { background-image: url(admin.png); }
+.backup { background-image: url(backup.png); }
+.cats  { background-image: url(cats.png); }
+.clapper { background-image: url(clapper.png); }
+.download { background-image: url(download.png); }
+.dupes { background-image: url(dupes.png); }
+.dvd_movie { background-image: url(dvd_movie.png); }
+.dvds { background-image: url(dvds.png); }
+.edit  { background-image: url(edit.png); }
+.exit  { background-image: url(exit.png); }
+.filter { background-image: url(filter.png); }
+.filter_new { background-image: url(filter_new.png); }
+.folderx { background-image: url(folderx.png); }
+.help  { background-image: url(help.png); }
+.help2 { background-image: url(help2.png); }
+.helpindex { background-image: url(helpindex.png); }
+.history { background-image: url(history.png); }
+.homepage  { background-image: url(homepage.png); }
+.labels { background-image: url(labels.png); }
+.list { background-image: url(list.png); }
+.lock  { background-image: url(lock.png); }
+.movie { background-image: url(movie.png); }
+.music { background-image: url(music.png); }
+.new   { background-image: url(new.png); }
+.orphans { background-image: url(orphans.png); }
+.ovt_movie { background-image: url(tape.png); }
+.print { background-image: url(printer.png); }
+.rvt_movie { background-image: url(tape.png); }
+.search { background-image: url(search.png); }
+.sessions { background-image: url(sessions.png); }
+.settings { background-image: url(settings.png); }
+.start { background-image: url(start.png); }
+.stats { background-image: url(stats.png); }
+.templates { background-image: url(templates.png); }
+.time { background-image: url(time.png); }
+.translate { background-image: url(translate.png); }
+.users { background-image: url(users.png); }
+.vcd_movie { background-image: url(vcd_movie.png); }
+.view { background-image: url(view.png); }

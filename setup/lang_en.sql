@@ -608,7 +608,7 @@ INSERT INTO lang VALUES ('bubble_help_enable_comment','en','If enabled, context-
 INSERT INTO lang VALUES ('help_for_block','en','Help for this block','BubbleHelp displayed on the help icon (if available; e.g. on the configuration screen)');
 INSERT INTO lang VALUES ('fsk_is_nan','en','The selected value for PG is not numeric,\\\\nbut phpVideoPro requires a numeric value.\\\\nClick the info icon next to the PG for more details.','JavaScript ErrorMsg popup when entering not-numeric PG');
 INSERT INTO lang VALUES ('unlink_file_failed','en','Failed to delete - check permissions or delete manually.','Error message on failed file deletion');
-INSERT INTO lang VALUES ('dupes_strict','en','Duplicate entries (strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
+INSERT INTO lang VALUES ('dupes_strict','en','Strict','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Strict checking.');
 INSERT INTO lang VALUES ('len_is_nan','en','The selected value for Length is not numeric,\\\\nbut phpVideoPro requires a numeric value.','JavaScript ErrorMsg popup when entering not-numeric length value');
 INSERT INTO lang VALUES ('name_not_string','en','One of the entered names contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
 INSERT INTO lang VALUES ('title_not_string','en','The entered title contains invalid characters (to prevent code injection, only letters, digits and the "-" are allowed).','Input check on several pages on form submission');
@@ -625,8 +625,8 @@ INSERT INTO lang VALUES ('owner','en','Owner','how we call the owner of a medium
 INSERT INTO lang VALUES ('storeplace','en','Stored at','the physical place a medium resides');
 INSERT INTO lang VALUES ('lentto','en','Lent to','if we temporarily gave away some medium');
 INSERT INTO lang VALUES ('own_to_user','en','Transfer to','name of select box for media of user to delete');
-INSERT INTO lang VALUES ('dupes_own_strict','en','Duplicate entries (own+strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours, strict checking.');
-INSERT INTO lang VALUES ('dupes_own','en','Duplicate entries (own)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours.');
+INSERT INTO lang VALUES ('dupes_own_strict','en','Own+Strict)','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours, strict checking.');
+INSERT INTO lang VALUES ('dupes_own','en','Own','Movies that appear to be recorded into your collection more than once - you may have multiple copies then. Only yours.');
 INSERT INTO lang VALUES ('grant_filter_desc','en','Show records from','Description for the filter page');
 INSERT INTO lang VALUES ('medium_no_access','en','Sorry: This medium either does not exist, or is empty, or you have no permission to access its content.','Error message for media info');
 INSERT INTO lang VALUES ('no_delete_permission','en','This medium is not your own, and the owner gave you no permission to delete his records - sorry.','Message when trying to delete a movie without having the required object privileges');
@@ -639,4 +639,5 @@ INSERT INTO lang VALUES ('movie_private','en','Private','From the Edit screen. I
 INSERT INTO lang VALUES ('rating','en','Rating','Movie rating like at IMDB.COM');
 INSERT INTO lang VALUES ('rating_is_nan','en','The rating has to be a numerical value between 0 and 9.9','(JavaScript) error message on form input');
 INSERT INTO lang VALUES ('orphan_movies_found','en','Found %1 orphan movie(s):','This refers to staff members. They are stored into separate tables which are then references by the main movie table. Orphaned entries are entries in those tables that no longer refer to any movie, so you may want to remove them.');
+INSERT INTO lang VALUES ('all_topic','en','All','as for \"all dupes\" (used in the menu)');
 #INSERT INTO lang VALUES ('','en','','');

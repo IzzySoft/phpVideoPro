@@ -152,9 +152,9 @@ INSERT INTO lang VALUES ('display_limit_comment','da','(Hvor mange linier skal d
 INSERT INTO lang VALUES ('dl_pvp_latest','da','Hent seneste version','');
 INSERT INTO lang VALUES ('dupe_id_entered','da','Der er allerede en ting i databasen med det indtastede medie ID. Tryk venligst på \"Tilbage\" knappen i din browser og ret inputtet. Hint: Der er en markerings boks ved siden af boksen du specificerede medie nummeret i. Denne boks fortæller dig det højeste eksisterende film ID. Normalt er det et godt falg for nye medier at inkrementere det første (4 cifrede)  nummer med en, eller for en ny film på samme medie inkrementere det andet (2 cifrede) nummer med en.','');
 INSERT INTO lang VALUES ('dupes','da','Duplikerede film','');
-INSERT INTO lang VALUES ('dupes_own','da','Duplikerede film (egne)','');
-INSERT INTO lang VALUES ('dupes_own_strict','da','Duplikerede film (egne + skærpet)','');
-INSERT INTO lang VALUES ('dupes_strict','da','Duplikerede film (skærpet)','');
+INSERT INTO lang VALUES ('dupes_own','da','Egne','');
+INSERT INTO lang VALUES ('dupes_own_strict','da','Egne + Skærpet','');
+INSERT INTO lang VALUES ('dupes_strict','da','Skærpet','');
 INSERT INTO lang VALUES ('dupe_titles_found','da','Fundet %1 titler med mulige duplikater','');
 INSERT INTO lang VALUES ('edit','da','Ret','');
 INSERT INTO lang VALUES ('edit_entry','da','Ret film: %1','');

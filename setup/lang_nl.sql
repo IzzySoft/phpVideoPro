@@ -149,7 +149,7 @@ INSERT INTO lang VALUES ('display_limit','nl','Toon limiet',' ');
 INSERT INTO lang VALUES ('display_limit_comment','nl','(hoeveel regels per pagina voor het overzicht)',' ');
 INSERT INTO lang VALUES ('dl_pvp_latest','nl','Download de laatse versie',' ');
 INSERT INTO lang VALUES ('dupes','nl','Dubbele items',' ');
-INSERT INTO lang VALUES ('dupes_strict','nl','Dubbele items (strkt)','');
+INSERT INTO lang VALUES ('dupes_strict','nl','Strkt','');
 INSERT INTO lang VALUES ('dupe_id_entered','nl','Er is al een film opgeslagen onder dit mediumnummer. Ga terug en pas dit aan. Tip: Er is een Selectie veld naast het invoerveld waar het media nummer. Dit selectie veld geeft aan het hoogste bestaande film id. Het is een juiste keuze om bij nieuwe media de eerste vier getallen met een te verhogen. Voor een nieuwe film op bestaande media verhoogt u de tweede twee getallen met een. ',' ');
 INSERT INTO lang VALUES ('dupe_titles_found','nl','Gevonden %1 titel(s) die mogelijk dubbel zijn.',' ');
 INSERT INTO lang VALUES ('edit','nl','Wijzig',' ');

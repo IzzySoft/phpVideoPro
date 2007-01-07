@@ -1364,7 +1364,8 @@
 	    . "t.name as tname,t.sname as tsname,"
 	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
 	    . "media_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
-            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,imdb_id,rating "
+            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,imdb_id, "
+            . "rating,lastchange "
 	    . "FROM pvp_video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
@@ -1391,7 +1392,7 @@
 		     "actor1_list","actor2_list","actor3_list","actor4_list",
 		     "actor5_list","music_list","fsk","comment","part",
 		     "mtype_id","tone_id","color_id","storeplace","lentto",
-                     "vnorm_id","vnorm","private","imdb_id","rating");
+                     "vnorm_id","vnorm","private","imdb_id","rating","lastchange");
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
@@ -1478,20 +1479,23 @@
     *  (title, lenght, year, date or cat)
     * @param optional string restrict definition of WHERE clause (without WHERE)
     * @param optional integer start (for use with LIMIT)
+    * @param optional string dir sort direction (DESC or ASC; default: DESC)
     * @return array array of movies
     * @see sql::get_movie()
     */
-   function get_movielist($order="",$restrict="",$start="") {
+   function get_movielist($order="",$restrict="",$start="",$dir="DESC") {
      GLOBAL $pvp;
      $filter = get_filters();
      $where  = "";
+     ($dir=="DESC") ? $revdir = "ASC" : $revdir = "DESC";
      switch ($order) {
-       case "title"  : $orderby = "v.title,v.mtype_id DESC,v.media_id"; break;
-       case "fsk"    : $orderby = "v.fsk,v.mtype_id DESC,v.media_id"; break;
-       case "length" : $orderby = "v.length,v.mtype_id DESC,v.media_id"; break;
-       case "year"   : $orderby = "v.year,v.mtype_id DESC,v.media_id"; break;
-       case "date"   : $orderby = "v.aq_date,v.mtype_id DESC,v.media_id"; break;
-       case "cat"    : $orderby = "v.cat1_id,v.mtype_id DESC,v.media_id"; break;
+       case "title"  : $orderby = "v.title $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "fsk"    : $orderby = "v.fsk $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "length" : $orderby = "v.length $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "year"   : $orderby = "v.year $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "date"   : $orderby = "v.aq_date $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "cat"    : $orderby = "v.cat1_id $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "lastchange" : $orderby = "v.lastchange $dir"; break;
        default       : $orderby = "v.mtype_id DESC,v.media_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";

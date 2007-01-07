@@ -12,6 +12,7 @@
        <TH><A HREF="{scriptname}?order=year{yorder}{ocrits}">{year}</A></TH>
        <TH><A HREF="{scriptname}?order=date{dorder}{ocrits}">{date}</A></TH>
        <TH><A HREF="{scriptname}?order=cat{corder}{ocrits}">{category}</A></TH>
+       <TH><A HREF="{scriptname}?order=rating{corder}{ocrits}">{rating}</A></TH>
        <TH><A HREF="{scriptname}?order=lastchange{lcorder}{ocrits}">{lastchange}</A></TH>
    </TR>
    <!-- BEGIN mdatablock -->
@@ -23,6 +24,7 @@
        <TD STYLE="text-align:center;">{year}</TD>
        <TD STYLE="text-align:center;">{date}</TD>
        <TD>{category}</TD>
+       <TD>{rating}</TD>
        <TD>{lastchange}</TD>
    </TR>
    <!-- END mdatablock -->

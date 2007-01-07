@@ -166,7 +166,8 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("<?=lang("pvp_homepage")?>", "help_project", "http://www.qumran.org/homes/izzy/software/pvp/"));
 <? if ($page_id) { ?>
     addMenuItem(new menuItem("-"));
-    addMenuItem(new menuItem("Hilfe zum Thema '<?=$page_id?>'", "help_topic", "some.php"));
+    addMenuItem(new menuItem("Hilfe zum Thema '<?=lang($page_id)?>'", "help_topic"));
+    items.help_topic.actionOnClick = "code:open_help('<?=$page_id?>')"
 <? } ?>
   }
   helpMenu.items.help_index.showIcon("helpindex");

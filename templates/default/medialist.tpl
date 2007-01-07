@@ -3,25 +3,27 @@
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN=2>
-  <TABLE ALIGN=Center BORDER=1>
+  <TABLE ALIGN="center" BORDER="1">
    <TR><TH><A HREF="{scriptname}{crits}">{mtype}</A></TH>
        <TH><A HREF="{scriptname}{crits}">{nr}</A></TH>
-       <TH><A HREF="{scriptname}?order=title{ocrits}">{title}</A></TH>
-       <TH><A HREF="{scriptname}?order=fsk{ocrits}">{fsk}</A></TH>
-       <TH><A HREF="{scriptname}?order=length{ocrits}">{length}</A></TH>
-       <TH><A HREF="{scriptname}?order=year{ocrits}">{year}</A></TH>
-       <TH><A HREF="{scriptname}?order=date{ocrits}">{date}</A></TH>
-       <TH><A HREF="{scriptname}?order=cat{ocrits}">{category}</A></TH>
+       <TH><A HREF="{scriptname}?order=title{torder}{ocrits}">{title}</A></TH>
+       <TH><A HREF="{scriptname}?order=fsk{forder}{ocrits}">{fsk}</A></TH>
+       <TH><A HREF="{scriptname}?order=length{lorder}{ocrits}">{length}</A></TH>
+       <TH><A HREF="{scriptname}?order=year{yorder}{ocrits}">{year}</A></TH>
+       <TH><A HREF="{scriptname}?order=date{dorder}{ocrits}">{date}</A></TH>
+       <TH><A HREF="{scriptname}?order=cat{corder}{ocrits}">{category}</A></TH>
+       <TH><A HREF="{scriptname}?order=lastchange{lcorder}{ocrits}">{lastchange}</A></TH>
    </TR>
    <!-- BEGIN mdatablock -->
-   <TR><TD STYLE="text-align:center;">{mtype}</TD>
-       <TD STYLE="text-align:center;"><A HRef="{url}">{nr}</A></TD>
+   <TR CLASS="content"><TD STYLE="text-align:center;">{mtype}</TD>
+       <TD><A HRef="{url}">{nr}</A></TD>
        <TD>{title}</TD>
        <TD STYLE="text-align:right;">{fsk}</TD>
        <TD STYLE="text-align:right;">{length}</TD>
        <TD STYLE="text-align:center;">{year}</TD>
        <TD STYLE="text-align:center;">{date}</TD>
        <TD>{category}</TD>
+       <TD>{lastchange}</TD>
    </TR>
    <!-- END mdatablock -->
    <!-- BEGIN emptyblock -->

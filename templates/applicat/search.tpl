@@ -30,6 +30,8 @@
  <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center"><B>{comment_name}</B></DIV></TD><TD><DIV ALIGN="center">{comment_field}</DIV></TD></TR>
  <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center"><B>{length_name}</B></DIV></TD><TD><DIV ALIGN="center">{length_min} - {length_max} {min}</DIV></TD></TR>
  <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center"><B>{fsk_name}</B></DIV></TD><TD><DIV ALIGN="center">{fsk_min} - {fsk_max}</DIV></TD></TR>
+ <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center"><B>{rating_name}</B></DIV></TD><TD><DIV ALIGN="center">{rating_min} - {rating_max}</DIV></TD></TR>
+ <TR CLASS="content" ALIGN="center"><TD><DIV ALIGN="center"><B>{lastchange_name}</B></DIV></TD><TD><DIV ALIGN="center">{lastchange_min} - {lastchange_max}</DIV></TD></TR>
 </TABLE>
 <!-- resultblock = medialist.tpl -->
 {hidden}

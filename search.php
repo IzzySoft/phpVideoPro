@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -41,7 +41,7 @@
  #=================================================[ Register global vars ]===
  $postit = array ("submit","mtype_id","cat_id","audio_id","subtitle_id","ptype",
                   "pname","title","comment","minlen","maxlen","minfsk","maxfsk",
-                  "start","order");
+                  "minrat","maxrat","minchange","maxchange","start","order");
  foreach ($postit as $var) {
    if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = "";
  }
@@ -50,7 +50,19 @@
  #=============================================[ Setup special JavaScript ]===
  $fsk_nan = lang("fsk_is_nan");
  $len_nan = lang("len_is_nan");
+ $rat_nan = lang("rating_is_nan");
  $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+   function check_rating() {
+     dsf = document.searchform;
+     if (isNaN(dsf.minrat.value) || dsf.minrat.value>10 || dsf.minrat.value <0) {
+       dsf.minrat.value = '';
+       alert('$rat_nan');
+     }
+     if (isNaN(dsf.maxrat.value || dsf.maxrat.value>10 || dsf.maxrat.value <0)) {
+       dsf.maxrat.value = '';
+       alert('$rat_nan');
+     }
+   }
    function check_fsk() {
      dsf = document.searchform;
      if (isNaN(dsf.minfsk.value)) {
@@ -87,7 +99,8 @@
                     "subtitle_id"=>$subtitle_id,"ptype"=>$ptype,
                     "pname"=>$pname,"title"=>$title,"comment"=>$comment,
                     "minlen"=>$minlen,"maxlen"=>$maxlen,"minfsk"=>$minfsk,
-                    "maxfsk"=>$maxfsk);
+                    "maxfsk"=>$maxfsk,"minrat"=>$minrat,"maxrat"=>$maxrat,
+                    "minchange"=>$minchange,"maxchange"=>$maxchange);
    $searchmovievals = $values;
    if ( is_array($mtype_id) ) {
      unset($values["mtype_id"]);
@@ -194,6 +207,12 @@
  $t->set_var("fsk_name",lang("fsk"));
  $t->set_var("fsk_min","<INPUT NAME='minfsk' ".$form["addon_fsk"]."onChange='check_fsk();'>");
  $t->set_var("fsk_max","<INPUT NAME='maxfsk' ".$form["addon_fsk"]."onChange='check_fsk();'>");
+ $t->set_var("rating_name",lang("rating"));
+ $t->set_var("rating_min","<INPUT NAME='minrat' ".$form["addon_year"]."onChange='check_rating();'>");
+ $t->set_var("rating_max","<INPUT NAME='maxrat' ".$form["addon_year"]."onChange='check_rating();'>");
+ $t->set_var("lastchange_name",lang("last_change"));
+ $t->set_var("lastchange_min","<input name='minchange' class='medianrinput'>");
+ $t->set_var("lastchange_max","<input name='maxchange' class='medianrinput'>");
  if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("inc/header.inc");
  $t->pparse("out","template");

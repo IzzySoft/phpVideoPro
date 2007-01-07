@@ -10,6 +10,14 @@ your data against unauthorized access, whereby &quot;access&quot; can have
 different meanings: you may forbid users to manipulate your data, or even to
 view them.
 
+[text]
+phpVideoPro handles access permissions in two levels: System level (this is
+what you configure here) and user level. While the first level defines the
+general permissions of a given user, each user may decide on what which other
+user can do with his records in the second level. So here you define what your
+users can do with their own records - and with the records of other users, if
+those give the permission additionally.
+
 [title]
 How phpVideoPro makes use of accounts
 

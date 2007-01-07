@@ -9,6 +9,15 @@ Hier lassen sich die Benutzerkonten verwalten. Diese werden benötigt, um die
 Daten vor unbefugtem Zugriff zu schützen: vor Manipulation, oder sogar vor
 Einsicht.
 
+[text]
+phpVideoPro behandelt die Zugriffsrechte in zwei Ebenen: Systemebene (das, was
+hier konfiguriert wird) und Benutzerebene. Auf der Systemebene werden die
+generellen Berechtigungen erteilt. Diese gelten sowohl für die dem jeweiligen
+Benutzer eigenen Daten, als auch für die der anderen - sofern der jeweils
+andere Benutzer diesem auch den Zugriff gestattet. Mit anderen Worten: Werden
+einem Benutzer hier nur Leserechte eingeräumt, kann er überall maximal Lesen;
+auch, wenn andere Benutzer ihm Schreibrechte auf ihre Daten gewähren.
+
 [title]
 Wie phpVideoPro Accounts verwendet
 

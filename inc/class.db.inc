@@ -1634,8 +1634,8 @@
      if ($maxfsk) $restrict .= " AND fsk<=$maxfsk";
      if ($minrat) $restrict .= " AND rating>=$minrat";
      if ($maxrat) $restrict .= " AND rating<=$maxrat";
-     if ($minchange) $restrict .= " AND lastchange>=$minchange";
-     if ($maxchange) $restrict .= " AND lastchange<=$maxchange";
+     if ($minchange) $restrict .= " AND lastchange>='$minchange'";
+     if ($maxchange) $restrict .= " AND lastchange<='$maxchange'";
      return $this->get_movielist($order,$restrict,$start);
    }
 

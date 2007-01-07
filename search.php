@@ -51,7 +51,8 @@
  $fsk_nan = lang("fsk_is_nan");
  $len_nan = lang("len_is_nan");
  $rat_nan = lang("rating_is_nan");
- $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+ $js = "<script language='JavaScript' src='images/ts_picker.js'></script>
+ <SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
    function check_rating() {
      dsf = document.searchform;
      if (isNaN(dsf.minrat.value) || dsf.minrat.value>10 || dsf.minrat.value <0) {
@@ -211,8 +212,8 @@
  $t->set_var("rating_min","<INPUT NAME='minrat' ".$form["addon_year"]."onChange='check_rating();'>");
  $t->set_var("rating_max","<INPUT NAME='maxrat' ".$form["addon_year"]."onChange='check_rating();'>");
  $t->set_var("lastchange_name",lang("last_change"));
- $t->set_var("lastchange_min","<input name='minchange' class='medianrinput'>");
- $t->set_var("lastchange_max","<input name='maxchange' class='medianrinput'>");
+ $t->set_var("lastchange_min","<input name='minchange' class='medianrinput'>&nbsp;<img src='images/cal.gif' onClick=\"show_calendar('document.searchform.minchange');\">");
+ $t->set_var("lastchange_max","<input name='maxchange' class='medianrinput'>&nbsp;<img src='images/cal.gif' onClick=\"show_calendar('document.searchform.maxchange');\">");
  if (!$pvp->cookie->active) $t->set_var("hidden","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
  include("inc/header.inc");
  $t->pparse("out","template");

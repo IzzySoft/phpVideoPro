@@ -48,13 +48,10 @@
     li("listgen",2);
   headline("other_pages");
    li("tplset_applicat");
-   li("start_page");
    li("view_entry");
    li("imdbsearch");
    li("medium");
    li("media_change");
-   li("change_rc");
-   li("disktype_change");
    li("admin_avlang");
   headline("howto");
    li("howto_lang");

@@ -1495,6 +1495,7 @@
        case "year"   : $orderby = "v.year $revdir,v.mtype_id $dir,v.media_id"; break;
        case "date"   : $orderby = "v.aq_date $revdir,v.mtype_id $dir,v.media_id"; break;
        case "cat"    : $orderby = "v.cat1_id $revdir,v.mtype_id $dir,v.media_id"; break;
+       case "rating" : $orderby = "v.rating $dir"; break;
        case "lastchange" : $orderby = "v.lastchange $dir"; break;
        default       : $orderby = "v.mtype_id DESC,v.media_id,v.part"; break;
      }

@@ -34,6 +34,7 @@
    $t_aq_date      = $list[$i]['aq_date'];  check_empty($t_aq_date);
    $aq_date[$i]  = $pvp->common->formatDate($t_aq_date);
    $category[$i] = $list[$i]['cat1']; check_empty($category[$i]);
+   $rating[$i]   = $list[$i]['rating']; check_empty($rating[$i]);
    $lastchange[$i] = $list[$i]['lastchange'];
    if (empty($lastchange[$i])) $lastchange[$i] = lang("unknown");
  }
@@ -54,6 +55,7 @@
    $t->set_var("length",$length[$i]);
    $t->set_var("year",$year[$i]);
    $t->set_var("date",$aq_date[$i]);
+   $t->set_var("rating",$rating[$i]);
    $t->set_var("category",$category[$i]);
    $t->set_var("lastchange",$lastchange[$i]);
    $t->set_var("url",$pvp->link->slink("edit.php?nr=$movie_id[$i]&cass_id=$cass_id[$i]&part=$part[$i]&mtype_id=$mtype_id[$i]"));
@@ -78,6 +80,7 @@
  $t->set_var("year",lang("year"));
  $t->set_var("date",lang("date_rec"));
  $t->set_var("category",lang("category"));
+ $t->set_var("rating",lang("rating"));
  $t->set_var("lastchange",lang("last_change"));
  $t->set_var("scriptname",$_SERVER["PHP_SELF"]);
  $t->set_var("first",$nextmatch->first);

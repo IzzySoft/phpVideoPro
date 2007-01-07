@@ -188,7 +188,7 @@ $pvp->preferences->admin();
     case "0.6.0"    : queryf("0-6-0_to_0-6-1.".$database["type"],"Upgrade to v0.6.1");
     case "0.6.1"    : queryf("0-6-1_to_0-6-2.".$database["type"],"Upgrade to v0.6.2");
     case "0.6.2"    : $db2utf8 = TRUE;
-    case "0.6.3"    : queryf("0-6-3_to_0-6-4.sql","Upgrade to v0.6.4");
+    case "0.6.3"    :
     case "0.6.4"    :
     case "0.6.5"    : queryf("0-6-5_to_0-6-6.".$database["type"],"Upgrade to v0.6.6");
     case "0.6.6"    :

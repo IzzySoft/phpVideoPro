@@ -121,6 +121,26 @@ movies from the 1920's which, of course, ship in black-and-white mode. Those
 of you may want to change this behaviour and like to initiate the color mode
 for new movies accordingly. Do this here.
 
+[text]
+<b>*movie_pict_default#:</b> In times of wide-screen TVs and notebooks, the
+wide-screen format obviously got more famous. But still there is the good old
+TV format around with its "golden section". So make your decision here, what
+will be used more often. As the word "default" suggests, you can change this
+when adding/changing your movie entry.
+
+[text]
+<b>*movie_vnorm_default#:</b> This is mostly a question of where you (and/or
+your users) live. In the US and UK, the most used video norm is NTSC - and the
+devices you buy there (TVs, recorders and the like) all support it - while not
+all of them support the other widely used norm: PAL. In the rest of the world,
+it is the other way round. Well, maybe I should have named the selections
+"US/UK" and "the rest of the world"?
+
+[text]
+<b>*movie_lang_default#:</b> Mostly a question of native or preferred language.
+Here you should put the language supported by most of your (future) movies as
+audio language.
+
 #================================================================[ Cookies ]===
 [title|1|cookies]
 *cookies#
@@ -248,18 +268,11 @@ offers you some feature you may know as "skins" from XMMS or WinAmp. Here you
 can decide which skin to use.
 
 [text]
-<b>*imdb_url#:</b> You can lookup additional data for a selected movie (or staff
-member) by clicking on its title (or name) button when viewing the movies entry.
-Since the movie title for the same movie differs in different languages, and you
-probably will not always have the "original" name of the movie in the title
-but the one corresponding to the language version, you may quite often need to
-search the IMDB manually. By selecting a better matching IMDB site here, chances
-increase for a hit on the first click: if you e.g. have the German movie name
-in the title in most cases, you should select the German site of the IMDB here
-to reach this goal.<br>
-Unfortunately, not all countries have their own IMDB site yet. The ones I know
-are available as options. If there are other sites available <i>you</i> know of,
-just drop me a note and I will add them asap!
+<b>*bubble_help_enable#:</b> A two-edged sword. One likes it, the other one
+finds it annoying. The third likes it, but not if it comes up everywhere (like
+it is the case in Windows XP). Because of this, it is right now used only
+rarely and where it (to me) really seemed necessary and useful (as for the
+window-icons in the <i>Applicat</i> template set. Decide here if you want it.
 
 [text]
 <b>*printer#:</b> To guarantee the exact position of generated labels on the

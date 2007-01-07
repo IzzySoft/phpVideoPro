@@ -140,6 +140,28 @@ welche freilich in schwarz/weiß sind. In diesem Fall wäre es natürlich
 wünschenswert, die Voreinstellung entsprechend anzupassen. Dies kann hier
 geschehen.
 
+[text]
+<b>*movie_pict_default#:</b> In Zeiten von WideScreen TVs, Bildschirmen und
+Notebooks kann es keiner mehr leugnen: Dieses Format hat an Bedeutung auch im
+heimischen Bereich zugelegt. Heute sind die "schwarzen Balken" immer seltener
+"oben und unten" - dafür um so öfter "links und rechts"... Je nach Gewohnheit
+sind also Aufnahmen der einen oder anderen Art die häufigeren - diese sollte
+hier auch eingestellt sein. Natürlich lässt sich das Ganze dann beim
+Erfassen/Ändern der Daten noch anpassen, deshalb heißt es ja auch "Default".
+
+[text]
+<b>*movie_vnorm_default#:</b> Wohl hauptsächlich eine Frage des Wohnortes: In
+den USA und dem CommonWealth ist NTSC am gebräculichsten, und alle dort
+gekauften Geräte unterstützen diese Norm - dafür aber nicht unbedingt PAL, die
+sonst überall verbreitetste Videonorm. Ich hätte diese Auswahl also auch
+"USA/UK" und "Rest der Welt" benennen können...
+
+[text]
+<b>*movie_lang_default#:</b> Eher eine Frage der Muttersprache (oder der
+bevorzugten Sprache) - aber manchmal hat man nicht unbedingt eine Wahl... Hier
+sollte die Sprache eingestellt werden, die für die Audio-Tracks der meisten
+aufgenommenen/erworbenen Filme zur Anwendung kommt.
+
 #================================================================[ Cookies ]===
 [title|1|cookies]
 *cookies#
@@ -279,6 +301,13 @@ Hier lässt sich das gewünschte Template-Set auswählen, und phpVideoPro erhäl
 auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
+[text]
+<b>*bubble_help_enable#:</b> Ein zweischneidiges Schwert: Was dem einen die
+Eule, ist dem anderen die Nachtigall... Auch wenn es auf den ersten Blick eine
+sinnvolle Sache scheint, kann es bei Übertreibung auch nerven (siehe Windows XP).
+Daher kommt es in phpVideoPro auch nur sparsam zum Einsatz, wo ich es für
+wirklich sinnvoll gehalten habe (etwa bei den Window-Buttons im <i>Applicat</i>
+TemplateSet). Hier kann es auch gänzlich abgeschaltet werden.
 
 [text]
 <b>*printer#:</b> Um eine exakte Positionierung der Etiketten auf den zu

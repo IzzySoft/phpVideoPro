@@ -8,8 +8,9 @@ List of registered media
 This displays a list containing all movies stored in your database, per default
 sorted by "*mediatype#" and "*medianr#". You may change the order of items
 displayed just by clicking on the table header of the column you want to sort
-by. If you have set up some filters, they are used to select these entries - so
-in this case only movies matching the filters are displayed.
+by (click it again to reverse the sort order). If you have set up some filters,
+they are used to select these entries - so in this case only movies matching
+the filters are displayed.
 [text]
 Since this list can become quite long, we split it to multiple pages. How many
 lines of data should be displayed per page, you may configure via the item
@@ -21,4 +22,3 @@ from within that detail screen you may decide to <A HREF="{PHP_SELF}?topic=add_e
 or even delete the entry.
 
 [eof]
-

@@ -2,14 +2,15 @@
 # /* $Id$ */
 
 [title]
-Liste erfaßter Medien
+Liste erfasster Medien
 
 [text]
 Auf dieser Seite wird eine Liste mit allen Filmen aus der Datenbank angezeigt,
 die den definierten Filterregeln entsprechen. Standardmäßig ist diese nach
 MedienTyp und MediaNr sortiert - diese Sortierung läßt sich jedoch einfach
 durch einen Klick auf den Kopf der Spalte, nach der man gern sortieren möchte,
-ändern.
+ändern - ein zweiter Klick auf den selben Spaltenkopf kehrt sodann die
+Sortierrichtung um.
 
 [text]
 Da diese Liste ziemlich lang werden könnte, wird ihre Ausgabe auf mehrere

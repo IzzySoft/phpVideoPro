@@ -13,10 +13,7 @@ account" izzysoft@qumran.org.
 
 On Focus:
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
-- timestamps for "added" and "last changed" of records to be able to show
-  "new/changed records since [date]"
-- movie rating in lists (providing the possibility to "order by rating") and
-  search (min/max rating)
+- movie rating and lastchange in search (min/max rating)
 - on the view/edit entry screen, hide settings which don't apply to the
   selected medium
 

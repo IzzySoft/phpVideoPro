@@ -11,6 +11,7 @@
  <li>new column in medialist: last change date to a movie record lets you
      find the most/least recent changed/added records (only changes made
      with v0.8.2 or later will have a date in that column)
+ <li>new column in medialist: rating (you now also can sort by this)
 </ul>
 
 [title]

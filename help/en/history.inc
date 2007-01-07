@@ -2,6 +2,18 @@
 # /*  $Id$ */
 
 [title]
+0.8.3 (2007)
+[text]
+<ul>
+ <li>replaced the old-fashioned menu by a more modern version
+ <li>medialist now allows revers ordering by columns (change sort order
+     direction by clicking on the column header again)
+ <li>new column in medialist: last change date to a movie record lets you
+     find the most/least recent changed/added records (only changes made
+     with v0.8.2 or later will have a date in that column)
+</ul>
+
+[title]
 0.8.2 (January 04, 2007)
 [text]
 <ul>

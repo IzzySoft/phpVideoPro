@@ -234,6 +234,8 @@ $pvp->preferences->admin();
                       if ($_POST["update_rec"]) {
                         $db->query("UPDATE pvp_video SET vnorm_id=".$_POST["vnorm_id"]);
                       }
+    case "0.8.2"    : queryf("0-8-2_to_0-8-3.sql","Upgrade to v0.8.3");
+                      queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

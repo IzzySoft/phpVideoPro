@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.3 (2007)
+0.8.3 (January 08, 2007)
 [text]
 <ul>
  <li>replaced the old-fashioned menu by a more modern version

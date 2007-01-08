@@ -47,7 +47,7 @@
    </TR>
    <!-- END mdatablock -->
    <!-- BEGIN emptyblock -->
-   <TR CLASS="content"><TD COLSPAN="8"><DIV ALIGN="center">{no_data}</DIV></TD></TR>
+   <TR CLASS="content"><TD COLSPAN="10"><DIV ALIGN="center">{no_data}</DIV></TD></TR>
    <!-- END emptyblock -->
   </Table>
  </TD></TR>

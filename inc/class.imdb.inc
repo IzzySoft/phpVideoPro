@@ -389,7 +389,8 @@
     if ($this->page["Title"] == "") {
 	$this->openpage ("Title");
     }
-    $rate_s = strpos ($this->page["Title"], "User Rating:");
+#    $rate_s = strpos ($this->page["Title"], "User Rating:");
+    $rate_s = strpos ($this->page["Title"], '/ratings">');
     if ( $rate_s == 0 )	return FALSE;
     $rate_s = strpos ($this->page["Title"], "<b>", $rate_s);
     $rate_e = strpos ($this->page["Title"], "/", $rate_s);

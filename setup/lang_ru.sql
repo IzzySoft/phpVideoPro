@@ -1,5 +1,5 @@
 # ========================================================
-# Russian Language File created by phpVideoPro v0.8.0p19
+# Russian Language File created by phpVideoPro v0.8.3
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='ru';
@@ -137,7 +137,7 @@ INSERT INTO lang VALUES ('cut_off','ru','Отключенный','');
 INSERT INTO lang VALUES ('data_access','ru','Доступ к данным','');
 INSERT INTO lang VALUES ('date_format','ru','Формат даты','');
 INSERT INTO lang VALUES ('date_format_comment','ru','Формат для отобрадения даты.','');
-INSERT INTO lang VALUES ('date_is_nan','ru','Дата, месяц и год должны быть числовыми!n (то есть только цифры позволяются)','');
+INSERT INTO lang VALUES ('date_is_nan','ru','Дата, месяц и год должны быть числовыми!\\n (то есть только цифры позволяются)','');
 INSERT INTO lang VALUES ('date_rec','ru','Дата принята','');
 INSERT INTO lang VALUES ('day','ru','День','');
 INSERT INTO lang VALUES ('db_stats','ru','Статистика','');
@@ -190,12 +190,12 @@ INSERT INTO lang VALUES ('filter','ru','Фильтр','');
 INSERT INTO lang VALUES ('filter_setup','ru','Настройки фильтра','');
 INSERT INTO lang VALUES ('finnished','ru','Завершено','');
 INSERT INTO lang VALUES ('first_name','ru','Имя','');
-INSERT INTO lang VALUES ('fontsize_is_nan','ru','Размер шрифта нужно дать в числовых ценностяхn (то есть только цифры позволяются здесь).','');
+INSERT INTO lang VALUES ('fontsize_is_nan','ru','Размер шрифта нужно дать в числовых ценностях\\n (то есть только цифры позволяются здесь).','');
 INSERT INTO lang VALUES ('format','ru','Формат','');
 INSERT INTO lang VALUES ('free','ru','Свободно','');
 INSERT INTO lang VALUES ('free_space_on_media','ru','Следующие носители имеют по крайней мере %1 минуту в наличии свободного места:','');
 INSERT INTO lang VALUES ('free_space_title','ru','Свободного места на носителе','');
-INSERT INTO lang VALUES ('fsk_is_nan','ru','PG нужно дать в числовых ценностяхn (то есть только цифры позволяются здесь). Щелкните изображением информации рядом с PG для большего количества деталей.','');
+INSERT INTO lang VALUES ('fsk_is_nan','ru','PG нужно дать в числовых ценностях\\n(то есть только цифры позволяются здесь).\\nЩелкните изображением информации рядом с PG для большего количества деталей.','');
 INSERT INTO lang VALUES ('general','ru','Общее','');
 INSERT INTO lang VALUES ('goto_entry','ru','Перейти к записи:','');
 INSERT INTO lang VALUES ('grant_filter_desc','ru','Показ делает запись от','');
@@ -374,7 +374,7 @@ INSERT INTO lang VALUES ('layout_label','ru','Выбрал Шаблон','');
 INSERT INTO lang VALUES ('left_offset','ru','Левое смещение','');
 INSERT INTO lang VALUES ('length','ru','Продолжительность','');
 INSERT INTO lang VALUES ('lentto','ru','Предоставленный','');
-INSERT INTO lang VALUES ('len_is_nan','ru','Отобранная ценность для Длины не является числовой,n но phpVideoPro требует числовой ценности.','');
+INSERT INTO lang VALUES ('len_is_nan','ru','Отобранная ценность для Длины не является числовой,\\n но phpVideoPro требует числовой ценности.','');
 INSERT INTO lang VALUES ('lines_per_page','ru','Строк на странице','');
 INSERT INTO lang VALUES ('lines_per_page_comment','ru','Это - для функций печати, чтобы определить, сколько линий текста соответствует на одном листе бумаги.','');
 INSERT INTO lang VALUES ('line_count','ru','Строки','');
@@ -396,7 +396,7 @@ INSERT INTO lang VALUES ('medialist','ru','Список носителей','');
 INSERT INTO lang VALUES ('medialist_alpha','ru','Список носителей в алфавитном порядке','');
 INSERT INTO lang VALUES ('medialist_num','ru','Список носителей в числовом порядке','');
 INSERT INTO lang VALUES ('medianr','ru','Номер Носителя','');
-INSERT INTO lang VALUES ('medianr_is_nan','ru','MediaNr должен быть числовым n (то есть буквы, и специальные литеры не позволяются).','');
+INSERT INTO lang VALUES ('medianr_is_nan','ru','MediaNr должен быть числовым\\n(то есть буквы, и специальные литеры не позволяются).','');
 INSERT INTO lang VALUES ('mediatype','ru','Тип Носителя','');
 INSERT INTO lang VALUES ('media_change','ru','Изменить Номер Носителя','');
 INSERT INTO lang VALUES ('media_copy','ru','Копировать данные на Номер Носителя','');
@@ -467,6 +467,8 @@ INSERT INTO lang VALUES ('print_label','ru','Печать наклейки:','')
 INSERT INTO lang VALUES ('pslabel','ru','Наклейки PS','');
 INSERT INTO lang VALUES ('pstpl_name','ru','Имя Шаблона','');
 INSERT INTO lang VALUES ('pstpl_type','ru','Тип Шаблона','');
+INSERT INTO lang VALUES ('rating','ru','Рейтинг','');
+INSERT INTO lang VALUES ('rating_is_nan','ru','Рейтинг должен быть числовым, 1..10!','');
 INSERT INTO lang VALUES ('read_access','ru','Может просматривать записи','');
 INSERT INTO lang VALUES ('read_access_short','ru','чит','');
 INSERT INTO lang VALUES ('recalc_free','ru','Перевычисление остающийся свободным местом на этом носителе','');

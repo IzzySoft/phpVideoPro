@@ -344,7 +344,7 @@
     $dtcount   = count($disktypes);
   } elseif ($edit) {
     $disktypes = $mdisktype;
-    $dtcount   = count($disktypes);
+    if (!empty($mdisktype)) $dtcount   = count($disktypes);
   }
   
   #---[ navigation and title ]---
@@ -455,8 +455,10 @@ EndHiddenFields;
   $t->set_var("medianr_name",lang("medianr"));
   if ($new_entry) {
     $field  = "<INPUT TYPE='button' NAME='cass_id' VALUE='$cass_id' " . $form["addon_cass_id"]." CLASS='medianrbutton'" . ">&nbsp;-&nbsp;<INPUT NAME='part' VALUE='$next_part' " . $form["addon_part"]." CLASS='partinput'" . " onChange='check_nr(this);'>";
-    $field .= "&nbsp;&nbsp;&nbsp;" . lang("last_entry") . ":&nbsp;";
-    $field .= "<INPUT TYPE='button' NAME='lastnum' VALUE='$last_part' CLASS='yesnobutton'>";
+    if ($last_part) {
+      $field .= "&nbsp;&nbsp;&nbsp;" . lang("last_entry") . ":&nbsp;";
+      $field .= "<INPUT TYPE='button' NAME='lastnum' VALUE='$last_part' CLASS='yesnobutton'>";
+    }
   } else {
     $field = "<INPUT TYPE='button' NAME='nr' VALUE='$nr' CLASS='medianrbutton' onClick=\"window.location.href='" .$pvp->link->slink("change_nr.php?id=$id") ."'\"><INPUT TYPE='hidden' NAME='nr' VALUE='$nr'>";
   }
@@ -597,6 +599,8 @@ EndHiddenFields;
   if ($new_entry) {
     $t->set_var("mlength_free_name",lang("medialength"));
     $t->set_var("mlength_free","<INPUT NAME='mlength' VALUE='240' " . $form["addon_filmlen"]." CLASS='yesnoinput'" . " onChange='check_len(this);'> " . lang("minute_abbrev"));
+    if (!$pvp->common->medium_is_rw($mtype_id))
+      $t->set_var("vis_mlength_free"," STYLE='display:none;'");
   } else { // hide free time for non-editable media
     if ($pvp->common->medium_is_rw($mtype_id)) {
       $t->set_var("mlength_free_name",lang("free"));
@@ -604,6 +608,7 @@ EndHiddenFields;
     } else {
       $t->set_var("mlength_free_name","&nbsp;");
       $t->set_var("mlength_free","&nbsp;");
+      $t->set_var("vis_mlength_free"," STYLE='display:none;'");
     }
   }
   

@@ -8,6 +8,8 @@
  <li>fixed the imdb class once again (rating was broken)
  <li>made movie search on title, actor and director explicitely case
      insensitive (i.e. now also for PostgreSQL)
+ <li>hiding obsolete fields on edit screen (e.g. free space for no-tapes)
+ <li>somehow the counter for tapes disappeared and nobody noticed ;)
 </ul>
 
 [title]

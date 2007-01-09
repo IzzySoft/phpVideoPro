@@ -880,6 +880,7 @@
    if ($this->main_alsoknow == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
     $ak_s = strpos ($this->page["Title"], "Also Known As");
+    if ($ak_s == 0) $ak_s = strpos ($this->page["Title"], "Alternativ:");
     if ($ak_s == 0) return array();
     $alsoknow_end = strpos ($this->page["Title"], "class", $ak_s);
     $alsoknow_all = substr($this->page["Title"], $ak_s, $alsoknow_end - $ak_s);

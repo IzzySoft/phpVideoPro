@@ -1595,13 +1595,13 @@
      }
 
      if ($restrict) $restrict .= "AND ";
-     if (!empty($title)) $restrict .= "v.title LIKE '%$title%' AND ";
+     if (!empty($title)) $restrict .= "lower(v.title) LIKE '%".strtolower($title)."%' AND ";
 
      #---[ Staff ]--
      if ($pname) {
        switch ($ptype) {
          case director :
-           $this->query("SELECT id FROM directors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+           $this->query("SELECT id FROM directors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
            while ( $this->next_record() ) {
              $pids .= ",".$this->f('id');
            }
@@ -1609,7 +1609,7 @@
            if (!empty($pids)) $restrict .= "director_id IN ($pids)";
 	   break;
          default       : 
-           $this->query("SELECT id FROM actors WHERE firstname LIKE '%$pname%' OR name LIKE '%$pname%'");
+           $this->query("SELECT id FROM actors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
            while ( $this->next_record() ) {
              $pids .= ",".$this->f('id');
            }

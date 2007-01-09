@@ -290,9 +290,7 @@
      if (!$trans) { // remove translation
        $this->query("DELETE FROM lang WHERE message_id='$id' AND lang='$lang'");
      } else {
-       if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) {
-         $trans = addslashes($trans);
-       }
+       $trans = addslashes($trans);
        $this->query("SELECT * FROM lang WHERE message_id='$id' AND lang='$lang'");
        if ( $this->next_record() ) {
          $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");

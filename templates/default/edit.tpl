@@ -54,7 +54,7 @@
           <TD WIDTH="25%">{longplay_name}</TD>
           <TD WIDTH="25%">{longplay}</TD></TR>
         </TABLE></TD></TR>
-    <TR><TD>{mlength_free_name}</TD><TD>{mlength_free}</TD></TR>
+    <TR{vis_mlength_free}><TD>{mlength_free_name}</TD><TD>{mlength_free}</TD></TR>
     <TR><TD>{date_name}</TD><TD>{date}</TD></TR>
     <TR><TD>{tone_name}</TD><TD>{tone}</TD></TR>
     <TR><TD>{picture_name}</TD><TD>{picture}</TD></TR>

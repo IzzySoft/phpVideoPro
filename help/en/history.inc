@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.8.4 (2007)
+[text]
+<ul>
+ <li>fixed the imdb class once again (rating was broken)
+ <li>made movie search on title, actor and director explicitely case
+     insensitive (i.e. now also for PostgreSQL)
+</ul>
+
+[title]
 0.8.3 (January 08, 2007)
 [text]
 <ul>
@@ -13,6 +22,7 @@
      with v0.8.2 or later will have a date in that column)
  <li>new column in medialist: rating (you now also can sort by this)
  <li>movie search now also supports rating and lastchange
+ <li>updated some of the online help pages
 </ul>
 
 [title]

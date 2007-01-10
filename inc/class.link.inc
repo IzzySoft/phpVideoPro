@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -145,7 +145,11 @@
    */
   function ImdbTitle($title) {
     if (strlen(trim($title))) {
-      $imdb = $this->imdb . "Tsearch?title=" . urlencode($title);
+      if (is_numeric($title) && strlen($title)==7) {
+        $imdb = $this->imdb . "title/tt" .$title. "/";
+      } else {
+        $imdb = $this->imdb . "Tsearch?title=" . urlencode($title);
+      }
       return $imdb;
     } else { return ""; }
   } // end function ImdbTitle

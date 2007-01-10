@@ -395,7 +395,11 @@ EndHiddenFields;
     $hiddenfields .= "\n<INPUT TYPE='hidden' NAME='part' VALUE='$part'>";
   }
   if ($page_id == "view_entry") { // set imdb info url for title
-    $formAddon = $form["addon_title"]." CLASS='titlebutton'" . $pvp->link->formImdbTitle($title);
+    if (empty($imdb_id)) {
+      $formAddon = $form["addon_title"]." CLASS='titlebutton'" . $pvp->link->formImdbTitle($title);
+    } else {
+      $formAddon = $form["addon_title"]." CLASS='titlebutton'" . $pvp->link->formImdbTitle($imdb_id);
+    }
   } else {
     $formAddon = $form["addon_title"];
   }

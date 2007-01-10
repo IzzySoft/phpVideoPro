@@ -10,6 +10,8 @@
      insensitive (i.e. now also for PostgreSQL)
  <li>hiding obsolete fields on edit screen (e.g. free space for no-tapes)
  <li>somehow the counter for tapes disappeared and nobody noticed ;)
+ <li>click on title on the "view entry" screen now directly links to the movies
+     IMDB page (instead of the IMDB search page) if ID is known
 </ul>
 
 [title]

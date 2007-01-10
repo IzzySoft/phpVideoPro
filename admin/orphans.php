@@ -95,7 +95,7 @@
  for ($i=0;$i<$orphans;++$i) {
   $staff = $orphan[$i]->stafftype;
   $details .= lang($staff) ." \"". $orphan[$i]->firstname ." ". $orphan[$i]->name ."\"";
-  if ($delete) {
+  if (isset($_POST["delete"])) {
     switch($staff) {
       case "compose_person"  : $rc = $db->delete_composer($orphan[$i]->id); break;
       case "director_person" : $rc = $db->delete_director($orphan[$i]->id); break;

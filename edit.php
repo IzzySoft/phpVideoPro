@@ -44,8 +44,8 @@
 
  #=============================================[ vulnerability protection ]===
  $vuls = array();
- foreach ($_REQUEST as $var) {
-   if ($var != "comment" && $var != "referer" && !$pvp->common->req_is_alnum($var))
+ foreach ($_REQUEST as $var=>$val) {
+   if ($var != "rc" && $var != "comment" && $var != "referer" && !$pvp->common->req_is_alnum($val))
      $vuls[] = $var;
  }
  if ($vc = count($vuls)) {

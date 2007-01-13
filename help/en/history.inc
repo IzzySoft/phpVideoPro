@@ -14,6 +14,11 @@
      IMDB page (instead of the IMDB search page) if ID is known
  <li>on the admin->clean orphans page, nothing happened on submit when
      register_globals=off - fixed.
+ <li>movies w/o akas (alternative names) caused error message on imdbsearch - fixed.
+ <li>when adding a movie which had a RegionCode set, some PHP error was
+     displayed - fixed.
+ <li>on deletion of last movie from a medium, deletion of the mediums entry
+     itself was not working properly - fixed.
 </ul>
 
 [title]

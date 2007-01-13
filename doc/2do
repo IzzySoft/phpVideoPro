@@ -13,10 +13,7 @@ account" izzysoft@qumran.org.
 
 On Focus:
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
-- movie rating and lastchange in search (min/max rating)
-- on the view/edit entry screen, hide settings which don't apply to the
-  selected medium
-- rating checkbox default for imdb_tx missing in preferences
+- prevent staff orphans
 
 Not scheduled (yet):
 - add Audio/Subtitle to filter settings

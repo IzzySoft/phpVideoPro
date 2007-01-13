@@ -111,7 +111,7 @@
    #-=[ Title incl. Also Known As ]=-
    $title  = "<SELECT NAME='title'>";
    $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
-   foreach ( $movie->alsoknow() as $ak) {
+   if (!empty($movie->alsoknow())) foreach ( $movie->alsoknow() as $ak) {
      $akatitle = $ak["title"];
      if (!empty($ak["year"]))    $akatitle .= ": ".$ak["year"];
      if (!empty($ak["country"])) $akatitle .= ", ".$ak["country"];

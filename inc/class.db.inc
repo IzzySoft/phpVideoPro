@@ -2597,17 +2597,17 @@
    /** Delete a medium from the media table.
     *  Removes the entry from pvp_media table only if the medium is empty (or $force is set)
     * @method delete_medium
-    * @param integer cass_id media id
+    * @param integer media_id media id
     * @param integer mtype_id media type id
     * @param optional boolean force force deletion even if not empty (default: no)
     * @return boolean wether deletion took place
     */
-   function delete_medium($cass_id,$mtype_id,$force=FALSE) {
-     $this->dbquery("SELECT COUNT(id) as mcount FROM pvp_video WHERE media_id=$cass_id AND mtype_id=$mtype_id");
+   function delete_medium($media_id,$mtype_id,$force=FALSE) {
+     $this->dbquery("SELECT COUNT(id) as mcount FROM pvp_video WHERE media_id=$media_id AND mtype_id=$mtype_id");
      $this->next_record();
      if ( $this->f('mcount') < 1 ) $force = TRUE;
      if ($force) {
-       $this->dbquery("DELETE FROM pvp_media WHERE id=$media_id");
+       $this->dbquery("DELETE FROM pvp_media WHERE id=$media_id AND mtype_id=$mtype_id");
        return TRUE;
      }
      return FALSE;

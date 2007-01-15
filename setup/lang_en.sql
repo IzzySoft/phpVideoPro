@@ -641,4 +641,5 @@ INSERT INTO lang VALUES ('rating_is_nan','en','The rating has to be a numerical 
 INSERT INTO lang VALUES ('orphan_movies_found','en','Found %1 orphan movie(s):','This refers to staff members. They are stored into separate tables which are then references by the main movie table. Orphaned entries are entries in those tables that no longer refer to any movie, so you may want to remove them.');
 INSERT INTO lang VALUES ('all_topic','en','All','as for \"all dupes\" (used in the menu)');
 INSERT INTO lang VALUES ('last_change','en','LastChange','Column in the medialist indicating date of last change to a movie entry');
+INSERT INTO lang VALUES ('imdb_tx_rating','en','Rating','Option in the configuration menu (checkbox)');
 #INSERT INTO lang VALUES ('','en','','');

@@ -34,8 +34,5 @@ Interesting things not scheduled at all:
 - form(s) to edit label sheets (for PSLabels)
 - honour date format settings in all places
 - add "sample-links" to translation editor
-- make menu template-driven
 - configurable format of counter display: as is in db / in minutes / in hh:mm
   (same for length field)
-- making out-sourcing of security relevant files (inc/*) possible
-  (to e.g. put those files outside the web tree)

@@ -1,7 +1,7 @@
 $Id$
 
 This is the README file I wrote for phpVideoPro v0.1.3 (and last updated for
-v0.7.9). As you may know, programmers get very lazy on writing documentation -
+v0.8.5). As you may know, programmers get very lazy on writing documentation -
 so starting with point 3.), the information in this file may or may not fit
 newer versions, since I may have forgotten to update it. Don't be angry at me if
 this happens - just drop me a note about it - or even better, update this file
@@ -30,8 +30,9 @@ Contents:
   5.) Installation
   6.) Updating
   7.) Administrative hints
-  8.) Known bugs / limitations
-  9.) Download and Sites
+  8.) Protecting your installation
+  9.) Known bugs / limitations
+ 10.) Download and Sites
 
 ===============================================================================
 
@@ -229,7 +230,31 @@ Contents:
 
 ===============================================================================
 
-8.) Known bugs / limitations
+8.) Protecting your installation
+--------------------------------
+
+  There are several things you can do to protect your installation. First, you
+  for sure want to prevent that anyone can run a fresh install or unwanted
+  update, and thus destroy your database. Two ways. Normal one: Use an
+  .htaccess file in the setup/install/ and setup/update directories - an
+  example is to be found in the setp/install/.htaccess_sample file. Paranoia:
+  Immediately after the installation/update is done, remove both mentioned
+  directories (and just place them here again if YOU need them).
+
+  Similiar approach to your configuration data. Sensitive information is stored
+  inside the inc/config.inc file. Again, you can protect the entire include/
+  directory by placing an appropriate .htaccess file here (nobody needs to go
+  here with the browser - and PHP can include everything regardless whether
+  it is protected this way or not). Paranoia: Move your inc/config.inc file
+  to, say, /etc/pvp_config.inc. Then put a new inc/config.inc which just
+  contains the line "<? include('/etc/pvp_config.inc'); ?>" - so nobody can
+  read it via the web, but PVP gets its information.
+
+  See also the "Installation" section of this document for a few more examples.
+
+===============================================================================
+
+9.) Known bugs / limitations
 ----------------------------
 
   Any bugs are not known to me (or not to mention here - because I tend to fix
@@ -249,8 +274,8 @@ Contents:
 
 ===============================================================================
 
-8.) Download and Sites
-----------------------
+10.) Download and Sites
+-----------------------
 
   Two running demos are to be found on my private homepage using the URL
   http://www.qumran.org/homes/izzy/ - one of them, the developers demo,

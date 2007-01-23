@@ -242,6 +242,7 @@
  $len_nan = lang("len_is_nan");
  $date_nan = lang("date_is_nan");
  $rating_nan = lang("rating_is_nan");
+ $hiddenfields = "";
 ?>
  <script TYPE="text/javascript" language="JavaScript"><!--
    function check_nr(nr) {
@@ -317,6 +318,8 @@
       } else {
         $t->set_var("actor",form_input($name,$actor[$i]['name'],$formAddon));
         $t->set_var("actor_f",form_input($fname,$actor[$i]['fname'],$formAddon));
+        $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_$name' VALUE='".$actor[$i]['name']."'>"
+                      .  "<INPUT TYPE='hidden' NAME='old_$fname' VALUE='".$actor[$i]['fname']."'>";
       }
       $t->set_var("actor_list",vis_actors($i));
     } else {
@@ -385,7 +388,7 @@
   }
   if (isset($_SERVER["HTTP_REFERER"])) $referer = $_SERVER["HTTP_REFERER"];
     else $referer = "";
-  $hiddenfields = <<<EndHiddenFields
+  $hiddenfields .= <<<EndHiddenFields
 <INPUT TYPE="hidden" NAME="cass_id" VALUE="$cass_id">
 <INPUT TYPE="hidden" NAME="mtype_id" VALUE="$mtype_id">
 <INPUT TYPE="hidden" NAME="referer" VALUE="$referer">
@@ -779,6 +782,8 @@ EndHiddenFields;
     } else {
       $t->set_var("director",form_input("director_name",$director_name,$formAddon));
       $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
+      $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_director_name' VALUE='$director_name'>"
+                    .  "<INPUT TYPE='hidden' NAME='old_director_fname' VALUE='$director_fname'>";
     }
     $t->set_var("director_list",vis_staff('director_list',$director_list));
   } else {
@@ -798,6 +803,8 @@ EndHiddenFields;
     } else {
       $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));
       $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
+      $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_composer_name' VALUE='$composer_name'>"
+                    .  "<INPUT TYPE='hidden' NAME='old_composer_fname' VALUE='$composer_fname'>";
     }
     $t->set_var("composer_list",vis_staff('music_list',$music_list));
   } else {

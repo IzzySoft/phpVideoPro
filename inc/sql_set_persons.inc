@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                                   (c) 2001 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -19,6 +19,32 @@
    ${$var} = $pvp->common->input2string(${$var});
    if ( ( bool ) !ini_get( 'magic_quotes_gpc' ) ) ${$var} = addslashes(${$var});
  }
+ #------------------[ perform check: Was any staff member changed/removed? ]---
+ $details = array("director","composer");
+ foreach ($details as $var) {
+    if ($_POST[$var."_name"]!=$_POST["old_${var}_name"]
+      || $_POST[$var."_fname"]!=$_POST["old_${var}_fname"]) {
+     if ($var=="director") {
+       $tname = $db->get_director($_POST["old_${var}_id"]);
+       $trec  = $db->get_movienamelist("directors",$tname,TRUE);
+       if (count($trec) <2) $db->delete_director($_POST["old_${var}_id"]);
+     } else {
+       $tname = $db->get_music($_POST["old_${var}_id"]);
+       $trec  = $db->get_movienamelist("music",$tname,TRUE);
+       if (count($trec) <2) $db->delete_composer($_POST["old_${var}_id"]);
+     }
+   }
+ }
+ for ($i=1;$i<=$max["actors"];++$i) {
+   if ($_POST["old_actor${i}_name"]!=$_POST["actor${i}_name"]
+      || $_POST["old_actor${i}_fname"]!=$_POST["actor${i}_fname"]) {
+     $tname = $db->get_actor($movie["actor${i}_id"]);
+     $trec  = $db->get_movienamelist("actors",$tname,TRUE);
+     if (count($trec) <2) $db->delete_actor($movie["actor${i}_id"]);
+   }
+ }
+
+ #-------------------------[ Insert staff members if they do not yet exist ]---
  $dmsg = "";
  $dmsg     .= "<SPAN CLASS='ok'><b>Preparing Update</b>:</SPAN><p>";
  $dmsg     .= "<ul>\n";

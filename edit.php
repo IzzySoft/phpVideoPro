@@ -319,7 +319,8 @@
         $t->set_var("actor",form_input($name,$actor[$i]['name'],$formAddon));
         $t->set_var("actor_f",form_input($fname,$actor[$i]['fname'],$formAddon));
         $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_$name' VALUE='".$actor[$i]['name']."'>"
-                      .  "<INPUT TYPE='hidden' NAME='old_$fname' VALUE='".$actor[$i]['fname']."'>";
+                      .  "<INPUT TYPE='hidden' NAME='old_$fname' VALUE='".$actor[$i]['fname']."'>"
+                      .  "<INPUT TYPE='hidden' NAME='old_actor_id_$i' VALUE='".$movie["actor${i}_id"]."'>";
       }
       $t->set_var("actor_list",vis_actors($i));
     } else {
@@ -783,7 +784,8 @@ EndHiddenFields;
       $t->set_var("director",form_input("director_name",$director_name,$formAddon));
       $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
       $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_director_name' VALUE='$director_name'>"
-                    .  "<INPUT TYPE='hidden' NAME='old_director_fname' VALUE='$director_fname'>";
+                    .  "<INPUT TYPE='hidden' NAME='old_director_fname' VALUE='$director_fname'>"
+                    .  "<INPUT TYPE='hidden' NAME='old_director_id' VALUE='".$movie["director_id"]."'>";
     }
     $t->set_var("director_list",vis_staff('director_list',$director_list));
   } else {
@@ -804,7 +806,8 @@ EndHiddenFields;
       $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));
       $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
       $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_composer_name' VALUE='$composer_name'>"
-                    .  "<INPUT TYPE='hidden' NAME='old_composer_fname' VALUE='$composer_fname'>";
+                    .  "<INPUT TYPE='hidden' NAME='old_composer_fname' VALUE='$composer_fname'>"
+                    .  "<INPUT TYPE='hidden' NAME='old_composer_id' VALUE='".$movie["music_id"]."'>";
     }
     $t->set_var("composer_list",vis_staff('music_list',$music_list));
   } else {

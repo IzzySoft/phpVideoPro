@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.8.5 (2007)
+[text]
+<ul>
+ <li>now hopefully preventing possible staff orphaning on updates (when
+     removing/replacing staff members from movie entries)
+</ul>
+
+[title]
 0.8.4 (January 15, 2007)
 [text]
 <ul>

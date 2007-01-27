@@ -7,6 +7,8 @@
 <ul>
  <li>now hopefully preventing possible staff orphaning on updates (when
      removing/replacing staff members from movie entries)
+ <li>with postgeSQL, upgrading from v0.8.1 failed due to some spelling
+     errors in the v0.8.2 upgrade script - fixed (Tnx to Kresten!)
 </ul>
 
 [title]

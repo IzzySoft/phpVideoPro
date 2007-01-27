@@ -88,7 +88,7 @@ COMMENT ON COLUMN pvp_video.aq_date IS 'Date the movie was recorded/bought/...';
 COMMENT ON COLUMN pvp_video.source IS 'Where we got it (station/shop/friends name)';
 COMMENT ON COLUMN pvp_video.cat1_id IS 'ID of category for this movie (refers to cat table)';
 COMMENT ON COLUMN pvp_video.director_id IS 'ID of the directors name (refers to directors table)';
-COMMENT ON COLUMN pvp_video.directors_list IS 'List the director for this movie in printouts';
+COMMENT ON COLUMN pvp_video.director_list IS 'List the director for this movie in printouts';
 COMMENT ON COLUMN pvp_video.music_id IS 'ID of composer/musician (refers to music table)';
 COMMENT ON COLUMN pvp_video.actor1_id IS 'ID of some actor (refers to actors table)';
 COMMENT ON COLUMN pvp_video.country IS 'Country where the movie was made';
@@ -97,7 +97,7 @@ COMMENT ON COLUMN pvp_video.vnorm_id IS 'ID of video norm (refers to vnorms tabl
 COMMENT ON COLUMN pvp_video.tone_id IS 'ID of tone format (mono/stereo/...). Refers to tone table';
 COMMENT ON COLUMN pvp_video.color_id IS 'ID of color format (refers to colors table)';
 COMMENT ON COLUMN pvp_video.pict_id IS 'ID of picture format (4:3/16:9/...). Refers to pict table';
-COMMENT ON COLUMN pvp_video.commercials IS 'Whether the recording contains commercials (refers to commercials table)';
+COMMENT ON COLUMN pvp_video.commercials_id IS 'Whether the recording contains commercials (refers to commercials table)';
 COMMENT ON COLUMN pvp_video.lp IS 'Whether the recording used LongPlay';
 COMMENT ON COLUMN pvp_video.fsk IS 'Parental Guide information';
 COMMENT ON COLUMN pvp_video.audio IS 'Language(s) of audio track(s)';
@@ -132,7 +132,7 @@ INSERT INTO pvp_video (id,mtype_id,media_id,part,title,label,length,counter1,
   source,cat1_id,cat2_id,cat3_id,director_id,director_list,music_id,music_list,
   actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,actor2_list,
   actor3_list,actor4_list,actor5_list,country,year,tone_id,color_id,pict_id,
-  commercials_id,lp,fsk,audio,subtitle,comment);
+  commercials_id,lp,fsk,audio,subtitle,comment FROM video;
 UPDATE pvp_video SET private=0;
 DROP INDEX video_cat_idx;
 DROP INDEX video_unique_medium_idx;
@@ -140,7 +140,7 @@ DROP TABLE video;
 
 CREATE INDEX video_cat_idx ON pvp_video (cat1_id,cat2_id,cat3_id);
 COMMENT ON INDEX video_cat_idx IS 'For faster access on searches';
-CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,cass_id,part);
+CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,media_id,part);
 COMMENT ON INDEX video_unique_medium_idx IS 'Prevent the mess of duplicate entries on double-clicks';
 CREATE INDEX video_title_idx ON pvp_video (title);
 COMMENT ON INDEX video_title_idx IS 'Improve search speed for movie title';

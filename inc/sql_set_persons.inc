@@ -22,8 +22,10 @@
  #------------------[ perform check: Was any staff member changed/removed? ]---
  $details = array("director","composer");
  foreach ($details as $var) {
-    if ($_POST[$var."_name"]!=$_POST["old_${var}_name"]
-      || $_POST[$var."_fname"]!=$_POST["old_${var}_fname"]) {
+    $old_name  = trim($_POST["old_${var}_name"]);
+    $old_fname = trim($_POST["old_${var}_fname"]);
+    if (($_POST[$var."_name"]!=$old_name || $_POST[$var."_fname"]!=$old_fname)
+       && !empty($old_name) && !empty($old_fname)) {
      if ($var=="director") {
        $tname = $db->get_director($_POST["old_${var}_id"]);
        $trec  = $db->get_movienamelist("directors",$tname,TRUE);
@@ -36,8 +38,10 @@
    }
  }
  for ($i=1;$i<=$max["actors"];++$i) {
-   if ($_POST["old_actor${i}_name"]!=$_POST["actor${i}_name"]
-      || $_POST["old_actor${i}_fname"]!=$_POST["actor${i}_fname"]) {
+   $old_name  = trim($_POST["old_actor${i}_name"]);
+   $old_fname = trim($_POST["old_actor${i}_fname"]);
+   if (($old_name!=$_POST["actor${i}_name"] || $old_fname!=$_POST["actor${i}_fname"])
+      && !empty($old_name) && !empty($old_fname)) {
      $tname = $db->get_actor($movie["actor${i}_id"]);
      $trec  = $db->get_movienamelist("actors",$tname,TRUE);
      if (count($trec) <2) $db->delete_actor($movie["actor${i}_id"]);

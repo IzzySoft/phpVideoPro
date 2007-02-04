@@ -1,0 +1,159 @@
+gsave
+% 0 1.75 inch translate
+0 label_height translate
+newpath
+0 0 moveto
+label_width 0 rlineto
+0 label_height neg rlineto
+label_width neg 0 rlineto
+% closepath stroke clip
+closepath clip
+
+/ID (Action) def
+
+/this_lines {_top_lines_} def
+
+header-font findfont [10 0 0 15 0 0] makefont setfont
+2.3 inch -0.3 inch moveto   ({_cass_id_})c-show
+header-font findfont [8 0 0 15 0 0] makefont setfont
+% 2.9 inch -0.3 inch moveto   ID l-show
+
+/fs_max {_max_fontsize_} def
+/height 1.2 inch this_lines div def
+height fs_max ge { /height fs_max def } if
+top-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
+FG setgray
+% 0.95 inch -0.5 inch height dup add sub moveto
+0.95 inch -3 inch height dup add sub moveto
+
+/LL 2.7 inch (8:88) stringwidth pop 10 add sub def
+/TTlines 0 def
+
+<!-- BEGIN definitionblock -->
+/lncount 0 def
+({_director_})	%% director
+length 0 gt
+({_music_})	%% composer of music score
+length 0 gt or { /TTlines TTlines 1 add def } if
+({_actors12_})	%% actors12
+length 0 gt dup { /TTlines TTlines 1 add def } if
+({_actors35_})	%% actors35
+length 0 gt and { /TTlines TTlines 1 add def } if
+({_country_})	%% country
+length 0 gt 
+({_year_})	%% year
+length 0 gt or { /TTlines TTlines 1 add def } if
+
+({_length_})	%% length
+({_director_})	%% director
+({_actors12_})	%% actors12
+({_actors35_})	%% actors35
+({_country_})	%% country
+({_year_})	%% year
+({_music_})	%% composer of music score
+({_title_})	%% title
+LL     %% line length in points
+{/lncount lncount 1 add def}
+BreakIntoLines
+lncount 7 add array astore %% one title broken up into several lines as one array
+/TTlines TTlines lncount add def
+
+<!-- END definitionblock -->
+% /TTlines TTlines this_lines 4.0 mul 0.7 mul add def       %% 4 additional small lines per title
+% /TTlines TTlines this_lines 2.5 mul 0.7 mul add def       %% 2 additional small lines per title
+/new_height 1.2 inch TTlines div def
+new_height fs_max ge { /new_height fs_max def } if
+%% loop over all strings on stack and print
+%% this_lines contains the number of titles
+/tcount 0 def
+/rcount this_lines def
+{
+  rcount -1 roll
+  /rcount rcount 1 sub def
+  /ary exch def
+  /title_length ary 0 get def
+  /title_director ary 1 get def
+  /title_actors12 ary 2 get def
+  /title_actors35 ary 3 get def
+  /title_country ary 4 get def
+  /title_year ary 5 get def
+  /title_composer ary 6 get def
+  top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
+  7 1 ary length 1 sub 
+    { 
+    ary exch get
+    gsave 1.35 inch 0 rmoveto c-show grestore
+    0 new_height neg rmoveto
+    } for
+
+  top-font findfont new_height 0.6 mul scalefont setfont
+
+/title_lcount 0 def
+
+title_director length 0 gt 
+title_composer length 0 gt or
+{
+  gsave
+   1.35 inch title_lcount rmoveto
+   title_director length 0 gt 
+   {
+   lang_director (: ) StrCat title_director StrCat 
+   }
+   if
+   title_composer length 0 gt 
+   {
+     ( ) StrCat lang_composer StrCat (: ) StrCat title_composer StrCat 
+   }
+   if
+   c-show
+  /title_lcount title_lcount 1 add def
+  grestore
+}
+if
+
+title_actors12 length 0 gt 
+{
+  gsave
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
+   lang_actor (: ) StrCat title_actors12 StrCat
+   2.7 inch (...) stringwidth pop sub
+   { { (...) StrCat } if c-show }
+   TruncateLine
+  /title_lcount title_lcount 1 add def
+  grestore
+}
+if
+
+title_actors12 length 0 gt 
+title_actors35 length 0 gt and
+{
+  gsave
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
+   title_actors35
+   2.7 inch (...) stringwidth pop sub
+   { { (...) StrCat } if c-show }
+   TruncateLine
+  /title_lcount title_lcount 1 add def
+  grestore
+} 
+if
+
+title_country length 0 gt 
+title_year length 0 gt or
+{
+  gsave
+   1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto
+   title_country ( ) StrCat title_year StrCat ( [) StrCat title_length StrCat (]) StrCat c-show
+  /title_lcount title_lcount 1 add def
+  grestore
+} 
+if
+
+  0 new_height 0.7 mul title_lcount .9 add mul neg rmoveto
+
+  /tcount tcount 1 add def
+  tcount this_lines ge { exit } if
+} loop
+
+grestore
+

@@ -9,6 +9,7 @@
      removing/replacing staff members from movie entries)
  <li>with postgeSQL, upgrading from v0.8.1 failed due to some spelling
      errors in the v0.8.2 upgrade script - fixed (Tnx to Kresten!)
+ <li>added simple PS-Labels for CD/DVD
 </ul>
 
 [title]

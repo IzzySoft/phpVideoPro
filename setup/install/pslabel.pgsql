@@ -43,6 +43,10 @@ INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (24,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (25,2,'trick_side','trick_side.eps','common_side.ps',0,0,513,68);
 INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (26,1,'trick_top','trick_top.eps','common_top.ps',0,0,273,160);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (28,3,'Comedy','comedy_cddvd.eps','common_cddvd.ps',0,0,468,474);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (29,3,'Doku','docu_cddvd.eps','common_cddvd.ps',0,0,468,474);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (30,3,'SciFi','sf_cddvd.eps','common_cddvd.ps',0,0,468,474);
+INSERT INTO eps_templates (id, type, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (31,3,'Simple','simple_cddvd.eps','common_cddvd.ps',0,0,468,474);
 
 #
 # Table structure and data for 'label form definition'
@@ -69,6 +73,7 @@ CREATE TABLE label_forms (
 
 INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',1,3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
 INSERT INTO label_forms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
+INSERT INTO label_forms (id,vendor,product,description,type,unit_id,h_dist,v_dist,width,heigth,leftm,topm,cols,rows,sheet_id) VALUES (3,3,'Standard','CD/DVD Etikett','CD/DVD Etikett',3,3,11.9,11.9,11.9,11.9,1.1,2.4,1,1,1);
 
 #
 # Table structure and data for 'printer offset definition'

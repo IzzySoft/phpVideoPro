@@ -2033,22 +2033,34 @@
        echo "</BODY></HTML>";
        exit;
      }
-     if ( $pvp->common->medium_is_rw($mtype_id) ) {
-       $movie = $this->get_movie($id);
-       $space = $this->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
-     }
+     #-- collect some info first
+     $movie = $this->get_movie($id);
+     $space = $this->get_mediaspace($movie['cass_id'],$movie['mtype_id']);
+     $this->dbquery("SELECT COUNT(part) AS nr FROM pvp_video WHERE mtype_id=".$movie['$mtype_id']." AND media_id=".$movie['cass_id']);
+     $this->next_record();
+     $source_movs = $this->f('nr');
+     $this->dbquery("SELECT COUNT(part) AS nr FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$cass_id");
+     $this->next_record();
+     $target_movs = $this->f('nr'); ++$target_movs;
+     #-- update pvp_video table
      $query = "UPDATE pvp_video SET mtype_id=$mtype_id,media_id=$cass_id,part=$part"
             . " WHERE id=$id";
      $success = $this->dbquery($query);
-     if (isset($movie) && is_array($movie)) $this->insert_medium($cass_id,$mtype_id,$space);
-     $this->update_freetime($cass_id,$mtype_id);
-     if ( isset($movie) && $pvp->common->medium_is_rw($movie['mtype_id']) && $movie['cass_id']!=$cass_id ) {
-       $this->dbquery("SELECT id FROM pvp_video WHERE media_id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
-       if ( $this->next_record() ) {
-         $this->update_freetime($movie['cass_id'],$movie['mtype_id']);
+     #-- cater for pvp_media table
+     if ($source_movs < 2) { // this was the last on old medium
+       if ($target_movs < 2) { // this is the 1st on new medium => move_media
+         $this->dbquery("UPDATE pvp_media SET id=$cass_id,mtype_id=$mtype_id WHERE id=".$movie['cass_id']." AND mtype_id=".$movie['mtype_id']);
        } else {
-         $this->delete_medium($movie['cass_id'],$movie['mtype_id']);
+         if ($pvp->config->remove_empty_media) $this->delete_medium($movie['cass_id'],$movie['mtype_id']);
+         else if ($pvp->common->medium_is_rw($movie['mtype_id']))
+           $this->update_freetime($movie['cass_id'],$movie['mtype_id']); // update freetime of old medium
        }
+     } else {
+       if ($pvp->common->medium_is_rw($movie['mtype_id']))
+         $this->update_freetime($movie['cass_id'],$movie['mtype_id']); // update freetime of old medium
+     }
+     if ( $pvp->common->medium_is_rw($mtype_id) ) { // is target r/w ?
+       $this->update_freetime($cass_id,$mtype_id); // update freetime of new medium
      }
      return $success;
    }

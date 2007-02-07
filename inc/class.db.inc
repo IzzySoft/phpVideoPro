@@ -3270,7 +3270,7 @@
   * @return mixed (id,description)
   */
  function get_epstemplates($type) {
-     $query="SELECT id,description FROM eps_templates WHERE type=$type";
+     $query="SELECT id,description FROM eps_templates WHERE type=$type ORDER BY description";
      if ( $this->dbquery($query) ) {
        $i=0;
      while ( $this->next_record() ) {

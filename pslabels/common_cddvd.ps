@@ -13,9 +13,10 @@ closepath clip
 
 /this_lines {_top_lines_} def
 
-header-font findfont [10 0 0 15 0 0] makefont setfont
-2.3 inch -0.3 inch moveto   ({_cass_id_})c-show
-header-font findfont [8 0 0 15 0 0] makefont setfont
+0 0 0.5 setrgbcolor %% DarkBlue
+header-font findfont [10 0 0 10 0 0] makefont setfont
+2.3 inch -0.55 inch moveto   ({_cass_id_})c-show
+% header-font findfont [8 0 0 15 0 0] makefont setfont
 % 2.9 inch -0.3 inch moveto   ID l-show
 
 /fs_max {_max_fontsize_} def
@@ -24,12 +25,15 @@ height fs_max ge { /height fs_max def } if
 top-font findfont [height 0.9 mul 0 0 height 0 0] makefont setfont
 FG setgray
 % 0.95 inch -0.5 inch height dup add sub moveto
-0.95 inch -3 inch height dup add sub moveto
+0.99 inch -3 inch height dup add sub moveto
 
-/LL 2.7 inch (8:88) stringwidth pop 10 add sub def
+% for the first block, max width is 3.6 inch
+/LL 3.6 inch def
 /TTlines 0 def
 
 <!-- BEGIN definitionblock -->
+% Reduce available width by 0.4 inch for each additional block:
+TTlines 0 gt { /LL LL 0.4 inch sub def } if
 /lncount 0 def
 ({_director_})	%% director
 length 0 gt
@@ -78,6 +82,8 @@ new_height fs_max ge { /new_height fs_max def } if
   /title_country ary 4 get def
   /title_year ary 5 get def
   /title_composer ary 6 get def
+  % print the title
+  0 0 0.5 setrgbcolor
   top-font findfont [new_height 0.9 mul 0 0 new_height 0 0] makefont setfont
   7 1 ary length 1 sub 
     { 
@@ -86,6 +92,8 @@ new_height fs_max ge { /new_height fs_max def } if
     0 new_height neg rmoveto
     } for
 
+  % Remaining text
+  0 0 0 setrgbcolor
   top-font findfont new_height 0.6 mul scalefont setfont
 
 /title_lcount 0 def
@@ -139,7 +147,7 @@ title_actors35 length 0 gt and
 if
 
 title_country length 0 gt 
-title_year length 0 gt or
+title_year title_length StrCat length 0 gt or
 {
   gsave
    1.35 inch new_height 0.7 mul title_lcount mul neg rmoveto

@@ -13,7 +13,8 @@ account" izzysoft@qumran.org.
 
 On Focus:
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
-- prevent staff orphans
+- "Rental Feature": Logged-in user clicks on "Lent to me" button => "Lent-to"
+  field will be filled w/ his name, mail is sent to owner
 
 Not scheduled (yet):
 - add Audio/Subtitle to filter settings

@@ -3,7 +3,7 @@
 # ========================================================
 
 # prepare default lang update
-DELETE FROM lang WHERE lang='en';
+#DELETE FROM lang WHERE lang='en';
 
 # version update
 UPDATE pvp_config SET value='0.8.5' WHERE name='version';

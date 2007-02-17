@@ -16,7 +16,7 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("<?=lang("admin_movietech")?>", "admin_movietech", "<?=$pvp->link->slink($base_url."admin/movietech.php")?>"));
     addMenuItem(new menuItem("<?=lang("admin_disktypes")?>", "admin_disktypes", "<?=$pvp->link->slink($base_url."admin/disktypes.php")?>"));
     addMenuItem(new menuItem("<?=lang("admin_translations")?>", "admin_translations", "<?=$pvp->link->slink($base_url."admin/translations.php")?>"));
-    addMenuItem(new menuItem("<?=lang("admin_pstemplates")?>", "admin_pstemplates", "<?=$pvp->link->slink($base_url."admin/pstemplates.php")?>"));
+    addMenuItem(new menuItem("<?=lang("admin_pstemplates")?>", "admin_pstemplates", "<?=$pvp->link->slink($base_url."admin/ps_templates.php")?>"));
     addMenuItem(new menuItem("<?=lang("admin_printers")?>", "admin_printers", "<?=$pvp->link->slink($base_url."admin/printers.php")?>"));
     addMenuItem(new menuItem("-"));
     addMenuItem(new menuItem("<?=lang("admin_users")?>", "admin_users", "<?=$pvp->link->slink($base_url."admin/users.php")?>"));

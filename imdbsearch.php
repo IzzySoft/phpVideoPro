@@ -246,11 +246,13 @@
      $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
    }
    #-=[ Plot = Comments ]=-
+   $plotoutline = $movie->plotoutline();
    $plot = $movie->plot(); $cc = count($plot);
    if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
      else $comment = "";
    $tagline = trim($movie->tagline());
-   if (!empty($tagline)) $comment .= "<B>$tagline</B><BR>";
+   if (!empty($tagline)) $comment .= "<B>$tagline</B><BR>\n";
+   if (!empty($plotoutline)) $comment .= "$plotoutline<BR>\n";
    for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }
    $t->set_var("mcomment",$comment);
    $t->set_var("comments_chk",$pvp->common->make_checkbox("comments_chk",$imdb_tx_comments));

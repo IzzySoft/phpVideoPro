@@ -100,6 +100,8 @@
   var $main_genre = "";
   var $main_genres = "";
   var $main_tagline = "";
+  var $main_plotoutline = "";
+  var $main_comment = "";
   var $main_alttitle = "";
   var $main_colors = "";
 
@@ -183,8 +185,10 @@
    $this->page["Amazon"] = "";
    $this->page["Goofs"] = "";
    $this->page["Plot"] = "";
+   $this->page["Comments"] = "";
    $this->page["Quotes"] = "";
    $this->page["Taglines"] = "";
+   $this->page["Plotoutline"] = "";
    $this->page["Trivia"] = "";
    $this->page["Directed"] = "";
 
@@ -192,11 +196,13 @@
    $this->main_year = "";
    $this->main_runtime = "";
    $this->main_rating = "";
+   $this->main_comment = "";
    $this->main_votes = "";
    $this->main_language = "";
    $this->main_genre = "";
    $this->main_genres = "";
    $this->main_tagline = "";
+   $this->main_plotoutline = "";
    $this->main_alttitle = "";
    $this->main_colors = "";
    $this->credits_cast = "";
@@ -241,7 +247,7 @@
   /** Get movie title
    * @method title
    * @return string title
-   */	
+   */
   function title () {
    if ($this->main_title == "") {
     if ($this->page["Title"] == "") {
@@ -293,14 +299,14 @@
     }
     return $this->main_runtime;
   }
-	
+
   /** Get overall runtime
    * @method runtime
    * @return mixed string runtime (if set), NULL otherwise
    */
   function runtime(){
    $runarr = $this->runtimes();
-   if (isset($runarr[0]["time"])){ 
+   if (isset($runarr[0]["time"])){
 	return $runarr[0]["time"];
    }else{
 	return NULL;
@@ -312,7 +318,7 @@
    * @return array runtimes (array[0..n] of array[time,country,comment])
    */
   function runtimes(){
-   if ($this->main_runtimes == "") {		
+   if ($this->main_runtimes == "") {
     if ($this->runtime_all() == ""){
 	return array();
     }
@@ -344,7 +350,7 @@
     }
    }
    return $this->main_runtimes;
-  }	
+  }
 
   /** Get movie rating
    * @method rating
@@ -365,6 +371,23 @@
     return $this->main_rating;
    }
   }
+
+  /** Get movie comment
+   * @method comment
+   * @return string comment
+   */
+  function comment () {
+     if ($this->main_comment == "") {
+      if ($this->page["Title"] == "") $this->openpage ("Title");
+      $comment_s = strpos ($this->page["Title"], "people found the following comment useful:-");
+      if ( $comment_s == 0) return false;
+      $comment_e = strpos ($this->page["Title"], "Was the above comment useful to you?", $comment_s);
+      $this->main_comment = substr ($this->page["Title"], $comment_s + 43, $comment_e - $comment_s - 43);
+
+     }
+     return $this->main_comment;
+  }
+
 
   /** Return votes for this movie
    * @method votes
@@ -495,6 +518,22 @@
    return $this->main_tagline;
   }
 
+  /** Get the main Plot outline for the movie
+     * @method plotoutline
+     * @return string plotoutline
+     */
+    function plotoutline () {
+     if ($this->main_plotoutline == "") {
+      if ($this->page["Title"] == "") $this->openpage ("Title");
+      $plotoutline_s = strpos ($this->page["Title"], "Plot Outline:");
+      if ( $plotoutline_s == 0) return FALSE;
+      $plotoutline_s = strpos ($this->page["Title"], ">", $plotoutline_s);
+      $plotoutline_e = strpos ($this->page["Title"], "<", $plotoutline_s);
+      $this->main_plotoutline = substr ($this->page["Title"], $plotoutline_s + 1, $plotoutline_e - $plotoutline_s - 1);
+     }
+     return $this->main_plotoutline;
+  }
+
   /** Get the movies plot(s)
    * @method plot
    * @return array plot (array[0..n] of strings)
@@ -514,6 +553,7 @@
    }
    return $this->plot_plot;
   }
+
 
   /** Get all available taglines for the movie
    * @method taglines
@@ -804,7 +844,7 @@
    fputs ($fp2, $fp);
    return TRUE;
   }
-	
+
   /** Get the URL for the movies cover photo
    * @method photo_localurl
    * @return mixed url (string URL or FALSE if none)
@@ -819,7 +859,7 @@
   /** Get country of production
    * @method country
    * @return array country (array[0..n] of string)
-   */	
+   */
   function country () {
    if ($this->main_country == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
@@ -980,7 +1020,7 @@
    */
   function seturl($url){
    $this->url = $url;
-  } 
+  }
 
   /** Create the IMDB URL for the movie search
    * @method mkurl

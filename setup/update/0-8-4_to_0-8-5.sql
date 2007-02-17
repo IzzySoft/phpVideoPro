@@ -38,3 +38,5 @@ INSERT INTO eps_templates VALUES
   (38,3,'World','world_cddvd.eps','common_cddvd.ps',0,0,468,474);
 INSERT INTO eps_templates VALUES
   (39,3,'Clouds','clouds_cddvd.eps','common_cddvd.ps',0,0,468,474);
+INSERT INTO eps_templates VALUES
+  (40,3,'Celtic','celtic_cddvd.eps','common_cddvd.ps',0,0,470,468);

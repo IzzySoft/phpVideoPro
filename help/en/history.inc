@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.5 (2007)
+0.8.5 (February 18, 2007)
 [text]
 <ul>
  <li>now hopefully preventing possible staff orphaning on updates (when
@@ -10,6 +10,7 @@
  <li>with postgeSQL, upgrading from v0.8.1 failed due to some spelling
      errors in the v0.8.2 upgrade script - fixed (Tnx to Kresten!)
  <li>added simple PS-Labels for CD/DVD
+ <li>change_medianr in some cases forgot to update media table
 </ul>
 
 [title]

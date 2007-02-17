@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -23,7 +23,7 @@ require_once(dirname(__FILE__)."/class.template.inc");
  * @package Api
  * @class faq
  * @author Izzy (izzysoft@qumran.org)
- * @copyright (c) 2004 by Itzchak Rehberg and IzzySoft
+ * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
  */
 class faq {
 
@@ -31,17 +31,15 @@ class faq {
   * @constructor faq
   * @param string tpl_dir Directory containing the HTML template files
   * @param string tpl_file Filename of the template file to use
-  * @param mixed toc style of the "table of contents" (ul|ol), empty for no toc
-  *  If the "tocblock" is not defined in your template at all, specify "0" here
+  * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
  function faq($dir,$file,$toc="") {
-  $this->version = "0.1.1";
+  $this->version = "0.1.2";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
-  if ($toc!==0)
-    $this->t->set_block("main","tocblock","toclist");
+  $this->t->set_block("main","tocblock","toclist");
   $this->img->logo = "islogo.gif";
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
@@ -62,11 +60,11 @@ class faq {
 
  /** Parse input text into blocks.
   *  Blocks start with a line containing only the "block header", which
-  *  looks like <pre>[&lt;blockname&gt;|level|hname]</pre> where:<ul>
+  *  looks like "<pre>[&lt;blockname&gt;|level|hname]</pre>", where:<ul>
   *  <li><i>&lt;blockname&gt;</i> is one of "title", "text" or "eof"</li>
   *  <li><i>level</i> is an integer (or empty) for e.g. &lt;H1&gt;</li>
   *  <li><i>hname</i> is a name (&lt;A NAME="<i>name</i>"&gt;) for references</li></ul>
-  *  everything after the <li>&lt;blockname&gt;</i> is optional.
+  *  everything after the <li>&tl;blockname&gt;</i> is optional.
   * @method public parseInput
   * @param string filename input file name
   */
@@ -75,9 +73,10 @@ class faq {
   $blocknr = -1;
   $lines = count($this->input);
   for ($i=0;$i<$lines;++$i) {
-    $line = trim($this->input[$i]);
-    if ( substr(trim($line),0,1) == "#" ) continue; // strip off comments
-    $mark = preg_match("/^\[(\S+)\]$/",$line,$hit);
+    $line = $this->input[$i];
+    $uline = trim($line);
+    if ( substr($uline,0,1) == "#" ) continue; // strip off comments
+    $mark = preg_match("/^\[(\S+)\]$/",$uline,$hit);
     if ($mark) {
       ++$blocknr;
       $desc = preg_match("/([^\|]+)\|([^\|]*)\|(\S*)$/",$hit[1],$set);
@@ -93,7 +92,7 @@ class faq {
       $this->block[$blocknr]->content = "";
       if ($hit[1]=="eof") break;
     } elseif ($blocknr>-1) {
-      $this->block[$blocknr]->content .= $line."\n";
+      $this->block[$blocknr]->content .= $line;
     }
   }
   $this->blocks = ++$blocknr;
@@ -107,7 +106,8 @@ class faq {
  function textReplace() {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
-   if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
+   $content = str_replace("\$","&#36;",$content);
+   if ( preg_match_all("/\{[^\s\}]+\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
       $pos = strpos($var,"->");
@@ -115,7 +115,19 @@ class faq {
        $obj = substr($var,0,$pos); $prop = substr($var,$pos+2);
        GLOBAL $$obj;
        $rvar = $$obj->$prop;
-      } else { $rvar = $GLOBALS[$var]; }
+      } else {
+        $tpos = strpos($var,"(");
+        if ($tpos) {
+          $tdir = $_SERVER["DOCUMENT_ROOT"].dirname($_SERVER["PHP_SELF"])."/";
+          $tvar = substr($var,0,$tpos);
+          $rvar = $tvar($tdir.substr($var,$tpos+2,strpos($var,")")-$tpos-3));
+        } else { $rvar = $GLOBALS[$var]; }
+      }
+      $var  = str_replace("/","\/",$var); // need to addslashes for
+      $var  = str_replace('"','\"',$var); // preg_replace (the functions
+      $var  = str_replace('(','\(',$var); // addslashes and quotemeta do
+      $var  = str_replace(')','\)',$var); // not help here
+      $rvar = str_replace("\$","&#36;",$rvar);
       $content = preg_replace("/\{$var\}/",$rvar,$content);
     }
    }
@@ -195,7 +207,7 @@ class faq {
   $this->t->pparse("out","main");
  }
 
- /** Set template variables. Wrapper around Template::set_var
+ /** Set template variables. Wrapper around pagemaker::t::set_var
   * @method public set_nav
   * @param string name name of template variable
   * @param string content value of template variable
@@ -204,27 +216,54 @@ class faq {
    $this->t->set_var($name,$content);
  }
 
-} // end class
+ /** Read list of keywords from a given file and set them up as regexp pattern
+  *  All keywords will be matched as "whole words" only (i.e. not as part
+  *  of other words)
+  *  Used for the hilite plugins
+  * @method public regexp_pattern_word_file
+  * @param string name of the file holding the keywords, one by line
+  * @return string regexp pattern
+  */
+ function regexp_pattern_word_file($file) {
+   $list = file($file);
+   $keywords = "/\b(";
+   $lc = count($list);
+   for ($i=0;$i<$lc;++$i) {
+     $keywords .= trim($list[$i])."|";
+   }
+   $keywords = substr($keywords,0,strlen($sh->keywords)-1).")\b/i";
+   return $keywords;
+ }
+
+ /** Read list of keywords from a given file and set them up as regexp pattern
+  *  All keywords will be matched as "strings" only (i.e. also as part of
+  *  other words)
+  *  Used for the hilite plugins
+  * @method public regexp_pattern_file
+  * @param string name of the file holding the keywords, one by line
+  * @return string regexp pattern
+  */
+ function regexp_pattern_file($file) {
+   $keywords = $this->regexp_pattern_word_file($file);
+   return "/".substr($keywords,3,strlen($keywords)-7)."/i";
+ }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
  * @attribute private string toc
- * @class faq
  */
 /** Content of the TOC (to be parsed into {toc})
  * @attribute private string toclist
- * @class faq
  */
 /** Content of the parsed input file (one line per cell)
  * @attribute private array input
- * @class faq
  */
 /** Content of the parsed input file, splitted into blocks
  * @attribute private array block
- * @class faq
  */
 /** Number of blocks created
  * @attribute private integer blocks
- * @class faq
  */
+
+} // end class
 
 ?>

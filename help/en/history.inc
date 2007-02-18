@@ -2,6 +2,16 @@
 # /*  $Id$ */
 
 [title]
+0.8.6 (2007)
+[text]
+<ul>
+ <li>IMDB info now also contains the plot outline as first comment
+ <li>in menu, link to "Admin PSTemplates" was broken
+ <li>updated the "engine" of the help system with the code of the latest
+     iFAQMaker release
+</ul>
+
+[title]
 0.8.5 (February 18, 2007)
 [text]
 <ul>

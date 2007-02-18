@@ -3073,7 +3073,7 @@
   * @return mixed (array of object(s) with printer specifics)
   */
  function get_printer($id="") {
-   $query = "SELECT id,name,unit_id,top_offset,left_offset FROM printers";
+   $query = "SELECT id,name,unit_id,top_offset,left_offset FROM pvp_psprinters";
    if ($id) $query .= " WHERE id=$id";
    $this->dbquery($query);
    while ($this->next_record()) {
@@ -3093,11 +3093,11 @@
   * @return boolean success
   */
  function printerReplace($list) {
-   if ( !$this->query("TRUNCATE TABLE printers") ) return FALSE;
+   if ( !$this->query("TRUNCATE TABLE pvp_psprinters") ) return FALSE;
    $pcount = count($list);
    $errors = 0;
    for ($i=0;$i<$pcount;++$i) {
-     $query = "INSERT INTO printers (id,name,unit_id,top_offset,left_offset) "
+     $query = "INSERT INTO pvp_psprinters (id,name,unit_id,top_offset,left_offset) "
             . "VALUES (".$list[$i]->id.",'".$list[$i]->name."',"
             . $list[$i]->unit_id.",".$list[$i]->top_offset.","
             . $list[$i]->left_offset.")";
@@ -3118,14 +3118,14 @@
   */
  function set_printer($id="",$name="",$unit=1,$top_offset=0,$left_offset=0) {
    if (!$id && !$name) return FALSE;
-   if (!$name) { $query = "DELETE FROM printers WHERE id=$id"; }
+   if (!$name) { $query = "DELETE FROM pvp_psprinters WHERE id=$id"; }
      elseif (!$id) {
-       $this->query("SELECT MAX(id) AS maxid FROM printers");
+       $this->query("SELECT MAX(id) AS maxid FROM pvp_psprinters");
        $this->next_record();
        $id = $this->f('maxid') +1;
-       $query = "INSERT INTO printers VALUES ($id,'$name',$unit,$top_offset,$left_offset)";
+       $query = "INSERT INTO pvp_psprinters VALUES ($id,'$name',$unit,$top_offset,$left_offset)";
    } else {
-     $query = "UPDATE printers SET name='$name',unit_id=$unit,"
+     $query = "UPDATE pvp_psprinters SET name='$name',unit_id=$unit,"
             . "top_offset=$top_offset,left_offset=$left_offset "
             . "WHERE id=$id";
    }
@@ -3139,7 +3139,7 @@
   * @return mixed (array of id,unit,factor)
   */
  function get_units() {
-     $this->query("SELECT id,unit,size FROM units");
+     $this->query("SELECT id,unit,size FROM pvp_psunits");
      $i=0;
      while ( $this->next_record() ) {
        $units[$i]['id']     = $this->f('id');
@@ -3155,7 +3155,7 @@
   * @return mixed (array of i:id,i:vendor,i:product)
   */
  function get_label_forms() {
-     $this->query("SELECT id,vendor,product FROM label_forms");
+     $this->query("SELECT id,vendor,product FROM pvp_pslabelforms");
      $i=0;
      while ( $this->next_record() ) {
        $label_forms[$i]['product'] = $this->f('product');
@@ -3171,7 +3171,7 @@
   * @return mixed (rows,cols)
   */
  function get_lsheet($id) {
-     $query="SELECT rows,cols,type FROM label_forms WHERE id=$id";
+     $query="SELECT rows,cols,type FROM pvp_pslabelforms WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['rows'] = $this->f('rows');
@@ -3192,7 +3192,7 @@
 
      $query="SELECT rows,cols,unit_id,h_dist,
      v_dist,width,heigth,leftm,topm,sheet_id 
-     FROM label_forms WHERE id=$id";
+     FROM pvp_pslabelforms WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['label_rows']  = $this->f('rows');
@@ -3210,7 +3210,7 @@
        $stat++;
      }
 
-     $query="SELECT size FROM units WHERE id=$label_unit_id";
+     $query="SELECT size FROM pvp_psunits WHERE id=$label_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['label_unit_size'] = $this->f('size');
@@ -3219,7 +3219,7 @@
        $stat++;
      }
 
-     $query="SELECT name,unit_id,width,length FROM sheets WHERE id=$lsheet_sheet_id";
+     $query="SELECT name,unit_id,width,length FROM pvp_pssheets WHERE id=$lsheet_sheet_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $sheet_unit_id = $this->f('unit_id');
@@ -3231,7 +3231,7 @@
        ++$stat;
      }
 
-     $query="SELECT size FROM units WHERE id=$sheet_unit_id";
+     $query="SELECT size FROM pvp_psunits WHERE id=$sheet_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['sheet_unit_size'] = $this->f('size');
@@ -3241,7 +3241,7 @@
      }
 
      $query="SELECT unit_id,top_offset,left_offset
-     FROM printers WHERE id=$printer_id";
+     FROM pvp_psprinters WHERE id=$printer_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['pr_left'] = $this->f('left_offset');
@@ -3252,7 +3252,7 @@
        ++$stat;
      }
 
-     $query="SELECT size FROM units WHERE id=$printer_unit_id";
+     $query="SELECT size FROM pvp_psunits WHERE id=$printer_unit_id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $lsheet['pr_unit_size'] = $this->f('size');
@@ -3270,18 +3270,18 @@
   * @return mixed (id,description)
   */
  function get_epstemplates($type) {
-     $query="SELECT id,description FROM eps_templates WHERE type=$type ORDER BY description";
-     if ( $this->dbquery($query) ) {
-       $i=0;
+   $query="SELECT id,description FROM pvp_epstemplates WHERE type=$type ORDER BY description";
+   if ( $this->dbquery($query) ) {
+     $i=0;
      while ( $this->next_record() ) {
-         $eps_template[$i]['id'] = $this->f('id');
-         $eps_template[$i]['description'] = $this->f('description');
-         ++$i;
-       }
-       return $eps_template;
+       $eps_template[$i]['id'] = $this->f('id');
+       $eps_template[$i]['description'] = $this->f('description');
+       ++$i;
      }
-     return FALSE;
-  }
+     return $eps_template;
+   }
+   return FALSE;
+ }
 
  /** get eps image reference for $id
   * @method get_epsimage
@@ -3289,7 +3289,7 @@
   */
  function get_epsimage($id) {
      $query="SELECT eps_filename,ps_filename,llx,lly,urx,ury
-     FROM eps_templates WHERE id=$id";
+     FROM pvp_epstemplates WHERE id=$id";
      if ( $this->dbquery($query) ) {
        if ( $this->next_record() ) {
          $eps_image['eps'] = $this->f('eps_filename');
@@ -3309,7 +3309,7 @@
   * @return array labeltypes array of objects
   */
  function get_labeltypes() {
-   $query = "SELECT id,type,description FROM label_forms";
+   $query = "SELECT id,type,description FROM pvp_pslabelforms";
    $this->dbquery($query);
    while ( $this->next_record() ) {
      $type->id = $this->f('id');
@@ -3329,7 +3329,7 @@
  function get_pstemplates($id="",$start="") {
    $query = "SELECT e.id,e.type,e.description,e.eps_filename,e.ps_filename,"
           . "e.llx,e.lly,e.urx,e.ury,l.description AS typedesc "
-          . "FROM eps_templates e,label_forms l "
+          . "FROM pvp_epstemplates e,pvp_pslabelforms l "
           . "WHERE e.type=l.type";
    if ($id) $query .= " AND e.id=$id";
    $query .= " ORDER BY e.description";
@@ -3359,18 +3359,18 @@
   */
  function set_pstemplate($ps) {
    if (is_int($ps)) {
-     $query = "DELETE FROM eps_templates WHERE id=$ps";
+     $query = "DELETE FROM pvp_epstemplates WHERE id=$ps";
    } elseif ($ps->id) {
      $id    = $ps->id;
-     $query = "UPDATE eps_templates SET type=".$ps->type_id.",description='"
+     $query = "UPDATE pvp_epstemplates SET type=".$ps->type_id.",description='"
             . $ps->desc."',eps_filename='".$ps->eps_file."',ps_filename='"
             . $ps->ps_file."',llx=".$ps->llx.",lly=".$ps->lly.",urx="
             . $ps->urx.",ury=".$ps->ury." WHERE id=$id";
    } else {
-     $this->query("SELECT MAX(id) AS maxid FROM eps_templates");
+     $this->query("SELECT MAX(id) AS maxid FROM pvp_epstemplates");
      $this->next_record();
      $id = $this->f('maxid') +1;
-     $query = "INSERT INTO eps_templates (id,type,description,eps_filename,"
+     $query = "INSERT INTO pvp_epstemplates (id,type,description,eps_filename,"
             . "ps_filename,llx,lly,urx,ury) VALUES ($id,"
             . $ps->type_id.",'".$ps->desc."','".$ps->eps_file."','"
             . $ps->ps_file."',".$ps->llx.",".$ps->lly.",".$ps->urx.",".$ps->ury.")";

@@ -1,0 +1,80 @@
+# ========================================================
+# Updating Database for phpVideoPro from v0.8.5 to v0.8.6
+# ========================================================
+
+# prepare default lang update
+DELETE FROM lang WHERE lang='en';
+
+# version update
+UPDATE pvp_config SET value='0.8.6' WHERE name='version';
+
+# PS Label Packs
+CREATE TABLE pvp_pspacks (
+  id    INT(3) NOT NULL auto_increment,
+  rev   INT(3) NOT NULL DEFAULT 1,
+  sname VARCHAR(20) NOT NULL,
+  name  VARCHAR(50),
+  descript      VARCHAR(200),
+  PRIMARY KEY (id)
+) TYPE=MyISAM COMMENT='PS Label Pack Info';
+INSERT INTO pvp_pspacks (rev,sname,name,descript) VALUES
+  (1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application');
+
+# CREATE TABLE pvp_epstypes (
+#  id    INT(3) NOT NULL auto_increment,
+#  name  VARCHAR(20) NOT NULL,
+#  descript      VARCHAR(200),
+#  PRIMARY KEY (id)
+# ) TYPE=MyISAM COMMENT='PS Label Types';
+
+CREATE TABLE pvp_epstemplates (
+  id            SMALLINT(6) NOT NULL auto_increment,
+  type       INT(3) NOT NULL default '0',
+  pack_id       INT(3) NOT NULL,
+  description   VARCHAR(64) NOT NULL,
+  eps_filename  VARCHAR(255) NOT NULL,
+  ps_filename   VARCHAR(255) NOT NULL,
+  llx           SMALLINT(6) NOT NULL default '0',
+  lly           SMALLINT(6) NOT NULL default '0',
+  urx           SMALLINT(6) NOT NULL default '0',
+  ury           SMALLINT(6) NOT NULL default '0',
+  PRIMARY KEY  (id),
+  FULLTEXT KEY description (description)
+) TYPE=MyISAM COMMENT='Bounding box of EPS template';
+# VHS:
+INSERT INTO pvp_epstemplates (type,pack_id,description,eps_filename,ps_filename,
+ llx,lly,urx,ury) SELECT type,1,description,eps_filename,ps_filename,llx,lly,
+ urx,ury FROM eps_templates WHERE type=1 OR type=2;
+
+CREATE TABLE pvp_pslabelforms (
+  id            TINYINT(4) NOT NULL auto_increment,
+  vendor        VARCHAR(16) NOT NULL,
+  product       VARCHAR(32) NOT NULL,
+  description   VARCHAR(48) default NULL,
+  type       INT(3) NOT NULL default '0',
+  unit_id       INT(3) NOT NULL default '0',
+  h_dist        FLOAT NOT NULL default '0',
+  v_dist        FLOAT NOT NULL default '0',
+  width         FLOAT NOT NULL default '0',
+  heigth        FLOAT NOT NULL default '0',
+  leftm         FLOAT NOT NULL default '0',
+  topm          FLOAT NOT NULL default '0',
+  cols          TINYINT(4) NOT NULL default '0',
+  rows          TINYINT(4) NOT NULL default '0',
+  sheet_id      TINYINT(4) NOT NULL default '0',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM COMMENT='PS label formsheet definition table';
+INSERT INTO pvp_pslabelforms SELECT * FROM label_forms;
+DROP TABLE label_forms;
+
+CREATE TABLE pvp_psunits (
+  id    INT(3) NOT NULL auto_increment,
+  unit  VARCHAR(8) NOT NULL,
+  size  FLOAT NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+) TYPE=MyISAM COMMENT='unit conversion table';
+INSERT INTO pvp_psunits SELECT * FROM units;
+DROP TABLE units;
+
+RENAME TABLE sheets TO pvp_pssheets;
+RENAME TABLE printers TO pvp_psprinters;

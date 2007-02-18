@@ -86,6 +86,29 @@ function initiate_vnorm() {
   die ("</BODY></HTML>");
 }
 
+#=====================================[ Setup initial CD/DVD label packs ]===
+function insert_cddvd_eps() {
+  GLOBAL $db;
+  $ins = "INSERT INTO pvp_epstemplates (type,pack_id,description,eps_filename,ps_filename,llx,lly,urx,ury) VALUES (";
+  $db->query("$ins 3,2,'Action','action_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,2,'Comedy','comedy_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,2,'Doku','docu_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,2,'SciFi','sf_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,2,'Simple','simple_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)')");
+  $db->query("$ins 3,3,'Marmor','marmor_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Sky','sky_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Water','water_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Pool','pool_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Electronic','electronic_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Citrus','citrus_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'World','world_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Clouds','clouds_cddvd.eps','common_cddvd.ps',0,0,468,474)");
+  $db->query("$ins 3,3,'Celtic','celtic_cddvd.eps','common_cddvd.ps',0,0,470,468)");
+  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)')");
+  echo " <LI><SPAN CLASS='ok'>PSLabelPacks updated.</SPAN></LI>";
+}
+
 #====================================================[ Output page intro ]===
 echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
 echo "<HTML><HEAD>\n";
@@ -238,6 +261,9 @@ $pvp->preferences->admin();
     case "0.8.3"    : queryf("0-8-2_to_0-8-3.sql","Upgrade to v0.8.4");
                       queryf("../lang_en.sql","Refresh of English language support");
     case "0.8.4"    : queryf("0-8-4_to_0-8-5.sql","Upgrade to v0.8.5");
+    case "0.8.5"    : queryf("0-8-5_to_0-8-6.".$database["type"],"Upgrade to v0.8.6");
+                      if (file_exists($base_path."pslabels".$pvp->config->os_slash."celtic_cddvd.eps"))
+                        insert_cddvd_eps();
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

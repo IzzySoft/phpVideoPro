@@ -642,4 +642,12 @@ INSERT INTO lang VALUES ('orphan_movies_found','en','Found %1 orphan movie(s):',
 INSERT INTO lang VALUES ('all_topic','en','All','as for \"all dupes\" (used in the menu)');
 INSERT INTO lang VALUES ('last_change','en','LastChange','Column in the medialist indicating date of last change to a movie entry');
 INSERT INTO lang VALUES ('imdb_tx_rating','en','Rating','Option in the configuration menu (checkbox)');
+INSERT INTO lang VALUES ('pstplpack_name','en','LabelPack Name','column title in PSLabel administration');
+INSERT INTO lang VALUES ('pstplpack_rev1','en','Installed Rev.','column title in PSLabel administration');
+INSERT INTO lang VALUES ('pstplpack_rev2','en','Latest Rev.','column title in PSLabel administration');
+INSERT INTO lang VALUES ('check_update','en','Check for Updates','Link description');
+INSERT INTO lang VALUES ('label_pack','en','LabelPack','');
+INSERT INTO lang VALUES ('label_packs','en','LabelPacks','');
+INSERT INTO lang VALUES ('creator','en','Creator','As used with the PSLabelPacks: The one who made them');
+INSERT INTO lang VALUES ('description','en','Description','As the word says');
 #INSERT INTO lang VALUES ('','en','','');

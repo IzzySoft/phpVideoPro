@@ -3323,21 +3323,24 @@
  /** get complete eps template description list
   * @method get_pstemplates
   * @param optional integer id eps template id
+  * @param optional integer pack_id ID of label pack
   * @param optional integer start for limit queries
   * @return array templates array of objects
   */
- function get_pstemplates($id="",$start="") {
+ function get_pstemplates($id="",$pack_id="",$start="") {
    $query = "SELECT e.id,e.type,e.description,e.eps_filename,e.ps_filename,"
-          . "e.llx,e.lly,e.urx,e.ury,l.description AS typedesc "
-          . "FROM pvp_epstemplates e,pvp_pslabelforms l "
-          . "WHERE e.type=l.type";
+          . "e.llx,e.lly,e.urx,e.ury,l.description AS typedesc, p.name AS packname "
+          . "FROM pvp_epstemplates e,pvp_pslabelforms l,pvp_pspacks p "
+          . "WHERE e.type=l.type AND e.pack_id=p.id";
    if ($id) $query .= " AND e.id=$id";
+   elseif ($pack_id) $query .= " AND pack_id=$pack_id";
    $query .= " ORDER BY e.description";
    if ($start==="") { $this->dbquery($query); }
      else { $totals = $this->lim_query($query,$start); }
    while ( $this->next_record() ) {
      $tpl->id = $this->f('id');
      $tpl->type_id = $this->f('type');
+     $tpl->packname = $this->f('packname');
      $tpl->type_desc = $this->f('typedesc');
      $tpl->desc = $this->f('description');
      $tpl->eps_file = $this->f('eps_filename');
@@ -3378,6 +3381,30 @@
    $this->dbquery($query);
    if ($this->affected_rows()<0) return FALSE;
    return $id;
+ }
+
+ /** get list of PSLabel Packs
+  * @method get_pspacks
+  * @param optional integer id
+  * @param optional integer start for limit queries
+  * @return array pspacks
+  */
+ function get_pspacks($id="",$start="") {
+   $query = "SELECT id,rev,sname,name,descript,creator FROM pvp_pspacks";
+   if ($id!="") $query .= " WHERE id=$id";
+   else $query .= " ORDER BY name";
+   if ($start==="") { $this->dbquery($query); }
+     else { $totals = $this->lim_query($query,$start); }
+   $fields = array("id","rev","sname","name","descript","creator");
+   while ($this->next_record()) {
+     foreach ($fields as $f) {
+       $t[$f] = $this->f($f);
+     }
+     $pspacks[] = $t;
+   }
+   if ($id!="") return $pspacks[0];
+   if (isset($totals)) $pspacks['totals'] = $totals;
+   return $pspacks;
  }
 
  ############################################################################

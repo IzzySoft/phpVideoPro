@@ -9,6 +9,8 @@
  <li>in menu, link to "Admin PSTemplates" was broken
  <li>updated the "engine" of the help system with the code of the latest
      iFAQMaker release
+ <li>changed pslabel structs to support label packs
+ <li>again issues with IMDB site changes
 </ul>
 
 [title]

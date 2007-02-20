@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -19,6 +19,8 @@
  #-------------------------------------------------[ Register global vars ]---
  if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
  if (isset($_GET["remove"])) $remove = $_GET["remove"]; else $remove = FALSE;
+ if (isset($_GET["showpack"])) $showpack = $_GET["showpack"]; else $showpack = FALSE;
+ if (isset($_GET["packdetails"])) $packdetails = $_GET["packdetails"]; else $packdetails = FALSE;
  if (isset($_REQUEST["edit"])) $edit = $_REQUEST["edit"]; else $edit = FALSE;
  if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
  if (isset($_POST["submit"])) $submit = $_POST["submit"]; else $submit = FALSE;
@@ -39,6 +41,9 @@
  $t->set_block("template","listblock","list");
  $t->set_block("listblock","itemblock","item");
  $t->set_block("template","editblock","edps");
+ $t->set_block("template","packlistblock","packlist");
+ $t->set_block("packlistblock","packitemblock","packitem");
+ $t->set_block("template","packviewblock","packview");
  $t->set_var("listtitle",lang($page_id));
  $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
@@ -102,7 +107,8 @@
  include("../inc/header.inc");
  #===========================[ create the edit form for a single template ]===
  if ($edit || $add || $submit) {
-   if (!isset($ps)) $ps[0]->desc = $ps[0]->type_id = $ps[0]->eps_file = $ps[0]->ps_file = $ps[0]->llx = $ps[0]->lly = $ps[0]->urx = $ps[0]->ury = "";
+   if (!isset($ps)) $ps[0]->desc = $ps[0]->type_id = $ps[0]->eps_file = $ps[0]->ps_file = $ps[0]->llx = $ps[0]->lly = $ps[0]->urx = $ps[0]->ury = $ps[0]->packname = "";
+   $t->set_var("pack","<b>".lang("label_pack").": </b>".$ps[0]->packname);
    $t->set_var("desc",make_input("desc",$ps[0]->desc,lang("name")));
    $t->set_var("type",type_select("type_id",$ps[0]->type_id,lang("pstpl_type")));
    $t->set_var("gfx_file",make_input("eps_file",$ps[0]->eps_file,lang("graphic_file")));
@@ -127,28 +133,88 @@
 <?
    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
    $edit_img  = $tpl_dir . "/images/edit.gif";
+   $show_img  = $tpl_dir . "/images/show.gif";
    $trash_img = $tpl_dir . "/images/trash.gif";
-   $query = "\$db->get_pstemplates(\"\",$start)";
-   $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
-   $list = $nextmatch->list;
-   for ($i=0;$i<$nextmatch->listcount;$i++) {
-     $t->set_var("id",$list[$i]->id);
-     $t->set_var("desc",$list[$i]->desc);
-     $t->set_var("type",$list[$i]->type_desc);
-     $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
-     $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?remove=".$list[$i]->id);
-     $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
-     if ($i) $t->parse("item","itemblock",TRUE);
-       else $t->parse("item","itemblock");
+
+   if ($showpack) { // show list of templates
+ #------------------------------------------[ Label List of selected pack ]---
+     $pack = $db->get_pspacks($showpack);
+     $query = "\$db->get_pstemplates(\"\",$showpack,$start)";
+     $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?showpack=$showpack",$start);
+     $list = $nextmatch->list;
+     for ($i=0;$i<$nextmatch->listcount;$i++) {
+       $t->set_var("id",$list[$i]->id);
+       $t->set_var("desc",$list[$i]->desc);
+       $t->set_var("type",$list[$i]->type_desc);
+       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?edit=".$list[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
+       $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?remove=".$list[$i]->id);
+       $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
+       if ($i) $t->parse("item","itemblock",TRUE);
+         else $t->parse("item","itemblock");
+     }
+     $t->set_var("lname",lang("label_pack").": ".$pack["name"]);
+     $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=1",lang("add_entry")));
+     $t->set_var("head_desc",lang("pstpl_name"));
+     $t->set_var("head_type",lang("pstpl_type"));
+     $t->set_var("first",$nextmatch->first);
+     $t->set_var("left",$nextmatch->left);
+     $t->set_var("right",$nextmatch->right);
+     $t->set_var("last",$nextmatch->last);
+     $t->parse("list","listblock");
+   } elseif ($packdetails) {
+ #------------------------------------------------------[ Label Pack Edit ]---
+     $pack = $db->get_pspacks($packdetails);
+     $t->set_var("tname",lang("name"));
+     $t->set_var("name",$pack["name"]);
+     $t->set_var("tcreator",lang("creator"));
+     $t->set_var("creator",$pvp->common->make_clickable($pack["creator"]));
+     $t->set_var("tdesc",lang("description"));
+     $t->set_var("desc",$pack["descript"]);
+     $t->set_var("trev",lang("pstplpack_rev1"));
+     $t->set_var("rev",$pack["rev"]);
+     $t->parse("packview","packviewblock");
+#     $fields = array("id","rev","sname","name","descript","creator");
+   } else { // show list of template packs
+ #-----------------------------------------------------[ Label Packs List ]---
+     $query = "\$db->get_pspacks(\"\",$start)";
+     $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
+     $list = $nextmatch->list;
+#echo "<pre>";print_r($list);echo "</pre>";
+#echo "Count: ".$nextmatch->listcount."<br>";
+     for ($i=0;$i<$nextmatch->listcount;$i++) {
+       if ($list[$i]["rev"]>0) {
+         $pname = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],$list[$i]["name"]);
+         $prev1 = $list[$i]["rev"];
+       } else {
+         $pname = $list[$i]["name"];
+         $prev1 = "-";
+       }
+       $t->set_var("pname",$pname);
+       $t->set_var("prev1",$list[$i]["rev"]);
+       if ($list[$i]["rev2"]>0) {
+         $prev2 = $list[$i]["rev2"]; // include link for update/install here
+       } else {
+         $prev2 = "?";
+       }
+       $t->set_var("prev2",$prev2);
+       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$show_img' BORDER='0' ALT='".lang("edit")."'>"));
+       $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?removepack=".$list[$i]["id"]);
+       $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
+       if ($i) $t->parse("packitem","packitemblock",TRUE);
+         else $t->parse("packitem","packitemblock");
+     }
+     $t->set_var("lname",lang("label_packs"));
+     $t->set_var("check_update",lang("check_update")); // include link here
+     $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?addpack=1",lang("add_entry")));
+     $t->set_var("head_name",lang("pstplpack_name"));
+     $t->set_var("head_rev1",lang("pstplpack_rev1"));
+     $t->set_var("head_rev2",lang("pstplpack_rev2"));
+     $t->set_var("first",$nextmatch->first);
+     $t->set_var("left",$nextmatch->left);
+     $t->set_var("right",$nextmatch->right);
+     $t->set_var("last",$nextmatch->last);
+     $t->parse("packlist","packlistblock");
    }
-   $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?add=1",lang("add_entry")));
-   $t->set_var("head_desc",lang("pstpl_name"));
-   $t->set_var("head_type",lang("pstpl_type"));
-   $t->set_var("first",$nextmatch->first);
-   $t->set_var("left",$nextmatch->left);
-   $t->set_var("right",$nextmatch->right);
-   $t->set_var("last",$nextmatch->last);
-   $t->parse("list","listblock");
  }
 
  $t->pparse("out","template");

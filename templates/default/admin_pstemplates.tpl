@@ -1,16 +1,49 @@
 <H2 ALIGN="center">{listtitle}</H2>
+<!-- BEGIN packlistblock -->
+<TABLE ALIGN="center" BORDER="0" STYLE="margin:3">
+ <TR><TD COLSPAN="4"><TABLE WIDTH="100%" BORDER="0">
+     <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{lname}</DIV></TD>
+     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR></TABLE></TD></TR>
+  <TR><TH><DIV ALIGN="center">{head_name}</DIV></TH>
+      <TH><DIV ALIGN="center">{head_rev1}</DIV></TH>
+      <TH><DIV ALIGN="center">{head_rev2}</DIV></TH>
+      <TH><DIV ALIGN="center">{add}</DIV></TH></TR>
+<!-- BEGIN packitemblock -->
+  <TR CLASS="content"><TD>{pname}</TD>
+      <TD><DIV ALIGN="center">{prev1}</DIV></TD>
+      <TD><DIV ALIGN="center">{prev2}</DIV></TD>
+      <TD><DIV ALIGN="center">{edit}&nbsp;{remove}</DIV></TR>
+<!-- END packitemblock -->
+ <TR><TD COLSPAN="4"><TABLE WIDTH="100%" BORDER="0">
+     <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{check_update}</DIV></TD>
+     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR></TABLE></TD></TR>
+</TABLE>
+<!-- END packlistblock -->
+<!-- BEGIN packviewblock -->
+<TABLE ALIGN="center" BORDER="1" Style="margin:3">
+  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tname}</b></DIV></TD><TD>{name}</TD></TR>
+  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tcreator}</b></DIV></TD><TD>{creator}</TD></TR>
+  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tdesc}</b></DIV></TD><TD>{desc}</TD></TR>
+  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{trev}</b></DIV></TD><TD>{rev}</TD></TR>
+</TABLE>
+<!-- END packviewblock -->
+
 <!-- BEGIN listblock -->
-<TABLE ALIGN="center" BORDER="0">
- <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
+<TABLE ALIGN="center" BORDER="0" STYLE="margin:3">
+ <TR><TD COLSPAN="4"><TABLE WIDTH="100%" BORDER="0">
+     <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{lname}</DIV></TD>
+     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR></TABLE></TD></TR>
  <TR><TD COLSPAN="2"><TABLE ALIGN="center" BORDER="1">
   <TR><TH><DIV ALIGN="center">{head_desc}</DIV></TH>
       <TH><DIV ALIGN="center">{head_type}</DIV></TH>
       <TH><DIV ALIGN="center">{add}</DIV></TH></TR>
 <!-- BEGIN itemblock -->
-  <TR><TD>{desc}</TD>
+  <TR CLASS="content"><TD>{desc}</TD>
       <TD><DIV ALIGN="center">{type}</DIV></TD>
-      <TD><DIV ALIGN="center">{edit}&nbsp;{remove}</TR>
+      <TD><DIV ALIGN="center">{edit}&nbsp;{remove}</DIV></TR>
 <!-- END itemblock -->
  </TABLE></TD></TR>
  <TR><TD>{first}{left}</TD>

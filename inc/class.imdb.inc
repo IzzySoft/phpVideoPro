@@ -361,8 +361,8 @@
     if ($this->page["Title"] == "") {
 	$this->openpage ("Title");
     }
-#    $rate_s = strpos ($this->page["Title"], "User Rating:");
-    $rate_s = strpos ($this->page["Title"], '/ratings">');
+    $rate_s = strpos ($this->page["Title"], "User Rating:");
+#    $rate_s = strpos ($this->page["Title"], '/ratings">');
     if ( $rate_s == 0 )	return FALSE;
     $rate_s = strpos ($this->page["Title"], "<b>", $rate_s);
     $rate_e = strpos ($this->page["Title"], "/", $rate_s);
@@ -609,7 +609,7 @@
    * @return mixed rows (FALSE if table not found, array[0..n] of strings otherwise)
    */
   function get_table_rows_cast ( $html, $table_start ){
-   $row_s = strpos ( $html, ">".$table_start."<");
+   $row_s = strpos ( $html, '<table class="cast">');
    $row_e = $row_s;
    if ( $row_s == 0 )  return FALSE;
    $endtable = strpos($html, "</table>", $row_s);
@@ -618,9 +618,11 @@
 	$row_s = strpos ( $html, "<tr", $row_s);
 	$row_e = strpos ($html, "</tr>", $row_s);
 	$temp = trim(substr ($html, $row_s , $row_e - $row_s));
-        $row_x = strpos( $temp, '<td valign="middle"' );
+#        $row_x = strpos( $temp, '<td valign="middle"' );
+        $row_x = strpos( $temp, '<td class="nm">' );
         $temp = trim(substr($temp,$row_x));
-	if ( strncmp( $temp, "<td valign=",10) == 0 ){
+#	if ( strncmp( $temp, "<td valign=",10) == 0 ){
+	if ( strncmp( $temp, "<td class=",10) == 0 ){
 		$rows[$i] = $temp;
 		$i++;
 	}

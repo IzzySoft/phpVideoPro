@@ -26,22 +26,22 @@ COMMENT ON COLUMN pvp_pspacks.name IS 'Name of the pack';
 COMMENT ON COLUMN pvp_pspacks.descript IS 'Description of the pack';
 COMMENT ON COLUMN pvp_pspacks.creator IS 'Who made/maintains the pack';
 ALTER TABLE pvp_pspacks ADD CONSTRAINT pk_pspacks PRIMARY KEY (id);
-ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_rev (rev IS NOT NULL);
-ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_sname (sname IS NOT NULL);
+ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_rev CHECK(rev IS NOT NULL);
+ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_sname CHECK(sname IS NOT NULL);
 INSERT INTO pvp_pspacks (rev,sname,name,descript,creator) VALUES
   (1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application','Izzy ([url]http://www.qumran.org/homes/izzy/software/pvp/[/url])');
 
-CREATE TABLE pvp_epstemplates (
-  id            SERIAL,
-  type          INT default '0',
-  pack_id       INT,
-  description   VARCHAR(64),
-  eps_filename  VARCHAR(255),
-  ps_filename   VARCHAR(255),
-  llx           SMALLINT(6) NOT NULL default 0,
-  lly           SMALLINT(6) NOT NULL default 0,
-  urx           SMALLINT(6) NOT NULL default 0,
-  ury           SMALLINT(6) NOT NULL default 0,
+CREATE TABLE pvp_epstemplates ( 
+	id            SERIAL, 
+	type          INT default '0', 
+	pack_id       INT, 
+	description   VARCHAR(64), 
+	eps_filename  VARCHAR(255), 
+	ps_filename   VARCHAR(255), 
+	llx           SMALLINT default 0, 
+	lly           SMALLINT default 0, 
+	urx           SMALLINT default 0, 
+	ury           SMALLINT default 0
 );
 COMMENT ON TABLE pvp_epstemplates IS 'Bounding box of EPS template';
 COMMENT ON COLUMN pvp_epstemplates.type IS 'Type of the template (CD/VHS/..) like in pvp_pslabelforms';
@@ -124,7 +124,7 @@ ALTER TABLE pvp_psunits ADD CONSTRAINT notnullcheck_psunits_size CHECK (size IS 
 INSERT INTO pvp_psunits SELECT * FROM units;
 DROP TABLE units;
 
-RENAME TABLE sheets TO pvp_pssheets;
-RENAME TABLE printers TO pvp_psprinters;
+ALTER TABLE sheets RENAME TO pvp_pssheets;
+ALTER TABLE printers RENAME TO pvp_psprinters;
 
 COMMIT;

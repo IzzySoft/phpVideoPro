@@ -259,11 +259,11 @@ $pvp->preferences->admin();
                       }
     case "0.8.2"    :
     case "0.8.3"    : queryf("0-8-2_to_0-8-3.sql","Upgrade to v0.8.4");
-                      queryf("../lang_en.sql","Refresh of English language support");
     case "0.8.4"    : queryf("0-8-4_to_0-8-5.sql","Upgrade to v0.8.5");
     case "0.8.5"    : queryf("0-8-5_to_0-8-6.".$database["type"],"Upgrade to v0.8.6");
                       if (file_exists($base_path."pslabels".$pvp->config->os_slash."celtic_cddvd.eps"))
                         insert_cddvd_eps();
+                      queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";
   }

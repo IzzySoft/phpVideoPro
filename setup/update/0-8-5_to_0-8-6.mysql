@@ -21,13 +21,6 @@ CREATE TABLE pvp_pspacks (
 INSERT INTO pvp_pspacks (rev,sname,name,descript,creator) VALUES
   (1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application','Izzy ([url]http://www.qumran.org/homes/izzy/software/pvp/[/url])');
 
-# CREATE TABLE pvp_epstypes (
-#  id    INT(3) NOT NULL auto_increment,
-#  name  VARCHAR(20) NOT NULL,
-#  descript      VARCHAR(200),
-#  PRIMARY KEY (id)
-# ) TYPE=MyISAM COMMENT='PS Label Types';
-
 CREATE TABLE pvp_epstemplates (
   id            SMALLINT(6) NOT NULL auto_increment,
   type       INT(3) NOT NULL default '0',

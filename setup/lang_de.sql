@@ -544,4 +544,4 @@ INSERT INTO lang VALUES ('login_page','de','Login-Seite','');
 INSERT INTO lang VALUES ('movie_vnorm_default_comment','de','Voreinstellung für das \"Video Norm\" Feld bei neuen Filmeinträgen. In den USA produzierte Medien nutzen meist NTSC, während in Europa PAL vorherrscht.','');
 INSERT INTO lang VALUES ('rating_is_nan','de','Rating ist ein numerischer Wert zwischen 0 und 9.9','');
 INSERT INTO lang VALUES ('all_topic','de','Alle','');
-INSERT INTO lang VALUES ('description','en','Beschreibung','');
+INSERT INTO lang VALUES ('description','de','Beschreibung','');

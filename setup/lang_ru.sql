@@ -562,3 +562,4 @@ INSERT INTO lang VALUES ('wrong_date','ru','Указанная Вами дата
 INSERT INTO lang VALUES ('xfer_unknown_filetype','ru','Этот тип резервного файла (все же) не обработан phpVideoPro.','');
 INSERT INTO lang VALUES ('year','ru','Год','');
 INSERT INTO lang VALUES ('yes','ru','Да','');
+INSERT INTO lang VALUES ('description','ru','Описание','');

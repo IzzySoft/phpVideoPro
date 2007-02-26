@@ -2,6 +2,14 @@
 # /*  $Id$ */
 
 [title]
+0.8.7 (2007)
+[text]
+<ul>
+ <li>separators broke menu in MSIE, so we do not use them anymore for it
+     (but still use them in other browsers)
+</ul>
+
+[title]
 0.8.6 (February 26, 2007)
 [text]
 <ul>

@@ -128,3 +128,24 @@ ALTER TABLE sheets RENAME TO pvp_pssheets;
 ALTER TABLE printers RENAME TO pvp_psprinters;
 
 COMMIT;
+
+# Finally fix all sequences which *may* be broken due to direct insert
+BEGIN;
+
+SELECT setval('pvp_video_id_seq', (SELECT MAX(id) FROM pvp_video));
+SELECT setval('cat_id_seq', (SELECT MAX(id) FROM cat));
+SELECT setval('colors_id_seq', (SELECT MAX(id) FROM colors));
+SELECT setval('actors_id_seq', (SELECT MAX(id) FROM actors));
+SELECT setval('directors_id_seq', (SELECT MAX(id) FROM directors));
+SELECT setval('mtypes_id_seq', (SELECT MAX(id) FROM mtypes));
+SELECT setval('music_id_seq', (SELECT MAX(id) FROM music));
+SELECT setval('disks_id_seq', (SELECT MAX(id) FROM disks));
+SELECT setval('pict_id_seq', (SELECT MAX(id) FROM pict));
+SELECT setval('tone_id_seq', (SELECT MAX(id) FROM tone));
+SELECT setval('preferences_id_seq', (SELECT MAX(id) FROM preferences));
+SELECT setval('pvp_userprefs_id_seq', (SELECT MAX(id) FROM pvp_userprefs));
+SELECT setval('pvp_config_id_seq', (SELECT MAX(id) FROM pvp_config));
+SELECT setval('pvp_users_id_seq', (SELECT MAX(id) FROM pvp_users));
+SELECT setval('pvp_options_id_seq', (SELECT MAX(id) FROM pvp_options));
+
+COMMIT;

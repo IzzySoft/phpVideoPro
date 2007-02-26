@@ -702,38 +702,42 @@ menuItemObj        : Required. Menu item object that is going to be added to the
 */
 function addMenuItem(menuItemObj) { // Public method
   if (menuItemObj.displayText == "-") {
-    var hrElm = createElm("hr");
-    var itemElm = createElm("div");
-    itemElm.appendChild(hrElm);
-    itemElm.id = menuItemObj.id;
-    if (menuItemObj.className.length > 0) {
-      itemElm.sepClassName = menuItemObj.className;
-    }
-    else {
-      itemElm.sepClassName = menuItemObj.sepClassName;
-    }
-    itemElm.className = itemElm.sepClassName;
-    this.menuObj.appendChild(itemElm);
-    itemElm.parent = this;
-    itemElm.setClassName = function(className) { // Public method
-      this.sepClassName = className;
-      this.className = this.sepClassName;
-    };
-    itemElm.onclick = function(e) { // Private method
-      if (!e) {
-        var e = window.event;
-        e.cancelBubble = true;
+    if (isIE()) { // HR breaks menu in IE
+      var hrElm = '';
+    } else {
+      var hrElm = createElm("hr");
+      var itemElm = createElm("div");
+      itemElm.appendChild(hrElm);
+      itemElm.id = menuItemObj.id;
+      if (menuItemObj.className.length > 0) {
+        itemElm.sepClassName = menuItemObj.className;
       }
-      if (e.stopPropagation) {
-        e.stopPropagation();
+      else {
+        itemElm.sepClassName = menuItemObj.sepClassName;
       }
-    };
-    itemElm.onmouseover = menuItemOver;
-    if (menuItemObj.itemName.length > 0) {
-      this.items[menuItemObj.itemName] = itemElm;
-    }
-    else {
-      this.items[this.items.length] = itemElm;
+      itemElm.className = itemElm.sepClassName;
+      this.menuObj.appendChild(itemElm);
+      itemElm.parent = this;
+      itemElm.setClassName = function(className) { // Public method
+        this.sepClassName = className;
+        this.className = this.sepClassName;
+      };
+      itemElm.onclick = function(e) { // Private method
+        if (!e) {
+          var e = window.event;
+          e.cancelBubble = true;
+        }
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        }
+      };
+      itemElm.onmouseover = menuItemOver;
+      if (menuItemObj.itemName.length > 0) {
+        this.items[menuItemObj.itemName] = itemElm;
+      }
+      else {
+        this.items[this.items.length] = itemElm;
+      }
     }
   }
   else {

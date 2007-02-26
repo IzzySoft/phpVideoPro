@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.6 (2007)
+0.8.6 (February 26, 2007)
 [text]
 <ul>
  <li>IMDB info now also contains the plot outline as first comment

@@ -183,6 +183,13 @@ Contents:
     only ("chmod 0755 moviepic/imdb"). You CAN do so if you are concerned,
     but you don't need it to use the functionality.
 
+ Finally, you may want to install some more templates for the label printing.
+ These can be downloaded from the projects page at
+ http://www.qumran.org/homes/izzy/software/pvp/ - I started separating some
+ rarely changed files to keep the distribution archive of the application
+ smaller to ease updates, so the application archive now only contains a few
+ sample templates for the label system.
+
 ===============================================================================
 
 6.) Updating

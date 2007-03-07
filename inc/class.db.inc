@@ -17,8 +17,9 @@
   * @package Api
   * @class sql
   * @extends DB_Sql
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @version $Revision$
   */
  /** SQL substring to limit result sets to a certain number
   * @class sql
@@ -3405,6 +3406,109 @@
    if ($id!="") return $pspacks[0];
    if (isset($totals)) $pspacks['totals'] = $totals;
    return $pspacks;
+ }
+
+ #=============================================[ PSLabel Pack Management ]===
+
+ /** Register a PSLabel Pack with the DB
+  * @method register_pslabel_pack
+  * @param object pack PackInfo (properties: rev,sname,name,descript,creator)
+  * @return integer pack_id
+  */
+ function register_pslabel_pack($pack) {
+   if (!is_int($pack->rev) || empty($pack->rev) || empty($pack->sname)) return FALSE;
+   $this->dbquery("SELECT id FROM pvp_pspacks WHERE sname='".$pack->sname."'");
+   $this->next_record();
+   $pack_id = $this->f('id');
+   if ($pack_id) {
+     $query = "UPDATE pvp_pspacks SET rev=".$pack->rev.",name='".$pack->name
+            . "',descript='".$pack->descript."',creator='".$pack_creator
+            . "' WHERE id=$pack_id";
+     $this->dbquery($query);
+   } else {
+     $query = "INSERT INTO pvp_pspacks (rev,sname,name,descript,creator)"
+            . " VALUES (".$pack->rev.",'".$pack->sname."','".$pack->name
+            . "','".$pack->descript."','".$pack->creator."')";
+     $this->dbquery($query);
+     $this->dbquery("SELECT id FROM pvp_pspacks WHERE sname='".$pack->sname."'");
+     $this->next_record();
+     $pack_id = $this->f('id');
+   }
+   return $pack_id;
+ }
+
+ /** DeRegister a PSLabel Pack from the DB
+  * @method deregister_pslabel_pack
+  * @param integer pack_id ID of the label pack
+  * @param optional boolean cascade default TRUE delete associated labels as well
+  * @return boolean success
+  */
+ function deregister_pslabel_pack($pack_id,$cascade=TRUE) {
+   if (empty($pack_id) || !is_int($pack_id)) return FALSE;
+   if ($this->dbquery("DELETE FROM pvp_pspacks WHERE id=$pack_id")) {
+     if ($cascade) return $this->dbquery("DELETE FROM pvp_epstemplates WHERE pack_id=$pack_id");
+     return TRUE;
+   } else return FALSE;
+ }
+
+ /** Get list of eps_files for a given PSLabel Pack
+  * @method get_pspack_epsfiles
+  * @param integer pack_id ID of the PSLabel Pack
+  * @return array files
+  */
+ function get_pspack_epsfiles($pack_id) {
+   $files = array();
+   $this->dbquery("SELECT eps_filename FROM pvp_epstemplates WHERE pack_id=$pack_id");
+   while ($this->next_record()) {
+     $files[] = $this->f('eps_filename');
+   }
+   return $files;
+ }
+
+ /** Register a PSLabel with the DB
+  * @method register_pslabel
+  * @param object label (properties: pack_id,type,description,eps_filename,ps_filename,llx,lly,urx,ury)
+  * @brief This method can be used to check whether a label is already registered:
+  *        Simply leave at least one of the properties llx,lly,urx,ury empty. If
+  *        this method still returns TRUE, the label is already registered.
+  * @return boolean success
+  */
+ function register_pslabel($label) {
+   // first we check whether the label is already registered
+   if (! (is_int($label->type) && is_int($label->pack_id)) ) return FALSE;
+   if (empty($label->eps_filename) || empty($label->ps_filename)) return FALSE;
+   $query = "SELECT COUNT(*) AS zahl FROM pvp_epstemplates"
+          . " WHERE pack_id=".$label->pack_id
+          . "   AND type=".$label->type
+          . "   AND eps_filename='".$label->eps_filename
+          . "'  AND ps_filename='".$label->ps_filename."'";
+   $this->query($query);
+   $this->next_record();
+   if ($this->f('zahl')>0) return TRUE;
+   // label was not yet registered - make sure the entry will be valid
+   if (! (is_int($label->llx) && is_int($label->lly)
+       && is_int($label->urx) && is_int($label->ury)) )
+      return FALSE;
+   if (empty($label->pack_id) || empty($label->type) || empty($label->description)
+      || (empty($label->llx) && $label->llx!=0) || (empty($label->lly) && $label->lly!=0)
+      || (empty($label->urx) && $label->urx!=0) || (empty($label->ury) && $label->ury!=0))
+      return FALSE;
+   $query = "INSERT INTO pvp_epstemplates (type, pack_id, description,"
+          . " eps_filename, ps_filename, llx, lly, urx, ury) VALUES ("
+          . $label->type.",".$label->pack_id.",'".$label->description."','"
+          . $label->eps_filename."','".$label->ps_filename."',"
+          . $label->llx.",".$label->lly.",".$label->urx.",".$label->ury.")";
+   return $this->dbquery($query);
+ }
+
+ /** DeRegister a PSLabel from the DB
+  * @method deregister_pslabel
+  * @param integer id LabelID
+  * @return boolean success
+  */
+ function deregister_pslabel($id) {
+   if (empty($id) || !is_int($id)) return FALSE;
+   return $this->dbquery("DELETE FROM pvp_epstemplates WHERE id=$id");
  }
 
  ############################################################################

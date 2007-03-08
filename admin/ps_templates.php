@@ -129,6 +129,9 @@
   check = confirm("<?=lang("confirm_delete")?>");
   if (check == true) window.location.href=url;
  }
+ function psinst(sname,rev) {
+  window.open('ps_install.php?name='+sname+';rev='+rev,'psinst','toolbar=no,location=no,titlebar=no,directories=no,status=yes,resizable=yes,scrollbars=yes,copyhistory=no,width=600,height=400');
+ }
 </SCRIPT>
 <?
    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
@@ -199,7 +202,7 @@
        $t->set_var("prev2",$prev2);
        $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$show_img' BORDER='0' ALT='".lang("edit")."'>"));
        $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?removepack=".$list[$i]["id"]);
-       $t->set_var("remove","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
+       $t->set_var("remove","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
        if ($i) $t->parse("packitem","packitemblock",TRUE);
          else $t->parse("packitem","packitemblock");
      }

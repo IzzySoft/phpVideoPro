@@ -16,8 +16,7 @@
 # $page_id = "admin_users";
  $nomenue = 1;
  $dl_base_url = "http://www.qumran.org/ftp/net/div/izzysoft/";
- $info_base_url = "http://www.qumran.org/homes/izzy/software/pvp/pack_info/";
- $pack_name = $_REQUEST["name"].$_REQUEST["rev"];
+ $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
  $pack_info_file = $_REQUEST["name"].".pvlp";
  include("../inc/includes.inc");
  $install_dir = $base_path."pslabels";
@@ -26,7 +25,7 @@
  #-------------------------------------------------[ Register global vars ]---
  # Permanent vars: name, rev
  # action-based: download, install, remove
- if (is_numeric($_REQUEST["rev"])) $rev = (int) $_REQUEST["rev"];
+ if (is_numeric($_REQUEST["rev"])) $rev = (int) $_REQUEST["rev"]; else $rev = 0;
  if ($pvp->common->req_is_alnum("name")) $name = $_REQUEST["name"];
 
  if (isset($_REQUEST["download"])) $download = TRUE; else $download = FALSE;
@@ -38,13 +37,44 @@
  if (!$pvp->auth->admin) kickoff();
  $save_result = "";
 
- #==================================================[ process the changes ]===
+ #------------------------------------------------[ Check Name & Revision ]---
  include("../inc/header.inc");
-
  if ($download||$install||$remove) {
    echo "<BR><TABLE CLASS='window' ALIGN='center'><TR><TD>\n";
  }
 
+ if (empty($name)) { // if no pspack specified, go (back) to overview
+    header("Location: ".$pvp->link->url_path(dirname(__FILE__))."ps_templates.php");
+    exit;
+ }
+ if (empty($rev)) { // get latest revision if not given
+   olog(lang("psinst_search_rev",$name));
+   $file  = @file($info_url);
+   $lines = count($file);
+   if (empty($file) || empty($lines)) {
+     display_error(lang("psinst_no_rev_file_found"));
+     exit;
+   }
+   for ($i=0;$i<$lines;++$i) {
+     $line = trim($file[$i]);
+     if (!strlen($line)) continue; // skip empty lines
+     if (strpos($line,"#")===0) continue; // skip comments
+     $arg = explode(':',$line);
+     if ($arg[0]==$name) {
+       $arr = explode(';',$arg[1]);
+       $rev = $arr[0];
+       break;
+     }
+   }
+ }
+ if (empty($rev)) { // no revision given, and none found online
+   display_error(lang("psinst_no_rev_found",$name));
+   exit;
+ }
+ olog(lang("psinst_found_rev",$rev));
+ $pack_name = $name.$rev;
+
+ #==================================================[ process the changes ]===
  function olog($msg,$lev="-") {
    GLOBAL $nolog;
    if ($nolog) return;
@@ -190,7 +220,7 @@
 
  $details = "<H3>".lang("psinst_action_select")."</H3>\n<UL>";
  if (is_writable($install_dir)) {
-   $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;download=1",lang("psinst_query_dlinst",$name,$rev))."</LI>\n";
+   $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;download=1",lang("psinst_query_dlinst",$name))."</LI>\n";
  }
  $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;install=1",lang("psinst_query_inst",$name,$rev))."</LI>\n";
  $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1",lang("psinst_query_remove",$name))."</LI>\n";

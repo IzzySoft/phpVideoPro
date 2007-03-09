@@ -17,7 +17,6 @@
  $nomenue = 1;
  $dl_base_url = "http://www.qumran.org/ftp/net/div/izzysoft/";
  $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
- $pack_info_file = $_REQUEST["name"].".pvlp";
  include("../inc/includes.inc");
  $install_dir = $base_path."pslabels";
  $nolog = FALSE; // suppress log output for installation progress
@@ -32,14 +31,15 @@
  if (isset($_REQUEST["install"]))  $install = TRUE;  else $install = FALSE;
  if (isset($_REQUEST["remove"]))   $remove = TRUE;   else $remove = FALSE;
  if (isset($_REQUEST["remove_files"])) $remove_files = TRUE; else $remove_files = FALSE;
+ if (isset($_REQUEST["noinst"]))   $noinst = TRUE;   else $noinst = FALSE;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
  $save_result = "";
 
  #------------------------------------------------[ Check Name & Revision ]---
- include("../inc/header.inc");
- if ($download||$install||$remove) {
+ if (!$noinst&&$download||$install||$remove) {
+   include("../inc/header.inc");
    echo "<BR><TABLE CLASS='window' ALIGN='center'><TR><TD>\n";
  }
 
@@ -66,13 +66,14 @@
        break;
      }
    }
+   if (empty($rev)) { // no revision given, and none found online
+     display_error(lang("psinst_no_rev_found",$name));
+     exit;
+   }
+   olog(lang("psinst_found_rev",$rev));
  }
- if (empty($rev)) { // no revision given, and none found online
-   display_error(lang("psinst_no_rev_found",$name));
-   exit;
- }
- olog(lang("psinst_found_rev",$rev));
  $pack_name = $name.$rev;
+ $pack_info_file = $name.".pvlp";
 
  #==================================================[ process the changes ]===
  function olog($msg,$lev="-") {
@@ -85,6 +86,10 @@
 
  #----------------------------------------[ unpack tarball from websource ]---
  if ($download) {
+   if ($noinst) {
+     header("Location: ".$dl_base_url.$pack_name.".tgz");
+     exit;
+   }
    if (!is_writable($install_dir)) {
      display_error(lang("psinst_target_not_rw"));
      exit;
@@ -207,6 +212,7 @@
  }
 
  #===================================================[ build initial form ]===
+ include("../inc/header.inc");
 ?>
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -219,14 +225,22 @@
  $t->set_file(array("template"=>"delete.tpl"));
 
  $details = "<H3>".lang("psinst_action_select")."</H3>\n<UL>";
- if (is_writable($install_dir)) {
+ // Download
+ $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;download=1;noinst=1",lang("psinst_query_download",$name))."</LI>\n";
+ // Download & Install
+ if (is_writable($install_dir))
    $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;download=1",lang("psinst_query_dlinst",$name))."</LI>\n";
- }
- $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;install=1",lang("psinst_query_inst",$name,$rev))."</LI>\n";
+ else $details .= "<LI CLASS='greytext'>".lang("psinst_query_dlinst",$name)."</LI>\n";
+ // Install
+ if (file_exists("$install_dir/$pack_info_file"))
+   $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;install=1",lang("psinst_query_inst",$name,$rev))."</LI>\n";
+ else $details .= "<LI CLASS='greytext'>".lang("psinst_query_inst",$name,$rev)."</LI>\n";
+ // UnRegister
  $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1",lang("psinst_query_remove",$name))."</LI>\n";
- if (is_writable($install_dir)) {
+ // UnInstall
+ if (is_writable($install_dir))
    $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1;remove_files=1",lang("psinst_query_remove_files",$name))."</LI>\n";
- }
+ else $details .= "<LI CLASS='greytext'>".lang("psinst_query_remove_files",$name)."</LI>\n";
  $details .= "</UL>\n";
 
  $t->set_var("listtitle",lang("psinst_title"));

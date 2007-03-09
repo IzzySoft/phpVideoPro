@@ -678,4 +678,5 @@ INSERT INTO lang VALUES ('psinst_no_rev_file_found','en','Could not find the rev
 INSERT INTO lang VALUES ('psinst_no_rev_found','en','Could not find revision number for the PSLabel Pack \"%1\" - this pack is not known at the phpVideoPro site.','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_search_rev','en','Looking for latest revision number of the PSLabel Pack \"%1\"...','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_found_rev','en','Found revision #%1.','Message on installation/update/removal of PS Label Packs');
+INSERT INTO lang VALUES ('psinst_query_download','en','Download the latest available revision of the PSLabel Pack \"%1\"','Query on the PSLabelPack Installation');
 #INSERT INTO lang VALUES ('','en','','');

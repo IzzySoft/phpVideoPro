@@ -7,6 +7,7 @@
 <ul>
  <li>separators broke menu in MSIE, so we do not use them anymore for it
      (but still use them in other browsers)
+ <li>in PSLabel administration, you now can install/remove label packs
 </ul>
 
 [title]

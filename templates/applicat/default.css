@@ -137,3 +137,5 @@ LEGEND { font-size: 92%; }
   border:1px outset #fff;
   background-color: #dadada;
 }
+
+.greytext { color:#444; }

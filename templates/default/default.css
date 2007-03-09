@@ -58,3 +58,4 @@ CODE { font-size: 12px; font-family: monospace; color: #603; }
 .error { color: #f00; }
 .ok    { color: #00f; }
 .virtual_button { border:1px outset #fff; background-color: #dadada; }
+.greytext { color:#444; }

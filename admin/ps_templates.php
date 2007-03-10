@@ -15,6 +15,7 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_pstemplates";
  include("../inc/includes.inc");
+ $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
 
  #-------------------------------------------------[ Register global vars ]---
  if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
@@ -23,6 +24,7 @@
  if (isset($_GET["packdetails"])) $packdetails = $_GET["packdetails"]; else $packdetails = FALSE;
  if (isset($_REQUEST["edit"])) $edit = $_REQUEST["edit"]; else $edit = FALSE;
  if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_REQUEST["update"])) $update = TRUE; else $update = FALSE;
  if (isset($_POST["submit"])) $submit = $_POST["submit"]; else $submit = FALSE;
  $postit = array ("desc","type_id","eps_file","ps_file","llx","lly","urx","ury");
  foreach ($postit as $var) {
@@ -179,12 +181,25 @@
 #     $fields = array("id","rev","sname","name","descript","creator");
    } else { // show list of template packs
  #-----------------------------------------------------[ Label Packs List ]---
+     if ($update) { // read information from distribution site
+       $file  = @file($info_url);
+       $lines = count($file);
+       for ($i=0;$i<$lines;++$i) {
+         $line = trim($file[$i]);
+         if (!strlen($line)) continue; // skip empty lines
+         if (strpos($line,"#")===0) continue; // skip comments
+         $arg = explode(':',$line);
+         ${$arg[0]} = explode(';',$arg[1]);
+       }
+     }
      $query = "\$db->get_pspacks(\"\",$start)";
      $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
      $list = $nextmatch->list;
 #echo "<pre>";print_r($list);echo "</pre>";
 #echo "Count: ".$nextmatch->listcount."<br>";
      for ($i=0;$i<$nextmatch->listcount;$i++) {
+       $sname = $list[$i]["sname"];
+       if (isset(${$sname}[0])) $list[$i]["rev2"] = ${$sname}[0];
        if ($list[$i]["rev"]>0) {
          $pname = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],$list[$i]["name"]);
          $prev1 = $list[$i]["rev"];
@@ -207,7 +222,7 @@
          else $t->parse("packitem","packitemblock");
      }
      $t->set_var("lname",lang("label_packs"));
-     $t->set_var("check_update",lang("check_update")); // include link here
+     $t->set_var("check_update",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?update=1",lang("check_update")));
      $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?addpack=1",lang("add_entry")));
      $t->set_var("head_name",lang("pstplpack_name"));
      $t->set_var("head_rev1",lang("pstplpack_rev1"));

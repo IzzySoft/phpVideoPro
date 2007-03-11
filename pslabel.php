@@ -262,7 +262,7 @@ echo "showpage\n";
    $t->pparse("out","list");
  } else {
    $epslist = "";
-   for ($i=0;$i<count($etcount);$i++) {
+   for ($i=0;$i<$etcount;$i++) {
      $epslist .= "<OPTION VALUE=\"" . $epstemplates[$i]['id'] . "\">" . $epstemplates[$i]['description'] . "</OPTION>";
    }
 #==

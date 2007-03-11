@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -19,6 +19,10 @@
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("template"=>"admin_orphans.tpl"));
  $t->set_block("template","itemblock","item");
+ $t->set_block("template","movieblock","movielist");
+ $t->set_block("movieblock","movieitem","movie");
+ $t->set_block("movieblock","nomovieitem","nomovie");
+ $t->set_block("movieblock","havemovieitem","havemovie");
 
  if (isset($_POST["delete"])) {
   $t->set_var("button","");

@@ -680,4 +680,6 @@ INSERT INTO lang VALUES ('psinst_search_rev','en','Looking for latest revision n
 INSERT INTO lang VALUES ('psinst_found_rev','en','Found revision #%1.','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_query_download','en','Download the latest available revision of the PSLabel Pack \"%1\"','Query on the PSLabelPack Installation');
 INSERT INTO lang VALUES ('info','en','Info','');
+INSERT INTO lang VALUES ('admin_psinstall','en','PSLabelPack (De-)Installation','Page title');
+INSERT INTO lang VALUES ('cat_egypt','en','Egyptology','A category name');
 #INSERT INTO lang VALUES ('','en','','');

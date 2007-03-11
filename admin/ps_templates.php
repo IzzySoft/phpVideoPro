@@ -26,6 +26,7 @@
  if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
  if (isset($_REQUEST["update"])) $update = TRUE; else $update = FALSE;
  if (isset($_POST["submit"])) $submit = $_POST["submit"]; else $submit = FALSE;
+ if (isset($_REQUEST["packname"]) && $pvp->common->req_is_alnum("packname")) $packname = $_REQUEST["packname"];
  $postit = array ("desc","type_id","eps_file","ps_file","llx","lly","urx","ury");
  foreach ($postit as $var) {
    if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
@@ -137,6 +138,7 @@
 </SCRIPT>
 <?
    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+   $action_img= $tpl_dir . "/images/actions.gif";
    $info_img  = $tpl_dir . "/images/info2.gif";
    $edit_img  = $tpl_dir . "/images/edit.gif";
    $show_img  = $tpl_dir . "/images/show.gif";
@@ -167,19 +169,38 @@
      $t->set_var("right",$nextmatch->right);
      $t->set_var("last",$nextmatch->last);
      $t->parse("list","listblock");
-   } elseif ($packdetails) {
+   } elseif ($packdetails||!empty($packname)) {
  #------------------------------------------------------[ Label Pack Edit ]---
-     $pack = $db->get_pspacks($packdetails);
      $t->set_var("tname",lang("name"));
-     $t->set_var("name",$pack["name"]);
      $t->set_var("tcreator",lang("creator"));
-     $t->set_var("creator",$pvp->common->make_clickable($pack["creator"]));
      $t->set_var("tdesc",lang("description"));
-     $t->set_var("desc",$pack["descript"]);
      $t->set_var("trev",lang("pstplpack_rev1"));
-     $t->set_var("rev",$pack["rev"]);
+     if (empty($packdetails)) { // not locally installed
+       $file = @file($info_url);
+       $lines = count($file);
+       for ($i=0;$i<$lines;++$i) {
+         $line = trim($file[$i]);
+         if (!strlen($line)) continue; // skip empty lines
+         if (strpos($line,"#")===0) continue; // skip comments
+         $arg = explode(':',$line);
+         if ($arg[0]!=$packname) continue; // wrong pack
+         if (!empty($arg[2])) $arg[1].=$arg[2]; // URL in creator may contain ':'
+         $pack = explode(';',$arg[1]);
+         $t->set_var("rev",$pack[0]);
+         $t->set_var("name",$pack[1]);
+         $t->set_var("desc",$pack[2]);
+         $t->set_var("creator",$pvp->common->make_clickable($pack[3]));
+         break;
+       }
+     } else {
+       $pack = $db->get_pspacks($packdetails);
+       $t->set_var("name",$pack["name"]);
+       $t->set_var("creator",$pvp->common->make_clickable($pack["creator"]));
+       $t->set_var("desc",$pack["descript"]);
+       $t->set_var("rev",$pack["rev"]);
+#       $fields = array("id","rev","sname","name","descript","creator");
+     }
      $t->parse("packview","packviewblock");
-#     $fields = array("id","rev","sname","name","descript","creator");
    } else { // show list of template packs
  #-----------------------------------------------------[ Label Packs List ]---
      if ($update) { // read information from distribution site
@@ -190,6 +211,7 @@
          if (!strlen($line)) continue; // skip empty lines
          if (strpos($line,"#")===0) continue; // skip comments
          $arg = explode(':',$line);
+         if (!empty($arg[2])) $arg[1].=$arg[2]; // URL in creator may contain ':'
          ${$arg[0]} = explode(';',$arg[1]);
          $rempack[] = $arg[0];
        }
@@ -216,9 +238,9 @@
        }
        $t->set_var("prev2",$prev2);
        $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$info_img' BORDER='0' ALT='".lang("info")."'>"));
-       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],"<IMG SRC='$show_img' BORDER='0' ALT='".lang("info")."'>"));
+       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
        $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?removepack=".$list[$i]["id"]);
-       $t->set_var("actions","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
+       $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' ALT='".lang("actions")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
        if ($i) $t->parse("packitem","packitemblock",TRUE);
          else $t->parse("packitem","packitemblock");
      }
@@ -228,9 +250,9 @@
          $t->set_var("pname",${$rempack[$k]}[1]);
          $t->set_var("prev1","-");
          $t->set_var("prev2",${$rempack[$k]}[0]);
-         $t->set_var("info","");
+         $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packname=".$rempack[$k],"<IMG SRC='$info_img' BORDER='0' ALT='".lang("info")."'>"));
          $t->set_var("edit","");
-         $t->set_var("actions","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$rempack[$k]."',".${$rempack[$k]}[0].")\">");
+         $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' ALT='".lang("actions")."' onClick=\"psinst('".$rempack[$k]."',".${$rempack[$k]}[0].")\">");
          if ($i) $t->parse("packitem","packitemblock",TRUE);
            else $t->parse("packitem","packitemblock");
        }

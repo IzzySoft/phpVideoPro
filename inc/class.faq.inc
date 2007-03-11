@@ -14,8 +14,6 @@
  #  * global function: string lang(string) for translations                  #
  #############################################################################
 
- /* $Id$ */
-
 require_once(dirname(__FILE__)."/class.template.inc");
 
 #====================================================[ Build page content ]===
@@ -24,6 +22,7 @@ require_once(dirname(__FILE__)."/class.template.inc");
  * @class faq
  * @author Izzy (izzysoft@qumran.org)
  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+ * @version $Revision$ $Date$
  */
 class faq {
 
@@ -32,6 +31,7 @@ class faq {
   * @param string tpl_dir Directory containing the HTML template files
   * @param string tpl_file Filename of the template file to use
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
+  * @version $Revision$ $Date$
   */
  function faq($dir,$file,$toc="") {
   $this->version = "0.1.2";
@@ -249,18 +249,23 @@ class faq {
  }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
+ * @class faq
  * @attribute private string toc
  */
 /** Content of the TOC (to be parsed into {toc})
+ * @class faq
  * @attribute private string toclist
  */
 /** Content of the parsed input file (one line per cell)
+ * @class faq
  * @attribute private array input
  */
 /** Content of the parsed input file, splitted into blocks
+ * @class faq
  * @attribute private array block
  */
 /** Number of blocks created
+ * @class faq
  * @attribute private integer blocks
  */
 

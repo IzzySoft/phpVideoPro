@@ -15,7 +15,7 @@
  * @class archive
  * @brief adapted from a collection of functions written by Dennis Wronka
  *  in his Tutorial at http://www.tutorials.de/forum/php-tutorials/215261-dekompression-mit-php.html
- * @version: $Id$
+ * @version: $Revision$ $Date$
  */
 class archive {
 
@@ -33,7 +33,7 @@ class archive {
 
   /** Alter the logging mode
    * @method logmode
-   * @param mode logmode (on|off|text|html)
+   * @param string mode logmode (on|off|text|html)
    */
   function set_logmode($mode) {
     switch ($mode) {
@@ -59,7 +59,7 @@ class archive {
   }
 
   /** Check directory name syntax
-   * @method privat check_dirname
+   * @method private check_dirname
    * @param string dirname
    * @return string dirname
    */

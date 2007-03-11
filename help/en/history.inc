@@ -12,6 +12,7 @@
      distributed separately (keeps the archive smaller for updates). As you
      may see from the previous point, you also can download/install/remove
      them from within the application now.
+ <li>admin orphaned files page was a bit screwed up - fixed.
 </ul>
 
 [title]

@@ -19,7 +19,7 @@
   * @extends DB_Sql
   * @author Izzy (izzysoft AT qumran DOT org)
   * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
-  * @version $Revision$
+  * @version $Revision$ $Date$
   */
  /** SQL substring to limit result sets to a certain number
   * @class sql
@@ -3384,6 +3384,23 @@
    return $id;
  }
 
+ #=============================================[ PSLabel Pack Management ]===
+
+ /** get a PSLabel Pack by name
+  * @method get_pspack_by_name
+  * @param string sname sname of the pack
+  * @return array packinfo
+  */
+ function get_pspack_by_name($sname) {
+   $this->dbquery("SELECT id,rev,sname,name,descript,creator FROM pvp_pspacks WHERE sname='$sname'");
+   $this->next_record();
+   $fields = array("id","rev","sname","name","descript","creator");
+   foreach ($fields as $f) {
+     $pack[$f] = $this->f($f);
+   }
+   return $pack;
+ }
+
  /** get list of PSLabel Packs
   * @method get_pspacks
   * @param optional integer id
@@ -3407,8 +3424,6 @@
    if (isset($totals)) $pspacks['totals'] = $totals;
    return $pspacks;
  }
-
- #=============================================[ PSLabel Pack Management ]===
 
  /** Register a PSLabel Pack with the DB
   * @method register_pslabel_pack
@@ -3444,7 +3459,7 @@
   * @return boolean success
   */
  function deregister_pslabel_pack($pack_id,$cascade=TRUE) {
-   if (empty($pack_id) || !is_int($pack_id)) return FALSE;
+   if (empty($pack_id) || !is_numeric($pack_id)) return FALSE;
    if ($this->dbquery("DELETE FROM pvp_pspacks WHERE id=$pack_id")) {
      if ($cascade) return $this->dbquery("DELETE FROM pvp_epstemplates WHERE pack_id=$pack_id");
      return TRUE;

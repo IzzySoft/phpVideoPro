@@ -167,14 +167,14 @@ class archive {
   }
 
   /** Get the name of the TAR file contained in the gz/bz archive
+   * @method getuncompressedfilename
+   * @param string compressedfilename
+   * @return string uncompressedfilename
    * @brief If the compressedfilename starts with http:, https:, ftp:,
    *        or ftps:, uncompressedfilename will just be the filename, i.e.
    *        the path will be stripped off. Otherwise, the pathname will be
    *        kept intact. This means, when unpacking directly from the web,
    *        we do not write to the remote server (not supported with http).
-   * @method getuncompressedfilename
-   * @parameter string compressedfilename
-   * @return string uncompressedfilename
    */
   function getuncompressedfilename($compressedfilename) {
     $compressedfilenameparts=explode(".",$compressedfilename);

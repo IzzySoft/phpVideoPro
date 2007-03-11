@@ -5,9 +5,10 @@
 *intro#
 
 [text]
-Hier können Einstellungen für die PS Label Templates vorgenommen werden. Dabei
-werden nicht die Templates selbst bearbeitet, sondern nur die technischen
-Werte, die zu ihrer Verarbeitung benötigt werden. Im Einzelnen sind dies:
+Hier können Einstellungen für die PS Label Packs und Templates vorgenommen
+werden. Dabei werden nicht die Templates selbst bearbeitet, sondern nur die
+technischen Werte, die zu ihrer Verarbeitung benötigt werden. Im Einzelnen sind
+dies:
 <UL>
  <LI>welche Templates verfügbar sind</LI>
  <LI>welchem Typ (z.B. Seiten- oder Top-Labels für VHS Kassetten) sie zugeordnet sind</LI>
@@ -16,8 +17,26 @@ Werte, die zu ihrer Verarbeitung benötigt werden. Im Einzelnen sind dies:
  <LI>welche Kontroll-Datei (d.h. Template-Datei) die weiteren Einzelheiten für das Etikett beschreibt</LI>
 </UL>
 
-[title]
-Die Liste
+[title|1|packlist]
+PSLabel Packs
+
+[text]
+Die PSLabels sind in "Label Packs" organisiert. Dies ermöglicht es dem Anwender,
+nur die benötigten und gewünschten Templates zu installieren: Wer z.B. keine
+VHS Videokassetten benutzt, kann sich auch die Installation der entsprechenden
+Templates bzw. des entsprechenden Label Packs ersparen.
+
+[text]
+Dieses Modul ermöglicht es, Label Packs zu (de-)installieren sowie einzelne
+Labels zu bearbeiten. Die einleitende erste Seite führt alle installierten
+(und nach einem Klick auf den "*check_update#" Link auch alle zusätzlich
+verfügbaren) PSLabel Packs auf. Durch einen Klick auf die zugehörigen Ikons
+lässt sich nähere Information zum Label Pack anzeigen, die Liste der
+zugehörigen Templates aufrufen (siehe <A HREF="#templates">unten</A>), sowie
+das Aktionsfenster zum Download bzw. der (De-)Installation des Packs öffnen.
+
+[title|1|templates]
+Die Template-Liste
 
 [text]
 Die Verwaltung dieser Daten ist in zwei Teile untergliedert. Zunächst wird eine
@@ -28,6 +47,9 @@ gelangt zum nächsten Bildschirm, um ein neues Etikett hinzuzufügen bzw. ein
 bereits existierendes zu bearbeiten. Für alle diese drei Aufgaben stehen
 entsprechende Links bereit: zum Bearbeiten/Löschen unmittelbar neben dem
 betroffenen Eintrag, zum Hinzufügen eines neuen Eintrags direkt im Tabellenkopf.
+Zu bedenken ist hier, dass alle Änderungen mit dem Entfernen des Packs natürlich
+verloren gehen. Für permanente Änderungen sollte sich mit dem Ersteller des
+jeweiligen PSLabel Packs in Verbindung gesetzt werden.
 
 [title]
 Der Editor

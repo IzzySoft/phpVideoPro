@@ -137,6 +137,7 @@
 </SCRIPT>
 <?
    $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
+   $info_img  = $tpl_dir . "/images/info2.gif";
    $edit_img  = $tpl_dir . "/images/edit.gif";
    $show_img  = $tpl_dir . "/images/show.gif";
    $trash_img = $tpl_dir . "/images/trash.gif";
@@ -190,6 +191,7 @@
          if (strpos($line,"#")===0) continue; // skip comments
          $arg = explode(':',$line);
          ${$arg[0]} = explode(';',$arg[1]);
+         $rempack[] = $arg[0];
        }
      }
      $query = "\$db->get_pspacks(\"\",$start)";
@@ -199,14 +201,12 @@
 #echo "Count: ".$nextmatch->listcount."<br>";
      for ($i=0;$i<$nextmatch->listcount;$i++) {
        $sname = $list[$i]["sname"];
-       if (isset(${$sname}[0])) $list[$i]["rev2"] = ${$sname}[0];
-       if ($list[$i]["rev"]>0) {
-         $pname = $pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],$list[$i]["name"]);
-         $prev1 = $list[$i]["rev"];
-       } else {
-         $pname = $list[$i]["name"];
-         $prev1 = "-";
+       if (isset(${$sname}[0])) { // set remote revision
+         $list[$i]["rev2"] = ${$sname}[0];
+         unset(${$sname});
        }
+       $pname = $list[$i]["name"];
+       $prev1 = "-";
        $t->set_var("pname",$pname);
        $t->set_var("prev1",$list[$i]["rev"]);
        if ($list[$i]["rev2"]>0) {
@@ -215,11 +215,25 @@
          $prev2 = "?";
        }
        $t->set_var("prev2",$prev2);
-       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$show_img' BORDER='0' ALT='".lang("edit")."'>"));
+       $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$info_img' BORDER='0' ALT='".lang("info")."'>"));
+       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],"<IMG SRC='$show_img' BORDER='0' ALT='".lang("info")."'>"));
        $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?removepack=".$list[$i]["id"]);
-       $t->set_var("remove","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
+       $t->set_var("actions","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
        if ($i) $t->parse("packitem","packitemblock",TRUE);
          else $t->parse("packitem","packitemblock");
+     }
+     $rc = count($rempack);
+     for ($k=0;$k<$rc;++$k) { // show available packs not yet installed
+       if (isset(${$rempack[$k]})) { // skip locally installed
+         $t->set_var("pname",${$rempack[$k]}[1]);
+         $t->set_var("prev1","-");
+         $t->set_var("prev2",${$rempack[$k]}[0]);
+         $t->set_var("info","");
+         $t->set_var("edit","");
+         $t->set_var("actions","<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."' onClick=\"psinst('".$rempack[$k]."',".${$rempack[$k]}[0].")\">");
+         if ($i) $t->parse("packitem","packitemblock",TRUE);
+           else $t->parse("packitem","packitemblock");
+       }
      }
      $t->set_var("lname",lang("label_packs"));
      $t->set_var("check_update",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?update=1",lang("check_update")));

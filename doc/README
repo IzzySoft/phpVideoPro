@@ -189,6 +189,10 @@ Contents:
  rarely changed files to keep the distribution archive of the application
  smaller to ease updates, so the application archive now only contains a few
  sample templates for the label system.
+ For the PSLabels, this installation can be done automatically from within the
+ application - provided, you granted the web server write permission to the
+ pslabels/ subdirectory. However, if you consider this a security risk, a
+ semi-automatic installation process is provided as well.
 
 ===============================================================================
 

@@ -15,6 +15,9 @@
         <TH>{hmtype_2}</TH>
         <TH>{hmedianr_2}</TH>
         <TH>{hlabel_2}</TH></TR>
+    <!-- BEGIN errorblock -->
+    <TR><TD COLSPAN="8"><SPAN CLASS="error">{error_msg}</SPAN></TD></TR>
+    <!-- END errorblock -->
     <!-- BEGIN definitionblock -->
     <TR><TD><DIV ALIGN="center">{mtype_0}</DIV></TD>
         <TD><DIV ALIGN="center">{medianr_0}</DIV></TD>
@@ -28,6 +31,8 @@
     <!-- END definitionblock -->
   </TABLE></TD></TR><TR><TD><TABLE ALIGN="center" WIDTH="100%">
     <TR><TH><DIV ALIGN="center">{max_fontsize_desc} {max_fontsize}</DIV></TH></TR>
+    <!-- BEGIN submitblock -->
     <TR><TD><DIV ALIGN="center"><INPUT TYPE="submit" NAME="create" VALUE="{create}"></DIV></TD></TR>
+    <!-- END submitblock -->
   </TABLE>
  </FORM></TD></TR></TABLE>

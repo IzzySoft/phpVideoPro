@@ -34,6 +34,9 @@
         <!--TH>{hmtype_2}</TH>
         <TH>{hmedianr_2}</TH>
         <TH>{hlabel_2}</TH></TR-->
+    <!-- BEGIN errorblock -->
+    <TR CLASS="content"><TD COLSPAN="8"><SPAN CLASS="error">{error_msg}</SPAN></TD></TR>
+    <!-- END errorblock -->
     <!-- BEGIN definitionblock -->
     <TR CLASS="content"><TD><DIV ALIGN="center">{mtype_0}</DIV></TD>
         <TD><DIV ALIGN="center">{medianr_0}</DIV></TD>
@@ -54,7 +57,9 @@
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
+<!-- BEGIN submitblock -->
 <TR><TD><DIV STYLE="text-align:center;margin:3;"><INPUT CLASS="submit" TYPE="submit" NAME="create" VALUE="{create}"></DIV></TD></TR>
+<!-- END submitblock -->
 
 </TABLE>
 </FORM></TD></TR>

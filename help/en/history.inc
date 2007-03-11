@@ -8,6 +8,10 @@
  <li>separators broke menu in MSIE, so we do not use them anymore for it
      (but still use them in other browsers)
  <li>in PSLabel administration, you now can install/remove label packs
+ <li>(PS)Label Templates are now removed from the applications archive and
+     distributed separately (keeps the archive smaller for updates). As you
+     may see from the previous point, you also can download/install/remove
+     them from within the application now.
 </ul>
 
 [title]

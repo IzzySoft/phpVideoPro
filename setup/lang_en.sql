@@ -664,7 +664,7 @@ INSERT INTO lang VALUES ('psinst_log_remove_pack','en','Removing PSLabel Pack #%
 INSERT INTO lang VALUES ('psinst_log_remove_files','en','Removing the graphic files of this PSLabel Pack','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_unreg_norw','en','The installation directory is not writable for us, so you need to remove the files manually:','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_deregister_pspack','en','Unregistering the PSLabel Pack','Message on installation/update/removal of PS Label Packs');
-INSERT INTO lang VALUES ('psinst_unregd_pspack','en','Unregistered the PSLabel Pack with %1 error(s).','Message on installation/update/removal of PS Label Packs');
+INSERT INTO lang VALUES ('psinst_unregd_pspack','en','Unregistered the PSLabel Pack \"%1\" with %2 error(s).','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_unreg_pspack_failed','en','Failed to unregister PSLabel Pack %1 from DB','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_log_finished','en','Process finished.','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_query_dlinst','en','Download and install the latest available revision of PSLabel Pack \"%1\"','Query on the PSLabelPack Installation');
@@ -679,4 +679,5 @@ INSERT INTO lang VALUES ('psinst_no_rev_found','en','Could not find revision num
 INSERT INTO lang VALUES ('psinst_search_rev','en','Looking for latest revision number of the PSLabel Pack \"%1\"...','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_found_rev','en','Found revision #%1.','Message on installation/update/removal of PS Label Packs');
 INSERT INTO lang VALUES ('psinst_query_download','en','Download the latest available revision of the PSLabel Pack \"%1\"','Query on the PSLabelPack Installation');
+INSERT INTO lang VALUES ('info','en','Info','');
 #INSERT INTO lang VALUES ('','en','','');

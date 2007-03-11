@@ -175,9 +175,10 @@
  if ($remove) {
    // Get the pack id by re-registering a dummy
    $pack->rev = $rev; $pack->sname = $name;
-   $pack_id = $db->register_pslabel_pack($pack);
+   $ipack = $db->get_pspack_by_name($name);
+   $pack_id = $ipack["id"];
    olog(lang("psinst_log_remove_pack",$name,$pack_id));
-   $file = $db->get_pspack_epsfiles();
+   $file = $db->get_pspack_epsfiles($pack_id);
    $files = count($file);
    if ($_REQUEST["remove_files"]) {
      if (is_writable($install_dir)) {
@@ -213,6 +214,7 @@
 
  #===================================================[ build initial form ]===
  include("../inc/header.inc");
+ $pack = $db->get_pspack_by_name($name);
 ?>
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -236,9 +238,11 @@
    $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;install=1",lang("psinst_query_inst",$name,$rev))."</LI>\n";
  else $details .= "<LI CLASS='greytext'>".lang("psinst_query_inst",$name,$rev)."</LI>\n";
  // UnRegister
- $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1",lang("psinst_query_remove",$name))."</LI>\n";
+ if (!empty($pack["rev"]))
+   $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1",lang("psinst_query_remove",$name))."</LI>\n";
+ else $details .= "<LI CLASS='greytext'>".lang("psinst_query_remove",$name)."</LI>\n";
  // UnInstall
- if (is_writable($install_dir))
+ if (!empty($pack["rev"])&&is_writable($install_dir))
    $details .= "<LI>".$pvp->link->linkurl($_SERVER["PHP_SELF"]."?name=$name;rev=$rev;remove=1;remove_files=1",lang("psinst_query_remove_files",$name))."</LI>\n";
  else $details .= "<LI CLASS='greytext'>".lang("psinst_query_remove_files",$name)."</LI>\n";
  $details .= "</UL>\n";

@@ -13,7 +13,7 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]==
-# $page_id = "admin_users";
+ $page_id = "admin_psinstall";
  $nomenue = 1;
  $dl_base_url = "http://www.qumran.org/ftp/net/div/izzysoft/";
  $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
@@ -61,6 +61,7 @@
      if (strpos($line,"#")===0) continue; // skip comments
      $arg = explode(':',$line);
      if ($arg[0]==$name) {
+       if (!empty($arg[2])) $arg[1].=$arg[2]; // URL in creator may contain ':'
        $arr = explode(';',$arg[1]);
        $rev = $arr[0];
        break;

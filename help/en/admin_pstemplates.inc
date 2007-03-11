@@ -1,31 +1,52 @@
-<? /* list of actors, directors, composers */
- ?>
+<? /* list of actors, directors, composers */ ?>
 <? /* $Id$ */ ?>
 
 [title]
 *intro#
 
 [text]
-This is to edit the settings for the PS Label Templates. You don't edit the
+This is to edit the settings for the PS Label Templates. You do not edit the
 templates themselves here, but you are to administrate their settings. This
 includes the following items:
 <UL>
- <LI>what templates are available</LI>
+ <LI>what label packs/templates are available</LI>
  <LI>what type (e.g. side labels for VHS types or top labels) do they belong to</LI>
  <LI>what image file is to use</LI>
  <LI>what is the dimension (i.e. size) of this label</LI>
  <LI>what control file (i.e. template file) describes the label</LI>
 </UL>
 
-[title]
-The list
+[title|1|packlist]
+Label Packs
+
+[text]
+The PSLabels are organized in so called Label Packs. This makes it easy for the
+user to only install the labels (s)he needs and wants. If someone does not use
+VHS video tapes, it makes no sense to install them - just leave this package
+out, to tell one example.
+
+[text]
+This module makes it possible to install, edit and remove label packs. The
+introductionary (first) page lists up all PSLabel Packs installed and, after
+clicking on the "*check_update#" link, also those available and not yet
+installed. The icons displayed along lead you to additional information on the
+pack, to the list of templates contained (which you may edit then, see <A
+HREF="#templates">below</A>), plus to the action window, where you can download,
+install or remove PSLabel packs.
+
+[title|1|templates]
+The template list
 
 [text]
 The work on managing the templates is split into two parts: first you are
 presented with a list of available labels with the usual controls to walk
-through the collection. To your convinience this list is sorted by the label's
+through the collection. To your convinience this list is sorted by the labels
 name. Here you may decide to add a new label, to edit or to delete an existing
-one. Just use the links provided for this tasks.
+one. Just use the links provided for this tasks. But remember that your changes
+will be lost once you removed the complete label pack. The main reason of this
+managment/editing capabilities is to help you solve simple problems such as
+positioning yourself, in case they occur - and then send a detailed report to
+the author for fixes.
 
 [title]
 The editor
@@ -69,4 +90,3 @@ the form should be re-displayed and give you some information on the success of
 your operation - as you may already know this from editing movie entries.
 
 [eof]
-

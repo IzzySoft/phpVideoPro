@@ -1,7 +1,7 @@
 <?php
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -235,22 +235,34 @@ echo "showpage\n";
      }
    }
 //--></SCRIPT>";
-   include("inc/header.inc");
-   $t = new Template($pvp->tpl_dir);
-   $t->set_file(array("list"=>"ps_layout.tpl"));
-   $t->set_block("list","definitionblock","definitionlist");
-   $t->set_var("js",$js);
-   $ltypes = $db->get_lsheet($ltype_id); // get no. of rows and cols on label sheet and label type
- #== TODO: Abgleich label - sheet - template - layout etc
-  $mtypes = $db->get_mtypes();
-  $mtypelist = "";
-   for ($i=0;$i<count($mtypes);$i++) {
-     $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
-   }
+ include("inc/header.inc");
+ $t = new Template($pvp->tpl_dir);
+ $t->set_file(array("list"=>"ps_layout.tpl"));
+ $t->set_block("list","errorblock","errorlist");
+ $t->set_block("list","definitionblock","definitionlist");
+ $t->set_block("list","submitblock","submitlist");
+ $t->set_var("js",$js);
+ $t->set_var("listtitle",lang("print_label"));
+ $t->set_var("form_target",$_SERVER["PHP_SELF"]);
+ $t->set_var("ltype",$ltype_id);
+ if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+ $ltypes = $db->get_lsheet($ltype_id); // get no. of rows and cols on label sheet and label type
+#== TODO: Abgleich label - sheet - template - layout etc
+ $mtypes  = $db->get_mtypes();
+ $mtypelist = "";
+ for ($i=0;$i<count($mtypes);$i++) {
+   $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
+ }
 #== make selection for EPS templates
-  $epstemplates = $db->get_epstemplates($ltypes['type']);
+ $epstemplates = $db->get_epstemplates($ltypes['type']);
+ $etcount = count($epstemplates);
+ if (empty($etcount)) {
+   $t->set_var("error_msg",lang("pspack_install_required"));
+   $t->parse("errorlist","errorblock");
+   $t->pparse("out","list");
+ } else {
    $epslist = "";
-   for ($i=0;$i<count($epstemplates);$i++) {
+   for ($i=0;$i<count($etcount);$i++) {
      $epslist .= "<OPTION VALUE=\"" . $epstemplates[$i]['id'] . "\">" . $epstemplates[$i]['description'] . "</OPTION>";
    }
 #==
@@ -275,16 +287,13 @@ echo "showpage\n";
      $t->set_var("hlabel_$col",lang("label"));
      $t->set_var("hformat_$col",lang("format"));
    }
-   $t->set_var("listtitle",lang("print_label"));
-   $t->set_var("form_target",$_SERVER["PHP_SELF"]);
-   $t->set_var("ltype",$ltype_id);
    $t->set_var("create",lang("create"));
    $ifontsize = "<INPUT NAME='maxfontsize' VALUE='12' onChange='check_fontsize(this);' " .$form["addon_fsk"]. ">";
    $t->set_var("max_fontsize",$ifontsize);
    $t->set_var("max_fontsize_desc",lang("max_fontsize"));
-   if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+   $t->parse("submitlist","submitblock");
    $t->pparse("out","list");
- 
+ }
 include("inc/footer.inc");
 #== Step 1=====================[ query user input for multi-label-print ]===
  } else { // no arguments -- we have to ask for label type

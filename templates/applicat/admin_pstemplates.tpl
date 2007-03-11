@@ -34,7 +34,7 @@
   <TR CLASS="content"><TD>{pname}</TD>
       <TD><DIV ALIGN="center">{prev1}</DIV></TD>
       <TD><DIV ALIGN="center">{prev2}</DIV></TD>
-      <TD><DIV ALIGN="center">{edit}&nbsp;{remove}</DIV></TR>
+      <TD><TABLE ALIGN="center"><TR><TD WIDTH="23">{info}</TD><TD WIDTH="23">{edit}</TD><TD WIDTH="23">{actions}</TD></TR></TABLE></TR>
 <!-- END packitemblock -->
  <TR><TD COLSPAN="4"><TABLE WIDTH="100%" BORDER="0">
      <TR><TD>{first}{left}</TD>

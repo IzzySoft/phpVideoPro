@@ -35,52 +35,6 @@ CREATE TABLE pvp_epstemplates (
   FULLTEXT KEY description (description)
 ) TYPE=MyISAM COMMENT='Bounding box of EPS template';
 
-# Pack 1
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (1,2,1,'adventure_side','adventure_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (2,1,1,'adventure_top','adventure_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (3,2,1,'action_side','action_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (4,1,1,'action_top','action_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (5,2,1,'b5_side','b5_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (6,1,1,'b5_top','b5_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (7,2,1,'bible_side','bibelfilm_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (8,1,1,'bible_top','bibelfilm_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (9,2,1,'comedy_side','comedy_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (10,1,1,'comedy_top','comedy_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (11,2,1,'default_side','simple_side.eps','simple_side.ps',0,0,414,54);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (12,1,1,'default_top','simple_top.eps','simple_top.ps',0,0,223,126);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (13,2,1,'docu_side','docu_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (14,1,1,'docu_top','docu_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (15,2,1,'drama_side','drama_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (16,1,1,'drama_top','drama_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (17,2,1,'fantasy_side','fantasy_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (18,1,1,'fantasy_top','fantasy_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (19,2,1,'history_side','history_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (20,1,1,'history_top','history_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (21,2,1,'music_side','music_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (22,1,1,'music_top','music_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (23,2,1,'sf_side','sf_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (24,1,1,'sf_top','sf_top.eps','common_top.ps',0,0,273,160);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (25,2,1,'trick_side','trick_side.eps','common_side.ps',0,0,513,68);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (26,1,1,'trick_top','trick_top.eps','common_top.ps',0,0,273,160);
-
-# Pack 2
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (27,3,2,'Action','action_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (28,3,2,'Comedy','comedy_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (29,3,2,'Doku','docu_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (30,3,2,'SciFi','sf_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (31,3,2,'Simple','simple_cddvd.eps','common_cddvd.ps',0,0,468,474);
-
-# Pack 3
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (32,3,3,'Marmor','marmor_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (33,3,3,'Sky','sky_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (34,3,3,'Water','water_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (35,3,3,'Pool','pool_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (36,3,3,'Electronic','electronic_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (37,3,3,'Citrus','citrus_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (38,3,3,'World','world_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (39,3,3,'Clouds','clouds_cddvd.eps','common_cddvd.ps',0,0,468,474);
-INSERT INTO pvp_epstemplates (id, type, pack_id, description, eps_filename, ps_filename, llx, lly, urx, ury) VALUES (40,3,3,'Celtic','celtic_cddvd.eps','common_cddvd.ps',0,0,470,468);
-
 #
 # Table structure and data for 'label form definition'
 #

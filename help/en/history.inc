@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.7 (2007)
+0.8.7 (March 14, 2007)
 [text]
 <ul>
  <li>separators broke menu in MSIE, so we do not use them anymore for it
@@ -13,6 +13,7 @@
      may see from the previous point, you also can download/install/remove
      them from within the application now.
  <li>admin orphaned files page was a bit screwed up - fixed.
+ <li>IMDB code updated again from the latest release of IMDBPHP
 </ul>
 
 [title]

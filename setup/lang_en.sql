@@ -682,4 +682,5 @@ INSERT INTO lang VALUES ('psinst_query_download','en','Download the latest avail
 INSERT INTO lang VALUES ('info','en','Info','');
 INSERT INTO lang VALUES ('admin_psinstall','en','PSLabelPack (De-)Installation','Page title');
 INSERT INTO lang VALUES ('cat_egypt','en','Egyptology','A category name');
+INSERT INTO lang VALUES ('pspack_install_required','en','No suitable EPS templates found - you need to install the corresponding PSLabel Pack first!','Error message on PSLabel print');
 #INSERT INTO lang VALUES ('','en','','');

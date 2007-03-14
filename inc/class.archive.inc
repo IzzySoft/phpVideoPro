@@ -15,7 +15,7 @@
  * @class archive
  * @brief adapted from a collection of functions written by Dennis Wronka
  *  in his Tutorial at http://www.tutorials.de/forum/php-tutorials/215261-dekompression-mit-php.html
- * @version: $Revision$ $Date$
+ * @version $Revision$ $Date$
  */
 class archive {
 

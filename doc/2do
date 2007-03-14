@@ -15,6 +15,9 @@ On Focus:
 - "enhanced" [url] and [img] tags (like we use in phpDiveLog already)
 - "Rental Feature": Logged-in user clicks on "Lent to me" button => "Lent-to"
   field will be filled w/ his name, mail is sent to owner
+- Letter shortcuts for translation editor (jump to code starting with letter)
+- Backup/restore: FromUser/ToUser is missing now that every user may have his
+  own records
 
 Not scheduled (yet):
 - user verification using .htaccess (for site integration: If authenticated,

@@ -32,7 +32,7 @@ clicking on the "*check_update#" link, also those available and not yet
 installed. The icons displayed along lead you to additional information on the
 pack, to the list of templates contained (which you may edit then, see <A
 HREF="#templates">below</A>), plus to the action window, where you can download,
-install or remove PSLabel packs.
+install or remove PSLabel packs (see <A HREF="{PHP_SELF}?topic=admin_psinstall">here</A>).
 
 [title|1|templates]
 The template list

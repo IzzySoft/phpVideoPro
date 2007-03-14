@@ -33,7 +33,8 @@ Labels zu bearbeiten. Die einleitende erste Seite führt alle installierten
 verfügbaren) PSLabel Packs auf. Durch einen Klick auf die zugehörigen Ikons
 lässt sich nähere Information zum Label Pack anzeigen, die Liste der
 zugehörigen Templates aufrufen (siehe <A HREF="#templates">unten</A>), sowie
-das Aktionsfenster zum Download bzw. der (De-)Installation des Packs öffnen.
+das Aktionsfenster zum Download bzw. der (De-)Installation des Packs (siehe
+<A HREF="{PHP_SELF}?topic=admin_psinstall">hier</A>) öffnen.
 
 [title|1|templates]
 Die Template-Liste

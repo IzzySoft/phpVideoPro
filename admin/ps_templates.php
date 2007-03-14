@@ -259,7 +259,7 @@
      }
      $t->set_var("lname",lang("label_packs"));
      $t->set_var("check_update",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?update=1",lang("check_update")));
-     $t->set_var("add",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?addpack=1",lang("add_entry")));
+     $t->set_var("add",lang("actions"));
      $t->set_var("head_name",lang("pstplpack_name"));
      $t->set_var("head_rev1",lang("pstplpack_rev1"));
      $t->set_var("head_rev2",lang("pstplpack_rev2"));

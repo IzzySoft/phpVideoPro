@@ -108,6 +108,7 @@
   $pvp->config->expire_cookies = $db->get_config("expire_cookies");
   $pvp->config->session_purgetime = $db->get_config("session_purgetime");
   $pvp->config->http_cache_enable = $db->get_config("http_cache_enable");
+  $pvp->config->use_http_auth = $db->get_config("use_http_auth");
   include (dirname(__FILE__) . "/class.cookie.inc");
   include (dirname(__FILE__) . "/class.preferences.inc");
   $pvp->preferences = new preferences;

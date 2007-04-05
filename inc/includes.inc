@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -42,5 +42,12 @@
                            $pagename .= " [ " . lang("view_entry",$mt[0]['sname']." $cass_id-$part") . " ]";
 			   unset($mt); break;
     default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
+  }
+  // AutoLogin via HTTP_AUTH (if enabled)
+  if ($pvp->config->use_http_auth && isset($_SERVER["PHP_AUTH_USER"])) {
+    if (!$pvp->auth->user_id || $pvp->auth->user->login=="guest") {
+      $sess_id = $pvp->session->create($_SERVER["PHP_AUTH_USER"],$_SERVER["PHP_AUTH_PW"]);
+      if ($pvp->cookie->active) $pvp->cookie->set("sess_id",$sess_id);
+    }
   }
 ?>

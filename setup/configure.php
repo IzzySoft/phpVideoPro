@@ -70,6 +70,8 @@ if ( isset($update) ) {
     }
     if (!isset($_POST["http_cache_enable"])) $_POST["http_cache_enable"] = 0;
     $db->set_config("http_cache_enable",$_POST["http_cache_enable"]);
+    if (!isset($_POST["use_http_auth"])) $_POST["use_http_auth"] = 0;
+    $db->set_config("use_http_auth",$_POST["use_http_auth"]);
     if (!isset($_POST["imdb_cache_enable"])) $_POST["imdb_cache_enable"] = 0;
     $db->set_config("imdb_cache_enable",$_POST["imdb_cache_enable"]);
     if (!isset($_POST["imdb_cache_expire"])) $_POST["imdb_cache_expire"] = 0;
@@ -163,6 +165,7 @@ $enable_cookies = $db->get_config("enable_cookies");
 $expire_cookies = $db->get_config("expire_cookies");
 $session_purgetime = $db->get_config("session_purgetime");
 $http_cache_enabled  = $db->get_config("http_cache_enable");
+$use_http_auth  = $db->get_config("use_http_auth");
 $bubble_help_enabled  = $pvp->preferences->get("bubble_help_enable");
 $cprinter_id     = $pvp->preferences->get("printer_id");
 $site_info      = $db->get_config("site");
@@ -635,6 +638,16 @@ if ($admin) {
   if (!$http_cache_enabled) $input .= " CHECKED";
   $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='http_cache_enable' VALUE='1'";
   if ($http_cache_enabled) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+#--[ auth ]--
+  $t->set_var("item_name",lang("use_http_auth"));
+  $t->set_var("item_comment",lang("use_http_auth_comment"));
+  $input = "<INPUT TYPE='radio' NAME='use_http_auth' VALUE='0'";
+  if (!$use_http_auth) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='use_http_auth' VALUE='1'";
+  if ($use_http_auth) $input .= " CHECKED";
   $input .= ">".lang("yes");
   $t->set_var("item_input",$input);
   $t->parse("item","itemblock",TRUE);

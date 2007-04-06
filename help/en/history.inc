@@ -2,6 +2,15 @@
 # /*  $Id$ */
 
 [title]
+0.8.8
+[text]
+<ul>
+ <li>added http_auth (.htaccess) user identification
+ <li>added more PSLabel templates (Zweckform and Data Becker CD/DVD Labels)
+ <li>new preference for default pre-selection of most used PSLabel template
+</ul>
+
+[title]
 0.8.7 (March 14, 2007)
 [text]
 <ul>

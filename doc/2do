@@ -20,8 +20,6 @@ On Focus:
   own records
 
 Not scheduled (yet):
-- user verification using .htaccess (for site integration: If authenticated,
-  and user with same name exists, don't aks for the password again)
 - add Audio/Subtitle to filter settings
 - export-button for selected movie (view_entry) and selected movies (movie list)
   for transfer, similiar to a "partial backup"

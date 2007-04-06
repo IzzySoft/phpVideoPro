@@ -303,7 +303,9 @@ include("inc/footer.inc");
    $ltypes = $db->get_label_forms();
    $ltypelist = "";
    for ($i=0;$i<count($ltypes);$i++) {
-     $ltypelist .= "<OPTION VALUE=\"" . $ltypes[$i]['id'] . "\">" . $ltypes[$i]['vendor'] . "," . $ltypes[$i]['product'] . "</OPTION>";
+     $ltypelist .= "<OPTION VALUE=\"" . $ltypes[$i]['id'] ."\"";
+     if ($ltypes[$i]['id']==$pvp->preferences->default_pstemplate_id) $ltypelist .= " SELECTED";
+     $ltypelist .= ">" . $ltypes[$i]['vendor'] . ", " . $ltypes[$i]['product'] . "</OPTION>";
    }
    $ltype   = "<SELECT NAME=\"ltype_id\">$ltypelist</SELECT>";
    include("inc/header.inc");

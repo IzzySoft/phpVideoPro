@@ -19,6 +19,7 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_director');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_music');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_rating');
 
 # Data for pvp_users
 #
@@ -110,6 +111,7 @@ INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
 INSERT INTO pvp_config (name,value) VALUES ('http_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_use','0');
+INSERT INTO pvp_config (name,value) VALUES ('use_http_auth','0');
 
 #
 # set default preferences
@@ -138,3 +140,4 @@ INSERT INTO preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');
 INSERT INTO preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
+INSERT INTO preferences (name,value) VALUES ('default_pstemplate_id','1');

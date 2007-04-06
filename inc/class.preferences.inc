@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -36,7 +36,7 @@
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
               "imdb_tx_country","imdb_txwin_autoclose","imdb_tx_music",
               "default_movie_langid","default_movie_pictid","bubble_help_enable",
-              "showuser","default_vnorm_id");
+              "showuser","default_vnorm_id","default_pstemplate_id");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }

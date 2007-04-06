@@ -579,3 +579,6 @@ INSERT INTO lang VALUES ('xfer_unknown_filetype','de','Der Datentyp dieses Backu
 INSERT INTO lang VALUES ('xfer_wrong_mode','de','Programmfehler: Der eingestellte Transfermodus ist für die gewünschte Aktion nicht zulässig. Erforderlich wäre der Modus \"%1\", eingestellt ist jedoch \"%2\". Bitte unbedingt einen Report mit den Schritten, die zu diesem Fehler geführt haben, an den Autoren schicken!','');
 INSERT INTO lang VALUES ('year','de','Jahr','');
 INSERT INTO lang VALUES ('yes','de','Ja','');
+INSERT INTO lang VALUES ('use_http_auth','de','HTTP Authentification aktivieren?','');
+INSERT INTO lang VALUES ('use_http_auth_comment','de','Dies ist nützlich für Site-Integration mit einem \"Single Sign-In\". Stimmen die Daten eines so angemeldeten Benutzers mit Login-Daten von phpVideoPro überein, wird der Benutzer automatisch angemeldet. Wer diese Funktionalität nicht benötigt, lässt sie besser abgeschaltet.','');
+INSERT INTO lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');

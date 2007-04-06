@@ -53,6 +53,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("default_movie_langid",$_POST["movie_lang"]);
   $pvp->preferences->set("default_movie_pictid",$_POST["movie_pict"]);
   $pvp->preferences->set("default_vnorm_id",$_POST["movie_vnorm"]);
+  $pvp->preferences->set("default_pstemplate_id",$_POST["default_pstemplate_id"]);
   if ($_POST["label_default"]) { $onlabel = "1"; } else { $onlabel = "0"; }
   $pvp->preferences->set("default_movie_onlabel",$onlabel);
   $pvp->preferences->set("printer_id",$_POST["cprinter_id"]);
@@ -159,6 +160,7 @@ $movie_color    = $pvp->preferences->get("default_movie_colorid");
 $movie_lang     = $pvp->preferences->get("default_movie_langid");
 $movie_pict     = $pvp->preferences->get("default_movie_pictid");
 $movie_vnorm    = $pvp->preferences->get("default_vnorm_id");
+$default_pstemplate_id = $pvp->preferences->get("default_pstemplate_id");
 $label_default= $pvp->preferences->get("default_movie_onlabel");
 $remove_media   = $db->get_config("remove_empty_media");
 $enable_cookies = $db->get_config("enable_cookies");
@@ -662,6 +664,20 @@ if ($admin) {
   }
   $t->parse("item","itemblock",TRUE);
 }
+
+#--[ PSLabel Default-Template ]--
+$t->set_var("item_name",lang("default_pstemplate"));
+$t->set_var("item_comment",lang("default_pstemplate_comment"));
+$ltypes = $db->get_label_forms();
+$select = "<SELECT NAME='default_pstemplate_id'>";
+for ($i=0;$i<count($ltypes);++$i) {
+  $select .= "<OPTION VALUE='" .$ltypes[$i]['id'] . "'";
+  if ($default_pstemplate_id==$ltypes[$i]['id']) $select .= " SELECTED";
+  $select .= ">" .$ltypes[$i]['vendor'].", ".$ltypes[$i]['product']. "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
 
 #--[ display_limit ]--
 $t->set_var("item_name",lang("display_limit"));

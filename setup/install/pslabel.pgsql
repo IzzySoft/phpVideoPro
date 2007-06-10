@@ -143,7 +143,7 @@ ALTER TABLE pvp_psprinters ADD CONSTRAINT notnullcheck_psprinters_leftoffset CHE
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (1,'OKI 610ex',4,5.5,4.5);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (2,'EPSON Stylus Photo 890',4,0,0);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (3,'Canon S520',4,0,0);
-INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (4,'Brother MFC',4,5.5,4.5);
+INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (4,'Brother MFC',4,4.5,-4.5);
 
 #
 # Table structure and data for 'label print sheet description'

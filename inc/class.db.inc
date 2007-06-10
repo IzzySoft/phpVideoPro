@@ -178,6 +178,7 @@
        $s->id   = $this->f("lang_id");
        $s->name = $this->f("lang_name");
        $list[]  = $s;
+       unset($s);
      }
      if (!isset($totals)) $totals = 0;
      $list["totals"] = $totals;
@@ -2195,6 +2196,7 @@
        $item->id     = $this->f('media_id');
        $item->mtype_id = $this->f('mtype_id');
        $list[] = $item;
+       unset($item);
      }
      return $list;
    }
@@ -2388,6 +2390,7 @@
        $m->cass_id  = $this->f('id');
        $m->mtype_id = $this->f('mtype_id');
        $media[] = $m;
+       unset($m);
      }
      return $media;
    }
@@ -2414,6 +2417,7 @@
        $type->lp   = $this->f('lp');
        $type->rc   = $this->f('rc');
        $types[]    = $type;
+       unset($type); // work around PHP5 bug always using references to $type here
      }
      if (isset($types)) return $types;
      return "";
@@ -2905,6 +2909,7 @@
        $ms['name']  = $mt[$i]['name'];
        $ms['sname'] = $mt[$i]['sname'];
        $stats['smedia'][] = $ms;
+       unset($ms);
      }
      $this->dbquery("SELECT DISTINCT country FROM pvp_video");
      $stats['countries'] = $this->num_rows();
@@ -3084,6 +3089,7 @@
      $printer->top_offset = $this->f('top_offset');
      $printer->left_offset = $this->f('left_offset');
      $printerlist[] = $printer;
+     unset($printer); // work around for PHP5 bug always using references here
    }
    return $printerlist;
  }
@@ -3317,6 +3323,7 @@
      $type->type = $this->f('type');
      $type->desc = $this->f('description');
      $label[] = $type;
+     unset($type);
    }
    return $label;
  }
@@ -3351,6 +3358,7 @@
      $tpl->urx = $this->f('urx');
      $tpl->ury = $this->f('ury');
      $template[] = $tpl;
+     unset($tpl);
    }
    if (isset($totals)) $template['totals'] = $totals;
    return $template;

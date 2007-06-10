@@ -8,6 +8,10 @@
  <li>added http_auth (.htaccess) user identification
  <li>added more PSLabel templates (Zweckform and Data Becker CD/DVD Labels)
  <li>new preference for default pre-selection of most used PSLabel template
+ <li>added specs for Brother MFC printers to PSLabel settings
+ <li>some work-arounds for PHP5 bug when assigning objects to arrays (PHP5
+     passes them as reference, so this ends up by an array with the correct
+     size - but all elements have the same content)
 </ul>
 
 [title]

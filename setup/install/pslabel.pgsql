@@ -89,6 +89,12 @@ COMMENT ON COLUMN pvp_pslabelforms.product IS 'Product name/details';
 COMMENT ON COLUMN pvp_pslabelforms.description IS 'Detailed description of the sheet';
 COMMENT ON COLUMN pvp_pslabelforms.type IS 'Target (CD/DVDLabel, VHS,...) ID';
 COMMENT ON COLUMN pvp_pslabelforms.unit_id IS 'Unit used for measures in the following fields';
+COMMENT ON COLUMN pvp_pslabelforms.h_dist IS 'Distance of the next column measured from start of the previous one';
+COMMENT ON COLUMN pvp_pslabelforms.v_dist IS 'Distance of the next row measured from start of the previous one';
+COMMENT ON COLUMN pvp_pslabelforms.width IS 'Width of the printable area';
+COMMENT ON COLUMN pvp_pslabelforms.heigth IS 'Heigth of the printable area';
+COMMENT ON COLUMN pvp_pslabelforms.leftm IS 'Left margin';
+COMMENT ON COLUMN pvp_pslabelforms.topm IS ' Top margin';
 COMMENT ON COLUMN pvp_pslabelforms.cols IS 'Number of label columns on this sheet';
 COMMENT ON COLUMN pvp_pslabelforms.rows IS 'Number of label rows on this sheet';
 ALTER TABLE pvp_pslabelforms ADD CONSTRAINT pk_pslabelforms PRIMARY KEY (id);
@@ -109,7 +115,9 @@ INSERT INTO pvp_pslabelforms SELECT * FROM label_forms;
 
 INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',1,3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
 INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
-INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (3,3,'Memorex','CD/DVD Label','CD/DVD Label',3,3,11.9,11.9,11.9,11.9,1.1,2.4,1,1,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (3,'Memorex','CD/DVD Label','CD/DVD Label',3,3,11.9,11.9,11.9,11.9,1.1,2.4,1,1,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (4,'Zweckform','No. 6043 CD-Etiketten','CD/DVD Label',3,3,11.9,12.9,11.9,11.9,4.65,2.143,1,2,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (5,'Data Becker','No. 6815 +XL- Label CD-Etiketten','CD/DVD Label',3,3,11.9,14.8,11.9,11.9,4.7,1.65,1,2,1);
 
 SELECT setval('pvp_pslabelforms_id_seq', 3);
 
@@ -135,6 +143,7 @@ ALTER TABLE pvp_psprinters ADD CONSTRAINT notnullcheck_psprinters_leftoffset CHE
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (1,'OKI 610ex',4,5.5,4.5);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (2,'EPSON Stylus Photo 890',4,0,0);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (3,'Canon S520',4,0,0);
+INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (4,'Brother MFC',4,5.5,4.5);
 
 #
 # Table structure and data for 'label print sheet description'

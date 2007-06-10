@@ -59,9 +59,11 @@ CREATE TABLE pvp_pslabelforms (
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='PS label formsheet definition table';
 
-INSERT INTO pvp_labelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',1,3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
-INSERT INTO pvp_labelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
-INSERT INTO pvp_labelforms (id,vendor,product,description,type,unit_id,h_dist,v_dist,width,heigth,leftm,topm,cols,rows,sheet_id) VALUES (3,3,'Memorex','CD/DVD Label','CD/DVD Label',3,3,11.9,11.9,11.9,11.9,1.1,2.4,1,1,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',1,3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
+INSERT INTO pvp_pslabelforms (id,vendor,product,description,type,unit_id,h_dist,v_dist,width,heigth,leftm,topm,cols,rows,sheet_id) VALUES (3,'Memorex','CD/DVD Label','CD/DVD Label',3,3,11.9,11.9,11.9,11.9,1.1,2.4,1,1,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (4,'Zweckform','No. 6043 CD-Etiketten','CD/DVD Label',3,3,11.9,12.9,11.9,11.9,4.65,2.143,1,2,1);
+INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (5,'Data Becker','No. 6815 +XL- Label CD-Etiketten','CD/DVD Label',3,3,11.9,14.8,11.9,11.9,4.7,1.65,1,2,1);
 
 #
 # Table structure and data for 'printer offset definition'
@@ -81,6 +83,7 @@ CREATE TABLE pvp_psprinters (
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (1,'OKI 610ex',4,5.5,4.5);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (2,'EPSON Stylus Photo 890',4,0,0);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (3,'Canon S520',4,0,0);
+INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (4,'Brother MFC',4,5.5,4.5);
 
 #
 # Table structure and data for 'label print sheet description'

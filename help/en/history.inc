@@ -2,7 +2,7 @@
 # /*  $Id$ */
 
 [title]
-0.8.8
+0.8.8 (June 26, 2007)
 [text]
 <ul>
  <li>added http_auth (.htaccess) user identification
@@ -12,6 +12,7 @@
  <li>some work-arounds for PHP5 bug when assigning objects to arrays (PHP5
      passes them as reference, so this ends up by an array with the correct
      size - but all elements have the same content)
+ <li>fixed vulnerability: SessionID was used to inject code
 </ul>
 
 [title]

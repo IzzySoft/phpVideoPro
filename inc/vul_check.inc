@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -58,7 +58,6 @@
      if (preg_match("/[^\d-]/",$test)) vul_kick($var); }
  }
  function vul_alnum($var) {
-#   $vuls  = "/[\/<>#\\;\[\]]\|\{\}\*/u";
    $vuls = "/[^\w\s-\pL]/u";
    if (!empty($_POST[$var])) {
      $test = stripslashes((string) $_POST[$var]);
@@ -78,6 +77,7 @@
  vul_num("cass_id");
  vul_num("part");
  vul_num("id");
+ if (preg_match("/\W/",$_REQUEST["sess_id"])!==0) vul_kick("sess_id");
 
  #============================================================[ users.php ]===
  if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {

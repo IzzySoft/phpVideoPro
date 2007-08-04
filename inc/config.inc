@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2006 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -19,9 +19,9 @@
  #=============================================================[ database ]===
  $database["type"]      = "mysql";    # mysql|pgsql
  $database["host"]      = "localhost";     # your hosts name
- $database["database"]  = "pvp_test"; # what database holds the tables
- $database["user"]      = "root";     # db user with at least following
+ $database["database"]  = "videopro"; # what database holds the tables
+ $database["user"]      = "video";     # db user with at least following
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE
- $database["password"]  = "";  # this users password for the db
+ $database["password"]  = "c3p0";  # this users password for the db
 ?>

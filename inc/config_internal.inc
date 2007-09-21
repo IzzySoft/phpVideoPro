@@ -39,7 +39,10 @@
 
  #=====================================================[ setup path names ]===
  $pvp->projectpage = "http://www.qumran.org/homes/izzy/software/pvp/";
- $base_path = dirname(dirname(__FILE__))."/";
+# $base_path = dirname(dirname(__FILE__))."/"; # !!! __FILE__ resolves symlinks
+ $bp = dirname($_SERVER['SCRIPT_FILENAME']);
+ if (is_file($bp."/medialist.php")) $base_path = "$bp/";
+ else $base_path = dirname($bp) . "/";
  if (substr(php_uname(), 0, 7) == "Windows") {
    $pvp->config->os_slash = "\\";
    $base_path = str_replace("\\","/",$base_path);

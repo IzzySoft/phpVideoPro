@@ -493,11 +493,16 @@ class common {
    * @class common
    * @method req_is_alnum
    * @param string varname name of the $_REQUEST variable to check
+   * @param boolean sql allow SQL wildcards (%)
    * @return boolean TRUE when none of the $_GET and $_POST violate alnum
    */
-  function req_is_alnum($var) {
+  function req_is_alnum($var,$sql=FALSE) {
 #   $vuls = "/[^\w\s-'\pL]/u";
-   $vuls = "/[^\w\s-\/\?\.,\"!\(\)'\pL]/u";
+   if ($sql) {
+     $vuls = "/[^\w\s-\/\%\?\.,\"!\(\)'\pL]/u";
+   } else {
+     $vuls = "/[^\w\s-\/\?\.,\"!\(\)'\pL]/u";
+   }
    if (!empty($_POST[$var])) {
      $test = stripslashes((string) $_POST[$var]);
      if (@preg_match($vuls,$test)) return FALSE; }

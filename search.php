@@ -26,9 +26,9 @@
    $vuls[] = lang("len_is_nan");
  if (!$pvp->common->req_is_num("minfsk") || !$pvp->common->req_is_num("maxfsk"))
    $vuls[] = lang("fsk_is_nan");
- if (!$pvp->common->req_is_alnum("pname")) $vuls[] = lang("name_not_string");
- if (!$pvp->common->req_is_alnum("title")) $vuls[] = lang("title_not_string");
- if (!$pvp->common->req_is_alnum("comment")) $vuls[] = lang("comment_not_string");
+ if (!$pvp->common->req_is_alnum("pname",1)) $vuls[] = lang("name_not_string");
+ if (!$pvp->common->req_is_alnum("title",1)) $vuls[] = lang("title_not_string");
+ if (!$pvp->common->req_is_alnum("comment",1)) $vuls[] = lang("comment_not_string");
  if ($vc=count($vuls)) {
    $msg = lang("input_errors_occured",$vc) . "<UL>\n";
    for ($i=0;$i<$vc;++$i) {

@@ -156,14 +156,12 @@
    $t->set_var("ngenre",lang("categories"));
    $gen = $movie->genres(); // split up array and fit into template
    $cc = count($gen); $genre = "";
-   for ($i=0;$i+1<$cc;++$i) {
+   for ($i=0;$i<$cc;++$i) {
      $genre .= $gen[$i].", ";
      if (strtolower($gen[$i])=="sci-fi") $gen[$i] = "sf";
-     if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
+     $cat_id=$db->get_category_id("cat_".strtolower($gen[$i]));
+     if (!empty($cat_id)) $cats[]=$cat_id;
    }
-   $genre .= $gen[$i];
-   if (strtolower($gen[$i])=="sci-fi") $gen[$i] = "sf";
-   if ($cat_id=$db->get_category_id("cat_".strtolower($gen[$i]))) $cats[]=$cat_id;
    $t->set_var("mgenre",$genre);
    $catlist = $db->get_category(); $cc = count($catlist); $open=FALSE; $done=-1;
    for ($k=0;$k<3;++$k) {

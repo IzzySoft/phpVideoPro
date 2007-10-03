@@ -17,69 +17,6 @@
  require_once (dirname(__FILE__)."/class.browseremu.inc");
  require_once (dirname(__FILE__)."/class.imdbconf.inc");
 
- #=========================================================[ IMDB_Request ]===
- /** IMDB Request methods
-  * @package Api
-  * @class IMDB_Request
-  * @extends BrowserEmulator
-  */
- class IMDB_Request extends BrowserEmulator{
-  var $maxsize = 100000;
-
-  /** Initialize
-   * @constructor IMDB_Request
-   * @param string url
-   */
-   function IMDB_Request($url){
-    $this->BrowserEmulator();
-    $this->urltoopen = $url;
-   }
-
-  /** Send a request to IMDB (open socket)
-   * @method sendRequest
-   */
-  function sendRequest(){
-   $this->fpopened = $this->fopen($this->urltoopen);
-  }
-
-  /** Retrieve the response body
-   * @method getResponseBody
-   * @return string page
-   */
-  function getResponseBody(){
-   $page = "";
-   while (!feof ($this->fpopened)) {
-    $page .= fread ($this->fpopened, 1024);
-   }
-   return $page;
-  }
-
-  /** Specify URL to use
-   * @method setURL
-   * @param string url
-   */
-  function setURL($url){
-   $this->urltoopen = $url;
-  }
-
-  /** Retrieve the Response Header
-   * @method getresponseheader
-   * @param optional boolean header (default: FALSE)
-   * @return string header
-   */
-  function getresponseheader($header = false){
-   $headers = $this->getLastResponseHeaders();
-   foreach ($headers as $head){
-    if ( is_integer(strpos ($head, $header) )){
-     $hstart = strpos ($head, ": ");
-     $head = trim(substr($head,$hstart+2,100));
-     return $head;
-    }
-   }
-  }
-		
- }
-
  #===============================================[ The IMDB class itself ]===
  /** Accessing IMDB information
   * @package Api
@@ -400,7 +337,7 @@
       if ( $comment_s == 0) return false;
       $comment_e = strpos ($this->page["Title"], "Was the above comment useful to you?", $comment_s);
       $this->main_comment = substr ($this->page["Title"], $comment_s + 43, $comment_e - $comment_s - 43);
-
+      $this->main_comment = preg_replace("/a href\=\"\//i","a href=\"http://".$this->imdbsite."/",$this->main_comment);
      }
      return $this->main_comment;
   }
@@ -469,7 +406,7 @@
    if ($this->main_genre == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
     $genre_s = strpos ($this->page["Title"], "/Sections/Genres/");
-    if ( $genre_s == 0)	return FALSE;
+    if ( $genre_s === FALSE )	return FALSE;
     $genre_s = strpos ($this->page["Title"], ">", $genre_s);
     $genre_e = strpos ($this->page["Title"], "<", $genre_s);
     $this->main_genre = substr ($this->page["Title"], $genre_s + 1, $genre_e - $genre_s - 1);
@@ -485,14 +422,19 @@
    if ($this->main_genres == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
     $this->main_genres = array();
+    $genre_s = strpos($this->page["Title"],"/Sections/Genres/") -5;
+    if ($genre_s === FALSE) return array(); // no genre found
+    $genre_e = strpos($this->page["Title"],"/rg/title-tease/",$genre_s);
+    $block = substr($this->page["Title"],$genre_s,$genre_e-$genre_s);
+    $diff = $genre_e-$genre_s;
     $genre_s = 0;
     $genre_e = 0;
     $i = 0;
-    while (strpos($this->page["Title"], "/Sections/Genres/", $genre_e) > $genre_s) {
-	$genre_s = strpos ($this->page["Title"], "/Sections/Genres/", $genre_s);
-	$genre_s = strpos ($this->page["Title"], ">", $genre_s);
-	$genre_e = strpos ($this->page["Title"], "<", $genre_s);
-	$this->main_genres[$i] = substr ($this->page["Title"], $genre_s + 1, $genre_e - $genre_s - 1);
+    while (strpos($block, "/Sections/Genres/", $genre_e) > $genre_s) {
+	$genre_s = strpos ($block, "/Sections/Genres/", $genre_s);
+	$genre_s = strpos ($block, ">", $genre_s);
+	$genre_e = strpos ($block, "<", $genre_s);
+	$this->main_genres[$i] = substr ($block, $genre_s + 1, $genre_e - $genre_s - 1);
 	$i++;
     }
    }
@@ -587,6 +529,7 @@
     while (($tags_s = strpos ($this->page["Taglines"], "<p>", $tags_e)) < $tagend) {
 	$tags_e = strpos ($this->page["Taglines"], "</p>", $tags_s);
 	$tmptag = substr ($this->page["Taglines"], $tags_s + 3, $tags_e - $tags_s - 3);
+	if (preg_match("/action\=\"\//i",$tmptag)) continue;
 	$this->taglines[$i] = $tmptag;
 	$i++;
     }
@@ -883,14 +826,18 @@
    if ($this->main_country == "") {
     if ($this->page["Title"] == "") $this->openpage ("Title");
     $this->main_country = array();
+    $country_s = strpos($this->page["Title"],"/Sections/Countries/") -5;
+    if ($country_s === FALSE) return array(); // no country found
+    $country_e = strpos($this->page["Title"],"</div>",$country_s);
+    $block = substr($this->page["Title"],$country_s,$country_e-$country_s);
     $country_s = 0;
     $country_e = 0;
     $i = 0;
-    while (strpos ($this->page["Title"], "/Sections/Countries/", $country_e) > $country_s) {
-	$country_s = strpos ($this->page["Title"], "/Sections/Countries/", $country_s);
-	$country_s = strpos ($this->page["Title"], ">", $country_s);
-	$country_e = strpos ($this->page["Title"], "<", $country_s);
-	$this->main_country[$i] = substr ($this->page["Title"], $country_s + 1, $country_e - $country_s - 1);
+    while (strpos ($block, "/Sections/Countries/", $country_e) > $country_s) {
+	$country_s = strpos ($block, "/Sections/Countries/", $country_s);
+	$country_s = strpos ($block, ">", $country_s);
+	$country_e = strpos ($block, "<", $country_s);
+	$this->main_country[$i] = substr ($block, $country_s + 1, $country_e - $country_s - 1);
 	$i++;
     }
    }
@@ -1097,33 +1044,23 @@
 
    $searchstring = array( '<A HREF="/title/tt', '<A href="/title/tt', '<a href="/Title?', '<a href="/title/tt');
    $i = 0;
-#echo "Walking searchstring for this page:";
-#echo "<div style='border:1px solid black'>".htmlentities($this->page)."</div>";
-#echo "<div style='border:1px solid black'>".$this->page."</div>";
    foreach( $searchstring as $srch){
-#echo "<ul><li>Testing ".htmlentities($srch)."</li>";
     $res_e = 0;
     $res_s = 0;
     $len = strlen($srch);
     while ((($res_s = strpos ($this->page, $srch, $res_e)) > 10)) {
       $res_e = strpos ($this->page, "(", $res_s);
-      $tmpres = new imdb ( substr($this->page, $res_s+$len, 7));
-      $ts = strpos($this->page, ">",$res_e) +1;
+      $tmpres = new imdb ( substr($this->page, $res_s+$len, 7)); // make a new imdb object by id
+      $ts = strpos($this->page, ">",$res_s) +1; // >movie title</a>
       $te = strpos($this->page,"<",$ts);
       $tmpres->main_title = substr($this->page,$ts,$te-$ts);
-#      $tmpres->main_title=substr ($this->page, $res_s + 28, $res_e - $res_s - 28);
-#      if ($pos = strpos($tmpres->main_title,">"))
-#        $tmpres->main_title = substr($tmpres->main_title,$pos+1);
       $ts = strpos($this->page,"(",$te) +1;
       $te = strpos($this->page,")",$ts);
       $tmpres->main_year=substr($this->page,$ts,$te-$ts);
-#      $tmpres->main_year=substr($this->page, $res_e+1, 4);
       $i++;
       $this->resu[$i] = $tmpres;
     }
-#echo "</ul>\n";
    }
-#echo "Search completed, '".count($this->resu)."' results.<br>\n";
    return $this->resu;
   }
 } // end class imdbsearch

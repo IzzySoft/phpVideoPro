@@ -1,5 +1,14 @@
 # /* History */
 # /*  $Id$ */
+[title]
+0.8.9
+[text]
+<ul>
+ <li>search form now allows % sign (wildcard) for name, title and comment
+ <li>base_path and base_url are now also correctly calculated if there are
+     symlinks in the path
+ <li>updated imdb class code from imdbphp and applied some code fixes
+</ul>
 
 [title]
 0.8.8 (June 26, 2007)

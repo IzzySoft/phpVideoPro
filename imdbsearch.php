@@ -86,15 +86,22 @@
     $t->parse("resultitem","resitemblock");
   } else { // successful search - display result list
     foreach ($results as $res) {
-      $moviename = "<a href='".$_SERVER["PHP_SELF"]."?mid=".$res->imdbid()."'>"
+      $mid = $res->imdbid();
+      $moviename = "<a href='".$_SERVER["PHP_SELF"]."?mid=$mid'>"
              . $res->title()." (".$res->year().")"."</a>";
       $t->set_var("moviename",$moviename);
-      $link  = "<a href='http://".$search->imdbsite."/title/tt".$res->imdbid()
+      $link  = "<a href='http://".$search->imdbsite."/title/tt${mid}"
              . "' target='_blank'><img src='".$base_url."images/imdb_movie.gif' "
              . "border='0' alt='Open IMDB page'></a>";
       $t->set_var("links",$link);
       $t->parse("resultitem","resitemblock",$open);
       $open = TRUE;
+      $url1 = $pvp->preferences->get("imdb_url");
+      $url2 = $pvp->preferences->get("imdb_url2");
+      if ($url1 != $url2) { // Cached version may have language != EN (parse probs!)
+        $cachefile = $search->cachedir."${mid}.Title";
+        if (file_exists($cachefile)) unlink($cachefile);
+      }
     }
   }
   $t->parse("resultlist","resultblock");

@@ -22,8 +22,9 @@
 
 <TABLE ALIGN="center" BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" STYLE="margin:3">
  <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{abc}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- <TR><TD COLSPAN=2><DIV STYLE="margin:3">
+ <TR><TD COLSPAN="3"><DIV STYLE="margin:3">
   <TABLE ALIGN="center" BORDER="1" CELLPADDING="2" CELLSPACING="2">
    <!-- BEGIN mtitleblock -->
    <COLGROUP><COL WIDTH="150pt"><COL WIDTH="3*"><COL WIDTH="380pt"><COL WIDTH="3*"></COLGROUP>
@@ -44,11 +45,12 @@
    <TR CLASS="content"><TH COLSPAN="3" STYLE="vertical-align:middle">{sel_lang_title}</TH><TD COLSPAN="1"><DIV ALIGN="center">{sel_lang}</DIV></TD></TR>
    <!-- END emptyblock -->
   </Table></DIV></TD></TR>
- <TR><TD COLSPAN="2" BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
- <TR><TD COLSPAN="2" BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
- <TR><TD COLSPAN="2" STYLE="vertical-align:middle"><DIV STYLE="margin:3;text-align:center">
+ <TR><TD COLSPAN="3" BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
+ <TR><TD COLSPAN="3" BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
+ <TR><TD COLSPAN="3" STYLE="vertical-align:middle"><DIV STYLE="margin:3;text-align:center">
    <INPUT TYPE="submit" CLASS="submit" NAME="{submit_name}" VALUE="{submit}"><BR><BR>{save}</DIV></TD></TR>
  <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{abc}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
 </TABLE>
 

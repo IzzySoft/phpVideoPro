@@ -8,6 +8,7 @@
  <li>base_path and base_url are now also correctly calculated if there are
      symlinks in the path
  <li>updated imdb class code from imdbphp and applied some code fixes
+ <li>added letter shortcuts in translation editor
 </ul>
 
 [title]

@@ -3,8 +3,9 @@
 <TABLE ALIGN="center" BORDER="0" WIDTH="95%">
  {hidden}
  <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{abc}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
- <TR><TD COLSPAN=2>
+ <TR><TD COLSPAN="3">
   <TABLE ALIGN="center" BORDER="1" CELLPADDING="2" CELLSPACING="2" WIDTH="100%" Style="table-layout:fixed">
    <!-- BEGIN mtitleblock -->
    <COLGROUP><COL WIDTH="150 pt"><COL WIDTH="*"><COL WIDTH="380 pt"><COL WIDTH="*"></COLGROUP -->
@@ -22,14 +23,15 @@
    </TR>
    <!-- END mdatablock -->
    <!-- BEGIN emptyblock -->
-   <TR><TH COLSPAN="2">{sel_lang_title}</TH><TD COLSPAN="2"><DIV ALIGN="center">{sel_lang}</DIV></TD></TR>
+   <TR><TH COLSPAN="3">{sel_lang_title}</TH><TD COLSPAN="2"><DIV ALIGN="center">{sel_lang}</DIV></TD></TR>
    <!-- END emptyblock -->
-   <TR><TH COLSPAN="2"><DIV ALIGN="center">{save}</DIV></TH>
-       <TH COLSPAN="2"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="{submit_name}" VALUE="{submit}"></DIV></TH>
+   <TR><TH COLSPAN="3"><DIV ALIGN="center">{save}</DIV></TH>
+       <TH COLSPAN="3"><DIV ALIGN="center"><INPUT TYPE="submit" NAME="{submit_name}" VALUE="{submit}"></DIV></TH>
    </TR>
   </Table>
  </TD></TR>
  <TR><TD>{first}{left}</TD>
+     <TD><DIV ALIGN="center">{abc}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
 </TABLE>
  </FORM>

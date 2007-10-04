@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -22,6 +22,8 @@
  if (isset($_GET["savelang"])) $savelang = $_GET["savelang"]; else $savelang = FALSE;
  if (isset($_REQUEST["targetlang"])) $targetlang = $_REQUEST["targetlang"]; else $targetlang = "";
  if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_REQUEST["key"])) $searchkey = $_REQUEST["key"];
+ if (preg_match("/[^0-9a-z\!]/",$searchkey)) unset($searchkey);
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
@@ -91,8 +93,18 @@
    exit;
  }
 
+ #=================================================[ initialize shortcuts ]===
+ for ($i=0;$i<10;++$i)   $keys[] = "$i";    // 0-9
+ for ($i=97;$i<122;++$i) $keys[] = chr($i); // a-z
+ $abc = "<A HREF='".$_SERVER["PHP_SELF"]."?targetlang=$targetlang;key=!'>!</A>";
+ foreach ($keys as $key) {
+   $abc .= "&nbsp;&nbsp;<A HREF='".$_SERVER["PHP_SELF"]."?targetlang=$targetlang;key=$key'>"
+         . strtoupper($key)."</A>";
+ }
+ $t->set_var("abc",$abc);
+
  #=================================[ get translations and setup variables ]===
- $query = "\$db->get_singletrans(\"en\",$start)";
+ $query = "\$db->get_singletrans(\"en\",$start,\"\",\"$searchkey\")";
  $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?targetlang=$targetlang",$start);
 
  $list = $nextmatch->list;

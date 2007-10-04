@@ -308,10 +308,12 @@
     * @param string lang language to retrieve for
     * @param optional integer start (for lim_query)
     * @param optional string msgID single translation to catch
+    * @param optional string key first letter of the first message_id to match
     * @return array of object translations (msgID = translation, xlist[] of msgIDs)
     */
-   function get_singletrans($lang,$start="",$msg="") {
+   function get_singletrans($lang,$start="",$msg="",$key="") {
      $query = "SELECT message_id,content,comment FROM lang WHERE lang='$lang'";
+     if ($key) { $query .= " AND message_id>'$key'"; }
      if ($msg) { $query .= " AND message_id='$msg'"; }
        else { $query .= " ORDER BY message_id"; }
      if ($start==="") { $this->dbquery($query); }

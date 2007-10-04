@@ -172,38 +172,47 @@ class common {
     $newText = "";
     $lines = split("\n",$data);
     while ( list ($key,$line) = each ($lines)) {
+      // The old [href] is only kept for backwards compatibility
       if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
           $sub  = eregi_replace("\[href\](.*)\[\/href\]","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      if ( preg_match_all("/\[url\]\S+\[\/url\]/i",$line,$matches) ) {
+      // first replace the image tags (so they may be part of the [url])
+      if ( preg_match_all("/\[img\]([^|]+)(\|{0,1}.*)\[\/img\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          if ( preg_match("/\[img\]\S+\[\/img\]/i",$matches[0][$i]) ) {
-            $imgurl = eregi_replace("\[url\]\[img\](.*)\[\/img\]\[\/url\]","\\1",$matches[0][$i]);
-          } elseif ( preg_match("/\[imgr\]\S+\[\/imgr\]/i",$matches[0][$i]) ) {
-            $imgurl = eregi_replace("\[url\]\[imgr\](.*)\[\/imgr\]\[\/url\]","\\1",$matches[0][$i]);
-          } else {
-            $imgurl = "\\1";
-          }
-          $sub  = eregi_replace("\[url\](.*)\[\/url\]","<A HREF=\"$imgurl\" TARGET=\"_blank\" ALT=''>\\1</A>",$matches[0][$i]);
+	  if (empty($matches[2][$i])) {
+            $link = eregi_replace("\[img\]([^|]+)\[\/img\]","\\1",$matches[0][$i]);
+            $sub  = eregi_replace("\[img\]([^|]+)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
+	  } else {
+            $link = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","\\1",$matches[0][$i]);
+            $sub  = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
+	  }
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      if ( preg_match_all("/\[img\]\S+\[\/img\]/i",$line,$matches) ) {
+      if ( preg_match_all("/\[imgr\]([^|]+)(\|{0,1}.*)\[\/imgr?\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[img\](.*)\[\/img\]","<IMG ALIGN=\"left\" STYLE=\"margin-right:4\" SRC=\"\\1\" ALT=''>",$matches[0][$i]);
+	  if (empty($matches[2][$i])) {
+            $link = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","\\1",$matches[0][$i]);
+            $sub  = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
+	  } else {
+            $link = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","\\1",$matches[0][$i]);
+            $sub  = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
+	  }
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      if ( preg_match_all("/\[imgr\]\S+\[\/imgr\]/i",$line,$matches) ) {
+      if ( preg_match_all("/\[url\].+\[\/url\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[imgr\](.*)\[\/imgr\]","<IMG ALIGN=\"right\" STYLE=\"margin-left:4\" SRC=\"\\1\" ALT=''>",$matches[0][$i]);
+          $link  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\1",$matches[0][$i]);
+          $text  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\2",$matches[0][$i]);
+	  if (empty($text)) $text = $link;
+          $sub  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","<A HREF='$link' TARGET='_blank'>$text</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      $line = eregi_replace("\[imgr\](.*)\[\/img\]","<IMG ALIGN=\"right\" SRC=\"\\1\" ALT=''>",$line);
       $newText .= "$line\n";
     }
     return $newText;

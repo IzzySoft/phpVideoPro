@@ -9,6 +9,7 @@
      symlinks in the path
  <li>updated imdb class code from imdbphp and applied some code fixes
  <li>added letter shortcuts in translation editor
+ <li>enhanced syntax for [url] and [img] (see online help)
 </ul>
 
 [title]

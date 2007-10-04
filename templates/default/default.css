@@ -59,3 +59,20 @@ CODE { font-size: 12px; font-family: monospace; color: #603; }
 .ok    { color: #00f; }
 .virtual_button { border:1px outset #fff; background-color: #dadada; }
 .greytext { color:#444; }
+
+span.thumbnail-right,span.thumbnail-left {
+  padding:2px;
+  background: #e5e5e5;
+  margin:0.3em 0 0.5em;
+  font-size:75%;
+  text-align:center;
+  color: #000;
+}
+span.thumbnail-right {
+  float:right;
+  margin-left:0.5em;
+}
+span.thumbnail-left {
+  float:left;
+  margin-right:0.5em;
+}

@@ -167,6 +167,12 @@ provided to your convinience: URLs enclosed by [url] and [/url] are made
 correct tags to display a given image either left- or right-aligned. You may
 nest these tags to make images clickable, e.g. [url][img]picture[/img][/url].
 [text]
+Optionally, you can add a description to an image (or an alternate text to
+display for a link), separating it from the URL with the pipe symbol, e.g.
+[url]http://johndoe.com|John Doe[/url] or [img]picture.jpg|Movie poster[/img],
+or even [url]http://movie.page.com/|[img]picture.jpg|Favorite movie[/img][/url].
+
+[text]
 Some more standard HTML tags are allowed in their original way, such as tags
 for bold, underline, italics, linebreaks, paragraphs, lists and horizontal
 rulers. All other HTML tags get stripped of - that is to protect your site from

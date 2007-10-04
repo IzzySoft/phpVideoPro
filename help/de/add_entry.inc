@@ -177,6 +177,13 @@ machen (sie werden dann in einem separaten Browser-Fenster geöffnet), sowie
 verlinken, können die Tags wie folgt verschachtelt werden:
 [url][img]Bild-URL[/img][/url].
 [text]
+Optional lässt sich auch eine Beschreibung zu einem Bild (oder ein alternativer
+Text für einen Link) angeben, indem er von der URL durch ein "Pipe Symbol" getrennt
+wird - zum Beispiel: [url]http://johndoe.com/|John Doe[/url], oder
+[img]picture.jpg|Movie poster[/img], oder gar
+[url]http://movie.page.com/|[img]picture.jpg|Favorite movie[/img][/url].
+
+[text]
 Desweiteren ist die Verwendung einiger "normaler" HTML Tags für die Formatierung
 erlaubt: dies sind B,I,U,CENTER sowie BLOCK,PRE,BR,P,HR und Listen. Alle anderen
 Tags werden gnadenlos entfernt - dies dient dem Schutz der Site gegen

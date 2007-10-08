@@ -244,7 +244,7 @@ INSERT INTO lang VALUES ('incomplete_date','ru','Если Вы не знаете
 INSERT INTO lang VALUES ('index','ru','Индекс','');
 INSERT INTO lang VALUES ('info_common','ru','Общая информация','');
 INSERT INTO lang VALUES ('info_common_info','ru','<DIV ALIGN=\"center\">Это phpVideoPro версия %1, бегущего на %2.</DIV>','');
-INSERT INTO lang VALUES ('info_noupdate','ru','<DIV ALIGN=\"center\">Установленная версия phpVideoPro (%1) является недавней - нет никакой более новой версии, доступной для разгрузки. Чтобы загружать архив, установленной версии, пожалуйста следуйте за <A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">эта связь</A>.</DIV>','');
+INSERT INTO lang VALUES ('info_noupdate','ru','<DIV ALIGN=\"center\">Установленная версия phpVideoPro (%1) является недавней - нет никакой более новой версии, доступной для разгрузки. Чтобы загружать архив, установленной версии, пожалуйста следуйте за <A HREF=\"http://projects.izzysoft.de/progs/get_update.php?program=pvp\" TARGET=\"_blank\">эта связь</A>.</DIV>','');
 INSERT INTO lang VALUES ('info_update','ru','Обновить информацию','');
 INSERT INTO lang VALUES ('input_errors_occured','ru','phpVideoPro столкнулся с %1 проблемой, обрабатывая ввод:','');
 INSERT INTO lang VALUES ('intro','ru','Интро','');

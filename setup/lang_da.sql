@@ -230,7 +230,7 @@ INSERT INTO lang VALUES ('imp_success','da','Import af %1 film udført.','');
 INSERT INTO lang VALUES ('incomplete_date','da','Hvis du ikke kender den nøjagtige dato men f.eks kun året du anskaffede en filk kan du skrive 00 for de ukendte data.','');
 INSERT INTO lang VALUES ('info_common','da','Generel information','');
 INSERT INTO lang VALUES ('info_common_info','da','<div align=center\">Dette er version %1 af phpVideoPro, kørende på %2.</div>','');
-INSERT INTO lang VALUES ('info_noupdate','da','<div align=\"center\">Den installerede version af  phpVideoPro (%1) er den nyeste. Du kan hente en tarball med den installerede version her:<a href=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" target=\"_blank\">this link</a>.</div>','');
+INSERT INTO lang VALUES ('info_noupdate','da','<div align=\"center\">Den installerede version af  phpVideoPro (%1) er den nyeste. Du kan hente en tarball med den installerede version her:<a href=\"http://projects.izzysoft.de/progs/get_update.php?program=pvp\" target=\"_blank\">this link</a>.</div>','');
 INSERT INTO lang VALUES ('info_update','da','Opdaterings information','');
 INSERT INTO lang VALUES ('in_list','da','i liste','');
 INSERT INTO lang VALUES ('input_errors_occured','da','phpVideoPro mødte %1 fejl under behandling af dit input:','');

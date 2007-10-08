@@ -17,7 +17,7 @@ up-to-date to reflect the recent application state.
 So I hope you can cope with this code, and wish you good luck - and enjoy
 phpVideoPro!
 
-Itzchak "Izzy" Rehberg (izzysoft@qumran.org)
+Itzchak "Izzy" Rehberg (izzysoft AT qumran DOT org)
 
 ===============================================================================
 
@@ -185,7 +185,7 @@ Contents:
 
  Finally, you may want to install some more templates for the label printing.
  These can be downloaded from the projects page at
- http://www.qumran.org/homes/izzy/software/pvp/ - I started separating some
+ http://projects.izzysoft.de/?topic=progs;subject=phpvideopro - I started separating some
  rarely changed files to keep the distribution archive of the application
  smaller to ease updates, so the application archive now only contains a few
  sample templates for the label system.
@@ -289,17 +289,18 @@ Contents:
 -----------------------
 
   Two running demos are to be found on my private homepage using the URL
-  http://www.qumran.org/homes/izzy/ - one of them, the developers demo,
-  reflects the latest changes (and thus may be intermittently "broken" when
-  larger changes take place), the other reflects the latest release. At the
-  same place you will also find some information on some other projects of
-  mine - for more, also visit my business site, http://www.izzysoft.de/
+  http://projects.izzysoft.de/?topic=progs;subject=phpvideopro - one of them,
+  the developers demo, reflects the latest changes (and thus may be inter-
+  mittently "broken" when larger changes take place), the other reflects the
+  latest release. At the same place you will also find some information on
+  some other projects of mine - for more, also visit my business site,
+  http://www.izzysoft.de/
   As a backup, you can also download the latest version at SourceForge,
   http://sourceforge.net/projects/phpvideopro/. The tarball of the latest
   available version should always be available by an "alias":
-  http://www.qumran.org/homes/izzy/software/get_update?program=pvp should
+  http://projects.izzysoft.de/progs/get_update?program=pvp should
   always send you the GNU-zipped tarball of the latest version (hopefully - if
   I didn't forget to update it :)
   If you have questions/suggestions, you can also contact me via email, using
-  the address izzysoft@qumran.org - and please, don't give up waiting if I
-  do not respond that quickly; it sometimes takes me a while :)
+  the address izzysoft AT qumran DOT org - and please, don't give up waiting if
+  I do not respond that quickly; it sometimes takes me a while :)

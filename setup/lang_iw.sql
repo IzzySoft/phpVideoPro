@@ -173,7 +173,7 @@ INSERT INTO lang VALUES ('incomplete_date','iw','מלא אפסים, אם לא י
 INSERT INTO lang VALUES ('index','iw','אינדקס','');
 INSERT INTO lang VALUES ('info_common','iw','מידע רגיל','');
 INSERT INTO lang VALUES ('info_common_info','iw','<DIV ALIGN=\"center\">זאת ה-יא גרסה %1 של phpVideo Pro .עובד על %2 </div>','');
-INSERT INTO lang VALUES ('info_noupdate','iw','<DIV ALIGN=\"center\">המהדורה המותקנת של phpVideoPro .היא עיתית .אין גרסה יותר מעודכנת :המשך, להורדת הכדור זפת של הגרסה המותקן, אחרי<A HREF=http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">this link</a>.</div>','');
+INSERT INTO lang VALUES ('info_noupdate','iw','<DIV ALIGN=\"center\">המהדורה המותקנת של phpVideoPro .היא עיתית .אין גרסה יותר מעודכנת :המשך, להורדת הכדור זפת של הגרסה המותקן, אחרי<A HREF=http://projects.izzysoft.de/progs/get_update.php?program=pvp\" TARGET=\"_blank\">this link</a>.</div>','');
 INSERT INTO lang VALUES ('info_update','iw','מידע עדכון','');
 INSERT INTO lang VALUES ('intro','iw','מבוא','');
 INSERT INTO lang VALUES ('invalid_fsk','iw',' בטל הערך שהוכנס ל .PG (\"%1\") מסומן בזה .parental guide .מישה-ו תחת הגיל לא נכנס','');

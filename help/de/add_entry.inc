@@ -149,12 +149,12 @@ Etwas Achtsamkeit ist bei der Eingabe dieser Daten angebracht: das erste Feld
 sollte den Namen, und das zweite den Vornamen enthalten. Auch hier kann
 natürlich wieder jeder seinem Gusto frönen - was aber ggf. einige Funktionen
 von phpVideoPro beeinflußt. Auf der
-<A HREF="http://www.qumran.org/homes/izzy/software/pvp/demo" TARGET="_blank">Demo-Site</A>
-habe ich bereits einige Einträge gesehen, die sowohl im Namen als auch im
-Vornamen vollständige Namen (also Vor- und Nachname) enthielten. Sucht man nun
-aber nach einem bestimmten Darsteller, treten entsprechende Schwierigkeiten auf,
-wie sich unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=filter">Filters</A>
-feststellen lassen wird.
+<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro"
+TARGET="_blank">Demo-Site</A> habe ich bereits einige Einträge gesehen, die
+sowohl im Namen als auch im Vornamen vollständige Namen (also Vor- und Nachname)
+enthielten. Sucht man nun aber nach einem bestimmten Darsteller, treten
+entsprechende Schwierigkeiten auf, wie sich unschwer bei der Erstellung eines
+<A HREF="{PHP_SELF}?topic=filter">Filters</A> feststellen lassen wird.
 
 [text]
 Zusätzlich gibt es zu jedem Namen eine Checkbox "*in_list#", die wiederum mit

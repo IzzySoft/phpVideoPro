@@ -1218,7 +1218,7 @@ following to you:<br>
 <li>middle digit: gamma state nr# or "0" if none<br>
 <li>first digit: final release nr# or "0" if none<br>
 Alphas will only be internal and have a suffix added (p#, as to be seen on the
-<A HREF="http://www.qumran.org/homes/izzy/">Demo-Site</A>).
+<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro">Demo-Site</A>).
 [text]
 <hr>Changes:
 <ul>

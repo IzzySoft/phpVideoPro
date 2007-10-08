@@ -88,10 +88,11 @@ alltid för familjenamnet, det andra för det första namnet. Namn på personalm
 är inte lagrade tillsammans med film-datan, utan i en separat tabell.
 Med film-datan, finns det bara en referens lagrad - så om du senare vill gå till
 listan med några noteringar för en specifik person, så kan du hamna i trubbel: på
-<A HREF="http://www.qumran.org/homes/izzy/">demosajten</A>, såg jag redan
-noteringar som håller båda namndelarna i ett fält, bara för att lagra två personer i
-en notering. Självklart <i>kan</i> du göra så - men det är inte så jag planerat det,
-och några framtida funktioner behöver inte nödvändigtvis tänkas få denna möjlighet.
+<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro"
+TARGET="_blank">demosajten</A>, såg jag redan noteringar som håller båda namndelarna
+i ett fält, bara för att lagra två personer i en notering. Självklart <i>kan</i> du
+göra så - men det är inte så jag planerat det, och några framtida funktioner behöver
+inte nödvändigtvis tänkas få denna möjlighet.
 
 [text]
 Slutligen, finns det en checkruta fastklistrad till varje namn, märkt "i listan". Denna,

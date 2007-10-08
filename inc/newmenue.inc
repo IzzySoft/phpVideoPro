@@ -28,7 +28,7 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("<?=lang("backup_db")?>", "admin_backupDB", "<?=$pvp->link->slink($base_url."admin/backup_db.php")?>"));
     addMenuItem(new menuItem("<?=lang("configuration")?>", "admin_config", "<?=$pvp->link->slink($base_url."admin/configure.php")?>"));
     addMenuItem(new menuItem("-"));
-    addMenuItem(new menuItem("<?=lang("dl_pvp_latest")?>", "admin_dl", "http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp"));
+    addMenuItem(new menuItem("<?=lang("dl_pvp_latest")?>", "admin_dl", "http://projects.izzysoft.de/progs/get_update.php?program=pvp"));
   }
   menuBar.addMenuBarItem(new menuBarItem("<?=lang("admin")?>",adminMenu,"AdminMenu"));
   menuBar.items.AdminMenu.showIcon("admin");
@@ -163,7 +163,7 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("<?=lang("index")?>", "help_index", "JavaScript:open_help('')"));
     addMenuItem(new menuItem("<?=lang("about")?>", "help_about", "JavaScript:open_help('about')"));
     addMenuItem(new menuItem("<?=lang("history")?>", "help_history", "JavaScript:open_help('history')"));
-    addMenuItem(new menuItem("<?=lang("pvp_homepage")?>", "help_project", "http://www.qumran.org/homes/izzy/software/pvp/"));
+    addMenuItem(new menuItem("<?=lang("pvp_homepage")?>", "help_project", "<?=$pvp->projectpage?>"));
 <? if ($page_id) { ?>
     addMenuItem(new menuItem("-"));
     addMenuItem(new menuItem("Hilfe zum Thema '<?=lang($page_id)?>'", "help_topic"));

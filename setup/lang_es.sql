@@ -177,7 +177,7 @@ INSERT INTO lang VALUES ('incomplete_date','es','Si no sabe la fecha exacta, per
 INSERT INTO lang VALUES ('index','es','Indice','');
 INSERT INTO lang VALUES ('info_common','es','Información común','');
 INSERT INTO lang VALUES ('info_common_info','es','<DIV ALIGN=\"center\">Esta es la versión %1 de phpVideoPro, funcionando en %2.</DIV>','');
-INSERT INTO lang VALUES ('info_noupdate','es','<DIV ALIGN=\"center\"> La versión instalada de phpVideoPro (%1) es reciente - no hay nuevas versiones disponibles para descargar. Para descargar el archivo de la versión instalada, por favor vaya a <A HREF=http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">este eslabón</A>.</DIV>','');
+INSERT INTO lang VALUES ('info_noupdate','es','<DIV ALIGN=\"center\"> La versión instalada de phpVideoPro (%1) es reciente - no hay nuevas versiones disponibles para descargar. Para descargar el archivo de la versión instalada, por favor vaya a <A HREF=http://projects.izzysoft.de/progs/get_update.php?program=pvp\" TARGET=\"_blank\">este eslabón</A>.</DIV>','');
 INSERT INTO lang VALUES ('info_update','es','Actualizar información','');
 INSERT INTO lang VALUES ('invalid_fsk','es','El valor ingresado en PG (\"%1\") no es válido. PG significa Guia Parentesco, es decir, la edad mínima que se necesita para tener acceso a esta película.','');
 INSERT INTO lang VALUES ('invalid_media_nr','es','El Numero de Medio especificado esta incompleto o no es válido. Debe especificar un <b>número</b> dentro de <b>ambos</b> campos de Numero de Medio.','');

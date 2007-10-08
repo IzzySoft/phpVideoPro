@@ -1,8 +1,8 @@
 <?
  #############################################################################
  # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -38,7 +38,7 @@
  if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
  #=====================================================[ setup path names ]===
- $pvp->projectpage = "http://www.qumran.org/homes/izzy/software/pvp/";
+ $pvp->projectpage = "http://projects.izzysoft.de/?topic=progs;subject=phpvideopro";
 # $base_path = dirname(dirname(__FILE__))."/"; # !!! __FILE__ resolves symlinks
  $bp = dirname($_SERVER['SCRIPT_FILENAME']);
  if (is_file($bp."/medialist.php")) $base_path = "$bp/";

@@ -63,14 +63,15 @@ categorie, zal er worden gezocht in alle drie de categorieën.
 Staf
 
 [text]
-Let even op bij het invullen van de gegevens in de velden aan de rechterkant. Het
-eerste veld is de achternaam, het tweede veld is voor de voornaam. Namen 
-worden opgeslagen in een aparte tabel, er wordt bij de filmgegevens alleen een verwijzing naar 
-deze tabel opgenomen. Indien je dit niet zo invult, dan kun je later in problemen komen.
-Op de <A HREF="http://www.qumran.org/homes/izzy/">demo site</A>, was er al te zien,
-dat iemand twee namen in één veld had neergezet. Dit kun je wel doen, maar dat betekent
-dat als je later een overzicht wilt hebben van alle films waarin een persoon voorkomt,
-dit natuurlijk niet gaat lukken. 
+Let even op bij het invullen van de gegevens in de velden aan de rechterkant.
+Het eerste veld is de achternaam, het tweede veld is voor de voornaam. Namen 
+worden opgeslagen in een aparte tabel, er wordt bij de filmgegevens alleen een
+verwijzing naar deze tabel opgenomen. Indien je dit niet zo invult, dan kun je
+later in problemen komen. Op de <A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro"
+TARGET="_blank">demo site</A>, was er al te zien, dat iemand twee namen in één
+veld had neergezet. Dit kun je wel doen, maar dat betekent dat als je later een
+overzicht wilt hebben van alle films waarin een persoon voorkomt, dit natuurlijk
+niet gaat lukken. 
 
 [text]
 Daarnaast is er een aankruisvakje bij iedere naam, getiteld 'In lijst'. Dit is, ook,

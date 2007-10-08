@@ -201,7 +201,7 @@ INSERT INTO lang VALUES ('incomplete_date','fr','Si vous ne connaissez pas la da
 INSERT INTO lang VALUES ('index','fr','Index','');
 INSERT INTO lang VALUES ('info_common','fr','Informations','');
 INSERT INTO lang VALUES ('info_common_info','fr','<DIV ALIGN=\"center\">Vous utilisez la version %1 de phpVideoPro, sur %2.</DIV>','');
-INSERT INTO lang VALUES ('info_noupdate','fr','<DIV ALIGN=\"center\">La version de phpVideoPro installée (%1) est la plus récente. Pour télécharger le fichier d\'installation de votre version, suivez<A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">ce lien</A>.</DIV>','');
+INSERT INTO lang VALUES ('info_noupdate','fr','<DIV ALIGN=\"center\">La version de phpVideoPro installée (%1) est la plus récente. Pour télécharger le fichier d\'installation de votre version, suivez<A HREF=\"http://projects.izzysoft.de/progs/get_update.php?program=pvp\" TARGET=\"_blank\">ce lien</A>.</DIV>','');
 INSERT INTO lang VALUES ('info_update','fr','Information de mise à  jour','');
 INSERT INTO lang VALUES ('intro','fr','Intro','');
 INSERT INTO lang VALUES ('intro_usage','fr','<P>Voilà  quelques informations pour les nouveaux utilisateurs :<ul><li>La navigation est toujours possible en utilisant la barre de menu en ahaut de la plupart des pages.</li><li>La plupart des pages ont une rubrique d\'aide. Vous pouvez l\'appeler soit par le menu d\'aide, soit (quand il est disponnible), par le bouton \"?\" en haut de page</li><li>Le formulaire suivant vous permet de vous rendre directement à  un film, si vous en connaissez le numéro. Sinon, il vaut mieux utiliser la Liste Media (dans le menu \"Affichage\") ou le formulaire de recherche (menu \"Edition\").</li></ul></P>','');

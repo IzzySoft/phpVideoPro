@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2004 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -15,8 +15,8 @@
  /** Data Transfer
   * @package Api
   * @class xfer
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   */
  class xfer {
 

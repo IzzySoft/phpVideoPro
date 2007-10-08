@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2005 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -15,8 +15,8 @@
  ##############################################################[ Debugging ]###
  /** output debug message depending on configured debug level
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function debug
   * @param string level debug level (1 char only)
   * @param string msg debug message
@@ -29,8 +29,8 @@
 
  /** check whether the given debug level is set
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function debugLevel
   * @param string level debug level (1 char only)
   * @return boolean TRUE if set, FALSE if not
@@ -44,8 +44,8 @@
  #########################################################[ Error Handling ]###
  /** format and display an error message for unrecoverable error
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function display_error
   * @param string error error message to display
   */
@@ -59,8 +59,8 @@
  ###############################################################[ Checking ]###
  /** preset empty (table) fields with a hard space (to enforce table borders)
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function check_empty
   * @param string field field to check
   */
@@ -70,8 +70,8 @@
 
  /** check wether the string contains only digits (and nothing else)
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function is_num
   * @param string var var to check
   */
@@ -88,8 +88,8 @@
   *  day < 32 (which also allows "2000-00-00") - whereas in exact mode the given
   *  date must really exist
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function check_date
   * @param string date date to check (format: YYYY-MM-DD)
   * @param optional integer exact whether the date has to be valid; otherwise "00" is counted as a valid day/month and "0000" as a valid year as well (defaults to "1")
@@ -117,8 +117,8 @@
  /** get filter settings from db - real function moved to class preferences,
   *  so this is just a wrapper until the change is done in all files
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function get_filters
   */
  function get_filters() {
@@ -130,8 +130,8 @@
  /** get translation
   *  if no translation is found, the content of the passed param $key is returned instead
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function lang
   * @param string key translation key
   * @param optional array m1 replace placeholder (%1..%10 in translations)
@@ -148,8 +148,8 @@
 
  /** build the translations (helper func to function lang)
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function translate
   * @param string key translation key
   * @param optional array vars array of replacement strings (see function lang)
@@ -171,8 +171,8 @@
  ###########################################################[ (No-)Session ]###
  /** kick-off unauthorized visitor
   * @package Api
-  * @author Izzy (izzysoft@qumran.org)
-  * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+  * @author Izzy (izzysoft AT qumran DOT org)
+  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
   * @function kickoff
   */
  function kickoff() {

@@ -1,8 +1,8 @@
 <?php
  #############################################################################
  # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -95,7 +95,7 @@ function insert_cddvd_eps() {
   $db->query("$ins 3,2,'Doku','docu_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,2,'SciFi','sf_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,2,'Simple','simple_cddvd.eps','common_cddvd.ps',0,0,468,474)");
-  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://www.qumran.org/homes/izzy/software/pvp/[/url])')");
+  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')");
   $db->query("$ins 3,3,'Marmor','marmor_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,3,'Sky','sky_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,3,'Water','water_cddvd.eps','common_cddvd.ps',0,0,468,474)");
@@ -105,7 +105,7 @@ function insert_cddvd_eps() {
   $db->query("$ins 3,3,'World','world_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,3,'Clouds','clouds_cddvd.eps','common_cddvd.ps',0,0,468,474)");
   $db->query("$ins 3,3,'Celtic','celtic_cddvd.eps','common_cddvd.ps',0,0,470,468)");
-  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://www.qumran.org/homes/izzy/software/pvp/[/url])')");
+  $db->query("INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')");
   echo " <LI><SPAN CLASS='ok'>PSLabelPacks updated.</SPAN></LI>";
 }
 

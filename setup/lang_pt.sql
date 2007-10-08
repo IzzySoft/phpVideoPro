@@ -237,7 +237,7 @@ INSERT INTO lang VALUES ('incomplete_date','pt','Se não sabe a data exacta, mas
 INSERT INTO lang VALUES ('index','pt','Índice','');
 INSERT INTO lang VALUES ('info_common','pt','Informação comum','');
 INSERT INTO lang VALUES ('info_common_info','pt','<DIV ALIGN=\"center\">Esta é a versão %1 do phpVideoPro, correndo em %2.</DIV>','');
-INSERT INTO lang VALUES ('info_noupdate','pt','<DIV ALIGN=\"center\">A versão instalada do phpVideoPro (%1) é recente - não há nenhuma nova versão disponível para baixar. Para baixar o ficheiro tar da versão instalada por favor siga <A HREF=\"http://www.qumran.org/homes/izzy/software/get_update.php?program=pvp\" TARGET=\"_blank\">esta hiperligação</A>.</DIV>','');
+INSERT INTO lang VALUES ('info_noupdate','pt','<DIV ALIGN=\"center\">A versão instalada do phpVideoPro (%1) é recente - não há nenhuma nova versão disponível para baixar. Para baixar o ficheiro tar da versão instalada por favor siga <A HREF=\"http://projects.izzysoft.de/progs/get_update.php?program=pvp\" TARGET=\"_blank\">esta hiperligação</A>.</DIV>','');
 INSERT INTO lang VALUES ('info_update','pt','Actualizar Informação','');
 INSERT INTO lang VALUES ('input_errors_occured','pt','O phpVideoPro encontrou %1 problema(s) enquanto processava o valor de entrada:','');
 INSERT INTO lang VALUES ('intro','pt','Introdução','');

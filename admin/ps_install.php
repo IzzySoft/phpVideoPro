@@ -15,8 +15,8 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_psinstall";
  $nomenue = 1;
- $dl_base_url = "http://www.qumran.org/ftp/net/div/izzysoft/";
- $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
+ $dl_base_url = "http://www.izzysoft.de/ftp/net/div/izzysoft/";
+ $info_url = "http://projects.izzysoft.de/progs/phpvideopro/inc/pspacks.txt";
  include("../inc/includes.inc");
  $install_dir = $base_path."pslabels";
  $nolog = FALSE; // suppress log output for installation progress

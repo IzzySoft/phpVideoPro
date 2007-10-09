@@ -28,7 +28,7 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("<?=lang("backup_db")?>", "admin_backupDB", "<?=$pvp->link->slink($base_url."admin/backup_db.php")?>"));
     addMenuItem(new menuItem("<?=lang("configuration")?>", "admin_config", "<?=$pvp->link->slink($base_url."admin/configure.php")?>"));
     addMenuItem(new menuItem("-"));
-    addMenuItem(new menuItem("<?=lang("dl_pvp_latest")?>", "admin_dl", "http://projects.izzysoft.de/progs/get_update.php?program=pvp"));
+    addMenuItem(new menuItem("<?=lang("dl_pvp_latest")?>", "admin_dl", "http://projects.izzysoft.de/progs/get_update.php?program=pvp;version=<?=$version?>;info_url=http://<?=$_SERVER["SERVER_NAME"]?><?=$base_url?>info.php?action=update"));
   }
   menuBar.addMenuBarItem(new menuBarItem("<?=lang("admin")?>",adminMenu,"AdminMenu"));
   menuBar.items.AdminMenu.showIcon("admin");

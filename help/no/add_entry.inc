@@ -67,7 +67,7 @@ alltid for etternavn, og det f°rste er alltid for fornavn. Navn p bemanningen
 er ikke lagret sammen med fil informasjonen, men i separate tabeller. I film
 informasjonen eksisterer det kun en referanse - s dersom du senere s°ker etter
 en bestemt person kan du f problemer dersom navnet ikke er riktig fyllt inn. P
-<A HREF="http://www.qumran.org/homes/izzy/">demo siden</A>, har jeg allerede sett
+<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro">demo siden</A>, har jeg allerede sett
 eksempler p at begge navn er lagt inn i ett felt, kun for  lagre to personer i
 en definisjon. Selvf°lgelig <b>kan</b> du gj°re dette, men det er ikke den mten
 jeg planlagt bruken, og noen tjenester programmet tilbyr har ikke tenkt p denne

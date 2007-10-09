@@ -2,8 +2,8 @@
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
  # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #

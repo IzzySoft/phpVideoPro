@@ -15,7 +15,7 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_pstemplates";
  include("../inc/includes.inc");
- $info_url = "http://www.qumran.org/homes/izzy/software/pvp/inc/pspacks.txt";
+ $info_url = "http://projects.izzysoft.de/progs/phpvideopro/inc/pspacks.txt";
 
  #-------------------------------------------------[ Register global vars ]---
  if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;

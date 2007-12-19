@@ -12,8 +12,8 @@ CREATE TABLE pvp_pspacks (
   PRIMARY KEY (id)
 ) TYPE=MyISAM COMMENT='PS Label Pack Info';
 INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (1,1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
-INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')
-INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')
+INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
+INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
 
 #
 # Table structure and data for 'eps templates bounding box definition'
@@ -90,7 +90,7 @@ INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (
 #
 
 DROP TABLE IF EXISTS pvp_pssheets;
-CREATE TABLE sheets (
+CREATE TABLE pvp_pssheets (
   id tinyint(4) NOT NULL auto_increment,
   name char(16) NOT NULL,
   unit_id int(11) NOT NULL default '0',

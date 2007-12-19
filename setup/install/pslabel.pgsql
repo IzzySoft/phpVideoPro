@@ -21,8 +21,8 @@ ALTER TABLE pvp_pspacks ADD CONSTRAINT pk_pspacks PRIMARY KEY (id);
 ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_rev CHECK(rev IS NOT NULL);
 ALTER TABLE pvp_pspacks ADD CONSTRAINT notnullcheck_pspacks_sname CHECK(sname IS NOT NULL);
 INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (1,1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
-INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')
-INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])')
+INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
+INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
 SELECT setval('pvp_pspacks_id_seq', 3);
 
 #

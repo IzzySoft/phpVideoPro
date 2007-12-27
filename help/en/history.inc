@@ -1,7 +1,7 @@
 # /* History */
 # /*  $Id$ */
 [title]
-0.8.9
+0.9.0 (December 27, 2007)
 [text]
 <ul>
  <li>search form now allows % sign (wildcard) for name, title and comment
@@ -10,6 +10,8 @@
  <li>updated imdb class code from imdbphp and applied some code fixes
  <li>added letter shortcuts in translation editor
  <li>enhanced syntax for [url] and [img] (see online help)
+ <li>adjusted URLs to project site (due to site changes)
+ <li>base_path was incorrectly resolved for the setup pages
 </ul>
 
 [title]

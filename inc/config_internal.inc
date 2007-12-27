@@ -43,6 +43,7 @@
  $bp = dirname($_SERVER['SCRIPT_FILENAME']);
  if (is_file($bp."/medialist.php")) $base_path = "$bp/";
  else $base_path = dirname($bp) . "/";
+ if (substr($base_path,strlen($base_path)-6)=="setup/") $base_path = dirname($base_path) ."/";
  if (substr(php_uname(), 0, 7) == "Windows") {
    $pvp->config->os_slash = "\\";
    $base_path = str_replace("\\","/",$base_path);

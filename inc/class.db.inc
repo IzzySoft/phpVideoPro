@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -18,7 +18,7 @@
   * @class sql
   * @extends DB_Sql
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
   * @version $Revision$ $Date$
   */
  /** SQL substring to limit result sets to a certain number
@@ -535,6 +535,7 @@
             . "WHERE id='$id' AND ip='$ip' AND ended IS NULL";
      if (isset($pvp->config->session_purgetime) && $pvp->config->session_purgetime) {
        $dla = time()-$pvp->config->session_purgetime;
+       $dla = (int) $dla;
        $query .= " AND dla>$dla";
      }
      $this->query($query);
@@ -579,6 +580,7 @@
    function remove_session($id="",$days="") {
      if ($days) {
        $pdate = time() - ($days * 86400);
+       $pdate = (int) $pdate;
        $query = "DELETE FROM pvp_sessions WHERE dla<'$pdate'";
      } elseif ($id) {
        $query = "DELETE FROM pvp_sessions WHERE id='$id'";

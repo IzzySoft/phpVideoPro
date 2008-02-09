@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class session
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
   */
  class session {
 
@@ -55,6 +55,7 @@
     GLOBAL $db,$pvp;
     if ($pvp->config->session_purgetime) {
       $dla = time()-$pvp->config->session_purgetime;
+      $dla = (int) $dla;
       $db->dbquery("DELETE FROM pvp_sessions WHERE dla<$dla");
     }
   }

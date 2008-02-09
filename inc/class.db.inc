@@ -581,7 +581,7 @@
      if ($days) {
        $pdate = time() - ($days * 86400);
        $pdate = (int) $pdate;
-       $query = "DELETE FROM pvp_sessions WHERE dla<'$pdate'";
+       $query = "DELETE FROM pvp_sessions WHERE dla<$pdate";
      } elseif ($id) {
        $query = "DELETE FROM pvp_sessions WHERE id='$id'";
      } else {

@@ -55,8 +55,7 @@
     GLOBAL $db,$pvp;
     if ($pvp->config->session_purgetime) {
       $dla = time()-$pvp->config->session_purgetime;
-      $dla = (int) $dla;
-      $db->dbquery("DELETE FROM pvp_sessions WHERE dla<$dla");
+      $db->dbquery("DELETE FROM pvp_sessions WHERE dla<'$dla'");
     }
   }
 

@@ -535,8 +535,7 @@
             . "WHERE id='$id' AND ip='$ip' AND ended IS NULL";
      if (isset($pvp->config->session_purgetime) && $pvp->config->session_purgetime) {
        $dla = time()-$pvp->config->session_purgetime;
-       $dla = (int) $dla;
-       $query .= " AND dla>$dla";
+       $query .= " AND dla>'$dla'";
      }
      $this->query($query);
      if ( $this->next_record() ) {
@@ -580,8 +579,7 @@
    function remove_session($id="",$days="") {
      if ($days) {
        $pdate = time() - ($days * 86400);
-       $pdate = (int) $pdate;
-       $query = "DELETE FROM pvp_sessions WHERE dla<$pdate";
+       $query = "DELETE FROM pvp_sessions WHERE dla<'$pdate'";
      } elseif ($id) {
        $query = "DELETE FROM pvp_sessions WHERE id='$id'";
      } else {

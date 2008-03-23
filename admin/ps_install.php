@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -180,6 +180,13 @@
    $pack_id = $ipack["id"];
    olog(lang("psinst_log_remove_pack",$name,$pack_id));
    $file = $db->get_pspack_epsfiles($pack_id);
+   $files = count($file);
+   for ($i=0;$i<$files;++$i) { // check for thumbnails
+     $thumb = "thumbs/".str_replace(".eps",".jpg",$file[$i]);
+     if (file_exists($install_dir.$pvp->config->os_slash.$thumb)) $file[] = $thumb;
+   }
+   if (file_exists($install_dir.$pvp->config->os_slash."thumbs".$pvp->config->os_slash.$pack->sname."_preview.jpg"))
+     $file[] = "thumbs".$pvp->config->os_slash.$pack->sname."_preview.jpg";
    $files = count($file);
    if ($_REQUEST["remove_files"]) {
      if (is_writable($install_dir)) {

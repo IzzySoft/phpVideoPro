@@ -226,8 +226,6 @@
      $query = "\$db->get_pspacks(\"\",$start)";
      $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"],$start);
      $list = $nextmatch->list;
-#echo "<pre>";print_r($list);echo "</pre>";
-#echo "Count: ".$nextmatch->listcount."<br>";
      for ($i=0;$i<$nextmatch->listcount;$i++) {
        $sname = $list[$i]["sname"];
        if (isset(${$sname}[0])) { // set remote revision

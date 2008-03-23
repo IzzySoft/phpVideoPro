@@ -6,6 +6,7 @@
 <ul>
  <li>added label preview to PSLabel selection
  <li>added PSPack preview to PSLabel installation so you see what to expect
+ <li>when editing PSLabelPacks, some labels showed up multiple times - fixed.
 </ul>
 
 [title]

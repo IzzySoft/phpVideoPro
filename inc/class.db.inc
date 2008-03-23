@@ -3343,10 +3343,14 @@
   * @return array templates array of objects
   */
  function get_pstemplates($id="",$pack_id="",$start="") {
+   $this->query("SELECT type,description FROM pvp_pslabelforms");
+   while ($this->next_record()) {
+     $typedesc[$this->f('type')] = $this->f('description');
+   }
    $query = "SELECT e.id,e.type,e.description,e.eps_filename,e.ps_filename,"
-          . "e.llx,e.lly,e.urx,e.ury,l.description AS typedesc, p.name AS packname "
-          . "FROM pvp_epstemplates e,pvp_pslabelforms l,pvp_pspacks p "
-          . "WHERE e.type=l.type AND e.pack_id=p.id";
+          . "e.llx,e.lly,e.urx,e.ury, p.name AS packname "
+          . "FROM pvp_epstemplates e,pvp_pspacks p "
+          . "WHERE e.pack_id=p.id";
    if ($id) $query .= " AND e.id=$id";
    elseif ($pack_id) $query .= " AND pack_id=$pack_id";
    $query .= " ORDER BY e.description";
@@ -3356,7 +3360,7 @@
      $tpl->id = $this->f('id');
      $tpl->type_id = $this->f('type');
      $tpl->packname = $this->f('packname');
-     $tpl->type_desc = $this->f('typedesc');
+     $tpl->type_desc = $typedesc[$tpl->type_id];
      $tpl->desc = $this->f('description');
      $tpl->eps_file = $this->f('eps_filename');
      $tpl->ps_file = $this->f('ps_filename');

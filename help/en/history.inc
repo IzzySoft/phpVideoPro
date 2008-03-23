@@ -5,6 +5,7 @@
 [text]
 <ul>
  <li>added label preview to PSLabel selection
+ <li>added PSPack preview to PSLabel installation so you see what to expect
 </ul>
 
 [title]

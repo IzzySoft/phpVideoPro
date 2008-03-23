@@ -48,6 +48,7 @@
   <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tcreator}</b></DIV></TD><TD>{creator}</TD></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tdesc}</b></DIV></TD><TD>{desc}</TD></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center"><b>{trev}</b></DIV></TD><TD>{rev}</TD></TR>
+  <TR CLASS="content"><TD COLSPAN="2"><DIV ALIGN="center">{preview}</DIV></TD></TR>
 </TABLE>
 <!-- END packviewblock -->
 

@@ -16,6 +16,7 @@
  $page_id = "admin_pstemplates";
  include("../inc/includes.inc");
  $info_url = "http://projects.izzysoft.de/progs/phpvideopro/inc/pspacks.txt";
+ $preview_base = "http://projects.izzysoft.de/progs/phpvideopro/images";
 
  #-------------------------------------------------[ Register global vars ]---
  if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
@@ -184,12 +185,15 @@
          if (strpos($line,"#")===0) continue; // skip comments
          $arg = explode(':',$line);
          if ($arg[0]!=$packname) continue; // wrong pack
-         if (!empty($arg[2])) $arg[1].=$arg[2]; // URL in creator may contain ':'
+         if (!empty($arg[2])) $arg[1].=":".$arg[2]; // URL in creator may contain ':'
          $pack = explode(';',$arg[1]);
+         $pc = count($pack);
+         if ($pc>4) for ($i=4;$i<=$pc;++$i) $pack[3] .= ";".$pack[$i]; // URL in creator may contain multiple ';'
          $t->set_var("rev",$pack[0]);
          $t->set_var("name",$pack[1]);
          $t->set_var("desc",$pack[2]);
          $t->set_var("creator",$pvp->common->make_clickable($pack[3]));
+         $t->set_var("preview","<IMG SRC='$preview_base/".$arg[0]."_preview.jpg' ALT='Preview'>");
          break;
        }
      } else {
@@ -198,6 +202,9 @@
        $t->set_var("creator",$pvp->common->make_clickable($pack["creator"]));
        $t->set_var("desc",$pack["descript"]);
        $t->set_var("rev",$pack["rev"]);
+       if (file_exists("${base_path}pslabels/thumbs/".$pack['sname']."_preview.jpg")) $preview_pic = "${base_url}pslabels/thumbs/".$pack['sname']."_preview.jpg";
+       else $preview_pic = "$preview_base/".$pack['sname']."_preview.jpg";
+       $t->set_var("preview","<IMG SRC='$preview_pic' ALT='Preview'>");
 #       $fields = array("id","rev","sname","name","descript","creator");
      }
      $t->parse("packview","packviewblock");
@@ -237,10 +244,10 @@
          $prev2 = "?";
        }
        $t->set_var("prev2",$prev2);
-       $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$info_img' BORDER='0' ALT='".lang("info")."'>"));
-       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
+       $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packdetails=".$list[$i]["id"],"<IMG SRC='$info_img' BORDER='0' TITLE='".lang("info")."' ALT='".lang("info")."'>"));
+       $t->set_var("edit",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?showpack=".$list[$i]["id"],"<IMG SRC='$edit_img' BORDER='0' TITLE='".lang("edit")."' ALT='".lang("edit")."'>"));
        $url = $pvp->link->slink($_SERVER["PHP_SELF"]."?removepack=".$list[$i]["id"]);
-       $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' ALT='".lang("actions")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
+       $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' TITLE='".lang("actions")."' ALT='".lang("actions")."' onClick=\"psinst('".$list[$i]["sname"]."',".$list[$i]["rev"].")\">");
        if ($i) $t->parse("packitem","packitemblock",TRUE);
          else $t->parse("packitem","packitemblock");
      }
@@ -250,9 +257,9 @@
          $t->set_var("pname",${$rempack[$k]}[1]);
          $t->set_var("prev1","-");
          $t->set_var("prev2",${$rempack[$k]}[0]);
-         $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packname=".$rempack[$k],"<IMG SRC='$info_img' BORDER='0' ALT='".lang("info")."'>"));
+         $t->set_var("info",$pvp->link->linkurl($_SERVER["PHP_SELF"]."?packname=".$rempack[$k],"<IMG SRC='$info_img' BORDER='0' TITLE='".lang("info")."' ALT='".lang("info")."'>"));
          $t->set_var("edit","");
-         $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' ALT='".lang("actions")."' onClick=\"psinst('".$rempack[$k]."',".${$rempack[$k]}[0].")\">");
+         $t->set_var("actions","<IMG SRC='$action_img' BORDER='0' TITLE='".lang("actions")."' ALT='".lang("actions")."' onClick=\"psinst('".$rempack[$k]."',".${$rempack[$k]}[0].")\">");
          if ($i) $t->parse("packitem","packitemblock",TRUE);
            else $t->parse("packitem","packitemblock");
        }

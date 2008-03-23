@@ -1,7 +1,7 @@
 <?php
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -216,12 +216,34 @@ closepath clip \n",$eps_llx, $eps_lly, $eps_urx, $eps_ury);
 #print page footer
 echo "showpage\n";
 #
- #== Step 2 =====================[ query user input for multi-label-print ]===
+ #== Step 2 =================[ query user input for final label selection ]===
  } elseif  (isset($layout)) { // we have to get layout details
- #---------------------------------------------[ Setup special JavaScript ]---
+ if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
+ $ltypes = $db->get_lsheet($ltype_id); // get no. of rows and cols on label sheet and label type
+#== TODO: Abgleich label - sheet - template - layout etc
+ $mtypes  = $db->get_mtypes();
+ $mtypelist = "";
+ for ($i=0;$i<count($mtypes);$i++) {
+   $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
+ }
+ #-------------------------------------[ make selection for EPS templates ]---
+ $epstemplates = $db->get_epstemplates($ltypes['type']);
+ $etcount = count($epstemplates);
+ if (empty($etcount)) {
+   $t->set_var("error_msg",lang("pspack_install_required"));
+   $t->parse("errorlist","errorblock");
+   $t->pparse("out","list");
+ } else {
+   $epslist = "";
+   $js .= "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--\nvar thumb = new Array();\n";
+   for ($i=0;$i<$etcount;$i++) {
+     $epslist .= "<OPTION VALUE=\"" . $epstemplates[$i]['id'] . "\">" . $epstemplates[$i]['description'] . "</OPTION>";
+     $js .= "thumb[".$epstemplates[$i]['id']."] = '".$epstemplates[$i]['filename']."';\n";
+   }
+ #-------------------------------------------[ Setup JavaScript functions ]---
  $nr_nan = lang("medianr_is_nan");
  $fontsize_nan = lang("fontsize_is_nan");
- $js = "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--
+ $js .= "
    function check_nr(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
@@ -234,6 +256,9 @@ echo "showpage\n";
        alert('$fontsize_nan');
      }
    }
+   function change_thumb(file,num) {
+     document.getElementById('thumb_'+num).src = '".$base_url."/pslabels/thumbs/'+thumb[file.value]+'.jpg';
+   }
 //--></SCRIPT>";
  include("inc/header.inc");
  $t = new Template($pvp->tpl_dir);
@@ -245,26 +270,6 @@ echo "showpage\n";
  $t->set_var("listtitle",lang("print_label"));
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("ltype",$ltype_id);
- if (!$pvp->cookie->active) $t->set_var("sess_id","<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>");
- $ltypes = $db->get_lsheet($ltype_id); // get no. of rows and cols on label sheet and label type
-#== TODO: Abgleich label - sheet - template - layout etc
- $mtypes  = $db->get_mtypes();
- $mtypelist = "";
- for ($i=0;$i<count($mtypes);$i++) {
-   $mtypelist .= "<OPTION VALUE=\"" . $mtypes[$i]['id'] . "\">" . $mtypes[$i]['sname'] . "</OPTION>";
- }
-#== make selection for EPS templates
- $epstemplates = $db->get_epstemplates($ltypes['type']);
- $etcount = count($epstemplates);
- if (empty($etcount)) {
-   $t->set_var("error_msg",lang("pspack_install_required"));
-   $t->parse("errorlist","errorblock");
-   $t->pparse("out","list");
- } else {
-   $epslist = "";
-   for ($i=0;$i<$etcount;$i++) {
-     $epslist .= "<OPTION VALUE=\"" . $epstemplates[$i]['id'] . "\">" . $epstemplates[$i]['description'] . "</OPTION>";
-   }
 #==
    for ($row=0; $row<$ltypes['rows']; ++$row) {
      if (!isset($format)) $format = "";
@@ -272,10 +277,12 @@ echo "showpage\n";
        $i = $row * $ltypes['cols'] + $col;
        $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</SELECT>";
        $medianr = "<INPUT NAME=\"medianr_$i\" onChange='check_nr(this);' " . $form["addon_tech"] . ">";
-       $label   = "<SELECT NAME=\"label_$i\">$epslist</SELECT>";
+       $label   = "<SELECT NAME=\"label_$i\" onClick='change_thumb(this,$i);'>$epslist</SELECT>";
+       $thumb   = "<IMG SRC='".$pvp->tpl_url."/images/0.gif' id='thumb_$i' align='middle'>";
        $t->set_var("mtype_$col",$mtype);
        $t->set_var("medianr_$col",$medianr);
        $t->set_var("label_$col",$label);
+       $t->set_var("thumb_$col",$thumb);
        $t->set_var("format_$col",$format);
      }
      if ($row) $t->parse("definitionlist","definitionblock",TRUE);

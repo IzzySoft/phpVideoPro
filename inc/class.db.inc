@@ -3276,15 +3276,20 @@
 
  /** get eps template description for $type
   * @method get_epstemplates
-  * @return mixed (id,description)
+  * @param integer type_id
+  * @param optional integer pack_id restrict resultset by labelpack id
+  * @return array [0..n] of array [id,description,filename] (filename w/o extension)
   */
- function get_epstemplates($type) {
-   $query="SELECT id,description FROM pvp_epstemplates WHERE type=$type ORDER BY description";
+ function get_epstemplates($type,$pack="") {
+   $query="SELECT id,description,eps_filename filename FROM pvp_epstemplates WHERE type=$type";
+   if ($pack!=="") $query.=" AND pack_id=$pack";
+   $query.=" ORDER BY description";
    if ( $this->dbquery($query) ) {
      $i=0;
      while ( $this->next_record() ) {
        $eps_template[$i]['id'] = $this->f('id');
        $eps_template[$i]['description'] = $this->f('description');
+       $eps_template[$i]['filename'] = substr($this->f('filename'),0,strlen($this->f('filename'))-4);
        ++$i;
      }
      return $eps_template;

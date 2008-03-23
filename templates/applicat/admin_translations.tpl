@@ -50,7 +50,7 @@
  <TR><TD COLSPAN="3" STYLE="vertical-align:middle"><DIV STYLE="margin:3;text-align:center">
    <INPUT TYPE="submit" CLASS="submit" NAME="{submit_name}" VALUE="{submit}"><BR><BR>{save}</DIV></TD></TR>
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="center">{abc}</DIV></TD>
+     <TD>&nbsp;</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
 </TABLE>
 

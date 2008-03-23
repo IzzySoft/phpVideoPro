@@ -31,7 +31,7 @@
   </Table>
  </TD></TR>
  <TR><TD>{first}{left}</TD>
-     <TD><DIV ALIGN="center">{abc}</DIV></TD>
+     <TD>&nbsp;</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
 </TABLE>
  </FORM>

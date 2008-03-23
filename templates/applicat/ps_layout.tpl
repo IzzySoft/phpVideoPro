@@ -27,10 +27,10 @@
   <TABLE ALIGN="center">
     <TR><TH>{hmtype_0}</TH>
         <TH>{hmedianr_0}</TH>
-        <TH>{hlabel_0}</TH>
+        <TH COLSPAN="2">{hlabel_0}</TH>
         <TH>{hmtype_1}</TH>
         <TH>{hmedianr_1}</TH>
-        <TH>{hlabel_1}</TH>
+        <TH COLSPAN="2">{hlabel_1}</TH>
         <!--TH>{hmtype_2}</TH>
         <TH>{hmedianr_2}</TH>
         <TH>{hlabel_2}</TH></TR-->
@@ -41,9 +41,11 @@
     <TR CLASS="content"><TD><DIV ALIGN="center">{mtype_0}</DIV></TD>
         <TD><DIV ALIGN="center">{medianr_0}</DIV></TD>
         <TD><DIV ALIGN="center">{label_0}</DIV></TD>
+        <TD><DIV ALIGN="center">{thumb_0}</DIV></TD>
         <TD><DIV ALIGN="center">{mtype_1}</DIV></TD>
         <TD><DIV ALIGN="center">{medianr_1}</DIV></TD>
         <TD><DIV ALIGN="center">{label_1}</DIV></TD>
+        <TD><DIV ALIGN="center">{thumb_1}</DIV></TD>
         <!--TD><DIV ALIGN="center">{mtype_2}</DIV></TD>
         <TD><DIV ALIGN="center">{medianr_2}</DIV></TD>
         <TD><DIV ALIGN="center">{label_2}</DIV></TD></TR-->

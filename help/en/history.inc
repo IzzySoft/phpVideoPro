@@ -1,6 +1,13 @@
 # /* History */
 # /*  $Id$ */
 [title]
+0.9.1 (2008)
+[text]
+<ul>
+ <li>added label preview to PSLabel selection
+</ul>
+
+[title]
 0.9.0 (December 27, 2007)
 [text]
 <ul>

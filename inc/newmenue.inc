@@ -187,7 +187,7 @@ if (isset($_REQUEST["sess_id"])) {
 }?>
 
  </script>
- <style>
+ <style type="text/css">
    body { margin-top: 25px; }
  </style>
 </head><body onload="initjsDOMenu()">

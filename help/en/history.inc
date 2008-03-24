@@ -8,6 +8,7 @@
  <li>added PSPack preview to PSLabel installation so you see what to expect
  <li>when editing PSLabelPacks, some labels showed up multiple times - fixed.
  <li>when printing PSLabels, you can now filter available templates by PSLabelPack
+ <li>updated imdb class to latest code from the IMDBPHP project
 </ul>
 
 [title]

@@ -10,6 +10,8 @@
  <li>when printing PSLabels, you can now filter available templates by PSLabelPack
  <li>updated imdb class to latest code from the IMDBPHP project
  <li>imdbsearch now allows search for tv episodes
+ <li>URL replacements ([url] and [img] tags) got messed up when there have been
+     multiple of them in one line - fixed.
 </ul>
 
 [title]

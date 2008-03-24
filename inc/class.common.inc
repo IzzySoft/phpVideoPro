@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class common
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
   */
 
 class common {
@@ -180,35 +180,35 @@ class common {
         }
       }
       // first replace the image tags (so they may be part of the [url])
-      if ( preg_match_all("/\[img\]([^|]+)\[\/img\]/i",$line,$matches) ) { // w/o comment
+      if ( preg_match_all("/\[img\]([^|]+?)\[\/img\]/i",$line,$matches) ) { // w/o comment
         for ($i=0;$i<count($matches[0]);++$i) {
           $link = eregi_replace("\[img\]([^|]+)\[\/img\]","\\1",$matches[0][$i]);
           $sub  = eregi_replace("\[img\]([^|]+)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
 	}
       }
-      if ( preg_match_all("/\[img\]([^|]+)(\|{1}.*)\[\/img\]/i",$line,$matches) ) { // w/ comment
+      if ( preg_match_all("/\[img\]([^|]+?)(\|{1}.*?)\[\/img\]/i",$line,$matches) ) { // w/ comment
         for ($i=0;$i<count($matches[0]);++$i) {
           $link = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","\\1",$matches[0][$i]);
           $sub  = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      if ( preg_match_all("/\[imgr\]([^|]+)\[\/imgr?\]/i",$line,$matches) ) { // w/o comment
+      if ( preg_match_all("/\[imgr\]([^|]+?)\[\/imgr?\]/i",$line,$matches) ) { // w/o comment
         for ($i=0;$i<count($matches[0]);++$i) {
           $link = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","\\1",$matches[0][$i]);
           $sub  = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
 	}
       }
-      if ( preg_match_all("/\[imgr\]([^|]+)(\|{0,1}.*)\[\/imgr?\]/i",$line,$matches) ) { // w/ comment
+      if ( preg_match_all("/\[imgr\]([^|]+?)(\|{0,1}.*?)\[\/imgr?\]/i",$line,$matches) ) { // w/ comment
         for ($i=0;$i<count($matches[0]);++$i) {
           $link = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","\\1",$matches[0][$i]);
           $sub  = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
-      if ( preg_match_all("/\[url\].+\[\/url\]/i",$line,$matches) ) {
+      if ( preg_match_all("/\[url\].+?\[\/url\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
           $link  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\1",$matches[0][$i]);
           $text  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\2",$matches[0][$i]);

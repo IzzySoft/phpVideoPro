@@ -74,6 +74,7 @@
  #=================================================[ Get IMDB ID for movie ]===
   $search = new imdbsearch ();
   $search->setsearchname ($_REQUEST["name"]);
+  if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
   $results = $search->results ();
   $open = FALSE;
   if (empty($results)) { // found nothing on IMDB?
@@ -358,6 +359,7 @@
    $t->set_var("reset",lang("reset"));
    $t->set_var("mname",lang("imdb_tx_title"));
    $t->set_var("mid",lang("imdb_movie_id"));
+   $t->set_var("epname",lang("episode"));
    $t->set_var("submit",lang("submit"));
    $t->parse("query","queryblock");
    $t->pparse("out","template");

@@ -9,6 +9,7 @@
  <li>when editing PSLabelPacks, some labels showed up multiple times - fixed.
  <li>when printing PSLabels, you can now filter available templates by PSLabelPack
  <li>updated imdb class to latest code from the IMDBPHP project
+ <li>imdbsearch now allows search for tv episodes
 </ul>
 
 [title]

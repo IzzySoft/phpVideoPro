@@ -687,4 +687,5 @@ INSERT INTO lang VALUES ('use_http_auth','en','Use HTTP Authentification?','Opti
 INSERT INTO lang VALUES ('use_http_auth_comment','en','This option is useful for site-integration using a \"single sign-in\". If the so logged-in user and his/her password match with phpVideoPro user information, the login will be performed automatically. If you don\'t need it, leave it turned off.','Option on the configuration screen');
 INSERT INTO lang VALUES ('default_pstemplate','en','Default PSLabel Template','Option on the configuration screen');
 INSERT INTO lang VALUES ('default_pstemplate_comment','en','Which PSLabel Template should be pre-selected for printing','Option on the configuration screen');
+INSERT INTO lang VALUES ('episode','en','Episode','TV Episode');
 #INSERT INTO lang VALUES ('','en','','');

@@ -240,6 +240,23 @@ echo "showpage\n";
      $epslist .= "<OPTION VALUE=\"" . $epstemplates[$i]['id'] . "\">" . $epstemplates[$i]['description'] . "</OPTION>";
      $js .= "thumb[".$epstemplates[$i]['id']."] = '".$epstemplates[$i]['filename']."';\n";
    }
+   // PSLabelPacks
+   $pspacks = $db->get_pspacks();
+   $psc = count($pspacks); $psopts = "<OPTION VALUE='0'>".lang("filter")."</OPTION>";
+   $js .= "var pspack_id = new Array();\nvar pspack_name = new Array();\nvar psallpack_id = new Array()\n;var psallpack_name = new Array();\n";
+   for ($i=0,$l=0;$i<$psc;++$i) {
+     $psopts .= "<OPTION VALUE='".$pspacks[$i]["id"]."'>".$pspacks[$i]["name"]."</OPTION>";
+     $pseps = $db->get_epstemplates($ltypes['type'],$pspacks[$i]["id"]);
+     $psec = count($pseps);
+     $js .= "pspack_id[".$pspacks[$i]["id"]."] = new Array();\n"
+         .  "pspack_name[".$pspacks[$i]["id"]."] = new Array();\n";
+     for ($k=0;$k<$psec;++$k,++$l) {
+       $js .= "pspack_id[".$pspacks[$i]["id"]."][$k]   = ".$pseps[$k]['id'].";\n"
+           .  "pspack_name[".$pspacks[$i]["id"]."][$k] = '".$pseps[$k]['description']."';\n"
+           .  "psallpack_id[$l] = ".$pseps[$k]['id'].";\n"
+           .  "psallpack_name[$l] = '".$pseps[$k]['description']."';\n";
+     }
+   }
  #-------------------------------------------[ Setup JavaScript functions ]---
  $nr_nan = lang("medianr_is_nan");
  $fontsize_nan = lang("fontsize_is_nan");
@@ -256,8 +273,27 @@ echo "showpage\n";
        alert('$fontsize_nan');
      }
    }
+   function filter_pack(elem) {
+     var pos = elem.id.indexOf('_')+1;
+     var num = elem.id.substr(pos);
+     var box = elem.id.replace('pack_','label_');
+     var i; var k=0;
+     document.getElementById(box).options.length=0;
+     if (elem.value<1) {
+       for (i=0;i<psallpack_id.length;i=i+1) {
+         document.getElementById(box).options[k] = new Option(psallpack_name[i],psallpack_id[i],false,false);
+         k = k+1;
+       }
+     } else {
+       for (i=0;i<pspack_id[elem.value].length;i=i+1) {
+         document.getElementById(box).options[k] = new Option(pspack_name[elem.value][i],pspack_id[elem.value][i],false,false);
+         k = k+1;
+       }
+     }
+     document.getElementById('thumb_'+num).src = '".$pvp->tpl_url."/images/0.gif';
+   }
    function change_thumb(file,num) {
-     document.getElementById('thumb_'+num).src = '".$base_url."/pslabels/thumbs/'+thumb[file.value]+'.jpg';
+     document.getElementById('thumb_'+num).src = '".$base_url."pslabels/thumbs/'+thumb[file.value]+'.jpg';
    }
 //--></SCRIPT>";
  include("inc/header.inc");
@@ -277,8 +313,9 @@ echo "showpage\n";
        $i = $row * $ltypes['cols'] + $col;
        $mtype   = "<SELECT NAME=\"mtype_id_$i\">$mtypelist</SELECT>";
        $medianr = "<INPUT NAME=\"medianr_$i\" onChange='check_nr(this);' " . $form["addon_tech"] . ">";
-       $label   = "<SELECT NAME=\"label_$i\" onClick='change_thumb(this,$i);'>$epslist</SELECT>";
-       $thumb   = "<IMG SRC='".$pvp->tpl_url."/images/0.gif' id='thumb_$i' align='middle'>";
+       $label   = "<SELECT NAME='pack_$i' ID='pack_$i' onChange='filter_pack(this)' STYLE='width:150px'>$psopts</SELECT><BR>";
+       $label  .= "<SELECT NAME='label_$i' ID='label_$i' onClick='change_thumb(this,$i);'>$epslist</SELECT>";
+       $thumb   = "<IMG SRC='".$pvp->tpl_url."/images/0.gif' id='thumb_$i' align='middle' alt=''>";
        $t->set_var("mtype_$col",$mtype);
        $t->set_var("medianr_$col",$medianr);
        $t->set_var("label_$col",$label);

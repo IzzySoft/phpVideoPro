@@ -1,7 +1,7 @@
 # /* History */
 # /*  $Id$ */
 [title]
-0.9.1 (2008)
+0.9.1 (March 25, 2008)
 [text]
 <ul>
  <li>added label preview to PSLabel selection

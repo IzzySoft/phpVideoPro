@@ -4,6 +4,13 @@
 0.9.1 (March 25, 2008)
 [text]
 <ul>
+ <li>admin_orphans was not performing the delete of orphans (global variable issue)
+</ul>
+
+[title]
+0.9.1 (March 25, 2008)
+[text]
+<ul>
  <li>added label preview to PSLabel selection
  <li>added PSPack preview to PSLabel installation so you see what to expect
  <li>when editing PSLabelPacks, some labels showed up multiple times - fixed.

@@ -5,6 +5,7 @@
 [text]
 <ul>
  <li>admin_orphans was not performing the delete of orphans (global variable issue)
+ <li>added more vulnerability checks to the "edit disk types" page
 </ul>
 
 [title]

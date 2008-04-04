@@ -1,8 +1,8 @@
 <?
  ##############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # phpVideoPro                               (c) 2001-2008 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
+ # http://www.izzysoft.de/                                                    #
  # -------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it       #
  # under the terms of the GNU General Public License (see doc/LICENSE)        #
@@ -12,12 +12,34 @@
 
  /* $Id$ */
 
+ #==============================================[ IMDB class configuration ]===
+ function config_imdb(&$inst) {
+   GLOBAL $pvp,$base_path,$base_url,$db;
+   $imdbsite = $pvp->preferences->get("imdb_url");
+   $url  = explode("/",$imdbsite);
+   $inst->imdbsite = $url[count($url)-2];
+   $cachedir = $db->get_config("imdb_cache_dir");
+   if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
+   if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
+   if (strrpos($cachedir,"/")!=strlen($cachedir)-1) $cachedir .= "/";
+   $inst->cachedir = $cachedir;
+   $inst->storecache = $db->get_config("imdb_cache_enable");
+   $inst->usecache = $db->get_config("imdb_cache_use");
+   $inst->cache_expire = $db->get_config("imdb_cache_expire");
+   $inst->photodir = $pvp->config->imdb_photopath;
+   $inst->photoroot = $pvp->config->imdb_photourl;
+ }
+
  #=========================================================[ General setup ]===
  $page_id = "imdbsearch";
  $nomenue = 1;
  include("inc/includes.inc");
  include("inc/header.inc");
- require_once ("inc/class.imdb.inc");
+ if (!incfile_exists("imdb.class.php")) {
+   display_error( lang("imdbapi_not_installed") );
+   exit;
+ }
+ require_once ("imdb.class.php");
  $imdb_tx_prefs = $pvp->preferences->imdb_tx_get();
  $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  if (empty($autoclose)) $autoclose = 0;
@@ -73,6 +95,7 @@
  if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
  #=================================================[ Get IMDB ID for movie ]===
   $search = new imdbsearch ();
+  config_imdb($search);
   $search->setsearchname ($_REQUEST["name"]);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
   $results = $search->results ();
@@ -111,6 +134,7 @@
  #==============================================[ Get movie data from IMDB ]===
    $movieid = $_REQUEST["mid"];
    $movie = new imdb ($movieid);
+   config_imdb($movie);
    $imdbsite = $pvp->preferences->get("imdb_url2");
    $url  = explode("/",$imdbsite);
    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -50,7 +50,7 @@
   * @param string error error message to display
   */
  function display_error($error) {
-   echo "<SPAN CLASS='error'><H2 ALIGN=CENTER>" . strtoupper(lang("warning")) . "</H2></SPAN>\n";
+   echo "<H2 ALIGN=CENTER><SPAN CLASS='error'>" . strtoupper(lang("warning")) . "</SPAN></H2>\n";
    echo "<Table Width=90% Align=Center>\n <TR><TD>";
    echo "<P ALIGN=JUSTIFY>$error</P>\n";
    echo " </TD></TR></TABLE>\n</BODY></HTML>";
@@ -111,6 +111,20 @@
      exit;
      }
    }
+ }
+
+ /** Check whether a file exists in the PHP include_path
+  * @package Api
+  * @function incfile_exists
+  * @param string filename name of the file to check for
+  * @return boolean found
+  */
+ function incfile_exists($file) {
+   $paths = explode(PATH_SEPARATOR, get_include_path());
+   foreach ($paths as $path) {
+     if (file_exists($path . DIRECTORY_SEPARATOR . $file)) return TRUE;
+   }
+   return FALSE;
  }
 
  ################################################################[ Filters ]###

@@ -11,6 +11,10 @@
      This way we can benefit from the latest imdbphp code (e.g. after IMDB site
      changes) without the need of making an intermediate release of phpvideopro
      itself just for that.
+ <li>when using akas.imdb.com as alternative IMDB site, the alternative movie
+     titles now also show their language along - and if that matches your primary
+     language, the entry is highlighted. This makes it easier for you to identify
+     the movie title in your language.
 </ul>
 
 [title]

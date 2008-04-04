@@ -688,5 +688,6 @@ INSERT INTO lang VALUES ('use_http_auth_comment','en','This option is useful for
 INSERT INTO lang VALUES ('default_pstemplate','en','Default PSLabel Template','Option on the configuration screen');
 INSERT INTO lang VALUES ('default_pstemplate_comment','en','Which PSLabel Template should be pre-selected for printing','Option on the configuration screen');
 INSERT INTO lang VALUES ('episode','en','Episode','TV Episode');
+INSERT INTO lang VALUES ('movie','en','Movie','in opposite to a TV Episode');
 INSERT INTO lang VALUES ('imdbapi_not_installed','en','The IMDB API is not installed - hence you cannot use the IMDBSearch from inside phpVideoPro. To enable this functionality, please make sure the <i>imdbphp</i> package is installed on the system phpVideoPro runs on, and available via the configured PHP <i>include_path</i>.','Error message on accessing IMDB API functions without the imdbphp package installed');
 #INSERT INTO lang VALUES ('','en','','');

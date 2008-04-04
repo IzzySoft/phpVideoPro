@@ -145,11 +145,17 @@
    $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
    $akas = $movie->alsoknow();
    if (!empty( $akas )) foreach ( $akas as $ak) {
+     $style = "";
      $akatitle = $ak["title"];
      if (!empty($ak["year"]))    $akatitle .= ": ".$ak["year"];
      if (!empty($ak["country"])) $akatitle .= ", ".$ak["country"];
-     if (!empty($ak["comment"])) $akatitle .= " (".$ak["comment"].")";
-     $title .= "<OPTION VALUE='".$ak["title"]."'>$akatitle</OPTION>";
+     if (empty($ak["lang"])) { if (!empty($ak["comment"])) $akatitle .= " (".$ak["comment"].")"; }
+     else {
+       if (!empty($ak["comment"])) $akatitle .= ", ".$ak["comment"];
+       $akatitle .= " [".$ak["lang"]."]";
+       if ($ak["lang"]==$pvp->preferences->get("lang")) $style="STYLE='background-color:#ddf;'";
+     }
+     $title .= "<OPTION VALUE='".$ak["title"]."' $style>$akatitle</OPTION>";
    }
    $title .= "</SELECT>";
    $t->set_var("mtitle",$title);

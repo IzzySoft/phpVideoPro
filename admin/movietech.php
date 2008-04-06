@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -18,11 +18,11 @@
  #=================================================[ Register global vars ]===
  $postit = array ("name","sname","id");
  foreach ($postit as $var) {
-   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = FALSE;
+   if (isset($_POST[$var]) && !preg_match("/[^\w\s-\+\pL]/u",$_POST[$var])) $$var = $_POST[$var]; else $$var = FALSE;
  }
  $postit = array ("type","delete","edit","add");
  foreach ($postit as $var) {
-   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = FALSE;
+   if (isset($_REQUEST[$var]) && !preg_match("/[^\w\s-\+\pL]/u",$_REQUEST[$var])) $$var = $_REQUEST[$var]; else $$var = FALSE;
  }
  unset($postit);
 

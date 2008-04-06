@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -18,12 +18,12 @@
  $save_result = "";
 
  #-------------------------------------------------[ Register global vars ]---
- if (isset($_REQUEST["id"])) $id = $_REQUEST["id"]; else $id = 0;
- if (isset($_REQUEST["delete"])) $delete = $_REQUEST["delete"]; else $delete = 0;
- if (isset($_POST["pwd1"])) $pwd1 = $_POST["pwd1"]; else $pwd1 = "";
- if (isset($_POST["pwd2"])) $pwd2 = $_POST["pwd2"]; else $pwd2 = "";
+ if (isset($_REQUEST["id"]) && !preg_match("/[^\d]/",$_REQUEST["id"])) $id = $_REQUEST["id"]; else $id = 0;
+ if (isset($_REQUEST["delete"]) && !preg_match("/[^\d]/",$_REQUEST["delete"])) $delete = $_REQUEST["delete"]; else $delete = 0;
+ if (isset($_POST["pwd1"]) && !preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["pwd1"])) $pwd1 = $_POST["pwd1"]; else $pwd1 = "";
+ if (isset($_POST["pwd2"]) && !preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["pwd2"])) $pwd2 = $_POST["pwd2"]; else $pwd2 = "";
  if (isset($_POST["data_action"])) $data_action = $_POST["data_action"];
- if (isset($_POST["owner_id"])) $owner_id = $_POST["owner_id"];
+ if (isset($_POST["owner_id"]) && !preg_match("/[^\d]/",$_POST["owner_id"])) $owner_id = $_POST["owner_id"];
 
  #-------------------------------------------------------------[ VulCheck ]---
  $va = array("1","2"); // valid data_actions
@@ -50,8 +50,9 @@
      }
    } else {
      $user->login  = $_POST["ulogin"];
-     if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
-     $user->comment= $_POST["comment"];
+     if (empty($user->login) || preg_match("/[^\w\d]/",$_POST["ulogin"])) { display_error(lang("user_create_login_required")); exit; }
+     if (preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["comment"])) $user->comment = $users->comment;
+     else $user->comment= $_POST["comment"];
      $access = array("admin","browse","add","upd","del");
      foreach ($access as $value) {
        if (isset($_POST[$value])) { $user->$value = "1"; } else { $user->$value = "0"; }
@@ -74,9 +75,9 @@
  #=================================================[ add new user account ]===
  } elseif (isset($_POST["adduser"]) && $pvp->auth->admin) {
    $user->id     = $_POST["id"];
-   $user->login = $_POST["ulogin"];
+   if (!preg_match("/[^\w\d]/",$_POST["ulogin"])) $user->login = $_POST["ulogin"];
    if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
-   if (isset($_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
+   if (isset($_POST["comment"]) && !preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
    $access = array("admin","browse","add","upd","del");
    foreach ($access as $value) {
      if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }

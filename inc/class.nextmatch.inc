@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class nextmatch
   * @author Izzy (izzysoft AT qumran.org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
   */
  class nextmatch {
    VAR $totals, $start, $limit,      // total records, startpoint and limit
@@ -34,13 +34,15 @@
     * @param string tpl_dir template directory
     * @param optional string script target script name to link to
     * @param optional integer start start with dataset x (skip all earlier)
+    * @param optional string add2link URL parameters to add to the prev/next controls
     */
-   function nextmatch($query,$tpl_dir,$script="",$start=0) { // init
+   function nextmatch($query,$tpl_dir,$script="",$start=0,$add2link="") { // init
      GLOBAL $db, $pvp, $base_path, $base_url;
      $this->list = eval("return($query);");
      $this->listcount = count($this->list) -1;
      if (isset($this->list['totals'])) $this->totals = $this->list['totals'];
      else $this->list['totals'] = 0;
+     $this->add2link = $add2link;
      $this->start  = $start;
      $this->limit  = $pvp->preferences->get("display_limit");
      if (!strlen(trim($script))) $script = $_SERVER["PHP_SELF"];
@@ -96,23 +98,24 @@
    function left_normal() {
      $start = $this->start - $this->limit;
      if ($start < 0) $start = 0;
-     $url = $this->clean_url($this->script . "&start=$start");
+     $url = $this->clean_url($this->script . ";start=$start" . $this->add2link);
      $this->left = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/left.gif' BORDER='0' ALT='&lt;'></A>";
    }
    function right_normal() {
-     $url = $this->clean_url($this->script . "&start=" . ($this->start+$this->limit));
+     $url = $this->clean_url($this->script . ";start=" . ($this->start+$this->limit) . $this->add2link);
      $this->right = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/right.gif' BORDER='0' ALT='&gt;'></A>";
    }
    function last_normal() {
      $end = $this->totals % $this->limit;
      if (!$end) $end = $this->limit;
-     $url = $this->clean_url($this->script . "&start=" . ($this->totals - $end));
+     $url = $this->clean_url($this->script . ";start=" . ($this->totals - $end));
      $this->last  = "<A HREF='$url'><IMG SRC='" . $this->img_dir . "/last.gif' BORDER='0' ALT='&gt;&gt;'></A>";
    }
 
    ############################################################################
    # cleanup URL (replace all "?&" accidentally created)
    function clean_url($url) {
+     $url = str_replace("?;","?",$url);
      return str_replace("?&","?",$url);
    }
 

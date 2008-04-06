@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -18,10 +18,10 @@
  #=================================================[ Register global vars ]===
  $postit = array ("new_name","new_trans","lines");
  foreach ($postit as $var) {
-   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
+   if (isset($_POST[$var]) && !preg_match("/[^\w\s-\+\pL]/u",$_POST[$var])) $$var = $_POST[$var]; else $$var = "";
  }
  unset($postit);
- if (isset($_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
+ if (isset($_GET["delete"]) && !preg_match("/[^\d]/",$_REQUEST["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
 
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();

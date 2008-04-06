@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -40,7 +40,7 @@
  #---------------------------------------------[ run the fixing procedures ]---
  if ($_POST["fix"]) {
    for ($i=0;$i<$orphans;++$i) {
-     if (isset($_POST["owner_$i"])) {
+     if (isset($_POST["owner_$i"]) && !preg_match("/[^\d]/",$_POST["owner_$i"])) {
        $rc = $db->fix_orphaned_movie($orphan[$i]->id,$orphan[$i]->mtype_id,$_POST["owner_$i"]);
      }
    }
@@ -112,7 +112,7 @@
    $t->set_var("button","");
  }
 
- if (isset($delete) && $orphans) {
+ if (isset($_POST["delete"]) && $orphans) {
    $t->set_var("title",lang("delete_orphans",$orphans));
  } else {
    $t->set_var("title",lang("orphans_found",$orphans));

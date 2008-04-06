@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -17,11 +17,14 @@
  include( dirname(__FILE__) . "/../inc/includes.inc");
 
  #=================================================[ Register global vars ]===
- $postit = array ("new_name","new_unit","new_top","new_left","lines");
+ if (isset($_POST["new_name"]) && !preg_match("/[^\w\d\s-\+\pL]/u",$_POST["new_name"])) $new_name = $_POST["new_name"]; else $new_name = "";
+ $postit = array ("new_unit","new_top","new_left","lines");
+ $nc = 0;
  foreach ($postit as $var) {
-   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
+   if (isset($_POST[$var]) && !preg_match("/[^\d\.-]/",$_POST[$var])) { $$var = $_POST[$var]; ++$nc; }
  }
- unset($postit);
+ if ($nc<4) unset ($new_unit,$new_top,$new_left,$new_name);
+ unset($postit,$nc);
 
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();
@@ -33,13 +36,16 @@
      $print_id = "print".$i."_id"; $print_name = "print".$i."_name";
      $print_unit = "print".$i."_unit"; $print_top = "print".$i."_top";
      $print_left = "print".$i."_left";
-     if ( !strlen(trim($_POST[$print_name])) ) {
-       $db->set_printer($_POST[$print_id]);
-     } else {
-       if (!$_POST[$print_top])  ${$print_top}  = 0; else ${$print_top} = $_POST[$print_top];
-       if (!$_POST[$print_left]) ${$print_left} = 0; else ${$print_left} = $_POST[$print_left];
-       if (!$db->set_printer($_POST[$print_id],$_POST[$print_name],$_POST[$print_unit],${$print_top},${$print_left})) {
-         $upd .= ",".$_POST[$print_name];
+     if (!preg_match("/[^\w\d\s-\+\pL]/u",$_POST[$print_name])) $printer_name = $_POST[$print_name]; else $printer_name = "";
+     if (!preg_match("/[^\d]/",$_POST[$print_id])) $printer_id = $_POST[$print_id]; else continue; // printer ID is always numeric
+     if (preg_match("/[^\d]/",$_POST[$print_unit])) continue; // unit ID is always numeric
+     if ( !strlen(trim($printer_name)) ) { // remove printer
+       $db->set_printer($printer_id);
+     } else { // update printer settings
+       if (!$_POST[$print_top] || preg_match("/[^\d\.-]/",$_POST[$print_top]))  ${$print_top}  = 0; else ${$print_top} = $_POST[$print_top];
+       if (!$_POST[$print_left] || preg_match("/[^\d\.-]/",$_POST[$print_left])) ${$print_left} = 0; else ${$print_left} = $_POST[$print_left];
+       if (!$db->set_printer($printer_id,$printer_name,$_POST[$print_unit],${$print_top},${$print_left})) {
+         $upd .= ",".$printer_name;
        }
      }
    }
@@ -50,8 +56,6 @@
      $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
    }
    if ( strlen(trim($new_name)) ) {
-     if (!$new_top)  $new_top  = 0;
-     if (!$new_left) $new_left = 0;
      if ( !$db->set_printer("",$new_name,$new_unit,$new_top,$new_left) ) {
        $save_result .= "<SPAN CLASS='error'>".lang("printer_add_failed")."</SPAN><BR>";
      } else {

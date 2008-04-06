@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -17,13 +17,10 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- $postit = array ("days","ended");
- foreach ($postit as $var) {
-   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = 0;
- }
- unset($postit);
- if (isset($_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
- if (isset($_GET["start"])) $start = $_GET["start"]; else $start = 0;
+ if (isset($_POST["days"]) && !preg_match("/[^\d]/",$_POST["days"])) $days = $_POST["days"]; else $days = 0;
+ if (isset($_POST["ended"])) $ended = TRUE; else $ended = FALSE;
+ if (isset($_GET["delete"]) && !preg_match("/[^a-z0-9]/",$_GET["delete"])) $delete = $_GET["delete"]; else $delete = FALSE;
+ if (isset($_GET["start"]) && !preg_match("/[^\d]/",$_GET["start"])) $start = $_GET["start"]; else $start = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();

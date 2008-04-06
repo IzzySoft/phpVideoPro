@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,8 +16,8 @@
  $page_id = "admin_avlang";
  include("../inc/includes.inc");
  if (!$pvp->auth->admin) kickoff();
- if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
- if (isset($_GET["edit"])) $edit  = $_GET["edit"]; else $edit = FALSE;
+ if (isset($_REQUEST["start"]) && !preg_match("/[^\d]/",$_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_GET["edit"]) && !preg_match("/[^a-z]/",$_REQUEST["start"])) $edit  = $_GET["edit"]; else $edit = FALSE;
  include("../inc/class.nextmatch.inc");
 
  #===================================================[ initialize template ]==

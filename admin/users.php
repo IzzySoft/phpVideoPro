@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -17,7 +17,7 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- if (isset($_POST["lines"])) $lines = $_POST["lines"]; else $lines = 0;
+ if (isset($_POST["lines"]) && !preg_match("/[^\d]/",$_POST["lines"])) $lines = $_POST["lines"]; else $lines = 0;
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
@@ -26,6 +26,8 @@
  #==================================================[ process the changes ]===
  if (isset($_POST["update"])) {
    for ($i=0;$i<$lines;++$i) {
+     if (preg_match("/[^\d]/",$_POST["user_".$i]) || preg_match("/[^\w\d]/",$_POST["user_".$i."_login"])
+        || preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["user_".$i."_comment"])) continue;
      $user->id     = $_POST["user_".$i];
      $user->login  = $_POST["user_".$i."_login"];
      $user->comment= $_POST["user_".$i."_comment"];

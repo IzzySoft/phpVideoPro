@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -19,18 +19,21 @@
  $preview_base = "http://projects.izzysoft.de/progs/phpvideopro/images";
 
  #-------------------------------------------------[ Register global vars ]---
- if (isset($_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
- if (isset($_GET["remove"])) $remove = $_GET["remove"]; else $remove = FALSE;
- if (isset($_GET["showpack"])) $showpack = $_GET["showpack"]; else $showpack = FALSE;
- if (isset($_GET["packdetails"])) $packdetails = $_GET["packdetails"]; else $packdetails = FALSE;
- if (isset($_REQUEST["edit"])) $edit = $_REQUEST["edit"]; else $edit = FALSE;
- if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_GET["add"]) && !preg_match("/[^\d]/",$_GET["add"])) $add = $_GET["add"]; else $add = FALSE;
+ if (isset($_GET["remove"]) && !preg_match("/[^\d]/",$_GET["remove"])) $remove = $_GET["remove"]; else $remove = FALSE;
+ if (isset($_GET["showpack"]) && !preg_match("/[^\d]/",$_GET["showpack"])) $showpack = $_GET["showpack"]; else $showpack = FALSE;
+ if (isset($_GET["packdetails"]) && !preg_match("/[^\d]/",$_GET["packdetails"])) $packdetails = $_GET["packdetails"]; else $packdetails = FALSE;
+ if (isset($_REQUEST["edit"]) && !preg_match("/[^\d]/",$_REQUEST["edit"])) $edit = $_REQUEST["edit"]; else $edit = FALSE;
+ if (isset($_REQUEST["start"]) && !preg_match("/[^\d]/",$_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
  if (isset($_REQUEST["update"])) $update = TRUE; else $update = FALSE;
- if (isset($_POST["submit"])) $submit = $_POST["submit"]; else $submit = FALSE;
+ if (isset($_POST["submit"])) $submit = TRUE; else $submit = FALSE;
  if (isset($_REQUEST["packname"]) && $pvp->common->req_is_alnum("packname")) $packname = $_REQUEST["packname"];
- $postit = array ("desc","type_id","eps_file","ps_file","llx","lly","urx","ury");
+ if (isset($_POST["desc"]) && $pvp->common->req_is_alnum("desc")) $desc = $_POST["desc"];
+ if (isset($_POST["eps_file"]) && !preg_match("/[^\w\d\.\-\+]/",$_POST["eps_file"])) $eps_file = $_POST["eps_file"]; else $submit=FALSE;
+ if (isset($_POST["ps_file"]) && !preg_match("/[^\w\d\.\-\+]/",$_POST["ps_file"])) $ps_file = $_POST["ps_file"]; else $submit=FALSE;
+ $postit = array ("type_id","llx","lly","urx","ury");
  foreach ($postit as $var) {
-   if (isset($_POST[$var])) $$var = $_POST[$var]; else $$var = "";
+   if (isset($_POST[$var]) && !preg_match("/[^\d\.]/",$_POST[$var])) $$var = $_POST[$var]; else { $$var = ""; $submit = FALSE; }
  }
  unset($postit);
 

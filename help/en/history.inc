@@ -15,6 +15,9 @@
      titles now also show their language along - and if that matches your primary
      language, the entry is highlighted. This makes it easier for you to identify
      the movie title in your language.
+ <li>added more protection against hacker attempts to the admin pages
+ <li>fixed problem with the shortkeys in translation editor (updates failed and
+     destroyed data from first page)
 </ul>
 
 [title]

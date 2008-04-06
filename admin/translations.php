@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -17,13 +17,12 @@
  include("../inc/includes.inc");
 
  #-------------------------------------------------[ Register global vars ]---
- if (isset($_POST["update"])) $update = $_POST["update"]; else $update = FALSE;
- if (isset($_POST["sellang"])) $sellang = $_POST["sellang"]; else $sellang = "";
- if (isset($_GET["savelang"])) $savelang = $_GET["savelang"]; else $savelang = FALSE;
- if (isset($_REQUEST["targetlang"])) $targetlang = $_REQUEST["targetlang"]; else $targetlang = "";
- if (isset($_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
- if (isset($_REQUEST["key"])) $searchkey = $_REQUEST["key"];
- if (preg_match("/[^0-9a-z\!]/",$searchkey)) unset($searchkey);
+ if (isset($_POST["update"])) $update = TRUE; else $update = FALSE;
+ if (isset($_POST["sellang"])) $sellang = TRUE; else $sellang = FALSE;
+ if (isset($_GET["savelang"])) $savelang = TRUE; else $savelang = FALSE;
+ if (isset($_REQUEST["targetlang"]) && preg_match("/^[a-z]{2}$/",$_REQUEST["targetlang"])) $targetlang = $_REQUEST["targetlang"]; else $targetlang = "";
+ if (isset($_REQUEST["start"]) && !preg_match("/[^\d]/",$_REQUEST["start"])) $start = $_REQUEST["start"]; else $start = 0;
+ if (isset($_REQUEST["key"]) && !preg_match("/[^0-9a-z\!]/",$searchkey)) $searchkey = $_REQUEST["key"];
 
  #--------------------------------------------------[ Check authorization ]---
  if (!$pvp->auth->admin) kickoff();
@@ -105,7 +104,7 @@
 
  #=================================[ get translations and setup variables ]===
  $query = "\$db->get_singletrans(\"en\",$start,\"\",\"$searchkey\")";
- $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?targetlang=$targetlang",$start);
+ $nextmatch = new nextmatch ($query,$pvp->tpl_dir,$_SERVER["PHP_SELF"]."?targetlang=$targetlang",$start,";key=$searchkey");
 
  $list = $nextmatch->list;
  for ($i=0;$i<$nextmatch->listcount -2;$i++) {
@@ -126,6 +125,7 @@
  }
  if ($update) $db->lang_available($targetlang,1);
  $hidden = "<INPUT TYPE='hidden' NAME='targetlang' VALUE='$targetlang'>";
+ if (isset($searchkey)) $hidden .= "<INPUT TYPE='hidden' NAME='key' VALUE='$searchkey'>";
  if ($start) $hidden .= "<INPUT TYPE='hidden' NAME='start' VALUE='$start'>";
  if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("charset","$charset,iso-8859-1");

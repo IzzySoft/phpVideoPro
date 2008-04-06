@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.8.5
+# German Language File created by phpVideoPro v0.9.1
 # ========================================================
 
 UPDATE languages SET charset='UTF-8' WHERE lang_id='de';
@@ -135,10 +135,11 @@ INSERT INTO lang VALUES ('cut_off','de','entfernt','');
 INSERT INTO lang VALUES ('data_access','de','Datenzugriff','');
 INSERT INTO lang VALUES ('date_format','de','Datumsformat','');
 INSERT INTO lang VALUES ('date_format_comment','de','Gibt an, in welchem Format Datumsangaben angezeigt werden sollen.','');
-INSERT INTO lang VALUES ('date_is_nan','de','Die Eingabe für Tag. Monat und Jahr muss numerisch sein!\\n(d.h. es sind nur Ziffern erlaubt)','');
+INSERT INTO lang VALUES ('date_is_nan','de','Die Eingabe für Tag. Monat und Jahr muss numerisch sein!n(d.h. es sind nur Ziffern erlaubt)','');
 INSERT INTO lang VALUES ('date_rec','de','Aufnahmedatum','');
 INSERT INTO lang VALUES ('day','de','Tag','');
 INSERT INTO lang VALUES ('db_stats','de','Statistiken','');
+INSERT INTO lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');
 INSERT INTO lang VALUES ('delete','de','Löschen','');
 INSERT INTO lang VALUES ('delete_lang','de','Übersetzungen löschen','');
 INSERT INTO lang VALUES ('delete_lang_comment','de','Entfernt alle Übersetzungen für die angegebene Sprache aus der Datenbank. Die Sprachdatei bleibt dabei unangetastet, sodass ein späteres Neu-Einlesen jederzeit möglich ist (sofern eine Sprachdatei existiert).','');
@@ -187,12 +188,12 @@ INSERT INTO lang VALUES ('feedback_err','de','Negative Abfrage-Ergebnisse','');
 INSERT INTO lang VALUES ('feedback_ok','de','Positive Abfrage-Ergebnisse','');
 INSERT INTO lang VALUES ('finnished','de','Fertig','');
 INSERT INTO lang VALUES ('first_name','de','Vorname','');
-INSERT INTO lang VALUES ('fontsize_is_nan','de','Schriftgröße muss numerisch sein!\\n(d.h.: Es sind nur Ziffern erlaubt)','');
+INSERT INTO lang VALUES ('fontsize_is_nan','de','Schriftgröße muss numerisch sein!n(d.h.: Es sind nur Ziffern erlaubt)','');
 INSERT INTO lang VALUES ('free','de','Frei','');
 INSERT INTO lang VALUES ('free_space_on_media','de','Auf folgenden Medien sind noch mindestens %1 Minuten frei:','');
 INSERT INTO lang VALUES ('free_space_title','de','Verfügbarer Platz auf Medien','');
 INSERT INTO lang VALUES ('fsk','de','FSK','');
-INSERT INTO lang VALUES ('fsk_is_nan','de','Der für FSK gewählte Wert ist nicht numerisch,\\nphpVideoPro erfordert aber einen numerischen Wert.\\nFür detaillierte Informationen bitte auf das zugehörige\\nInfo-Ikon klicken.','');
+INSERT INTO lang VALUES ('fsk_is_nan','de','Der für FSK gewählte Wert ist nicht numerisch,nphpVideoPro erfordert aber einen numerischen Wert.nFür detaillierte Informationen bitte auf das zugehörigenInfo-Ikon klicken.','');
 INSERT INTO lang VALUES ('general','de','Allgemein','');
 INSERT INTO lang VALUES ('goto_entry','de','Zeige folgenden Eintrag an:','');
 INSERT INTO lang VALUES ('grant_filter_desc','de','Zeige Einträge von','');
@@ -210,7 +211,8 @@ INSERT INTO lang VALUES ('howto_help','de','Wie erstelle ich eine Hilfedatei?','
 INSERT INTO lang VALUES ('howto_label','de','Wie erstelle/konfiguriere ich Vorlagen für Labels?','');
 INSERT INTO lang VALUES ('howto_lang','de','Wie erstelle ich eine neue Sprachdatei?','');
 INSERT INTO lang VALUES ('howto_templates','de','Wie erstelle ich ein neues Template Set?','');
-INSERT INTO lang VALUES ('id_is_nan','de','ID muss numerisch sein!\\n(d.h. es sind nur Ziffern erlaubt)','');
+INSERT INTO lang VALUES ('id_is_nan','de','ID muss numerisch sein!n(d.h. es sind nur Ziffern erlaubt)','');
+INSERT INTO lang VALUES ('imdbapi_not_installed','de','Die IMDB API ist nicht installiert - daher kann die IMDB Suche in phpVideoPro nicht genutzt werden. Um sie zu aktivieren muss sichergestellt sein, dass das Paket <i>imdbphp</i> auf dem Rechner, auf welchem phpVideoPro installiert wurde, im PHP <i>include_path</i> verfügbar ist.','');
 INSERT INTO lang VALUES ('imdbsearch','de','Details zum Film aus der IMDB beziehen','');
 INSERT INTO lang VALUES ('imdb_cache_dir','de','Verzeichnis zum Speichern der IMDB Cache Daten','');
 INSERT INTO lang VALUES ('imdb_cache_dir_comment','de','Für dieses Verzeichnis muss der Webserver sowohl Lese- als auch Schreibberechtigung haben. Desweiteren sollte es ausschließlich für diesen Zweck genutzt werden (also keine anderen Daten enthalten). Der hier angegebene Pfad kann relativ zum Basisverzeichnis der phpVideoPro Installation sein - aber auch außerhalb des DOCUMENT_ROOT des Webservers liegen. <b><i>Keinesfalls</i></b> sollte hierfür das temporäre Systemverzeichnis (<code>/tmp</code> unter Linux) genutzt werden.','');
@@ -376,7 +378,7 @@ INSERT INTO lang VALUES ('layout_label','de','Layout wählen','');
 INSERT INTO lang VALUES ('left_offset','de','Offset Links','');
 INSERT INTO lang VALUES ('length','de','Länge','');
 INSERT INTO lang VALUES ('lentto','de','Verliehen an','');
-INSERT INTO lang VALUES ('len_is_nan','de','Der für die Länge eingebene Wert ist nicht numerisch,\\nphpVideoPro kann hierfür jedoch nur numerische Werte verarbeiten.','JavaScript ErrorMsg popup when entering not-numeric length value');
+INSERT INTO lang VALUES ('len_is_nan','de','Der für die Länge eingebene Wert ist nicht numerisch,nphpVideoPro kann hierfür jedoch nur numerische Werte verarbeiten.','JavaScript ErrorMsg popup when entering not-numeric length value');
 INSERT INTO lang VALUES ('lines_per_page','de','Zeilen pro Seite','');
 INSERT INTO lang VALUES ('lines_per_page_comment','de','Dieser Wert gibt an, wieviele Textzeilen auf ein Blatt Papier passen (für den Listendruck).','');
 INSERT INTO lang VALUES ('line_count','de','Zeilen','');
@@ -397,7 +399,7 @@ INSERT INTO lang VALUES ('medialength','de','Medienlänge','');
 INSERT INTO lang VALUES ('medialist','de','Medienliste','');
 INSERT INTO lang VALUES ('medialist_alpha','de','Alphabetisch sortierte Medienliste','');
 INSERT INTO lang VALUES ('medialist_num','de','Numerisch sortierte Medienliste','');
-INSERT INTO lang VALUES ('medianr_is_nan','de','Die MediaNr muss numerisch sein\\n(d.h. Buchstaben oder Sonderzeichen sind nicht erlaubt).','');
+INSERT INTO lang VALUES ('medianr_is_nan','de','Die MediaNr muss numerisch seinn(d.h. Buchstaben oder Sonderzeichen sind nicht erlaubt).','');
 INSERT INTO lang VALUES ('mediatype','de','MedienTyp','');
 INSERT INTO lang VALUES ('media_change','de','Ändere MediaNr','');
 INSERT INTO lang VALUES ('media_copy','de','Kopiere Daten zu MediaNr','');
@@ -569,6 +571,8 @@ INSERT INTO lang VALUES ('user_delete_failed','de','Das Löschen des Benutzers #
 INSERT INTO lang VALUES ('user_delete_report','de','Ergebnis des Löschvorgangs','');
 INSERT INTO lang VALUES ('user_grants','de','Zugriffsrechte für die eigenen Daten','');
 INSERT INTO lang VALUES ('user_update_failed','de','Aktualisierung fehlgeschlagen für folgende Benutzer: %1','');
+INSERT INTO lang VALUES ('use_http_auth','de','HTTP Authentification aktivieren?','');
+INSERT INTO lang VALUES ('use_http_auth_comment','de','Dies ist nützlich für Site-Integration mit einem \"Single Sign-In\". Stimmen die Daten eines so angemeldeten Benutzers mit Login-Daten von phpVideoPro überein, wird der Benutzer automatisch angemeldet. Wer diese Funktionalität nicht benötigt, lässt sie besser abgeschaltet.','');
 INSERT INTO lang VALUES ('view','de','Anzeigen','');
 INSERT INTO lang VALUES ('view_entry','de','Anzeige des Datensatzes %1','');
 INSERT INTO lang VALUES ('warning','de','Warnung','');
@@ -579,6 +583,3 @@ INSERT INTO lang VALUES ('xfer_unknown_filetype','de','Der Datentyp dieses Backu
 INSERT INTO lang VALUES ('xfer_wrong_mode','de','Programmfehler: Der eingestellte Transfermodus ist für die gewünschte Aktion nicht zulässig. Erforderlich wäre der Modus \"%1\", eingestellt ist jedoch \"%2\". Bitte unbedingt einen Report mit den Schritten, die zu diesem Fehler geführt haben, an den Autoren schicken!','');
 INSERT INTO lang VALUES ('year','de','Jahr','');
 INSERT INTO lang VALUES ('yes','de','Ja','');
-INSERT INTO lang VALUES ('use_http_auth','de','HTTP Authentification aktivieren?','');
-INSERT INTO lang VALUES ('use_http_auth_comment','de','Dies ist nützlich für Site-Integration mit einem \"Single Sign-In\". Stimmen die Daten eines so angemeldeten Benutzers mit Login-Daten von phpVideoPro überein, wird der Benutzer automatisch angemeldet. Wer diese Funktionalität nicht benötigt, lässt sie besser abgeschaltet.','');
-INSERT INTO lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');

@@ -1,13 +1,13 @@
 # /* History */
 # /*  $Id$ */
 [title]
-0.9.2
+0.9.2 (April 22, 2008)
 [text]
 <ul>
  <li>admin_orphans was not performing the delete of orphans (global variable issue)
  <li>added more vulnerability checks to the "edit disk types" page
- <li>removed the IMDB classes from the phpvideopro code. Instead, the imdbphp
-     package now is a pre-requisite (requirement) for the phpvideopro installation.
+ <li>removed the IMDB classes from the phpvideopro code. Instead, <b>the imdbphp
+     package now is a pre-requisite (requirement) for the phpvideopro installation</b>.
      This way we can benefit from the latest imdbphp code (e.g. after IMDB site
      changes) without the need of making an intermediate release of phpvideopro
      itself just for that.

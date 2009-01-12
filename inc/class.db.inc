@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -18,7 +18,7 @@
   * @class sql
   * @extends DB_Sql
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   * @version $Revision$ $Date$
   */
  /** SQL substring to limit result sets to a certain number
@@ -1339,6 +1339,7 @@
     *              lp, label, vnorm_id, vnorm
     *  Movie data: title, length, country, year, counter1, counter2, aq_date
     *              source, fsk, comment, catX / catX_id (1..3), comment
+    *  IMDB data:  imdb_id, rating
     *  Staff data: director_list, music_list, actorX_list (where X is 1..5);
     *              director_id, music_id, actorX_id (where X is 1..5);
     *              director, music and actorX as fullname (see format_name);

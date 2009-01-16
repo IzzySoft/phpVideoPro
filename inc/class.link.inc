@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class link
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   */
  /** Base URL of the IMDB
   * @class link
@@ -108,10 +108,14 @@
    * @param string fname first name
    * @param string name family name
    * @param string occupation actor, director or what else
+   * @param optional string imdb_id
    * @return string link link to detailled information in IMDB
    */
-  function ImdbPerson($fname,$name,$occupation) {
-    if (strlen(trim($name))) {
+  function ImdbPerson($fname,$name,$occupation,$mid) {
+    if (preg_match("|^\d{7}$|",$mid)) {
+      $imdb = $this->imdb . "name/nm${mid}/";
+      return $imdb;
+    } elseif (strlen(trim($name))) {
       $imdb = $this->imdb . "Nsearch?name=";
       if (strlen(trim($fname))) {
         $imdb .= urlencode($fname) . "+";
@@ -127,11 +131,12 @@
    * @param string fname first name
    * @param string name family name
    * @param string occupation actor, director or what else
+   * @param optional string imdb_id
    * @return string addon JavaScript handler for button to open new window
    *  with IMDB information
    */
-  function formImdbPerson($fname,$name,$occupation) {
-    $imdb = $this->ImdbPerson($fname,$name,$occupation);
+  function formImdbPerson($fname,$name,$occupation,$mid="") {
+    $imdb = $this->ImdbPerson($fname,$name,$occupation,$mid);
     if (strlen($imdb)) {
       return " onClick='window.open(\"$imdb\",\"imdb\")'";
     } else { return ""; }

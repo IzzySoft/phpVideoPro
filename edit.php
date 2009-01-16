@@ -200,13 +200,16 @@
 
   for ($i=1;$i<6;$i++) {
     $act_id  = "actor_$i";
-    $actor[$i]['name']  = $pvp->common->string2input($movie[$act_id]['name']);
-    $actor[$i]['fname'] = $pvp->common->string2input($movie[$act_id]['firstname']);
+    $actor[$i]['name']    = $pvp->common->string2input($movie[$act_id]['name']);
+    $actor[$i]['fname']   = $pvp->common->string2input($movie[$act_id]['firstname']);
+    $actor[$i]['imdb_id'] = $movie["actor${i}_mid"];
   }
   $director_name  = $pvp->common->string2input($movie['director_']['name']);
   $director_fname = $pvp->common->string2input($movie['director_']['firstname']);
+  $director_imdb_id = $movie["director_mid"];
   $composer_name  = $pvp->common->string2input($movie['music_']['name']);
   $composer_fname = $pvp->common->string2input($movie['music_']['firstname']);
+  $composer_imdb_id = $movie["director_mid"];
   $pict_format = $movie['pict'];
 
   for ($i=1;$i<4;$i++) {
@@ -304,7 +307,7 @@
   for ($i=1;$i<=$max["actors"];$i++) {
     $name = "actor" . $i . "_name"; $fname = "actor" . $i . "_fname";
     if ($page_id == "view_entry") { // set imdb info url for actor
-      $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($actor[$i]['fname'],$actor[$i]['name'],"actors");
+      $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($actor[$i]['fname'],$actor[$i]['name'],"actors",$actor[$i]["imdb_id"]);
     } else { $formAddon = $form["addon_name"]." CLASS='nameinput'"; }
     if ($i==1) {
       $t->set_var("actor_name",lang("actors"));
@@ -331,6 +334,7 @@
     }
     if ($i>1) $t->parse("actorlist","actorblock",TRUE);
       else  $t->parse("actorlist","actorblock");
+    $hiddenfields .= "<INPUT TYPE='hidden' NAME='actor${i}_imdbid' VALUE='".$actor[$i]["imdb_id"]."'>";
   }
 
   // main block
@@ -773,19 +777,21 @@ EndHiddenFields;
   $t->set_var("inlist_name",lang("in_list"));
   $t->set_var("director_name",lang("director"));
   if ($page_id == "view_entry") {
-    $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($director_fname,$director_name,"directors");
+    $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($director_fname,$director_name,"directors",$movie["director_mid"]);
   } else { $formAddon = $form["addon_name"]." CLASS='nameinput'"; }
   if ( $edit || strlen($director_name . $director_fname) ) {
     if ($new_entry) {
       $t->set_var("director",form_input("director_name","",$formAddon));
       $t->set_var("director_f",form_input("director_fname","",$formAddon));
       $director_list = "";
+      $hiddenfields .= "<INPUT TYPE='hidden' NAME='director_imdbid' VALUE=''>";
     } else {
       $t->set_var("director",form_input("director_name",$director_name,$formAddon));
       $t->set_var("director_f",form_input("director_fname",$director_fname,$formAddon));
       $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_director_name' VALUE='$director_name'>"
                     .  "<INPUT TYPE='hidden' NAME='old_director_fname' VALUE='$director_fname'>"
-                    .  "<INPUT TYPE='hidden' NAME='old_director_id' VALUE='".$movie["director_id"]."'>";
+                    .  "<INPUT TYPE='hidden' NAME='old_director_id' VALUE='".$movie["director_id"]."'>"
+                    .  "<INPUT TYPE='hidden' NAME='director_imdbid' VALUE='".$movie["director_mid"]."'>";
     }
     $t->set_var("director_list",vis_staff('director_list',$director_list));
   } else {
@@ -795,19 +801,21 @@ EndHiddenFields;
   }
   $t->set_var("composer_name",lang("composer"));
   if ($page_id == "view_entry") {
-    $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($composer_fname,$composer_name,"composers");
+    $formAddon = $form["addon_name"]." CLASS='namebutton'" . $pvp->link->formImdbPerson($composer_fname,$composer_name,"composers",$movie["music_mid"]);
   }
   if ( $edit || strlen($composer_name . $composer_fname) ) {
     if ($new_entry) {
       $t->set_var("composer",form_input("composer_name","",$formAddon));
       $t->set_var("composer_f",form_input("composer_fname","",$formAddon));
       $music_list = "";
+      $hiddenfields .= "<INPUT TYPE='hidden' NAME='composer_imdbid' VALUE=''>";
     } else {
       $t->set_var("composer",form_input("composer_name",$composer_name,$formAddon));
       $t->set_var("composer_f",form_input("composer_fname",$composer_fname,$formAddon));
       $hiddenfields .= "<INPUT TYPE='hidden' NAME='old_composer_name' VALUE='$composer_name'>"
                     .  "<INPUT TYPE='hidden' NAME='old_composer_fname' VALUE='$composer_fname'>"
-                    .  "<INPUT TYPE='hidden' NAME='old_composer_id' VALUE='".$movie["music_id"]."'>";
+                    .  "<INPUT TYPE='hidden' NAME='old_composer_id' VALUE='".$movie["music_id"]."'>"
+                    .  "<INPUT TYPE='hidden' NAME='composer_imdbid' VALUE='".$movie["music_mid"]."'>";
     }
     $t->set_var("composer_list",vis_staff('music_list',$music_list));
   } else {

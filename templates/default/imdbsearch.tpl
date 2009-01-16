@@ -14,6 +14,7 @@
 <INPUT TYPE="hidden" NAME="mid" VALUE="{mid}">
 <INPUT TYPE="hidden" NAME="country" VALUE="{mcountry}">
 <INPUT TYPE="hidden" NAME="year" VALUE="{myear}">
+{hiddenvals}
 <TABLE ALIGN="center" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
  <TR><TH>{title_chk}</TH><TH COLSPAN="2"><DIV ALIGN="center">{mtitle}</DIV></TH></TR>
  <TR><TD>{country_chk}</TD><TD><B>{ncountry}</B></TD><TD>{mcountry}</TD></TR>

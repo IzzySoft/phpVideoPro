@@ -10,6 +10,7 @@ BEGIN;
 
 CREATE TABLE actors (
    id SERIAL,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
@@ -84,6 +85,7 @@ COMMENT ON TABLE colors IS 'Types of movie colors, such as b/w, color, etc.';
 
 CREATE TABLE directors (
    id SERIAL,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
@@ -139,6 +141,7 @@ COMMENT ON TABLE disks IS 'Disk types, e.g. DVD5, DVD-RW';
 
 CREATE TABLE music (
    id SERIAL,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)

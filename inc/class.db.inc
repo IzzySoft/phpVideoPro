@@ -811,7 +811,7 @@
    /** Format a names array
     * @method private format_name
     * @param array name
-    * return array name
+    * return array name (name,reverse,firstname,fullname,imdb_id)
     */
    function format_name($name) {
      $name['name'] = $name['reverse'] = trim($name['name']);
@@ -837,22 +837,24 @@
     */
    function get_person($id,$table) {
      if ($id) {
-       $this->dbquery("SELECT firstname,name FROM $table WHERE id=$id");
+       $this->dbquery("SELECT firstname,name,imdb_id FROM $table WHERE id=$id");
        if ( $this->next_record() ) {
          $person['id']   = trim($id);
          $person['name'] = $this->f('name');
          $person['firstname'] = $this->f('firstname');
+	 $person['imdb_id']   = $this->f('imdb_id');
 	 $person = $this->format_name($person);
        } else {
-         $person['name'] = $person['firstname'] = $person['fullname'] = $person['reverse'] = "";
+         $person['name'] = $person['firstname'] = $person['fullname'] = $person['reverse'] = $person['imdb_id'] = "";
        }
      } else {
-       $this->dbquery("SELECT id,firstname,name FROM $table");
+       $this->dbquery("SELECT id,firstname,name,imdb_id FROM $table");
        $i=0;
        while ( $this->next_record() ) {
          $person[$i]['id']   = $this->f('id');
          $person[$i]['name'] = $this->f('name');
          $person[$i]['firstname'] = $this->f('firstname');
+	 $person[$i]['imdb_id']   = $this->f('imdb_id');
 	 $person[$i] = $this->format_name($person[$i]);
 	 ++$i;
        }
@@ -1339,7 +1341,7 @@
     *              lp, label, vnorm_id, vnorm
     *  Movie data: title, length, country, year, counter1, counter2, aq_date
     *              source, fsk, comment, catX / catX_id (1..3), comment
-    *  IMDB data:  imdb_id, rating
+    *  IMDB data:  imdb_id, rating, actorX_mid, director_mid, music_mid
     *  Staff data: director_list, music_list, actorX_list (where X is 1..5);
     *              director_id, music_id, actorX_id (where X is 1..5);
     *              director, music and actorX as fullname (see format_name);
@@ -1355,19 +1357,19 @@
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
 	    . "tone_id,color_id,pict_id,commercials_id,lp,fsk,audio,subtitle,"
             . "comment,pvp_video.mtype_id as mtype_id,"
-	    . "d.name as dname,d.firstname as dfname,"
-	    . "m.name as mname,m.firstname as mfname,"
-	    . "a1.name as a1name,a1.firstname as a1fname,"
-	    . "a2.name as a2name,a2.firstname as a2fname,"
-	    . "a3.name as a3name,a3.firstname as a3fname,"
-	    . "a4.name as a4name,a4.firstname as a4fname,"
-	    . "a5.name as a5name,a5.firstname as a5fname,"
+	    . "d.name as dname,d.firstname as dfname,d.imdb_id as dmid,"
+	    . "m.name as mname,m.firstname as mfname,m.imdb_id as mmid,"
+	    . "a1.name as a1name,a1.firstname as a1fname,a1.imdb_id as a1mid,"
+	    . "a2.name as a2name,a2.firstname as a2fname,a2.imdb_id as a2mid,"
+	    . "a3.name as a3name,a3.firstname as a3fname,a3.imdb_id as a3mid,"
+	    . "a4.name as a4name,a4.firstname as a4fname,a4.imdb_id as a4mid,"
+	    . "a5.name as a5name,a5.firstname as a5fname,a5.imdb_id as a5mid,"
 	    . "mt.name as mtname,mt.sname as mtsname,"
 	    . "c.name as cname,c.sname as csname,"
 	    . "t.name as tname,t.sname as tsname,"
 	    . "cat1.name as cat1name,cat2.name as cat2name,cat3.name as cat3name,"
 	    . "media_id,part,pm.owner as owner_id,pm.storeplace as storeplace, "
-            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,imdb_id, "
+            . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,pvp_video.imdb_id, "
             . "rating,lastchange "
 	    . "FROM pvp_video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
@@ -1411,17 +1413,20 @@
        $name = $this->format_name( array("name"=>$this->f('dname'),"firstname"=>$this->f('dfname')) );
        $movie['director'] = $name['fullname']; $movie['director_rev'] = $name['reverse'];
        $movie['director_'] = $name;
+       $movie['director_mid'] = $this->f('dmid');
        $name = $this->format_name( array("name"=>$this->f('mname'),"firstname"=>$this->f('mfname')) );
        $movie['music'] = $name['fullname']; $movie['music_rev'] = $name['reverse'];
        $movie['music_'] = $name;
+       $movie['music_mid'] = $this->f('mmid');
        for ($i=1;$i<6;$i++) { // actor 1..5: ['actor1'],[actor1_rev],[actor_1]...
-         $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname";
+         $dbname = "a$i" . "name"; $dbfname = "a$i" . "fname"; $dbmid = "a${i}mid";
          $tname  = stripslashes($this->f("$dbname"));
          $tfname = stripslashes($this->f("$dbfname"));
          $vname  = "actor$i"; $vrev = "actor$i" . "_rev"; $aname = "actor_$i";
          $name = $this->format_name( array("name"=>$tname,"firstname"=>$tfname) );
          $movie[$vname] = $name['fullname']; $movie[$vrev] = $name['reverse'];
          $movie[$aname] = $name;
+	 $movie["${vname}_mid"] = $this->f($dbmid);
        }
        $movie['mtype'] = $this->f('mtname'); $movie['mtype_short'] = $this->f('mtsname');
        $movie['color'] = lang($this->f('cname')); $movie['color_short'] = $this->f('csname');
@@ -2805,16 +2810,21 @@
 
    ############################################################################
    /** Check wether a given person exists in the db and aquire his/her id. If not
-    *  found in db, insert him/her first
+    *  found in db, insert him/her first. If a valid imdb_id was specified, just
+    *  the imdb_id will compared - different name spellings are ignored. This
+    *  also means, if the same person already exists in the DB but w/o imdb_id,
+    *  a new entry would be added although (since we cannot tell if this really
+    *  is the same person, or just has the same name).
     * @method private insert_person
     * @param string person stafftype
     * @param string query SQL query for SELECT statement
     * @param string sub_query SQL query for INSERT statement
     * @param optional string name family name of person
     * @param optional string fname first name of person
+    * @param optional string imdb_id
     * @return integer id (person_id)
     */
-   function insert_person($person,$query,$sub_query,$name="",$fname="") {
+   function insert_person($person,$query,$sub_query,$name="",$fname="",$imdb_id="") {
      GLOBAL $dmsg,$pvp;
      if ( strlen( trim($name . $fname) ) < 1) {
        $dmsg .=  "<li><SPAN CLASS='ok'>$person not specified, no action taken.</SPAN>\n";
@@ -2822,15 +2832,28 @@
      } else {
        $name  = $pvp->common->safeinput($name);
        $fname = $pvp->common->safeinput($fname);
-       if (empty($fname)) {
+       if (!empty($imdb_id) && !preg_match("|^\d{7}$|",$imdb_id)) {
+         $dmsg .=  "<li><SPAN CLASS='ok'>Invalid IMDB ID '$imdb_id' - it must consist of exactly 7 digits. ID ignored and emptied.</SPAN>\n";
+	 unset($imdb_id);
+       }
+       if (!empty($imdb_id)) {
+         $query .= " WHERE imdb_id='$imdb_id'";
+	 if (empty($fname)) {
+	   $sub_query .= " (name,imdb_id) VALUES ('$name','$imdb_id')";
+	 } elseif (empty($name)) {
+	   $sub_query .= " (firstname,imdb_id) VALUES ('$fname','$imdb_id')";
+	 } else {
+	   $sub_query .= " (name,firstname,imdb_id) VALUES ('$name','$fname','$imdb_id')";
+         }
+       } elseif (empty($fname)) {
          $query .= " WHERE name='$name'";
-	 $sub_query .= " (name) VALUES ('$name')";
+         $sub_query .= " (name) VALUES ('$name')";
        } elseif (empty($name)) {
          $query .= " WHERE firstname='$fname'";
-	 $sub_query .= " (firstname) VALUES ('$fname')";
+         $sub_query .= " (firstname) VALUES ('$fname')";
        } else {
          $query .= " WHERE name='$name' AND firstname='$fname'";
-	 $sub_query .= " (name,firstname) VALUES ('$name','$fname')";
+         $sub_query .= " (name,firstname) VALUES ('$name','$fname')";
        }
      }
      $dmsg  .= " <li><SPAN CLASS='ok'>" . stripslashes($query) . "</SPAN>";
@@ -3589,14 +3612,15 @@
   * @param string sub_query SQL query for INSERT statement
   * @param optional string name family name of person
   * @param optional string fname first name of person
+  * @param optional string imdb_id
   * @return integer id (person_id)
   * @deprecated this is only a placeholder for backward compatibility.
   *  use sql::insert_person() directly instead.
   */
- function insert_person($person,$query,$sub_query,$name="",$fname="") {
+ function insert_person($person,$query,$sub_query,$name="",$fname="",$imdb_id="") {
    // only called from inc/sql_set_persons.inc
    GLOBAL $db;
-   return $db->insert_person($person,$query,$sub_query,$name,$fname);
+   return $db->insert_person($person,$query,$sub_query,$name,$fname,$imdb_id);
  }
  /** Read a file into an array and passes it to sql::get_sql()
   * @package Api

@@ -1,6 +1,6 @@
 <?
  ##############################################################################
- # phpVideoPro                               (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                               (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
  # http://www.izzysoft.de/                                                    #
  # -------------------------------------------------------------------------- #
@@ -140,6 +140,7 @@
    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
    $movie->setid ($movieid);
    $t->set_var("mid",$movieid);
+   $hiddenvals = "";
    #-=[ Title incl. Also Known As ]=-
    $title  = "<SELECT NAME='title'>";
    $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
@@ -234,6 +235,7 @@
     $t->set_var("dir_name",$dir[$i]["name"]); // we also have "imdb" and "role"
     if ($i==0) $t->set_var("dsel"," SELECTED"); else $t->set_var("dsel","");
     $t->parse("dirlist","dirblock",$open);
+    $hiddenvals .= "<INPUT TYPE='hidden' NAME='director_mid_$i' VALUE='".$dir[$i]["imdb"]."'>";
     $open = TRUE;
    }
    $t->set_var("director_chk",$pvp->common->make_checkbox("director_chk",$imdb_tx_director));
@@ -246,6 +248,7 @@
     $t->set_var("mus_name",$music[$i]["name"]); // we also have "imdb"
     if ($i==0) $t->set_var("dsel"," SELECTED"); else $t->set_var("dsel","");
     $t->parse("muslist","musblock",$open);
+    $hiddenvals .= "<INPUT TYPE='hidden' NAME='music_mid_$i' VALUE='".$music[$i]["imdb"]."'>";
     $open = TRUE;
    }
    $t->set_var("music_chk",$pvp->common->make_checkbox("music_chk",$imdb_tx_music));
@@ -258,6 +261,7 @@
      $t->set_var("aname",$cast[$i]["name"]); // we also have "imdb"
      if ($i<5) $t->set_var("asel"," SELECTED"); else $t->set_var("asel","");
      $t->parse("actlist","actblock",$open);
+     $hiddenvals .= "<INPUT TYPE='hidden' NAME='actor_mid_$i' VALUE='".$cast[$i]["imdb"]."'>";
      $open = TRUE;
    }
    $t->set_var("actor_chk",$pvp->common->make_checkbox("actor_chk",$imdb_tx_actor));
@@ -338,16 +342,19 @@
        if (omf.cat3_id.options[i].value==dmf.cat3_id.value) { omf.cat3_id.options[i].selected=1; }
      }
    }
+   var pidx = 0;
    if (dmf.director_chk.checked) {
      name = dmf.directors.value;
      omf.director_name.value  = name_split(dmf.directors.value);
      omf.director_fname.value = fname_split(dmf.directors.value);
+     eval('omf.director_imdbid.value = dmf.director_mid_' + dmf.directors.selectedIndex + '.value');
      if (dmf.directors.value != '') omf.director_list.checked=1;
    }
    if (dmf.music_chk.checked) {
      name = dmf.music.value;
      omf.composer_name.value  = name_split(dmf.music.value);
      omf.composer_fname.value = fname_split(dmf.music.value);
+     eval('omf.composer_imdbid.value = dmf.music_mid_' + dmf.music.selectedIndex + '.value');
      if (dmf.music.value != '') omf.music_list.checked=1;
    }
    if (dmf.actor_chk.checked) {
@@ -356,11 +363,11 @@
        if (dmf.actors.options[i].selected) {
          curr  = dmf.actors.options[i].text;
          switch(k) {
-           case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.checked=1; break;
-           case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.checked=1; break;
-           case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.checked=1; break;
-           case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.checked=1; break;
-           case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.checked=1; break;
+           case 1: omf.actor1_name.value = name_split(curr); omf.actor1_fname.value = fname_split(curr); omf.vis_actor1.checked=1; eval('omf.actor1_imdbid.value=dmf.actor_mid_' + i + '.value'); break;
+           case 2: omf.actor2_name.value = name_split(curr); omf.actor2_fname.value = fname_split(curr); omf.vis_actor2.checked=1; eval('omf.actor2_imdbid.value=dmf.actor_mid_' + i + '.value'); break;
+           case 3: omf.actor3_name.value = name_split(curr); omf.actor3_fname.value = fname_split(curr); omf.vis_actor3.checked=1; eval('omf.actor3_imdbid.value=dmf.actor_mid_' + i + '.value'); break;
+           case 4: omf.actor4_name.value = name_split(curr); omf.actor4_fname.value = fname_split(curr); omf.vis_actor4.checked=1; eval('omf.actor4_imdbid.value=dmf.actor_mid_' + i + '.value'); break;
+           case 5: omf.actor5_name.value = name_split(curr); omf.actor5_fname.value = fname_split(curr); omf.vis_actor5.checked=1; eval('omf.actor5_imdbid.value=dmf.actor_mid_' + i + '.value'); break;
            default: break;
          }
          ++k;
@@ -371,6 +378,7 @@
   }
 //--></SCRIPT>";
    $t->set_var("js",$js);
+   $t->set_var("hiddenvals",$hiddenvals);
    $t->parse("movie","movieblock");
    $t->pparse("out","template");
  } else {

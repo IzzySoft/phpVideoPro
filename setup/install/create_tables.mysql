@@ -9,6 +9,7 @@
 
 CREATE TABLE actors (
    id INT(5) NOT NULL auto_increment,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
@@ -71,6 +72,7 @@ ALTER TABLE colors COMMENT='Types of movie colors, such as b/w, color, etc.';
 
 CREATE TABLE directors (
    id INT(5) NOT NULL auto_increment,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
@@ -124,6 +126,7 @@ ALTER TABLE disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
 
 CREATE TABLE music (
    id INT(5) NOT NULL auto_increment,
+   imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)

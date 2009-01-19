@@ -138,14 +138,14 @@ ALTER TABLE music COMMENT='Names of composers/artists';
 # Table structure for table 'pict'
 #
 
-CREATE TABLE pict (
+CREATE TABLE pvp_pict (
    id INT(5) NOT NULL auto_increment,
    name VARCHAR(30),
    sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-ALTER TABLE pict COMMENT='Screen/picture formats, e.g. 4:3 or 16:9';
+ALTER TABLE pvp_pict COMMENT='Screen/picture formats, e.g. 4:3 or 16:9';
 
 # --------------------------------------------------------
 #

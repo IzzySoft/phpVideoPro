@@ -217,7 +217,7 @@
      $temp = $this->get_fquery($found,"mtype","mtypes");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ pict ]---
-     $temp = $this->get_fquery($found,"pict");
+     $temp = $this->get_fquery($found,"pvp_pict");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ color ]---
      $temp = $this->get_fquery($found,"color","colors");

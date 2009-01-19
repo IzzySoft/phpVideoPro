@@ -13,6 +13,7 @@ ALTER TABLE music ADD imdb_id VARCHAR(10) AFTER id;
 # Table renaming
 RENAME TABLE preferences TO pvp_preferences;
 RENAME TABLE tone TO pvp_tone;
+RENAME TABLE pict TO pvp_pict;
 
 # version update
-UPDATE pvp_config SET value='0.9.2' WHERE name='version';
+UPDATE pvp_config SET value='0.9.3' WHERE name='version';

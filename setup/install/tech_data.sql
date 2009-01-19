@@ -71,8 +71,8 @@ INSERT INTO disks (mtype_id,name,size,rc) VALUES (4,'DVD+RW','4.7 GB',1);
 # Data for table 'pict'
 #
 
-INSERT INTO pict VALUES ( '1', '4:3', '4-3');
-INSERT INTO pict VALUES ( '2', '16:9', '16-9');
+INSERT INTO pvp_pict VALUES ( '1', '4:3', '4-3');
+INSERT INTO pvp_pict VALUES ( '2', '16:9', '16-9');
 
 #
 # Data for table 'tone'

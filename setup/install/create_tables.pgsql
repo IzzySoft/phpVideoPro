@@ -153,13 +153,13 @@ COMMENT ON TABLE music IS 'Names of composers/artists';
 # Table structure for table 'pict'
 #
 
-CREATE TABLE pict (
+CREATE TABLE pvp_pict (
    id SERIAL,
    name VARCHAR(30),
    sname VARCHAR(5) UNIQUE,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE pict IS 'Screen/picture formats, e.g. 4:3 or 16:9';
+COMMENT ON TABLE pvp_pict IS 'Screen/picture formats, e.g. 4:3 or 16:9';
 
 # --------------------------------------------------------
 #

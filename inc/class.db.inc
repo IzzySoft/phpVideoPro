@@ -1162,7 +1162,7 @@
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
     */
    function get_pict($id="") {
-     return $this->get_av($id,"pict");
+     return $this->get_av($id,"pvp_pict");
    }
 
    /** update pict data (wrapper to set_av)
@@ -1173,7 +1173,7 @@
     * @see set_av()
     */
    function set_pict($name,$sname,$id="") {
-     return $this->set_av("pict",$name,$sname,$id);
+     return $this->set_av("pvp_pict",$name,$sname,$id);
    }
 
    /** Get all color data and return it as array (wrapper to get_av)

@@ -885,7 +885,7 @@
     * @return array componist's data (formatted by format_name)
     */
    function get_music($id) {
-     return $this->get_person($id,"music");
+     return $this->get_person($id,"pvp_music");
    }
 
    /** Get distinct staff ids from video table and return them as array
@@ -934,7 +934,7 @@
        $orphan[] = $this->setup_orphan("director_person",$this->f('id'),$this->f('name'),$this->f('firstname'));
      }
      $id = $this->get_distinct_staffids("music_id");
-     $query = "SELECT id,name,firstname FROM music"
+     $query = "SELECT id,name,firstname FROM pvp_music"
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
@@ -979,7 +979,7 @@
     * @return boolean success
     */
    function delete_composer($id) {
-     return $this->delete_row("music",$id);
+     return $this->delete_row("pvp_music",$id);
    }
 
    ############################################################################
@@ -1275,7 +1275,7 @@
    function drop_all_movies() {
      if (!$this->query("TRUNCATE TABLE pvp_video")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_media")) return FALSE;
-     if (!$this->query("TRUNCATE TABLE music")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE pvp_music")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_directors")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_actors")) return FALSE;
      return TRUE;
@@ -1372,7 +1372,7 @@
             . "rating,lastchange "
 	    . "FROM pvp_video "
 	    . "LEFT JOIN pvp_directors d ON director_id=d.id "
-	    . "LEFT JOIN music m ON music_id=m.id "
+	    . "LEFT JOIN pvp_music m ON music_id=m.id "
 	    . "LEFT JOIN pvp_mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN pvp_colors c ON color_id=c.id "
 	    . "LEFT JOIN pvp_tone t ON tone_id=t.id "
@@ -2347,7 +2347,7 @@
            if (!empty($dd)) $did_list = ",".$this->f('music_id');
          }
          if (!empty($did_list))
-           $this->query("DELETE FROM music WHERE id IN (".substr($did_list,1).")");
+           $this->query("DELETE FROM pvp_music WHERE id IN (".substr($did_list,1).")");
          // check for actors
          $did_list = "";
          $query = "SELECT DISTINCT actor1_id FROM pvp_video WHERE media_id IN ($mid_list)";
@@ -2748,7 +2748,7 @@
    /** Get list of "visible" staff members If $start is set, the result set is
     *  limited based on $pvp->preferences->limit
     * @method get_visstafflist
-    * @param string stafftype wether it is music, directors or actors
+    * @param string stafftype whether it is music, directors or actors
     * @param optional string filter filter restrictions
     * @param optional integer start (for use with LIMIT)
     * @return array stafflist (i:id (staff member ID), i:name
@@ -2916,7 +2916,7 @@
      $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM pvp_video"),
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM pvp_actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM pvp_directors"),
-		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
+		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM pvp_music"),
 		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM pvp_cat")
 		     );
      foreach($details as $value) {

@@ -25,6 +25,7 @@ ALTER TABLE lang RENAME TO pvp_lang;
 ALTER TABLE cat RENAME TO pvp_cat;
 ALTER TABLE actors RENAME TO pvp_actors;
 ALTER TABLE directors RENAME TO pvp_directors;
+ALTER TABLE music RENAME TO pvp_music;
 
 # version update
 UPDATE pvp_config SET value='0.9.3' WHERE name='version';

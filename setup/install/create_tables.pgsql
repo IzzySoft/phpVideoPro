@@ -139,14 +139,14 @@ COMMENT ON TABLE pvp_disks IS 'Disk types, e.g. DVD5, DVD-RW';
 # Table structure for table 'music'
 #
 
-CREATE TABLE music (
+CREATE TABLE pvp_music (
    id SERIAL,
    imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE music IS 'Names of composers/artists';
+COMMENT ON TABLE pvp_music IS 'Names of composers/artists';
 
 # --------------------------------------------------------
 #

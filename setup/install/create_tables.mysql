@@ -124,14 +124,14 @@ ALTER TABLE pvp_disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
 # Table structure for table 'music'
 #
 
-CREATE TABLE music (
+CREATE TABLE pvp_music (
    id INT(5) NOT NULL auto_increment,
    imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-ALTER TABLE music COMMENT='Names of composers/artists';
+ALTER TABLE pvp_music COMMENT='Names of composers/artists';
 
 # --------------------------------------------------------
 #

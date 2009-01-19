@@ -229,7 +229,7 @@
      $temp = $this->get_fquery($found,"director","pvp_directors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ composer ]---
-     $db->query("SELECT id FROM music");
+     $db->query("SELECT id FROM pvp_music");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ( isset($filter->composer->$id) && $filter->composer->$id) {

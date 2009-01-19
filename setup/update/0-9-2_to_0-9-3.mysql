@@ -23,6 +23,7 @@ RENAME TABLE lang TO pvp_lang;
 RENAME TABLE cat TO pvp_cat;
 RENAME TABLE actors TO pvp_actors;
 RENAME TABLE directors TO pvp_directors;
+RENAME TABLE music TO pvp_music;
 
 # Cleanup redundant stuff
 DROP TABLE IF EXISTS eps_templates;

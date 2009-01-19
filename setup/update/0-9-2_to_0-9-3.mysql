@@ -18,6 +18,7 @@ RENAME TABLE disks TO pvp_disks;
 RENAME TABLE mtypes TO pvp_mtypes;
 RENAME TABLE colors TO pvp_colors;
 RENAME TABLE commercials TO pvp_commercials;
+RENAME TABLE languages TO pvp_languages;
 
 # Cleanup redundant stuff
 DROP TABLE IF EXISTS eps_templates;

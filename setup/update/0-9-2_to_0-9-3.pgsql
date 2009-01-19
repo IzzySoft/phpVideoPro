@@ -20,6 +20,7 @@ ALTER TABLE disks RENAME TO pvp_disks;
 ALTER TABLE mtypes RENAME TO pvp_mtypes;
 ALTER TABLE colors RENAME TO pvp_colors;
 ALTER TABLE commercials RENAME TO pvp_commercials;
+ALTER TABLE languages RENAME TO pvp_languages;
 
 # version update
 UPDATE pvp_config SET value='0.9.3' WHERE name='version';

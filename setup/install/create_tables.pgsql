@@ -356,7 +356,7 @@ COMMENT ON COLUMN lang.comment IS 'Hints for translators';
 # Table structure for table 'languages' (supported languages)
 #
 
-CREATE TABLE languages (
+CREATE TABLE pvp_languages (
   lang_id CHAR(2) NOT NULL,
   lang_name VARCHAR(50) NOT NULL,
   charset VARCHAR(20),
@@ -365,13 +365,13 @@ CREATE TABLE languages (
   subtitle INT DEFAULT 0 NOT NULL,
   PRIMARY KEY (lang_id)
 );
-COMMENT ON TABLE languages IS 'Languages and their settings';
-COMMENT ON COLUMN languages.lang_id IS 'Two-char language code';
-COMMENT ON COLUMN languages.lang_name IS 'Name of the language';
-COMMENT ON COLUMN languages.charset IS 'Character set used by its translations in the lang table';
-COMMENT ON COLUMN languages.available IS 'Do we have translations for it and want to use them?';
-COMMENT ON COLUMN languages.audio IS 'Will the language be used for audio in our collection(s)?';
-COMMENT ON COLUMN languages.subtitle IS 'Will the language be used for subtitles in our collection(s)?';
+COMMENT ON TABLE pvp_languages IS 'Languages and their settings';
+COMMENT ON COLUMN pvp_languages.lang_id IS 'Two-char language code';
+COMMENT ON COLUMN pvp_languages.lang_name IS 'Name of the language';
+COMMENT ON COLUMN pvp_languages.charset IS 'Character set used by its translations in the lang table';
+COMMENT ON COLUMN pvp_languages.available IS 'Do we have translations for it and want to use them?';
+COMMENT ON COLUMN pvp_languages.audio IS 'Will the language be used for audio in our collection(s)?';
+COMMENT ON COLUMN pvp_languages.subtitle IS 'Will the language be used for subtitles in our collection(s)?';
 
 # --------------------------------------------------------
 #

@@ -125,7 +125,7 @@
     * @return array langs array 0..n of object (id=lang_id,name=translated langname)
     */
    function get_avlang($type) {
-     $this->query("SELECT lang_id FROM languages WHERE $type=1");
+     $this->query("SELECT lang_id FROM pvp_languages WHERE $type=1");
      while ($this->next_record()) {
        $lang[] = $this->f("lang_id");
      }
@@ -152,7 +152,7 @@
    function set_avlang($id,$flag,$type) {
      if ( ($flag < 0) || ($flag > 1) ) return FALSE;
      if ( (strtolower($type)!="audio") && (strtolower($type)!="subtitle") ) return FALSE;
-     $query = "UPDATE languages SET $type=$flag WHERE lang_id='$id'";
+     $query = "UPDATE pvp_languages SET $type=$flag WHERE lang_id='$id'";
      return $this->query($query);
    }
 
@@ -165,7 +165,7 @@
     */
    function get_langlist($id="",$start="") {
      $query = "SELECT lang_id,lang_name,charset,available,audio,subtitle "
-            . "FROM languages";
+            . "FROM pvp_languages";
      if ($id!=="") $query .= " WHERE lang_id='$id'";
      if ($start==="") { $this->query($query);
      } else { $totals = $this->lim_query($query,$start); }
@@ -208,7 +208,7 @@
        case "1" : $where = "WHERE available='yes'"; break;
        default  : $where = "";
      }
-     $this->dbquery("SELECT lang_id,lang_name,charset,available FROM languages $where ORDER BY lang_name");
+     $this->dbquery("SELECT lang_id,lang_name,charset,available FROM pvp_languages $where ORDER BY lang_name");
      $i=0; $lang = array();
      while ( $this->next_record() ) {
        $lang[$i]["id"]   = $this->f('lang_id');
@@ -230,8 +230,8 @@
     * @param optional integer avail defaults to "1"
     */
    function lang_available($lang,$avail=1) {
-     if ($avail) $this->dbquery("UPDATE languages SET available='yes' WHERE lang_id='$lang'");
-     else $this->dbquery("UPDATE languages SET available='no' WHERE lang_id='$lang'");
+     if ($avail) $this->dbquery("UPDATE pvp_languages SET available='yes' WHERE lang_id='$lang'");
+     else $this->dbquery("UPDATE pvp_languages SET available='no' WHERE lang_id='$lang'");
    }
 
    /** delete translations for a specific language

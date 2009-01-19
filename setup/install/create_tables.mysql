@@ -287,7 +287,7 @@ ALTER TABLE lang COMMENT='Translations';
 # Table structure for table 'languages' (supported languages)
 #
 
-CREATE TABLE languages (
+CREATE TABLE pvp_languages (
   lang_id CHAR(2) NOT NULL,
   lang_name VARCHAR(50) NOT NULL,
   charset VARCHAR(20),
@@ -296,7 +296,7 @@ CREATE TABLE languages (
   subtitle INT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (lang_id)
 );
-ALTER TABLE languages COMMENT='Languages and their settings';
+ALTER TABLE pvp_languages COMMENT='Languages and their settings';
 
 #
 # Table structure for table pvp_users (user management and authorization)

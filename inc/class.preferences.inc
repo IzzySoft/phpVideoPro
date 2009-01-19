@@ -220,7 +220,7 @@
      $temp = $this->get_fquery($found,"pict","pvp_pict");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ color ]---
-     $temp = $this->get_fquery($found,"color","colors");
+     $temp = $this->get_fquery($found,"color","pvp_colors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ tone ]---
      $temp = $this->get_fquery($found,"tone","pvp_tone");

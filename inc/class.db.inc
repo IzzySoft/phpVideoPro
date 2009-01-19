@@ -77,7 +77,6 @@
    /** do a query on the db and provide debug output
     * @method dbquery
     * @param string query SQL statement to execute
-    * *variable array colors
     * @return boolean success
     */
    function dbquery($query) {
@@ -1182,7 +1181,7 @@
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
     */
    function get_color($id="") {
-     return $this->get_av($id,"colors");
+     return $this->get_av($id,"pvp_colors");
    }
 
    /** update color data (wrapper to set_av)
@@ -1193,7 +1192,7 @@
     * @see set_av()
     */
    function set_color($name,$sname,$id="") {
-     return $this->set_av("colors",$name,$sname,$id);
+     return $this->set_av("pvp_colors",$name,$sname,$id);
    }
 
    /** Get all tone data and return it as array (wrapper to get_av)
@@ -1375,7 +1374,7 @@
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
 	    . "LEFT JOIN pvp_mtypes mt ON pvp_video.mtype_id=mt.id "
-	    . "LEFT JOIN colors c ON color_id=c.id "
+	    . "LEFT JOIN pvp_colors c ON color_id=c.id "
 	    . "LEFT JOIN pvp_tone t ON tone_id=t.id "
 	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
 	    . "LEFT JOIN cat cat2 ON cat2_id=cat2.id "

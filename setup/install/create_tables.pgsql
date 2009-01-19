@@ -70,13 +70,13 @@ COMMENT ON COLUMN cat.enabled IS 'Whether the category is active (used/displayed
 # Table structure for table 'colors'
 #
 
-CREATE TABLE colors (
+CREATE TABLE pvp_colors (
    id SERIAL,
    name VARCHAR(30),
    sname VARCHAR(5) UNIQUE,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE colors IS 'Types of movie colors, such as b/w, color, etc.';
+COMMENT ON TABLE pvp_colors IS 'Types of movie colors, such as b/w, color, etc.';
 
 # --------------------------------------------------------
 #

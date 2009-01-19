@@ -31,9 +31,9 @@ INSERT INTO pvp_users (login,admin,browse,ins,upd,del,comment) VALUES ('guest',0
 # Data for table 'colors'
 #
 
-INSERT INTO colors VALUES ( '1', 's/w', 's/w');
-INSERT INTO colors VALUES ( '2', 'Farbe', 'color');
-INSERT INTO colors VALUES ( '3', '3D', '3d');
+INSERT INTO pvp_colors VALUES ( '1', 's/w', 's/w');
+INSERT INTO pvp_colors VALUES ( '2', 'Farbe', 'color');
+INSERT INTO pvp_colors VALUES ( '3', '3D', '3d');
 
 #
 # Data for table 'mtypes'

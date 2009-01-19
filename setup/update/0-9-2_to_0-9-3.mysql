@@ -16,6 +16,7 @@ RENAME TABLE tone TO pvp_tone;
 RENAME TABLE pict TO pvp_pict;
 RENAME TABLE disks TO pvp_disks;
 RENAME TABLE mtypes TO pvp_mtypes;
+RENAME TABLE colors TO pvp_colors;
 
 # Cleanup redundant stuff
 DROP TABLE IF EXISTS eps_templates;

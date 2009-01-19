@@ -20,6 +20,7 @@ RENAME TABLE colors TO pvp_colors;
 RENAME TABLE commercials TO pvp_commercials;
 RENAME TABLE languages TO pvp_languages;
 RENAME TABLE lang TO pvp_lang;
+RENAME TABLE cat TO pvp_cat;
 
 # Cleanup redundant stuff
 DROP TABLE IF EXISTS eps_templates;

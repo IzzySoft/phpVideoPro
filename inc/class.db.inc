@@ -994,7 +994,7 @@
     */
    function get_category($id="",$order="",$inUse=0) {
      if ($id) {
-       $this->query("SELECT name FROM cat WHERE id=$id");
+       $this->query("SELECT name FROM pvp_cat WHERE id=$id");
        if ( $this->next_record() ) {
          return lang(trim($this->f('name')));
        } else {
@@ -1002,9 +1002,9 @@
        }
      } else {
        if ($order=="") {
-         $this->query("SELECT id,name,enabled FROM cat");
+         $this->query("SELECT id,name,enabled FROM pvp_cat");
        } else {
-         $this->query("SELECT id,name,enabled FROM cat ORDER BY $order");
+         $this->query("SELECT id,name,enabled FROM pvp_cat ORDER BY $order");
        }
        $i=0;
        while ( $this->next_record() ) {
@@ -1037,7 +1037,7 @@
     * @return integer cat_id
     */
    function get_category_id($iname) {
-     $sql = "SELECT id FROM cat WHERE name='$iname'";
+     $sql = "SELECT id FROM pvp_cat WHERE name='$iname'";
      $this->dbquery($sql);
      if ( $this->next_record() ) {
        return $this->f('id');
@@ -1056,7 +1056,7 @@
    function update_category($id,$name,$enabled=9) {
      GLOBAL $pvp;
      $name = $pvp->common->safeinput($name);
-     $query = "UPDATE cat SET name='$name' ";
+     $query = "UPDATE pvp_cat SET name='$name' ";
      if ($enabled!=9) $query .= ",enabled=$enabled ";
      $query .= "WHERE id=$id";
      $this->dbquery($query);
@@ -1072,7 +1072,7 @@
    function add_category($name) {
      GLOBAL $pvp;
      $name = $pvp->common->safeinput($name);
-     $this->dbquery("INSERT INTO cat (name) VALUES ('$name')");
+     $this->dbquery("INSERT INTO pvp_cat (name) VALUES ('$name')");
      return $this->affected_rows();
    }
 
@@ -1082,7 +1082,7 @@
     * @return boolean success
     */
    function delete_category($id) {
-     $this->dbquery("DELETE FROM cat WHERE id=$id");
+     $this->dbquery("DELETE FROM pvp_cat WHERE id=$id");
      return $this->affected_rows();
    }
 
@@ -1376,9 +1376,9 @@
 	    . "LEFT JOIN pvp_mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN pvp_colors c ON color_id=c.id "
 	    . "LEFT JOIN pvp_tone t ON tone_id=t.id "
-	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
-	    . "LEFT JOIN cat cat2 ON cat2_id=cat2.id "
-	    . "LEFT JOIN cat cat3 ON cat3_id=cat3.id "
+	    . "LEFT JOIN pvp_cat cat1 ON cat1_id=cat1.id "
+	    . "LEFT JOIN pvp_cat cat2 ON cat2_id=cat2.id "
+	    . "LEFT JOIN pvp_cat cat3 ON cat3_id=cat3.id "
 	    . "LEFT JOIN actors a1 ON actor1_id=a1.id "
 	    . "LEFT JOIN actors a2 ON actor2_id=a2.id "
 	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
@@ -1703,7 +1703,7 @@
      $query = "SELECT v.title,v.length,v.media_id,v.part,v.lp,v.year,v.aq_date,"
 	    . "v.mtype_id,mt.name as mtname,mt.sname as mtsname,"
 	    . "cat1.name as cat1name, m.owner as owner_id, u.login as owner "
-	    . "FROM pvp_video v, pvp_mtypes mt, cat cat1, pvp_media m, pvp_users u "
+	    . "FROM pvp_video v, pvp_mtypes mt, pvp_cat cat1, pvp_media m, pvp_users u "
 	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
             . "AND v.media_id=m.id AND v.mtype_id=m.mtype_id "
             . "AND m.owner=u.id "
@@ -2917,7 +2917,7 @@
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
-		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM cat")
+		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM pvp_cat")
 		     );
      foreach($details as $value) {
        $this->dbquery($value["sql"]);

@@ -253,7 +253,7 @@
      if ($found>1) $sql[$i] = " (" . $sql[$i] . " )";
      if ($found) { $found=0; $i++; }
      // -----------[ category ]---
-     $db->query("SELECT id FROM cat");
+     $db->query("SELECT id FROM pvp_cat");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ( isset($filter->cat->$id) && $filter->cat->$id) {

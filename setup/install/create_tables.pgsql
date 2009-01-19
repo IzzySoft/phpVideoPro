@@ -55,15 +55,15 @@ COMMENT ON INDEX media_free_idx IS 'For faster access to available free space';
 # Table structure for table 'cat'
 #
 
-CREATE TABLE cat (
+CREATE TABLE pvp_cat (
    id SERIAL,
    name VARCHAR(30) UNIQUE,
    enabled INT DEFAULT 1 NOT NULL,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE cat IS 'Categories';
-COMMENT ON COLUMN cat.name IS 'Internal name of the category';
-COMMENT ON COLUMN cat.enabled IS 'Whether the category is active (used/displayed)';
+COMMENT ON TABLE pvp_cat IS 'Categories';
+COMMENT ON COLUMN pvp_cat.name IS 'Internal name of the category';
+COMMENT ON COLUMN pvp_cat.enabled IS 'Whether the category is active (used/displayed)';
 
 # --------------------------------------------------------
 #

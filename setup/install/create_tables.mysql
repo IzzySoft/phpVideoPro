@@ -42,14 +42,14 @@ CREATE INDEX media_free_idx ON pvp_media(free,id);
 # Table structure for table 'cat'
 #
 
-CREATE TABLE cat (
+CREATE TABLE pvp_cat (
    id INT(5) NOT NULL auto_increment,
    name VARCHAR(30) NOT NULL,
    enabled INT(1) DEFAULT 1 NOT NULL,
    PRIMARY KEY (id),
    UNIQUE name (name)
 );
-ALTER TABLE cat COMMENT='Categories';
+ALTER TABLE pvp_cat COMMENT='Categories';
 
 # --------------------------------------------------------
 #

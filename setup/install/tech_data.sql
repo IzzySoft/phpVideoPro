@@ -39,10 +39,10 @@ INSERT INTO colors VALUES ( '3', '3D', '3d');
 # Data for table 'mtypes'
 #
 
-INSERT INTO mtypes VALUES ( '1', 'Recorded Video Tape', 'RVT');
-INSERT INTO mtypes VALUES ( '2', 'Original Video Tape', 'OVT');
-INSERT INTO mtypes VALUES ( '3', 'VideoCD', 'VCD');
-INSERT INTO mtypes VALUES ( '4', 'Digital Versatile Disk', 'DVD');
+INSERT INTO pvp_mtypes VALUES ( '1', 'Recorded Video Tape', 'RVT');
+INSERT INTO pvp_mtypes VALUES ( '2', 'Original Video Tape', 'OVT');
+INSERT INTO pvp_mtypes VALUES ( '3', 'VideoCD', 'VCD');
+INSERT INTO pvp_mtypes VALUES ( '4', 'Digital Versatile Disk', 'DVD');
 
 #
 # Data for table 'pvp_vnorms'

@@ -97,13 +97,13 @@ COMMENT ON TABLE directors IS 'Director names';
 # Table structure for table 'mtypes'
 #
 
-CREATE TABLE mtypes (
+CREATE TABLE pvp_mtypes (
    id SERIAL,
    name VARCHAR(30),
    sname VARCHAR(5) UNIQUE,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE mtypes IS 'Media types used, e.g. DVD, VCD';
+COMMENT ON TABLE pvp_mtypes IS 'Media types used, e.g. DVD, VCD';
 
 # --------------------------------------------------------
 #

@@ -84,14 +84,14 @@ ALTER TABLE directors COMMENT='Director names';
 # Table structure for table 'mtypes'
 #
 
-CREATE TABLE mtypes (
+CREATE TABLE pvp_mtypes (
    id INT(5) NOT NULL auto_increment,
    name VARCHAR(30),
    sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-ALTER TABLE mtypes COMMENT='Media types used, e.g. DVD, VCD';
+ALTER TABLE pvp_mtypes COMMENT='Media types used, e.g. DVD, VCD';
 
 # --------------------------------------------------------
 #

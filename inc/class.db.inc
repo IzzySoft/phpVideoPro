@@ -1374,7 +1374,7 @@
 	    . "FROM pvp_video "
 	    . "LEFT JOIN directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
-	    . "LEFT JOIN mtypes mt ON pvp_video.mtype_id=mt.id "
+	    . "LEFT JOIN pvp_mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN colors c ON color_id=c.id "
 	    . "LEFT JOIN pvp_tone t ON tone_id=t.id "
 	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
@@ -1704,7 +1704,7 @@
      $query = "SELECT v.title,v.length,v.media_id,v.part,v.lp,v.year,v.aq_date,"
 	    . "v.mtype_id,mt.name as mtname,mt.sname as mtsname,"
 	    . "cat1.name as cat1name, m.owner as owner_id, u.login as owner "
-	    . "FROM pvp_video v, mtypes mt, cat cat1, pvp_media m, pvp_users u "
+	    . "FROM pvp_video v, pvp_mtypes mt, cat cat1, pvp_media m, pvp_users u "
 	    . "WHERE v.cat1_id=cat1.id AND v.mtype_id=mt.id "
             . "AND v.media_id=m.id AND v.mtype_id=m.mtype_id "
             . "AND m.owner=u.id "
@@ -2194,7 +2194,7 @@
      $query = "SELECT mt.sname,v.mtype_id,v.media_id,v.part,v.title"
             . "  FROM pvp_video v"
             . "  LEFT JOIN pvp_media m ON (v.mtype_id=m.mtype_id AND v.media_id=m.id)"
-            . "  JOIN mtypes mt ON (v.mtype_id=mt.id)"
+            . "  JOIN pvp_mtypes mt ON (v.mtype_id=mt.id)"
             . " WHERE m.id IS NULL"
             . " ORDER BY v.media_id,v.part";
      $this->dbquery($query);
@@ -2582,7 +2582,7 @@
      } else {
        $where = "";
      }
-     $this->dbquery("SELECT id,name,sname FROM mtypes $where ORDER BY id");
+     $this->dbquery("SELECT id,name,sname FROM pvp_mtypes $where ORDER BY id");
      $i = 0;
      while ( $this->next_record() ) {
        $mtypes[$i]['id'] = $this->f('id');
@@ -2601,7 +2601,7 @@
     * @see set_av()
     */
    function set_mtypes($name,$sname,$id="") {
-     return $this->set_av("mtypes",$name,$sname,$id);
+     return $this->set_av("pvp_mtypes",$name,$sname,$id);
    }
 
    /** Insert a medium into the media table (if not yet exists)

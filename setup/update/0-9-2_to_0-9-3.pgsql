@@ -17,6 +17,7 @@ ALTER TABLE preferences RENAME TO pvp_preferences;
 ALTER TABLE tone RENAME TO pvp_tone;
 ALTER TABLE pict RENAME TO pvp_pict;
 ALTER TABLE disks RENAME TO pvp_disks;
+ALTER TABLE mtypes RENAME TO pvp_mtypes;
 
 # version update
 UPDATE pvp_config SET value='0.9.3' WHERE name='version';

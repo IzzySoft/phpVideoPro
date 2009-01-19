@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class preferences
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   */
 
  class preferences {
@@ -214,16 +214,16 @@
      if ($filter->title)       { $sql[$i] = " v.title like '%" . $filter->title . "%'"; $i++; }
      $found = 0;
      // -----------[ mtype ]---
-     $temp = $this->get_fquery($found,"mtype","mtypes");
+     $temp = $this->get_fquery($found,"mtype","pvp_mtypes");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ pict ]---
-     $temp = $this->get_fquery($found,"pvp_pict");
+     $temp = $this->get_fquery($found,"pict","pvp_pict");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ color ]---
      $temp = $this->get_fquery($found,"color","colors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ tone ]---
-     $temp = $this->get_fquery($found,"pvp_tone");
+     $temp = $this->get_fquery($found,"tone","pvp_tone");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ director ]---
      $temp = $this->get_fquery($found,"director","directors");

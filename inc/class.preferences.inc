@@ -226,7 +226,7 @@
      $temp = $this->get_fquery($found,"tone","pvp_tone");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ director ]---
-     $temp = $this->get_fquery($found,"director","directors");
+     $temp = $this->get_fquery($found,"director","pvp_directors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ composer ]---
      $db->query("SELECT id FROM music");

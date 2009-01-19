@@ -876,7 +876,7 @@
     * @return array director data (formatted by format_name)
     */
    function get_director($id) {
-     return $this->get_person($id,"directors");
+     return $this->get_person($id,"pvp_directors");
    }
 
    /** Get all data for a componist and return it as array (wrapper to get_person)
@@ -927,7 +927,7 @@
     */
    function get_orphaned_staff() {
      $id = $this->get_distinct_staffids("director_id");
-     $query = "SELECT id,name,firstname FROM directors"
+     $query = "SELECT id,name,firstname FROM pvp_directors"
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
@@ -970,7 +970,7 @@
     * @return boolean success
     */
    function delete_director($id) {
-     return $this->delete_row("directors",$id);
+     return $this->delete_row("pvp_directors",$id);
    }
 
    /** Delete an composer from DB
@@ -1276,7 +1276,7 @@
      if (!$this->query("TRUNCATE TABLE pvp_video")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_media")) return FALSE;
      if (!$this->query("TRUNCATE TABLE music")) return FALSE;
-     if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE pvp_directors")) return FALSE;
      if (!$this->query("TRUNCATE TABLE pvp_actors")) return FALSE;
      return TRUE;
    }
@@ -1371,7 +1371,7 @@
             . "pm.lentto AS lentto,vnorm_id,vn.name AS vnorm,private,pvp_video.imdb_id, "
             . "rating,lastchange "
 	    . "FROM pvp_video "
-	    . "LEFT JOIN directors d ON director_id=d.id "
+	    . "LEFT JOIN pvp_directors d ON director_id=d.id "
 	    . "LEFT JOIN music m ON music_id=m.id "
 	    . "LEFT JOIN pvp_mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN pvp_colors c ON color_id=c.id "
@@ -1609,7 +1609,7 @@
      if ($pname) {
        switch ($ptype) {
          case director :
-           $this->query("SELECT id FROM directors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
+           $this->query("SELECT id FROM pvp_directors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
            while ( $this->next_record() ) {
              $pids .= ",".$this->f('id');
            }
@@ -2337,7 +2337,7 @@
            if (!empty($dd)) $did_list = ",".$this->f('director_id');
          }
          if (!empty($did_list))
-           $this->query("DELETE FROM directors WHERE id IN (".substr($did_list,1).")");
+           $this->query("DELETE FROM pvp_directors WHERE id IN (".substr($did_list,1).")");
          // check for composers
          $did_list = "";
          $query = "SELECT DISTINCT music_id FROM pvp_video WHERE media_id IN ($mid_list)";
@@ -2915,7 +2915,7 @@
      // ===[ counts ]===
      $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM pvp_video"),
                        array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM pvp_actors"),
-		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
+		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM pvp_directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
 		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM pvp_cat")
 		     );

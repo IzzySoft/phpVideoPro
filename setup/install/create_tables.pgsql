@@ -83,14 +83,14 @@ COMMENT ON TABLE pvp_colors IS 'Types of movie colors, such as b/w, color, etc.'
 # Table structure for table 'directors'
 #
 
-CREATE TABLE directors (
+CREATE TABLE pvp_directors (
    id SERIAL,
    imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE directors IS 'Director names';
+COMMENT ON TABLE pvp_directors IS 'Director names';
 
 # --------------------------------------------------------
 #

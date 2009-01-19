@@ -108,7 +108,7 @@ ALTER TABLE pvp_vnorms COMMENT='List of video norms (PAL,NTSC) we support';
 #
 # Table structure for table 'disks'
 #
-CREATE TABLE disks (
+CREATE TABLE pvp_disks (
   id INT(3) NOT NULL auto_increment,
   mtype_id INT(5) NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE disks (
   rc INT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
-ALTER TABLE disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
+ALTER TABLE pvp_disks COMMENT='Disk types, e.g. DVD5, DVD-RW';
 
 # --------------------------------------------------------
 #

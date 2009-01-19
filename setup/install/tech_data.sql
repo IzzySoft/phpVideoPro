@@ -54,18 +54,18 @@ INSERT INTO pvp_vnorms VALUES (2,'NTSC');
 #
 # Data for table 'disks'
 #
-INSERT INTO disks (mtype_id,name) VALUES (3,'VCD');
-INSERT INTO disks (mtype_id,name) VALUES (3,'SVCD');
-INSERT INTO disks (mtype_id,name,size) VALUES (3,'CD-R','650 MB');
-INSERT INTO disks (mtype_id,name,size) VALUES (3,'CD-R','720 MB');
-INSERT INTO disks (mtype_id,name,size) VALUES (3,'CD-RW','650 MB');
-INSERT INTO disks (mtype_id,name,size) VALUES (3,'CD-RW','720 MB');
-INSERT INTO disks (mtype_id,name,rc) VALUES (4,'DVD-5',1);
-INSERT INTO disks (mtype_id,name,rc) VALUES (4,'DVD-9',1);
-INSERT INTO disks (mtype_id,name,size,rc) VALUES (4,'DVD-R','4.7 GB',1);
-INSERT INTO disks (mtype_id,name,size,rc) VALUES (4,'DVD-RW','4.7 GB',1);
-INSERT INTO disks (mtype_id,name,size,rc) VALUES (4,'DVD+R','4.7 GB',1);
-INSERT INTO disks (mtype_id,name,size,rc) VALUES (4,'DVD+RW','4.7 GB',1);
+INSERT INTO pvp_disks (mtype_id,name) VALUES (3,'VCD');
+INSERT INTO pvp_disks (mtype_id,name) VALUES (3,'SVCD');
+INSERT INTO pvp_disks (mtype_id,name,size) VALUES (3,'CD-R','650 MB');
+INSERT INTO pvp_disks (mtype_id,name,size) VALUES (3,'CD-R','720 MB');
+INSERT INTO pvp_disks (mtype_id,name,size) VALUES (3,'CD-RW','650 MB');
+INSERT INTO pvp_disks (mtype_id,name,size) VALUES (3,'CD-RW','720 MB');
+INSERT INTO pvp_disks (mtype_id,name,rc) VALUES (4,'DVD-5',1);
+INSERT INTO pvp_disks (mtype_id,name,rc) VALUES (4,'DVD-9',1);
+INSERT INTO pvp_disks (mtype_id,name,size,rc) VALUES (4,'DVD-R','4.7 GB',1);
+INSERT INTO pvp_disks (mtype_id,name,size,rc) VALUES (4,'DVD-RW','4.7 GB',1);
+INSERT INTO pvp_disks (mtype_id,name,size,rc) VALUES (4,'DVD+R','4.7 GB',1);
+INSERT INTO pvp_disks (mtype_id,name,size,rc) VALUES (4,'DVD+RW','4.7 GB',1);
 
 #
 # Data for table 'pict'
@@ -101,7 +101,7 @@ INSERT INTO commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.9.2');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.9.3');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','MySite');

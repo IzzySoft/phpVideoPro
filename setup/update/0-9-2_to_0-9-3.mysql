@@ -14,6 +14,10 @@ ALTER TABLE music ADD imdb_id VARCHAR(10) AFTER id;
 RENAME TABLE preferences TO pvp_preferences;
 RENAME TABLE tone TO pvp_tone;
 RENAME TABLE pict TO pvp_pict;
+RENAME TABLE disks TO pvp_disks;
+
+# Cleanup redundant stuff
+DROP TABLE IF EXISTS eps_templates;
 
 # version update
 UPDATE pvp_config SET value='0.9.3' WHERE name='version';

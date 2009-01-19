@@ -123,7 +123,7 @@ ALTER TABLE pvp_vnorms ADD CONSTRAINT notnullcheck_vnorms_name CHECK (name IS NO
 #
 # Table structure for table 'disks'
 #
-CREATE TABLE disks (
+CREATE TABLE pvp_disks (
   id SERIAL,
   mtype_id INT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -132,7 +132,7 @@ CREATE TABLE disks (
   rc INT NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
-COMMENT ON TABLE disks IS 'Disk types, e.g. DVD5, DVD-RW';
+COMMENT ON TABLE pvp_disks IS 'Disk types, e.g. DVD5, DVD-RW';
 
 # --------------------------------------------------------
 #

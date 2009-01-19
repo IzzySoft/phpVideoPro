@@ -2412,7 +2412,7 @@
     *   int id, string name, string size, int lp, array rc)
     */
    function get_disktypes($mtype_id,$id="") {
-     $query = "SELECT name,id,size,lp,rc FROM disks WHERE ";
+     $query = "SELECT name,id,size,lp,rc FROM pvp_disks WHERE ";
      if ($id) {
        $query .= "id=$id";
      } else {
@@ -2459,7 +2459,7 @@
     */
    function delete_disktype($id) {
      if ( $this->dbquery("UPDATE pvp_media SET disks_id=NULL WHERE disks_id=$id") ) {
-       return $this->dbquery("DELETE FROM disks WHERE id=$id");
+       return $this->dbquery("DELETE FROM pvp_disks WHERE id=$id");
      } else {
        return FALSE;
      }
@@ -2477,11 +2477,11 @@
     */
    function update_disktype($id,$mtype_id,$name,$size,$lp,$rc) {
      if ( $id ) {
-       $query = "UPDATE disks SET "
+       $query = "UPDATE pvp_disks SET "
               . "mtype_id=$mtype_id,name='$name',size='$size',lp=$lp,rc=$rc "
               . "WHERE id=$id";
      } else {
-       $query = "INSERT INTO disks (mtype_id,name,size,lp,rc)"
+       $query = "INSERT INTO pvp_disks (mtype_id,name,size,lp,rc)"
               . " VALUES ($mtype_id,'$name','$size',lp,rc)";
      }
      return $this->dbquery($query);

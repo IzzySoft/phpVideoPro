@@ -166,13 +166,13 @@ COMMENT ON TABLE pict IS 'Screen/picture formats, e.g. 4:3 or 16:9';
 # Table structure for table 'tone'
 #
 
-CREATE TABLE tone (
+CREATE TABLE pvp_tone (
    id SERIAL,
    name VARCHAR(30),
    sname VARCHAR(5) UNIQUE,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE tone IS 'Audio formats, e.g. Stereo, DD 5.1';
+COMMENT ON TABLE pvp_tone IS 'Audio formats, e.g. Stereo, DD 5.1';
 
 # --------------------------------------------------------
 #

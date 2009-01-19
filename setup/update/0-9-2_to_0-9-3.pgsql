@@ -14,6 +14,7 @@ ALTER TABLE music ADD imdb_id VARCHAR(10);
 
 # Table renaming
 ALTER TABLE preferences RENAME TO pvp_preferences;
+ALTER TABLE tone RENAME TO pvp_tone;
 
 # version update
 #UPDATE pvp_config SET value='0.9.3' WHERE name='version';

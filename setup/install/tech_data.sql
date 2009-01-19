@@ -78,15 +78,15 @@ INSERT INTO pict VALUES ( '2', '16:9', '16-9');
 # Data for table 'tone'
 #
 
-INSERT INTO tone VALUES ( '1', 'Mono', '1.0');
-INSERT INTO tone VALUES ( '2', 'Stereo', '2.0');
-INSERT INTO tone VALUES ( '3', '2-Kanal', '2K');
-INSERT INTO tone VALUES ( '4', 'Dolby Surround', '3.0');
-INSERT INTO tone VALUES ( '5', 'Dolby 4.0', '4.0');
-INSERT INTO tone VALUES ( '6', 'Dolby 5.0', '5.0');
-INSERT INTO tone VALUES ( '7', 'Dolby 5.1', '5.1');
-INSERT INTO tone VALUES ( '8', 'Dolby 6.0', '6.0');
-INSERT INTO tone VALUES ( '9', 'Dolby 6.1', '6.1');
+INSERT INTO pvp_tone VALUES ( '1', 'Mono', '1.0');
+INSERT INTO pvp_tone VALUES ( '2', 'Stereo', '2.0');
+INSERT INTO pvp_tone VALUES ( '3', '2-Kanal', '2K');
+INSERT INTO pvp_tone VALUES ( '4', 'Dolby Surround', '3.0');
+INSERT INTO pvp_tone VALUES ( '5', 'Dolby 4.0', '4.0');
+INSERT INTO pvp_tone VALUES ( '6', 'Dolby 5.0', '5.0');
+INSERT INTO pvp_tone VALUES ( '7', 'Dolby 5.1', '5.1');
+INSERT INTO pvp_tone VALUES ( '8', 'Dolby 6.0', '6.0');
+INSERT INTO pvp_tone VALUES ( '9', 'Dolby 6.1', '6.1');
 
 #
 # table commercials
@@ -117,27 +117,27 @@ INSERT INTO pvp_config (name,value) VALUES ('use_http_auth','0');
 # set default preferences
 #
 
-INSERT INTO preferences (name,value) VALUES ('lang','en');
-INSERT INTO preferences (name,value) VALUES ('charset','utf-8');
-INSERT INTO preferences (name,value) VALUES ('template','applicat');
-INSERT INTO preferences (name,value) VALUES ('display_limit','30');
-INSERT INTO preferences (name,value) VALUES ('date_format','y-m-d');
-INSERT INTO preferences (name,value) VALUES ('page_length','85');
-INSERT INTO preferences (name,value) VALUES ('default_movie_toneid','2');
-INSERT INTO preferences (name,value) VALUES ('default_movie_colorid','2');
-INSERT INTO preferences (name,value) VALUES ('default_movie_onlabel','1');
-INSERT INTO preferences (name,value) VALUES ('printer_id','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_url','http://us.imdb.com/');
-INSERT INTO preferences (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_title','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_country','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_year','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_pg','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_length','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_cat','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_director','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_music','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_actor','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_tx_comments','1');
-INSERT INTO preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
-INSERT INTO preferences (name,value) VALUES ('default_pstemplate_id','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('lang','en');
+INSERT INTO pvp_preferences (name,value) VALUES ('charset','utf-8');
+INSERT INTO pvp_preferences (name,value) VALUES ('template','applicat');
+INSERT INTO pvp_preferences (name,value) VALUES ('display_limit','30');
+INSERT INTO pvp_preferences (name,value) VALUES ('date_format','y-m-d');
+INSERT INTO pvp_preferences (name,value) VALUES ('page_length','85');
+INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_toneid','2');
+INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_colorid','2');
+INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_onlabel','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('printer_id','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url','http://us.imdb.com/');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_title','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_country','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_year','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_pg','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_length','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_cat','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_director','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_music','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_actor','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_comments','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('default_pstemplate_id','1');

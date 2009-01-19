@@ -1202,7 +1202,7 @@
     * @return array (name,sname if id!="", i:id,i:name,i:sname otherwise)
     */
    function get_tone($id="") {
-     return $this->get_av($id,"tone");
+     return $this->get_av($id,"pvp_tone");
    }
 
    /** update tone data (wrapper to set_av)
@@ -1213,7 +1213,7 @@
     * @see set_av()
     */
    function set_tone($name,$sname,$id="") {
-     return $this->set_av("tone",$name,$sname,$id);
+     return $this->set_av("pvp_tone",$name,$sname,$id);
    }
 
    /** get data for commercials
@@ -1376,7 +1376,7 @@
 	    . "LEFT JOIN music m ON music_id=m.id "
 	    . "LEFT JOIN mtypes mt ON pvp_video.mtype_id=mt.id "
 	    . "LEFT JOIN colors c ON color_id=c.id "
-	    . "LEFT JOIN tone t ON tone_id=t.id "
+	    . "LEFT JOIN pvp_tone t ON tone_id=t.id "
 	    . "LEFT JOIN cat cat1 ON cat1_id=cat1.id "
 	    . "LEFT JOIN cat cat2 ON cat2_id=cat2.id "
 	    . "LEFT JOIN cat cat3 ON cat3_id=cat3.id "

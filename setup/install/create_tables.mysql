@@ -152,14 +152,14 @@ ALTER TABLE pict COMMENT='Screen/picture formats, e.g. 4:3 or 16:9';
 # Table structure for table 'tone'
 #
 
-CREATE TABLE tone (
+CREATE TABLE pvp_tone (
    id INT(5) NOT NULL auto_increment,
    name VARCHAR(30),
    sname VARCHAR(5) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE sname (sname)
 );
-ALTER TABLE tone COMMENT='Audio formats, e.g. Stereo, DD 5.1';
+ALTER TABLE pvp_tone COMMENT='Audio formats, e.g. Stereo, DD 5.1';
 
 # --------------------------------------------------------
 #

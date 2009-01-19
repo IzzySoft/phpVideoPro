@@ -223,7 +223,7 @@
      $temp = $this->get_fquery($found,"color","colors");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ tone ]---
-     $temp = $this->get_fquery($found,"tone");
+     $temp = $this->get_fquery($found,"pvp_tone");
      if ($found) { $sql[$i] = $temp; $found=0; $i++; }
      // -----------[ director ]---
      $temp = $this->get_fquery($found,"director","directors");

@@ -273,14 +273,14 @@ ALTER TABLE pvp_config COMMENT='General configuration of the application';
 # Table structure for table 'lang' (translations)
 #
 
-CREATE TABLE lang (
+CREATE TABLE pvp_lang (
   message_id VARCHAR(150) NOT NULL,
   lang VARCHAR(5) NOT NULL,
   content TEXT NOT NULL,
   comment TEXT,
   PRIMARY KEY (message_id,lang)
 );
-ALTER TABLE lang COMMENT='Translations';
+ALTER TABLE pvp_lang COMMENT='Translations';
 
 # --------------------------------------------------------
 #

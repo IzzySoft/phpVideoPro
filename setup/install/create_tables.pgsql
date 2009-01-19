@@ -338,18 +338,18 @@ COMMENT ON TABLE pvp_config IS 'General configuration of the application';
 # Table structure for table 'lang' (translations)
 #
 
-CREATE TABLE lang (
+CREATE TABLE pvp_lang (
   message_id VARCHAR(150) NOT NULL,
   lang VARCHAR(5) DEFAULT 'en' NOT NULL,
   content TEXT NOT NULL,
   comment TEXT,
   PRIMARY KEY (message_id,lang)
 );
-COMMENT ON TABLE lang IS 'Translations';
-COMMENT ON COLUMN lang.message_id IS 'Internal abbreviation (used as key)';
-COMMENT ON COLUMN lang.lang IS 'Two-char language code for the translation';
-COMMENT ON COLUMN lang.content IS 'Translated message for the specified language';
-COMMENT ON COLUMN lang.comment IS 'Hints for translators';
+COMMENT ON TABLE pvp_lang IS 'Translations';
+COMMENT ON COLUMN pvp_lang.message_id IS 'Internal abbreviation (used as key)';
+COMMENT ON COLUMN pvp_lang.lang IS 'Two-char language code for the translation';
+COMMENT ON COLUMN pvp_lang.content IS 'Translated message for the specified language';
+COMMENT ON COLUMN pvp_lang.comment IS 'Hints for translators';
 
 # --------------------------------------------------------
 #

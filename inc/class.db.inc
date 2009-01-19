@@ -190,7 +190,7 @@
     * @return array language names (lang)
     */
    function get_installedlang() {
-     $this->dbquery("SELECT distinct lang FROM lang ORDER BY lang");
+     $this->dbquery("SELECT distinct lang FROM pvp_lang ORDER BY lang");
      while ( $this->next_record() ) {
        $lang[] = $this->f('lang');
      }
@@ -239,7 +239,7 @@
     * @param string lang language id
     */
    function delete_translations($lang) {
-     $this->dbquery("DELETE FROM lang WHERE lang='$lang'");
+     $this->dbquery("DELETE FROM pvp_lang WHERE lang='$lang'");
    }
 
    /** Get all translations and return them as array
@@ -249,13 +249,13 @@
     */
    function get_translations($pref_lang) {
      $def_lang = "en";
-     $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$def_lang'");
+     $this->dbquery("SELECT message_id,content FROM pvp_lang WHERE lang='$def_lang'");
      while ( $this->next_record() ) { // initiate with fall-back
        $msg_id         = $this->f('message_id');
        $trans[$msg_id] = stripslashes($this->f('content'));
      }
      if ($pref_lang != $def_lang) {
-       $this->dbquery("SELECT message_id,content FROM lang WHERE lang='$pref_lang'");
+       $this->dbquery("SELECT message_id,content FROM pvp_lang WHERE lang='$pref_lang'");
        while ( $this->next_record() ) { // overwrite with preferred (if exists)
          $msg_id         = $this->f('message_id');
          $trans[$msg_id] = stripslashes($this->f('content'));
@@ -270,7 +270,7 @@
     * @return array lang=&gt;translation
     */
    function get_trans_all($id) {
-     $this->dbquery("SELECT lang,content FROM lang WHERE message_id='$id'");
+     $this->dbquery("SELECT lang,content FROM pvp_lang WHERE message_id='$id'");
      while ( $this->next_record() ) {
        $lang = $this->f('lang');
        $list[$lang] = $this->f('content');
@@ -289,14 +289,14 @@
     */
    function set_translation($id,$trans,$lang) {
      if (!$trans) { // remove translation
-       $this->query("DELETE FROM lang WHERE message_id='$id' AND lang='$lang'");
+       $this->query("DELETE FROM pvp_lang WHERE message_id='$id' AND lang='$lang'");
      } else {
        $trans = addslashes($trans);
-       $this->query("SELECT * FROM lang WHERE message_id='$id' AND lang='$lang'");
+       $this->query("SELECT * FROM pvp_lang WHERE message_id='$id' AND lang='$lang'");
        if ( $this->next_record() ) {
-         $this->query("UPDATE lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
+         $this->query("UPDATE pvp_lang SET content='$trans' WHERE lang='$lang' AND message_id='$id'");
        } else {
-         $this->query("INSERT INTO lang (message_id,lang,content) VALUES ('$id','$lang','$trans')");
+         $this->query("INSERT INTO pvp_lang (message_id,lang,content) VALUES ('$id','$lang','$trans')");
        }
      }
      return $this->affected_rows();
@@ -311,7 +311,7 @@
     * @return array of object translations (msgID = translation, xlist[] of msgIDs)
     */
    function get_singletrans($lang,$start="",$msg="",$key="") {
-     $query = "SELECT message_id,content,comment FROM lang WHERE lang='$lang'";
+     $query = "SELECT message_id,content,comment FROM pvp_lang WHERE lang='$lang'";
      if ($key) { $query .= " AND message_id>'$key'"; }
      if ($msg) { $query .= " AND message_id='$msg'"; }
        else { $query .= " ORDER BY message_id"; }

@@ -8,14 +8,14 @@ BEGIN;
 # Table structure for table 'actors'
 #
 
-CREATE TABLE actors (
+CREATE TABLE pvp_actors (
    id SERIAL,
    imdb_id VARCHAR(10),
    name VARCHAR(30),
    firstname VARCHAR(30),
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE actors IS 'Actor names';
+COMMENT ON TABLE pvp_actors IS 'Actor names';
 
 # --------------------------------------------------------
 #

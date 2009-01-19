@@ -241,7 +241,7 @@
      if ($found>1) $sql[$i] = " (" . $sql[$i] . " )";
      if ($found) { $found=0; $i++; }
      // -----------[ actor ]---
-     $db->query("SELECT id FROM actors");
+     $db->query("SELECT id FROM pvp_actors");
      while ( $db->next_record() ) {
        $id   = $db->f('id');
        if ( isset($filter->actor->$id) && $filter->actor->$id) {

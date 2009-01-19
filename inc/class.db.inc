@@ -867,7 +867,7 @@
     * @return array actor data (formatted by format_name)
     */
    function get_actor($id) {
-     return $this->get_person($id,"actors");
+     return $this->get_person($id,"pvp_actors");
    }
 
    /** Get all data for a director and return it as array (wrapper to get_person)
@@ -919,7 +919,7 @@
    }
 
    /** Search the database for orphaned staff members. I.e. people who have an
-    *  entry in one of the staff tables, but the video table doesn't refer to them
+    *  entry in one of the staff tables, but the video table does not refer to them
     * @method get_orphaned_staff
     * @return array of orphanes
     * @version the array has the format array[$i]->$item, where $item is one of
@@ -945,7 +945,7 @@
      $id = array_merge($id, $this->get_distinct_staffids("actor3_id"));
      $id = array_merge($id, $this->get_distinct_staffids("actor4_id"));
      $id = array_merge($id, $this->get_distinct_staffids("actor5_id"));
-     $query = "SELECT id,name,firstname FROM actors"
+     $query = "SELECT id,name,firstname FROM pvp_actors"
             . " WHERE id NOT IN (" . implode(",",$id) . ")";
      $this->dbquery($query);
      while ( $this->next_record() ) {
@@ -961,7 +961,7 @@
     * @return boolean success
     */
    function delete_actor($id) {
-     return $this->delete_row("actors",$id);
+     return $this->delete_row("pvp_actors",$id);
    }
 
    /** Delete an director from DB
@@ -1277,7 +1277,7 @@
      if (!$this->query("TRUNCATE TABLE pvp_media")) return FALSE;
      if (!$this->query("TRUNCATE TABLE music")) return FALSE;
      if (!$this->query("TRUNCATE TABLE directors")) return FALSE;
-     if (!$this->query("TRUNCATE TABLE actors")) return FALSE;
+     if (!$this->query("TRUNCATE TABLE pvp_actors")) return FALSE;
      return TRUE;
    }
 
@@ -1379,11 +1379,11 @@
 	    . "LEFT JOIN pvp_cat cat1 ON cat1_id=cat1.id "
 	    . "LEFT JOIN pvp_cat cat2 ON cat2_id=cat2.id "
 	    . "LEFT JOIN pvp_cat cat3 ON cat3_id=cat3.id "
-	    . "LEFT JOIN actors a1 ON actor1_id=a1.id "
-	    . "LEFT JOIN actors a2 ON actor2_id=a2.id "
-	    . "LEFT JOIN actors a3 ON actor3_id=a3.id "
-	    . "LEFT JOIN actors a4 ON actor4_id=a4.id "
-	    . "LEFT JOIN actors a5 ON actor5_id=a5.id "
+	    . "LEFT JOIN pvp_actors a1 ON actor1_id=a1.id "
+	    . "LEFT JOIN pvp_actors a2 ON actor2_id=a2.id "
+	    . "LEFT JOIN pvp_actors a3 ON actor3_id=a3.id "
+	    . "LEFT JOIN pvp_actors a4 ON actor4_id=a4.id "
+	    . "LEFT JOIN pvp_actors a5 ON actor5_id=a5.id "
             . "LEFT JOIN pvp_media pm ON (pvp_video.mtype_id=pm.mtype_id AND pvp_video.media_id=pm.id) "
             . "LEFT JOIN pvp_vnorms vn ON vnorm_id=vn.id"
             . $where;
@@ -1617,7 +1617,7 @@
            if (!empty($pids)) $restrict .= "director_id IN ($pids)";
 	   break;
          default       : 
-           $this->query("SELECT id FROM actors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
+           $this->query("SELECT id FROM pvp_actors WHERE lower(firstname) LIKE '%".strtolower($pname)."%' OR lower(name) LIKE '%".strtolower($pname)."%'");
            while ( $this->next_record() ) {
              $pids .= ",".$this->f('id');
            }
@@ -2376,7 +2376,7 @@
              $this->query($query);
              $this->next_record();
              if ($this->f('idc')==0) {
-               $this->query("DELETE FROM actors WHERE id=".$aid[$i]);
+               $this->query("DELETE FROM pvp_actors WHERE id=".$aid[$i]);
              }
            }
          }
@@ -2914,7 +2914,7 @@
      GLOBAL $pvp;
      // ===[ counts ]===
      $details = array( array("name"=>"movies","sql"=>"SELECT count(id) AS movies FROM pvp_video"),
-                       array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM actors"),
+                       array("name"=>"actors","sql"=>"SELECT count(id) AS actors FROM pvp_actors"),
 		       array("name"=>"directors","sql"=>"SELECT count(id) AS directors FROM directors"),
 		       array("name"=>"composers","sql"=>"SELECT count(id) AS composers FROM music"),
 		       array("name"=>"categories","sql"=>"SELECT count(id) AS categories FROM pvp_cat")

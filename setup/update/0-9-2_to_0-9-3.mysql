@@ -21,6 +21,7 @@ RENAME TABLE commercials TO pvp_commercials;
 RENAME TABLE languages TO pvp_languages;
 RENAME TABLE lang TO pvp_lang;
 RENAME TABLE cat TO pvp_cat;
+RENAME TABLE actors TO pvp_actors;
 
 # Cleanup redundant stuff
 DROP TABLE IF EXISTS eps_templates;

@@ -179,12 +179,12 @@ COMMENT ON TABLE pvp_tone IS 'Audio formats, e.g. Stereo, DD 5.1';
 # Table structure for table 'commercials'
 #
 
-CREATE TABLE commercials (
+CREATE TABLE pvp_commercials (
    id INT,
    name VARCHAR(30),
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE commercials IS 'Are there commercials in the recording?';
+COMMENT ON TABLE pvp_commercials IS 'Are there commercials in the recording?';
 
 # --------------------------------------------------------
 #

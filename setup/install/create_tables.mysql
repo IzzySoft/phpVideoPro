@@ -166,12 +166,12 @@ ALTER TABLE pvp_tone COMMENT='Audio formats, e.g. Stereo, DD 5.1';
 # Table structure for table 'commercials'
 #
 
-CREATE TABLE commercials (
+CREATE TABLE pvp_commercials (
    id INT(5) NOT NULL,
    name VARCHAR(30),
    PRIMARY KEY (id)
 );
-ALTER TABLE commercials COMMENT='Are there commercials in the recording?';
+ALTER TABLE pvp_commercials COMMENT='Are there commercials in the recording?';
 
 # --------------------------------------------------------
 #

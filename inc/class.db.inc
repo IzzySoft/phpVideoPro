@@ -1222,7 +1222,7 @@
     */
    function get_commercials($id="") {
      if ($id=="") {
-       $this->query("SELECT id,name FROM commercials");
+       $this->query("SELECT id,name FROM pvp_commercials");
        $i=0;
        while ( $this->next_record() ) {
          $commercials[$i]['name'] = lang($this->f('name'));
@@ -1230,7 +1230,7 @@
          ++$i;
        }
      } else {
-       $this->query("SELECT name FROM commercials WHERE id=$id");
+       $this->query("SELECT name FROM pvp_commercials WHERE id=$id");
        if ( $this->next_record() ) {
          $commercials = $this->f('name');
          $commercials = lang($commercials);

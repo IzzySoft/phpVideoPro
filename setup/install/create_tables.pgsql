@@ -299,13 +299,13 @@ COMMENT ON INDEX video_title_idx IS 'Improve search speed for movie title';
 # Table structure for table 'preferences'
 #
 
-CREATE TABLE preferences (
+CREATE TABLE pvp_preferences (
    id SERIAL,
    name VARCHAR(30),
    value TEXT,
    PRIMARY KEY (id)
 );
-COMMENT ON TABLE preferences IS 'Global preferences';
+COMMENT ON TABLE pvp_preferences IS 'Global preferences';
 
 # --------------------------------------------------------
 #

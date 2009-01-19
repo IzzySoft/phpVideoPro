@@ -378,7 +378,7 @@
     */
    function get_preferences($name,$user_id="") {
      if ($user_id=="") {
-       $preftab  = "preferences";
+       $preftab  = "pvp_preferences";
        $restrict = "";
      } else {
        $preftab  = "pvp_userprefs";
@@ -399,7 +399,7 @@
     */
    function get_preferences_all($type) {
      switch ($type) {
-       case "default" : $preftab = "preferences"; break;
+       case "default" : $preftab = "pvp_preferences"; break;
        case "user"    : $preftab = "pvp_userprefs"; break;
        default        : return array(); break;
      }
@@ -424,7 +424,7 @@
      GLOBAL $pvp;
      $value = $pvp->common->safeinput($value);
      if ($user_id=="") {
-       $preftab  = "preferences";
+       $preftab  = "pvp_preferences";
        $restrict = "";
        $insert   = "INSERT INTO $preftab (name,value) VALUES ('$name','$value')";
      } else {
@@ -447,7 +447,7 @@
     * @see preferences::filter
     */
    function unset_preferences($name) {
-     $this->dbquery("DELETE FROM preferences WHERE name='filter'");
+     $this->dbquery("DELETE FROM pvp_preferences WHERE name='filter'");
    }
 
    ############################################################################

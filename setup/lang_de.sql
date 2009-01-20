@@ -1,9 +1,10 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.9.1
+# German Language File created by phpVideoPro v0.9.3
 # ========================================================
 
 UPDATE pvp_languages SET charset='UTF-8' WHERE lang_id='de';
 INSERT INTO pvp_lang VALUES ('actions','de','Aktionen','');
+INSERT INTO pvp_lang VALUES ('action_canceled','de','Keine Aktion durchgeführt.','');
 INSERT INTO pvp_lang VALUES ('actor','de','Darsteller','');
 INSERT INTO pvp_lang VALUES ('actors','de','Darsteller','');
 INSERT INTO pvp_lang VALUES ('actors_list','de','Liste der Darsteller','');
@@ -141,12 +142,16 @@ INSERT INTO pvp_lang VALUES ('day','de','Tag','');
 INSERT INTO pvp_lang VALUES ('db_stats','de','Statistiken','');
 INSERT INTO pvp_lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');
 INSERT INTO pvp_lang VALUES ('delete','de','Löschen','');
+INSERT INTO pvp_lang VALUES ('delete_cat','de','Löschen der Kategorie <i>%1</i>','');
 INSERT INTO pvp_lang VALUES ('delete_lang','de','Übersetzungen löschen','');
 INSERT INTO pvp_lang VALUES ('delete_lang_comment','de','Entfernt alle Übersetzungen für die angegebene Sprache aus der Datenbank. Die Sprachdatei bleibt dabei unangetastet, sodass ein späteres Neu-Einlesen jederzeit möglich ist (sofern eine Sprachdatei existiert).','');
 INSERT INTO pvp_lang VALUES ('delete_orphans','de','Lösche %1 verwaiste Einträge:','');
 INSERT INTO pvp_lang VALUES ('delete_remaining','de','alle verbleibenden Daten dieses Films werden nun gelöscht','');
 INSERT INTO pvp_lang VALUES ('deleting_entry','de','Lösche Datensatz %1','');
 INSERT INTO pvp_lang VALUES ('del_access','de','Darf Datensätze löschen','');
+INSERT INTO pvp_lang VALUES ('del_cat_global_rename','de','Ersetze diese Kategorie durch <i>%1</i> in allen betroffenen Filmen','');
+INSERT INTO pvp_lang VALUES ('del_cat_individual_rename','de','Wähle für jeden betroffenen Film separat eine neue Kategorie','');
+INSERT INTO pvp_lang VALUES ('del_cat_no_rename','de','Nichts - hol mich hier raus!','');
 INSERT INTO pvp_lang VALUES ('description','de','Beschreibung','');
 INSERT INTO pvp_lang VALUES ('desc_admin_orphans','de','Verwaiste Einträge sind Daten ohne Zuordnung. Hier handelt es sich dabeizum einen um Filme ohne Eigentümer, sowie zum anderen um Schauspieler, Regisseure bzw. Komponisten, die keinem Film zugeordnet sind. Diese \"Waisenkinder\" entstehen z.B., wenn ein \"Schreibfehler\" bei einem Namen nachträglich korrigiert - nicht jedoch, wenn ein Film aus dem Bestand entfernt wird. Sie sollten von daher entfernt werden: dies spart zum einen Platz in der Datenbank, und hilft zum anderen, ein unnötiges \"Ausbremsen\" zu vermeiden.','');
 INSERT INTO pvp_lang VALUES ('desc_admin_orphan_fs','de','\"Verwaiste Dateien\" sind Daten ohne Verbindung zu einem Stammdatensatz, d.h. in unserem Falle: Bilddateien, die nirgendwo benutzt werden. Die wahrscheinlichsten Gründe für ihre Existenz sind: <UL><LI>Sie wurden bei einer Suche mit der IMDB von selbiger bezogen - der Anwender entschied jedoch, sie nicht zu benutzen</LI><LI>Es wurde ein Datensatz bearbeitet, und der Link zu dem Bild in der Beschreibung dabei ersetzt oder entfernt</LI><LI>Es wurde ein Datensatz gelöscht, und dieses dämliche Programm hat das Bild einfach rumliegen lassen</LI></UL>Wie auch immer: Wenn die hier gelisteten Bilder nicht mehr benötigt werden, können sie mit einem Klick auf den \"Löschen\" Button endgültig entfernt werden.','');
@@ -410,7 +415,7 @@ INSERT INTO pvp_lang VALUES ('medium_overview','de','Überblick für das Medium 
 INSERT INTO pvp_lang VALUES ('menues','de','Menüs','');
 INSERT INTO pvp_lang VALUES ('month','de','Monat','');
 INSERT INTO pvp_lang VALUES ('movies','de','Filme','');
-INSERT INTO pvp_lang VALUES ('movies_left_in_cat','de','Die Kategorie %1 enthält noch %2 Film(e) und kann daher nicht gelöscht werden.','');
+INSERT INTO pvp_lang VALUES ('movies_left_in_cat','de','Die Kategorie %1 enthält noch %2 Film(e) und kann daher nicht gelöscht werden. Was soll nun passieren:','');
 INSERT INTO pvp_lang VALUES ('movies_left_reference','de','Dieser Eintrag kann nicht gelöscht werden: er wird von %1 Film(en) in der DB referenziert.','');
 INSERT INTO pvp_lang VALUES ('movie_color_default','de','Default Farbformat eines Films','');
 INSERT INTO pvp_lang VALUES ('movie_color_default_comment','de','Wenn ein neuer Eintrag angelegt wird, ist dies die Voreinstellung für das Farbformat.','');
@@ -517,6 +522,7 @@ INSERT INTO pvp_lang VALUES ('select_add_lang','de','Zusätzliche Sprache instal
 INSERT INTO pvp_lang VALUES ('select_add_lang_comment','de','Englisch ist bereits installiert und wird generell benötigt - siehe nächster Punkt. Bezüglich anderer bereits installierter Sprachen: siehe ebenfalls nächster Punkt.','');
 INSERT INTO pvp_lang VALUES ('select_primary_lang','de','Primäre Sprache auswählen','');
 INSERT INTO pvp_lang VALUES ('select_primary_lang_comment','de','Bei fehlenden Übersetzungen erfolgt ein Fall-Back zur Englischen Sprache','');
+INSERT INTO pvp_lang VALUES ('sel_new_cat','de','Neue Kategorie auswählen:','');
 INSERT INTO pvp_lang VALUES ('sel_target_lang','de','Zielsprache für die Übersetzungen:','');
 INSERT INTO pvp_lang VALUES ('session_expired','de','Die Session ist nicht länger gültig - eine erneute Anmeldung ist nötig.','');
 INSERT INTO pvp_lang VALUES ('session_purgetime','de','Inaktivitäts-Timeout für Sitzungen','');

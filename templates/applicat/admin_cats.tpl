@@ -16,6 +16,7 @@
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
+<!-- BEGIN listblock -->
 <FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
@@ -36,7 +37,25 @@
 <!-- END catblock -->
  <TR><TD COLSPAN="4">{hidden}</TD></TR>
 </TABLE>
-
+<!-- END listblock -->
+<!-- BEGIN delchoiceblock -->
+<FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
+<INPUT TYPE="hidden" NAME="delete" VALUE="{delete}">
+<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+ <TR><TH ALIGN="center">{msg}</TH></TR>
+ <TR CLASS="content"><TD>{upd_all}<BR>{upd_individual}<BR>{upd_none}</TD></TR>
+</TABLE>
+<!-- END delchoiceblock -->
+<!-- BEGIN individualblock -->
+<FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
+<INPUT TYPE="hidden" NAME="delete" VALUE="{delete}">
+<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+ <TR><TH ALIGN="center" COLSPAN="2">{msg}</TH></TR>
+<!-- BEGIN itemblock -->
+ <TR CLASS="content"><TD>{title}</TD><TD>{newcat}</TD></TR>
+<!-- END itemblock -->
+</TABLE>
+<!-- END individualblock -->
 </TD></TR>
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>

@@ -6,7 +6,10 @@ v0.9.3
 + added imdb-id to crew members tables. This will be inserted when retrieving
   data from imdb sites (including the scripts from the pvptools package).
   If available, these enable direct linking to the corresponding imdb pages.
-* completed table renaming
+* completed table renaming: All tables now have the prefix "pvp_"
++ simplified category deletion for categories still in use: Action is now
+  selectable to either bulk-update all affected movies to a selected new
+  category, do it separately for each movie - or do nothing
 
 v0.9.2 (22.04.2008)
 -------------------

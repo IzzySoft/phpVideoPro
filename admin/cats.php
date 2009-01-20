@@ -26,16 +26,99 @@
  #==================================================[ Check authorization ]===
  if (!$pvp->auth->admin) kickoff();
 
+ #=====================================================[ Prepare template ]===
+ include( dirname(__FILE__) . "/../inc/header.inc");
+ $t = new Template($pvp->tpl_dir);
+ $t->set_file(array("template"=>"admin_cats.tpl"));
+ $t->set_block("template","delchoiceblock","delchoice");
+ $t->set_block("template","listblock","list");
+ $t->set_block("listblock","catblock","cats");
+ $t->set_block("template","individualblock","individual");
+ $t->set_block("individualblock","itemblock","item");
+
+ #==========================================================[ Do the Job ]===
  #-------------------------------------------------------[ process input ]---
+ if (isset($_POST['delcat'])) {
+   switch($_POST['rename']) {
+     case "single" :
+        $catlist = $db->get_moviecatlist3($_POST["delete"]);
+        $totals = count($catlist);
+        if ($totals) {
+          $t->set_var("listtitle",lang("delete_cat"));
+	  $t->set_var("msg",lang("sel_new_cat"));
+          $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='singlecat' VALUE='".lang("submit")."'>");
+          $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
+	  $t->set_var("delete",$_POST["delete"]);
+          $cats = $db->get_category("","",1);
+          $catcount = count($cats);
+          $catsel = "";
+          for ($i=0;$i<$catcount;++$i) {
+            $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'>".$cats[$i]['name']."</OPTION>";
+          }
+	  for($i=0;$i<$totals;++$i) {
+	    $selcat = "<SELECT NAME='newcat$i'>$catsel</SELECT>";
+	    $t->set_var("title",$catlist[$i]['title']);
+	    $t->set_var("newcat",$selcat);
+	    $t->parse("item","itemblock",$i);
+	  }
+	  $t->parse("individual","individualblock");
+	  $t->pparse("out","template");
+          include( dirname(__FILE__) . "/../inc/footer.inc");
+	  exit;
+	}
+	break;
+     case "global" :
+        if ($db->change_moviecat($_POST["delete"],$_POST["newcat"])) {
+          $delete = $_POST["delete"];
+        } else {
+          $save_result = "<SPAN CLASS='error'>".lang("cat_update_failed",$cat)."</SPAN><BR>";
+        }
+        break;
+     case "none"   :
+     default       : $save_result = "<SPAN CLASS='ok'>".lang("action_canceled")."</SPAN><BR>"; break;
+   }
+ } elseif (isset($_POST["singlecat"])) {
+   $catlist = $db->get_moviecatlist3($_POST["delete"]);
+   $totals = count($catlist);
+   $ok = TRUE;
+   for ($i=0;$i<$totals;++$i) {
+     $ok = $ok && $db->change_moviecat($_POST["delete"],$_POST["newcat$i"],array($catlist[$i]["id"]));
+   }
+   $delete = $_POST["delete"];
+ }
  if ($delete) {
    $catlist = $db->get_moviecatlist3($delete);
    $totals = count($catlist);
    if ($totals) {
      $catname = $db->get_category($delete);
-     include( dirname(__FILE__) . "/../inc/header.inc");
-     die ( display_error(lang("movies_left_in_cat",$catname,$totals)) );
+     $t->set_var("listtitle",lang("delete_cat"));
+     $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
+     $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='delcat' VALUE='".lang("submit")."'>");
+     $cats = $db->get_category("","",1);
+     $catcount = count($cats);
+     $catsel = "<SELECT NAME='newcat'>";
+     for ($i=0;$i<$catcount;++$i) {
+       $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'>".$cats[$i]['name']."</OPTION>";
+     }
+     $catsel .= "</SELECT>";
+     $global     = "<INPUT TYPE='radio' NAME='rename' VALUE='global' CLASS='checkbox'>&nbsp;".lang("del_cat_global_rename",$catsel);
+     $individual = "<INPUT TYPE='radio' NAME='rename' VALUE='single' CLASS='checkbox'>&nbsp;".lang("del_cat_individual_rename");
+     $no_rename  = "<INPUT TYPE='radio' NAME='rename' VALUE='none' CLASS='checkbox' CHECKED>&nbsp;".lang("del_cat_no_rename");
+     $t->set_var("delete",$delete);
+     $t->set_var("upd_all",$global);
+     $t->set_var("upd_individual",$individual);
+     $t->set_var("upd_none",$no_rename);
+     $t->set_var("msg",lang("movies_left_in_cat",$catname,$totals));
+     $t->parse("delchoice","delchoiceblock");
+     $t->pparse("out","template");
+     include( dirname(__FILE__) . "/../inc/footer.inc");
+     exit;
    } else {
-     $del = $db->delete_category($delete);
+     if ($db->delete_category($delete)) {
+       $save_result = "<SPAN CLASS='ok'>".lang("update_success")."</SPAN><BR>";
+     } else {
+       $save_result = "<SPAN CLASS='error'>".lang("cat_update_failed",$cat)."</SPAN><BR>";
+     }
    }
  } elseif (isset($_POST["submit"])) {
    for ($i=0;$i<$lines;++$i) {
@@ -69,9 +152,6 @@
  #-------------------------------------------------------[ build up page ]---
  $tpl_dir = str_replace($base_path,$base_url,$pvp->tpl_dir);
  $trash_img = $tpl_dir . "/images/trash.gif";
- $t = new Template($pvp->tpl_dir);
- $t->set_file(array("template"=>"admin_cats.tpl"));
- $t->set_block("template","catblock","cats");
 
  $t->set_var("listtitle",lang("admin_cats"));
  $t->set_var("head_cat_id","ID");
@@ -126,7 +206,6 @@
  if (!$pvp->cookie->active) $hidden .= "<INPUT TYPE='hidden' NAME='sess_id' VALUE='".$_REQUEST["sess_id"]."'>";
  $t->set_var("hidden",$hidden);
       
- include( dirname(__FILE__) . "/../inc/header.inc");
 ?>
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
@@ -135,6 +214,7 @@
  }
 </SCRIPT>
 <?
+ $t->parse("list","listblock");
  $t->pparse("out","template");
 
  include( dirname(__FILE__) . "/../inc/footer.inc");

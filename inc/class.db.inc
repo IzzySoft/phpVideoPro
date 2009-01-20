@@ -985,7 +985,7 @@
    ############################################################################
    # categories
    ############################################################################
-   /** Get a category's data
+   /** Get a categorys data
     * @method get_category
     * @param optional integer id category id
     * @param optional string order subclause for ORDER BY
@@ -1332,7 +1332,7 @@
     * @param integer id movie id
     * @return array array with detailled movie information
     * @version array description:<pre>
-    *  Media data: mtype_id, mtype, mtype_short, cass_id, part,
+    *  Media data: id, mtype_id, mtype, mtype_short, cass_id, part,
     *              previous, next (see get_preventry/get_nextentry)
     *              owner_id, storeplace, lentto
     *  Tech  data: color, color_short, color_id, tone, tone_short, tone_id,
@@ -1350,7 +1350,7 @@
     */
    function get_movie($id="") {
      if ($id) $where = " WHERE pvp_video.id=$id";
-     $query = "SELECT title,length,country,year,counter1,counter2,aq_date,source,"
+     $query = "SELECT pvp_video.id as vid,title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
 	    . "actor2_list,actor3_list,actor4_list,actor5_list,music_list,label,"
@@ -1400,6 +1400,7 @@
        foreach($moviedetails as $value) {
          $movie[$value] = $this->f("$value");
        }
+       $movie['id']      = $this->f('vid');
        $movie['cass_id'] = $this->f('media_id');
        $movie['title']   = stripslashes($movie['title']);
        $movie['source']  = stripslashes($movie['source']);
@@ -1730,6 +1731,24 @@
      }
      if (isset($list)) return $list;
      return array();
+   }
+
+   /** Change category id for movie(s)
+    * @method change_moviecat
+    * @param integer fromID
+    * @param integer toID
+    * @param optional array movie_id
+    * @return boolean success
+    */
+   function change_moviecat($from,$to,$id=array()) {
+     if (!preg_match('|^\d+$|',$from) || !preg_match('|^\d+$|',$to)) return FALSE;
+     if (is_array($id) && !empty($id)) {
+       $restrict = " AND id IN ('".implode(",",$id)."')";
+     }
+     if (!$this->dbquery("UPDATE pvp_video SET cat1_id=$to WHERE cat1_id=$from $restrict")) return FALSE;
+     if (!$this->dbquery("UPDATE pvp_video SET cat2_id=$to WHERE cat2_id=$from $restrict")) return FALSE;
+     if (!$this->dbquery("UPDATE pvp_video SET cat3_id=$to WHERE cat3_id=$from $restrict")) return FALSE;
+     return TRUE;
    }
 
    /** Get first movie numbers for each media type

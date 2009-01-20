@@ -5,7 +5,7 @@
 BEGIN;
 
 # prepare default lang update
-#DELETE FROM lang WHERE lang='en';
+DELETE FROM lang WHERE lang='en';
 
 # IMDB name stuff
 ALTER TABLE actors ADD imdb_id VARCHAR(10);

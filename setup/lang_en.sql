@@ -227,7 +227,7 @@ INSERT INTO pvp_lang VALUES('cat_internal_name','en','Handle','Each category has
 INSERT INTO pvp_lang VALUES('cat_update_failed','en','Updating failed for the following categories: %1','Warning message on processing error at category management');
 INSERT INTO pvp_lang VALUES('cat_trans_update_failed','en','Updating failed for the translations of the following categories: %1','Warning message on processing error at category management');
 INSERT INTO pvp_lang VALUES('credits','en','Credits','An item in the help system: on that page all the people get a reward, that helped me in creating phpVideoPro.');
-INSERT INTO pvp_lang VALUES('movies_left_in_cat','en','Category %1 still contains %2 movie(s) and hence cannot be deleted. Sorry.','Error message on the category administration screen (when trying to delete a category that is still in use)');
+INSERT INTO pvp_lang VALUES('movies_left_in_cat','en','Category <i>%1</i> still contains %2 movie(s) and hence cannot be deleted. What do you want to do:','Error message on the category administration screen (when trying to delete a category that is still in use)');
 INSERT INTO pvp_lang VALUES('admin_orphans','en','Removal of orphaned entries','This refers to staff members. They are stored into separate tables which are then references by the main movie table. Orphaned entries are entries in those tables that no longer refer to any movie, so you may want to remove them.');
 INSERT INTO pvp_lang VALUES('desc_admin_orphans','en','"Orphaned entries" are data without assignment, i.e. here: Movies without owner - or actors, directors and/or composers to whom is nowhere refered to from any movie. These are mostly results of changing a misspelled name after having it saved - but never results of deleted movie entries. Hence it\'s a good idea to remove those entries: on one hand it saves resources, and on the other it helps to prevent a slow-down of database actions.','Introduction to the "remove orphans" page (see administration menu)');
 INSERT INTO pvp_lang VALUES('orphans_found','en','Found %1 orphan(s):','This refers to staff members. They are stored into separate tables which are then references by the main movie table. Orphaned entries are entries in those tables that no longer refer to any movie, so you may want to remove them.');
@@ -690,4 +690,10 @@ INSERT INTO pvp_lang VALUES ('default_pstemplate_comment','en','Which PSLabel Te
 INSERT INTO pvp_lang VALUES ('episode','en','Episode','TV Episode');
 INSERT INTO pvp_lang VALUES ('movie','en','Movie','in opposite to a TV Episode');
 INSERT INTO pvp_lang VALUES ('imdbapi_not_installed','en','The IMDB API is not installed - hence you cannot use the IMDBSearch from inside phpVideoPro. To enable this functionality, please make sure the <i>imdbphp</i> package is installed on the system phpVideoPro runs on, and available via the configured PHP <i>include_path</i>.','Error message on accessing IMDB API functions without the imdbphp package installed');
+INSERT INTO pvp_lang VALUES ('delete_cat','en','Delete category','Header on the corresponding page');
+INSERT INTO pvp_lang VALUES ('del_cat_global_rename','en','Change that category to %1 for all affected movies.','Choice on category deletion when category is still used');
+INSERT INTO pvp_lang VALUES ('del_cat_individual_rename','en','Decide separately for each movie - show me the list!','Choice on category deletion when category is still used');
+INSERT INTO pvp_lang VALUES ('del_cat_no_rename','en','Nothing - take me back!','Choice on category deletion when category is still used');
+INSERT INTO pvp_lang VALUES ('action_canceled','en','No action taken.','&quot;Success&quot; message displayed when user canceled or otherwise no action was taken');
+INSERT INTO pvp_lang VALUES ('sel_new_cat','en','Select the new category:','Header on individual bulk-update page for category change (when deleting associated categories)');
 #INSERT INTO pvp_lang VALUES ('','en','','');

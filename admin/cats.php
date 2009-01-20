@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -32,6 +32,7 @@
    $totals = count($catlist);
    if ($totals) {
      $catname = $db->get_category($delete);
+     include( dirname(__FILE__) . "/../inc/header.inc");
      die ( display_error(lang("movies_left_in_cat",$catname,$totals)) );
    } else {
      $del = $db->delete_category($delete);

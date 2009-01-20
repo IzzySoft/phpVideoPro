@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -14,6 +14,7 @@
 
 #========================================================[ initial setup ]===
 $runupdate = 1;
+$pvpinstall = 1;
 include ("../../inc/config.inc");
 include ("../../inc/config_internal.inc");
 include ($base_path."inc/common_funcs.inc");
@@ -131,7 +132,7 @@ if ( !isset($_REQUEST["oldversion"]) ) {
 ?>
 <TR><TH>Preamble</TH></TR>
 <TR><TD>
-<P ALIGN=JUSTIFY>This simple script will update your database from a previous
+<P ALIGN=JUSTIFY>This script will update your database from a previous
  version of phpVideoPro to the recent one. I strongly recommend you to backup
  your existing database before executing the script! Furthermore, please
  inspect inc/config.inc for possible changes.</P>
@@ -153,7 +154,7 @@ $button = "<DIV ALIGN='center'><A HREF='".$_SERVER["PHP_SELF"]
   $final = "";
   echo "<UL>\n";
 
-$pvp->preferences->admin();
+#$pvp->preferences->admin();
 #-----------------[ Get SQL statements from their files and execute them ]---
   switch ($_REQUEST["oldversion"]) {
     case "0.1.0"    : queryf("0-1-0_to_0-1-1.sql","Upgrade to v0.1.1");
@@ -268,6 +269,7 @@ $pvp->preferences->admin();
     case "0.8.8"    : 
     case "0.9.0"    : 
     case "0.9.1"    : queryf("0-8-8_to_0-9-0.sql","Upgrade to v0.9.2");
+    case "0.9.2"    : queryf("0-9-2_to_0-9-3.".$database["type"],"Upgrade to v0.9.3");
                       queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

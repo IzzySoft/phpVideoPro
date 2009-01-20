@@ -690,7 +690,7 @@ INSERT INTO pvp_lang VALUES ('default_pstemplate_comment','en','Which PSLabel Te
 INSERT INTO pvp_lang VALUES ('episode','en','Episode','TV Episode');
 INSERT INTO pvp_lang VALUES ('movie','en','Movie','in opposite to a TV Episode');
 INSERT INTO pvp_lang VALUES ('imdbapi_not_installed','en','The IMDB API is not installed - hence you cannot use the IMDBSearch from inside phpVideoPro. To enable this functionality, please make sure the <i>imdbphp</i> package is installed on the system phpVideoPro runs on, and available via the configured PHP <i>include_path</i>.','Error message on accessing IMDB API functions without the imdbphp package installed');
-INSERT INTO pvp_lang VALUES ('delete_cat','en','Delete category','Header on the corresponding page');
+INSERT INTO pvp_lang VALUES ('delete_cat','en','Delete category <i>%1</i>','Header on the corresponding page');
 INSERT INTO pvp_lang VALUES ('del_cat_global_rename','en','Change that category to %1 for all affected movies.','Choice on category deletion when category is still used');
 INSERT INTO pvp_lang VALUES ('del_cat_individual_rename','en','Decide separately for each movie - show me the list!','Choice on category deletion when category is still used');
 INSERT INTO pvp_lang VALUES ('del_cat_no_rename','en','Nothing - take me back!','Choice on category deletion when category is still used');

@@ -44,7 +44,8 @@
         $catlist = $db->get_moviecatlist3($_POST["delete"]);
         $totals = count($catlist);
         if ($totals) {
-          $t->set_var("listtitle",lang("delete_cat"));
+          $catname = $db->get_category($_POST["delete"]);
+          $t->set_var("listtitle",lang("delete_cat",$catname));
 	  $t->set_var("msg",lang("sel_new_cat"));
           $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='singlecat' VALUE='".lang("submit")."'>");
           $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
@@ -93,7 +94,7 @@
    $totals = count($catlist);
    if ($totals) {
      $catname = $db->get_category($delete);
-     $t->set_var("listtitle",lang("delete_cat"));
+     $t->set_var("listtitle",lang("delete_cat",$catname));
      $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
      $t->set_var("update","<INPUT TYPE='submit' CLASS='submit' NAME='delcat' VALUE='".lang("submit")."'>");
      $cats = $db->get_category("","",1);

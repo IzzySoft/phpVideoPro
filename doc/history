@@ -1,4 +1,4 @@
-v0.9.3
+v0.9.3 (20.01.2008)
 -------------------
 * removed development history from help pages and converted it to a plain
   ChangeLog to be used by HistView. This makes file releases easier and prevent

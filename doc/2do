@@ -21,8 +21,6 @@ Not scheduled (yet):
 - add Audio/Subtitle to filter settings
 - export-button for selected movie (view_entry) and selected movies (movie list)
   for transfer, similiar to a "partial backup"
-- table names: consequent use of the pvp_ prefix for all tables (for users
-  who only have one database with their provider)
 - separate the view_entry template from the edit template to move all formating
   information from the PHP code into the template
 - more optional "Bubble Help" (via HTML "TITLE" attribute)

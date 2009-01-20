@@ -81,10 +81,10 @@
    $sql   = "# ========================================================\n"
           . "# $tlang Language File created by phpVideoPro v".$version."\n"
           . "# ========================================================\n\n"
-          . "UPDATE languages SET charset='$tchar' WHERE lang_id='$targetlang';\n";
+          . "UPDATE pvp_languages SET charset='$tchar' WHERE lang_id='$targetlang';\n";
    for ($i=0;$i<$totals;++$i) {
      $msgid = $trans["xlist"][$i];
-     $sql .= "INSERT INTO lang VALUES ('$msgid','$targetlang','".addslashes(str_replace("\n"," ",$trans[$msgid]))."','".addslashes($trans["xcomment"]["$msgid"])."');\n";
+     $sql .= "INSERT INTO pvp_lang VALUES ('$msgid','$targetlang','".addslashes(str_replace("\n"," ",$trans[$msgid]))."','".addslashes($trans["xcomment"]["$msgid"])."');\n";
    }
    header("Content-type: application/octet-stream");
    header("Content-Disposition: attachment; filename=lang_".$targetlang.".sql");

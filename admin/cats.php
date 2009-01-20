@@ -53,7 +53,9 @@
           $catcount = count($cats);
           $catsel = "";
           for ($i=0;$i<$catcount;++$i) {
-            $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'>".$cats[$i]['name']."</OPTION>";
+            $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'";
+	    if ($cats[$i]['id']==$_POST["delete"]) $catsel .= " SELECTED";
+	    $catsel .= ">".$cats[$i]['name']."</OPTION>";
           }
 	  for($i=0;$i<$totals;++$i) {
 	    $selcat = "<SELECT NAME='newcat$i'>$catsel</SELECT>";
@@ -98,7 +100,9 @@
      $catcount = count($cats);
      $catsel = "<SELECT NAME='newcat'>";
      for ($i=0;$i<$catcount;++$i) {
-       $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'>".$cats[$i]['name']."</OPTION>";
+       $catsel .= "<OPTION VALUE='".$cats[$i]['id']."'";
+       if ($cats[$i]['id']==$delete) $catsel .= " SELECTED";
+       $catsel .= ">".$cats[$i]['name']."</OPTION>";
      }
      $catsel .= "</SELECT>";
      $global     = "<INPUT TYPE='radio' NAME='rename' VALUE='global' CLASS='checkbox'>&nbsp;".lang("del_cat_global_rename",$catsel);

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
  /** output debug message depending on configured debug level
   * @package Api
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   * @function debug
   * @param string level debug level (1 char only)
   * @param string msg debug message
@@ -50,10 +50,9 @@
   * @param string error error message to display
   */
  function display_error($error) {
-   echo "<H2 ALIGN=CENTER><SPAN CLASS='error'>" . strtoupper(lang("warning")) . "</SPAN></H2>\n";
-   echo "<Table Width=90% Align=Center>\n <TR><TD>";
-   echo "<P ALIGN=JUSTIFY>$error</P>\n";
-   echo " </TD></TR></TABLE>\n</BODY></HTML>";
+   echo "<H2 STYLE='text-align:center;margin-top:2em;'><SPAN CLASS='error'>" . strtoupper(lang("warning")) . "</SPAN></H2>\n";
+   echo "<TABLE ALIGN='center'><TR><TD ALIGN='center'><DIV STYLE='margin-left:2em;margin-right:2em;text-align:justify;'>\n$error\n</DIV></TR></TD></TABLE>";
+   echo "</BODY></HTML>";
  }
 
  ###############################################################[ Checking ]###

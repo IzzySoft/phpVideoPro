@@ -67,11 +67,11 @@
  $dmsg = "";
  $dmsg     .= "<SPAN CLASS='ok'><b>Preparing Update</b>:</SPAN><p>";
  $dmsg     .= "<ul>\n";
- $query     = "SELECT id FROM directors";
- $sub_query = "INSERT INTO directors";
+ $query     = "SELECT id FROM pvp_directors";
+ $sub_query = "INSERT INTO pvp_directors";
  $dir_id    = insert_person("director",$query,$sub_query,$director_name,$director_fname,$director_imdbid);
- $query     = "SELECT id FROM music";
- $sub_query = "INSERT INTO music";
+ $query     = "SELECT id FROM pvp_music";
+ $sub_query = "INSERT INTO pvp_music";
  $mus_id    = insert_person("composer",$query,$sub_query,$composer_name,$composer_fname,$music_imdbid);
  for ($i=1;$i<=$max["actors"];$i++) {
    $act       = "actor" . $i;
@@ -79,8 +79,8 @@
    $fname     = $act . "_fname";
    $aid       = "act" . $i . "_id";
    $iid       = "actor${i}_imdbid";
-   $query     = "SELECT id FROM actors";
-   $sub_query = "INSERT INTO actors";
+   $query     = "SELECT id FROM pvp_actors";
+   $sub_query = "INSERT INTO pvp_actors";
    ${$aid}    = insert_person($act,$query,$sub_query,${$aname},${$fname},${$iid});
  }
  $dmsg .= "</ul>\n";

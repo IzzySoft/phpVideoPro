@@ -2897,6 +2897,7 @@
    } // end insert_person()
 
    function check_person($name,$fname,$table,$code=FALSE) {
+     if (substr($table,0,3)!="pvp") $table = "pvp_".$table;
      if ($code) {
        $name = addslashes($name); $fname = addslashes($fname);
      }

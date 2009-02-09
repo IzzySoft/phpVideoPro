@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -41,6 +41,7 @@ if ( isset($update) ) {
     $pvp->preferences->set("skip_intro",$_POST["skip_intro"]);
   $pvp->preferences->set("lang",$_POST["default_lang"]);
   $pvp->preferences->set("template",$_POST["template_set"]);
+  $pvp->preferences->set("default_editor",$_POST["default_editor"]);
   $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
   $pvp->preferences->set("imdb_url2",$_POST["imdb_url2"]);
   if (!isset($_POST["imdb_txwin_autoclose"])) $_POST["imdb_txwin_autoclose"] = 0;
@@ -141,6 +142,7 @@ $lang_installed = $db->get_installedlang();
 #======================================================[ get preferences ]===
 $lang_preferred = $pvp->preferences->get("lang");
 $template_set   = $pvp->preferences->get("template");
+$default_editor = $pvp->preferences->get("default_editor");
 $imdb_url       = $pvp->preferences->get("imdb_url");
 $imdb_url2      = $pvp->preferences->get("imdb_url2");
 $imdbtx         = $pvp->preferences->imdb_tx_get();
@@ -606,6 +608,17 @@ for ($i=0;$i<count($tpldir);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock");
+
+#--[ editor ]--
+$t->set_var("item_name",lang("default_editor"));
+$t->set_var("item_comment",lang("default_editor_comment"));
+$input = "<INPUT TYPE='radio' NAME='default_editor' VALUE='nicedit'";
+if ($default_editor=="nicedit") $input .= " CHECKED";
+$input .= ">WYSIWYG&nbsp;<INPUT TYPE='radio' NAME='default_editor' VALUE='plain'";
+if ($default_editor=="plain") $input .= " CHECKED";
+$input .= ">HTML";
+$t->set_var("item_input",$input);
+$t->parse("item","itemblock",TRUE);
 
 #--[ bubble help ]--
 $t->set_var("item_name",lang("bubble_help_enable"));

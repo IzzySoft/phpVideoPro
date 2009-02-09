@@ -1,6 +1,7 @@
 v0.9.4
 -------------------
 ! some SQL statements missed to be updated on latest table rename
++ integrated WYSIWYG editor for text areas (enabled for movie comments only now)
 
 v0.9.3 (20.01.2008)
 -------------------

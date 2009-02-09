@@ -696,4 +696,6 @@ INSERT INTO pvp_lang VALUES ('del_cat_individual_rename','en','Decide separately
 INSERT INTO pvp_lang VALUES ('del_cat_no_rename','en','Nothing - take me back!','Choice on category deletion when category is still used');
 INSERT INTO pvp_lang VALUES ('action_canceled','en','No action taken.','&quot;Success&quot; message displayed when user canceled or otherwise no action was taken');
 INSERT INTO pvp_lang VALUES ('sel_new_cat','en','Select the new category:','Header on individual bulk-update page for category change (when deleting associated categories)');
+INSERT INTO pvp_lang VALUES ('default_editor','en','Default Editor','Item on configuration page to chose editor for textareas');
+INSERT INTO pvp_lang VALUES ('default_editor_comment','en','A WYSIWYG editor can ease text formatting in so called "text areas" (e.g. for the comments on movies). Activated here, it will be loaded by default. It can be enabled/disabled manually on demand at any time.','Explanation for the default_editor item on the configuration page');
 #INSERT INTO pvp_lang VALUES ('','en','','');

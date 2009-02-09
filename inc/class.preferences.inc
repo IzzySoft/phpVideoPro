@@ -36,7 +36,7 @@
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
               "imdb_tx_country","imdb_txwin_autoclose","imdb_tx_music",
               "default_movie_langid","default_movie_pictid","bubble_help_enable",
-              "showuser","default_vnorm_id","default_pstemplate_id");
+              "showuser","default_vnorm_id","default_pstemplate_id","default_editor");
     foreach ($pnames as $var) {
       $this->$var = $db->get_preferences($var);
     }

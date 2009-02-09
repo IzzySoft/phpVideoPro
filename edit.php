@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -827,7 +827,13 @@ EndHiddenFields;
   $t->set_var("comments_name",lang("comments"));
   if (!isset($comment)) $comment = "";
   if ($edit) {
-    $t->set_var("comments","<DIV ALIGN=CENTER><TEXTAREA ROWS='5' COLS='120' NAME='comment'>$comment</TEXTAREA></DIV>");
+    $val  = "<TABLE ALIGN='center' BORDER='0'><TR><TD><TEXTAREA ROWS='5' COLS='120' NAME='comment' ID='comment'>$comment</TEXTAREA></TD><TD>"
+          . "<INPUT TYPE='radio' NAME='useEditor' VALUE='1'";
+    if ($pvp->preferences->get('default_editor')=="nicedit") $val .= "CHECKED";
+    $val .= " onChange='changeEditor();'>WYSIWYG<BR><INPUT TYPE='radio' NAME='useEditor' VALUE='0'";
+    if ($pvp->preferences->get('default_editor')=="plain") $val .= "CHECKED";
+    $val .= " onChange='changeEditor();'>HTML</TD></TABLE>";
+    $t->set_var("comments",$val);
   } else {
     $t->set_var("comments",$pvp->common->nl2br($comment));
   }

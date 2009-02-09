@@ -181,7 +181,7 @@ else $initial_input = "";
 chdir("$base_path/templates");
 $handle=opendir (".");
 while (false !== ($file = readdir ($handle))) {
- if ( in_array (strtolower($file), array("cvs",".","..")) ) continue;
+ if ( in_array (strtolower($file), array("cvs",".svn",".","..")) ) continue;
  if ( is_dir($file) ) $tpldir[] = $file;
 }
 closedir($handle);

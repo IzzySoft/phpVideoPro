@@ -302,6 +302,16 @@ auf diese Weise eine "neue Haut" ("Skins", wie sie auch von Programmen wie
 XMMS bzw. WinAmp bekannt sein dürften).
 
 [text]
+<b>*default_editor#:</b> Diese Einstellungen betrifft nur ausgewählte Text-Areas
+(d.h. mehrzeilige Eingabefelder), in denen Text-Formatierungen relevant sind:
+also z.B. die Kommentare zum Film. Hierfür lässt sich festlegen, wie diese per
+Default für die Eingabe vorbereitet werden sollen: Es kann ein <ACRONYM
+TITLE="'What You See Is What You Get' - also 'gleich sehen, wie es
+aussieht'">WYSIWYG</ACRONYM> Editor verwendet werden, oder das reine Eingabefeld.
+Umschalten lässt sich zwischen beiden zu jeder Zeit - hier geht es also nur um
+die "Vorbelegung".
+
+[text]
 <b>*bubble_help_enable#:</b> Ein zweischneidiges Schwert: Was dem einen die
 Eule, ist dem anderen die Nachtigall... Auch wenn es auf den ersten Blick eine
 sinnvolle Sache scheint, kann es bei Übertreibung auch nerven (siehe Windows XP).
@@ -340,6 +350,13 @@ dann noch aus dem Cache beziehen, wenn der Anwender explizit den Button für
 Ob also eine Seite in den Cache wandern soll - oder eben nicht, läßt sich mit
 dieser Option festlegen. phpVideoPro sendet dann die jeweils nötigen Anweisungen
 an den Proxy bzw. Browser.
+
+[text]
+<b>*use_http_auth#:</b> Um eine Site-Integration einfacher zu gestalten, können
+die Daten der Basic HTTP Authentification mit den Authentifizierungs-Daten von
+phpVideoPro abgeglichen werden - was natürlich voraussetzt, dass Login und
+Password für beide Systeme identisch sind. Wer diese Funktionalität nicht
+benötigt, lässt sie auch besser abgeschaltet.
 
 [text]
 <b>*display_limit#:</b> Ältere Versionen von phpVideoPro zeigten Listen, wie

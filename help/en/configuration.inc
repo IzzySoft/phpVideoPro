@@ -268,6 +268,15 @@ offers you some feature you may know as "skins" from XMMS or WinAmp. Here you
 can decide which skin to use.
 
 [text]
+<b>*default_editor#:</b> This setting only affects some of the so called "text
+areas" (i.e. multi-row input fields), where text formatting is relevant, e.g.
+the comments for the movie. Here you define whether a <ACRONYM
+TITLE="'What You See Is What You Get' - i.e. 'see how it looks like while you 
+type'">WYSIWYG</ACRONYM> editor will be loaded automatically or not. That
+editor can be switched on/off at any time (even while already typing), so this
+is just how it should appear "on load".
+
+[text]
 <b>*bubble_help_enable#:</b> A two-edged sword. One likes it, the other one
 finds it annoying. The third likes it, but not if it comes up everywhere (like
 it is the case in Windows XP). Because of this, it is right now used only
@@ -299,6 +308,11 @@ requesting a reload using the "Reload" button - which can be quite nasty.
 [text]
 So with this option you can define what advices phpVideoPro is to send.
 
+[text]
+<b>*use_http_auth#:</b> To ease site-integration, the basic HTTP authentification
+information can be matched with phpVideoPros authentification data. This of
+course requires the login and password of both systems to be in sync, otherwise
+it will fail. Leave this option off when not needed.
 
 [text]
 <b>*display_limit#:</b> The very first versions of phpVideoPro displayed lists,

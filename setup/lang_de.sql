@@ -253,6 +253,8 @@ INSERT INTO pvp_lang VALUES ('imdb_url2_comment','de','Obwohl es lokalisierte Ve
 INSERT INTO pvp_lang VALUES ('imdb_url_comment','de','Die Internet Movie Database bietet ausführliche Informationen zu vielen Filmen. Es gibt verschiedene lokalisierte Sites. Da die Titel dort zumeist in der jeweiligen Landessprache abgelegt sind, empfiehlt sich die Auswahl einer Site, die am ehesten der eigenen Datenbank entspricht.','');
 INSERT INTO pvp_lang VALUES ('imp_errors','de','Beim Import von %2 Datensätzen sind insgesamt %1 fehler aufgetreten.','');
 INSERT INTO pvp_lang VALUES ('imp_success','de','%1 Datensätze erfolgreich importiert.','');
+INSERT INTO pvp_lang VALUES ('import_from_user','de','Nur Filme des Benutzers','');
+INSERT INTO pvp_lang VALUES ('import_to_user','de','Eigentümer ändern in','');
 INSERT INTO pvp_lang VALUES ('incomplete_date','de','Ist das exakte Datum nicht bekannt (sondern z.B. nur die Jahreszahl \"2000\"), sind die unbekannten Werte durch Nullen zu ersetzen - im genannten Beispiel entspräche das den Eingaben \"00\" \"00\" \"2000\".','');
 INSERT INTO pvp_lang VALUES ('info_common','de','Allgemeine Information','');
 INSERT INTO pvp_lang VALUES ('info_common_info','de','<DIV ALIGN=\"center\">Dies ist Version %1 von phpVideoPro, installiert auf %2.</div>','');

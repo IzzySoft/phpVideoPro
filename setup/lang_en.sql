@@ -699,4 +699,6 @@ INSERT INTO pvp_lang VALUES ('sel_new_cat','en','Select the new category:','Head
 INSERT INTO pvp_lang VALUES ('default_editor','en','Default Editor','Item on configuration page to chose editor for textareas');
 INSERT INTO pvp_lang VALUES ('default_editor_comment','en','A WYSIWYG editor can ease text formatting in so called "text areas" (e.g. for the comments on movies). Activated here, it will be loaded by default. It can be enabled/disabled manually on demand at any time.','Explanation for the default_editor item on the configuration page');
 INSERT INTO pvp_lang VALUES ('restrict_to_user','en','restrict to user','checkbox on backup page to restrict backup to a specified user');
+INSERT INTO pvp_lang VALUES ('import_from_user','en','Only movies from user','Option on the admins backup page');
+INSERT INTO pvp_lang VALUES ('import_to_user','en','Map owner to user','Option on the admins backup page');
 #INSERT INTO pvp_lang VALUES ('','en','','');

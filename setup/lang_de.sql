@@ -510,6 +510,7 @@ INSERT INTO pvp_lang VALUES ('remove_cat','de','Kategorie entfernen','');
 INSERT INTO pvp_lang VALUES ('remove_empty_media','de','Leere Medien entfernen','');
 INSERT INTO pvp_lang VALUES ('remove_empty_media_comment','de','Sollen Medien aus der Restzeittabelle entfernt werden, wenn der letzte Film davon gelöscht wurde?','');
 INSERT INTO pvp_lang VALUES ('restore_db_internal','de','PVP Backup Datei importieren','');
+INSERT INTO pvp_lang VALUES ('restrict_to_user','de','beschränken auf Benutzer','');
 INSERT INTO pvp_lang VALUES ('rw_media','de','Editierbare Medien','');
 INSERT INTO pvp_lang VALUES ('rw_media_comment','de','Medien, für die eine Restzeit-Anzeige verwaltet werden soll.','');
 INSERT INTO pvp_lang VALUES ('s/w','de','s/w','');

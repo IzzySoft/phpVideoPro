@@ -1313,13 +1313,19 @@
      }
    }
 
-   /** Retrieve a list of all movie ids (unfiltered)
+   /** Retrieve a list of all movie ids
     *  Needed for the backup procedure
     * @method get_movieids_all
+    * @param optional integer owner_id
     * @return array id_list
     */
-   function get_movieids_all() {
-     $query = "SELECT id FROM pvp_video";
+   function get_movieids_all($owner_id="") {
+     (int) $owner_id;
+     if ($owner_id=="") {
+       $query = "SELECT id FROM pvp_video";
+     } else {
+       $query = "SELECT v.id FROM pvp_video v,pvp_media m WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id AND m.owner=$owner_id";
+     }
      $this->dbquery($query);
      while ($this->next_record()) {
        $list[] = $this->f('id');

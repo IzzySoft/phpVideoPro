@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class xfer
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   */
  class xfer {
 
@@ -522,8 +522,9 @@
    * @method public fileExport
    * @param string mode What to export: "Movie"[, "Config", "Prefs"]
    * @param optional integer id movie id (if not given, export all)
+   * @param optional integer owner_id (if not given, export for all)
    */
-  function fileExport($mode,$id="") {
+  function fileExport($mode,$id="",$owner_id="") {
     GLOBAL $db;
     if (!$this->lockDB()) // Lock DB before export
       return $this->errorMsg( lang("db_lock_failed") );
@@ -533,9 +534,10 @@
       case "Cats"   : $this->catGet(); $name="cats"; break;
       case "Movie"  :
       default       :
-        if ($id) { $this->movieGet($id);
+        if ($id) {
+          $this->movieGet($id);
         } else {
-          $mlist  = $db->get_movieids_all();
+          $mlist  = $db->get_movieids_all($owner_id);
           $mcount = count($mlist);
           for ($i=0;$i<$mcount;++$i) {
             $this->movieGet($mlist[$i]);
@@ -545,7 +547,12 @@
         break;
     }
     $this->unlockDB();
-    $file = $name."_".$stamp.".pvp";
+    if ($owner_id=="")
+      $file = $name."_".$stamp.".pvp";
+    else {
+      $users = $db->get_users($owner_id);
+      $file = $name."_".$users->login."_".$stamp.".pvp";
+    }
     $this->fileSend($file,$mode);
   }
 

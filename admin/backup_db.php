@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -37,6 +37,7 @@
    if ($var != "comment" && $var != "referer" && !$pvp->common->req_is_alnum($var))
      $vuls[] = $var;
  }
+ if (!$pvp->common->req_is_num(owner_id)) $vuls[] = "owner_id";
  if ($vc = count($vuls)) {
    $msg = lang("input_errors_occured",$vc) . "<UL>\n";
    for ($i=0;$i<$vc;++$i) {
@@ -61,7 +62,13 @@
    $xfer = new xfer("export");
    if ($_POST["compress"]) $xfer->compressionOn();
    switch ($_POST["btype"]) {
-     case "movieint" : $xfer->fileExport("Movie"); exit; break;
+     case "movieint" :
+       if ($_POST["backup_user"])
+         $xfer->fileExport("Movie","",$_POST["owner_id"]);
+       else
+         $xfer->fileExport("Movie");
+       exit;
+       break;
      case "sysconf"  : $xfer->fileExport("SysConf"); exit; break;
      case "cats"     : $xfer->fileExport("Cats"); exit; break;
      default         : break;
@@ -113,12 +120,18 @@
    $t->parse("desc","descblock");
    $t->parse("item","itemblock");
    $t->set_var("title",lang("preferences"));
+   $users = $db->get_users(); $uc = count($users);
+#   $usel = "<SCRIPT type='text/javascript'>function toggleUserSel() { if (document.backup_db.owner_id.disabled==true) document.backup_db.owner_id.disabled=false; else document.backup_db.owner_id.disabled=true; }</SCRIPT><SELECT NAME='owner_id' disabled='disabled'>";
+   $usel = "<SCRIPT type='text/javascript'>function toggleUserSel() { if (document.backup_db.owner_id.disabled==true) { document.backup_db.owner_id.disabled=false; document.backup_db.owner_id.style.color='#000'; } else { document.backup_db.owner_id.disabled=true; document.backup_db.owner_id.style.color='#999'; } }</SCRIPT><SELECT NAME='owner_id' disabled='disabled' STYLE='color:#999'>";
+   for ($i=0;$i<$uc;++$i) $usel .= "<OPTION VALUE='".$users[$i]->id."'>".$users[$i]->login."</OPTION>";
+   $usel .= "</SELECT>";
    $space = str_replace($base_path,$base_url,$pvp->tpl_dir)."/images/blank.gif";
    $radio = "<INPUT TYPE='radio' NAME='btype' VALUE='all' CLASS='checkbox'>".lang("backup_db_complete")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='movieint' CLASS='checkbox' CHECKED>".lang("backup_db_movie_internal")."<BR>"
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space' ALT=' '><INPUT TYPE='checkbox' NAME='backup_user' VALUE='1' onChange='toggleUserSel();'>".lang('restrict_to_user').":&nbsp;$usel<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='cats' CLASS='checkbox'>".lang("backup_db_cats")."<BR>"
           . "<INPUT TYPE='radio' NAME='btype' VALUE='sysconf' CLASS='checkbox'>".lang("backup_db_sysconf")."<BR>"
-          . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'";
+          . "<INPUT TYPE='checkbox' NAME='compress' VALUE='1' CLASS='checkbox'";
    if (isset($_POST["compress"])) $radio .= " CHECKED";
    $radio .= ">".lang("backup_compress")."<BR>";
    $t->set_var("dleft",$radio);

@@ -3,6 +3,7 @@ v0.9.4
 ! some SQL statements missed to be updated on latest table rename
 + integrated WYSIWYG editor for text areas (enabled for movie comments only now)
 * excluding ".svn" directories when examining available template sets
++ added possibility to only backup a given users movies (admin->backup_db)
 
 v0.9.3 (20.01.2008)
 -------------------

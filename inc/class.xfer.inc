@@ -238,15 +238,23 @@
       return FALSE;
     }
     GLOBAL $db;
+    $users = $db->get_users(); $uc = count($users);
+    for ($i=0;$i<$uc;++$i) $owner[$users[$i]->id] = $users[$i]->login;
+    $admin_id = array_search("admin",$owner);
     for ($i=0;$i<$this->items;++$i) {
       $movie = unserialize(urldecode($this->data[$i]));
+      #--[ handle ownership ]--
       if ($from_owner!="" && $movie['owner_id']!=$from_owner) continue;
       if ($to_owner!="") $movie['owner_id'] = $to_owner;
-      if ($movie['director_id']) $movie['director_id'] = $db->check_person($movie['director_']['name'],$movie['director_']['firstname'],"directors",TRUE);
-      if ($movie['music_id']) $movie['music_id'] = $db->check_person($movie['music_']['name'],$movie['music_']['firstname'],"music",TRUE);
+      else {
+        if (!array_key_exists($movie['owner_id'],$owner) && $admin_id!==FALSE) $movie['owner_id'] = $admin_id; // prevent orphans - own them to admin
+      }
+      #-- [ add staff members when necessary ]--
+      if ($movie['director_id']) $movie['director_id'] = $db->check_person($movie['director_']['name'],$movie['director_']['firstname'],"directors",TRUE,$movie['director_mid']);
+      if ($movie['music_id']) $movie['music_id'] = $db->check_person($movie['music_']['name'],$movie['music_']['firstname'],"music",TRUE,$movie['music_mid']);
       for ($k=1;$k<6;++$k) {
         $pset = "actor_$k"; $pid = "actor$k"."_id";
-        if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset]['name'],$movie[$pset]['firstname'],"actors",TRUE);
+        if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset]['name'],$movie[$pset]['firstname'],"actors",TRUE,$movie['actor${i}_mid']);
       }
       #--[ add new cats if necessary ]--
       for ($k=1;$k<4;++$k) {
@@ -410,7 +418,7 @@
     $tlangs = $db->get_languages(1);
     $lc = count($tlangs);
     for ($i=0;$i<$lc;++$i) {
-      $langs[] = $tlangs["id"];
+      $langs[$i] = $tlangs[$i]["id"];
     }
     unset($tlangs,$lc);
     for ($i=0;$i<$this->items;++$i) {

@@ -160,7 +160,7 @@
          $select .= "<OPTION VALUE='$var'>$var</OPTION>";
        }
        $select .= "</SELECT><BR>"
-          . "<IMG WIDTH='20' BORDER='0' SRC='$space' ALT=' '><INPUT TYPE='checkbox' NAME='check_user' VALUE='1' onChange='toggleUserSel2();'>".lang('import_from_user').":&nbsp;$usel_from"
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space' ALT=' '><INPUT TYPE='checkbox' NAME='check_owner' VALUE='1' onChange='toggleUserSel2();'>".lang('import_from_user').":&nbsp;$usel_from"
 	  . "&nbsp;".lang('import_to_user').":&nbsp;$usel_to<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox'";
        if (isset($_POST["cleandb"])) $select .= " CHECKED";

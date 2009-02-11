@@ -204,8 +204,8 @@
     */
    function get_languages($avail="") {
      switch ($avail) {
-       case "0" : $where = "WHERE available='no'"; break;
-       case "1" : $where = "WHERE available='yes'"; break;
+       case "0" : $where = "WHERE lower(available)='no'"; break;
+       case "1" : $where = "WHERE lower(available)='yes'"; break;
        default  : $where = "";
      }
      $this->dbquery("SELECT lang_id,lang_name,charset,available FROM pvp_languages $where ORDER BY lang_name");
@@ -2902,30 +2902,50 @@
      return $id;
    } // end insert_person()
 
-   function check_person($name,$fname,$table,$code=FALSE) {
+   /** Check wether a given person exists in the db and aquire his/her id. If not
+    *  found in db, insert him/her first. If a valid imdb_id was specified, just
+    *  the imdb_id will compared - different name spellings are ignored. This
+    *  also means, if the same person already exists in the DB but w/o imdb_id,
+    *  a new entry would be added although (since we cannot tell if this really
+    *  is the same person, or just has the same name).
+    * @method check_person
+    * @param string name family name
+    * @param string fname first name
+    * @param string stafftype
+    * @param optional boolean code call addslashes on the names?
+    * @param optional integer mid IMDB ID
+    * @return integer id
+    */
+   function check_person($name,$fname,$table,$code=FALSE,$mid="") {
      if (substr($table,0,3)!="pvp") $table = "pvp_".$table;
      if ($code) {
        $name = addslashes($name); $fname = addslashes($fname);
      }
-     if ( !$name ) {
-       $where  = "name IS NULL";
+     if (!preg_match('|\d{7}|',$mid)) $mid = "";
+     if ( empty($mid) ) {
        $values = "NULL,";
      } else {
-       $where  = "name='$name'";
-       $values = "'$name',";
+       $where  = "imdb_id='$mid'";
+       $values = "'$mid',";
+     } 
+     if ( empty($name) ) {
+       if (empty($mid)) $where  = "name IS NULL";
+       $values .= "NULL,";
+     } else {
+       if (empty($mid)) $where  .= "name='$name'";
+       $values .= "'$name',";
      }
-     $where .= " AND ";
      if ( !$fname ) {
-       $where  .= "firstname IS NULL";
+       if (empty($mid)) $where  .= " AND firstname IS NULL";
        $values .= "NULL";
      } else {
-       $where  .= "firstname='$fname'";
+       if (empty($mid)) $where  .= " AND firstname='$fname'";
        $values .= "'$fname'";
      }
      $get  = "SELECT id FROM $table WHERE $where";
      $this->dbquery($get);
      if ( $this->next_record() ) return $this->f('id');
-     $this->dbquery("INSERT INTO $table (name,firstname) VALUES ($values)");
+     $this->dbquery("INSERT INTO $table (imdb_id,name,firstname) VALUES ($values)");
      $this->dbquery($get);
      $this->next_record();
      return $this->f('id');
@@ -2973,7 +2993,8 @@
        }
        if (is_array(${$cat})) ${$cat} = array_flip(${$cat});
      }
-     $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
+     if ( is_array($cat1_id) && is_array($cat2_id) && is_array($cat3_id) )
+       $cats = array_merge($cat1_id,$cat2_id,$cat3_id);
      $stats['cats_used'] = count($cats);
      // ===[ ranks ]===
      $details = array( array("name"=>"country","sql"=>"SELECT count(id) AS rank, country AS item FROM pvp_video WHERE country IS NOT NULL GROUP BY country ORDER BY rank DESC"),

@@ -8,6 +8,8 @@ v0.9.4
   records can even be transfered to a different user.
 * backup compression is now enabled by default if gz support was detected. If
   there is no gz support, the checkbox is disabled.
+* restore: movies with unknown/undefined owner are owned to "admin" now (so the
+  admin user later can decide what to do with them)
 
 v0.9.3 (20.01.2008)
 -------------------

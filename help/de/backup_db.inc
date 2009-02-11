@@ -31,13 +31,22 @@ PostgreSQL realisieren. Sicherungen in diesem Format lassen sich auch mit
 diesem Frontent wieder herstellen (<i>"*restore_db_internal#"</i>).
 
 [text]
+Sollen nur die Filmdaten eines bestimmten Benutzers gesichert werden, muss
+zunächst die Checkbox "<b>*restrict_to_user#</b>" aktiviert werden. Anschließend
+lässt sich über die nebenstehende Drop-Down-Box der gewünschte Benutzer
+auswählen.
+
+[text]
 Mit der Aktivierung der Checkbox <b><i>"*backup_compress#"</i></b> ist optional
 eine Kompression der Backup-Datei möglich, sofern die verwendete Installation
-von PHP mit Unterstützung für <code>gzip</code> kompiliert wurde (einfach
-ausprobieren - schlimmsten Falles gibt es halt eine Fehlermeldung). Nach einem
-"Klick" auf den mit <i>"*button_backup#"</i> beschrifteten Button dauert es je
-nach Größe der Datenbank und gewähltem Backup-Typ jetzt ein Weilchen, bis der
-Browser zum Speichern der Datei auffordert.
+von PHP Unterstützung für <code>gzip</code> bietet - in diesem Fall ist die
+Checkbox auch bereits per Default aktiviert, und im anderen Fall lässt sie sich
+gar nicht aktivieren.
+
+[text]
+Nach einem "Klick" auf den mit <i>"*button_backup#"</i> beschrifteten Button
+dauert es je nach Größe der Datenbank und gewähltem Backup-Typ jetzt ein Weilchen,
+bis der Browser zum Speichern der Datei auffordert.
 
 [title|1|restore]
 Allgemeines zum "Restore"
@@ -65,9 +74,26 @@ entpackt - sofern die verwendete PHP Installation dies unterstützt (siehe oben)
 Filmdaten aus einem <code>*.pvp</code> Backup wieder herstellen
 
 [text]
-Hier gilt es zunächst zu entscheiden, ob die Daten aus der Sicherungsdatei den
-vorhandenen Daten hinzugefügt, oder ob die vorhandenen Daten ersetzt werden
-sollen.
+Hier gilt es zunächst zu entscheiden, welche Filmdaten man wiederherstellen
+möchte - und ggf. wohin. Sollen nur Daten eines bestimmten Benutzers verarbeitet
+oder der Eigentümer geändert werden, aktiviert man zunächst die Checkbox neben
+"<b><i>*import_from_user#</i></b>". Nun lässt sich der Import auf die Daten eines
+einzelnen Benutzers mittels der ersten Drop-Down-Box beschränken. Über die
+zweite lässt sich ein Besitzerwechsel realisieren: Alle importierten Filme werden
+dann diesem übereignet. Dies betrifft dann je nach Auswahl in der linken Box
+alle Filme des Backups (leere Auswahl), bzw. nur die Filme des gewählten
+Eigentümers.
+
+[text]
+Einziger Haken hier: Die Auswahl in der linken Box führt zu unvorhersehbaren
+Ergebnissen, wenn die Backup-Datei von einer anderen phpVideoPro Installation
+stammt, bzw. die Benutzerdaten selbst sich in der Zwischenzeit geändert haben
+(Benutzer gelöscht bzw. kompletter Neuaufbau der Nutzerdaten aufgrund eines
+Datenbank-Crashes). Also bitte mit Bedacht benutzen.
+
+[text]
+Nächste Frage: Sollen die Daten aus der Sicherungsdatei den vorhandenen Daten
+hinzugefügt - oder die vorhandenen Daten ersetzt werden?
 
 [text]
 Sollen alle Einträge in der Datenbank komplett ersetzt werden (etwa, weil gerade

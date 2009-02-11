@@ -3,7 +3,9 @@ v0.9.4
 ! some SQL statements missed to be updated on latest table rename
 + integrated WYSIWYG editor for text areas (enabled for movie comments only now)
 * excluding ".svn" directories when examining available template sets
-+ added possibility to only backup a given users movies (admin->backup_db)
++ added possibility to only backup a given users movies (admin->backup_db).
+  Similarly, a movie restore can be restricted to a given user, and ownership of
+  records can even be transfered to a different user.
 * backup compression is now enabled by default if gz support was detected. If
   there is no gz support, the checkbox is disabled.
 

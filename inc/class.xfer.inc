@@ -98,7 +98,7 @@
     $tcatlist = $db->get_category();
     $catcount = count($tcatlist);
     for ($i=0;$i<$catcount;++$i) {
-      $this->catlist[$tcatlist[$i][internal]] = $tcatlist[$i][id];
+      $this->catlist[$tcatlist[$i]['internal']] = $tcatlist[$i]['id'];
     }
   }
 
@@ -158,9 +158,9 @@
      $mt = $db->get_mtypes();
      $mc = count($mt);
      for ($i=0;$i<$mc;++$i) {
-       $id = $mt[$i][sname];
-       $mtype[$id]->id   = $mt[$i][id];
-       $mtype[$id]->name = $mt[$i][name];
+       $id = $mt[$i]['sname'];
+       $mtype[$id]->id   = $mt[$i]['id'];
+       $mtype[$id]->name = $mt[$i]['name'];
      }
      return $mtype;
    }
@@ -224,11 +224,14 @@
    *  How many movies could not be imported is stored to xfer::errors,
    *  error details are stored in (appended to) xfer::report
    * @method private moviePut
-   * @param boolean append Whether we append to an existing or build a new DB
+   * @param optional boolean append Whether we append to an existing or build a new DB
+   * @param optional integer from_owner Only import movies owned by the given user
+   * @param optional integer to_owner Let all imported movies be owned by the
+   *  given user
    * @return boolean all_success (TRUE if all entries are imported sucessfully,
    *  FALSE otherwise)
    */
-  function moviePut($append=TRUE) {
+  function moviePut($append=TRUE,$from_owner="",$to_owner="") {
     if ($this->mode!="import") {
       $this->report .= "<li>".lang("xfer_wrong_mode","import",$this->mode);
       $this->errors = $this->items;
@@ -237,11 +240,13 @@
     GLOBAL $db;
     for ($i=0;$i<$this->items;++$i) {
       $movie = unserialize(urldecode($this->data[$i]));
-      if ($movie[director_id]) $movie[director_id] = $db->check_person($movie[director_][name],$movie[director_][firstname],"directors",TRUE);
-      if ($movie[music_id]) $movie[music_id] = $db->check_person($movie[music_][name],$movie[music_][firstname],"music",TRUE);
+      if ($from_owner!="" && $movie['owner_id']!=$from_owner) continue;
+      if ($to_owner!="") $movie['owner_id'] = $to_owner;
+      if ($movie['director_id']) $movie['director_id'] = $db->check_person($movie['director_']['name'],$movie['director_']['firstname'],"directors",TRUE);
+      if ($movie['music_id']) $movie['music_id'] = $db->check_person($movie['music_']['name'],$movie['music_']['firstname'],"music",TRUE);
       for ($k=1;$k<6;++$k) {
         $pset = "actor_$k"; $pid = "actor$k"."_id";
-        if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset][name],$movie[$pset][firstname],"actors",TRUE);
+        if ($movie[$pid]) $movie[$pid] = $db->check_person($movie[$pset]['name'],$movie[$pset]['firstname'],"actors",TRUE);
       }
       #--[ add new cats if necessary ]--
       for ($k=1;$k<4;++$k) {
@@ -255,38 +260,38 @@
 	}
       }
       #--[ take care for new audio and subtitle languages ]--
-      for ($k=0;$k<count($movie[audio]);++$k) { // check audio_ts
-        if ( ($movie[audio][$k]) && !in_array($movie[audio][$k],$this->audio) ) {
-          $db->set_avlang($movie[audio][$k],1,"audio");
-          $this->audio[] = $movie[audio][$k];
+      for ($k=0;$k<count($movie['audio']);++$k) { // check audio_ts
+        if ( ($movie['audio'][$k]) && !in_array($movie['audio'][$k],$this->audio) ) {
+          $db->set_avlang($movie['audio'][$k],1,"audio");
+          $this->audio[] = $movie['audio'][$k];
         }
       }
-      for ($k=0;$k<count($movie[subtitle]);++$k) { // check subtitles
-        if ( ($movie[subtitle][$k]) && !in_array($movie[subtitle][$k],$this->subtitle) ) {
-          $db->set_avlang($movie[subtitle][$k],1,"subtitle");
-          $this->subtitle[] = $movie[subtitle][$k];
+      for ($k=0;$k<count($movie['subtitle']);++$k) { // check subtitles
+        if ( ($movie['subtitle'][$k]) && !in_array($movie['subtitle'][$k],$this->subtitle) ) {
+          $db->set_avlang($movie['subtitle'][$k],1,"subtitle");
+          $this->subtitle[] = $movie['subtitle'][$k];
         }
       }
       #--[ if we add to existing entries: beware media numbers! ]--
       if ($append) {
         #--[ make sure the mtype exists ]--
-        $mts = $movie[mtype_short];
+        $mts = $movie['mtype_short'];
         if ( $this->mtypes[$mts]->id ) {
-          $movie[mtype_id] = $this->mtypes[$mts]->id;
-          $movie[mtype]    = $this->mtypes[$mts]->name;
+          $movie['mtype_id'] = $this->mtypes[$mts]->id;
+          $movie['mtype']    = $this->mtypes[$mts]->name;
         } else {
-          $db->set_mtypes($movie[mtype],$mts);
+          $db->set_mtypes($movie['mtype'],$mts);
           $this->mtypes = $this->mkMtypes();
-          $movie[mtype_id] = $this->mtypes[$mts]->id;
+          $movie['mtype_id'] = $this->mtypes[$mts]->id;
         }
         #--[ generate new media number: add after last ]--
-        $cid = $movie[cass_id];
+        $cid = $movie['cass_id'];
         if ( isset($newnum[$mts][$cid]) ) {
-          $movie[cass_id] = $newnum[$mts][$cid];
+          $movie['cass_id'] = $newnum[$mts][$cid];
         } else {
           $lastnum = $db->get_lastmovienum($this->mtypes[$mts]->id);
-          $movie[cass_id] = ++$lastnum[0][cass_id];
-          $newnum[$mts][$cid] = $movie[cass_id];
+          $movie['cass_id'] = ++$lastnum[0]['cass_id'];
+          $newnum[$mts][$cid] = $movie['cass_id'];
         }
       }
       #--[ finally: do the real import! ]--
@@ -411,21 +416,21 @@
     for ($i=0;$i<$this->items;++$i) {
       $cat = unserialize(urldecode($this->data[$i]));
       #--[ add cat if not exists ]--
-      if ( !$cid = $db->get_category_id($cat[internal]) ) {
-        if ( !$db->add_category($cat[internal]) ) {
-          $this->report .= "<li>failed adding category '$cat[internal]'</li>";
+      if ( !$cid = $db->get_category_id($cat['internal']) ) {
+        if ( !$db->add_category($cat['internal']) ) {
+          $this->report .= "<li>failed adding category '".$cat['internal']."'</li>";
           ++$this->errors;
           continue;
         }
-        $cid = $db->get_category_id($cat[internal]);
+        $cid = $db->get_category_id($cat['internal']);
       }
       #--[ add/replace translations ]--
-      $tcount = count($cat[trans]);
-      foreach ($cat[trans] as $var=>$val) {
+      $tcount = count($cat['trans']);
+      foreach ($cat['trans'] as $var=>$val) {
         if ( in_array($var,$langs) ) { // only update installed langs
           $trans = $db->get_singletrans($var,"",$val);
           if ( empty($trans) || $replace ) {
-            $db->set_translation($cat[internal],$var,$val);
+            $db->set_translation($cat['internal'],$var,$val);
           }
         }
       }
@@ -442,7 +447,7 @@
     $cats = $db->get_category();
     $ccount = count($cats);
     for ($i=0;$i<$ccount;++$i,++$this->items) {
-      $cats[$i][trans] = $db->get_trans_all($cats[$i][internal]);
+      $cats[$i]['trans'] = $db->get_trans_all($cats[$i]['internal']);
       $this->list .= urlencode(serialize($cats[$i]))."\n";
     }
   }
@@ -470,10 +475,16 @@
    *  given with param file)
    * @param optional boolean append whether to append to existing DB (default)
    *  or starting with a cleanup (FALSE)
+   * @param optional integer from_owner Only import movies owned by the given user
+   *  (only considered for filetype "Movie")
+   * @param optional integer to_owner Let all imported movies be owned by the
+   *  given user (only considered for filetype "Movie")
    * @return string save_result to display in browser
    */
-  function fileImport($file,$dir="",$append=TRUE) {
+  function fileImport($file,$dir="",$append=TRUE,$from_owner="",$to_owner="") {
     GLOBAL $pvp,$db;
+    if ($from_owner!="" && preg_match('|[^0-9]|',$from_owner)) $from_owner="";
+    if ($to_owner!="" && preg_match('|[^0-9]|',$to_owner)) $to_owner="";
     if ($this->mode!="import") return FALSE;
     if (!$this->lockDB()) // Lock DB before import
       return $this->errorMsg( lang("db_lock_failed") );
@@ -506,7 +517,7 @@
         }
         break;
       case "Movie"   :
-        if ($this->moviePut($append)) {
+        if ($this->moviePut($append,$from_owner,$to_owner)) {
           $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
         } else {
           $msg = lang("imp_errors",$this->errors,$this->items);

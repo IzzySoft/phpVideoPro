@@ -30,10 +30,15 @@ PostgreSQL to MySQL or vice versa. For this type of data, the interface also
 offers a "Restore" command (<i>"*restore_db_internal#"</i>).
 
 [text]
+If you only want to backup data from a single user, you first need to activate
+the "<b>*restrict_to_user#</b>" checkbox. Now you can select the corresponding
+login from the drop-down box.
+
+[text]
 The checkbox <b><i>"*backup_compress#"</i></b> tells phpVideoPro to compress
 the output file. This will only work if your installation of PHP is compiled
-with <code>gzip</code> support. If this is not the case, you will see an error
-when you try to enable it.
+with <code>gzip</code> support. If this is not the case, you will not be able
+to activate this checkbox - otherwise it is enabled by default.
 
 [text]
 After you chose the backup type and pressed the <i>"*button_backup#"</i> button,
@@ -74,6 +79,19 @@ the translation later using the translation editor (see
 Moreover, if any imported movie contains an audio or subtitle channel for a
 language you did not (yet) activate for audio/subtitle: do not worry -
 phpVideoPro takes care for that, too.
+
+[text]
+You may want to restore only a given users movies, or let imported movies be
+owned by a different user. For this to happen, first activate the checkbox next
+to "<b><i>*import_from_user#</i></b>", and then select either the user to import from
+in the first drop-down box, the user to own imported movies in the second
+checkbox next to "<b><i>*import_to_user#</i></b>", or even both - depending on what
+your intention is.
+
+One thing to consider is that importing movies from a different installation
+(or after the userbase has changed, e.g. when you had a crash and setup all
+users manually again) may lead to unpredictable results with "<i>*import_from_user#</i>"
+being used - since the users ID could be different.
 
 [text]
 If you check the "<b><i>*clean_restore#</i></b>" box, phpVideoPro first

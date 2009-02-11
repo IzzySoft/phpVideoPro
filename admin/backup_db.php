@@ -38,6 +38,8 @@
      $vuls[] = $var;
  }
  if (!$pvp->common->req_is_num(owner_id)) $vuls[] = "owner_id";
+ if (!$pvp->common->req_is_num(from_owner)) $vuls[] = "from_owner";
+ if (!$pvp->common->req_is_num(to_owner)) $vuls[] = "to_owner";
  if ($vc = count($vuls)) {
    $msg = lang("input_errors_occured",$vc) . "<UL>\n";
    for ($i=0;$i<$vc;++$i) {
@@ -111,7 +113,13 @@
    if (isset($_POST["restore"])) { // restore data
      $xfer = new xfer("import");
      if ($_POST["compress"]) $xfer->compressionOn();
-     $save_result = $xfer->fileImport($_POST["rfile"],$pvp->backup_dir,!$_POST["cleandb"]);
+     if ($_POST["check_owner"]) {
+       $from_owner = $_POST["from_owner"];
+       $to_owner   = $_POST["to_owner"];
+     } else {
+       $from_owner = $to_owner = "";
+     }
+     $save_result = $xfer->fileImport($_POST["rfile"],$pvp->backup_dir,!$_POST["cleandb"],$from_owner,$to_owner);
    }
    #===============================================[ initial hints & form ]===
    $t->set_var("title",lang("intro"));
@@ -141,11 +149,19 @@
      $filelist = $pvp->common->get_filenames($pvp->backup_dir,".pvp");
      asort($filelist); reset($filelist);
      if ( $fcount   = count($filelist) ) {
+       $usel_from = "<SCRIPT type='text/javascript'>function toggleUserSel2() { if (document.backup_db.from_owner.disabled==true) { document.backup_db.from_owner.disabled=false; document.backup_db.from_owner.style.color='#000';document.backup_db.to_owner.disabled=false; document.backup_db.to_owner.style.color='#000'; } else { document.backup_db.from_owner.disabled=true; document.backup_db.from_owner.style.color='#999'; document.backup_db.to_owner.disabled=true; document.backup_db.to_owner.style.color='#999'; } }</SCRIPT><SELECT NAME='from_owner' disabled='disabled' STYLE='color:#999'>";
+       $usel_to   = "<SELECT NAME='to_owner' disabled='disabled' STYLE='color:#999'>";
+       $usel2 = "<OPTION VALUE=''></OPTION>";
+       for ($i=0;$i<$uc;++$i) $usel2 .= "<OPTION VALUE='".$users[$i]->id."'>".$users[$i]->login."</OPTION>";
+       $usel_from .= "$usel2</SELECT>";
+       $usel_to   .= "$usel2</SELECT>";
        $select   = "<SELECT NAME='rfile'>";
        foreach ($filelist as $var) {
          $select .= "<OPTION VALUE='$var'>$var</OPTION>";
        }
        $select .= "</SELECT><BR>"
+          . "<IMG WIDTH='20' BORDER='0' SRC='$space' ALT=' '><INPUT TYPE='checkbox' NAME='check_user' VALUE='1' onChange='toggleUserSel2();'>".lang('import_from_user').":&nbsp;$usel_from"
+	  . "&nbsp;".lang('import_to_user').":&nbsp;$usel_to<BR>"
           . "<IMG WIDTH='20' BORDER='0' SRC='$space'><INPUT TYPE='checkbox' NAME='cleandb' VALUE='1' CLASS='checkbox'";
        if (isset($_POST["cleandb"])) $select .= " CHECKED";
        $select .= ">".lang("clean_restore")."<BR>";

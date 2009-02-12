@@ -1,4 +1,9 @@
-v0.9.4
+$Id$
+
+History for phpVideoPro
+=======================
+
+v0.9.4 (12.02.2008)
 -------------------
 ! some SQL statements missed to be updated on latest table rename
 + integrated WYSIWYG editor for text areas (enabled for movie comments only now)

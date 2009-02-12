@@ -270,6 +270,7 @@ $button = "<DIV ALIGN='center'><A HREF='".$_SERVER["PHP_SELF"]
     case "0.9.0"    : 
     case "0.9.1"    : queryf("0-8-8_to_0-9-0.sql","Upgrade to v0.9.2");
     case "0.9.2"    : queryf("0-9-2_to_0-9-3.".$database["type"],"Upgrade to v0.9.3");
+    case "0.9.3"    : queryf("0-9-3_to_0-9-4.sql","Upgrade to v0.9.4");
                       queryf("../lang_en.sql","Refresh of English language support");
                       break;
     default         : $final = "Your database version seems to be current, there's nothing I can update for you!";

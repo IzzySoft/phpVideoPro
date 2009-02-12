@@ -2,7 +2,7 @@
 
 var MyNic;
 function loadEditor() {
-  MyNic = new nicEditor({buttonList : ['bold','italic','underline','left','center','justify','right','ol','ul','subscript','superscript','strikethrough','indent','outdent','hr','forecolor','bgcolor','link','unlink','removeformat','fontFormat','fontFamily','fontSize']}).panelInstance('comment');
+  MyNic = new nicEditor({buttonList : ['bold','italic','underline','left','center','justify','right','ol','ul','subscript','superscript','strikethrough','indent','outdent','hr','forecolor','bgcolor','removeformat','fontFormat','fontFamily','fontSize']}).panelInstance('comment');
 }
 bkLib.onDomLoaded(function() {
   if (document.movieform.useEditor[0].checked) loadEditor();

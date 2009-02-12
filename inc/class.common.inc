@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   * @package Api
   * @class common
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
   */
 
 class common {
@@ -328,6 +328,12 @@ class common {
       if ($allowed) { $ignored = $allowed . "|" . $keep; }
         else { $ignored = $keep; }
     } else { $ignored = $allowed; }
+    $js = "onclick|ondblclick|onmousedown|onmouseup|onmouseover|"
+        . "onmousemove|onmouseout|onkeypress|onkeydown|onkeyup|"
+	. "onblur|onfocus|onload|onunload|onreset|onsubmit|"
+	. "onchange|onselect";
+    $str = preg_replace("/($js)\s*\=\s*.{0,1}'.*'/siU","",$str,-1,$c1);
+    $str = preg_replace("/($js)\s*\=\s*.{0,1}\".*\"/siU","",$str,-1,$c2);
     $str = preg_replace("'<script[^>]*?>.*?</script>'si", "", $str);
     $str = preg_replace("'<iframe[^>]*?>.*?</iframe>'si", "", $str);
     $str = preg_replace("'<head[^>]*?>.*?</head>'si", "", $str);
@@ -356,7 +362,7 @@ class common {
    * @see safehtml() for details
    */
   function safetextarea($str) {
-    return $this->safehtml($str,"block|pre|br|hr",TRUE,"ul|ol|li|p");
+    return $this->safehtml($str,"block|pre|br|hr|sub|sup",TRUE,"ul|ol|li|p|span|div|font|h1|h2|h3|h4|h5|h6");
   }
 
   /** prepare a string containing quotes for form input fields

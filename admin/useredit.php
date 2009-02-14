@@ -40,8 +40,8 @@
  #==================================================[ update user account ]===
  if (isset($_POST["update"])) {
    $user->id     = $id;
+   $users = $db->get_users($id);
    if (!$pvp->auth->admin) {
-     $users = $db->get_users($id);
      $user->login = $users->login;
      $user->comment = $users->comment;
      $access = array("admin","browse","add","upd","del");
@@ -49,7 +49,8 @@
        $user->$value = $users->$value;
      }
    } else {
-     $user->login  = $_POST["ulogin"];
+     if (in_array(strtolower($users->login),$pvp->protected_users)) $user->login = $users->login;
+     else $user->login  = $_POST["ulogin"];
      if (empty($user->login) || preg_match("/[^\w\d]/",$_POST["ulogin"])) { display_error(lang("user_create_login_required")); exit; }
      if (preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["comment"])) $user->comment = $users->comment;
      else $user->comment= $_POST["comment"];
@@ -164,7 +165,10 @@
  $users = $db->get_users($id);
  $t->set_var("user_id","<INPUT TYPE='hidden' NAME='id' VALUE='$id'>$id");
  if ($pvp->auth->admin) {
-   $t->set_var("login","<INPUT NAME='ulogin' VALUE='".$users->login."'>");
+   if (in_array(strtolower($users->login),$pvp->protected_users))
+     $t->set_var("login",$users->login . "<INPUT TYPE='hidden' NAME='ulogin' VALUE='".$users->login."'>");
+   else
+     $t->set_var("login","<INPUT NAME='ulogin' VALUE='".$users->login."'>");
    $t->set_var("comment","<INPUT NAME='comment' VALUE='".$users->comment."'>");
    $t->set_var("browse",$pvp->common->make_checkbox("browse",$users->browse));
    $t->set_var("add",$pvp->common->make_checkbox("add",$users->add));

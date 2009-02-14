@@ -3,6 +3,11 @@ $Id$
 History for phpVideoPro
 =======================
 
+v0.9.5
+-------------------
+* protected the users "admin" and "PUBLIC" against deletion (since they are
+  essential for the system)
+
 v0.9.4 (12.02.2008)
 -------------------
 ! some SQL statements missed to be updated on latest table rename

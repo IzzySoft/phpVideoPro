@@ -531,6 +531,21 @@ class common {
    return TRUE;
   }
 
+  /** show error page
+   * @method display_error
+   * @param string message error message
+   * @version headers are not included here (since it is also called by die_error)
+   */
+  function display_error($msg) {
+    GLOBAL $pvp,$charset;
+    $t = new Template($pvp->tpl_dir);
+    $t->set_file(array("template"=>"error.tpl"));
+    $t->set_var("listtitle",lang("error_occured"));
+    $t->set_var("charset",$charset);
+    $t->set_var("details",$msg);
+    $t->pparse("out","template");
+  }
+
   /** die with error message (and w/o menu)
    * issues a HTTP 403 (forbidden) code and displays the error message
    * @class common
@@ -538,18 +553,12 @@ class common {
    * @param string msg Error message to display (full translated variant)
    */
   function die_error($msg) {
-   GLOBAL $pvp,$charset;
-   $t = new Template($pvp->tpl_dir);
-   $t->set_file(array("template"=>"error.tpl"));
-   $t->set_var("listtitle",lang("error_occured"));
-   $t->set_var("charset",$charset);
-   $t->set_var("details",$msg);
    $protocol = $_SERVER['SERVER_PROTOCOL'];
    header("$protocol 403 Forbidden");
    header("Status: 403 Forbidden");
    header("Connection: close");
    header('Content-type: text/html; charset=$charset');
-   $t->pparse("out","template");
+   $this->display_error($msg);
    exit;
   }
 

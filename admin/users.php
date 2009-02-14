@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -75,8 +75,12 @@
    $t->set_var("del",$pvp->common->make_checkbox("del_".$users[$i]->id,$users[$i]->del));
    $t->set_var("isadmin",$pvp->common->make_checkbox("admin_".$users[$i]->id,$users[$i]->admin));
    $t->set_var("edit",$pvp->link->linkurl("useredit.php?id=".$users[$i]->id,"<IMG SRC='$edit_img' BORDER='0' ALT='".lang("edit")."'>"));
-   $url = $pvp->link->slink("useredit.php?delete=".$users[$i]->id);
-   $t->set_var("delete","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
+   if (in_array(strtolower($users[$i]->login),$pvp->protected_users)) {
+     $t->set_var("delete","&nbsp;");
+   } else {
+     $url = $pvp->link->slink("useredit.php?delete=".$users[$i]->id);
+     $t->set_var("delete","<IMG SRC='$trash_img' BORDER='0' ALT='".lang("delete")."' onClick=\"delconfirm('$url')\">");
+   }
    if ($i) $t->parse("item","itemblock",TRUE);
      else $t->parse("item","itemblock");
  }

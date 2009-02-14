@@ -681,6 +681,12 @@
     * @return boolean success
     */
    function del_user($id) {
+     GLOBAL $pvp;
+     $user = $this->get_users($id);
+     if (in_array(strtolower($user->login),$pvp->protected_users)) return FALSE; // never delete protected users
+     $this->dbquery("SELECT count(*) AS count FROM pvp_media WHERE owner=$id");
+     $this->next_record();
+     if ($this->f('count')!=0) return FALSE; // still media associated with this user - use user_media_delete or _xfer first
      $this->dbquery("DELETE FROM pvp_usergrants WHERE grantee=$id OR grantor=$id");
      $this->dbquery("DELETE FROM pvp_users WHERE id=$id");
      if ( $this->affected_rows() < 0 ) return FALSE;

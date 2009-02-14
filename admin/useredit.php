@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -99,7 +99,11 @@
  #==================================================[ delete user account ]===
  } elseif ($delete) {
    $user = $db->get_users($delete);
-   if (isset($_POST["confirmed"])) {
+   if (in_array(strtolower($user->login),$pvp->protected_users)) {
+     include("../inc/header.inc");
+     $pvp->common->display_error(lang("protected_user_no_delete",$user->login));
+     exit;
+   } elseif (isset($_POST["confirmed"])) {
      switch ($data_action) {
      case 1  : // delete user's media
        $success = $db->user_media_delete($delete);

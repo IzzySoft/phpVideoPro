@@ -701,4 +701,5 @@ INSERT INTO pvp_lang VALUES ('default_editor_comment','en','A WYSIWYG editor can
 INSERT INTO pvp_lang VALUES ('restrict_to_user','en','restrict to user','checkbox on backup page to restrict backup to a specified user');
 INSERT INTO pvp_lang VALUES ('import_from_user','en','Only movies from user','Option on the admins backup page');
 INSERT INTO pvp_lang VALUES ('import_to_user','en','Map owner to user','Option on the admins backup page');
+INSERT INTO pvp_lang VALUES ('protected_user_no_delete','en','The specified user <i>%1</i> is protected and cannot be deleted.','Error message when trying to delete a protected user');
 #INSERT INTO pvp_lang VALUES ('','en','','');

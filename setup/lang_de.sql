@@ -474,6 +474,7 @@ INSERT INTO pvp_lang VALUES ('printer_add_success','de','Drucker erfolgreich hin
 INSERT INTO pvp_lang VALUES ('printer_comment','de','Für den Druck auf Formularen (wie z.B. von PSLabels verwendet), werden die exakten Offsets des verwendeten Druckers benötigt.','');
 INSERT INTO pvp_lang VALUES ('printer_upd_failed','de','Das Aktualisieren folgender Drucker schlug fehl: %1','');
 INSERT INTO pvp_lang VALUES ('print_label','de','Etikett drucken:','');
+INSERT INTO pvp_lang VALUES ('protected_user_no_delete','de','Der Benutzer <i>%1</i> ist geschützt und kann daher nicht gelöscht werden.','');
 INSERT INTO pvp_lang VALUES ('psinst_action_select','de','Bitte die gewünschte Aktion auswählen:','');
 INSERT INTO pvp_lang VALUES ('psinst_deregister_pspack','de','PSLabel Pack wird de-registriert','');
 INSERT INTO pvp_lang VALUES ('psinst_found_rev','de','Revision #%1 gefunden','');

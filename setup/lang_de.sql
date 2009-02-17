@@ -529,6 +529,7 @@ INSERT INTO pvp_lang VALUES ('select_primary_lang','de','Primäre Sprache auswä
 INSERT INTO pvp_lang VALUES ('select_primary_lang_comment','de','Bei fehlenden Übersetzungen erfolgt ein Fall-Back zur Englischen Sprache','');
 INSERT INTO pvp_lang VALUES ('sel_new_cat','de','Neue Kategorie auswählen:','');
 INSERT INTO pvp_lang VALUES ('sel_target_lang','de','Zielsprache für die Übersetzungen:','');
+INSERT INTO pvp_lang VALUES ('send_backup','de','Herunterladen','');
 INSERT INTO pvp_lang VALUES ('session_expired','de','Die Session ist nicht länger gültig - eine erneute Anmeldung ist nötig.','');
 INSERT INTO pvp_lang VALUES ('session_purgetime','de','Inaktivitäts-Timeout für Sitzungen','');
 INSERT INTO pvp_lang VALUES ('session_purgetime_comment','de','Wie lange soll eine (angemeldete) Sitzung ohne Benutzer-Aktivität gültig bleiben?','');
@@ -549,6 +550,7 @@ INSERT INTO pvp_lang VALUES ('stats','de','Statistiken','');
 INSERT INTO pvp_lang VALUES ('stat_categories','de','Kategorien (benutzt/alle)','');
 INSERT INTO pvp_lang VALUES ('stat_counts','de','Summen','');
 INSERT INTO pvp_lang VALUES ('storeplace','de','Standort','');
+INSERT INTO pvp_lang VALUES ('store_backup','de','Auf dem Server speichern','');
 INSERT INTO pvp_lang VALUES ('submit','de','Absenden','');
 INSERT INTO pvp_lang VALUES ('subtitle','de','Untertitel','');
 INSERT INTO pvp_lang VALUES ('sure_to_delete','de','Alle Daten für %1 werden gelöscht! Fortfahren','');

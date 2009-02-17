@@ -41,6 +41,13 @@ with <code>gzip</code> support. If this is not the case, you will not be able
 to activate this checkbox - otherwise it is enabled by default.
 
 [text]
+Using the Radio boxes <b><i>"*store_backup#"</i></b> and <b><i>"*send_backup#"</i></b>
+you can control whether the backup will be stored on the server (in the backup
+directory you configured), or downloaded to the local machine. The former of
+course is only available if the web server process has write permissions on that
+folder.
+
+[text]
 After you chose the backup type and pressed the <i>"*button_backup#"</i> button,
 your browser will prompt you for a location to save the backup file to. Until
 then, it may take a while, depending on the size of your database and the type

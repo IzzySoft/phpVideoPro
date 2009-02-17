@@ -63,16 +63,24 @@
    $stamp = date('ymd'); // to generate a unique filename
    $xfer = new xfer("export");
    if ($_POST["compress"]) $xfer->compressionOn();
+   if ($_POST["store"])    $xfer->backupStore();
    switch ($_POST["btype"]) {
      case "movieint" :
        if ($_POST["backup_user"])
          $xfer->fileExport("Movie","",$_POST["owner_id"]);
        else
          $xfer->fileExport("Movie");
+       if ($_REQUEST["store"] && is_writable($backup_path)) header("Location:?store=1"); // workaround against emptying browser window
        exit;
        break;
-     case "sysconf"  : $xfer->fileExport("SysConf"); exit; break;
-     case "cats"     : $xfer->fileExport("Cats"); exit; break;
+     case "sysconf"  :
+       $xfer->fileExport("SysConf");
+       if ($_REQUEST["store"] && is_writable($backup_path)) header("Location:?store=1"); // workaround against emptying browser window
+       exit; break;
+     case "cats"     :
+       $xfer->fileExport("Cats");
+       if ($_REQUEST["store"] && is_writable($backup_path)) header("Location:?store=1"); // workaround against emptying browser window
+       exit; break;
      default         : break;
    }
  #--------------------------------------[ Complete DB backup (SQL format) ]---
@@ -107,6 +115,7 @@
      }
    }
    if ($_POST["compress"]) echo gzencode($out);
+   //if ($_REQUEST["store"] && is_writable($backup_path)) header("Location:?store=1"); // workaround against emptying browser window
    exit;
  } else {
  #======================================================[ run the restore ]===
@@ -142,6 +151,12 @@
    if ( (function_exists('gzencode')&&!isset($_POST["btype"]))||isset($_POST["compress"]) ) $radio .= " CHECKED";
    if ( !function_exists('gzencode') ) $radio .= " DISABLED";
    $radio .= ">".lang("backup_compress")."<BR>";
+   $radio .= "<INPUT TYPE='radio' NAME='store' VALUE='1' CLASS='checkbox'";
+   if (!is_writable($backup_path)) $radio .= " DISABLED";
+   if ($_REQUEST["store"] && is_writable($backup_path)) $radio .= " CHECKED";
+   $radio .= ">".lang("store_backup")."&nbsp;<INPUT TYPE='radio' NAME='store' VALUE='0' CLASS='checkbox'";
+   if (!$_REQUEST["store"]) $radio .= " CHECKED";
+   $radio .= ">".lang("send_backup")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");
    $radio = "<INPUT TYPE='radio' NAME='rtype' VALUE='removieint' CLASS='checkbox' CHECKED>".lang("restore_db_internal");

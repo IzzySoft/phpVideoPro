@@ -44,6 +44,13 @@ Checkbox auch bereits per Default aktiviert, und im anderen Fall lässt sie sich
 gar nicht aktivieren.
 
 [text]
+Über die Radio-Boxen <b><i>"*store_backup#"</i></b> und <b><i>"*send_backup#"</i></b>
+lässt sich steuern, ob das Backup auf dem Server (im konfigurierten Backup-Verzeichnis)
+abgelegt oder heruntergeladen werden soll. Die erste Möglichkeit steht natürlich
+nur zur Verfügung, wenn das Backup-Verzeichnis für den Webserver auch schreibbar
+ist.
+
+[text]
 Nach einem "Klick" auf den mit <i>"*button_backup#"</i> beschrifteten Button
 dauert es je nach Größe der Datenbank und gewähltem Backup-Typ jetzt ein Weilchen,
 bis der Browser zum Speichern der Datei auffordert.

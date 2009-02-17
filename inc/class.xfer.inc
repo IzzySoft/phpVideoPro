@@ -27,6 +27,7 @@
    */
   function xfer($mode,$lock_db=FALSE) {
     $this->compressionOff();
+    $this->backupSend();
     $this->mode = $mode;
     switch ($mode) {
       case "import" : $this->initImport(); break;
@@ -215,6 +216,20 @@
     $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
     if ($this->compress) echo gzencode($this->list);
       else echo $this->list;
+    $this->list  = "";
+    $this->items = 0;
+  }
+
+  /** Store the (encoded) data to a file
+   * @method fileStore
+   * @param string filename filename to offer for d/l
+   * @param string type DataType ("Movie","SysConf")
+   */
+  function fileStore($filename,$type) {
+    $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
+    $filename = $GLOBALS["backup_path"]."/".$filename;
+    if ($this->compress) file_put_contents($filename,gzencode($this->list));
+    else file_put_contents($filename,$this->list);
     $this->list  = "";
     $this->items = 0;
   }
@@ -475,6 +490,26 @@
     $this->compress = FALSE;
   }
 
+  /** Configure backups to be stored on disk
+   * @method backupStore
+   * @return boolean success
+   */
+  function backupStore() {
+    if (is_writable($GLOBALS["backup_path"])) {
+      $this->storeOnDisk = TRUE;
+    } else {
+      $this->storeOnDisk = FALSE;
+    }
+    return $this->storeOnDisk;
+  }
+
+  /** Configure backups to be sent to the browser
+   * @method backupSend
+   */
+  function backupSend() {
+    $this->storeOnDisk = FALSE;
+  }
+
  #======================================================[ Actions (public) ]===
   /** Import data from a file
    * @method public fileImport
@@ -572,7 +607,8 @@
       $users = $db->get_users($owner_id);
       $file = $name."_".$users->login."_".$stamp.".pvp";
     }
-    $this->fileSend($file,$mode);
+    if ($this->storeOnDisk) $this->fileStore($file,$mode);
+    else $this->fileSend($file,$mode);
   }
 
  } // end class

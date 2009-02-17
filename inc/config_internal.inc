@@ -38,7 +38,7 @@
  if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
  #=====================================================[ setup path names ]===
- $pvp->projectpage = "http://projects.izzysoft.de/?topic=progs;subject=phpvideopro";
+ $pvp->projectpage = "http://projects.izzysoft.de/trac/phpvideopro";
  $pvp->histpage    = "http://projects.izzysoft.de/ftp/net/div/izzysoft/pvp/";
 # $base_path = dirname(dirname(__FILE__))."/"; # !!! __FILE__ resolves symlinks
  $bp = dirname($_SERVER['SCRIPT_FILENAME']);

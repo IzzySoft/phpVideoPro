@@ -7,6 +7,9 @@ v0.9.5
 -------------------
 * protected the users "admin" and "PUBLIC" against deletion (since they are
   essential for the system). Moreover, their logins cannot be changed.
+* reworked the "About" page, made it much shorter (all that content is already
+  on the project site)
+* updated project page URL
 
 v0.9.4 (12.02.2008)
 -------------------

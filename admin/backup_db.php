@@ -153,9 +153,9 @@
    $radio .= ">".lang("backup_compress")."<BR>";
    $radio .= "<INPUT TYPE='radio' NAME='store' VALUE='1' CLASS='checkbox'";
    if (!is_writable($backup_path)) $radio .= " DISABLED";
-   if ($_REQUEST["store"] && is_writable($backup_path)) $radio .= " CHECKED";
+   if (($_REQUEST["store"]||!isset($_REQUEST["store"])) && is_writable($backup_path)) $radio .= " CHECKED";
    $radio .= ">".lang("store_backup")."&nbsp;<INPUT TYPE='radio' NAME='store' VALUE='0' CLASS='checkbox'";
-   if (!$_REQUEST["store"]) $radio .= " CHECKED";
+   if (isset($_REQUEST["store"]) && !$_REQUEST["store"]) $radio .= " CHECKED";
    $radio .= ">".lang("send_backup")."<BR>";
    $t->set_var("dleft",$radio);
    $t->set_var("desc","");

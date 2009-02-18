@@ -706,4 +706,17 @@ INSERT INTO pvp_lang VALUES ('store_backup','en','Store on Server','Radio box on
 INSERT INTO pvp_lang VALUES ('send_backup','en','Download','Radio box on backup page');
 INSERT INTO pvp_lang VALUES ('backup_store_success','en','Successfully stored %1 for this backup.','Success message on backup-to-disk');
 INSERT INTO pvp_lang VALUES ('backup_failed','en','Failed to create the backup file!','Failure message on backup-to-disk');
+INSERT INTO pvp_lang VALUES ('backup_menu','en','Backup','Entry in edit menu for users backup');
+INSERT INTO pvp_lang VALUES ('user_backup_store','en','Create on Server','Entry in the users backup menu');
+INSERT INTO pvp_lang VALUES ('user_backup_restore','en','Restore from Server','Entry in the users backup menu');
+INSERT INTO pvp_lang VALUES ('user_backup_download','en','Create and Download','Entry in the users backup menu');
+INSERT INTO pvp_lang VALUES ('config_user_backups','en','User Backups','Block header on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_download','en','Permit users to download their backups?','Option on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_download_comment','en','Enabling this option allows users to create a backup of their movie data which will be sent to their browsers (not stored on the server).','Explanation to an option on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_store','en','Permit users to store backups on the server?','Option on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_store_comment','en','Enabling this option will allow users to create backups of their movie data, which then will be automatically stored in the backup directory configured on the server. These backups will not be sent for download.','Explanation to an option on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_restore','en','Permit users to restore their backups on the server?','Option on the configuration page');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_restore_comment','en','This will allow users to restore their movie data from a backup file provided in the configured backup directory. This must be a file especially created for them - so they cannot restore from foreign backups.','Explanation to an option on the configuration page');
+INSERT INTO pvp_lang VALUES ('max_user_backups','en','How many backups to keep on the server (per user)?','Option on the configuration page');
+INSERT INTO pvp_lang VALUES ('max_user_backups_comment','en','This number will be checked everytime a user requests a new backup to be created to be stored to the server. If this limit is reached, the oldest backup file will be removed.','Explanation to an option on the configuration page');
 #INSERT INTO pvp_lang VALUES ('','en','','');

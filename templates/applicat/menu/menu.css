@@ -147,8 +147,8 @@ Selectors for icons. Icon size: 16x16 (see height and width setting)
 .about,.admin,.backup,.cats,.clapper,.download,.dupes,.dvd_movie,.dvds,.edit,
 .exit,.filter,.filter_new,.folderx,.help,.help2,.helpindex,.history,.homepage,
 .labels,.list,.lock,.movie,.music,.new,.orphans,.ovt_movie,.print,.rvt_movie,
-.search,.sessions,.settings,.start,.stats,.templates,.time,.translate,.users,
-.vcd_movie,.view {
+.restore,.search,.sessions,.settings,.start,.stats,.templates,.time,.translate,
+.users,.vcd_movie,.view {
 	background-repeat: no-repeat; /* Do not alter this line! */
 	position: absolute; /* Do not alter this line! */
 	left: 4px;
@@ -184,6 +184,7 @@ Selectors for icons. Icon size: 16x16 (see height and width setting)
 .orphans { background-image: url(orphans.png); }
 .ovt_movie { background-image: url(tape.png); }
 .print { background-image: url(printer.png); }
+.restore { background-image: url(restore.png); }
 .rvt_movie { background-image: url(tape.png); }
 .search { background-image: url(search.png); }
 .sessions { background-image: url(sessions.png); }

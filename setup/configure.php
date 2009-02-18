@@ -108,6 +108,12 @@ if ( isset($update) ) {
     if ($delete_lang && $delete_lang != "-" && $delete_lang != "en") {
       $db->delete_translations($delete_lang);
     }
+    foreach (array("user_backup_download","user_backup_store","user_backup_restore") as $var) {
+      if (empty($_POST[$var])) $db->set_config($var,"0");
+      else $db->set_config($var,"1");
+    }
+    if (empty($_POST["max_user_backups"])) $db->set_config("max_user_backups","0");
+    else  $db->set_config("max_user_backups",$_POST["max_user_backups"]);
   }
   #-----------------------------[ get available language files ]---
   if (isset($_POST["scan_langfile"]) && $_POST["scan_langfile"]) {
@@ -172,7 +178,11 @@ $http_cache_enabled  = $db->get_config("http_cache_enable");
 $use_http_auth  = $db->get_config("use_http_auth");
 $bubble_help_enabled  = $pvp->preferences->get("bubble_help_enable");
 $cprinter_id     = $pvp->preferences->get("printer_id");
-$site_info      = $db->get_config("site");
+$site_info       = $db->get_config("site");
+$max_user_backups     = $db->get_config("max_user_backups");
+$user_backup_download = $db->get_config("user_backup_download");
+$user_backup_store    = $db->get_config("user_backup_store");
+$user_backup_restore  = $db->get_config("user_backup_restore");
 
 if ($lang_preferred=='iw') $initial_input = "<span dir='LTR'>&nbsp;</span>";
 else $initial_input = "";
@@ -591,7 +601,56 @@ if ($admin) {
 #--[ complete imdb block ]--
 $t->parse("list","listblock",TRUE);
 
-#---------------------------------------------[ setup block 6: misc stuff ]---
+#-------------------------------------------[ setup block 6: user backups ]---
+if ($admin) {
+  $t->set_var("list_head",lang("config_user_backups"));
+  $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#userbackups"));
+
+  #--[ permit download ]--
+  $t->set_var("item_name",lang("permit_userbackup_download"));
+  $t->set_var("item_comment",lang("permit_userbackup_download_comment"));
+  $input = "<INPUT TYPE='radio' NAME='user_backup_download' VALUE='0'";
+  if (!$user_backup_download) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='user_backup_download' VALUE='1'";
+  if ($user_backup_download) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock");
+
+  #--[ permit store ]--
+  $t->set_var("item_name",lang("permit_userbackup_store"));
+  $t->set_var("item_comment",lang("permit_userbackup_store_comment"));
+  $input = "<INPUT TYPE='radio' NAME='user_backup_store' VALUE='0'";
+  if (!$user_backup_store) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='user_backup_store' VALUE='1'";
+  if ($user_backup_store) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ permit restore ]--
+  $t->set_var("item_name",lang("permit_userbackup_restore"));
+  $t->set_var("item_comment",lang("permit_userbackup_restore_comment"));
+  $input = "<INPUT TYPE='radio' NAME='user_backup_restore' VALUE='0'";
+  if (!$user_backup_restore) $input .= " CHECKED";
+  $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='user_backup_restore' VALUE='1'";
+  if ($user_backup_restore) $input .= " CHECKED";
+  $input .= ">".lang("yes");
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ amount of backups to keep ]--
+  $t->set_var("item_name",lang("max_user_backups"));
+  $t->set_var("item_comment",lang("max_user_backups_comment"));
+  $input = "<INPUT TYPE='text' NAME='max_user_backups' VALUE='$max_user_backups' SIZE='5' MAXLENGTH='2'>";
+  $t->set_var("item_input",$input);
+  $t->parse("item","itemblock",TRUE);
+
+  #--[ complete user backup block ]--
+  $t->parse("list","listblock",TRUE);
+}
+
+#---------------------------------------------[ setup block 7: misc stuff ]---
 $t->set_var("list_head",lang("general"));
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#general"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";

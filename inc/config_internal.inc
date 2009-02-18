@@ -129,6 +129,10 @@
   $pvp->backup_dir = $backup_path;
   $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");
   $defaults["scolor"] = $pvp->preferences->get("default_movie_colorid");
+  $pvp->config->user_backup_download = $db->get_config("user_backup_download");
+  $pvp->config->user_backup_store    = $db->get_config("user_backup_store");
+  $pvp->config->user_backup_restore  = $db->get_config("user_backup_restore");
+  $pvp->config->max_user_backups     = $db->get_config("max_user_backups");
  }
 
 ?>

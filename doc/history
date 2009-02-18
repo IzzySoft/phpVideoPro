@@ -12,6 +12,8 @@ v0.9.5
 * updated project page URL
 + backups can now be directly stored on the server - provided the web server
   process has write permission on the backup directory configured
++ users now can create their own movie backups and restore from them - of course
+  only when the admin permits this
 
 v0.9.4 (12.02.2008)
 -------------------

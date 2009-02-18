@@ -54,6 +54,9 @@ function createjsDOMenu() {
   with (editMenu) {
 <? if ($pvp->auth->add) { ?>
     addMenuItem(new menuItem("<?=lang("new_movie_on")?>", "newMovie", ""));
+<? }
+   if (($pvp->auth->add && $pvp->config->user_backup_restore) || ($pvp->auth->browse && $pvp->config->user_backup_store)) { ?>
+    addMenuItem(new menuItem("<?=lang("backup_menu")?>", "userBackup", ""));
 <? } ?>
     addMenuItem(new menuItem("<?=lang("search_movie")?>", "edit_search", "<?=$pvp->link->slink($base_url."search.php")?>"));
     addMenuItem(new menuItem("<?=lang("preferences")?>", "edit_preferences", "<?=$pvp->link->slink($base_url."configure.php")?>"));
@@ -83,6 +86,21 @@ function createjsDOMenu() {
   }
 ?>
   editMenu.items.newMovie.setSubMenu(newMovies);
+<? } if (($pvp->auth->add && $pvp->config->user_backup_restore) || ($pvp->auth->browse && ($pvp->config->user_backup_store||$pvp->config->user_backup_download))) { ?>
+  userBackups = new jsDOMenu();
+<?   if ($pvp->auth->browse && $pvp->config->user_backup_store) { ?>
+  userBackups.addMenuItem(new menuItem("<?=lang('user_backup_store')?>","store_backup","<?=$pvp->link->slink($base_url."backup.php?mode=save")?>"));
+  userBackups.items.store_backup.showIcon("backup");
+<? }  if ($pvp->auth->browse && $pvp->config->user_backup_download) { ?>
+  userBackups.addMenuItem(new menuItem("<?=lang('user_backup_download')?>","download_backup","<?=$pvp->link->slink($base_url."backup.php?mode=download")?>"));
+  userBackups.items.download_backup.showIcon("download");
+<? }  if ($pvp->auth->add && $pvp->config->user_backup_restore) { ?>
+  userBackups.addMenuItem(new menuItem("<?=lang('user_backup_restore')?>","restore_backup","<?=$pvp->link->slink($base_url."backup.php?mode=restore")?>"));
+  userBackups.items.restore_backup.showIcon("restore");
+
+<?   } ?>
+  editMenu.items.userBackup.setSubMenu(userBackups);
+  editMenu.items.userBackup.showIcon("backup");
 <? } ?>
   editMenu.items.edit_search.showIcon("search");
   editMenu.items.edit_preferences.showIcon("settings");

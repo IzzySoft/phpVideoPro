@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created by phpVideoPro v0.9.3
+# German Language File created for phpVideoPro v0.9.5
 # ========================================================
 
 UPDATE pvp_languages SET charset='UTF-8' WHERE lang_id='de';
@@ -404,6 +404,8 @@ INSERT INTO pvp_lang VALUES ('login_required','de','Der gewünschte Vorgang kann
 INSERT INTO pvp_lang VALUES ('logout_user','de','Angemeldet als \"%1\". <A HREF=\"%2\">Abmelden</a>','');
 INSERT INTO pvp_lang VALUES ('lower_left_corner','de','Untere linke Ecke (x/y)','');
 INSERT INTO pvp_lang VALUES ('max_fontsize','de','Maximale Schriftgröße','');
+INSERT INTO pvp_lang VALUES ('max_user_backups','de','Wie viele Backups pro Benutzer sollen maximal auf dem Server vorgehalten werden?','');
+INSERT INTO pvp_lang VALUES ('max_user_backups_comment','de','Diese Zahl wird jedes Mal geprüft, wenn der Benutzer ein neues Backup anlegen will. Bei Überschreitung dieses Wertes wird das jeweils älteste Backup entfernt.','');
 INSERT INTO pvp_lang VALUES ('media','de','Medien','');
 INSERT INTO pvp_lang VALUES ('medialength','de','Medienlänge','');
 INSERT INTO pvp_lang VALUES ('medialist','de','Medienliste','');
@@ -467,6 +469,12 @@ INSERT INTO pvp_lang VALUES ('owner','de','Eigentümer','');
 INSERT INTO pvp_lang VALUES ('own_to_user','de','Übereignen an','');
 INSERT INTO pvp_lang VALUES ('password','de','Passwort','');
 INSERT INTO pvp_lang VALUES ('password_retype','de','Passwort wiederholen','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_download','de','Dürfen Benutzer Backups ihrer Filmdaten herunterladen?','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_download_comment','de','Dies erlaubt normalen Benutzern, Backups ihrer Filmdaten zu erstellen, welche sodann automatisch an den Browser geschickt werden. Das Backup wird hierbei nicht auf dem Server gespeichert.','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_restore','de','Dürfen Benutzer ihre auf dem Server gespeicherten Backups wiederherstellen?','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_restore_comment','de','Dies erlaubt normalen Benutzern, ihre Filmdaten aus einem auf dem Server gespeicherten Backup wieder herzustellen. Sie sind dabei auf die speziell für sie erstellten Backups eingeschränkt - können also keine fremden Daten einlesen.','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_store','de','Dürfen Benutzer Backups ihrer Filmdaten auf dem Server anlegen?','');
+INSERT INTO pvp_lang VALUES ('permit_userbackup_store_comment','de','Dies erlaubt normalen Benutzern, Backups ihrer Filmdaten zu erstellen, welche sodann automatisch im konfigurierten Backup-Verzeichnis abgelegt werden. Hierbei wird kein Backup-Paket zum Browser gesendet, es findet also kein Download der Daten statt.','');
 INSERT INTO pvp_lang VALUES ('picture','de','Farbformat','');
 INSERT INTO pvp_lang VALUES ('preferences','de','Einstellungen','');
 INSERT INTO pvp_lang VALUES ('print','de','Drucken','');
@@ -580,6 +588,9 @@ INSERT INTO pvp_lang VALUES ('update_success','de','Datensatz erfolgreich aktual
 INSERT INTO pvp_lang VALUES ('upd_access','de','Darf Datensätze aktualisieren','');
 INSERT INTO pvp_lang VALUES ('upper_right_corner','de','Obere rechte Ecke (x/y)','');
 INSERT INTO pvp_lang VALUES ('user','de','Benutzer','');
+INSERT INTO pvp_lang VALUES ('user_backup_download','de','Erstellen und Herunterladen','');
+INSERT INTO pvp_lang VALUES ('user_backup_restore','de','Vom Server wiederherstellen','');
+INSERT INTO pvp_lang VALUES ('user_backup_store','de','Auf dem Server erstellen','');
 INSERT INTO pvp_lang VALUES ('user_create_login_required','de','Es muss ein Login Name für den Benutzer angegeben werden!','');
 INSERT INTO pvp_lang VALUES ('user_deleted','de','Der Benutzer #%1, \"%2\" (%3), wurde erfolgreich gelöscht.','');
 INSERT INTO pvp_lang VALUES ('user_delete_failed','de','Das Löschen des Benutzers #%1, \"%2\" (%3), ist fehlgeschlagen.','');

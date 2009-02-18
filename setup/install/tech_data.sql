@@ -112,6 +112,10 @@ INSERT INTO pvp_config (name,value) VALUES ('http_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_use','0');
 INSERT INTO pvp_config (name,value) VALUES ('use_http_auth','0');
+INSERT INTO pvp_config (name,value) VALUES ('user_backup_download','0');
+INSERT INTO pvp_config (name,value) VALUES ('user_backup_store','0');
+INSERT INTO pvp_config (name,value) VALUES ('user_backup_restore','0');
+INSERT INTO pvp_config (name,value) VALUES ('max_user_backups','3');
 
 #
 # set default preferences

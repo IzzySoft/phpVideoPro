@@ -484,7 +484,9 @@
    * @method public compressionOn
    */
   function compressionOn() {
-    $this->compress = TRUE;
+    if (function_exists('gzencode'))
+      $this->compress = TRUE;
+    else $this->compressionOff();
   }
 
   /** Disable data compression
@@ -614,6 +616,20 @@
     }
     if ($this->storeOnDisk) return $this->fileStore($file,$mode);
     else $this->fileSend($file,$mode);
+  }
+
+  /** List up available user backups
+   * @method listUserBackups
+   * @param string login the users login
+   * @return array files array of filenames from the backup directory
+   */
+  function listUserBackups($user) {
+    $files = array();
+    $dir = dir($GLOBALS["backup_path"]);
+    while ( $file=$dir->read() ) {
+      if (strpos($file,"movies_${user}")===0) $files[] = $file;
+    }
+    return($files);
   }
 
  } // end class

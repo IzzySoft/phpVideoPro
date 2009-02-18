@@ -14,8 +14,6 @@ account" izzysoft AT qumran DOT org.
 On Focus:
 - "Rental Feature": Logged-in user clicks on "Lent to me" button => "Lent-to"
   field will be filled w/ his name, mail is sent to owner
-- Backup/restore: FromUser/ToUser is missing now that every user may have his
-  own records
 
 Not scheduled (yet):
 - add Audio/Subtitle to filter settings

@@ -390,6 +390,24 @@ class common {
     return $string;
   }
 
+  /** Make file sizes human readable
+   * @method formatFsize
+   * @param int size
+   * @param optional int round digits (default:0=None)
+   * @return string formattedSize
+   */
+  function formatFsize($size,$round=0) {
+    if ($size < 1024) return "${size}B";
+    elseif ($size<1048576) {
+      $str = $size/1024; $unit = "kB";
+    } elseif ($size<1073741824) {
+      $str = $size/1048576; $unit = "MB";
+    } else {
+      $str = $size/1073741824; $unit = "GB";
+    }
+    return round($str,$round).$unit;
+  }
+
    #============================================[ file system functions ]===
   /** get a list of files from within a given directory optionally using a mask
    *  (where $mask is the file's extension)

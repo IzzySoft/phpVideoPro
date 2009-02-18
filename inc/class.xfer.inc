@@ -218,20 +218,24 @@
       else echo $this->list;
     $this->list  = "";
     $this->items = 0;
+    exit;
   }
 
   /** Store the (encoded) data to a file
    * @method fileStore
    * @param string filename filename to offer for d/l
    * @param string type DataType ("Movie","SysConf")
+   * @return int bytes bytes stored (or FALSE on failure)
    */
   function fileStore($filename,$type) {
+    if (!strlen($this->items)) return FALSE; // nothing to store
     $this->list = "PVP $type Backup: [".$this->items."] records\n".$this->list;
     $filename = $GLOBALS["backup_path"]."/".$filename;
-    if ($this->compress) file_put_contents($filename,gzencode($this->list));
-    else file_put_contents($filename,$this->list);
+    if ($this->compress) $rc = file_put_contents($filename,gzencode($this->list));
+    else $rc = file_put_contents($filename,$this->list);
     $this->list  = "";
     $this->items = 0;
+    return $rc;
   }
 
  #----------------------------------------------------------------[ Movies ]---
@@ -577,6 +581,7 @@
    * @param string mode What to export: "Movie"[, "Config", "Prefs"]
    * @param optional integer id movie id (if not given, export all)
    * @param optional integer owner_id (if not given, export for all)
+   * @return int bytes (only when storing to disk)
    */
   function fileExport($mode,$id="",$owner_id="") {
     GLOBAL $db;
@@ -607,7 +612,7 @@
       $users = $db->get_users($owner_id);
       $file = $name."_".$users->login."_".$stamp.".pvp";
     }
-    if ($this->storeOnDisk) $this->fileStore($file,$mode);
+    if ($this->storeOnDisk) return $this->fileStore($file,$mode);
     else $this->fileSend($file,$mode);
   }
 

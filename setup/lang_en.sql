@@ -704,4 +704,6 @@ INSERT INTO pvp_lang VALUES ('import_to_user','en','Map owner to user','Option o
 INSERT INTO pvp_lang VALUES ('protected_user_no_delete','en','The specified user <i>%1</i> is protected and cannot be deleted.','Error message when trying to delete a protected user');
 INSERT INTO pvp_lang VALUES ('store_backup','en','Store on Server','Radio box on backup page');
 INSERT INTO pvp_lang VALUES ('send_backup','en','Download','Radio box on backup page');
+INSERT INTO pvp_lang VALUES ('backup_store_success','en','Successfully stored %1 for this backup.','Success message on backup-to-disk');
+INSERT INTO pvp_lang VALUES ('backup_failed','en','Failed to create the backup file!','Failure message on backup-to-disk');
 #INSERT INTO pvp_lang VALUES ('','en','','');

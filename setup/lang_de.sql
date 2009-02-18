@@ -39,8 +39,10 @@ INSERT INTO pvp_lang VALUES ('backup_db_movies','de','Nur Film-relevante Daten s
 INSERT INTO pvp_lang VALUES ('backup_db_movie_internal','de','Alle Film-relevanten Daten im phpVideoPro internen Format sichern','');
 INSERT INTO pvp_lang VALUES ('backup_db_runscript','de','Soll das Script jetzt erstellt werden?','');
 INSERT INTO pvp_lang VALUES ('backup_db_sysconf','de','Systemkonfiguration und Default-Einstellungen sichern','');
+INSERT INTO pvp_lang VALUES ('backup_failed','de','Bei der Erstellung des Backups ist ein Fehler aufgetreten!','');
 INSERT INTO pvp_lang VALUES ('backup_file_corrupt','de','Die ausgewählte Backup-Datei ist defekt!','');
 INSERT INTO pvp_lang VALUES ('backup_file_unreadable','de','Kann die Sicherungsdatei nicht lesen - sind die Zugriffsrechte korrekt gesetzt?','');
+INSERT INTO pvp_lang VALUES ('backup_store_success','de','Backup-Datei mit %1 erfolgreich gespeichert.','');
 INSERT INTO pvp_lang VALUES ('bubble_help_enable','de','BubbleHelp aktivieren?','');
 INSERT INTO pvp_lang VALUES ('bubble_help_enable_comment','de','Ist BubbleHelp aktiviert, wird an einigen Stellen kontext-sensitive Kurzhilfe angezeigt, sobald man mit der Maus darüber kommt (z.B. bei den Window-Buttons des Applicat Template Sets).','');
 INSERT INTO pvp_lang VALUES ('cache_enable','de','Browser/Proxy caching erlauben?','');

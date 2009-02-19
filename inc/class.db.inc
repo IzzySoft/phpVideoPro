@@ -644,7 +644,7 @@
    function set_user($user) {
      GLOBAL $pvp;
      $ouser = $this->get_users($user->id);
-     if (in_array(strtolower($ouser->login),$pvp->protected_users)) $user->login = $ouser->login;
+     if (in_array(strtolower($ouser->login),$pvp->protected_users)) $login = $ouser->login;
      else $login   = $pvp->common->safeinput($user->login);
      $comment = $pvp->common->safeinput($user->comment);
      $query = "UPDATE pvp_users SET login='$login',admin=".$user->admin

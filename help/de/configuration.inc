@@ -290,6 +290,48 @@ verwendet - d.h., wenn für einen Film bereits alle Daten im Cache abgelegt sind
 wird die IMDB für diesen nicht mehr kontaktiert. Stattdessen werden die
 entsprechenden Daten dem Cache entnommen.
 
+#===========================================================[ User Backups ]===
+[title|1|userbackups]
+*config_user_backups#
+
+[text]
+In diesem Abschnitt lässt sich festlegen, ob und auf welche Weise "einfache
+Anwender" Backups ihrer Filmdaten verwalten dürfen. Per Default sind diese
+Funktionen alle deaktiviert - es steht dem Administrator jedoch frei, eine,
+mehrere oder auch alle dieser Features freizuschalten. Für den Benutzer wird
+damit ein neues Untermenü im Menü <i>*edit#</i> verfügbar.
+
+[text]
+<b>*permit_userbackup_download#:</b> Über den damit aktivierten Menüpunkt wird
+ein Backup aller Filmdaten des Benutzers generiert, welches sodann automatisch
+heruntergeladen wird. Das Backup wird nicht auf dem Server gespeichert. Dies
+entspricht dem auf den Benutzer beschränkten Backup über das Admin-Menü.
+
+[text]
+<b>*permit_userbackup_store#:</b> Auch hiermit wird ein Menüpunkt analog zum
+vorigen erstellt, das Backup ist ebenfalls identisch - nur wird es nicht zum
+Benutzer übertragen, sondern stattdessen im konfigurierten Backup-Verzeichnis
+abgelegt. Dies erfordert allerdings, dass der Webserver-Prozess auf selbiges
+schreibend zugreifen kann.
+
+[text]
+<b>*permit_userbackup_restore#</b>: Dies ist das Gegenstück zum vorigen Punkt,
+und erlaubt dem Benutzer die Wiederherstellung der Daten aus einem auf dem
+Server gespeicherten Backup. Natürlich ist hier Vorsorge getroffen, dass weder
+"Fremddaten" importiert, noch im aktuellen Datenbestand überschrieben werden:
+Die Backup-Datei muss speziell für diesen Benutzer erstellt worden sein, es
+werden nur Daten aus dieser Datei importiert, die dem Benutzer gehör(t)en, und
+diese werden auch explizit nur in die Datensammlung des Benutzers übernommen.
+
+[text]
+<b>*max_user_backups#:</b> Zwar mag Plattenplatz nicht mehr unbedingt ein
+"kritisches Kriterium" sein - aber auch im Backup-Menü des Admins machen
+zahlreiche Einträge das Arbeiten nicht unbedingt einfacher. Außerdem werden
+"asbach uralte" Daten auch kaum noch benötigt. Bei jedem Backup, dass der
+Benutzer zum Speichern auf dem Server anstösst, wird daher überprüft, wie viele
+Backup-Dateien dort bereits für ihn angelegt wurden. Hat deren Anzahl den hier
+angegebenen Wert erreicht (und würde ihn daher mit dem gerade angestoßenen
+Backup überschreiten), wir die älteste dieser Dateien entfernt.
 
 #=======================================================[ General Settings ]===
 [title|1|general]

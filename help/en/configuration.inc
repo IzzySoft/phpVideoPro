@@ -258,6 +258,48 @@ the <b><i>storing</i></b> part of the process. If you <b><i>additionally</i></b>
 enable this option, the cache is also used for look-ups: Data already found in
 the cache will not again be requested from the IMDB site, but taken from here.
 
+#===========================================================[ User Backups ]===
+[title|1|userbackups]
+*config_user_backups#
+
+[text]
+In this section you define if and how far "simple users" may maintain backups of
+their movie data. By default, all these options are disabled - so it is up to
+the administrator to activate one, some or all of them. They will then become
+available to the users in a new submenu of the <i>*edit#</i> menu.
+
+[text]
+<b>*permit_userbackup_download#:</b> This will provide a menu item the user can
+start a backup with. The backup file will then be sent to the browser, so the
+user can download and store it on the local disk. Nothing will be stored on the
+server this way - and the backup corresponds to the user-restricted backup an
+admin can create on the <i>*backup_db#</i> page.
+
+[text]
+<b>*permit_userbackup_store#:</b> The menu item provided here is similar to the
+one just discussed. The difference is that the backup will be stored on the
+server (in the configured backup directory) - which of course requires that
+directory to be writable by the web server process. No backup data will be sent
+to the user here.
+
+[text]
+<b>*permit_userbackup_restore#</b>: The opposite of the previous item. This
+allows the user to restore his latest server-stored backup. Of course the
+application makes sure the user cannot import (or overwrite) foreign data: The
+backup file must be made especially for this user (either via the previously
+discussed menu item, or via the <i>*backup_db#</i> page), only data belonging
+to the user will be processed (so renaming the file does not do it), and
+everything will be restored explicitly to the users collection.
+
+[text]
+<b>*max_user_backups#:</b> Though disk space should not be the big deal today,
+the corresponding drop-down menu on the <i>*backup_db#</i> page would get quite
+long and bulky if we did not care to purge old data. Besides, really old data
+will hardly be of any use. So every time the user triggers a server-stored
+backup, the process checks if the number specified here has already been reached
+(and thus would be exceeded after the backup). If so, the oldest of the users
+backup files would be removed.
+
 #=======================================================[ General Settings ]===
 [title|1|general]
 *general#

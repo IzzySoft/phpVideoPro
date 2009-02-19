@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -15,7 +15,6 @@
   headline("intro");
    li("about");
    li("credits");
-   li("history");
   headline("menues");
    li("admin");
     li("admin_cats",2);
@@ -31,6 +30,8 @@
     li("configuration",2);
    li("edit");
     li("add_entry",2);
+    li("user_backup",2);
+    li("search_movie",2);
     li("configuration",2);
    li("filter");
    li("view");

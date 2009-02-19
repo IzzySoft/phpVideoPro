@@ -537,11 +537,25 @@
     if ($this->mode!="import") return FALSE;
     if (!$this->lockDB()) // Lock DB before import
       return $this->errorMsg( lang("db_lock_failed") );
-    if ( !$append ) {
-      if ( !$pvp->auth->admin )
-        $this->ureturn( $this->errorMsg( lang("db_clean_admin_required") ) );
-      if ( !$db->drop_all_movies() ) $this->ureturn( $this->errorMsg( lang("movie_drop_failed") ) );
-    }
+
+    if ( !$append ) { // we have to purge first
+      if ( $pvp->auth->admin ) { // admin may purge everything
+        if ( $to_owner==="" ) {
+          if ( !$db->drop_all_movies() ) return $this->ureturn( $this->errorMsg( lang("movie_drop_failed") ) );
+        } else {
+          if ( !$db->user_media_delete($to_owner) )
+            return $this->ureturn( $this->errorMsg ( lang("movie_drop_failed") ) );
+        }
+      } else { // user has only permission on own records here
+        if ( $to_owner==="" || $to_owner != $pvp->auth->user_id ) {
+          return $this->ureturn( $this->errorMsg( lang("db_clean_admin_required") ) );
+        } else {
+          if ( !$db->user_media_delete($pvp->auth->user_id ) )
+            return $this->ureturn( $this->errorMsg ( lang("movie_drop_failed") ) );
+        }
+      }
+    } // end purge
+
     if (!empty($dir) && !empty($file)) {
       if (substr($dir,strlen($dir))=="/") $file = $dir.$file;
         else $file = $dir."/".$file;
@@ -553,28 +567,28 @@
           else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
-          $this->ureturn( $this->errorMsg($msg) );
+          return $this->ureturn( $this->errorMsg($msg) );
         }
         break;
       case "Cats"    :
         if ($this->catPut(!$append)) {
-          $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
+          return $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
         } else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "Errors:<UL>".$this->report."</UL>";
-          $this->ureturn( $this->errorMsg($msg) );
+          return $this->ureturn( $this->errorMsg($msg) );
         }
         break;
       case "Movie"   :
         if ($this->moviePut($append,$from_owner,$to_owner)) {
-          $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
+          return $this->ureturn( $this->okMsg( lang("imp_success",$this->items) ) );
         } else {
           $msg = lang("imp_errors",$this->errors,$this->items);
           if ( debugLevel("R") ) $msg .= "<UL>".$this->report."</UL>";
-          $this->ureturn( $this->errorMsg($msg) );
+          return $this->ureturn( $this->errorMsg($msg) );
         }
         break;
-      default       : $this->ureturn( $this->errorMsg( lang("xfer_unknown_filetype") ) );
+      default       : return $this->ureturn( $this->errorMsg( lang("xfer_unknown_filetype") ) );
     }
   }
 

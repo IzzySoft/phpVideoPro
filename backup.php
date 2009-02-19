@@ -12,7 +12,7 @@
 
  /* $Id$ */
 
-#$page_id = "backup";
+$page_id = "user_backup";
 include("inc/includes.inc");
 require_once("inc/class.xfer.inc");
 
@@ -53,8 +53,13 @@ switch($mode) {
                    $pvp->xfer->backupSend();
                    $pvp->xfer->fileExport("Movie","",$pvp->auth->user_id);
                    exit; break;
-  case "restore" : $files = $pvp->xfer->listUserBackups($pvp->auth->user); rsort($files);
+  case "restore" : $pvp->xfer = new xfer("import");
+                   $files = $pvp->xfer->listUserBackups($pvp->auth->user->login); rsort($files);
+#if ( ( bool ) ini_get('magic_quotes_gpc') ) echo "Magic Quotes active<br>"; else echo "Magic Quotes disabled!<br>";
+#echo "[fileImport(movies_guest_090219.pvp,/home/web/www.qumran.org/local/phpvideo/testdata,0,3,3)]<br>";
+#echo "&lt;fileImport($files[0],".$pvp->backup_dir.",0,".$pvp->auth->user_id.",".$pvp->auth->user_id.")&gt;<br>";
                    $save_result = $pvp->xfer->fileImport($files[0],$pvp->backup_dir,FALSE,$pvp->auth->user_id,$pvp->auth->user_id);
+#echo "I'm here ($save_result)<br>";
                    break;
   default        : kickoff(); break;
 }

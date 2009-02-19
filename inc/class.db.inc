@@ -2008,7 +2008,8 @@
      }
      if ( ( bool ) !ini_get('magic_quotes_gpc')
       || basename($_SERVER['PHP_SELF'])=="change_nr.php"
-      || basename($_SERVER['PHP_SELF'])=="backup_db.php" ) {
+      || basename($_SERVER['PHP_SELF'])=="backup_db.php"
+      || basename ($_SERVER['PHP_SELF'])=="backup.php" ) {
        $title  = addslashes($title);
        $comment= addslashes($comment);
        $source = addslashes($source);

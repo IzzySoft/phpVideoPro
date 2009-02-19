@@ -719,4 +719,6 @@ INSERT INTO pvp_lang VALUES ('permit_userbackup_restore','en','Permit users to r
 INSERT INTO pvp_lang VALUES ('permit_userbackup_restore_comment','en','This will allow users to restore their movie data from a backup file provided in the configured backup directory. This must be a file especially created for them - so they cannot restore from foreign backups.','Explanation to an option on the configuration page');
 INSERT INTO pvp_lang VALUES ('max_user_backups','en','How many backups to keep on the server (per user)?','Option on the configuration page');
 INSERT INTO pvp_lang VALUES ('max_user_backups_comment','en','This number will be checked everytime a user requests a new backup to be created to be stored to the server. If this limit is reached, the oldest backup file will be removed.','Explanation to an option on the configuration page');
+INSERT INTO pvp_lang VALUES ('db_clean_admin_required','en','To purge the entire DB, you need to have admin privileges.','Error message');
+INSERT INTO pvp_lang VALUES ('user_backup','en','User Backup/Restore','Page title');
 #INSERT INTO pvp_lang VALUES ('','en','','');

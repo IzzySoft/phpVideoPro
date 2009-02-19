@@ -141,6 +141,7 @@ INSERT INTO pvp_lang VALUES ('date_format_comment','de','Gibt an, in welchem For
 INSERT INTO pvp_lang VALUES ('date_is_nan','de','Die Eingabe für Tag. Monat und Jahr muss numerisch sein!\\n(d.h. es sind nur Ziffern erlaubt)','');
 INSERT INTO pvp_lang VALUES ('date_rec','de','Aufnahmedatum','');
 INSERT INTO pvp_lang VALUES ('day','de','Tag','');
+INSERT INTO pvp_lang VALUES ('db_clean_admin_required','de','Das Leeren der Datenbank erfordert Admin-Privilegien.','');
 INSERT INTO pvp_lang VALUES ('db_stats','de','Statistiken','');
 INSERT INTO pvp_lang VALUES ('default_editor_comment','de','Entfernt alle Übersetzungen für die angegebene Sprache aus der Datenbank. Die Sprachdatei bleibt dabei unangetastet, sodass ein späteres Neu-Einlesen jederzeit möglich ist (sofern eine Sprachdatei existiert).','');
 INSERT INTO pvp_lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');
@@ -588,6 +589,7 @@ INSERT INTO pvp_lang VALUES ('update_success','de','Datensatz erfolgreich aktual
 INSERT INTO pvp_lang VALUES ('upd_access','de','Darf Datensätze aktualisieren','');
 INSERT INTO pvp_lang VALUES ('upper_right_corner','de','Obere rechte Ecke (x/y)','');
 INSERT INTO pvp_lang VALUES ('user','de','Benutzer','');
+INSERT INTO pvp_lang VALUES ('user_backup','de','Benutzerbasiertes Backup/Restore','');
 INSERT INTO pvp_lang VALUES ('user_backup_download','de','Erstellen und Herunterladen','');
 INSERT INTO pvp_lang VALUES ('user_backup_restore','de','Vom Server wiederherstellen','');
 INSERT INTO pvp_lang VALUES ('user_backup_store','de','Auf dem Server erstellen','');

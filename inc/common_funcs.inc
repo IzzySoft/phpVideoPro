@@ -27,6 +27,14 @@
    echo $msg;
  }
 
+ /** Print object as preformatted HTML
+  * @function printr
+  * @param object object or array to print
+  */
+ function printr($var) {
+   echo "<pre>";print_r($var);echo "</pre>";
+ }
+
  /** check whether the given debug level is set
   * @package Api
   * @author Izzy (izzysoft AT qumran DOT org)

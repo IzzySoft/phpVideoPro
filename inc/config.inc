@@ -19,7 +19,7 @@
  #=============================================================[ database ]===
  $database["type"]      = "mysql";    # mysql|pgsql
  $database["host"]      = "localhost";     # your hosts name
- $database["database"]  = "videopro"; # what database holds the tables
+ $database["database"]  = "pvptest"; # what database holds the tables
  $database["user"]      = "video";     # db user with at least following
                                       # privileges on these tables:
 				      # SELECT,UPDATE,INSERT,DELETE

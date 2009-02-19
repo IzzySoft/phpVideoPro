@@ -96,7 +96,7 @@
  define("FSK_LEN",2);     // max digits for FSK
  define("AUDIO_TS",6);    // max audio tracks for a movie
  define("SUBTITLES",9);   // max subtitle tracks for a movie
- $pvp->protected_users = array('admin','public'); // undeletable etc., case insensitive
+ $pvp->protected_users = array('admin','public','guest'); // undeletable etc., case insensitive
 
  #=============================================[ read preferences from DB ]===
  $pvp->config->db->type = strtolower($database["type"]);

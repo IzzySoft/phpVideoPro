@@ -27,7 +27,7 @@
  if (isset($_POST["update"])) {
    for ($i=0;$i<$lines;++$i) {
      if (preg_match("/[^\d]/",$_POST["user_".$i]) || preg_match("/[^\w\d]/",$_POST["user_".$i."_login"])
-        || preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["user_".$i."_comment"])) continue;
+        || preg_match("/[^\w\d\!\$\%\&\=\?°\s]/u",$_POST["user_".$i."_comment"])) continue;
      $user->id     = $_POST["user_".$i];
      $user->login  = $_POST["user_".$i."_login"];
      $user->comment= $_POST["user_".$i."_comment"];

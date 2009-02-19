@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -49,7 +49,7 @@
  function kill($table,$id) {
    GLOBAL $details, $db;
    $details .= " ";
-   if ( $db->delete_row($table,$id) ) {
+   if ( $db->delete_row("pvp_$table",$id) ) {
      $details .= "<SPAN CLASS='ok'>" .lang("ok"). ".</SPAN><br>\n";
    } else {
      $details .= "<SPAN CLASS='error'>" .lang("not_ok"). "!</SPAN><br>\n";
@@ -112,7 +112,7 @@
    # now we delete the movie entry from db
    if (!isset($details)) $details = "";
    $details .= "<li>" . lang("check_completed") . " - " . lang("delete_remaining") . ". ";
-   kill("pvp_video",$id);
+   kill("video",$id);
    # and finally we may have to correct the free space remaining on that medium (if rewritable)
    if ( $pvp->common->medium_is_rw($mtype_id) || $movie["disktype"] ) {
      $details .= "<li>" . lang("check_media_delete"). ". ";

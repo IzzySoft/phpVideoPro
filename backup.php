@@ -23,7 +23,7 @@ if (!in_array($mode,$modes)) vul_kick("mode");
 
 #==================================================[ Check authorization ]===
 if (!$pvp->auth->browse) kickoff();
-if ($mode=="restore" && !$pvp->auth->add) kickoff();
+if ($mode=="restore" && !($pvp->auth->add && $pvp->auth->delete)) kickoff();
 
 #=======================================================[ Little Helpers ]===
 #----------------------------------------------------[ Purge old backups ]---

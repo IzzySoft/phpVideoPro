@@ -273,14 +273,15 @@ available to the users in a new submenu of the <i>*edit#</i> menu.
 start a backup with. The backup file will then be sent to the browser, so the
 user can download and store it on the local disk. Nothing will be stored on the
 server this way - and the backup corresponds to the user-restricted backup an
-admin can create on the <i>*backup_db#</i> page.
+admin can create on the <i>*backup_db#</i> page. To see this menu item, the user
+at least requires the <i>Browse</i> (<i>Read</i>) privilege.
 
 [text]
 <b>*permit_userbackup_store#:</b> The menu item provided here is similar to the
 one just discussed. The difference is that the backup will be stored on the
 server (in the configured backup directory) - which of course requires that
 directory to be writable by the web server process. No backup data will be sent
-to the user here.
+to the user here, but he still at least requires the <i>Browse</i> privilege.
 
 [text]
 <b>*permit_userbackup_restore#</b>: The opposite of the previous item. This
@@ -289,7 +290,10 @@ application makes sure the user cannot import (or overwrite) foreign data: The
 backup file must be made especially for this user (either via the previously
 discussed menu item, or via the <i>*backup_db#</i> page), only data belonging
 to the user will be processed (so renaming the file does not do it), and
-everything will be restored explicitly to the users collection.
+everything will be restored explicitly to the users collection. This requires
+the user to have at least the <i>Add</i> and <i>Delete</i> privileges, since
+the corresponding data will first be completely removed and then replaced by the
+contents of the backup file.
 
 [text]
 <b>*max_user_backups#:</b> Though disk space should not be the big deal today,

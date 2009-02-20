@@ -305,14 +305,16 @@ damit ein neues Untermenü im Menü <i>*edit#</i> verfügbar.
 <b>*permit_userbackup_download#:</b> Über den damit aktivierten Menüpunkt wird
 ein Backup aller Filmdaten des Benutzers generiert, welches sodann automatisch
 heruntergeladen wird. Das Backup wird nicht auf dem Server gespeichert. Dies
-entspricht dem auf den Benutzer beschränkten Backup über das Admin-Menü.
+entspricht dem auf den Benutzer beschränkten Backup über das Admin-Menü. Um den
+entsprechenden Menüpunkt angezeigt zu bekommen, benötigt der Benutzer zumindest
+Leserechte.
 
 [text]
 <b>*permit_userbackup_store#:</b> Auch hiermit wird ein Menüpunkt analog zum
 vorigen erstellt, das Backup ist ebenfalls identisch - nur wird es nicht zum
 Benutzer übertragen, sondern stattdessen im konfigurierten Backup-Verzeichnis
 abgelegt. Dies erfordert allerdings, dass der Webserver-Prozess auf selbiges
-schreibend zugreifen kann.
+schreibend zugreifen kann. Der Benutzer benötigt wiederum zumindest Leserechte.
 
 [text]
 <b>*permit_userbackup_restore#</b>: Dies ist das Gegenstück zum vorigen Punkt,
@@ -322,6 +324,9 @@ Server gespeicherten Backup. Natürlich ist hier Vorsorge getroffen, dass weder
 Die Backup-Datei muss speziell für diesen Benutzer erstellt worden sein, es
 werden nur Daten aus dieser Datei importiert, die dem Benutzer gehör(t)en, und
 diese werden auch explizit nur in die Datensammlung des Benutzers übernommen.
+Außerdem muss der Benutzer über die Privilegien <i>Hinzufügen</i> sowie
+<i>Löschen</i> verfügen - da hier zunächst alle Filmdaten des Benutzers entfernt
+und anschließend aus dem Backup neu angelegt werden.
 
 [text]
 <b>*max_user_backups#:</b> Zwar mag Plattenplatz nicht mehr unbedingt ein

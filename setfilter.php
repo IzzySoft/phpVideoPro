@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -12,7 +12,14 @@
 
  /* $Id$ */
 
+ #========================================================[ initial setup ]===
  if (!isset($admin)) $admin = FALSE; // setting from admin/filters.php
+ while ( list($vn,$vv)=each($_REQUEST) ) { // register post variables
+   $$vn = $vv;
+ }
+ if (!isset($reset)) $reset = FALSE;
+ if (!isset($save)) $save = FALSE;
+
  $page_id = "filter";
  if ($admin) $root = "../"; else $root = "";
  include($root . "inc/includes.inc");
@@ -43,20 +50,13 @@
    if (!$pvp->common->req_is_alnum("title")) $vuls[] = lang("title_not_string");
  }
 
- #========================================================[ initial setup ]===
- while ( list($vn,$vv)=each($_REQUEST) ) { // register post variables
-   $$vn = $vv;
- }
- if (!isset($reset)) $reset = FALSE;
- if (!isset($save)) $save = FALSE;
-
- #---------------------------------------------------------[ helper funcs ]---
+ #=========================================================[ helper funcs ]===
  function sort_ar($a1,$a2) {
    if($a1['name']<$a2['name']) return -1;
      else if ($a1['name']>$a2['name']) return 1;
  }
 
- #-------------------------------------------------------[ init templates ]---
+ #=======================================================[ init templates ]===
  $t = new Template($pvp->tpl_dir);
  $t->set_file(array("t_list"=>"setfilter_list.tpl",
                     "t_item"=>"setfilter_item.tpl",
@@ -343,7 +343,7 @@
  unset($id);
  $pict = $db->get_music("");
  if (is_array($pict)) usort ($pict,"sort_ar");
- dbquery("SELECT id,name,firstname FROM music ORDER BY name");
+ dbquery("SELECT id,name,firstname FROM pvp_music ORDER BY name");
  $option = "";
  for ($i=0;$i<count($pict);$i++) {
    $id   = $pict[$i]['id'];

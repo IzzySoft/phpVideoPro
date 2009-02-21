@@ -78,7 +78,7 @@
    $user->id     = $_POST["id"];
    if (!preg_match("/[^\w\d]/",$_POST["ulogin"])) $user->login = $_POST["ulogin"];
    if (empty($user->login)) { display_error(lang("user_create_login_required")); exit; }
-   if (isset($_POST["comment"]) && !preg_match("/[^\w\d\!\$\%\&\=\?°]/u",$_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
+   if (isset($_POST["comment"]) && !preg_match("/[^\w\d\!\$\%\&\=\?°\s]/u",$_POST["comment"])) $user->comment= $_POST["comment"]; else $user->comment = "";
    $access = array("admin","browse","add","upd","del");
    foreach ($access as $value) {
      if ($_POST[$value]) { $user->$value = "1"; } else { $user->$value = "0"; }

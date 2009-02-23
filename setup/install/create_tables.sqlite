@@ -1,0 +1,322 @@
+# ========================================================
+# Database for phpVideoPro
+# ========================================================
+
+# --------------------------------------------------------
+#
+# Table structure for table 'actors'
+#
+
+CREATE TABLE pvp_actors (
+   id INTEGER PRIMARY KEY,
+   imdb_id VARCHAR(10),
+   name VARCHAR(30),
+   firstname VARCHAR(30)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_media'
+#
+
+CREATE TABLE pvp_media (
+   id INTEGER,
+   mtype_id INT(3) DEFAULT 1 NOT NULL,
+   disks_id INT(3),
+   size INT(3),
+   free INT (3),
+   rc VARCHAR(25),
+   owner INT(5) NOT NULL DEFAULT 0,
+   storeplace VARCHAR(255),
+   lentto VARCHAR(100),
+   PRIMARY KEY (id,mtype_id)
+);
+
+CREATE INDEX media_free_idx ON pvp_media(free,id);
+
+CREATE TRIGGER pvp_media_autoincrement
+ AFTER INSERT ON pvp_media
+ WHEN (new.id IS NULL)
+ BEGIN
+   UPDATE pvp_media
+      SET id=(SELECT max(id)+1 FROM pvp_media)
+    WHERE rowid=last_insert_rowid();
+ END;
+
+# --------------------------------------------------------
+#
+# Table structure for table 'cat'
+#
+
+CREATE TABLE pvp_cat (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30) NOT NULL UNIQUE,
+   enabled INT(1) DEFAULT 1 NOT NULL
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'colors'
+#
+
+CREATE TABLE pvp_colors (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL UNIQUE
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'directors'
+#
+
+CREATE TABLE pvp_directors (
+   id INTEGER PRIMARY KEY,
+   imdb_id VARCHAR(10),
+   name VARCHAR(30),
+   firstname VARCHAR(30)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'mtypes'
+#
+
+CREATE TABLE pvp_mtypes (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL UNIQUE
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_vnorms'
+#
+CREATE TABLE pvp_vnorms (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(20) NOT NULL
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'disks'
+#
+CREATE TABLE pvp_disks (
+  id INTEGER PRIMARY KEY,
+  mtype_id INT(5) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  size VARCHAR(20),
+  lp INT(1) NOT NULL DEFAULT 0,
+  rc INT(1) NOT NULL DEFAULT 0
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'music'
+#
+
+CREATE TABLE pvp_music (
+   id INTEGER PRIMARY KEY,
+   imdb_id VARCHAR(10),
+   name VARCHAR(30),
+   firstname VARCHAR(30)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pict'
+#
+
+CREATE TABLE pvp_pict (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL UNIQUE
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'tone'
+#
+
+CREATE TABLE pvp_tone (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30),
+   sname VARCHAR(5) NOT NULL UNIQUE
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'commercials'
+#
+
+CREATE TABLE pvp_commercials (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_video'
+#
+
+CREATE TABLE pvp_video (
+   id INTEGER PRIMARY KEY,
+   mtype_id INT(5),
+   media_id INT(4),
+   part INT(2),
+   title VARCHAR(60),
+   imdb_id VARCHAR(10),
+   rating NUMERIC(3,1),
+   label INT(1) NOT NULL DEFAULT 0,
+   length INT(3),
+   counter1 VARCHAR(10),
+   counter2 VARCHAR(10),
+   aq_date VARCHAR(10),
+   source VARCHAR(15),
+   cat1_id INT(5) NOT NULL DEFAULT 0,
+   cat2_id INT(5) NOT NULL DEFAULT 0,
+   cat3_id INT(5) NOT NULL DEFAULT 0,
+   director_id INT(5),
+   director_list INT(1) NOT NULL DEFAULT 0,
+   music_id INT(5),
+   music_list INT(1) NOT NULL DEFAULT 0,
+   actor1_id INT(5),
+   actor2_id INT(5),
+   actor3_id INT(5),
+   actor4_id INT(5),
+   actor5_id INT(5),
+   actor1_list INT(1) NOT NULL DEFAULT 0,
+   actor2_list INT(1) NOT NULL DEFAULT 0,
+   actor3_list INT(1) NOT NULL DEFAULT 0,
+   actor4_list INT(1) NOT NULL DEFAULT 0,
+   actor5_list INT(1) NOT NULL DEFAULT 0,
+   country VARCHAR(30),
+   year INT(4),
+   vnorm_id INT(3) NOT NULL DEFAULT 0,
+   tone_id INT(5),
+   color_id INT(5),
+   pict_id INT(5) NOT NULL DEFAULT 0,
+   commercials_id INT(5) NOT NULL DEFAULT 0,
+   lp INT(1) NOT NULL DEFAULT 0,
+   fsk INT(2),
+   audio VARCHAR(50),
+   subtitle VARCHAR(100),
+   comment TEXT,
+   private INT(1) NOT NULL DEFAULT 0,
+   lastchange DATETIME
+);
+
+CREATE INDEX video_cat_idx ON pvp_video (cat1_id,cat2_id,cat3_id);
+CREATE UNIQUE INDEX video_unique_medium_idx ON pvp_video (mtype_id,media_id,part);
+CREATE INDEX video_title_idx ON pvp_video (title);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'preferences'
+#
+
+CREATE TABLE pvp_preferences (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30),
+   value TEXT
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_userprefs'
+#
+CREATE TABLE pvp_userprefs (
+   id INTEGER PRIMARY KEY,
+   user_id INT(5) NOT NULL,
+   name VARCHAR(30),
+   value TEXT
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'pvp_system' (system settings)
+#
+
+CREATE TABLE pvp_config (
+   id INTEGER PRIMARY KEY,
+   name VARCHAR(30) NOT NULL,
+   value TEXT
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'lang' (translations)
+#
+
+CREATE TABLE pvp_lang (
+  message_id VARCHAR(150) NOT NULL,
+  lang VARCHAR(5) NOT NULL,
+  content TEXT NOT NULL,
+  comment TEXT,
+  PRIMARY KEY (message_id,lang)
+);
+
+# --------------------------------------------------------
+#
+# Table structure for table 'languages' (supported languages)
+#
+
+CREATE TABLE pvp_languages (
+  lang_id CHAR(2) NOT NULL PRIMARY KEY,
+  lang_name VARCHAR(50) NOT NULL,
+  charset VARCHAR(20),
+  available CHAR(3) DEFAULT 'No' NOT NULL,
+  audio INT(1) DEFAULT 0 NOT NULL,
+  subtitle INT(1) DEFAULT 0 NOT NULL
+);
+
+#
+# Table structure for table pvp_users (user management and authorization)
+#
+
+CREATE TABLE pvp_users (
+  id INTEGER PRIMARY KEY,
+  login VARCHAR(20) NOT NULL UNIQUE,
+  pwd VARCHAR(32),
+  admin INT(1) NOT NULL,
+  browse INT(1) NOT NULL,
+  ins INT(1) NOT NULL,
+  upd INT(1) NOT NULL,
+  del INT(1) NOT NULL,
+  comment VARCHAR(255)
+);
+
+#
+# Table structure for pvp_sessions (session management)
+#
+CREATE TABLE pvp_sessions (
+  id VARCHAR(255) NOT NULL PRIMARY KEY,
+  ip VARCHAR(255) NOT NULL,
+  user_id INT(5),
+  started VARCHAR(50),
+  dla VARCHAR(50),
+  ended VARCHAR(50)
+);
+
+#
+# Table structure for pvp_options (option management)
+#
+CREATE TABLE pvp_options (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  value TEXT
+);
+
+#
+# Table structure for table 'pvp_usergrants'
+#
+CREATE TABLE pvp_usergrants (
+  grantor INT(5) NOT NULL,
+  grantee INT(5) NOT NULL,
+  grants VARCHAR(25) NOT NULL,
+  PRIMARY KEY (grantor,grantee,grants)
+);
+
+#
+# End Tables
+#

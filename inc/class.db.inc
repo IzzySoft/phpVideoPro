@@ -48,7 +48,8 @@
      switch($pvp->config->db->type) {
        case "mysql" : $this->limit = " LIMIT $start," . $pvp->preferences->get("display_limit");
                       break;
-       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->get("display_limit") . "OFFSET $start";
+       case "sqlite":
+       case "pgsql" : $this->limit = " LIMIT " . $pvp->preferences->get("display_limit") . " OFFSET $start";
                       break;
        default      : $this->limit = ""; break;
      }
@@ -94,7 +95,7 @@
     * @param optional integer start
     * @return integer totals (result set count)
     */
-   function lim_query($query,$start=0) {
+   function lim_query($query,$start=0,$dummy="") {
      if ( $this->dbquery($query) ) {
        $totals = $this->num_rows();
        $this->limit($start);
@@ -1298,7 +1299,7 @@
     */
    function get_movieid($mtype_id,$cass_id,$part="") {
      GLOBAL $pvp;
-     $query  = "SELECT v.id FROM pvp_video v, pvp_media m"
+     $query  = "SELECT v.id AS id FROM pvp_video v, pvp_media m"
              . " WHERE v.media_id=m.id AND v.mtype_id=m.mtype_id"
              . "   AND v.mtype_id=$mtype_id AND v.media_id=$cass_id";
      if (!$pvp->auth->admin) {
@@ -1363,7 +1364,7 @@
     *              actors, actors12, actors35 as list of actorX</pre>
     */
    function get_movie($id="") {
-     if ($id) $where = " WHERE pvp_video.id=$id";
+     if ($id||$id===0) $where = " WHERE pvp_video.id=$id";
      $query = "SELECT pvp_video.id as vid,title,length,country,year,counter1,counter2,aq_date,source,"
             . "director_id,director_list,music_id,cat1_id,cat2_id,cat3_id,"
 	    . "actor1_id,actor2_id,actor3_id,actor4_id,actor5_id,actor1_list,"
@@ -1489,7 +1490,7 @@
        $movie['next']     = $this->get_nextentry($movie['mtype_id'],$movie['cass_id'],$movie['part']);
        $movie['disktype'] = $this->get_disktype_id($movie['mtype_id'],$movie['cass_id']);
        $movie['rc']       = $this->get_rc($movie['mtype_id'],$movie['cass_id']);
-       if ($id) return $movie;
+       if ($id!=="") return $movie;
        $list[] = $movie;
      }
      return $list;
@@ -1523,7 +1524,7 @@
        default       : $orderby = "v.mtype_id DESC,v.media_id,v.part"; break;
      }
      if ($restrict) $where = " WHERE $restrict";
-     $query = "SELECT v.id FROM pvp_video v";
+     $query = "SELECT v.id AS id FROM pvp_video v";
      if (strlen($filter)) {
        if (!empty($where)) {
          $where .= " AND $filter";
@@ -1553,7 +1554,7 @@
      $query .= $where;
      $query .= " ORDER BY $orderby";
      if ($start==="") { $this->dbquery($query); }
-       else { $totals = $this->lim_query($query,$start); }
+       else { $totals = $this->lim_query($query,$start,"x"); }
      while ( $this->next_record() ) {
        $list[] = $this->f('id');
      }
@@ -3089,6 +3090,7 @@
    /** Execute the statements in the passed $array one-by-one, ignore comments
     * @method get_sql
     * @param array sql_array each line containing SQL code
+    * @param optional boolean separate_statements separate at each ";" (default:Yes)
     * @return boolean success
     * @version right now only lines starting with a hash mark ("#") are
     *  recognized as comments (plus everything following the semi-colon at
@@ -3097,7 +3099,7 @@
     * @todo handle ";" within field content correctly (and do not assume end
     *  of command here)
     */
-   function get_sql($array) {
+   function get_sql($array,$separate_statements=1) {
      $sql   = ""; $ok = 1;
      $lines = count($array);
      for ($i=0;$i<$lines;$i++) {
@@ -3105,10 +3107,10 @@
        if ($pos<>1) { // this is no comment line, so we process it
          $sql .= $array[$i];
          $line  = trim($array[$i]);
-         if ( (strrpos($line,";") +1)==strlen($line) ) {
+         if ( ($separate_statements && (strrpos($line,";") +1)==strlen($line)) || empty($line) ) {
            $sql = trim($sql);
            $sql = substr($sql,0,strlen($sql) -1);
-           if ( !$this->dbquery($sql) ) $ok = 0;
+           if ( !empty($sql) && !$this->dbquery($sql) ) $ok = 0;
            $sql = "";
          } // end (if semicolon at end of line)
        }
@@ -3123,9 +3125,10 @@
     * @param string file name of file containing the SQL code to execute
     * @param string comment description of the actions done by execute
     * @param optional boolean silent wether to (not) output advance information
+    * @param optional boolean separate_statements separate at each ";" (default:Yes)
     * @return mixed string failure_reason (when $silent and error), else nothing
     */
-   function queryf($file,$comment,$silent=0) {
+   function queryf($file,$comment,$silent=0,$separate_statements=1) {
      if ( !file_exists($file) ) {
        $error = " <LI><SPAN CLASS='error'>$comment failed: missing SQL command file '$file', process stopped.</SPAN></LI>";
        if ($silent) return $error;
@@ -3139,7 +3142,7 @@
        else return $error;
        exit;
      }
-     if ( $this->get_sql($array) ) {
+     if ( $this->get_sql($array,$separate_statements) ) {
        $error = " <LI><SPAN CLASS='ok'>$comment successful.</SPAN></LI>";
        if (!$silent) echo "$error<BR>\n";
        if ($silent) return TRUE;

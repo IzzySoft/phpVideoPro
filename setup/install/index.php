@@ -1,8 +1,8 @@
 <?
  ##############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # phpVideoPro                               (c) 2001-2009 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
+ # http://www.izzysoft.de/                                                    #
  # -------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it       #
  # under the terms of the GNU General Public License (see doc/LICENSE)        #
@@ -12,7 +12,6 @@
 
  /* $Id$ */
 
-# $page_id = "imdbsearch";
  $pvpinstall = 1;
  $nomenue    = 1;
  include("../../inc/config.inc");
@@ -32,13 +31,6 @@
 
  $t->set_block("template","infoblock","infolist");
  $t->set_block("template","skipblock","skiplist");
-# $t->set_block("movieblock","pgblock","pglist");
-# $t->set_block("movieblock","acatblock","acatlist");
-# $t->set_block("acatblock","catblock","catlist");
-# $t->set_block("movieblock","dirblock","dirlist");
-# $t->set_block("movieblock","actblock","actlist");
-
-# $t->set_block("template","queryblock","query");
 
  $t->set_var("form_target",$_SERVER["PHP_SELF"]);
  $t->set_var("submit_button",$pvp->tpl_url."/images/button-next.gif");
@@ -51,6 +43,7 @@
    $changed = FALSE;
    $t->set_var("beamspan","2");
    $t->set_var("nobeamspan","3");
+   $dbtype = strtolower($_POST["db_type"]);
    for ($i=0;$i<$inlines;++$i) {
      if ( strpos(trim($infile[$i]),"\$backup_path")===0 ) {
        $old = trim(preg_replace('/([^"]*)\"([^"]*)\"(.*)/','\\2',$infile[$i]));
@@ -62,7 +55,7 @@
      if ( strpos(trim($infile[$i]),"\$database[\"type\"]")===0 ) {
        $old = trim(preg_replace('/([^=]*=\s*)\"([^"]*)\"(.*)/','\\2',$infile[$i]));
        if ($old!=trim($_POST["db_type"])) {
-         $infile[$i] = preg_replace('/([^=]*=\s*)\"([^"])*\"(.*)/','\\1"'.$_POST["db_type"].'"\\3',$infile[$i]);
+         $infile[$i] = preg_replace('/([^=]*=\s*)\"([^"])*\"(.*)/','\\1"'.$dbtype.'"\\3',$infile[$i]);
          $changed = TRUE;
        }
      }
@@ -146,28 +139,33 @@
    $t->set_var("nobeamspan","2");
    $t->set_var("listtitle","phpVideoPro Installation: Create the DB");
    $t->set_var("submit_name","dbcreate");
-   $t->set_var("info_head","Superuser");
-   $info = "No we go to create the database. For this, we need special "
-         . "privileges - so below, please specify a privileged user with all "
-         . "administrative rights (i.e. CREATE DATABASE, CREATE TABLE, etc.). "
-         . "If in doubt: for MySQL, this usually is the <code>root</code> user. "
-         . "In case the database already exists, use the <I>Skip</I> button to "
-         . "submit this form (this will only skip the DB creation; all tables "
-         . "will of course be created and filled <I>in the existing DB</I>, though).";
-   $t->set_var("info_body",$info);
-   $t->parse("infolist","infoblock");
-   $t->set_var("field","User");
-   $t->set_var("content","<INPUT NAME='db_user'>");
-   $t->set_var("descript","");
-   $t->parse("formitem","formitemblock");
-   $t->set_var("field","Password");
-   $t->set_var("content","<INPUT TYPE='password' NAME='db_pass'>");
-   $t->set_var("descript","");
-   $t->parse("formitem","formitemblock",TRUE);
+   if ($database["type"]!="sqlite") {
+     $t->set_var("info_head","Superuser");
+     $info = "Now we go to create the database. For this, we need special "
+           . "privileges - so below, please specify a privileged user with all "
+           . "administrative rights (i.e. CREATE DATABASE, CREATE TABLE, etc.). "
+           . "If in doubt: for MySQL, this usually is the <code>root</code> user. "
+           . "In case the database already exists, use the <I>Skip</I> button to "
+           . "submit this form (this will only skip the DB creation; all tables "
+           . "will of course be created and filled <I>in the existing DB</I>, though).";
+     $t->set_var("info_body",$info);
+     $t->parse("infolist","infoblock");
+     $t->set_var("field","User");
+     $t->set_var("content","<INPUT NAME='db_user'>");
+     $t->set_var("descript","");
+     $t->parse("formitem","formitemblock");
+     $t->set_var("field","Password");
+     $t->set_var("content","<INPUT TYPE='password' NAME='db_pass'>");
+     $t->set_var("descript","");
+     $t->parse("formitem","formitemblock",TRUE);
+     $parse_append = 1;
+   } else {
+     $parse_append = 0;
+   }
    $t->set_var("field","Mode");
    $t->set_var("content","<SELECT NAME='dbmode'><OPTION VALUE='create'>Create Fresh DB</OPTION><OPTION VALUE='restore'>Restore from a Backup</OPTION></SELECT>");
    $t->set_var("descript","Please chose if you want to create a fresh (blank) database, or want to restore from a previous backup. In the latter case, you should have placed your <code>restore.sql</code> file in the <code>setup/</code> directory, as described on the Backup page.");
-   $t->parse("formitem","formitemblock",TRUE);
+   $t->parse("formitem","formitemblock",$parse_append);
    $t->parse("formlist","formblock");
    $t->parse("skiplist","skipblock");
    $t->pparse("out","template");
@@ -200,10 +198,16 @@
                        $dbc->query($query);
                      }
                      break;
+       case "sqlite" : $dbc->Database = $_POST["db_name"];
+                       $dbcrea = "";
+		       $dbgra  = "";
+		       break;
        default     : break;
      }
      $info   = "<UL>";
-     if (@$dbc->query($dbcrea)) {
+     if ($database["type"]=="sqlite") {
+       // no CREATE DATABASE required
+     } elseif (@$dbc->query($dbcrea)) {
        $info .= " <LI><SPAN CLASS='ok'>Database successfully created.</SPAN></LI>\n";
        if (@$dbc->query($dbgra)) {
          $info .= " <LI><SPAN CLASS='ok'>Granted rights to final user.</SPAN></LI>\n";
@@ -222,9 +226,9 @@
      $sql[] = array ( "script"=>$create_script, "comment"=>"Creation of Tables" );
      switch ($_POST["dbmode"]) {
        case "create":
+         $sql[] = array ( "script"=>"pslabel." . $database["type"],"comment"=>"Setup of PSLabel data" );
          $sql[] = array ( "script"=>"tech_data.sql","comment"=>"Insertion of technical data" );
          $sql[] = array ( "script"=>"categories.sql","comment"=>"Setup of Categories" );
-         $sql[] = array ( "script"=>"pslabel." . $database["type"],"comment"=>"Setup of PSLabel data" );
          $sql[] = array ( "script"=>"languages.sql","comment"=>"Setup of Language data" );
          $sql[] = array ( "script"=>"../lang_en.sql","comment"=>"Insertion of default translations" );
          break;
@@ -234,8 +238,10 @@
        default: break;
      }
      $sqlc = count($sql);
+     if ($database["type"]=="sqlite") $sep = 0; else $sep = 1;
      for ($i=0;$i<$sqlc;++$i) {
-       $res = $db->queryf($sql[$i]["script"],$sql[$i]["comment"],1);
+       if ($i<2) $res = $db->queryf($sql[$i]["script"],$sql[$i]["comment"],1,$sep);
+       else $res = $db->queryf($sql[$i]["script"],$sql[$i]["comment"],1);
        if ( strlen($res)>1 ) {
          $info .= $res;
          $failed = TRUE;
@@ -328,10 +334,11 @@
    #-=[ Database Type ]=-
    $t->set_var("field","Database Type");
    switch ($database["type"]) {
-     case "mysql" : $mysql = " SELECTED"; $pgsql = ""; break;
-     case "pgsql" : $pgsql = " SELECTED"; $mysql = ""; break;
+     case "mysql"   : $mysql = " SELECTED"; $pgsql = ""; $sqlite=""; break;
+     case "pgsql"   : $pgsql = " SELECTED"; $mysql = ""; $sqlite=""; break;
+     case "sqlite" : $sqlite = " SELECTED"; $mysql = ""; $pgsql=""; break;
    }
-   $t->set_var("content","<SELECT NAME='db_type'><OPTION VALUE='mysql'$mysql>MySQL</OPTION><OPTION VALUE='pgsql'$pgsql>PostgreSQL</OPTION></SELECT>");
+   $t->set_var("content","<SELECT NAME='db_type'><OPTION VALUE='mysql'$mysql>MySQL</OPTION><OPTION VALUE='pgsql'$pgsql>PostgreSQL</OPTION><OPTION VALUE='sqlite'$sqlite>SQLite</OPTION></SELECT>");
    $t->set_var("descript","What kind of database you are using?");
    $t->parse("formitem","formitemblock",TRUE);
 
@@ -340,20 +347,20 @@
    $t->set_var("content","<INPUT NAME='db_host' VALUE='".$database["host"]."'>");
    $desc = "Machine the database is running on. This can either be 'localhost' "
          . "(if it runs on the same machine as the webserver), or any host "
-         . "name the webserver is able to resolve.";
+         . "name the webserver is able to resolve. For SQLite, this value is ignored.";
    $t->set_var("descript",$desc);
    $t->parse("formitem","formitemblock",TRUE);
 
    #-=[ Database name ]=-
    $t->set_var("field","Database Name");
    $t->set_var("content","<INPUT NAME='db_name' VALUE='".$database["database"]."'>");
-   $t->set_var("descript","The name of the database to create/use. If possible, you should give phpVideoPro its own database.");
+   $t->set_var("descript","The name of the database to create/use. If possible, you should give phpVideoPro its own database. For SQLite, this is the name of the database file.");
    $t->parse("formitem","formitemblock",TRUE);
 
    #-=[ Database user ]=-
    $t->set_var("field","Database User");
    $t->set_var("content","<INPUT NAME='db_user' VALUE='".$database["user"]."'>");
-   $t->set_var("descript","Which user is operating this database? This user should at least have the SELECT, UPDATE, INSERT and DELETE privileges.");
+   $t->set_var("descript","Which user is operating this database? This user should at least have the SELECT, UPDATE, INSERT and DELETE privileges.<BR>For SQLite, this is ignored.");
    $t->parse("formitem","formitemblock",TRUE);
 
    #-=[ Database Password ]=-
@@ -362,7 +369,7 @@
    if (empty($database["password"])) $desc .= " CHECKED";
    $desc .= ">No password";
    $t->set_var("content","<INPUT TYPE='password' NAME='db_pass'>$desc");
-   $t->set_var("descript","The password needed for the specified user to access the specified database.");
+   $t->set_var("descript","The password needed for the specified user to access the specified database.<BR>For SQLite, this is ignored.");
    $t->parse("formitem","formitemblock",TRUE);
 
    $t->parse("formlist","formblock");

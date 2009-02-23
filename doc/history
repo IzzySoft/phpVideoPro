@@ -15,6 +15,7 @@ v0.9.5
 + users now can create their own movie backups and restore from them - of course
   only when the admin permits this
 ! bunch of tiny fixes - a.o. again the renamed tables stuff (hope now we got them all!)
++ experimental support for SQLite added (BEWARE: not yet fully tested!)
 
 v0.9.4 (12.02.2008)
 -------------------

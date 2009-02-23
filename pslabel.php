@@ -1,7 +1,7 @@
 <?php
  #############################################################################
  # pslabels for phpVideoPro (c) 2002 by Michael Hasselberg <mh@zonta.ping.de>#
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -230,9 +230,9 @@ echo "showpage\n";
  $epstemplates = $db->get_epstemplates($ltypes['type']);
  $etcount = count($epstemplates);
  if (empty($etcount)) {
-   $t->set_var("error_msg",lang("pspack_install_required"));
-   $t->parse("errorlist","errorblock");
-   $t->pparse("out","list");
+   include("inc/header.inc");
+   $pvp->common->display_error(lang("pspack_install_required"));
+   include("inc/footer.inc");
  } else {
    $epslist = "";
    $js .= "<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'>//<!--\nvar thumb = new Array();\n";

@@ -123,8 +123,8 @@
   $version  = $db->get_config("version");
   $rw_media = $db->get_config("rw_media");
   if ( isset($pre) ) $version .= $pre;
-  $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template");
-  $pvp->tpl_url = $base_url . "templates/" . $pvp->preferences->get("template");
+  $pvp->tpl_dir = $base_path . "templates/" . $pvp->preferences->get("template","applicat");
+  $pvp->tpl_url = $base_url . "templates/" . $pvp->preferences->get("template","applicat");
   $pvp->pstpl_dir = $base_path . "pslabels";
   $pvp->backup_dir = $backup_path;
   $pvp->config->remove_empty_media = $db->get_config("remove_empty_media");

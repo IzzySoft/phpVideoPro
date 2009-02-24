@@ -77,8 +77,10 @@
    * @class preferences
    * @method get
    * @param string name preference to set
+   * @param optional string fallback to use when result otherwise would be empty
+   * @return string preference value
    */
-  function get($name) {
+  function get($name,$fallback="") {
     GLOBAL $pvp,$db;
     if ($this->admin) {
       return $this->$name;
@@ -87,27 +89,26 @@
         $pref = $pvp->cookie->get($name);
         if (strlen($pref)) {
           if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-          return($pref); 
         } else {
           if (isset($pvp->auth->user_id))
             $pref = $db->get_preferences($name,$pvp->auth->user_id);
           if (isset($pref) && strlen($pref)) {
             if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-            return($pref); 
 	  } else {
-           if (isset($this->$name)) return $this->$name;
-           return FALSE;
+           if (isset($this->$name)) $pref = $this->$name;
+           else $pref = "";
           }
 	}
       } else {
-          if (isset($pvp->auth->user_id))
-	    $pref = $db->get_preferences($name,$pvp->auth->user_id);
-          if (isset($pref) && strlen($pref)) {
-            if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-            return($pref); 
-	  } else { return $this->$name; }
+        if (isset($pvp->auth->user_id))
+	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
+        if (isset($pref) && strlen($pref)) {
+          if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
+	} else { $pref = $this->$name; }
       }
     }
+    if ($pref==="" && $fallback!=="") return $fallback;
+    return $pref;
   }
 
 

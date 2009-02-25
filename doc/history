@@ -3,7 +3,7 @@ $Id$
 History for phpVideoPro
 =======================
 
-v0.9.5
+v0.9.5 (25.02.2009)
 -------------------
 * protected the users "admin", "guest", and "PUBLIC" against deletion (since
   they are essential for the system). Moreover, their logins cannot be changed.

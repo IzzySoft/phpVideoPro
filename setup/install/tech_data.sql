@@ -101,7 +101,7 @@ INSERT INTO pvp_commercials VALUES (3,'cut_off');
 # initial content of table pvp_system
 #
 
-INSERT INTO pvp_config (name,value) VALUES ('version','0.9.4');
+INSERT INTO pvp_config (name,value) VALUES ('version','0.9.5');
 INSERT INTO pvp_config (name,value) VALUES ('rw_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('remove_empty_media','1');
 INSERT INTO pvp_config (name,value) VALUES ('site','MySite');

@@ -330,6 +330,14 @@
        omf.rating.value = dmf.rating.value;
      }
    }
+
+   if (omf.useEditor[0].checked) {
+     opener.MyNic.removeInstance('comment');
+     editorSwitched = 1;
+   } else {
+     editorSwitched = 0;
+   }
+
    if (dmf.title_chk.checked)    omf.title.value   = dmf.title.value;
    if (dmf.length_chk.checked)   omf.length.value  = dmf.runtime.value;
    if (dmf.country_chk.checked)  omf.country.value = dmf.country.value;
@@ -373,6 +381,10 @@
          ++k;
        }
      }
+   }
+
+   if (editorSwitched==1) {
+     opener.loadEditor();
    }
    if ($autoclose) self.close();
   }

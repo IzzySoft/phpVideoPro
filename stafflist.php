@@ -13,7 +13,8 @@
  /* $Id$ */
 
  #========================================================[ initial setup ]===
- $page_id = $stafftype;
+ if ( isset($_REQUEST["stafftype"]) && in_array($_REQUEST["stafftype"],array("actors","directors","music")) )
+ $page_id = $_REQUEST["stafftype"];
  include("inc/includes.inc");
  if (!$pvp->auth->browse) kickoff();
  vul_alnum("stafftype");

@@ -28,6 +28,7 @@
    $inst->cache_expire = $db->get_config("imdb_cache_expire");
    $inst->photodir = $pvp->config->imdb_photopath;
    $inst->photoroot = $pvp->config->imdb_photourl;
+   $inst->imdb_utf8recode = true;
  }
 
  #=========================================================[ General setup ]===
@@ -39,7 +40,8 @@
    display_error( lang("imdbapi_not_installed") );
    exit;
  }
- require_once ("imdb.class.php");
+ require_once("imdb.class.php");
+ require_once("imdbsearch.class.php");
  $imdb_tx_prefs = $pvp->preferences->imdb_tx_get();
  $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
  if (empty($autoclose)) $autoclose = 0;
@@ -94,11 +96,11 @@
 
  if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
  #=================================================[ Get IMDB ID for movie ]===
-  $search = new imdbsearch ();
+  $search = new imdbsearch();
   config_imdb($search);
   $search->setsearchname ($_REQUEST["name"]);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
-  $results = $search->results ();
+  $results = $search->results();
   $open = FALSE;
   if (empty($results)) { // found nothing on IMDB?
     if ($auto_search) {
@@ -133,10 +135,10 @@
  } elseif (!empty($_REQUEST["mid"])) {
  #==============================================[ Get movie data from IMDB ]===
    $movieid = $_REQUEST["mid"];
-   $movie = new imdb ($movieid);
+   $movie = new imdb($movieid);
    config_imdb($movie);
    $imdbsite = $pvp->preferences->get("imdb_url2");
-   $url  = explode("/",$imdbsite);
+   $url = explode("/",$imdbsite);
    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
    $movie->setid ($movieid);
    $t->set_var("mid",$movieid);

@@ -1,4 +1,4 @@
-<?
+<?php
  #############################################################################
  # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2008 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -207,7 +207,7 @@
 ?>
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
  function delconfirm(url) {
-  check = confirm("<?=lang("confirm_delete")?>");
+  check = confirm("<?php echo lang("confirm_delete")?>");
   if (check == true) window.location.href=url;
  }
 </SCRIPT>

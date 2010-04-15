@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -22,10 +22,10 @@
    $title = "Access Denied!";
 ?>
 <HTML><HEAD>
- <meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
+ <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset?>">
  <meta http-equiv="cache-control" content="no-cache">
- <meta http-equiv="content-language" content="<?=$contentlang?>">
- <Title><?=$title?></Title>
+ <meta http-equiv="content-language" content="<?php echo $contentlang?>">
+ <Title><?php echo $title?></Title>
  <LINK REL="stylesheet" TYPE="text/css" HREF="templates/applicat/default.css">
 </HEAD><BODY>
 <BR STYLE="margin-top:50">
@@ -33,14 +33,14 @@
 <DIV STYLE="display:inline">
 <TABLE WIDTH="95%" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
- <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2"><?=$title?></DIV></TD></TD></TR>
+ <TR><TD NOWRAP WIDTH="100%" CLASS="wintitle"><DIV STYLE="margin:2"><?php echo $title?></DIV></TD></TD></TR>
 </TABLE></TD></TR>
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
 <TABLE WIDTH="90%" ALIGN="center">
  <TR><TD><P ALIGN='justify'>Access to this page was denied due to wrong parameters. The intrusion detection of this application triggered an alert: Looks like you want to attack the system and place your own code here. We don't like that, so we aborted your request. If you think that's not your fault (i.e. you did not intentionally manipulate the URL string or POST data, but used the application in a "normal way" only), you may want to report this to the author(s) to fix the problem.</P>
-         <P>Offended variable: <?=$var?> = '<?=htmlentities($_REQUEST[$var])?>'</P></TD></TR>
+         <P>Offended variable: <?php echo $var?> = '<?php echo htmlentities($_REQUEST[$var])?>'</P></TD></TR>
 </TABLE></TD></TR>
 </TABLE>
 </DIV>

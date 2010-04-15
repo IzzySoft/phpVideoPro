@@ -114,15 +114,15 @@
  header('Content-type: text/html; charset=utf-8');
 ?>
 <HTML><HEAD>
- <TITLE><?=$title?></TITLE>
+ <TITLE><?php echo $title?></TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
  <LINK HREF="../../templates/default/default.css" REL="stylesheet" TYPE="text/css">
 </HEAD>
 <BODY>
-<FORM NAME="coding" METHOD="post" ACTION="<?=$PHP_SELF?>">
-<INPUT TYPE="hidden" NAME="step" VALUE="<?=$step?>">
+<FORM NAME="coding" METHOD="post" ACTION="<?php echo $PHP_SELF?>">
+<INPUT TYPE="hidden" NAME="step" VALUE="<?php echo $step?>">
 <TABLE BORDER="1" WIDTH="90%" ALIGN="center" STYLE="margin-top:10">
- <TR><TH><?=$title?></TH></TR><TR><TD>&nbsp;</TD></TR>
+ <TR><TH><?php echo $title?></TH></TR><TR><TD>&nbsp;</TD></TR>
 <?
  }
 

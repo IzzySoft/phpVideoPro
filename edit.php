@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -251,36 +251,36 @@
    function check_nr(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
-       alert('<?=$nr_nan?>');
+       alert('<?php echo $nr_nan?>');
      }
    }
    function check_fsk(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
-       alert('<?=$fsk_nan?>');
+       alert('<?php echo $fsk_nan?>');
      }
    }
    function check_rating(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
-       alert('<?=$rating_nan?>');
+       alert('<?php echo $rating_nan?>');
      }
    }
    function check_len(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
-       alert('<?=$len_nan?>');
+       alert('<?php echo $len_nan?>');
      }
    }
    function check_date(nr) {
      if (isNaN(nr.value)) {
        nr.value = '';
-       alert('<?=$date_nan?>');
+       alert('<?php echo $date_nan?>');
      }
    }
    function mklabel(labelconf) {
      if (labelconf != "-") {
-       url = '<?=$base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&labelconf="?>' + labelconf;
+       url = '<?php echo $base_url . "label.php?mtype_id=$mtype_id&cass_id=$cass_id&labelconf="?>' + labelconf;
        var pos = (screen.width/2)-400;
        campus  = eval("window.open(url,'label','toolbar=yes,location=no,titlebar=no,directories=no,status=yes,resizable=no,scrollbars=yes,copyhistory=no,width=800,height=600,top=0,left=" + pos + "')");
      }

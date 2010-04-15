@@ -1,4 +1,4 @@
- <link rel="stylesheet" type="text/css" href="<?=$base_url?>templates/applicat/menu/menu.css">
+ <link rel="stylesheet" type="text/css" href="<?php echo $base_url?>templates/applicat/menu/menu.css">
  <script type="text/javascript" src="<?php echo $base_url?>templates/applicat/menu/jsdomenu.js"></script>
  <script type="text/javascript" src="<?php echo $base_url?>templates/applicat/menu/jsdomenubar.js"></script>
  <script type="text/javascript">

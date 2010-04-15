@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -794,10 +794,10 @@ if ($menue && !(isset($update))) {
 ?>
 <script TYPE="text/javascript" language="JavaScript">//<!--
  function pri_lang() {
-  var chk=window.confirm('<?=lang("confirm_prilang")?>');
+  var chk=window.confirm('<?php echo lang("confirm_prilang")?>');
   lang = document.getElementById('prilang');
   if (lang && !chk) {
-    lang.value = '<?=$lang_preferred?>';
+    lang.value = '<?php echo $lang_preferred?>';
   }
  }
 //--></script>

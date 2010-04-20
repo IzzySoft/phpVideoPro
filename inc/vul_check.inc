@@ -77,7 +77,7 @@
  vul_num("cass_id");
  vul_num("part");
  vul_num("id");
- if (preg_match("/\W/",$_REQUEST["sess_id"])!==0) vul_kick("sess_id");
+ if (isset($_REQUEST["sess_id"]) && preg_match("/\W/",$_REQUEST["sess_id"])!==0) vul_kick("sess_id");
 
  #============================================================[ users.php ]===
  if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {

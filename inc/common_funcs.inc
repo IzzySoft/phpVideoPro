@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -14,6 +14,7 @@
 
  ##############################################################[ Debugging ]###
  /** output debug message depending on configured debug level
+  *  log will also appended to $pvp->config->logfile (if this variable exists)
   * @package Api
   * @author Izzy (izzysoft AT qumran DOT org)
   * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
@@ -22,8 +23,12 @@
   * @param string msg debug message
   */
  function debug($level,$msg) {
-   GLOBAL $debug;
+   GLOBAL $debug, $pvp;
    if ( strpos(strtoupper($debug["log"]),strtoupper($level))===false ) return;
+   if (isset($pvp->config->logfile)) {
+     // <SPAN CLASS='ok'>SELECT id,name,sname FROM pvp_mtypes  ORDER BY id</SPAN><BR>
+     error_log(date('Y-m-d H:i:s')." $level ".preg_replace('!^<span.*?>(.*?)</span><br>$!is','$1',$msg), 3, $pvp->config->logfile);
+   }
    echo $msg;
  }
 

@@ -20,7 +20,7 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
 
-<TABLE ALIGN="center" WIDTH="100%" BORDER="1" STYLE="margin:5">
+<TABLE ALIGN="center" WIDTH="99%" BORDER="1" STYLE="margin:5">
 <!-- BEGIN listblock -->
  <TR><TH><TABLE WIDTH="100%" BORDER="0"><TR><TH>{list_head}</TH><TH WIDTH="20"><DIV ALIGN="right">{help_icon}</DIV></TH></TR></TABLE></TH></TR>
  <TR CLASS="content"><TD>

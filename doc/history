@@ -3,7 +3,7 @@ $Id$
 History for phpVideoPro
 =======================
 
-v0.9.6
+v0.9.6 (25.04.2010)
 -------------------
 ! when the WYSIWYG editor was switched on, comment data have not been transfered
   from the IMDBSearch window.

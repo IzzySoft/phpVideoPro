@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -31,7 +31,8 @@
     GLOBAL $db,$pvp;
     $pnames = array ("lang","template","display_limit","date_format",
               "page_length","default_movie_colorid","default_movie_onlabel",
-	      "default_movie_toneid","printer_id","imdb_url","imdb_url2",
+              "default_movie_toneid","printer_id","imdb_url","imdb_url2",
+              "pilot_url", "pilot_fallback", "mdb_use",
               "imdb_tx_title","imdb_tx_year","imdb_tx_pg","imdb_tx_length",
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
               "imdb_tx_country","imdb_txwin_autoclose","imdb_tx_music",

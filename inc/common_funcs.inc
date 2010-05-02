@@ -222,7 +222,20 @@
     return $data;
    }
  }
- 
+
+ #############################################################[ IMDB check ]###
+ /** check which version of the IMDB Api we have available
+  * @package Api
+  * @function imdbapi_ver
+  * @return int imdbphp_generation Either 0 (none), 1 (IMDB only), or 2 (IMDB + MoviePilot)
+  */
+ function imdbapi_ver() {
+   if (!incfile_exists("imdb.class.php")) return 0;
+   require_once("imdb.class.php");
+   $imdb = new imdb('0000000');
+   if ($imdb->version > '1.9.0') return 2;
+   return 1;
+ }
 
  include (dirname(__FILE__) . "/class.common.inc");
  $pvp->common = new common;

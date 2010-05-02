@@ -23,6 +23,17 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_music');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_rating');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://www.moviepilot.de/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://www.moviepilot.com/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://es.moviepilot.com/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://fr.moviepilot.com/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://pl.moviepilot.com/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://uk.moviepilot.com/');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','NO_ACCESS');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','BASIC_ACCESS');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','MEDIUM_ACCESS');
+INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','FULL_ACCESS');
+INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');
 
 # Data for pvp_users
 #
@@ -134,8 +145,8 @@ INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_toneid','2');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_colorid','2');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_movie_onlabel','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('printer_id','1');
-INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url','http://us.imdb.com/');
-INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url','http://akas.imdb.com/');
+INSERT INTO pvp_preferences (name,value) VALUES ('imdb_url2','http://akas.imdb.com/');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_title','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_country','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_year','1');
@@ -147,5 +158,8 @@ INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_comments','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
+INSERT INTO pvp_preferences (name,value) VALUES ('pilot_url','http://www.moviepilot.com/');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_pstemplate_id','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_editor','plain');
+INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');
+INSERT INTO pvp_preferences (name,value) VALUES ('mdb_use','0');

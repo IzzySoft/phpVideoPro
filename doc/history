@@ -7,6 +7,7 @@ History for phpVideoPro
 -------------------
 + making sections on the configuration page able to collaps and expand
 * adjusted IMDB sites to their new domains
++ MoviePilot options added to database and configuration screen. These new options are not yet used.
 
 v0.9.6 (25.04.2010)
 -------------------

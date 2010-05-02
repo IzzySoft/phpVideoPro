@@ -46,6 +46,9 @@ if ( isset($update) ) {
   $pvp->preferences->set("imdb_url2",$_POST["imdb_url2"]);
   if (!isset($_POST["imdb_txwin_autoclose"])) $_POST["imdb_txwin_autoclose"] = 0;
   $pvp->preferences->set("imdb_txwin_autoclose",$_POST["imdb_txwin_autoclose"]);
+  $pvp->preferences->set("pilot_url",$_POST["pilot_url"]);
+  $pvp->preferences->set("pilot_fallback",$_POST["pilot_fallback"]);
+  $pvp->preferences->set("mdb_use",$_POST["mdb_use"]);
   $pvp->preferences->set("page_length",$_POST["cpage_length"]);
   $pvp->preferences->set("display_limit",$_POST["cdisplay_limit"]);
   $pvp->preferences->set("date_format",$_POST["cdate_format"]);
@@ -155,6 +158,9 @@ $imdbtx         = $pvp->preferences->imdb_tx_get();
 foreach ($imdbtx as $var=>$val) {
   ${$var} = $val;
 }
+$pilot_url       = $pvp->preferences->get("pilot_url");
+$pilot_fallback  = $pvp->preferences->get("pilot_fallback");
+$mdb_use         = $pvp->preferences->get("mdb_use");
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $imdb_cache_enable = $db->get_config("imdb_cache_enable");
 $imdb_cache_expire = $db->get_config("imdb_cache_expire");
@@ -499,14 +505,38 @@ if ($admin) {
 }
 
 #------------------------------------------[ setup block 5: imdb defaults ]---
+$imdbdis = '';
+$mpdis = '';
+$mdbapi_intro = '';
+$imdbapi_gen = imdbapi_ver();
+switch ( $imdbapi_gen ) {
+  case 1: $mpdis = ' DISABLED';
+          $mdbapi_intro = lang('mdbapi_v1_only_config');
+          $mdbapi_intro_comment = lang('mdbapi_v1_only_config_comment');
+          break;
+  case 0: $mpdis = ' DISABLED';
+          $imdbdis = ' DISABLED';
+          $mdbapi_intro = lang('mdbapi_notavail_config');
+          $mdbapi_intro_comment = lang('mdbapi_notavail_config_comment');
+          break;
+  default: break;
+}
 $t->set_var("list_head","IMDB");
 $t->set_var("block_id","IMDB");
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#imdb"));
 
+#--[ intro ]--
+if ( !empty($mdbapi_intro) ) {
+  $t->set_var('item_name',$mdbapi_intro);
+  $t->set_var('item_comment',$mdbapi_intro_comment);
+  $t->set_var('item_input','');
+  $t->parse("item","itemblock");
+}
+
 #--[ imdb_url ]--
 $t->set_var("item_name",lang("imdb_url"));
 $t->set_var("item_comment",lang("imdb_url_comment"));
-$select  = "<SELECT NAME=\"imdb_url\">";
+$select  = "<SELECT NAME='imdb_url'$imdbdis>";
 $imdburls = $db->get_options("imdb_url");
 for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
   $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url"][$i] . "\"";
@@ -515,17 +545,64 @@ for ($i=0;$i<count($imdburls["imdb_url"]);++$i) {
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
-$t->parse("item","itemblock");
+$t->parse("item","itemblock",$mdbapi_intro);
 
 #--[ imdb_url2 ]--
 $t->set_var("item_name",lang("imdb_url2"));
 $t->set_var("item_comment",lang("imdb_url2_comment"));
-$select  = "<SELECT NAME=\"imdb_url2\">";
+$select  = "<SELECT NAME='imdb_url2'$imdbdis>";
 $imdburls = $db->get_options("imdb_url2");
 for ($i=0;$i<count($imdburls["imdb_url2"]);++$i) {
   $select .= "<OPTION VALUE=\"" . $imdburls["imdb_url2"][$i] . "\"";
   if ($imdburls["imdb_url2"][$i] == $imdb_url2) $select .= " SELECTED";
   $select .= ">" . $imdburls["imdb_url2"][$i] . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ MoviePilot Site ]--
+$t->set_var("item_name",lang("pilot_url"));
+$t->set_var("item_comment",lang("pilot_url_comment"));
+$select  = "<SELECT NAME='pilot_url'$mpdis>";
+$imdburls = $db->get_options("pilot_url");
+for ($i=0;$i<count($imdburls["pilot_url"]);++$i) {
+  $select .= "<OPTION VALUE=\"" . $imdburls["pilot_url"][$i] . "\"";
+  if ($imdburls["pilot_url"][$i] == $pilot_url) $select .= " SELECTED";
+  $select .= ">" . $imdburls["pilot_url"][$i] . "</OPTION>";
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ MoviePilot Fallback ]--
+$t->set_var("item_name",lang("pilot_fallback"));
+$t->set_var("item_comment",lang("pilot_fallback_comment"));
+$select  = "<SELECT NAME='pilot_fallback'$mpdis>";
+$opts = $db->get_options("pilot_fallback");
+for ($i=0;$i<count($opts['pilot_fallback']);++$i) {
+  $select .= "<OPTION VALUE='".$opts['pilot_fallback'][$i]."'";
+  if ($opts['pilot_fallback'][$i]==$pilot_fallback) $select .= ' SELECTED';
+  $select .= '>' .$opts['pilot_fallback'][$i]. '</OPTION>';
+}
+$select .= "</SELECT>";
+$t->set_var("item_input",$select);
+$t->parse("item","itemblock",TRUE);
+
+#--[ MDB to use ]--
+$t->set_var("item_name",lang("mdb_use"));
+$t->set_var("item_comment",lang("mdb_use_comment"));
+$select = "<SELECT NAME='mdb_use'>";
+$opts = array(lang('none'));
+if ($imdbapi_gen > 0) $opts[] = 'IMDB';
+if ($imdbapi_gen > 1) {
+  $opts[] = 'MoviePilot';
+  $opts[] = 'IMDB + MoviePilot';
+}
+for ($i=0;$i<count($opts);++$i) {
+  $select .= "<OPTION VALUE='$i'";
+  if ($opts[$i]==$mdb_use) $select .= ' SELECTED';
+  $select .= ">".$opts[$i]."</OPTION>";
 }
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
@@ -539,6 +616,7 @@ $imdbtx = $db->get_options("imdb_tx"); $count = count($imdbtx["imdb_tx"]);
 for ($i=0;$i<$count;++$i) {
   $select .= "<INPUT TYPE='checkbox' CLASS='checkbox' NAME='".$imdbtx["imdb_tx"][$i]."'";
   if (${$imdbtx["imdb_tx"][$i]}) $select .= " CHECKED";
+  if ( $imdbapi_gen < 1 ) $select .= ' DISABLED';
   $select .= ">".lang($imdbtx["imdb_tx"][$i])."&nbsp;";
 }
 $t->set_var("item_input",$select);
@@ -549,8 +627,10 @@ $t->set_var("item_name",lang("imdb_txwin_autoclose"));
 $t->set_var("item_comment",lang("imdb_txwin_autoclose_comment"));
 $input = "<INPUT TYPE='radio' NAME='imdb_txwin_autoclose' VALUE='0'";
 if (!$imdb_txwin_autoclose) $input .= " CHECKED";
+if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
 $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_txwin_autoclose' VALUE='1'";
 if ($imdb_txwin_autoclose) $input .= " CHECKED";
+if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
 $input .= ">".lang("yes");
 $t->set_var("item_input",$input);
 $t->parse("item","itemblock",TRUE);
@@ -561,8 +641,10 @@ if ($admin) {
   $t->set_var("item_comment",lang("imdb_cache_enable_comment"));
   $input = "<INPUT TYPE='radio' NAME='imdb_cache_enable' VALUE='0'";
   if (!$imdb_cache_enable) $input .= " CHECKED";
+  if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
   $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_cache_enable' VALUE='1'";
   if ($imdb_cache_enable) $input .= " CHECKED";
+  if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
   $input .= ">".lang("yes");
   $t->set_var("item_input",$input);
   $t->parse("item","itemblock",TRUE);
@@ -570,7 +652,9 @@ if ($admin) {
   #--[ expiration time for cache ]==
   $t->set_var("item_name",lang("imdb_cache_expire"));
   $t->set_var("item_comment",lang("imdb_cache_expire_comment"));
-  $select = "<SELECT NAME='imdb_cache_expire'><OPTION VALUE='0'";
+  $select = "<SELECT NAME='imdb_cache_expire'";
+  if ( $imdbapi_gen < 1 ) $select .= ' DISABLED';
+  $select .= "><OPTION VALUE='0'";
   if (!$imdb_cache_expire) $select .= " SELECTED";
   $select .= ">" . lang("never") . "</OPTION><OPTION VALUE='86400'";
   if ($imdb_cache_expire=="86400") $select .= " SELECTED";
@@ -587,7 +671,11 @@ if ($admin) {
   #--[ Cache directory ]--
   $t->set_var("item_name",lang("imdb_cache_dir"));
   $t->set_var("item_comment",lang("imdb_cache_dir_comment"));
-  $t->set_var("item_input","<INPUT SIZE='20' NAME='imdb_cache_dir' VALUE='$imdb_cache_dir'>");
+  if ( $imdbapi_gen < 1 ) {
+    $t->set_var("item_input","<INPUT SIZE='20' NAME='imdb_cache_dir' VALUE='$imdb_cache_dir' DISABLED>");
+  } else {
+    $t->set_var("item_input","<INPUT SIZE='20' NAME='imdb_cache_dir' VALUE='$imdb_cache_dir'>");
+  }
   $t->parse("item","itemblock",TRUE);
 
   #--[ Use the Cache for new requests? ]--
@@ -595,8 +683,10 @@ if ($admin) {
   $t->set_var("item_comment",lang("imdb_cache_use_comment"));
   $input = "<INPUT TYPE='radio' NAME='imdb_cache_use' VALUE='0'";
   if (!$imdb_cache_enable) $input .= " CHECKED";
+  if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
   $input .= ">".lang("no")."&nbsp;<INPUT TYPE='radio' NAME='imdb_cache_use' VALUE='1'";
   if ($imdb_cache_enable) $input .= " CHECKED";
+  if ( $imdbapi_gen < 1 ) $input .= ' DISABLED';
   $input .= ">".lang("yes");
   $t->set_var("item_input",$input);
   $t->parse("item","itemblock",TRUE);

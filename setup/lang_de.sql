@@ -1,5 +1,5 @@
 # ========================================================
-# German Language File created for phpVideoPro v0.9.5
+# German Language File created by phpVideoPro v0.9.6
 # ========================================================
 
 UPDATE pvp_languages SET charset='UTF-8' WHERE lang_id='de';
@@ -236,12 +236,12 @@ INSERT INTO pvp_lang VALUES ('imdb_movie_id','de','IMDB Film ID','');
 INSERT INTO pvp_lang VALUES ('imdb_search_empty_result','de','Sorry - phpVideoPro konnte keinen entsprechenden Eintrag in der IMDB finden.<BR>Vielleicht hilft ein erneuter Versuch mit anderen Suchbegriffen?','');
 INSERT INTO pvp_lang VALUES ('imdb_title_search','de','Filmsuche mit der IMDB','');
 INSERT INTO pvp_lang VALUES ('imdb_transfer2edit','de','Daten übertragen','');
-INSERT INTO pvp_lang VALUES ('imdb_tx','de','Welche Daten sollen von der IMDB in die Datenbank von phpVideoPro übernommen werden?','');
+INSERT INTO pvp_lang VALUES ('imdb_tx','de','Welche Daten sollen vom Suchergebnis in die Datenbank von phpVideoPro übernommen werden?','');
 INSERT INTO pvp_lang VALUES ('imdb_txwin_autoclose','de','IMDB Suchfenster nach Datentransfer automatisch schließen?','');
 INSERT INTO pvp_lang VALUES ('imdb_txwin_autoclose_comment','de','Wenn die von der IMDB bezogenen Daten in das Bearbeitungsformular von phpVideoPro übertragen wurden, wird das Suchfenster nicht länger benötigt. Bei Bedarf kann es jedoch z.B. als Referenz geöffnet bleiben.','');
 INSERT INTO pvp_lang VALUES ('imdb_tx_actor','de','Schauspieler','');
 INSERT INTO pvp_lang VALUES ('imdb_tx_cat','de','Kategorien','');
-INSERT INTO pvp_lang VALUES ('imdb_tx_comment','de','phpVideoPro bietet die Möglichkeit, beim Anlegen eines neuen bzw. editieren eines existenten Datensatzes für einen Film Daten aus der IMDB abzurufen und zu übernehmen. Hier kann festgelegt werden, welche Daten standardmäßig übernommen werden sollen.','');
+INSERT INTO pvp_lang VALUES ('imdb_tx_comment','de','phpVideoPro bietet die Möglichkeit, beim Anlegen eines neuen bzw. editieren eines existenten Datensatzes für einen Film Daten aus der IMDB und/oder von MoviePilot abzurufen und zu übernehmen. Hier kann festgelegt werden, welche Daten standardmäßig übernommen werden sollen.','');
 INSERT INTO pvp_lang VALUES ('imdb_tx_comments','de','Kommentar','');
 INSERT INTO pvp_lang VALUES ('imdb_tx_country','de','Land','');
 INSERT INTO pvp_lang VALUES ('imdb_tx_director','de','Regisseur','');
@@ -254,10 +254,10 @@ INSERT INTO pvp_lang VALUES ('imdb_url','de','Zu verwendende IMDB Site','');
 INSERT INTO pvp_lang VALUES ('imdb_url2','de','Alternative IMDB Site','');
 INSERT INTO pvp_lang VALUES ('imdb_url2_comment','de','Obwohl es lokalisierte Versionen der IMDB gibt (z.B. german.imdb.com), sind die eigentlichen Filmdaten dort nicht in die jeweilige Landessprache übersetzt worden - sondern lediglich die \"Bedienelemente\" der Webseiten. Das macht das Parsen nach den benötigten Daten komplizierter (ohne das das Ergebnis den Aufwand rechtfertigen könnte), weshalb phpVideoPro hierfür eine <b><i>Englische</i></b> IMDB-Site benötigt, die hier auszuwählen ist. Allerdings funktioniert bei der lokalisierten Site auch die Suche nach einem Filmtitel in der Landessprache: für die Suche empfiehlt sich daher die lokalisierte Version.','');
 INSERT INTO pvp_lang VALUES ('imdb_url_comment','de','Die Internet Movie Database bietet ausführliche Informationen zu vielen Filmen. Es gibt verschiedene lokalisierte Sites. Da die Titel dort zumeist in der jeweiligen Landessprache abgelegt sind, empfiehlt sich die Auswahl einer Site, die am ehesten der eigenen Datenbank entspricht.','');
-INSERT INTO pvp_lang VALUES ('imp_errors','de','Beim Import von %2 Datensätzen sind insgesamt %1 fehler aufgetreten.','');
-INSERT INTO pvp_lang VALUES ('imp_success','de','%1 Datensätze erfolgreich importiert.','');
 INSERT INTO pvp_lang VALUES ('import_from_user','de','Nur Filme des Benutzers','');
 INSERT INTO pvp_lang VALUES ('import_to_user','de','Eigentümer ändern in','');
+INSERT INTO pvp_lang VALUES ('imp_errors','de','Beim Import von %2 Datensätzen sind insgesamt %1 fehler aufgetreten.','');
+INSERT INTO pvp_lang VALUES ('imp_success','de','%1 Datensätze erfolgreich importiert.','');
 INSERT INTO pvp_lang VALUES ('incomplete_date','de','Ist das exakte Datum nicht bekannt (sondern z.B. nur die Jahreszahl \"2000\"), sind die unbekannten Werte durch Nullen zu ersetzen - im genannten Beispiel entspräche das den Eingaben \"00\" \"00\" \"2000\".','');
 INSERT INTO pvp_lang VALUES ('info_common','de','Allgemeine Information','');
 INSERT INTO pvp_lang VALUES ('info_common_info','de','<DIV ALIGN=\"center\">Dies ist Version %1 von phpVideoPro, installiert auf %2.</div>','');
@@ -407,6 +407,12 @@ INSERT INTO pvp_lang VALUES ('lower_left_corner','de','Untere linke Ecke (x/y)',
 INSERT INTO pvp_lang VALUES ('max_fontsize','de','Maximale Schriftgröße','');
 INSERT INTO pvp_lang VALUES ('max_user_backups','de','Wie viele Backups pro Benutzer sollen maximal auf dem Server vorgehalten werden?','');
 INSERT INTO pvp_lang VALUES ('max_user_backups_comment','de','Diese Zahl wird jedes Mal geprüft, wenn der Benutzer ein neues Backup anlegen will. Bei Überschreitung dieses Wertes wird das jeweils älteste Backup entfernt.','');
+INSERT INTO pvp_lang VALUES ('mdbapi_notavail_config','de','Keine IMDBPHP API gefunden','');
+INSERT INTO pvp_lang VALUES ('mdbapi_notavail_config_comment','de','Es konnte keine IMDBPHP API gefunden werden. Daher wurden diese Einstellungen deaktiviert.','');
+INSERT INTO pvp_lang VALUES ('mdbapi_v1_only_config','de','IMDBPHP Version veraltet','');
+INSERT INTO pvp_lang VALUES ('mdbapi_v1_only_config_comment','de','Es wurde nur eine veraltete Version der IMDBPHP API auf diesem System gefunden. Nicht verfügbare Features sind daher in den Einstellungen deaktiviert.','');
+INSERT INTO pvp_lang VALUES ('mdb_use','de','Welche Movie-Site soll benutzt werden?','');
+INSERT INTO pvp_lang VALUES ('mdb_use_comment','de','Diese Einstellung legt fest, welche Informationsquellen genutzt werden. Wird MoviePilot mit Fallback-Option zusätzlich zur IMDB ausgewählt, kann es duplikate Informationen geben.','');
 INSERT INTO pvp_lang VALUES ('media','de','Medien','');
 INSERT INTO pvp_lang VALUES ('medialength','de','Medienlänge','');
 INSERT INTO pvp_lang VALUES ('medialist','de','Medienliste','');
@@ -477,6 +483,10 @@ INSERT INTO pvp_lang VALUES ('permit_userbackup_restore_comment','de','Dies erla
 INSERT INTO pvp_lang VALUES ('permit_userbackup_store','de','Dürfen Benutzer Backups ihrer Filmdaten auf dem Server anlegen?','');
 INSERT INTO pvp_lang VALUES ('permit_userbackup_store_comment','de','Dies erlaubt normalen Benutzern, Backups ihrer Filmdaten zu erstellen, welche sodann automatisch im konfigurierten Backup-Verzeichnis abgelegt werden. Hierbei wird kein Backup-Paket zum Browser gesendet, es findet also kein Download der Daten statt.','');
 INSERT INTO pvp_lang VALUES ('picture','de','Farbformat','');
+INSERT INTO pvp_lang VALUES ('pilot_fallback','de','Fallback für bei MoviePilot fehlende Inhalte','');
+INSERT INTO pvp_lang VALUES ('pilot_fallback_comment','de','Bei MoviePilot nicht verfügbare Inhalte kann die API automatisch von der konfigurierten IMDB Site beziehen, wenn dies hier aktiviert ist. NO_ACCESS heißt, dass dies nicht geschieht; BASIC_ACCESS bezieht nur \"unverfängliches\", FULL_ACCESS holt alles, was möglich ist.','');
+INSERT INTO pvp_lang VALUES ('pilot_url','de','Zu verwendende MoviePilot Site','');
+INSERT INTO pvp_lang VALUES ('pilot_url_comment','de','Wie auch die IMDB, bietet MoviePilot eine Fülle an Informationen zu verschiedenen Filmen. Zwar ist die Datenbank hier (noch) nicht so umfangreich wie bei der IMDB - dafür ist die API stabiler, und die Inhalte unterliegen alle der \"Creative Commons\" Lizenz (also gibt es keinerlei Copyright-Probleme). Aus den URLs lässt sich hier leicht auf die Sprache der Inhalte schließen.','');
 INSERT INTO pvp_lang VALUES ('preferences','de','Einstellungen','');
 INSERT INTO pvp_lang VALUES ('print','de','Drucken','');
 INSERT INTO pvp_lang VALUES ('printer','de','Drucker','');

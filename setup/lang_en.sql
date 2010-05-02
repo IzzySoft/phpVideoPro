@@ -568,8 +568,8 @@ INSERT INTO pvp_lang VALUES ('imdb_transfer2edit','en','Transfer data to edit sc
 INSERT INTO pvp_lang VALUES ('imdbsearch','en','Retrieve movie details from the IMDB','Item in the help topic list');
 INSERT INTO pvp_lang VALUES('imdb_url2','en','Alternative IMDB Site','String to display for the IMDB selection on the configuration page');
 INSERT INTO pvp_lang VALUES('imdb_url2_comment','en','Although we have localized instances of the IMDB, all they localized up to know are the identifiers the IMDB class uses to parse - so this localization(s) just break the class. On the other hand, the movie information we need stays in English even on non-English sites. This means, for parsing the details we need an <b><i>English</i></b> IMDB site - please chose an appropriate one.','String to display as explanation for the IMDB selection on the configuration page');
-INSERT INTO pvp_lang VALUES ('imdb_tx','en','Data to transfer from IMDB','String to display as explanation for the IMDB selection on the configuration page');
-INSERT INTO pvp_lang VALUES ('imdb_tx_comment','en','When adding/editing a movie entry, phpVideoPro offers you the possibility to retrieve some information from the IMDB. Here you can specify what information you want to transfer to phpVideoPros database by default.','String to display as explanation for the IMDB selection on the configuration page');
+INSERT INTO pvp_lang VALUES ('imdb_tx','en','Data to transfer from search window','String to display as explanation for the IMDB selection on the configuration page');
+INSERT INTO pvp_lang VALUES ('imdb_tx_comment','en','When adding/editing a movie entry, phpVideoPro offers you the possibility to retrieve some information from the IMDB and/or MoviePilot. Here you can specify what information you want to transfer to phpVideoPros database by default.','String to display as explanation for the IMDB selection on the configuration page');
 INSERT INTO pvp_lang VALUES ('imdb_tx_title','en','Title','Option name on configuration/preferences page for items to transfer from IMDB');
 INSERT INTO pvp_lang VALUES ('imdb_tx_year','en','Year','Option name on configuration/preferences page for items to transfer from IMDB');
 INSERT INTO pvp_lang VALUES ('imdb_tx_pg','en','PG','Option name on configuration/preferences page for items to transfer from IMDB');
@@ -721,4 +721,15 @@ INSERT INTO pvp_lang VALUES ('max_user_backups','en','How many backups to keep o
 INSERT INTO pvp_lang VALUES ('max_user_backups_comment','en','This number will be checked everytime a user requests a new backup to be created to be stored to the server. If this limit is reached, the oldest backup file will be removed.','Explanation to an option on the configuration page');
 INSERT INTO pvp_lang VALUES ('db_clean_admin_required','en','To purge the entire DB, you need to have admin privileges.','Error message');
 INSERT INTO pvp_lang VALUES ('user_backup','en','User Backup/Restore','Page title');
+INSERT INTO pvp_lang VALUES ('mdbapi_v1_only_config','en','Outdated version of IMDBPHP installed','Message on config screen');
+INSERT INTO pvp_lang VALUES ('mdbapi_v1_only_config_comment','en','Only an outdated version of IMDBPHP was found on this system. Not all features are available, so some settings are deactivated.','Message on config screen');
+INSERT INTO pvp_lang VALUES ('mdbapi_notavail_config','en','IMDBPHP API not found','Message on config screen');
+INSERT INTO pvp_lang VALUES ('mdbapi_notavail_config_comment','en','There was no IMDBPHP API found in the PHP include_path, so these settings are not available.','Message on config screen');
+INSERT INTO pvp_lang VALUES ('pilot_url','en','MoviePilot Site to use','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('pilot_url_comment','en','Like the IMDB, MoviePilot provides a lot of details for movies. Though its database might be not that complete, the great advantage is a stable API and no copyright issues (all content sticks to the Creative Commons license). The URLs here indicate the content language served.','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('pilot_fallback','en','Fallback for content missing at MoviePilot','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('pilot_fallback_comment','en','For content missing at MoviePilot, the API allows to fill it up from the IMDB. Here you can define to which degree this should happen: NO_ACCESS means no fallback (and is the safe side for copyright issues), BASIC_ACCESS is almost not trackable, and FULL_ACCESS tries to catch as much as possible.','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('mdb_use','en','Which movie site to use','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('mdb_use_comment','en','Here you can decide from which site content shall be retrieved. If you enable IMDB, MoviePilot, and Pilot Fallback, you might get some duplicate information - so you better decide for either the Fallback or both sites.','Item on the configuration screen');
+#INSERT INTO pvp_lang VALUES ('','en','','Item on the configuration screen');
 #INSERT INTO pvp_lang VALUES ('','en','','');

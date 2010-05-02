@@ -601,7 +601,7 @@ if ($imdbapi_gen > 1) {
 }
 for ($i=0;$i<count($opts);++$i) {
   $select .= "<OPTION VALUE='$i'";
-  if ($opts[$i]==$mdb_use) $select .= ' SELECTED';
+  if ($i==$mdb_use) $select .= ' SELECTED';
   $select .= ">".$opts[$i]."</OPTION>";
 }
 $select .= "</SELECT>";

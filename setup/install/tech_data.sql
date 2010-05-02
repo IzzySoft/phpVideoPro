@@ -3,8 +3,11 @@
 # Data for pvp_options
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://german.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://italian.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.de/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.es/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.fr/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.it/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.pt/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://akas.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://uk.imdb.com/');

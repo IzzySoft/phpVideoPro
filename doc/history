@@ -3,6 +3,11 @@ $Id$
 History for phpVideoPro
 =======================
 
+0.9.7
+-------------------
++ making sections on the configuration page able to collaps and expand
+* adjusted IMDB sites to their new domains
+
 v0.9.6 (25.04.2010)
 -------------------
 ! when the WYSIWYG editor was switched on, comment data have not been transfered

@@ -1,5 +1,20 @@
+  <SCRIPT TYPE="text/javascript"> //<!--
+    function blockToggle(what) {
+      ico = what+'ico';
+      if (document.getElementById(what).style.visibility == "hidden") {
+        document.getElementById(what).style.visibility = "visible";
+        document.getElementById(what).style.display = "";
+        document.getElementById(ico).src = "{base_dir}images/minus.gif";
+      } else {
+        document.getElementById(what).style.visibility = "hidden";
+        document.getElementById(what).style.display = "none";
+        document.getElementById(ico).src = "{base_dir}images/plus.gif";
+      }
+    }
+    // -->
+  </SCRIPT>
 <BR>
-<TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
+<TABLE WIDTH="95%" ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>
 <DIV STYLE="display:inline">
 <TABLE WIDTH="95%" CELLPADDING="0" CELLSPACING="0" CLASS="window" BORDER="0" ALIGN="center"><TR><TD>
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
@@ -22,8 +37,8 @@
 
 <TABLE ALIGN="center" WIDTH="99%" BORDER="1" STYLE="margin:5">
 <!-- BEGIN listblock -->
- <TR><TH><TABLE WIDTH="100%" BORDER="0"><TR><TH>{list_head}</TH><TH WIDTH="20"><DIV ALIGN="right">{help_icon}</DIV></TH></TR></TABLE></TH></TR>
- <TR CLASS="content"><TD>
+ <TR onClick="blockToggle('{block_id}')"><TD CLASS="tdb"><IMG SRC="{base_dir}/images/plus.gif" ID="{block_id}ico" STYLE="margin-right:1em;" ALT=''>{list_head}<DIV ALIGN="right" STYLE="float:right;">{help_icon}</DIV></TD></TR>
+ <TR CLASS="content" ID="{block_id}" STYLE="visibility:hidden;display:none;"><TD>
   <TABLE WIDTH="100%">
   <!-- BEGIN itemblock -->
    <TR><TD WIDTH="70%"><b>{item_name}</b><br>{item_comment}</TD>

@@ -226,6 +226,7 @@ $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
 #----------------------------------------[ setup block 1: language stuff ]---
 $t->set_var("list_head",lang("language_settings"));
+$t->set_var("block_id","language_settings");
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#lang"));
 
 if ($admin) {
@@ -309,6 +310,7 @@ $t->parse("list","listblock");
 
 #-----------------------------------------[ setup block 3: movies & media ]---
 $t->set_var("list_head",lang("config_media"));
+$t->set_var("block_id","config_media");
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#media"));
 
 if ($admin) {
@@ -441,6 +443,7 @@ $t->parse("list","listblock",TRUE);
 #------------------------------------------------[ setup block 4: cookies ]---
 if ($admin) {
   $t->set_var("list_head",lang("cookies"));
+  $t->set_var("block_id","cookies");
   $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#cookies"));
 
   #--[ enable_cookies ]--
@@ -497,6 +500,7 @@ if ($admin) {
 
 #------------------------------------------[ setup block 5: imdb defaults ]---
 $t->set_var("list_head","IMDB");
+$t->set_var("block_id","IMDB");
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#imdb"));
 
 #--[ imdb_url ]--
@@ -604,6 +608,7 @@ $t->parse("list","listblock",TRUE);
 #-------------------------------------------[ setup block 6: user backups ]---
 if ($admin) {
   $t->set_var("list_head",lang("config_user_backups"));
+  $t->set_var("block_id","config_user_backups");
   $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#userbackups"));
 
   #--[ permit download ]--
@@ -652,6 +657,7 @@ if ($admin) {
 
 #---------------------------------------------[ setup block 7: misc stuff ]---
 $t->set_var("list_head",lang("general"));
+$t->set_var("block_id","general");
 $t->set_var("help_icon",$pvp->link->linkhelp($page_id."#general"));
 $color_input = "<INPUT SIZE=\"7\" MAXLENGTH=\"7\"";
 

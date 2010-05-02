@@ -39,10 +39,10 @@ class Template {
   # "comment" => replace undefined variables with comments
   # "keep"    => keep undefined variables
   var $unknowns = "remove";
-  
+
   # "yes" => halt, "report" => report error, continue, "no" => ignore error quietly
   var $halt_on_error  = "yes";
-  
+
   # last error message is retained here
   var $last_error     = "";
 
@@ -58,6 +58,7 @@ class Template {
     GLOBAL $pvp,$base_path,$base_url,$page_id;
     $this->set_root($root);
     $this->set_unknowns($unknowns);
+    $this->set_var("base_dir",$base_url."/");
     $this->set_var("tpl_dir",str_replace($base_path,$base_url,$pvp->tpl_dir)."/");
     $this->set_var("logoff_link",$base_url."login.php?logout=1");
     $this->set_var("page_id",$page_id);
@@ -161,7 +162,7 @@ class Template {
     $this->set_var($handle, $m[1][0]);
     $this->set_var($parent, $str);
   }
-  
+
   /** define the content of one {var} inside the template
    *  Alternatively to passing two strings, they can be passed as a array
    *  of pairs name,value
@@ -204,7 +205,7 @@ class Template {
     $str = @preg_replace($this->varkeys, $this->varvals, $str);
     return $str;
   }
-  
+
   /** Substitute variables
    * @package Api
    * @class Template
@@ -243,7 +244,7 @@ class Template {
     }
     return $str;
   }
-  
+
   /** Parse a template (final parse)
    *  calls parse(), prints the result and then returns FALSE
    * @package Api
@@ -258,7 +259,7 @@ class Template {
     print $this->finish( $this->parse($target, $handle, $append) );
     return false;
   }
-  
+
   /** Retrieve all set vars
    * @package Api
    * @class Template
@@ -272,7 +273,7 @@ class Template {
     }
     return $result;
   }
-  
+
   /** Retrieve variable contents
    * @package Api
    * @class Template
@@ -291,7 +292,7 @@ class Template {
       return $result;
     }
   }
-  
+
   /** Obtain list of undefined variables
    * @package Api
    * @class Template
@@ -314,7 +315,7 @@ class Template {
       if (!isset($this->varkeys[$v]))
         $result[$v] = $v;
     }
-    
+
     if (count($result))
       return $result;
     else
@@ -368,13 +369,13 @@ class Template {
     if (substr($filename, 0, 1) != "/") {
       $filename = $this->root."/".$filename;
     }
-    
+
     if (!file_exists($filename))
       $this->halt("filename: file $filename does not exist.");
 
     return $filename;
   }
-  
+
   /* private: varname($varname)
    * varname: name of a replacement variable to be protected.
    */
@@ -402,7 +403,7 @@ class Template {
     }
 
     $this->set_var($handle, $str);
-    
+
     return true;
   }
 
@@ -412,16 +413,16 @@ class Template {
    */
   function halt($msg) {
     $this->last_error = $msg;
-    
+
     if ($this->halt_on_error != "no")
       $this->haltmsg($msg);
-    
+
     if ($this->halt_on_error == "yes")
       die("<b>Halted.</b>");
-    
+
     return false;
   }
-  
+
   /* public, override: haltmsg($msg)
    * msg: error message to show.
    */

@@ -8,9 +8,8 @@ History for phpVideoPro
 + making sections on the configuration page able to collaps and expand
 * adjusted IMDB sites to their new domains
 + MoviePilot options added to database and configuration screen.
-+ Now the user can decide for the MDB site to retrieve data from (IMDB or
-  MoviePilot). Just the combination is not yet working - so it's either this
-  or that for now.
++ Now the user can decide for the MDB site to retrieve data from (IMDB and/or
+  MoviePilot).
 
 v0.9.6 (25.04.2010)
 -------------------

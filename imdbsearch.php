@@ -47,7 +47,7 @@ function config_pilot(&$inst) {
 }
 
 function match_genre(&$genre,$class) {
-  static $imdb = array('sci-fi'=>'sf');
+  static $imdb = array('Sci-Fi'=>'sf');
   static $pilot = array(
     'Science Fiction-Film' => 'sf',
     'Actionfilm' => 'action',
@@ -58,6 +58,61 @@ function match_genre(&$genre,$class) {
   } else {
     if (in_array($genre,array_keys($imdb))) $genre = $imdb[$genre];
   }
+}
+
+function get_data(&$movie) {
+  $data->title    = $movie->title();
+  $data->akas     = $movie->alsoknow();
+  $data->country  = $movie->country();
+  $data->year     = $movie->year();
+  $data->mpaa     = $movie->mpaa();
+  $data->runtime  = $movie->runtime();
+  $data->genres   = $movie->genres();
+  $data->director = $movie->director();
+  $data->cast     = $movie->cast();
+  $data->rating   = $movie->rating();
+  $data->photo    = $movie->photo_localurl();
+  $data->plotoutline = $movie->plotoutline();
+  $data->plot   = $movie->plot();
+  $data->tagline  = $movie->tagline();
+  return $data;
+}
+
+function merge_data(&$data1,$data2) {
+  if ($data1->title != $data2->title) $data1->akas[] = array("title"=>$data2->title,"year"=>$data1->year,"country"=>"","comment"=>"");
+  foreach ($data2->akas as $aka) if ( !in_array($aka,$data1->akas) ) $data1->akas[] = $aka;
+  foreach ($data2->country as $country) if ( !in_array($country,$data1->country) ) $data1->country[] = $country;
+  if ( empty($data1->year) ) $data1->year = $data2->year;
+  // $data->mpaa does not need merge, since only available from IMDB
+  if ( empty($data1->runtime) ) $data1->runtime = $data2->runtime;
+  foreach ($data2->genres as $genre) if ( !in_array($genre,$data1->genres) ) $data1->genres[] = $genre;
+  foreach ($data2->director as $dir) {
+    $found = FALSE;
+    foreach ($data1->director as $dir1) {
+      if ( empty($dir['imdb']) ) {
+        if ( $dir['name']==$dir1['name'] ) { $found = TRUE; break; }
+      } else {
+        if ( $dir['imdb'] == $dir1['imdb'] ) { $found = TRUE; break; }
+      }
+    }
+    if ( !$found ) $data1->director[] = $dir;
+  }
+  foreach ($data2->cast as $cast) {
+    $found = FALSE;
+    foreach ($data1->cast as $cast1) {
+      if ( empty($cast['imdb']) ) {
+        if ( $cast['name'] == $cast1['name'] ) { $found = TRUE; break; }
+      } else {
+        if ( $cast['imdb'] == $cast1['imdb'] ) { $found = TRUE; break; }
+      }
+    }
+    if ( !$found ) $data1->cast[] = $cast;
+  }
+  if ( empty($data1->rating) )  $data1->rating = $data2->rating;
+  if ( empty($data1->photo) )   $data1->photo = $data2->photo;
+  if ( empty($data1->plotoutline) ) $data1->plotoutline = $data2->plotoutline;
+  foreach ($data2->plot as $plot) if ( !in_array($plot,$data1->plot) ) $data1->plot[] = $plot;
+  if ( empty($data1->tagline) ) $data1->tagline = $data2->tagline;
 }
 
 #==========================================================[ General setup ]===
@@ -173,31 +228,34 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   }
   $t->parse("resultlist","resultblock");
   $t->pparse("out","template");
+
 } elseif (!empty($_REQUEST["mid"])) {
-#===============================================[ Get movie data from IMDB ]===
+#================================================[ Get movie data from MDB ]===
 # $mdb_use: 1 = IMDB, 2 = MoviePilot, 3 = both
   $movieid = $_REQUEST["mid"];
-  if ( $mdb_use==2 && $imdbapi_gen>1) {
+  if ( ($mdb_use==2 || $mdb_use==3) && $imdbapi_gen>1 ) {
     require_once("pilot.class.php");
     $movie = new pilot($movieid);
     config_pilot($movie);
-    $movie->pilot_apikey = "09c959718cd0889505d95bc371cd1b"; //#!#
-  } else {
+    if ( $mdb_use==2 ) $data = get_data($movie);
+    else $data1 = get_data($movie);
+  }
+  if ( ($mdb_use==1 || $mdb_use==3) && $imdbapi_gen>0 ) {
     require_once("imdb.class.php");
     $movie = new imdb($movieid);
     config_imdb($movie);
     $imdbsite = $pvp->preferences->get("imdb_url2");
     $url = explode("/",$imdbsite);
     $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
+    $data = get_data($movie);
   }
-  $movie->setid ($movieid);
+  if ( $mdb_use==3 ) merge_data($data,$data1);
   $t->set_var("mid",$movieid);
   $hiddenvals = "";
   #-=[ Title incl. Also Known As ]=-
   $title  = "<SELECT NAME='title'>";
-  $title .= "<OPTION VALUE='".$movie->title()."'>".$movie->title()."</OPTION>";
-  $akas = $movie->alsoknow();
-  if (!empty( $akas )) foreach ( $akas as $ak) {
+  $title .= "<OPTION VALUE='".$data->title."'>".$data->title."</OPTION>";
+  if (!empty( $data->akas )) foreach ( $data->akas as $ak) {
     $style = "";
     $akatitle = $ak["title"];
     if (!empty($ak["year"]))    $akatitle .= ": ".$ak["year"];
@@ -214,43 +272,42 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   $t->set_var("mtitle",$title);
   $t->set_var("title_chk",$pvp->common->make_checkbox("title_chk",$imdb_tx_title));
   #-=[ Country ]=-
-  $acountry = $movie->country(); $cc = count($acountry); $country = "";
+  $cc = count($data->country); $country = "";
   for ($i=0;$i+1<$cc;++$i) {
-    $country .= $acountry[$i].", ";
+    $country .= $data->country[$i].", ";
   }
-  $country .= $acountry[$i];
+  $country .= $data->country[$i];
   $t->set_var("ncountry",lang("country"));
   $t->set_var("mcountry",$country);
   $t->set_var("country_chk",$pvp->common->make_checkbox("country_chk",$imdb_tx_country));
   #-=[ Year ]=-
   $t->set_var("nyear",lang("year"));
-  $t->set_var("myear",$movie->year());
+  $t->set_var("myear",$data->year);
   $t->set_var("year_chk",$pvp->common->make_checkbox("year_chk",$imdb_tx_year));
   #-=[ FSK / PG ]=-
   $t->set_var("npg",lang("fsk"));
   $t->set_var("fsk_help","&nbsp;" . $pvp->link->linkhelp("imdbsearch#details"));
-  $pga = $movie->mpaa(); $open = FALSE;
-  foreach ($pga as $var=>$val) {
+  $open = FALSE;
+  foreach ($data->mpaa as $var=>$val) {
     $t->set_var("pgval",$val);
     $t->set_var("mpg","$val ($var)");
     $t->parse("pglist","pgblock",$open);
     $open = TRUE;
   }
   $t->set_var("pg_chk",$pvp->common->make_checkbox("pg_chk",$imdb_tx_pg));
-  unset($tpg);
   #-=[ Length ]=-
   $t->set_var("nruntime",lang("length"));
-  $t->set_var("mruntime",$movie->runtime());
+  $t->set_var("mruntime",$data->runtime);
   $t->set_var("length_chk",$pvp->common->make_checkbox("length_chk",$imdb_tx_length));
   #-=[ Categories ]=-
   $cats = array();
   $t->set_var("ngenre",lang("categories"));
-  $gen = $movie->genres(); // split up array and fit into template
+  $gen = $data->genres; // split up array and fit into template
   $cc = count($gen); $genre = "";
    for ($i=0;$i<$cc;++$i) {
      $genre .= $gen[$i].", ";
-     if (strtolower($gen[$i])=="sci-fi") $gen[$i] = "sf";
-     match_genre($gen[$i],get_class($movie));
+     if ($gen[$i]=="Sci-Fi") $gen[$i] = "sf";
+     //match_genre($gen[$i],get_class($movie));
      $cat_id=$db->get_category_id("cat_".strtolower($gen[$i]));
      if (!empty($cat_id)) $cats[]=$cat_id;
   }
@@ -282,7 +339,7 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   $t->set_var("cat_chk",$pvp->common->make_checkbox("cat_chk",$imdb_tx_cat));
   #-=[ Directors ]=-
   $t->set_var("ndir_name",lang("director"));
-  $dir = $movie->director(); // array again - need to select
+  $dir = $data->director; // array again - need to select
   $cc = count($dir); $open = FALSE;
   for ($i=0;$i<$cc;++$i) {
     $t->set_var("dir_name",$dir[$i]["name"]); // we also have "imdb" and "role"
@@ -306,7 +363,7 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   }
   $t->set_var("music_chk",$pvp->common->make_checkbox("music_chk",$imdb_tx_music));
   #-=[ Actors ]=-
-  $cast = $movie->cast(); // here come the actors
+  $cast = $data->cast; // here come the actors
   $cc = count($cast);
   $open = FALSE;
   $t->set_var("actors",lang("actors"));
@@ -321,7 +378,7 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   #-=[ Ratings and Votings ]=-
   $t->set_var("rating_chk",$pvp->common->make_checkbox("rating_chk",$imdb_tx_rating));
   $t->set_var("nrating",lang("rating"));
-  $t->set_var("mrating",$movie->rating());
+  $t->set_var("mrating",$data->rating);
 #  $t->set_var("mvotes",$movie->votes());
 #  $t->set_var("mlanguage",$movie->language());
   #-=[ Misc stuff - maybe for the future ]=-
@@ -331,19 +388,19 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
 #  $wrt = $movie->writing(); // writing credits - array 0..n like director
 #  $prod = $movie->producer(); // same as $wrt
   #-=[ Foto ]=-
-  if (($photo_url = $movie->photo_localurl() ) == FALSE) {
+  if (($data->photo ) == FALSE) {
     $photo_url = "";
   } else {
-    $photo_url = substr($photo_url,strlen($base_url));
+    $photo_url = substr($data->photo,strlen($base_url));
 #    $t->set_var("mfoto",$photo_url);
     $t->set_var("mfoto_pic","<IMG SRC='$photo_url' ALT='cover' ALIGN='left'>");
   }
   #-=[ Plot = Comments ]=-
-  $plotoutline = $movie->plotoutline();
-  $plot = $movie->plot(); $cc = count($plot);
+  $plotoutline = $data->plotoutline;
+  $plot = $data->plot; $cc = count($plot);
   if (!empty($photo_url)) $comment = "[img]".$photo_url."[/img]";
     else $comment = "";
-  $tagline = trim($movie->tagline());
+  $tagline = trim($data->tagline);
   if (!empty($tagline)) $comment .= "<B>$tagline</B><BR>\n";
   if (!empty($plotoutline)) $comment .= "$plotoutline<BR>\n";
   for ($i=0;$i<$cc;++$i) { $comment .= $plot[$i]."<BR>\n"; }

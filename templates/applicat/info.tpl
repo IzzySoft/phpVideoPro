@@ -17,7 +17,7 @@
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD>
 
- <TABLE STYLE="margin:3;text-align:center" BORDER="1"><TR CLASS="content"><TD>
+ <TABLE STYLE="margin:3;text-align:center;border:2px ridge;" BORDER="0"><TR CLASS="content"><TD>
   <TABLE WIDTH="90%" ALIGN="center">
    <TR><TD>{details}</TD></TR>
   </TABLE>

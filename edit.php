@@ -415,7 +415,7 @@ EndHiddenFields;
   $mtitle = "<$dinput NAME='title' VALUE='$title' " . $formAddon . ">";
   $t->set_var("title",$mtitle);
   if ($edit) {
-    $t->set_var("imdb","<IMG SRC='".$base_url."images/imdb_link.gif' BORDER='0' ALT='IMDB Lookup' onClick='lookup_imdb()' ALIGN='middle'>");
+    $t->set_var("imdb","<IMG SRC='".$base_url."images/imdb_link.gif' BORDER='0' ALT='IMDB Lookup' onClick='lookup_imdb()' STYLE='vertical-align:top;margin-top:1px;'>");
     $t->set_var("js",$js);
   }
   #---[ media data ]---

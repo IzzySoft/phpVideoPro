@@ -22,7 +22,7 @@
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN="2">
-  <TABLE ALIGN="center" BORDER="1" WIDTH="100%">
+  <TABLE ALIGN="center" BORDER="0" WIDTH="100%" STYLE="border:2px ridge;">
    <TR><TH>{stafftype}</TH><TH>{title}</TH>
       <TH>{category}</TH><TH>{length}</TH>
       <TH WIDTH="85">{medianr}</TH></TR>

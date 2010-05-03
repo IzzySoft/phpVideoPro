@@ -13,7 +13,7 @@
  </COLGROUP>
  <TR><TH ColSpan="2">
    <TABLE WIDTH="100%" BORDER="0" CellPadding="0" CellSpacing="0">
-     <TR><TH WIDTH="10%" VALIGN="top">{previous}</TH><TH WIDTH="80%"> {title}</TH>
+     <TR><TH WIDTH="10%" VALIGN="top">{previous}</TH><TH WIDTH="80%"> {title} {imdb}</TH>
          <TH WIDTH="10%" ALIGN="right" VALIGN="top">{next}</TH></TR>
    </TABLE>
  <TR>

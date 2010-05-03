@@ -29,7 +29,7 @@
 {hiddenfields}
 <DIV STYLE="margin:3">
 
-<Table Align="Center" Border="1">
+<Table Align="Center" Border="0" STYLE="border:2px ridge;">
  <COLGROUP>
   <COL WIDTH="50%">
   <COL WIDTH="50%">

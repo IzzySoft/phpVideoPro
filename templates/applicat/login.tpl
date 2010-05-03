@@ -11,7 +11,7 @@
 
 <FORM NAME="deleform" METHOD="post" ACTION="{formtarget}">
  <TABLE ALIGN="center" BORDER="0" STYLE="margin:3">
-  <TR><TH COLSPAN="2" STYLE="text-align:center">{login_hint}</TH></TR>
+  <TR><TD COLSPAN="2" STYLE="text-align:center">{login_hint}</TD></TR>
   <TR><TD><DIV ALIGN="right">{head_login}</DIV></TD>
       <TD><INPUT NAME="login"></TD></TR>
   <TR><TD><DIV ALIGN="right">{head_passwd}</DIV></TD>

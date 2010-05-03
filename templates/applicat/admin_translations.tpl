@@ -23,11 +23,11 @@
 <TABLE ALIGN="center" BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" STYLE="margin:3">
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="center">{abc}</DIV></TD>
-     <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
+     <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN="3"><DIV STYLE="margin:3">
-  <TABLE ALIGN="center" BORDER="1" CELLPADDING="2" CELLSPACING="2">
+  <TABLE ALIGN="center" BORDER="0" CELLPADDING="2" CELLSPACING="2" STYLE="border:2px ridge;">
    <!-- BEGIN mtitleblock -->
-   <COLGROUP><COL WIDTH="150pt"><COL WIDTH="3*"><COL WIDTH="380pt"><COL WIDTH="3*"></COLGROUP>
+   <COLGROUP><COL WIDTH="150pt"><COL WIDTH="*"><COL WIDTH="380pt"><COL WIDTH="*"></COLGROUP>
    <TR><TH>{code}</TH>
        <TH>{orig}</TH>
        <TH>{trans}</TH>

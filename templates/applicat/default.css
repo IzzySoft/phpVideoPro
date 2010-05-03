@@ -22,11 +22,11 @@ TD, TH {
   text-align: left;
 }
 TR.content { background-color: #F3F3F3; }
-TH {
-  background-color: #FF9;
-  font-weight: bold;
+TH, .tdb {
+  color: #fff;
+  background-color: #4d9dfc;
+  font-weight:bold;
 }
-.tdb { color: #fff; background-color: #4d9dfc; font-weight:bold; }
 
 SPAN {
   font-size: 11px;

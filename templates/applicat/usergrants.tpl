@@ -21,7 +21,7 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE BORDER="1" STYLE="margin-left:auto; margin-right:auto;margin-bottom:5px;">
+<TABLE BORDER="0" STYLE="margin-left:auto; margin-right:auto;margin-bottom:5px;border:2px ridge;">
  <TR><TH><DIV ALIGN="center">{head_users}</DIV></TH>
      <TH COLSPAN="4"><DIV ALIGN="center">{head_access}</DIV></TH>
      <TH><DIV ALIGN="center">{head_actions}</DIV></TH></TR>

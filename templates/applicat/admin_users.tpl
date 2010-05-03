@@ -22,7 +22,7 @@
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
 <TABLE ALIGN="center" BORDER="0" STYLE="margin:3" CELLPADDING="0" CELLSPACING="0"><TR><TD>
-<TABLE ALIGN="center" BORDER="1">
+<TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
  <TR><TH COLSPAN="3"><DIV ALIGN="center">{head_users}</DIV></TH>
      <TH COLSPAN="4"><DIV ALIGN="center">{head_access}</DIV></TH>
      <TH><DIV ALIGN="center">{head_admin}</DIV></TH>

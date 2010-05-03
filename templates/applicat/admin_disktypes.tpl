@@ -21,7 +21,7 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+<TABLE ALIGN="center" BORDER="0" STYLE="margin:3;border:2px ridge;">
  <TR><TH><DIV ALIGN="center">{head_disk_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_mtype}</DIV></TH>
      <TH><DIV ALIGN="center">{head_disk_name}</DIV></TH>

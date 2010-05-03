@@ -24,28 +24,28 @@
 <DIV STYLE="margin:3">
  <TABLE Align="Center" Border="0">
   <TR><TD WIDTH="50%"><!-- ====================================== Left side ============ -->
-    <TABLE WIDTH="100%" BORDER="1">
-     <TR CLASS="content"><TD WIDTH="15%">{mtype_name}</TD><TD>{mtype}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{length_name}</TD><TD>{length}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{date_name}</TD><TD>{date}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{screen_name}</TD><TD>{screen}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{picture_name}</TD><TD>{picture}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{tone_name}</TD><TD>{tone}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{longplay_name}</TD><TD>{longplay}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="15%">{fsk_name}</TD><TD>{fsk}</TD></TR>
+    <TABLE WIDTH="100%" BORDER="0" STYLE="border:2px ridge;">
+     <TR CLASS="content"><TH WIDTH="15%">{mtype_name}</TH><TD>{mtype}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{length_name}</TH><TD>{length}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{date_name}</TH><TD>{date}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{screen_name}</TH><TD>{screen}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{picture_name}</TH><TD>{picture}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{tone_name}</TH><TD>{tone}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{longplay_name}</TH><TD>{longplay}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="15%">{fsk_name}</TH><TD>{fsk}</TD></TR>
     </TABLE></TD>
    <TD WIDTH="50%"><!-- ===================================== Right side ============ -->
-    <TABLE WIDTH="100%" BORDER="1">
-     <TR CLASS="content"><TD WIDTH="10%">{title_name}</TD><TD COLSPAN="3">{title}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="10%">{category_name}</TD><TD WIDTH="40%">{category}</TD>
-         <TD WIDTH="10%">{actor_name}</TD><TD WIDTH="40%">{actor}</TD></TR>
-     <TR CLASS="content"><TD WIDTH="10%">{director_name}</TD><TD WIDTH="40%">{director}</TD>
-         <TD WIDTH="10%">{composer_name}</TD><TD WIDTH="40%">{composer}</TD></TR>
+    <TABLE WIDTH="100%" BORDER="0" STYLE="border:2px ridge;">
+     <TR CLASS="content"><TH WIDTH="10%">{title_name}</TH><TD COLSPAN="3">{title}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="10%">{category_name}</TH><TD WIDTH="40%">{category}</TD>
+         <TH WIDTH="10%">{actor_name}</TH><TD WIDTH="40%">{actor}</TD></TR>
+     <TR CLASS="content"><TH WIDTH="10%">{director_name}</TH><TD WIDTH="40%">{director}</TD>
+         <TH WIDTH="10%">{composer_name}</TH><TD WIDTH="40%">{composer}</TD></TR>
     </TABLE></TD>
   </TR>
   <TR><TD COLSPAN="2"><!-- ============================= Lower side ================ -->
-    <TABLE BORDER="1" ALIGN="center">
-      <TR CLASS="content"><TD>{grant_desc}</TD>
+    <TABLE BORDER="0" ALIGN="center" STYLE="border:2px ridge;">
+      <TR CLASS="content"><TH>{grant_desc}</TH>
         <TD><SELECT NAME="{grant_sel_name}[]" MULTIPLE CLASS="multiselect">
 <!-- BEGIN grantblock -->
               <OPTION VALUE="{gval}"{gselected}>{gname}</OPTION>

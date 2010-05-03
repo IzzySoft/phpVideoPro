@@ -43,11 +43,11 @@
 </TABLE>
 <!-- END packlistblock -->
 <!-- BEGIN packviewblock -->
-<TABLE ALIGN="center" BORDER="1" Style="margin:3">
-  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tname}</b></DIV></TD><TD>{name}</TD></TR>
-  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tcreator}</b></DIV></TD><TD>{creator}</TD></TR>
-  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{tdesc}</b></DIV></TD><TD>{desc}</TD></TR>
-  <TR CLASS="content"><TD><DIV ALIGN="center"><b>{trev}</b></DIV></TD><TD>{rev}</TD></TR>
+<TABLE ALIGN="center" BORDER="0" Style="margin:3;border:2px ridge;">
+  <TR CLASS="content"><TH><DIV ALIGN="center">{tname}</DIV></TH><TD>{name}</TD></TR>
+  <TR CLASS="content"><TH><DIV ALIGN="center">{tcreator}</DIV></TH><TD>{creator}</TD></TR>
+  <TR CLASS="content"><TH><DIV ALIGN="center">{tdesc}</DIV></TH><TD>{desc}</TD></TR>
+  <TR CLASS="content"><TH><DIV ALIGN="center">{trev}</DIV></TH><TD>{rev}</TD></TR>
   <TR CLASS="content"><TD COLSPAN="2"><DIV ALIGN="center">{preview}</DIV></TD></TR>
 </TABLE>
 <!-- END packviewblock -->
@@ -58,7 +58,7 @@
      <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="center">{lname}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR></TABLE></TD></TR>
- <TR><TD COLSPAN="2"><TABLE ALIGN="center" BORDER="1">
+ <TR><TD COLSPAN="2"><TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
   <TR><TH><DIV ALIGN="center">{head_desc}</DIV></TH>
       <TH><DIV ALIGN="center">{head_type}</DIV></TH>
       <TH><DIV ALIGN="center">{add}</DIV></TH></TR>
@@ -74,9 +74,9 @@
 <!-- END listblock -->
 <!-- BEGIN editblock -->
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE ALIGN="center" BORDER="1" Style="table-layout:fixed;margin:3">
+<TABLE ALIGN="center" BORDER="0" Style="table-layout:fixed;margin:3;border:2px ridge;">
   <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>
-  <TR CLASS="content"><TD COLSPAN="2"><DIV ALIGN="center">{pack}</DIV></TD></TR>
+  <TR CLASS="content"><TH COLSPAN="2"><DIV ALIGN="center">{pack}</DIV></TH></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center">{desc}</DIV></TD><TD><DIV ALIGN="center">{type}</DIV></TD></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center">{gfx_file}</DIV></TD><TD><DIV ALIGN="center">{dsn_file}</DIV></TD></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center">{lower_left}</DIV></TD><TD><DIV ALIGN="center">{upper_right}</DIV></TD></TR>

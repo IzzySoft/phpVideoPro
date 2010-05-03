@@ -18,7 +18,7 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
 
-<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+<TABLE ALIGN="center" BORDER="0" STYLE="margin:3;border:2px ridge;">
  <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>
  <TR CLASS="content"><TH><DIV ALIGN="center">{mtype_name}<BR>{mtype_field}</DIV></TH>
      <TH><DIV ALIGN="center">{cat_name}<BR>{cat_field}</DIV></TH></TR>

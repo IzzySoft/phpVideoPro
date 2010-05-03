@@ -21,14 +21,14 @@
 <DIV STYLE="margin:3">
 <TABLE BORDER="0" CELLSPACING="3" ALIGN="center"><TR><TD>
 <!-- BEGIN introblock -->
- <TABLE ALIGN="center" BORDER="1">
+ <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
   <TR><TH><DIV ALIGN="center">{intro_head}</DIV></TH></TR>
   <TR CLASS="content"><TD><DIV ALIGN="justify">{intro_text}</DIV></TD></TR>
  </TABLE>
 </TD></TR>
 <TR><TD>
 <!-- END introblock -->
- <TABLE ALIGN="center" BORDER="1">
+ <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
   <TR><TH><DIV ALIGN="center">{goto_entry}</DIV></TH></TR>
   <TR CLASS="content"><TD>
     <DIV STYLE="margin:3;text-align:center">

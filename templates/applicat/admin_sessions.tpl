@@ -18,16 +18,16 @@
 <TR><TD>
 
 <DIV STYLE="margin:3">
-<TABLE ALIGN="center" BORDER="1">
+<TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
    <TR CLASS="content">
-       <TD NOWRAP WIDTH="50%"><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}">{hidden}<DIV ALIGN="center">{old_sess} <INPUT CLASS="submit" TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></FORM></TD>
-       <TD NOWRAP WIDTH="50%"><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}">{hidden}<DIV ALIGN="center">{ended_sess} <INPUT CLASS="submit" TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></FORM></TD></TR>
+       <TD NOWRAP WIDTH="50%"><FORM NAME="old_sessions" METHOD="post" ACTION="{formtarget}" STYLE="margin-bottom:0;">{hidden}<DIV ALIGN="center">{old_sess} <INPUT CLASS="submit" TYPE="submit" NAME="submit" VALUE="{submit}"></DIV></FORM></TD>
+       <TD NOWRAP WIDTH="50%"><FORM NAME="ended_sessions" METHOD="post" ACTION="{formtarget}" STYLE="margin-bottom:0;">{hidden}<DIV ALIGN="center">{ended_sess} <INPUT CLASS="submit" TYPE="submit" NAME="ended" VALUE="{submit}"></DIV></FORM></TD></TR>
 </TABLE>
 <BR>
  <TABLE BORDER="0" WIDTH="100%">
    <TR><TD>{first}{left}</TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  </TABLE>
- <TABLE ALIGN="center" BORDER="1">
+ <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
  <TR><TH><DIV ALIGN="center">{head_sess_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_sess_ip}</DIV></TH>
      <TH><DIV ALIGN="center">{head_sess_user}</DIV></TH>

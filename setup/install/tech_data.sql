@@ -1,7 +1,6 @@
 # $Id$
 #
 # Data for pvp_options
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.de/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.es/');
@@ -9,7 +8,6 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.fr/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.it/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.pt/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://akas.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://us.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://uk.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','http://akas.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
@@ -24,7 +22,6 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_rating');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://www.moviepilot.de/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://www.moviepilot.com/');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://es.moviepilot.com/');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://fr.moviepilot.com/');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://pl.moviepilot.com/');
@@ -158,7 +155,7 @@ INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_comments','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
-INSERT INTO pvp_preferences (name,value) VALUES ('pilot_url','http://www.moviepilot.com/');
+INSERT INTO pvp_preferences (name,value) VALUES ('pilot_url','http://uk.moviepilot.com/');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_pstemplate_id','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_editor','plain');
 INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');

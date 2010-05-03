@@ -10,6 +10,7 @@ History for phpVideoPro
 + MoviePilot options added to database and configuration screen.
 + Now the user can decide for the MDB site to retrieve data from (IMDB and/or
   MoviePilot).
+- us.imdb.com lately caused nothing but trouble, so we removed it from our settings
 
 v0.9.6 (25.04.2010)
 -------------------

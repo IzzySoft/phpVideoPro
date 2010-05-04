@@ -18,7 +18,7 @@
 <TR><TD>
 
 <DIV STYLE="margin:3;">
-<TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data">
  <!-- BEGIN itemblock -->
  <TR CLASS="content"><TD>{title}</TD><TD>{details}</TD></TR>
  <!-- END itemblock -->

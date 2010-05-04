@@ -15,6 +15,9 @@ CODE {
   font-family: monospace;
   color: #603;
 }
+TABLE.data {
+  border:2px ridge;
+}
 TD, TH {
   font-size: 11px;
   color: #000;
@@ -28,6 +31,7 @@ TH, .tdb {
   font-weight:bold;
 }
 
+FORM { margin-bottom:0; }
 SPAN {
   font-size: 11px;
   color: #000;

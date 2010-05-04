@@ -21,7 +21,7 @@
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN="2">
-  <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+  <TABLE ALIGN="center" BORDER="0" CLASS="data">
    <TR><TH><A HREF="{scriptname}{crits}">{mtype}</A></TH>
        <TH><A HREF="{scriptname}{crits}">{nr}</A></TH>
        <TH><A HREF="{scriptname}?order=title{torder}{ocrits}">{title}</A></TH>

@@ -21,7 +21,7 @@
 {js}
  <FORM NAME="medialength" METHOD="post" ACTION="{form_target}">
   {hidden_fields}
-  <TABLE STYLE="margin:3;text-align:center;border:2px ridge;" BORDER="0" WIDTH="400">
+  <TABLE CLASS="data" STYLE="margin:3px;text-align:center;" BORDER="0" WIDTH="400">
     <TR><TH STYLE="margin:5;text-align:center">{info}</TH></TR>
     <TR CLASS="content"><TD><DIV ALIGN="center">{input}</DIV></TD></TR>
   </TABLE>

@@ -43,7 +43,7 @@
 </TABLE>
 <!-- END packlistblock -->
 <!-- BEGIN packviewblock -->
-<TABLE ALIGN="center" BORDER="0" Style="margin:3;border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data" STYLE="margin:3px;">
   <TR CLASS="content"><TH><DIV ALIGN="center">{tname}</DIV></TH><TD>{name}</TD></TR>
   <TR CLASS="content"><TH><DIV ALIGN="center">{tcreator}</DIV></TH><TD>{creator}</TD></TR>
   <TR CLASS="content"><TH><DIV ALIGN="center">{tdesc}</DIV></TH><TD>{desc}</TD></TR>
@@ -58,7 +58,7 @@
      <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="center">{lname}</DIV></TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR></TABLE></TD></TR>
- <TR><TD COLSPAN="2"><TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+ <TR><TD COLSPAN="2"><TABLE ALIGN="center" BORDER="0" CLASS="data">
   <TR><TH><DIV ALIGN="center">{head_desc}</DIV></TH>
       <TH><DIV ALIGN="center">{head_type}</DIV></TH>
       <TH><DIV ALIGN="center">{add}</DIV></TH></TR>
@@ -74,7 +74,7 @@
 <!-- END listblock -->
 <!-- BEGIN editblock -->
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE ALIGN="center" BORDER="0" Style="table-layout:fixed;margin:3;border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data" STYLE="table-layout:fixed;margin:3px;">
   <COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP>
   <TR CLASS="content"><TH COLSPAN="2"><DIV ALIGN="center">{pack}</DIV></TH></TR>
   <TR CLASS="content"><TD><DIV ALIGN="center">{desc}</DIV></TD><TD><DIV ALIGN="center">{type}</DIV></TD></TR>

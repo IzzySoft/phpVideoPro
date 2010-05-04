@@ -21,7 +21,7 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD style="text-align:center"><CENTER>
 
- <TABLE STYLE="margin:3;text-align:center;" BORDER="0" ALIGN="center" STYLE="border:2px ridge;"><TR CLASS="content"><TD>
+ <TABLE STYLE="margin:3;text-align:center;" BORDER="0" ALIGN="center" CLASS="data"><TR CLASS="content"><TD>
   <TABLE ALIGN="center" BORDER="0" WIDTH="400">
     <TR><TH COLSPAN="3"><DIV ALIGN="center">{latest}</DIV></TH></TR>
     <TR CLASS="content"><TD COLSPAN="3"><DIV ALIGN="center">{latest_box}</DIV></TD></TR>

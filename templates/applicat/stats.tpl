@@ -20,7 +20,7 @@
 <DIV STYLE="margin:3">
 <TABLE BORDER="0" CELLSPACING="3"><TR>
 <!-- BEGIN listblock -->
-<TD><TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" STYLE="border:2px ridge;">
+<TD><TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" CLASS="data">
  <TR><TH>{list_head}</TH></TR>
  <TR CLASS="content"><TD>
   <TABLE WIDTH="100%">

@@ -23,7 +23,7 @@
 <DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
 <DIV ALIGN="center">
 <TABLE ALIGN="center" BORDER="0" STYLE="margin:3"><TR><TD>
-<TABLE WIDTH="100%" BORDER="0" ALIGN="center" STYLE="border:2px ridge;">
+<TABLE WIDTH="100%" BORDER="0" ALIGN="center" CLASS="data">
  <!-- COLGROUP><COL WIDTH="50%"><COL WIDTH="50%"></COLGROUP -->
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{head_users}</DIV></TH></TR>
  <TR CLASS="content"><TD COLSPAN="2"><DIV ALIGN="right">{user_id}</DIV></TD></TR>
@@ -32,7 +32,7 @@
  <TR CLASS="content"><TD>{head_password}</TD><TD>{password}</TD></TR>
  <TR CLASS="content"><TD>{head_password2}</TD><TD>{password2}</TD></TR>
 </TABLE></TD></TR><TR><TD>
-<TABLE WIDTH="100%" BORDER="0" ALIGN="center" STYLE="border:2px ridge;">
+<TABLE WIDTH="100%" BORDER="0" ALIGN="center" CLASS="data">
  <!-- COLGROUP><COL WIDTH="80%"><COL WIDTH="20%"></COLGROUP -->
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{head_access}</DIV></TH></TR>
  <TR CLASS="content"><TD>{head_browse}</TD><TD><DIV ALIGN="center">{browse}</DIV></TD></TR>

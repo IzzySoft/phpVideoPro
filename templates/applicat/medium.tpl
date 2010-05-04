@@ -18,7 +18,7 @@
 <TR><TD>
 
  <FORM NAME="mediaform" METHOD="post" ACTION="{form_target}">
-  <TABLE STYLE="margin:3;text-align:center" BORDER="0" STYLE="border:2px ridge;">
+  <TABLE CLASS="data" STYLE="margin:3px;text-align:center" BORDER="0">
     <TR><TH>{techdata}</TH><TH>{moviedata}</TH></TR>
     <TR CLASS="content"><TD STYLE='vertical-align:middle'><TABLE BORDER="0">
 <!-- BEGIN techblock -->

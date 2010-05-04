@@ -22,7 +22,7 @@
  <TR><TD>{first}{left}</TD>
      <TD><DIV ALIGN="RIGHT">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN=2>
-  <TABLE ALIGN="center" BORDER="0" WIDTH="100%" STYLE="border:2px ridge;">
+  <TABLE ALIGN="center" BORDER="0" WIDTH="100%" CLASS="data">
    <TR><TH>{medium}</TH><TH>{nr}</TH><TH>{free}</TH><TH>{content}</TH></TR>
    <!-- BEGIN itemblock --> 
    <TR CLASS="content"><TD>{mtype}</TD><TD>{id}</TD><TD>{free}</TD><TD><UL>

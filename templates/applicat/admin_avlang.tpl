@@ -25,7 +25,7 @@
 <TABLE BORDER="0" WIDTH="100%">
   <TR><TD>{first}{left}</TD><TD><DIV STYLE="margin:3;text-align:center">{save_result}</DIV></TD><TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
 </TABLE>
-<TABLE ALIGN="center" BORDER="0" STYLE="margin:3;border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data" STYLE="margin:3px;">
  <TR><TH><DIV ALIGN="center">{head_lang_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_lang_name}</DIV></TH>
      <!--TH><DIV ALIGN="center">{head_lang_charset}</DIV></TH -->
@@ -46,7 +46,7 @@
 <!-- END listblock -->
 
 <!-- BEGIN editblock -->
-<TABLE ALIGN="center" BORDER="0" STYLE="margin:3;border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data" STYLE="margin:3px;">
  <TR><TH COLSPAN="2"><DIV ALIGN="center">{lang_name} ({lang_id})</DIV></TH></TR>
  <TR><TH STYLE="vertical-align:middle">{head_lang_audio}</TH>
      <TD>{lang_audio}</TD></TR>

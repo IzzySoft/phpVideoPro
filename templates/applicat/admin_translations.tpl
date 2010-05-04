@@ -25,7 +25,7 @@
      <TD><DIV ALIGN="center">{abc}</DIV></TD>
      <TD><DIV ALIGN="right">{right}{last}</DIV></TD></TR>
  <TR><TD COLSPAN="3"><DIV STYLE="margin:3">
-  <TABLE ALIGN="center" BORDER="0" CELLPADDING="2" CELLSPACING="2" STYLE="border:2px ridge;">
+  <TABLE ALIGN="center" BORDER="0" CELLPADDING="2" CELLSPACING="2" CLASS="data">
    <!-- BEGIN mtitleblock -->
    <COLGROUP><COL WIDTH="150pt"><COL WIDTH="*"><COL WIDTH="380pt"><COL WIDTH="*"></COLGROUP>
    <TR><TH>{code}</TH>

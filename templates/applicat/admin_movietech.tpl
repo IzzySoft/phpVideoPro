@@ -24,7 +24,7 @@
 <!-- BEGIN mainblock -->
 <TABLE ALIGN="center" BORDER="0">
  <TR><TD>
-   <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+   <TABLE ALIGN="center" BORDER="0" CLASS="data">
     <TR><TH COLSPAN="3">{screen_title}</TH></TR>
     <TR CLASS="content"><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
         <TD><DIV ALIGN="center"><B>{sname}</B></DIV></TD>
@@ -35,7 +35,7 @@
     <TR CLASS="content"><TD COLSPAN="3"><DIV ALIGN="center">{screen_add}</DIV></TD></TR>
    </TABLE>
  </TD><TD>
-   <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+   <TABLE ALIGN="center" BORDER="0" CLASS="data">
     <TR><TH COLSPAN="3">{color_title}</TH></TR>
     <TR CLASS="content"><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
         <TD><DIV ALIGN="center"><B>{sname}</B></DIV></TD>
@@ -46,7 +46,7 @@
     <TR CLASS="content"><TD COLSPAN="3"><DIV ALIGN="center">{color_add}</DIV></TD></TR>
    </TABLE>
  </TD></TR><TR><TD>
-   <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+   <TABLE ALIGN="center" BORDER="0" CLASS="data">
     <TR><TH COLSPAN="3">{mtype_title}</TH></TR>
     <TR CLASS="content"><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
         <TD><DIV ALIGN="center"><B>{sname}</B></DIV></TD>
@@ -57,7 +57,7 @@
     <TR CLASS="content"><TD COLSPAN="3"><DIV ALIGN="center">{mtype_add}</DIV></TD></TR>
    </TABLE>
  </TD><TD>
-   <TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+   <TABLE ALIGN="center" BORDER="0" CLASS="data">
     <TR><TH COLSPAN="3">{tone_title}</TH></TR>
     <TR CLASS="content"><TD><DIV ALIGN="center"><B>{name}</B></DIV></TD>
         <TD><DIV ALIGN="center"><B>{sname}</B></DIV></TD>
@@ -72,7 +72,7 @@
 <!-- END mainblock -->
 <!-- BEGIN editblock -->
 <DIV STYLE="margin:3">
-<TABLE ALIGN="center" BORDER="0" STYLE="border:2px ridge;">
+<TABLE ALIGN="center" BORDER="0" CLASS="data">
  <TR><TH COLSPAN="2">{edit_title}</TH></TR>
  <TR><TH>{name_name}</TH><TD><INPUT NAME="name" VALUE="{name}" CLASS="techinput"></TD></TR>
  <TR><TH>{sname_name}</TH><TD><INPUT NAME="sname" VALUE="{sname}" CLASS="techinput"></TD></TR>

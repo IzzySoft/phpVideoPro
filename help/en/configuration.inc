@@ -169,9 +169,9 @@ sessions after a specified interval of user inactivity. This only affects the
 logged-in session, not the personal configuration the user stored within his/her
 cookies. After the timeout, the session falls back into guest mode.
 
-#==========================================================[ IMDB Settings ]===
+#===========================================================[ MDB Settings ]===
 [title|1|imdb]
-IMDB
+MDB
 
 [text]
 <b>*imdb_url#:</b> You can lookup additional data for a selected movie (or staff
@@ -202,24 +202,71 @@ This means of course, that you should be sure to select an <b><i>English</i></b>
 site here - whether that is located in the UK or US, I leave up to you.
 
 [text]
+<b>*pilot_url#:</b> The second generation of the <I>IMDBPHP API</I> also offers
+access to movie data available at the <A HREF="http://www.moviepilot.com/"
+TARGET="_blank">MoviePilot</A> sites. Like <A HREF="http://www.imdb.com/"
+TARGET="_blank">IMDB</A>, this site holds a lot of details for many movies -
+though its database is far not (yet) as complete. But the two most outstanding
+differences are: <I>MoviePilot</I> has a stable interface (and even encourages
+developers to use it), plus all content is protected by the
+<A HREF="http://en.wikipedia.org/wiki/Creative_Commons" TARGET="_blank">Creative
+Commons</A> license (and thus are free to use - for details, please follow the
+Link).
+
+[text]
+Concerning the content, <I>MoviePilot</I> supports a clutch of languages. As of
+today, these are five: English, French, German, Portuguese, and Spanish. The
+language is clearly determinable by its URL.
+
+[text]
+<b>*pilot_fallback#:</b> For <I>MoviePilot</I>, <I>IMDBPHP2</I> supports a kind
+of "fallback mode" for missing content - reloading it from the <I>IMDB</I> sites.
+If and to what amount this should happen, can be configured at this place.
+
+[text]
+<I>NO_ACCESS</I> clearly means to disable this feature at all - so you are
+completely on the safe side concerning retrieved content (only data from
+<I>MoviePilot</I> will be retrieved). Stepwise you can increase the amount of
+data added from the <I>IMDB</I>: <I>BASIC_ACCESS</I> only adds innocuous
+information (such as parental guide age), while <I>FULL_ACCESS</I> tries to
+get as much as possible.
+
+[text]
+<b>*mdb_use#:</b> Here you define which sources you want to use. You can
+decide for none, one, or even a combination of the available sources.
+
+[text]
+So you may ask: What is the difference between above described "fallback" and
+combining the sources? Easy: With the fallback, we can only add to information
+we already have - so if there was no data available at <I>MoviePilot</I>, the
+fallback would have nothing to complement. Combining the sites, however, in
+this case leaves you at least with the <I>IMDB</I> data.
+
+[text]
+Moreover: If your native language is e.g. Portuguese, you may be that lucky to
+obtain all technical data from the <I>IMDB</I>, with the added plus of a
+Portuguese plot outline - configuring the <I>*imdb_url#</I> to an English
+site, and the <I>*pilot_url#</I> to the Portuguese one.
+
+[text]
 <b>*imdb_tx#:</b> These are only the <b><i>Defaults</i></b> for the setting of
-the checkboxes on the <A HREF="{PHP_SELF}?topic=imdbsearch">IMDB details</A>
+the checkboxes on the <A HREF="{PHP_SELF}?topic=imdbsearch">MDB details</A>
 page. Which data are really transfered, you still can decide there by
 en/disabling the checkboxes manually.
  
 [text] 
-<b>*imdb_txwin_autoclose#:</b> This option relates to the IMDB window which can
+<b>*imdb_txwin_autoclose#:</b> This option relates to the MDB window which can
 be opened on the <A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> form. In
-it, we query the IMDB for information on the movie we are just editing, and
+it, we query the MDB for information on the movie we are just editing, and
 finally get its details here (if found). At the end of this process, when the
 user pushed the transfer button and thus transfered the wanted data to the edit
 form, that window is no longer needed, and hence could be closed. Whether it is
 closed automatically after a successful transfer or not, you can define here.
 
 [text]
-<b>*imdb_cache_enable#:</b> The IMDB caching functions actually are only of
+<b>*imdb_cache_enable#:</b> The MDB caching functions actually are only of
 interest for developers testing purposes. Once this cache is activated, all
-documents retrieved from the IMDB site(s) are stored into the
+documents retrieved from the MDB site(s) are stored into the
 <i>*imdb_cache_dir#</i> (see below). So if the IMDB LookUp seems to be broken
 again, this gives the developer the chance to find out what the guys at
 *.imdb.com changed again in their structures - and so we can adjust our code.
@@ -228,18 +275,18 @@ cache: Since the user stores the retrieved data into the local database, it is
 very unlikely (s)he wishes to check for the same data again.
 
 [text]
-<b>*imdb_cache_expire#:</b> When the IMDB cache is enabled (see
+<b>*imdb_cache_expire#:</b> When the MDB cache is enabled (see
 <i>*imdb_cache_enable#</i> above), for each movie there will be multiple files
 stored in the cache. Thus, the cache permanently increases in size. If one uses
 the cache, (s)he may want to automatically have old files purged (i.e. deleted)
 from the cache. This option lets you select how many days after its retrieval a
 cache file will be automatically removed. The actual removal then will take
-place on the next query sent by the IMDB lookup.
+place on the next query sent by the MDB lookup.
 
 [text]
 <b>*imdb_cache_dir#:</b> This is the directory phpVideoPro goes to store the
 cached data into. Since for this action the webserver needs to read and write
-data here, it needs to have the necessary permissions. The IMDB data are freely
+data here, it needs to have the necessary permissions. The MDB data are freely
 available to everybody, so usually we do not need to be too much concerned about
 security and can give these permissions (change into the directory, read and
 write files) to everybody with a valid account on the machine. On Linux/Unix,
@@ -252,11 +299,11 @@ Of course you need to replace the user (wwwrun), group (www), and directory
 name (DirectoryName) dummies of the example by their real values.
 
 [text]
-<b>*imdb_cache_use#:</b> How the IMDB caching in phpVideoPro works, we already
+<b>*imdb_cache_use#:</b> How the MDB caching in phpVideoPro works, we already
 explained above (at <i>*imdb_cache_enable#</i>). But that item just controls
 the <b><i>storing</i></b> part of the process. If you <b><i>additionally</i></b>
 enable this option, the cache is also used for look-ups: Data already found in
-the cache will not again be requested from the IMDB site, but taken from here.
+the cache will not again be requested from the MDB site, but taken from here.
 
 #===========================================================[ User Backups ]===
 [title|1|userbackups]

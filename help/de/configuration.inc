@@ -194,9 +194,9 @@ sind hiervon nicht betroffen: er/sie wird lediglich vom System abgemeldet, und
 verfügt somit (bis zu einer erneuten Anmeldung) lediglich noch über die Rechte
 des Gast-Kontos.
 
-#==========================================================[ IMDB Settings ]===
+#===========================================================[ MDB Settings ]===
 [title|1|imdb]
-IMDB
+MDB
 
 [text]
 <b>*imdb_url#:</b> Die Internet Movie DataBase bietet umfangreiche Daten für
@@ -230,15 +230,69 @@ Es ist also zwingend notwendig, an dieser Stelle eine <b><i>Englische</i></b>
 Site auszuwählen.
 
 [text]
+<b>*pilot_url#:</b> Die zweite Generation der <I>IMDBPHP API</I> ermöglicht nun
+auch Zugriffe auf die Daten bei <A HREF="http://www.moviepilot.de/"
+TARGET="_blank">MoviePilot</A>. Wie auch <A HREF="http://www.imdb.de/"
+TARGET="_blank">IMDB</A>, bietet diese Site eine Reihe von Informationen zu vielen
+Filmen - auch wenn die Datenbank hier noch im Aufbau befindlich ist, und daher vom
+Umfang her noch nicht mit der <I>IMDB</I> mithalten kann. Die zwei bedeutendsten
+Unterschiede sind jedoch, dass <I>MoviePilot</I> zum einen eine stabile
+Schnittstelle anbietet (und Entwickler ermutigt, diese auch zu benutzen) - und
+dass die Inhalte der <A HREF="http://de.wikipedia.org/wiki/Creative_Commons"
+TARGET="_blank">Creative Commons</A> Lizenz unterliegen (also frei verwendet
+werden können - Details bitte dem Link entnehmen).
+
+[text]
+Inhaltlich unterstützt <I>MoviePilot</I> eine Reihe von Sprachen, gegenwärtig
+sind dies fünf: Englisch, Deutsch, Französisch, Spanisch, und Portugiesich. Die
+Sprache der Inhalte läßt sich leicht an den zur Auswahl stehenden URLs erkennen.
+
+[text]
+<b>*pilot_fallback#:</b> Für <I>MoviePilot</I> unterstützt <I>IMDBPHP2</I> eine
+Art "Fallback-Modus" für fehlende Details, um diese bei Bedarf aus der
+<I>IMDB</I> nachzuladen. Ob und in welchem Umfang dies geschehen soll, lässt
+sich hier festlegen:
+
+[text]
+Der Modus <I>NO_ACCESS</I> schaltet das "Fallback" komplett ab - womit man
+inhaltlich 100% auf der sicheren Seite ist (es werden nur Inhalte von
+MoviePilot bezogen). Staffelweise lassen sich mehr Details von der IMDB
+ergänzen: <I>BASIC_ACCESS</I> bezieht nur "unverfängliche" Informationen, wie
+z.B. eine etwaige Altersbeschränkung - während <I>FULL_ACCESS</I> möglichst
+alle fehlenden Informationen ergänzt.
+
+[text]
+<b>*mdb_use#:</b>
+Mit dieser Einstellung wird festgelegt, welche Informationsquellen genutzt
+werden sollen. Man kann sich also auf eine Site beschränken - oder auch beide
+Quellen kombinieren.
+
+[text]
+Damit stellt sich natürlich die Frage: Was ist der Unterschied zwischen o.g.
+"Fallback-Modus" bezüglich <I>Moviepilot</I>, und der Kombination mit <I>IMDB</I>
+hier? Ganz einfach: Der "Fallback" ergänzt nur fehlende Informationen zu einem
+Film, dessen allgemeine Daten jedoch auf <I>MoviePilot</I> vorhanden sind. Wird
+der fragliche Film bei <I>MoviePilot</I> gar nicht gefunden, wird auch nichts
+ergänzt. Bei einer Kombination beider Sites hat man in diesem Falle noch immer
+die Daten von der <I>IMDB</I>.
+
+[text]
+Eine Kombination macht auch dann Sinn, wenn man mehrsprachige Informationen
+wünscht: Man kann dann z.B. Informationen der englischen <I>IMDB</I>-Site (also
+auf Englisch) mit Informationen der deutschen <I>MoviePilot</I> Seite kombinieren.
+Auf diese Weise erhält man die kompletten technischen Daten (von der <I>IMDB</I>),
+und zusätzlich zur englischen Beschreibung auch gleich noch die deutsche.
+
+[text]
 <b>*imdb_tx#:</b> Dies ist lediglich eine Voreinstellung für die Checkboxen
-auf der <A HREF="{PHP_SELF}?topic=imdbsearch">IMDB Suchseite</A>. Natürlich
+auf der <A HREF="{PHP_SELF}?topic=imdbsearch">MDB Suchseite</A>. Natürlich
 können später bei Bedarf gezielt andere Werte verwendet werden, ohne dies erst
 hier wieder anzupassen.
 
 [text]
-<b>*imdb_txwin_autoclose#:</b> Diese Angabe bezieht sich auf das IMDB-Fenster,
+<b>*imdb_txwin_autoclose#:</b> Diese Angabe bezieht sich auf das MDB-Fenster,
 welches sich aus dem Formular <A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>
-öffnen lässt. In diesem Fenster wird sodann die IMDB zu Informationen über den
+öffnen lässt. In diesem Fenster wird sodann die MDB zu Informationen über den
 gerade bearbeiteten Film abgefragt. Sind die gewünschten Informationen
 schließlich gefunden, und der Anwender hat den Button zur Datenübernahme
 betätigt, wird dieses Fenster nicht länger benötigt, und kann daher geschlossen
@@ -246,20 +300,22 @@ werden. Mit diesem Punkt in der Konfiguration läßt sich festlegen, ob dies
 geschehen soll.
 
 [text]
-<b>*imdb_cache_enable#:</b> Die IMDB Caching Funktionen sind eigentlich nur für
-Testzwecke interessant: Ist der Cache aktiviert, werden die von der IMDB-Site
+<b>*imdb_cache_enable#:</b> Die MDB Caching Funktionen sind (ausgenommen den Fall,
+dass sich mehrere Benutzer die Installation des Rechners teilen) eigentlich nur für
+Testzwecke interessant: Ist der Cache aktiviert, werden die von der MDB-Site
 bezogenen Details zum Film (also Schauspieler, Plot, etc.) in selbigem abgelegt.
 Genau genommen heißt das: phpVideoPro legt von den entsprechenden HTML-Dokumenten
-eine Kopie im IMDB Cache Verzeichnis ab. Sollte also wieder einmal etwas mit
+eine Kopie im MDB Cache Verzeichnis ab. Sollte also wieder einmal etwas mit
 dem IMDB LookUp fehlschlagen, können die Entwickler auf diese Weise schneller
 feststellen, welche Spezifikationen auf der IMDB-Site wieder einmal verändert
 wurden, und dann den Code der IMDB Klassen entsprechend anpassen. Für den
 täglichen Umgang mit phpVideoPro bringt dies kaum Vorteile, da der Anwender die
-aus der IMDB bezogenen Daten ja in die eigene Datenbank kopiert, und den selben
-Film kaum ein zweites Mal abrufen wird.
+aus der MDB bezogenen Daten ja in die eigene Datenbank kopiert, und den selben
+Film kaum ein zweites Mal abrufen wird. Wie geschrieben: Es sei denn, es handelt
+sich um eine "größere Installation"...
 
 [text]
-<b>*imdb_cache_expire#:</b> Ist der IMDB Cache aktiviert (siehe oben unter
+<b>*imdb_cache_expire#:</b> Ist der MDB Cache aktiviert (siehe oben unter
 <i>*imdb_cache_enable#</i>), werden für jede Film-Abfrage mehrere Dateien in
 selbigem angelegt. Es ist somit absehbar, dass die Größe des Caches permanent
 zunimmt. Daher lässt sich mit dieser Option festlegen, nach welchem Zeitraum
@@ -268,11 +324,11 @@ gelöscht) wird. Die Prüfung (und ggf. Löschung) findet dann jeweils beim
 nächsten LookUp statt.
 
 [text]
-<b>*imdb_cache_dir#:</b> In diesem Verzeichnis werden die IMDB-Daten bei
-aktiviertem IMDB-Cache (s.o.) gespeichert. Da sowohl die Lese- als auch die
+<b>*imdb_cache_dir#:</b> In diesem Verzeichnis werden die MDB-Daten bei
+aktiviertem MDB-Cache (s.o.) gespeichert. Da sowohl die Lese- als auch die
 Schreibzugriffe vom Prozess des Webservers durchgeführt werden, muss dieser
 auch Lese- und Schreibrechte auf das hier angegebene Verzeichnis besitzen. Da
-die Daten der IMDB ohnehin für jeden einsehbar sind, kann eine entsprechende
+die Daten der MDB ohnehin für jeden einsehbar sind, kann eine entsprechende
 Berechtigung unter Linux/Unix am einfachsten mit dem Befehl
 <code>chmod 0777 <i>Verzeichnisname</i></code> erteilt werden (was kurz gesagt
 heißt: Jeder Benutzer des lokalen Systems darf in dieses Verzeichnis wechseln,
@@ -282,12 +338,12 @@ und gibt nur diesem die entsprechenden Rechte. Das könnte z.B. so aussehen:<br>
 <code>chown wwwrun.www <i>Verzeichnisname</i><br>chmod 0700 <i>Verzeichnisname</i></code>
 
 [text]
-<b>*imdb_cache_use#:</b> Die Funktion des IMDB Cache in phpVideoPro wurde bereits
+<b>*imdb_cache_use#:</b> Die Funktion des MDB Cache in phpVideoPro wurde bereits
 weiter oben (unter <i>*imdb_cache_enable#</i>) beschrieben. Dort ging es
 allerdings nur um das <b><i>Speichern</i></b> der Cachedaten. Wird zusätzlich
 die Funktion <i>*imdb_cache_use#</i> aktiviert, wird der Cache auch bei LookUps
 verwendet - d.h., wenn für einen Film bereits alle Daten im Cache abgelegt sind,
-wird die IMDB für diesen nicht mehr kontaktiert. Stattdessen werden die
+wird die MDB für diesen nicht mehr kontaktiert. Stattdessen werden die
 entsprechenden Daten dem Cache entnommen.
 
 #===========================================================[ User Backups ]===

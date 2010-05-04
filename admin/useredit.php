@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -162,7 +162,13 @@
  #=====================================================[ build input form ]===
  $t->set_file(array("template"=>"admin_useredit.tpl"));
 
- $users = $db->get_users($id);
+ if ($id==0 && $_GET["addnew"]==1 && $pvp->auth->admin) {
+   $users->login = $users->comment = '';
+   $users->browse = 1;
+   $users->add = $users->upd = $users->del = 0;
+ } else {
+   $users = $db->get_users($id);
+ }
  $t->set_var("user_id","<INPUT TYPE='hidden' NAME='id' VALUE='$id'>$id");
  if ($pvp->auth->admin) {
    if (in_array(strtolower($users->login),$pvp->protected_users))

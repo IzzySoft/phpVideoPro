@@ -21,8 +21,8 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
 
-<DIV STYLE="margin:3;text-align:center">{save_result}</DIV>
-<TABLE ALIGN="center" BORDER="0" CLASS="data" STYLE="margin:3px;">
+<DIV STYLE="margin:3px;text-align:center">{save_result}</DIV>
+<TABLE ALIGN="center" CLASS="data" STYLE="margin:3px;">
  <TR><TH><DIV ALIGN="center">{head_cat_id}</DIV></TH>
      <TH><DIV ALIGN="center">{head_cat_name}</DIV></TH>
      <TH><DIV ALIGN="center">{head_cat_trans}</DIV></TH>
@@ -41,7 +41,7 @@
 <!-- BEGIN delchoiceblock -->
 <FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
 <INPUT TYPE="hidden" NAME="delete" VALUE="{delete}">
-<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+<TABLE ALIGN="center" CLASS="data" STYLE="margin:3px;">
  <TR><TH ALIGN="center">{msg}</TH></TR>
  <TR CLASS="content"><TD>{upd_all}<BR>{upd_individual}<BR>{upd_none}</TD></TR>
 </TABLE>
@@ -49,7 +49,7 @@
 <!-- BEGIN individualblock -->
 <FORM NAME="admin_cats" METHOD="post" ACTION="{formtarget}">
 <INPUT TYPE="hidden" NAME="delete" VALUE="{delete}">
-<TABLE ALIGN="center" BORDER="1" STYLE="margin:3">
+<TABLE ALIGN="center" CLASS="data" STYLE="margin:3px;">
  <TR><TH ALIGN="center" COLSPAN="2">{msg}</TH></TR>
 <!-- BEGIN itemblock -->
  <TR CLASS="content"><TD>{title}</TD><TD>{newcat}</TD></TR>
@@ -60,7 +60,7 @@
 
 <TR><TD BGCOLOR="#AAAAAA"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
 <TR><TD BGCOLOR="#FFFFFF"><IMG SRC="{tpl_dir}images/0.gif" WIDTH="1" HEIGHT="1" BORDER="0" ALT=""></TD></TR>
-<TR><TD><DIV STYLE="margin:3;text-align:center">{update}</DIV></TD></TR>
+<TR><TD><DIV STYLE="margin:3px;text-align:center;">{update}</DIV></TD></TR>
 
 </TABLE>
 </FORM></TD></TR>

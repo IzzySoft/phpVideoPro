@@ -37,13 +37,15 @@ function config_imdb(&$inst) {
 }
 
 function config_pilot(&$inst) {
-  GLOBAL $pvp;
+  GLOBAL $pvp, $db;
   $pilotsite = $pvp->preferences->get("pilot_url");
   $pilotfill = $pvp->preferences->get("pilot_fallback");
   $url  = explode("/",$pilotsite);
   $inst->pilotsite = $url[count($url)-2];
   config_dirs($inst);
   $inst->set_pilot_imdbfill(constant($pilotfill));
+  $pilot_apikey = $db->get_config("pilot_apikey");
+  if ( !empty($pilot_apikey) ) $inst->pilot_apikey = $pilot_apikey;
 }
 
 function match_genre(&$genre,$class) {

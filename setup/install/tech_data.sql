@@ -119,6 +119,7 @@ INSERT INTO pvp_config (name,value) VALUES ('site','MySite');
 INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
 INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','0');
 INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
+INSERT INTO pvp_config (name,value) VALUES ('pilot_apikey','');
 INSERT INTO pvp_config (name,value) VALUES ('http_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_use','0');

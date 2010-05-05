@@ -262,6 +262,20 @@ z.B. eine etwaige Altersbeschränkung - während <I>FULL_ACCESS</I> möglichst
 alle fehlenden Informationen ergänzt.
 
 [text]
+<b>*pilot_apikey#:</b> Die Nutzung der Moviepilot API setzt einen gültigen
+API-Key voraus. Dieser kann in der Konfigurationsdatei von <I>IMDBPHP</I> oder
+aber hier in <i>phpVideoPro</i> hinterlegt werden. Wurde er an beiden Stellen
+konfiguriert, hat die letztere Angabe Vorrang.
+
+[text]
+Der Key ist völlig kostenlos, und kann per Mail an
+<A HREF='mailto:api@moviepilot.de'>api@moviepilot.de</A> geordert werden. Wer
+jetzt gleich an Datenkraken und Vorratsspeicherung denkt, sei beruhigt: Das ist
+keinesfalls der Gedanke hinter diesem Prinzip. Es geht vielmehr darum, etwa
+Amok-laufende Applikationen daran zu hindern, die <I>Moviepilot</I> Server
+lahm zu legen.
+
+[text]
 <b>*mdb_use#:</b>
 Mit dieser Einstellung wird festgelegt, welche Informationsquellen genutzt
 werden sollen. Man kann sich also auf eine Site beschränken - oder auch beide

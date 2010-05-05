@@ -232,6 +232,17 @@ information (such as parental guide age), while <I>FULL_ACCESS</I> tries to
 get as much as possible.
 
 [text]
+<b>*pilot_apikey#:</b> To use the Moviepilot API, you need to have a valid key.
+This can be either specified within the config files of IMDBPHP, or you can do
+so here. If specified in both places, the one specified here takes precedence.
+
+[text]
+That key is free of charge, and you can request it writing a mail to
+<A HREF='mailto:api@moviepilot.de'>api@moviepilot.de</A>. For those of you with
+any suspect: The idea behind it is not collecting user data, but preventing apps
+going nuts to block the server.
+
+[text]
 <b>*mdb_use#:</b> Here you define which sources you want to use. You can
 decide for none, one, or even a combination of the available sources.
 

@@ -35,9 +35,9 @@
 <TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
 <TR><TD>
 
-<TABLE ALIGN="center" WIDTH="99%" BORDER="1" STYLE="margin:5">
+<TABLE ALIGN="center" WIDTH="99%" CLASS="data" STYLE="margin:5px;">
 <!-- BEGIN listblock -->
- <TR onClick="blockToggle('{block_id}')"><TD CLASS="tdb"><IMG SRC="{base_dir}/images/plus.gif" ID="{block_id}ico" STYLE="margin-right:1em;" ALT=''>{list_head}<DIV ALIGN="right" STYLE="float:right;">{help_icon}</DIV></TD></TR>
+ <TR onClick="blockToggle('{block_id}')"><TH><IMG SRC="{base_dir}/images/plus.gif" ID="{block_id}ico" STYLE="margin-right:1em;" ALT=''>{list_head}<DIV ALIGN="right" STYLE="float:right;">{help_icon}</DIV></TH></TR>
  <TR CLASS="content" ID="{block_id}" STYLE="visibility:hidden;display:none;"><TD>
   <TABLE WIDTH="100%">
   <!-- BEGIN itemblock -->

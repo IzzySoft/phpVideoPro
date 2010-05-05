@@ -14,6 +14,7 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.es/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.fr/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_url','http://www.imdb.pt/');
 # and finally, there is support for Moviepilot now
+INSERT INTO pvp_config (name,value) VALUES ('pilot_apikey','');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://www.moviepilot.de/');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://es.moviepilot.com/');
 INSERT INTO pvp_options (name,value) VALUES ('pilot_url','http://fr.moviepilot.com/');

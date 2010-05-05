@@ -732,4 +732,7 @@ INSERT INTO pvp_lang VALUES ('pilot_fallback_comment','en','For content missing 
 INSERT INTO pvp_lang VALUES ('mdb_use','en','Which movie site to use','Item on the configuration screen');
 INSERT INTO pvp_lang VALUES ('mdb_use_comment','en','Here you can decide from which site content shall be retrieved. If you enable IMDB, MoviePilot, and Pilot Fallback, you might get some duplicate information - so you better decide for either the Fallback or both sites.','Item on the configuration screen');
 INSERT INTO pvp_lang VALUES ('imdbapi_disabled','en','The IMDB API is available, but has been disabled. Please check your settings/configuration.','Hint in the IMDB search window');
+INSERT INTO pvp_lang VALUES ('invalid_pilot_apikey','en','The Moviepilot API key you entered is invalid.','Error message at configuration');
+INSERT INTO pvp_lang VALUES ('pilot_apikey','en','Moviepilot API-key','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('pilot_apikey_comment','en','To use the Moviepilot API, you need to have a valid key. This can be either specified within the config files of IMDBPHP, or you can do so here. If specified in both places, the one specified here takes precedence.','Item on the configuration screen');
 #INSERT INTO pvp_lang VALUES ('','en','','');

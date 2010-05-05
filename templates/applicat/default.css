@@ -16,7 +16,7 @@ CODE {
   color: #603;
 }
 TABLE.data {
-  border:2px ridge;
+  border:2px groove;
 }
 TD, TH {
   font-size: 11px;
@@ -24,8 +24,12 @@ TD, TH {
   font-weight: 500;
   text-align: left;
 }
+TR TD:first-child.wintitle {
+  padding: 1px;
+  padding-left: 5px;
+}
 TR.content { background-color: #F3F3F3; }
-TH, .tdb {
+TH {
   color: #fff;
   background-color: #4d9dfc;
   font-weight:bold;

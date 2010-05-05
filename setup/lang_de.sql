@@ -143,7 +143,7 @@ INSERT INTO pvp_lang VALUES ('date_rec','de','Aufnahmedatum','');
 INSERT INTO pvp_lang VALUES ('day','de','Tag','');
 INSERT INTO pvp_lang VALUES ('db_clean_admin_required','de','Das Leeren der Datenbank erfordert Admin-Privilegien.','');
 INSERT INTO pvp_lang VALUES ('db_stats','de','Statistiken','');
-INSERT INTO pvp_lang VALUES ('default_editor_comment','de','Entfernt alle Übersetzungen für die angegebene Sprache aus der Datenbank. Die Sprachdatei bleibt dabei unangetastet, sodass ein späteres Neu-Einlesen jederzeit möglich ist (sofern eine Sprachdatei existiert).','');
+INSERT INTO pvp_lang VALUES ('default_editor_comment','de','Ein sogenannter <I>WYSIWYG-Editor</I> kann das Bearbeiten von Eingaben in <I>Text-Areas</I> (z.B. bei Film-Kommentaren) vereinfachen. Hier lässt sich festlegen, ob er per Default aktiviert werden soll. Unabhängig von der Einstellung hier, kann er jederzeit manuell (de)aktiviert werden.','');
 INSERT INTO pvp_lang VALUES ('default_pstemplate_comment','de','Welches PSLabel Template soll für den Druck vorausgewählt werden?','');
 INSERT INTO pvp_lang VALUES ('delete','de','Löschen','');
 INSERT INTO pvp_lang VALUES ('delete_cat','de','Löschen der Kategorie <i>%1</i>','');
@@ -271,6 +271,7 @@ INSERT INTO pvp_lang VALUES ('intro_usage_title','de','Einleitung für neue Benu
 INSERT INTO pvp_lang VALUES ('invalid_backup_dir','de','Das konfigurierte Backup-Verzeichnis existiert nicht!','');
 INSERT INTO pvp_lang VALUES ('invalid_fsk','de','Der eingegebene Wert für FSK (\"%1\") ist ungültig.<br>FSK steht für Freiwillige Selbst-Kontrolle und gibt das Mindestalter an, ab dem der Film zur Betrachtung freigegeben ist.','');
 INSERT INTO pvp_lang VALUES ('invalid_media_nr','de','Die angegebene MediaNr ist entweder unvollständig oder ungültig. Es muß eine <b>Zahl</b> in <b>beiden</b> MediaNr Feldern eingegeben werden.','');
+INSERT INTO pvp_lang VALUES ('invalid_pilot_apikey','de','Der angegebene Moviepilot API-Key ist ungültig.','');
 INSERT INTO pvp_lang VALUES ('in_list','de','in Liste','');
 INSERT INTO pvp_lang VALUES ('is_rw','de','überschreibbar','');
 INSERT INTO pvp_lang VALUES ('label','de','Etikett','');
@@ -484,6 +485,7 @@ INSERT INTO pvp_lang VALUES ('permit_userbackup_restore_comment','de','Dies erla
 INSERT INTO pvp_lang VALUES ('permit_userbackup_store','de','Dürfen Benutzer Backups ihrer Filmdaten auf dem Server anlegen?','');
 INSERT INTO pvp_lang VALUES ('permit_userbackup_store_comment','de','Dies erlaubt normalen Benutzern, Backups ihrer Filmdaten zu erstellen, welche sodann automatisch im konfigurierten Backup-Verzeichnis abgelegt werden. Hierbei wird kein Backup-Paket zum Browser gesendet, es findet also kein Download der Daten statt.','');
 INSERT INTO pvp_lang VALUES ('picture','de','Farbformat','');
+INSERT INTO pvp_lang VALUES ('pilot_apikey_comment','de','Die Nutzung der Moviepilot-API erfordert einen gültigen API-Key. Dieser kann entweder in der Konfigurationsdatei von IMDBPHP oder aber hier angegeben werden. Ist er an beiden Plätzen konfiguriert, wird der hier angegebene Key verwendet.','');
 INSERT INTO pvp_lang VALUES ('pilot_fallback','de','Fallback für bei MoviePilot fehlende Inhalte','');
 INSERT INTO pvp_lang VALUES ('pilot_fallback_comment','de','Bei MoviePilot nicht verfügbare Inhalte kann die API automatisch von der konfigurierten IMDB Site beziehen, wenn dies hier aktiviert ist. NO_ACCESS heißt, dass dies nicht geschieht; BASIC_ACCESS bezieht nur \"unverfängliches\", FULL_ACCESS holt alles, was möglich ist.','');
 INSERT INTO pvp_lang VALUES ('pilot_url','de','Zu verwendende MoviePilot Site','');

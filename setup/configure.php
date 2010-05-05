@@ -73,6 +73,12 @@ if ( isset($update) ) {
         if (isset($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
       }
     }
+    if ( !empty($_POST["pilot_apikey"]) && ( strlen($_POST["pilot_apikey"])!=30 || preg_match('|[^a-f0-9]|i',$_POST["pilot_apikey"]) ) ) {
+      $pvp->common->display_error( lang('invalid_pilot_apikey') );
+      exit;
+    } else {
+      $db->set_config("pilot_apikey",$_POST["pilot_apikey"]);
+    }
     if (!isset($_POST["http_cache_enable"])) $_POST["http_cache_enable"] = 0;
     $db->set_config("http_cache_enable",$_POST["http_cache_enable"]);
     if (!isset($_POST["use_http_auth"])) $_POST["use_http_auth"] = 0;
@@ -160,6 +166,7 @@ foreach ($imdbtx as $var=>$val) {
 }
 $pilot_url       = $pvp->preferences->get("pilot_url");
 $pilot_fallback  = $pvp->preferences->get("pilot_fallback");
+$pilot_apikey    = $db->get_config("pilot_apikey");
 $mdb_use         = $pvp->preferences->get("mdb_use");
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $imdb_cache_enable = $db->get_config("imdb_cache_enable");
@@ -588,6 +595,18 @@ for ($i=0;$i<count($opts['pilot_fallback']);++$i) {
 $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
+
+#--[ API Key ]--
+if ($admin) {
+  $t->set_var("item_name",lang("pilot_apikey"));
+  $t->set_var("item_comment",lang("pilot_apikey_comment"));
+  if ( $imdbapi_gen < 1 ) {
+    $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey' DISABLED>");
+  } else {
+    $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey'>");
+  }
+  $t->parse("item","itemblock",TRUE);
+}
 
 #--[ MDB to use ]--
 $t->set_var("item_name",lang("mdb_use"));

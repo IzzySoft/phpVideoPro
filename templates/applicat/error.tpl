@@ -2,7 +2,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset={charset}">
  <meta http-equiv="cache-control" content="no-cache">
  <Title>{listtitle}</Title>
- <LINK REL="stylesheet" TYPE="text/css" HREF="templates/applicat/default.css">
+ <LINK REL="stylesheet" TYPE="text/css" HREF="{tpl_dir}default.css">
 </HEAD><BODY>
 <BR STYLE="margin-top:50">
 <TABLE ALIGN="center" CELLPADDING="0" CELLSPACING="0" BORDER="0" id="appWin"><TR><TD>

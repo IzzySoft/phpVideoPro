@@ -234,7 +234,7 @@ function menuBarItemClick(e) { // Private method
     }
   }
   if (!e) {
-    var e = window.event;
+    e = window.event;
     e.cancelBubble = true;
   }
   if (e.stopPropagation) {
@@ -586,7 +586,7 @@ function jsDOMenuBar() { // Public method
   if (ie50) {
     menuBarElm.style.height = "1%";
   }
-  
+
   if (menuBarElm.mode != "static") {
     document.body.appendChild(menuBarElm);
   }
@@ -604,7 +604,7 @@ function jsDOMenuBar() { // Public method
   this.addMenuBarItem = addMenuBarItem;
   this.menuBarObj.onclick = function(e) { // Private method
     if (!e) {
-      var e = window.event;
+      e = window.event;
       e.cancelBubble = true;
     }
     if (e.stopPropagation) {

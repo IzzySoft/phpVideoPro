@@ -104,7 +104,7 @@ Get the x-coordinate of the cursor position relative to the window.
 */
 function getX(e) { // Private method
   if (!e) {
-    var e = window.event;
+    e = window.event;
   }
   if (safari) {
     return e.clientX - getScrollLeft();
@@ -119,7 +119,7 @@ Get the y-coordinate of the cursor position relative to the window.
 */
 function getY(e) { // Private method
   if (!e) {
-    var e = window.event;
+    e = window.event;
   }
   if (safari) {
     return e.clientY - getScrollTop();
@@ -134,8 +134,6 @@ Get the scrollLeft property.
 */
 function getScrollLeft() { // Private method
   switch (pageMode) {
-    case 0:
-      return document.body.scrollLeft;
     case 1:
       if (document.documentElement && document.documentElement.scrollLeft > 0) {
         return document.documentElement.scrollLeft;
@@ -143,6 +141,8 @@ function getScrollLeft() { // Private method
       else {
         return document.body.scrollLeft;
       }
+    default:
+      return document.body.scrollLeft;
   }
 }
 
@@ -151,8 +151,6 @@ Get the scrollTop property.
 */
 function getScrollTop() { // Private method
   switch (pageMode) {
-    case 0:
-      return document.body.scrollTop;
     case 1:
       if (document.documentElement && document.documentElement.scrollTop > 0) {
         return document.documentElement.scrollTop;
@@ -160,6 +158,8 @@ function getScrollTop() { // Private method
       else {
         return document.body.scrollTop;
       }
+    default:
+      return document.body.scrollTop;
   }
 }
 
@@ -168,8 +168,6 @@ Get the clientHeight property.
 */
 function getClientHeight() { // Private method
   switch (pageMode) {
-    case 0:
-      return document.body.clientHeight;
     case 1:
       if (safari) {
         return self.innerHeight;
@@ -182,6 +180,8 @@ function getClientHeight() { // Private method
           return document.body.clientHeight;
         }
       }
+    default:
+      return document.body.clientHeight;
   }
 }
 
@@ -190,8 +190,6 @@ Get the clientWidth property.
 */
 function getClientWidth() { // Private method
   switch (pageMode) {
-    case 0:
-      return document.body.clientWidth;
     case 1:
       if (safari) {
         return self.innerWidth;
@@ -204,6 +202,8 @@ function getClientWidth() { // Private method
           return document.body.clientWidth;
         }
       }
+    default:
+      return document.body.clientWidth;
   }
 }
 
@@ -443,7 +443,7 @@ function menuItemClick(e) { // Private method
     }
   }
   if (!e) {
-    var e = window.event;
+    e = window.event;
     e.cancelBubble = true;
   }
   if (e.stopPropagation) {
@@ -540,7 +540,7 @@ function activatePopUpMenu(e) { // Private method
   }
   else {
     if (!e) {
-      var e = window.event;
+      e = window.event;
     }
     var targetElm = (e.target) ? e.target : e.srcElement;
     if (targetElm.nodeType == 3) {
@@ -560,7 +560,7 @@ function leftClickHandler(e) { // Private method
     return;
   }
   if (!e) {
-    var e = window.event;
+    e = window.event;
   }
   if (e.button && e.button == 2) {
     return;
@@ -585,7 +585,7 @@ Event handler that handles right click event.
 */
 function rightClickHandler(e) { // Private method
   if (getX(e) > getClientWidth() || getY(e) > getClientHeight()) {
-    return;
+    return false;
   }
   hideVisibleMenus();
   if (typeof(hideMenuBarMenus) == "function") {
@@ -602,6 +602,7 @@ function rightClickHandler(e) { // Private method
       return false;
     }
   }
+  return false;
 }
 
 /*
@@ -724,7 +725,7 @@ function addMenuItem(menuItemObj) { // Public method
       };
       itemElm.onclick = function(e) { // Private method
         if (!e) {
-          var e = window.event;
+          e = window.event;
           e.cancelBubble = true;
         }
         if (e.stopPropagation) {

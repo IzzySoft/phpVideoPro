@@ -13,6 +13,7 @@ History for phpVideoPro
 - us.imdb.com lately caused nothing but trouble, so we removed it from our settings
 * minor facelifting for the applicat template set
 ! the "add new" link on the useradmin screen did not bring up the correct form
+! fixing up some JavaScript warnings
 
 v0.9.6 (25.04.2010)
 -------------------

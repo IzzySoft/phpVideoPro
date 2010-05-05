@@ -4,12 +4,12 @@
  <script type="text/javascript">
 function createjsDOMenu() {
 //  menuBarActivateMode = "over"; // open menu on mouseOver (instead of click)
-  menuBar = new jsDOMenuBar();
+  var menuBar = new jsDOMenuBar();
 <?php
  #============================================================[ Admin Menu ]===
  if ($pvp->auth->admin) {
 ?>
-  adminMenu = new jsDOMenu();
+  var adminMenu = new jsDOMenu();
   with (adminMenu) {
     //                      ShowName, IDName, URL
     addMenuItem(new menuItem("<?php echo lang("admin_cats")?>", "admin_cats", "<?php echo $pvp->link->slink($base_url."admin/cats.php")?>"));
@@ -49,8 +49,8 @@ function createjsDOMenu() {
 <?php
  }
  #=============================================================[ Edit Menu ]===
-?>  
-  editMenu = new jsDOMenu();
+?>
+  var editMenu = new jsDOMenu();
   with (editMenu) {
 <?php if ($pvp->auth->add) { ?>
     addMenuItem(new menuItem("<?php echo lang("new_movie_on")?>", "newMovie", ""));
@@ -69,7 +69,7 @@ function createjsDOMenu() {
 <?php if ($pvp->auth->add) {
  $lastnum = $db->get_lastmovienum();
 ?>
-  newMovies = new jsDOMenu();
+  var newMovies = new jsDOMenu();
   with (newMovies) {
 <?php
   for ($i=0;$i<count($lastnum);++$i) {
@@ -110,7 +110,7 @@ function createjsDOMenu() {
 <?php
  #===========================================================[ Filter Menu ]===
 ?>
-  filterMenu = new jsDOMenu();
+  var filterMenu = new jsDOMenu();
   with (filterMenu) {
     addMenuItem(new menuItem("<?php echo lang("set_filter")?>", "filter_set", "<?php echo $pvp->link->slink($base_url."setfilter.php")?>"));
     addMenuItem(new menuItem("<?php echo lang("unset_filter")?>", "filter_unset", "<?php echo $pvp->link->slink($base_url."setfilter.php?reset=1")?>"));
@@ -122,7 +122,7 @@ function createjsDOMenu() {
 <?php
  #=============================================================[ View Menu ]===
 ?>
-  viewMenu = new jsDOMenu();
+  var viewMenu = new jsDOMenu();
   with (viewMenu) {
     addMenuItem(new menuItem("<?php echo lang("login_page")?>", "view_login", "<?php echo $pvp->link->slink($base_url."login.php?logout=1")?>"));
     addMenuItem(new menuItem("<?php echo lang("start_page")?>", "view_start", "<?php echo $pvp->link->slink($base_url."index.php")?>"));
@@ -139,7 +139,7 @@ function createjsDOMenu() {
     addMenuItem(new menuItem("-"));
     addMenuItem(new menuItem("<?php echo lang("db_stats")?>", "view_stats", "<?php echo $pvp->link->slink($base_url."stats.php")?>"));
   }
-  dupeMenu = new jsDOMenu();
+  var dupeMenu = new jsDOMenu();
   with (dupeMenu) {
     addMenuItem(new menuItem("<?php echo lang("all_topic")?>", "view_dupesAll", "<?php echo $pvp->link->slink($base_url."dupes.php")?>"));
     addMenuItem(new menuItem("<?php echo lang("dupes_strict")?>", "view_dupesStrict", "<?php echo $pvp->link->slink($base_url."dupes.php?strict=1")?>"));
@@ -162,7 +162,7 @@ function createjsDOMenu() {
 <?php
  #============================================================[ Print Menu ]===
 ?>
-  printMenu = new jsDOMenu();
+  var printMenu = new jsDOMenu();
   with (printMenu) {
     addMenuItem(new menuItem("<?php echo lang("labels")?>", "print_label", "<?php echo $pvp->link->slink($base_url."label.php")?>"));
     addMenuItem(new menuItem("<?php echo lang("labels")?> (PS)", "print_pslabel", "<?php echo $pvp->link->slink($base_url."pslabel.php")?>"));
@@ -176,7 +176,7 @@ function createjsDOMenu() {
 <?php
  #=============================================================[ Help Menu ]===
 ?>
-  helpMenu = new jsDOMenu();
+  var helpMenu = new jsDOMenu();
   with (helpMenu) {
     addMenuItem(new menuItem("<?php echo lang("index")?>", "help_index", "JavaScript:open_help('')"));
     addMenuItem(new menuItem("<?php echo lang("about")?>", "help_about", "JavaScript:open_help('about')"));

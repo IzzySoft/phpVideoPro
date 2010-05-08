@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -61,7 +61,7 @@
   function slink($target) {
     GLOBAL $pvp,$sess_id;
     if (!isset($pvp->cookie) || !$pvp->cookie->active) {
-      if (!$sess_id) $sess_id = $_REQUEST["sess_id"];
+      if (!$sess_id) $sess_id = get_request("sess_id");
       $pos = strpos($target,"?");
       if ($pos) {
         $target .= "&sess_id=$sess_id";

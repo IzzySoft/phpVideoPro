@@ -29,4 +29,4 @@ INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');
 INSERT INTO pvp_preferences (name,value) VALUES ('mdb_use','0');
 
 # version update
-UPDATE pvp_config SET value='0.9.6' WHERE name='version';
+UPDATE pvp_config SET value='0.9.7' WHERE name='version';

@@ -77,7 +77,11 @@
  vul_num("cass_id");
  vul_num("part");
  vul_num("id");
- if (isset($_REQUEST["sess_id"]) && preg_match("/\W/",$_REQUEST["sess_id"])!==0) vul_kick("sess_id");
+ if (isset($_REQUEST['sess_id'])) $tid = $_REQUEST['sess_id'];
+ elseif (isset($_COOKIE['sess_id'])) $tid = $_COOKIE['sess_id'];
+ else $tid = '';
+ if (!empty($tid) && preg_match("/\W/",$tid)!==0) vul_kick("sess_id");
+ unset($tid);
 
  #============================================================[ users.php ]===
  if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {

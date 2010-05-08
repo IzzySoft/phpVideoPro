@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -32,7 +32,7 @@
     case "directors"     : $pagename .= " [ " . lang("directors_list") . " ]"; break;
     case "edit"          : $mt = $db->get_mtypes("id=$mtype_id");
                            $pagename .= " [ " . lang("edit_entry",$mt[0]['sname']." ".$nr) . " ]";
-			   unset($mt); break;
+                           unset($mt); break;
     case "filter"        : $pagename .= " [ " . lang("filter_setup") . " ]"; break;
     case "view"          : $pagename .= " [ " . lang("view_entry",$nr) . " ]"; break;
     case "music"         : $pagename .= " [ " . lang("music_list") . " ]"; break;
@@ -40,7 +40,7 @@
     case "stats"         : $pagename .= " [ " . lang("db_stats") . " ]"; break;
     case "view_entry"    : $mt = $db->get_mtypes("id=$mtype_id");
                            $pagename .= " [ " . lang("view_entry",$mt[0]['sname']." $cass_id-$part") . " ]";
-			   unset($mt); break;
+                           unset($mt); break;
     default              : $pagename .= " [ " . lang("$page_id") . " ]"; break;
   }
   // AutoLogin via HTTP_AUTH (if enabled)
@@ -48,6 +48,10 @@
     if (!$pvp->auth->user_id || $pvp->auth->user->login=="guest") {
       $sess_id = $pvp->session->create($_SERVER["PHP_AUTH_USER"],$_SERVER["PHP_AUTH_PW"]);
       if ($pvp->cookie->active) $pvp->cookie->set("sess_id",$sess_id);
+    } else {
+      $sess_id = get_request('sess_id');
     }
+  } else {
+    $sess_id = get_request('sess_id');
   }
 ?>

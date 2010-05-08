@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -14,7 +14,7 @@
 
  $page_id = "start_page";
  include("inc/includes.inc");
- $details = array("sel_entry","mtype_id","cass_id","part","sess_id");
+ $details = array("sel_entry","mtype_id","cass_id","part");
  foreach ($details as $var) {
    if ( isset($_REQUEST[$var]) ) $$var = $_REQUEST[$var];
  }

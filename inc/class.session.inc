@@ -39,8 +39,8 @@
     srand((double)microtime()*1000000);
     $random_char = array('0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f',
                          'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v',
-			 'w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L',
-			 'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+                         'w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L',
+                         'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
     for ($i=0;$i<$size;++$i) {
       $s .= $random_char[rand(1,61)];
     }
@@ -91,8 +91,9 @@
   function verify($id="") {
     GLOBAL $db;
     if (!$id) {
-      if (!isset($_REQUEST["sess_id"])) return FALSE;
-      $id = $_REQUEST["sess_id"];
+      $sess_id = get_request('sess_id');
+      if (empty($sess_id)) return FALSE;
+      $id = $sess_id;
     }
     return $db->verify_session($id,$_SERVER["REMOTE_ADDR"]);
   }
@@ -105,7 +106,7 @@
   function end($id) {
     GLOBAL $db;
     $ended = time();
-    if (!$id) $id = $_REQUEST["sess_id"];
+    if (!$id) $id = get_request('sess_id');
     $db->end_session($id,$_SERVER["REMOTE_ADDR"],$ended);
   }
 

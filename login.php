@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -17,7 +17,7 @@
  vul_alnum("sess_id");
  vul_num("logout");
  vul_alnum("login_hint");
- $details = array("sess_id","logout","login","passwd","login_hint");
+ $details = array("logout","login","passwd","login_hint");
  foreach ($details as $var) {
    $$var = $_REQUEST[$var];
  }

@@ -139,6 +139,20 @@
    return FALSE;
  }
 
+ /** Check the value of a request var
+  *  Starting with PHP 5.3, cookies are no longer registered in $_REQUEST by
+  *  default - so we sometimes need to emulate the old behavior using GPC
+  * @function get_request
+  * @param string var name of the request variable to obtain
+  * @return string value
+  */
+ function get_request($var) {
+   if (!empty($_COOKIE[$var])) return $_COOKIE[$var];
+   if (!empty($_POST[$var])) return $_POST[$var];
+   if (!empty($_GET[$var])) return $_GET[$var];
+   return '';
+ }
+
  ################################################################[ Filters ]###
  /** get filter settings from db - real function moved to class preferences,
   *  so this is just a wrapper until the change is done in all files

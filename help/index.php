@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2011 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -19,6 +19,7 @@ include ("../inc/common_funcs.inc");
 require_once ("../inc/class.faq.inc");
 $translations = $db->get_translations( $pvp->preferences->get("lang") );
 if (isset($_GET["topic"])) $topic    = $_GET["topic"]; else $topic = "";
+if ( preg_match('/[^\w]/',$topic) ) $topic = "";
 if (isset($_GET["ref"]))   $ref      = $_GET["ref"]; else $ref="";
 if (isset($_GET["force_en"])) $force_en = $_GET["force_en"]; else $force_en = FALSE;
 if ( !ini_get("register_globals") ) $PHP_SELF = $_SERVER["PHP_SELF"];

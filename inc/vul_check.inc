@@ -69,7 +69,7 @@
 
  #==========================================================[ common vars ]===
  if (!empty($_GET["lang"]) && strlen($_GET["lang"]) > 2) vul_kick();
- if (preg_match('![^\w\./]!',$_SERVER['PHP_SELF'])) vul_kick();
+ if (preg_match('![^\w\./-]!',$_SERVER['PHP_SELF'])) vul_kick();
  vul_alnum("order");
  vul_alnum("tpl");
  vul_alnum("nr");

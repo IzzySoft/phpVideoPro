@@ -32,7 +32,7 @@
    $edit    = TRUE;
  } elseif ($edit) {
    $page_id = "edit";
- } elseif ($_POST["delete"]) {
+ } elseif (isset($_POST["delete"])) {
    include("delete.php");
    exit;
  } else { $page_id = "view_entry"; }

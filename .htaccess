@@ -8,3 +8,4 @@ AddType application/x-httpd-php .php .inc
 php_flag register_globals Off
 php_value arg_separator.input ";&"
 #php_flag magic_quotes_gpc Off
+php_flag short_open_tag On

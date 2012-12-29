@@ -10,7 +10,7 @@ CREATE TABLE pvp_pspacks (
   descript      VARCHAR(200),
   creator       VARCHAR(200),
   PRIMARY KEY (id)
-) TYPE=MyISAM COMMENT='PS Label Pack Info';
+) COMMENT='PS Label Pack Info';
 INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (1,1,'pvplvd','Default VHS Labels','Top and Side labels for VHS tapes originally came along with the application','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
 INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (2,1,'pvplcs','Simple Color CD/DVD Labels','CD/DVD labels just using simple  colored background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
 INSERT INTO pvp_pspacks (id,rev,sname,name,descript,creator) VALUES (3,1,'pvplcp','Simple Pix CD/DVD Labels','CD/DVD labels using simple picture background (originally shipped with phpVideoPro v0.8.5)','Izzy ([url]http://projects.izzysoft.de/?topic=progs;subject=phpvideopro[/url])');
@@ -33,7 +33,7 @@ CREATE TABLE pvp_epstemplates (
   ury           SMALLINT(6) NOT NULL default '0',
   PRIMARY KEY  (id),
   FULLTEXT KEY description (description)
-) TYPE=MyISAM COMMENT='Bounding box of EPS template';
+) COMMENT='Bounding box of EPS template';
 
 #
 # Table structure and data for 'label form definition'
@@ -57,7 +57,7 @@ CREATE TABLE pvp_pslabelforms (
   rows          TINYINT(4) NOT NULL default '0',
   sheet_id      TINYINT(4) NOT NULL default '0',
   PRIMARY KEY  (id)
-) TYPE=MyISAM COMMENT='PS label formsheet definition table';
+) COMMENT='PS label formsheet definition table';
 
 INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (1,'Zweckform','4742 Inkjet+Laser, S+L Video TOP','VHS video cass. top label',1,3,8.13,4.66,7.87,4.66,2.5,0.87,2,6,1);
 INSERT INTO pvp_pslabelforms (id, vendor, product, description, type, unit_id, h_dist, v_dist, width, heigth, leftm, topm, cols, rows, sheet_id) VALUES (2,'Zweckform','4746 Inkjet+Laser, S+L,vid. SIDE','VHS cass. SIDE label',2,3,14.73,2,14.73,2,3.13,1.84,1,13,1);
@@ -78,7 +78,7 @@ CREATE TABLE pvp_psprinters (
   left_offset float NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
-) TYPE=MyISAM COMMENT='Printer offset definition';
+) COMMENT='Printer offset definition';
 
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (1,'OKI 610ex',4,5.5,4.5);
 INSERT INTO pvp_psprinters (id, name, unit_id, top_offset, left_offset) VALUES (2,'EPSON Stylus Photo 890',4,0,0);
@@ -99,7 +99,7 @@ CREATE TABLE pvp_pssheets (
   PRIMARY KEY  (id),
   UNIQUE KEY id (id),
   KEY id_2 (id)
-) TYPE=MyISAM COMMENT='label print sheet description';
+) COMMENT='label print sheet description';
 
 INSERT INTO pvp_pssheets (id, name, unit_id, width, length) VALUES (1,'a4',3,21,29.7);
 
@@ -113,7 +113,7 @@ CREATE TABLE pvp_psunits (
   unit  VARCHAR(8) NOT NULL,
   size  FLOAT NOT NULL DEFAULT '0',
   PRIMARY KEY (id)
-) TYPE=MyISAM COMMENT='unit conversion table';
+) COMMENT='unit conversion table';
 
 INSERT INTO pvp_psunits (id, unit, size) VALUES (1,'pt',1);
 INSERT INTO pvp_psunits (id, unit, size) VALUES (2,'inch',72);

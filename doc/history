@@ -6,6 +6,7 @@ History for phpVideoPro
 v0.9.8
 -------------------
 ! fixed possible XSS
+! fixing some minor compatibility issues
 
 0.9.7 (09.05.2010)
 -------------------

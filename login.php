@@ -19,7 +19,8 @@
  vul_alnum("login_hint");
  $details = array("logout","login","passwd","login_hint");
  foreach ($details as $var) {
-   $$var = $_REQUEST[$var];
+   if (isset($_REQUEST[$var])) $$var = $_REQUEST[$var];
+   else $$var = '';
  }
  if (preg_match("/\s/","${login}${passwd}")) {
    $msg = lang("input_errors_occured",1) . "<UL>\n"

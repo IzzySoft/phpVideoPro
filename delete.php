@@ -15,7 +15,8 @@
  #=================================================[ Register global vars ]===
  $postit = array ("mtype_id","cass_id","part","nr","approved","cancel","delete");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var];
+   else $$var = '';
  }
  $page_id = "delete";
  include("inc/includes.inc");

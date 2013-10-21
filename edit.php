@@ -15,7 +15,8 @@
  #=================================================[ Register global vars ]===
  $getit = array ("mtype_id","cass_id","part","nr");
  foreach ($getit as $var) {
-   $$var = $_GET[$var];
+   if (isset($_GET[$var])) $$var = $_GET[$var];
+   else $$var = '';
  }
  unset($getit);
  while ( list($vn,$vv)=each($_POST) ) {

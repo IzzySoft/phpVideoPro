@@ -604,6 +604,7 @@
      $this->query($query);
      $i=0;
      while ( $this->next_record() ) {
+       $users[$i]         = new stdClass();
        $users[$i]->id     = $this->f('id');
        $users[$i]->login  = $this->f('login');
        $users[$i]->pwd    = $this->f('pwd');
@@ -629,6 +630,7 @@
    function get_logindata($login) {
      $this->dbquery("SELECT id,pwd FROM pvp_users WHERE login='$login'");
      if ( $this->next_record() ) {
+       $user         = new stdClass();
        $user->id     = $this->f('id');
        $user->passwd = $this->f('pwd');
        return $user;
@@ -1875,6 +1877,7 @@
      GLOBAL $pvp;
      $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
+     $next = new stdClass();
      $next->mtype_id = $mtype_id;
      $next->media_nr = $media_nr;
      $this->query("SELECT MIN(part) AS part FROM pvp_video WHERE mtype_id=$mtype_id AND media_id=$media_nr AND part>$part");
@@ -1936,6 +1939,7 @@
      GLOBAL $pvp;
      $gusers = implode(",",$this->get_usergrants(array(),array(0,$pvp->auth->user_id),array("SELECT")));
      if (!(is_numeric($mtype_id) && is_numeric($media_nr) && is_numeric($part))) return FALSE;
+     $prev = new stdClass();
      $prev->mtype_id = $mtype_id;
      $prev->media_nr = $media_nr;
      if ($part>1) { // check on the same medium

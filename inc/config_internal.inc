@@ -13,6 +13,8 @@
 
 /* $Id$ */
 
+$pvp = new stdClass();
+$pvp->config = new stdClass();
 #=======================================================[ debug settings ]===
 # which actions to log. Empty string turns off debug feature. Otherwise each
 # letter represents an action to debug:
@@ -64,6 +66,7 @@ $pvp->config->imdb_photourl  = $base_url."moviepic/imdb/";
 #=========================================[ retrieve browser information ]===
 include($base_path . "inc/class.browser.inc");
 $browser = new browser;
+$agent = new stdClass();
 $agent->name    = strtolower($browser->getbrowser());
 $agent->major   = $browser->getMajor();
 $agent->minor   = $browser->getMinor();
@@ -101,6 +104,7 @@ define("SUBTITLES",9);    // max subtitle tracks for a movie
 $pvp->protected_users = array('admin','public','guest'); // undeletable etc., case insensitive
 
 #=============================================[ read preferences from DB ]===
+$pvp->config->db = new stdClass();
 $pvp->config->db->type = strtolower($database["type"]);
 $pvp->db_include = dirname(__FILE__) . "/class.db_" . $database["type"] . ".inc";
 include ($pvp->db_include);

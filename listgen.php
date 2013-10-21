@@ -15,7 +15,8 @@
  #=================================================[ Register global vars ]===
  $postit = array ("outputtype","pagelength","order","create");
  foreach ($postit as $var) {
-   $$var = $_POST[$var];
+   if (isset($_POST[$var])) $$var = $_POST[$var];
+   else $$var = '';
  }
  unset($postit);
 

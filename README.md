@@ -9,6 +9,8 @@ version (starting from about 1993 - this was then known as Video-5). *phpVideoPr
 was designed using PHP because of the cross-platform abilities and the added
 plus of having your information available anywhere at anytime.
 
+For more details, please see the documentation in the projects wiki.
+
 
 ### Features
 The program allows you to add and change entries as needed - on your request,
@@ -56,7 +58,7 @@ and a built-in session management.
 
 
 ### Future
-*phpVideoPro* currently is not actively developed anymore. I *might* decide to
+*phpVideoPro* is not actively developed at the currently. I *might* decide to
 pick it up again at some point, but it's rather doubtful my time permits. This
 is why I decided to move the code to Github and have the project „archived“
 there; feel free to fork it and let me know about further development on your

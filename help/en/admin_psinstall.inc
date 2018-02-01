@@ -33,7 +33,7 @@ your phpVideoPro installation) to be writable by the webserver (otherwise the
 files cannot be installed there). If that is fine for you, you may do so. If
 you see any security risk with this, you still have the option of manually
 downloading the archive and unpack it into the <code>pslabels/</code> directory,
-and return to this page for the <A HREF="manualinstall">registration</A> with
+and return to this page for the <A HREF="#manualinstall">registration</A> with
 the database.
 
 [title|2|manualinstall]

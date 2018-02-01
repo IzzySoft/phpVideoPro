@@ -31,7 +31,7 @@ wird die gesamte Prozedur des Herunterladens, entpackens und registrierens
 durchgeführt. Dies setzt jedoch voraus, dass das Installationsverzeichnis
 (das <code>pslabels/</code> Verzeichnis im phpVideoPro Verzeichnis) auch für
 den Webserver schreibbar ist. Wem das ein zu großes Sicherheitsrisiko
-darstellt, dem verbleibt dann nur die <A HREF="manualinstall">manuelle
+darstellt, dem verbleibt dann nur die <A HREF="#manualinstall">manuelle
 Installation</A>.
 
 [title|2|manualinstall]

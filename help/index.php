@@ -43,6 +43,7 @@ function helppage ($topic) {
   $name = $topic . ".inc";
   $file = dirname(__FILE__) . "/" . $lang . "/" . $name;
   $default_file = dirname(__FILE__) . "/en/" . $name;
+  $help = new stdClass();
   $help->desc = $desc;
   if ( file_exists($file) ) {
     $help->url  = "<A HREF='".$_SERVER["PHP_SELF"]."?topic=$topic'>$desc</A>";

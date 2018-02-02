@@ -136,6 +136,7 @@
      }
      asort($name); reset($name); $i=0;
      while ( list($key,$val) = each($name) ) {
+       $list[$i] = new stdClass();
        $list[$i]->id   = $lang[$key];
        $list[$i]->name = $name[$key];
        ++$i;
@@ -630,6 +631,7 @@
    function get_logindata($login) {
      $this->dbquery("SELECT id,pwd FROM pvp_users WHERE login='$login'");
      if ( $this->next_record() ) {
+       $user = new stdClass();
        $user         = new stdClass();
        $user->id     = $this->f('id');
        $user->passwd = $this->f('pwd');
@@ -2458,6 +2460,7 @@
      }
      $this->dbquery($query);
      while ( $this->next_record() ) {
+       $type = new stdClass();
        $type->id   = $this->f('id');
        $type->name = $this->f('name');
        $type->size = $this->f('size');

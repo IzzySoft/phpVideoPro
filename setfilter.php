@@ -72,10 +72,12 @@
    $pvp->preferences->set("filter","");
  } elseif ($save) { // new filter values were submitted
    $mtypes = $db->get_mtypes();
+   $filter = new stdClass();
    for ($i=0;$i<count($mtypes);$i++) {
      $id = $mtypes[$i]['id'];
      $field = "mtype_" . $id;
      vul_alnum($field);
+     if ( !property_exists($filter,'mtype') ) $filter->mtype = new stdClass();
      if (${$field}) $filter->mtype->$id = TRUE; else $filter->mtype->$id = FALSE;
    }
    $filter->length_min  = $length_min;
@@ -87,6 +89,7 @@
      $id    = $pict[$i]['id'];
      $field = "pict_" . $id;
      vul_alnum($field);
+     if ( !property_exists($filter,'pict') ) $filter->pict = new stdClass();
      if (${$field}) $filter->pict->$id = TRUE; else $filter->pict->$id = FALSE;
    }
    $pict = $db->get_color();
@@ -94,6 +97,7 @@
      $id    = $pict[$i]['id'];
      $field = "color_" . $id;
      vul_alnum($field);
+     if ( !property_exists($filter,'color') ) $filter->color = new stdClass();
      if (${$field}) $filter->color->$id = TRUE; else $filter->color->$id = FALSE;
    }
    $pict = $db->get_tone();
@@ -101,6 +105,7 @@
      $id    = $pict[$i]['id'];
      $field = "tone_" . $id;
      vul_alnum($field);
+     if ( !property_exists($filter,'tone') ) $filter->tone = new stdClass();
      if (${$field}) $filter->tone->$id = TRUE; else $filter->tone->$id = FALSE;
    }
    $filter->lp = $lp;
@@ -109,21 +114,25 @@
    $filter->title   = $title;
    #---------[ first reset, then set anew - to allow editing of pre-sets: ]---
    $max = count($filter->cat);
+   $filter->cat = new stdClass();
    for ($i=0;$i<$max;$i++) $filter->cat->$i = FALSE;
    for ($i=0;$i<count($cat_id);$i++) {
      $filter->cat->$cat_id[$i] = TRUE;
    }
    $max = count($filter->actor);
+   $filter->actor = new stdClass();
    for ($i=0;$i<$max;$i++) $filter->actor->$i = FALSE;
    for ($i=0;$i<count($act_id);$i++) {
     $filter->actor->$act_id[$i] = TRUE;
    }
    $max = count($filter->director);
+   $filter->director = new stdClass();
    for ($i=0;$i<$max;$i++) $filter->director->$i = FALSE;
    for ($i=0;$i<count($dir_id);$i++) {
      $filter->director->$dir_id[$i] = TRUE;
    }
    $max = count($filter->composer);
+   $filter->composer = new stdClass();
    for ($i=0;$i<$max;$i++) $filter->composer->$i = FALSE;
    for ($i=0;$i<count($mus_id);$i++) {
      $filter->composer->$mus_id[$i] = TRUE;

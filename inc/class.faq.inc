@@ -80,14 +80,15 @@ class faq {
     if ($mark) {
       ++$blocknr;
       $desc = preg_match("/([^\|]+)\|([^\|]*)\|(\S*)$/",$hit[1],$set);
+      if ( !isset($this->block[$blocknr]) ) $this->block[$blocknr] = new stdClass();
       if ($desc) { // Special settings for this block
         $this->block[$blocknr]->type  = $set[1];
         $this->block[$blocknr]->level = $set[2]; // <h$level>
-	$this->block[$blocknr]->name  = $set[3]; // <a name=...>
+        $this->block[$blocknr]->name  = $set[3]; // <a name=...>
       } else {
         $this->block[$blocknr]->type  = $hit[1];
         $this->block[$blocknr]->level = 1; // <h$level>
-	$this->block[$blocknr]->name  = $blocknr; // <a name=...>
+        $this->block[$blocknr]->name  = $blocknr; // <a name=...>
       }
       $this->block[$blocknr]->content = "";
       if ($hit[1]=="eof") break;

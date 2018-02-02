@@ -42,13 +42,15 @@ if ( strpos(strtoupper($debug["log"]),"W")!==false ) set_phpdebug(E_WARNING);
 if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
 #=====================================================[ setup path names ]===
-$pvp->projectpage = "http://projects.izzysoft.de/trac/phpvideopro";
-$pvp->histpage    = "http://projects.izzysoft.de/ftp/net/div/izzysoft/pvp/";
+$pvp = new stdClass();
+$pvp->projectpage = "https://github.com/IzzySoft/phpVideoPro";
+$pvp->histpage    = "https://www.izzysoft.de/ftp/net/div/izzysoft/pvp/";
 # $base_path = dirname(dirname(__FILE__))."/"; # !!! __FILE__ resolves symlinks
 $bp = dirname($_SERVER['SCRIPT_FILENAME']);
 if (is_file($bp."/medialist.php")) $base_path = "$bp/";
 else $base_path = dirname($bp) . "/";
 if (substr($base_path,strlen($base_path)-6)=="setup/") $base_path = dirname($base_path) ."/";
+$pvp->config = new stdClass();
 if (substr(php_uname(), 0, 7) == "Windows") {
   $pvp->config->os_slash = "\\";
   $base_path = str_replace("\\","/",$base_path);

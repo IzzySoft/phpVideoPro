@@ -144,7 +144,7 @@ Menu bar related selectors
 /*
 Selectors for icons. Icon size: 16x16 (see height and width setting)
 */
-.about,.admin,.backup,.cats,.clapper,.download,.dupes,.dvd_movie,.dvds,.edit,
+.about,.admin,.backup,.bd_movie,.cats,.clapper,.download,.dupes,.dvd_movie,.dvds,.edit,
 .exit,.filter,.filter_new,.folderx,.help,.help2,.helpindex,.history,.homepage,
 .labels,.list,.lock,.movie,.music,.new,.orphans,.ovt_movie,.print,.rvt_movie,
 .restore,.search,.sessions,.settings,.start,.stats,.templates,.time,.translate,
@@ -159,6 +159,7 @@ Selectors for icons. Icon size: 16x16 (see height and width setting)
 .about { background-image: url(about.png); }
 .admin { background-image: url(admin.png); }
 .backup { background-image: url(backup.png); }
+.bd_movie { background-image: url(bd_movie.png); }
 .cats  { background-image: url(cats.png); }
 .clapper { background-image: url(clapper.png); }
 .download { background-image: url(download.png); }

@@ -9,6 +9,8 @@ v0.9.9
 * PHP7 also dropped eregi_replace; updated that to preg_replace
 * upgraded links in help pages from http to https
 ! fixed some minor PHP warnings
++ adding BD as media type
+* make sure new MySQL installations use UTF8
 
 v0.9.8 (02.02.2018)
 -------------------

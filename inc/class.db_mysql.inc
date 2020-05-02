@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -10,16 +10,15 @@
  # Taken from PHPLIB                                                         #
  # Copyright (c) 1998-2000 NetUSE AG                                         #
  #                    Boris Erdmann, Kristian Koehntopp                      #
+ # Adjusted, improved & updated to mysqli_* by Izzy                          #
  #############################################################################
-
- /* $Id$ */
 
  /** Basic Database Methods for MySQL (extended by class sql)
   * @package Api
   * @class DB_Sql
   */
 class DB_Sql {
-  
+
   # public: connection parameters
   var $Host     = "";
   var $Database = "";
@@ -27,7 +26,7 @@ class DB_Sql {
   var $Password = "";
 
   # public: configuration parameters
-  var $Auto_Free     = 0;     ## Set to 1 for automatic mysql_free_result()
+  var $Auto_Free     = 0;     ## Set to 1 for automatic mysqli_free_result()
   var $Debug         = 0;     ## Set to 1 for debugging messages.
   var $Halt_On_Error = "yes"; ## "yes" (halt with message), "no" (ignore errors quietly), "report" (ignore errror, but spit a warning)
   var $Seq_Table     = "db_sequence";
@@ -47,14 +46,13 @@ class DB_Sql {
   # private: link and query handles
   var $Link_ID  = 0;
   var $Query_ID = 0;
-  
 
   /** Initialization
    * @package Api
    * @constructor DB_Sql
    * @param optional string query query to run
    */
-  function DB_Sql($query = "") {
+  function __construct($query = "") {
       $this->query($query);
   }
 
@@ -78,6 +76,15 @@ class DB_Sql {
     return $this->Query_ID;
   }
 
+  /** Escape a string for safe insert
+   * @function escape
+   * @param string input
+   * @return string escaped
+   */
+  function escape($str) {
+    return mysqli_real_escape_string($this->Link_ID, $str);
+  }
+
   /** Connection management
    * @package Api
    * @class DB_Sql
@@ -98,20 +105,29 @@ class DB_Sql {
       $User     = $this->User;
     if ("" == $Password)
       $Password = $this->Password;
-      
-    # establish connection, select database
-    if ( 0 == $this->Link_ID ) {
-      $this->Link_ID=mysql_pconnect($Host, $User, $Password);
+
+    // establish connection, select database
+    if ( !$this->Link_ID ) {
+      $this->Link_ID=mysqli_connect($Host, $User, $Password, $Database);
       if (!$this->Link_ID) {
-        $this->halt("pconnect($Host, $User, \$Password) failed.");
+        $this->halt("connect($Host, $User, \$Password, $Database) failed.");
         return 0;
       }
-      if (!@mysql_select_db($Database,$this->Link_ID)) {
-        $this->halt("cannot use database ".$this->Database);
-        return 0;
-      }
+//      if (!@mysqli_select_db($this->Link_ID,$Database)) {
+//        $this->halt("cannot use database ".$this->Database);
+//        return 0;
+//      }
     }
     return $this->Link_ID;
+  }
+
+  /** Set the character set
+   * @package Api
+   * @class DB_Sql
+   * @param string charset default utf8
+   */
+  function charset($charset='utf8') {
+    mysqli_set_charset($this->Link_ID,$charset);
   }
 
   /** Discard the query result
@@ -120,7 +136,7 @@ class DB_Sql {
    * @method free
    */
   function free() {
-      @mysql_free_result($this->Query_ID);
+      @mysqli_free_result($this->Query_ID);
       $this->Query_ID = 0;
   }
 
@@ -151,15 +167,15 @@ class DB_Sql {
     if ($this->Debug)
       printf("Debug: query = %s<br>\n", $Query_String);
 
-    $this->Query_ID = @mysql_query($Query_String,$this->Link_ID);
+    $this->Query_ID = @mysqli_query($this->Link_ID,$Query_String);
     $this->Row   = 0;
-    $this->Errno = mysql_errno();
-    $this->Error = mysql_error();
+    $this->Errno = mysqli_errno($this->Link_ID);
+    $this->Error = mysqli_error($this->Link_ID);
     if (!$this->Query_ID) {
       $this->halt("Invalid SQL: ".$Query_String);
     }
 
-    # Will return nada if it fails. That's fine.
+    # Will return nada if it fails. That´s fine.
     return $this->Query_ID;
   }
 
@@ -175,10 +191,10 @@ class DB_Sql {
       return 0;
     }
 
-    $this->Record = @mysql_fetch_array($this->Query_ID);
+    $this->Record = @mysqli_fetch_array($this->Query_ID);
     $this->Row   += 1;
-    $this->Errno  = mysql_errno();
-    $this->Error  = mysql_error();
+    $this->Errno  = mysqli_errno($this->Link_ID);
+    $this->Error  = mysqli_error($this->Link_ID);
 
     $stat = is_array($this->Record);
     if (!$stat && $this->Auto_Free) {
@@ -195,7 +211,7 @@ class DB_Sql {
    * @return boolean success
    */
   function seek($pos = 0) {
-    $status = @mysql_data_seek($this->Query_ID, $pos);
+    $status = @mysqli_data_seek($this->Query_ID, $pos);
     if ($status)
       $this->Row = $pos;
     else {
@@ -204,7 +220,7 @@ class DB_Sql {
       # half assed attempt to save the day, 
       # but do not consider this documented or even
       # desireable behaviour.
-      @mysql_data_seek($this->Query_ID, $this->num_rows());
+      @mysqli_data_seek($this->Query_ID, $this->num_rows());
       $this->Row = $this->num_rows;
       return 0;
     }
@@ -222,7 +238,7 @@ class DB_Sql {
    */
   function lock($table, $mode="write") {
     $this->connect();
-    
+
     $query="lock tables ";
     if (is_array($table)) {
       while (list($key,$value)=each($table)) {
@@ -236,7 +252,7 @@ class DB_Sql {
     } else {
       $query.="$table $mode";
     }
-    $res = @mysql_query($query, $this->Link_ID);
+    $res = @mysqli_query($this->Link_ID,$query);
     if (!$res) {
       $this->halt("lock($table, $mode) failed.");
       return 0;
@@ -252,7 +268,7 @@ class DB_Sql {
    */
   function unlock() {
     $this->connect();
-    $res = @mysql_query("unlock tables");
+    $res = @mysqli_query($this->Link_ID,"unlock tables");
     if (!$res) {
       $this->halt("unlock() failed.");
       return 0;
@@ -268,7 +284,7 @@ class DB_Sql {
    * @return integer affected rows
    */
   function affected_rows() {
-    return @mysql_affected_rows($this->Link_ID);
+    return @mysqli_affected_rows($this->Link_ID);
   }
 
   /** Evaluate the result for SELECT operation
@@ -278,7 +294,7 @@ class DB_Sql {
    * @return integer number of rows in result set
    */
   function num_rows() {
-    return @mysql_num_rows($this->Query_ID);
+    return @mysqli_num_rows($this->Query_ID);
   }
 
   /** Evaluate the result for SELECT operation
@@ -288,7 +304,7 @@ class DB_Sql {
    * @return integer number of columns in result set
    */
   function num_fields() {
-    return @mysql_num_fields($this->Query_ID);
+    return @mysqli_field_count($this->Query_ID);
   }
 
   # public: shorthand notation
@@ -314,6 +330,16 @@ class DB_Sql {
     print $this->Record[$Name];
   }
 
+  /** Get the latest ID generated by autoincrement of a previous statement
+   * @package Api
+   * @class DB_Sql
+   * @method insert_id
+   * @return integer id
+   */
+  function insert_id() {
+    return mysqli_insert_id($this->link_id());
+  }
+
   /** Sequence numbers
    * @package Api
    * @class DB_Sql
@@ -328,9 +354,9 @@ class DB_Sql {
       $q  = sprintf("select nextid from %s where seq_name = '%s'",
                 $this->Seq_Table,
                 $seq_name);
-      $id  = @mysql_query($q, $this->Link_ID);
-      $res = @mysql_fetch_array($id);
-      
+      $id  = @mysqli_query($this->Link_ID,$q);
+      $res = @mysqli_fetch_array($id);
+
       # No current value, make one
       if (!is_array($res)) {
         $currentid = 0;
@@ -338,7 +364,7 @@ class DB_Sql {
                  $this->Seq_Table,
                  $seq_name,
                  $currentid);
-        $id = @mysql_query($q, $this->Link_ID);
+        $id = @mysqli_query($this->Link_ID,$q);
       } else {
         $currentid = $res["nextid"];
       }
@@ -347,7 +373,7 @@ class DB_Sql {
                $this->Seq_Table,
                $nextid,
                $seq_name);
-      $id = @mysql_query($q, $this->Link_ID);
+      $id = @mysqli_query($this->Link_ID,$q);
       $this->unlock();
     } else {
       $this->halt("cannot lock ".$this->Seq_Table." - has it been created?");
@@ -372,7 +398,7 @@ class DB_Sql {
      # Due to compatibility problems with Table we changed the behavior
      # of metadata();
      # depending on $full, metadata returns the following values:
-     
+
      # - full is false (default):
      # $result[]:
      #   [0]["table"]  table name
@@ -397,48 +423,52 @@ class DB_Sql {
     // result
     if ($table) {
       $this->connect();
-      $id = @mysql_list_fields($this->Database, $table);
+      $id = @mysqli_query($this->Link_id, "SHOW COLUMNS FROM $table");
       if (!$id)
         $this->halt("Metadata query failed.");
     } else {
-      $id = $this->Query_ID; 
+      $id = $this->Query_ID;
       if (!$id)
         $this->halt("No query specified.");
     }
- 
-    $count = @mysql_num_fields($id);
+
+    $count = @mysqli_field_count($id);
 
     // made this IF due to performance (one if is faster than $count if's)
+    // for pure mysqli_* solution on types and flags (in case the alias breaks),
+    // see: http://php.net/manual/en/mysqli-result.fetch-field-direct.php#114882
     if (!$full) {
       for ($i=0; $i<$count; $i++) {
-        $res[$i]["table"] = @mysql_field_table ($id, $i);
-        $res[$i]["name"]  = @mysql_field_name  ($id, $i);
-        $res[$i]["type"]  = @mysql_field_type  ($id, $i);
-        $res[$i]["len"]   = @mysql_field_len   ($id, $i);
-        $res[$i]["flags"] = @mysql_field_flags ($id, $i);
+        $field = mysqli_fetch_field_direct($id,$i);
+        $res[$i]["table"] = $field->table;
+        $res[$i]["name"]  = $field->name;
+        $res[$i]["type"]  = @mysql_fieldtype($id,$i); // $field->type;
+        $res[$i]["len"]   = $field->length;
+        $res[$i]["flags"] = @mysql_fieldflags($id,$i); // $field->flags; // str ./. int
       }
     } else { // full
       $res["num_fields"]= $count;
-    
+
       for ($i=0; $i<$count; $i++) {
-        $res[$i]["table"] = @mysql_field_table ($id, $i);
-        $res[$i]["name"]  = @mysql_field_name  ($id, $i);
-        $res[$i]["type"]  = @mysql_field_type  ($id, $i);
-        $res[$i]["len"]   = @mysql_field_len   ($id, $i);
-        $res[$i]["flags"] = @mysql_field_flags ($id, $i);
+        $field = mysqli_fetch_field_direct($id,$i);
+        $res[$i]["table"] = $field->table;
+        $res[$i]["name"]  = $field->name;
+        $res[$i]["type"]  = @mysql_fieldtype($id,$i); // $field->type;
+        $res[$i]["len"]   = $field->length;
+        $res[$i]["flags"] = @mysql_fieldflags($id,$i); // $field->flags;
         $res["meta"][$res[$i]["name"]] = $i;
       }
     }
-    
+
     // free the result only if we were called on a table
-    if ($table) @mysql_free_result($id);
+    if ($table) @mysqli_free_result($id);
     return $res;
   }
 
   # private: error handling
   function halt($msg) {
-    $this->Error = @mysql_error($this->Link_ID);
-    $this->Errno = @mysql_errno($this->Link_ID);
+    $this->Error = @mysqli_error($this->Link_ID);
+    $this->Errno = @mysqli_errno($this->Link_ID);
     if ($this->Halt_On_Error == "no")
       return;
 
@@ -464,7 +494,7 @@ class DB_Sql {
   function table_names() {
     $this->query("SHOW TABLES");
     $i=0;
-    while ($info=mysql_fetch_row($this->Query_ID))
+    while ($info=mysqli_fetch_row($this->Query_ID))
      {
       $return[$i]["table_name"]= $info[0];
       $return[$i]["tablespace_name"]=$this->Database;

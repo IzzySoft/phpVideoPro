@@ -32,7 +32,7 @@
     * @constructor sql
     */
    function sql() { // init
-     $this->DB_Sql(); // constructor of base class needs explicit call
+     parent::__construct(); // constructor of base class needs explicit call
    }
 
    ############################################################################
@@ -3175,6 +3175,7 @@
    if ($id) $query .= " WHERE id=$id";
    $this->dbquery($query);
    while ($this->next_record()) {
+     $printer = new stdClass();
      $printer->id   = $this->f('id');
      $printer->name = $this->f('name');
      $printer->unit_id = $this->f('unit_id');

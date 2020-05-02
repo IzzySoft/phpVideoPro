@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -10,11 +10,13 @@
  # Users configuration file - the only one for the user to edit!             #
  #############################################################################
 
- /* $Id$ */
-
  #==========================================================[ directories ]===
  $backup_path= "testdata"; # where to look for backup files. If not given an
                            # absolute path, it will be relative to the PVP path
+ $imdb_api_path ="";       # where to find the IMDBPHP API (if available). Leave
+                           # empty if you do not have it or do not want to use,
+                           # otherwise this should point to where IMDBPHP's
+                           # bootstrap.php is located in.
 
  #=============================================================[ database ]===
  $database["type"]      = "mysql";     # mysql|pgsql|sqlite

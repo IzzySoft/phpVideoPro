@@ -1,8 +1,8 @@
 <?php
 ##############################################################################
-# phpVideoPro                               (c) 2001-2010 by Itzchak Rehberg #
+# phpVideoPro                               (c) 2001-2020 by Itzchak Rehberg #
 # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
-# http://www.izzysoft.de/                                                    #
+# https://www.izzysoft.de/                                                   #
 # -------------------------------------------------------------------------- #
 # This program is free software; you can redistribute and/or modify it       #
 # under the terms of the GNU General Public License (see doc/LICENSE)        #
@@ -10,11 +10,10 @@
 # Search IMDB for movie information                                          #
 ##############################################################################
 
-/* $Id$ */
-
 #===============================================[ IMDB class configuration ]===
 function config_dirs(&$inst) {
   GLOBAL $pvp,$base_path,$base_url,$db;
+  /* disabled to get IMDBPHP running again at all first
   $cachedir = $db->get_config("imdb_cache_dir");
   if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
   if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
@@ -23,6 +22,7 @@ function config_dirs(&$inst) {
   $inst->storecache = $db->get_config("imdb_cache_enable");
   $inst->usecache = $db->get_config("imdb_cache_use");
   $inst->cache_expire = $db->get_config("imdb_cache_expire");
+  */
   $inst->photodir = $pvp->config->imdb_photopath;
   $inst->photoroot = $pvp->config->imdb_photourl;
 }
@@ -31,9 +31,9 @@ function config_imdb(&$inst) {
   GLOBAL $pvp;
   $imdbsite = $pvp->preferences->get("imdb_url");
   $url  = explode("/",$imdbsite);
-  $inst->imdbsite = $url[count($url)-2];
+//  $inst->imdbsite = $url[count($url)-2];
   config_dirs($inst);
-  $inst->imdb_utf8recode = true;
+//  $inst->imdb_utf8recode = true;
 }
 
 function config_pilot(&$inst) {
@@ -63,6 +63,7 @@ function match_genre(&$genre,$class) {
 }
 
 function get_data(&$movie) {
+  $data = new stdClass();
   $data->title    = $movie->title();
   $data->akas     = $movie->alsoknow();
   $data->country  = $movie->country();
@@ -192,13 +193,11 @@ foreach ($imdb_tx_prefs as $var=>$val) {
 
 if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
 #==================================================[ Get IMDB ID for movie ]===
-  require_once("imdb.class.php");
-  require_once("imdbsearch.class.php");
-  $search = new imdbsearch();
+  require_once($pvp->config->imdb_api_path . '/bootstrap.php');
+  $search = new \Imdb\TitleSearch();
   config_imdb($search);
-  $search->setsearchname ($_REQUEST["name"]);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
-  $results = $search->results();
+  $results = $search->search($_REQUEST["name"]);
   $open = FALSE;
   if (empty($results)) { // found nothing on IMDB?
     if ($auto_search) {
@@ -220,12 +219,14 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
       $t->set_var("links",$link);
       $t->parse("resultitem","resitemblock",$open);
       $open = TRUE;
+/*
       $url1 = $pvp->preferences->get("imdb_url");
       $url2 = $pvp->preferences->get("imdb_url2");
       if ($url1 != $url2) { // Cached version may have language != EN (parse probs!)
         $cachefile = $search->cachedir."${mid}.Title";
         if (file_exists($cachefile)) unlink($cachefile);
       }
+*/
     }
   }
   $t->parse("resultlist","resultblock");
@@ -243,12 +244,12 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
     else $data1 = get_data($movie);
   }
   if ( ($mdb_use==1 || $mdb_use==3) && $imdbapi_gen>0 ) {
-    require_once("imdb.class.php");
-    $movie = new imdb($movieid);
+    require_once($pvp->config->imdb_api_path . '/bootstrap.php');
+    $movie = new \Imdb\Title($movieid);
     config_imdb($movie);
     $imdbsite = $pvp->preferences->get("imdb_url2");
     $url = explode("/",$imdbsite);
-    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
+//    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
     $data = get_data($movie);
   }
   if ( $mdb_use==3 ) merge_data($data,$data1);

@@ -11,6 +11,14 @@ v0.9.9
 ! fixed some minor PHP warnings
 + adding BD as media type
 * make sure new MySQL installations use UTF8
+* upgrading IMDB URLs in options from http to https (though they are currently
+  not used, see below)
+* renaming config.inc to config.inc.sample to avoid overwriting on update
+* getting PVP to work with the current version of IMDBPHP again.
+  Most of your related settings in PVP will be ignored for now, though;
+  please apply adjustments (caching, site specifics etc) in IMDBPHP's
+  own config instead. Note that MoviePilot is no longer supported as they
+  stopped their API long ago.
 
 v0.9.8 (02.02.2018)
 -------------------

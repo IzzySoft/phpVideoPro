@@ -1,8 +1,8 @@
 <?php
 ##############################################################################
-# phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg  #
+# phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg  #
 # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
-# http://www.izzysoft.de/                                                    #
+# https://www.izzysoft.de/                                                   #
 # -------------------------------------------------------------------------- #
 # This program is free software; you can redistribute and/or modify it       #
 # under the terms of the GNU General Public License (see doc/LICENSE)        #
@@ -15,6 +15,7 @@
 
 $pvp = new stdClass();
 $pvp->config = new stdClass();
+
 #=======================================================[ debug settings ]===
 # which actions to log. Empty string turns off debug feature. Otherwise each
 # letter represents an action to debug:
@@ -42,7 +43,6 @@ if ( strpos(strtoupper($debug["log"]),"W")!==false ) set_phpdebug(E_WARNING);
 if ( strpos(strtoupper($debug["log"]),"N")!==false ) set_phpdebug(E_NOTICE);
 
 #=====================================================[ setup path names ]===
-$pvp = new stdClass();
 $pvp->projectpage = "https://github.com/IzzySoft/phpVideoPro";
 $pvp->histpage    = "https://www.izzysoft.de/ftp/net/div/izzysoft/pvp/";
 # $base_path = dirname(dirname(__FILE__))."/"; # !!! __FILE__ resolves symlinks
@@ -50,7 +50,6 @@ $bp = dirname($_SERVER['SCRIPT_FILENAME']);
 if (is_file($bp."/medialist.php")) $base_path = "$bp/";
 else $base_path = dirname($bp) . "/";
 if (substr($base_path,strlen($base_path)-6)=="setup/") $base_path = dirname($base_path) ."/";
-$pvp->config = new stdClass();
 if (substr(php_uname(), 0, 7) == "Windows") {
   $pvp->config->os_slash = "\\";
   $base_path = str_replace("\\","/",$base_path);
@@ -64,6 +63,8 @@ if ( (substr($backup_path,0,1)!="/") && (substr($backup_path,0,1)!="\\") )
 $pvp->config->photopath = $base_path."moviepic/";
 $pvp->config->imdb_photopath = $base_path."moviepic/imdb/";
 $pvp->config->imdb_photourl  = $base_url."moviepic/imdb/";
+if ( !empty($imdb_api_path) || !file_exists("${imdb_api_path}/bootstrap.php") ) $pvp->config->imdb_api_path = $imdb_api_path;
+else $pvp->config->imdb_api_path = '';
 
 #=========================================[ retrieve browser information ]===
 include($base_path . "inc/class.browser.inc");

@@ -519,8 +519,8 @@ $mdbapi_intro = '';
 $imdbapi_gen = imdbapi_ver();
 switch ( $imdbapi_gen ) {
   case 1: $mpdis = ' DISABLED';
-          $mdbapi_intro = lang('mdbapi_v1_only_config');
-          $mdbapi_intro_comment = lang('mdbapi_v1_only_config_comment');
+          //$mdbapi_intro = lang('mdbapi_v1_only_config');
+          //$mdbapi_intro_comment = lang('mdbapi_v1_only_config_comment');
           break;
   case 0: $mpdis = ' DISABLED';
           $imdbdis = ' DISABLED';

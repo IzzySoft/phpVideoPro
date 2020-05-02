@@ -1,16 +1,14 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # Common functions used throughout the whole application                    #
  #############################################################################
-
- /* $Id$ */
 
  ##############################################################[ Debugging ]###
  /** output debug message depending on configured debug level
@@ -239,15 +237,16 @@
 
  #############################################################[ IMDB check ]###
  /** check which version of the IMDB Api we have available
+  *  returns either 0 (none), 1 (IMDB only); 2 (IMDB + MoviePilot) is no longer
+  *  returned as MoviePilot's API is dead
   * @package Api
   * @function imdbapi_ver
-  * @return int imdbphp_generation Either 0 (none), 1 (IMDB only), or 2 (IMDB + MoviePilot)
+  * @return int imdbphp_generation 0 (none) or 1 (available)
   */
  function imdbapi_ver() {
-   if (!incfile_exists("imdb.class.php")) return 0;
-   require_once("imdb.class.php");
-   $imdb = new imdb('0000000');
-   if ($imdb->version > '1.9.0') return 2;
+   if ( empty($GLOBALS['pvp']->config->imdb_api_path) ) return 0;
+   //$imdb = new imdb('0000000');
+   //if ($imdb->version > '1.9.0') return 2;
    return 1;
  }
 

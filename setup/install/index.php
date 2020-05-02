@@ -1,8 +1,8 @@
 <?php
 ##############################################################################
-# phpVideoPro                               (c) 2001-2010 by Itzchak Rehberg #
+# phpVideoPro                               (c) 2001-2020 by Itzchak Rehberg #
 # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                    #
-# http://www.izzysoft.de/                                                    #
+# https://www.izzysoft.de/                                                   #
 # -------------------------------------------------------------------------- #
 # This program is free software; you can redistribute and/or modify it       #
 # under the terms of the GNU General Public License (see doc/LICENSE)        #
@@ -183,7 +183,7 @@ if (isset($_POST["config"])) {
     $dbc->Host     = $database["host"];
     switch ($database["type"]) {
       case "mysql": $dbc->Database = "mysql";
-                    $dbcrea = "CREATE DATABASE ".$database["database"];
+                    $dbcrea = "CREATE DATABASE ".$database["database"]." CHARACTER SET utf8mb4 COLLATE=utf8mb4_unicode_ci";
                     $dbgra  = "GRANT ALL ON ".$database["database"].".* TO ".$database["user"]."@".$database["host"];
                     if (!empty($database["password"])) $dbgra .= " IDENTIFIED BY '".$database["password"]."'";
                     break;

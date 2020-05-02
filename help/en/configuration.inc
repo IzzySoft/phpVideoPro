@@ -203,13 +203,13 @@ site here - whether that is located in the UK or US, I leave up to you.
 
 [text]
 <b>*pilot_url#:</b> The second generation of the <I>IMDBPHP API</I> also offers
-access to movie data available at the <A HREF="http://www.moviepilot.com/"
-TARGET="_blank">MoviePilot</A> sites. Like <A HREF="http://www.imdb.com/"
+access to movie data available at the <A HREF="https://www.moviepilot.com/"
+TARGET="_blank">MoviePilot</A> sites. Like <A HREF="https://www.imdb.com/"
 TARGET="_blank">IMDB</A>, this site holds a lot of details for many movies -
 though its database is far not (yet) as complete. But the two most outstanding
 differences are: <I>MoviePilot</I> has a stable interface (and even encourages
 developers to use it), plus all content is protected by the
-<A HREF="http://en.wikipedia.org/wiki/Creative_Commons" TARGET="_blank">Creative
+<A HREF="https://en.wikipedia.org/wiki/Creative_Commons" TARGET="_blank">Creative
 Commons</A> license (and thus are free to use - for details, please follow the
 Link).
 

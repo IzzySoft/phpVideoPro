@@ -231,14 +231,14 @@ Site auszuwählen.
 
 [text]
 <b>*pilot_url#:</b> Die zweite Generation der <I>IMDBPHP API</I> ermöglicht nun
-auch Zugriffe auf die Daten bei <A HREF="http://www.moviepilot.de/"
-TARGET="_blank">MoviePilot</A>. Wie auch <A HREF="http://www.imdb.de/"
+auch Zugriffe auf die Daten bei <A HREF="https://www.moviepilot.de/"
+TARGET="_blank">MoviePilot</A>. Wie auch <A HREF="https://www.imdb.de/"
 TARGET="_blank">IMDB</A>, bietet diese Site eine Reihe von Informationen zu vielen
 Filmen - auch wenn die Datenbank hier noch im Aufbau befindlich ist, und daher vom
 Umfang her noch nicht mit der <I>IMDB</I> mithalten kann. Die zwei bedeutendsten
 Unterschiede sind jedoch, dass <I>MoviePilot</I> zum einen eine stabile
 Schnittstelle anbietet (und Entwickler ermutigt, diese auch zu benutzen) - und
-dass die Inhalte der <A HREF="http://de.wikipedia.org/wiki/Creative_Commons"
+dass die Inhalte der <A HREF="https://de.wikipedia.org/wiki/Creative_Commons"
 TARGET="_blank">Creative Commons</A> Lizenz unterliegen (also frei verwendet
 werden können - Details bitte dem Link entnehmen).
 

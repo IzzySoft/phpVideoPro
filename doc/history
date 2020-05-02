@@ -3,6 +3,12 @@ $Id$
 History for phpVideoPro
 =======================
 
+v0.9.9
+-------------------
+* PHP7 dropped the old mysql interface; updated db class to mysqli
+* PHP7 also dropped eregi_replace; updated that to preg_replace
+* upgraded links in help pages from http to https
+
 v0.9.8 (02.02.2018)
 -------------------
 ! fixed possible XSS

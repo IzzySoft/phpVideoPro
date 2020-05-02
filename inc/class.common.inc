@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2009 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -149,12 +149,12 @@ class common {
      switch ($encoding) {
        case "utf-8..lat1" :
          return preg_replace("/([\xC2\xC3])([\x80-\xBF])/e",
-	     "chr(ord('\\1')<<6&0xC0|ord('\\2')&0x3F)",
-	     $string); break;
+         "chr(ord('\\1')<<6&0xC0|ord('\\2')&0x3F)",
+         $string); break;
        case "lat1..utf-8" :
          return preg_replace("/([\x80-\xFF])/e",
              "chr(0xC0|ord('\\1')>>6).chr(0x80|ord('\\1')&0x3F)",
-	     $string); break;
+         $string); break;
        default: return($string);
      }
    }
@@ -170,50 +170,50 @@ class common {
       return $data;
     }
     $newText = "";
-    $lines = split("\n",$data);
+    $lines = explode("\n",$data);
     while ( list ($key,$line) = each ($lines)) {
       // The old [href] is only kept for backwards compatibility
       if ( preg_match_all("/\[href\]\S+\[\/href\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $sub  = eregi_replace("\[href\](.*)\[\/href\]","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
+          $sub  = preg_replace("!\[href\](.*)\[\/href\]!i","<A HREF=\"\\1\" TARGET=\"_blank\">\\1</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       // first replace the image tags (so they may be part of the [url])
       if ( preg_match_all("/\[img\]([^|]+?)\[\/img\]/i",$line,$matches) ) { // w/o comment
         for ($i=0;$i<count($matches[0]);++$i) {
-          $link = eregi_replace("\[img\]([^|]+)\[\/img\]","\\1",$matches[0][$i]);
-          $sub  = eregi_replace("\[img\]([^|]+)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
+          $link = preg_replace("!\[img\]([^|]+)\[\/img\]!i","\\1",$matches[0][$i]);
+          $sub  = preg_replace("!\[img\]([^|]+)\[\/img\]!i","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
-	}
+    }
       }
       if ( preg_match_all("/\[img\]([^|]+?)(\|{1}.*?)\[\/img\]/i",$line,$matches) ) { // w/ comment
         for ($i=0;$i<count($matches[0]);++$i) {
-          $link = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","\\1",$matches[0][$i]);
-          $sub  = eregi_replace("\[img\]([^|]+)\|{1}(.*)\[\/img\]","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
+          $link = preg_replace("!\[img\]([^|]+)\|{1}(.*)\[\/img\]!i","\\1",$matches[0][$i]);
+          $sub  = preg_replace("!\[img\]([^|]+)\|{1}(.*)\[\/img\]!i","<SPAN CLASS='thumbnail-left'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       if ( preg_match_all("/\[imgr\]([^|]+?)\[\/imgr?\]/i",$line,$matches) ) { // w/o comment
         for ($i=0;$i<count($matches[0]);++$i) {
-          $link = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","\\1",$matches[0][$i]);
-          $sub  = eregi_replace("\[imgr\]([^|]+)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
+          $link = preg_replace("!\[imgr\]([^|]+)\[\/imgr?\]!i","\\1",$matches[0][$i]);
+          $sub  = preg_replace("!\[imgr\]([^|]+)\[\/imgr?\]!i","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'></SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
-	}
+    }
       }
       if ( preg_match_all("/\[imgr\]([^|]+?)(\|{0,1}.*?)\[\/imgr?\]/i",$line,$matches) ) { // w/ comment
         for ($i=0;$i<count($matches[0]);++$i) {
-          $link = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","\\1",$matches[0][$i]);
-          $sub  = eregi_replace("\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
+          $link = preg_replace("!\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]!i","\\1",$matches[0][$i]);
+          $sub  = preg_replace("!\[imgr\]([^|]+)\|{0,1}(.*)\[\/imgr?\]!i","<SPAN CLASS='thumbnail-right'><IMG ALIGN='center' SRC='$link'><BR>\\2</SPAN>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
       if ( preg_match_all("/\[url\].+?\[\/url\]/i",$line,$matches) ) {
         for ($i=0;$i<count($matches[0]);++$i) {
-          $link  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\1",$matches[0][$i]);
-          $text  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","\\2",$matches[0][$i]);
-	  if (empty($text)) $text = $link;
-          $sub  = eregi_replace("\[url\]([^|]+)\|{0,1}(.*)\[\/url\]","<A HREF='$link' TARGET='_blank'>$text</A>",$matches[0][$i]);
+          $link  = preg_replace("!\[url\]([^|]+)\|{0,1}(.*)\[\/url\]!i","\\1",$matches[0][$i]);
+          $text  = preg_replace("!\[url\]([^|]+)\|{0,1}(.*)\[\/url\]!i","\\2",$matches[0][$i]);
+      if (empty($text)) $text = $link;
+          $sub  = preg_replace("!\[url\]([^|]+)\|{0,1}(.*)\[\/url\]!i","<A HREF='$link' TARGET='_blank'>$text</A>",$matches[0][$i]);
           $line = str_replace($matches[0][$i],$sub,$line);
         }
       }
@@ -330,8 +330,8 @@ class common {
     } else { $ignored = $allowed; }
     $js = "onclick|ondblclick|onmousedown|onmouseup|onmouseover|"
         . "onmousemove|onmouseout|onkeypress|onkeydown|onkeyup|"
-	. "onblur|onfocus|onload|onunload|onreset|onsubmit|"
-	. "onchange|onselect";
+        . "onblur|onfocus|onload|onunload|onreset|onsubmit|"
+        . "onchange|onselect";
     $str = preg_replace("/($js)\s*\=\s*.{0,1}'.*'/siU","",$str,-1,$c1);
     $str = preg_replace("/($js)\s*\=\s*.{0,1}\".*\"/siU","",$str,-1,$c2);
     $str = preg_replace("'<script[^>]*?>.*?</script>'si", "", $str);
@@ -444,7 +444,7 @@ class common {
     foreach ($ar1 as $key=>$value) {
       if ( isset($ar2[$key]) ) {
         $ar1[$key] += $ar2[$key];
-	unset($ar2[$key]);
+        unset($ar2[$key]);
       }
     }
     $ar1 += $ar2;
@@ -595,5 +595,5 @@ class common {
   }
 
  } // end class common
- 
+
 ?>

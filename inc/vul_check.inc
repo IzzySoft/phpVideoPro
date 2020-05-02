@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -10,8 +10,7 @@
  # Check for vulnerabilities and reject requests that look like intrusion    #
  #############################################################################
 
- /* $Id$ */
-
+ if (!isset($page_id)) $page_id = '';
  #=========================================================[ helper funcs ]===
  function vul_kick($var="") {
    $protocol = $_SERVER['SERVER_PROTOCOL'];
@@ -46,7 +45,7 @@
 </DIV>
 </TD></TR></TABLE>
 </DIV></BODY></HTML>
-<? 
+<?php
    exit;
  }
  function vul_num($var) {
@@ -85,7 +84,7 @@
  unset($tid);
 
  #============================================================[ users.php ]===
- if (basename($_SERVER["SCRIPT_NAME"])=="users.php") {
+ if (basename($_SERVER["SCRIPT_NAME"])=="users.php" && !empty($_REQUEST["lines"])) {
    vul_num("lines");
    for ($i=0;$i<$_REQUEST["lines"];++$i) {
      vul_num("user_$i");

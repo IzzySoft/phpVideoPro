@@ -22,6 +22,7 @@ if (!isset($admin)) $admin = FALSE;
 if ($menue) {
   $page_id = "configuration";
   if ($admin) $root = "../";
+  else $root = '';
   include ($root . "inc/includes.inc");
 } else {
   include ("../inc/config.inc");

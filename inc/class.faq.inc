@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -40,6 +40,7 @@ class faq {
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
   $this->t->set_block("main","tocblock","toclist");
+  $this->img = new stdClass();
   $this->img->logo = "islogo.gif";
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;

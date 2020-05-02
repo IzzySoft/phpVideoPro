@@ -2480,7 +2480,8 @@
     * @return object disktype (properties: int(type) [=id],array(rc))
     */
    function disktypeGetForMedia($mtype_id,$media_id) {
-     $mt->type = 0; $mt->rc = array();
+     $mt = new stdClass();
+     $mt->type = 0; $mt->rc = [];
      if (empty($mtype_id) || empty($media_id)) return $mt;
      $media_id = (int) $media_id;
      $this->dbquery("SELECT disks_id,rc FROM pvp_media WHERE mtype_id=$mtype_id AND id=$media_id");

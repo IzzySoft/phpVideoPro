@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -13,7 +13,7 @@
  /* $Id$ */
 
  if (!isset($_REQUEST["part"])) $new_entry=TRUE;
- if ($_POST["cancel"]) {
+ if (isset($_POST["cancel"]) && $_POST["cancel"]) {
    header("Location: ".$_POST["referer"]);
    exit;
  }

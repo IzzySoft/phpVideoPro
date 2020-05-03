@@ -1,15 +1,8 @@
 #
 # Data for pvp_options
 #
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://uk.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.de/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.es/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.fr/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.it/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.pt/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://akas.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','https://uk.imdb.com/');
-INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','https://akas.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url','https://www.imdb.com/');
+INSERT INTO pvp_options (name,value) VALUES ('imdb_url2','https://www.imdb.com/');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_title');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_country');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_year');

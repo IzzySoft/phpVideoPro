@@ -16,9 +16,9 @@ v0.9.9
 * renaming config.inc to config.inc.sample to avoid overwriting on update
 * getting PVP to work with the current version of IMDBPHP again.
   Most of your related settings in PVP will be ignored for now, though;
-  please apply adjustments (caching, site specifics etc) in IMDBPHP's
-  own config instead. Note that MoviePilot is no longer supported as they
-  stopped their API long ago.
+  please apply adjustments (caching etc) in IMDBPHP's own config instead. Note
+  that MoviePilot is no longer supported as they stopped their API long ago.
+* fix IMDB URLs in setup/update (most are gone)
 
 v0.9.8 (02.02.2018)
 -------------------

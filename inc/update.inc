@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2007 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -16,7 +16,7 @@
  # create a dump of posted data for debugging purposes and send them to the
  # debug output function
  $ddump = "Saving data:<p>\n<ul>";
- while (list($key, $val) = each($HTTP_POST_VARS)) {
+ foreach ($_POST as $key => $val) {
    $ddump .= "<li>$key => $val<br>";
  }
  $ddump .= "</ul></TD><TD>\n";

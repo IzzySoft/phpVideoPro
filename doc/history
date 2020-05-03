@@ -19,6 +19,7 @@ v0.9.9
   please apply adjustments (caching etc) in IMDBPHP's own config instead. Note
   that MoviePilot is no longer supported as they stopped their API long ago.
 * fix IMDB URLs in setup/update (most are gone)
+* movietech sanitized too hard, could not add Dolby formats (with dots)
 
 v0.9.8 (02.02.2018)
 -------------------

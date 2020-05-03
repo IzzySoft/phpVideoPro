@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -18,7 +18,7 @@
  #=================================================[ Register global vars ]===
  $postit = array ("name","sname","id");
  foreach ($postit as $var) {
-   if (isset($_POST[$var]) && !preg_match("/[^\w\s-\+\pL]/u",$_POST[$var])) $$var = $_POST[$var]; else $$var = FALSE;
+   if (isset($_POST[$var]) && !preg_match("/[^\w\.\s-\+\pL]/u",$_POST[$var])) $$var = $_POST[$var]; else $$var = FALSE;
  }
  $postit = array ("type","delete","edit","add");
  foreach ($postit as $var) {

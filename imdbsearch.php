@@ -13,16 +13,18 @@
 #===============================================[ IMDB class configuration ]===
 function config_dirs(&$inst) {
   GLOBAL $pvp,$base_path,$base_url,$db;
-  /* disabled to get IMDBPHP running again at all first
+  /* disabled: cache is now configured via IMDBPHP's own config
+   * (we need to remove the corresponding parts from PVP; maybe keep
+   * store/usecache to override)
   $cachedir = $db->get_config("imdb_cache_dir");
   if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
   if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
   if (strrpos($cachedir,"/")!=strlen($cachedir)-1) $cachedir .= "/";
   $inst->cachedir = $cachedir;
-  $inst->storecache = $db->get_config("imdb_cache_enable");
-  $inst->usecache = $db->get_config("imdb_cache_use");
   $inst->cache_expire = $db->get_config("imdb_cache_expire");
   */
+  $inst->storecache = $db->get_config("imdb_cache_enable");
+  $inst->usecache = $db->get_config("imdb_cache_use");
   $inst->photodir = $pvp->config->imdb_photopath;
   $inst->photoroot = $pvp->config->imdb_photourl;
 }
@@ -31,9 +33,8 @@ function config_imdb(&$inst) {
   GLOBAL $pvp;
   $imdbsite = $pvp->preferences->get("imdb_url");
   $url  = explode("/",$imdbsite);
-//  $inst->imdbsite = $url[count($url)-2];
+  $inst->imdbsite = $url[count($url)-2];
   config_dirs($inst);
-//  $inst->imdb_utf8recode = true;
 }
 
 function config_pilot(&$inst) {
@@ -194,7 +195,9 @@ foreach ($imdb_tx_prefs as $var=>$val) {
 if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
 #==================================================[ Get IMDB ID for movie ]===
   require_once($pvp->config->imdb_api_path . '/bootstrap.php');
-  $search = new \Imdb\TitleSearch();
+  $iconfig = new \Imdb\Config();
+//  $iconfig->language = 'de-DE,de,en';
+  $search = new \Imdb\TitleSearch($iconfig);
   config_imdb($search);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
   $results = $search->search($_REQUEST["name"]);
@@ -219,14 +222,12 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
       $t->set_var("links",$link);
       $t->parse("resultitem","resitemblock",$open);
       $open = TRUE;
-/*
       $url1 = $pvp->preferences->get("imdb_url");
       $url2 = $pvp->preferences->get("imdb_url2");
       if ($url1 != $url2) { // Cached version may have language != EN (parse probs!)
         $cachefile = $search->cachedir."${mid}.Title";
         if (file_exists($cachefile)) unlink($cachefile);
       }
-*/
     }
   }
   $t->parse("resultlist","resultblock");
@@ -245,11 +246,13 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   }
   if ( ($mdb_use==1 || $mdb_use==3) && $imdbapi_gen>0 ) {
     require_once($pvp->config->imdb_api_path . '/bootstrap.php');
-    $movie = new \Imdb\Title($movieid);
+    $iconfig = new \Imdb\Config();
+//    $iconfig->language = 'de-DE,de,en';
+    $movie = new \Imdb\Title($movieid,$config); // !*!
     config_imdb($movie);
     $imdbsite = $pvp->preferences->get("imdb_url2");
     $url = explode("/",$imdbsite);
-//    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
+    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
     $data = get_data($movie);
   }
   if ( $mdb_use==3 ) merge_data($data,$data1);

@@ -90,6 +90,9 @@ INSERT INTO pvp_tone VALUES ( '6', 'Dolby 5.0', '5.0');
 INSERT INTO pvp_tone VALUES ( '7', 'Dolby 5.1', '5.1');
 INSERT INTO pvp_tone VALUES ( '8', 'Dolby 6.0', '6.0');
 INSERT INTO pvp_tone VALUES ( '9', 'Dolby 6.1', '6.1');
+INSERT INTO pvp_tone VALUES ( '10', 'Dolby 7.1', '7.1');
+INSERT INTO pvp_tone VALUES ( '11', 'Dolby Atmos', '7.1.4');
+INSERT INTO pvp_tone VALUES ( '12', 'Dolby Atmos 9.1', '9.1');
 
 #
 # table commercials

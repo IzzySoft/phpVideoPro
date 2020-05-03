@@ -20,6 +20,7 @@ v0.9.9
   that MoviePilot is no longer supported as they stopped their API long ago.
 * fix IMDB URLs in setup/update (most are gone)
 * movietech sanitized too hard, could not add Dolby formats (with dots)
++ install/update: add newer Dolby formats (7.1 - 9.1)
 
 v0.9.8 (02.02.2018)
 -------------------

@@ -2276,6 +2276,7 @@
             . " WHERE id=$id AND mtype_id=$mtype_id";
      $this->dbquery($query);
      if ($this->next_record()) { // skip not existing media
+       $disk = new stdClass();
        $disk->id         = $id;
        $disk->mtype_id   = $mtype_id;
        $disk->disks_id   = $this->f('disks_id');

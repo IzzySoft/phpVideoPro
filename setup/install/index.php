@@ -52,6 +52,13 @@ if (isset($_POST["config"])) {
         $changed = TRUE;
       }
     }
+    if ( strpos(trim($infile[$i]),"\$imdb_api_path")===0 ) {
+      $old = trim(preg_replace('/([^"]*)\"([^"]*)\"(.*)/','\\2',$infile[$i]));
+      if ($old!=trim($_POST["imdb_api_path"])) {
+        $infile[$i] = preg_replace('/([^"]*)\"([^"])*\"(.*)/','\\1"'.$_POST["imdb_api_path"].'"\\3',$infile[$i]);
+        $changed = TRUE;
+      }
+    }
     if ( strpos(trim($infile[$i]),"\$database[\"type\"]")===0 ) {
       $old = trim(preg_replace('/([^=]*=\s*)\"([^"]*)\"(.*)/','\\2',$infile[$i]));
       if ($old!=trim($_POST["db_type"])) {
@@ -330,6 +337,12 @@ if (isset($_POST["config"])) {
         . "relative to your phpVideoPro installation.";
   $t->set_var("descript",$desc);
   $t->parse("formitem","formitemblock");
+
+  #-=[ IMDBPHP Path ]=-
+  $t->set_var("field","IMDBPHP Location");
+  $t->set_var("content","<INPUT NAME='imdb_api_path' VALUE='$imdb_api_path'>");
+  $t->set_var("descript","Where to find the IMDBPHP classes. This should point to the directory holding IMDBPHP's <code>bootstrap.php</code>.");
+  $t->parse("formitem","formitemblock",TRUE);
 
   #-=[ Database Type ]=-
   $t->set_var("field","Database Type");

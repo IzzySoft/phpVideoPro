@@ -42,7 +42,7 @@ echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
  if ( file_exists($pvp->tpl_dir . "/top.js") )
    echo " <script type='text/javascript' language='JavaScript' src='". str_replace($base_path,$base_url,$pvp->tpl_dir) . "/top.js'></script>\n";
  if ($page_id=="add_entry"||$page_id=="edit")
-   echo "<script src='http://js.nicedit.com/nicEdit-latest.js' type='text/javascript'></script>\n"
+   echo "<script src='${base_url}templates/nicEdit-latest.js' type='text/javascript'></script>\n"
       . "<script src='${base_url}templates/editEntry.js' type='text/javascript'></script>\n";
 ?>
  <script type='text/javascript' language='JavaScript'>//<!--

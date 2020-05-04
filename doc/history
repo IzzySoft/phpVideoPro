@@ -22,6 +22,7 @@ v0.9.9
 * movietech sanitized too hard, could not add Dolby formats (with dots)
 + install/update: add newer Dolby formats (7.1 - 9.1)
 + IMDBPHP: set preferred languages (override IMDBPHP's own config)
+* WYSIWYG Editor integrated locally (was insecure 3rd-party-request)
 
 v0.9.8 (02.02.2018)
 -------------------

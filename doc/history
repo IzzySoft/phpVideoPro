@@ -1,9 +1,7 @@
-$Id$
-
 History for phpVideoPro
 =======================
 
-v0.9.9
+v0.9.9 (04.05.2020)
 -------------------
 * PHP7 dropped the old mysql interface; updated db class to mysqli
 * PHP7 also dropped eregi_replace; updated that to preg_replace

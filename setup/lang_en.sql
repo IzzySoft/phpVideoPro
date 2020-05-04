@@ -735,4 +735,6 @@ INSERT INTO pvp_lang VALUES ('imdbapi_disabled','en','The IMDB API is available,
 INSERT INTO pvp_lang VALUES ('invalid_pilot_apikey','en','The Moviepilot API key you entered is invalid.','Error message at configuration');
 INSERT INTO pvp_lang VALUES ('pilot_apikey','en','Moviepilot API-key','Item on the configuration screen');
 INSERT INTO pvp_lang VALUES ('pilot_apikey_comment','en','To use the Moviepilot API, you need to have a valid key. This can be either specified within the config files of IMDBPHP, or you can do so here. If specified in both places, the one specified here takes precedence.','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('imdb_lang','en','IMDB languages','Item on the configuration screen');
+INSERT INTO pvp_lang VALUES ('imdb_lang_comment','en','Override IMDBPHP default languages. This should be a comma-separated list of ISO language codes, e.g. <code>de-DE,de,en-US,en</code>. Leave empty to use the defaults you’ve defined with the IMDBPHP config.','Item on the configuration screen');
 #INSERT INTO pvp_lang VALUES ('','en','','');

@@ -1,16 +1,14 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # Setup configuration options (display, languages, templates etc.)          #
  #############################################################################
-
- /* $Id$ */
 
  #=================================================[ Register global vars ]===
  while ( list($vn,$vv)=each($_POST) ) {
@@ -45,6 +43,7 @@ if ( isset($update) ) {
   $pvp->preferences->set("default_editor",$_POST["default_editor"]);
   $pvp->preferences->set("imdb_url",$_POST["imdb_url"]);
   $pvp->preferences->set("imdb_url2",$_POST["imdb_url2"]);
+  $pvp->preferences->set("imdb_lang",$_POST["imdb_lang"]);
   if (!isset($_POST["imdb_txwin_autoclose"])) $_POST["imdb_txwin_autoclose"] = 0;
   $pvp->preferences->set("imdb_txwin_autoclose",$_POST["imdb_txwin_autoclose"]);
   $pvp->preferences->set("pilot_url",$_POST["pilot_url"]);
@@ -161,6 +160,7 @@ $template_set   = $pvp->preferences->get("template");
 $default_editor = $pvp->preferences->get("default_editor");
 $imdb_url       = $pvp->preferences->get("imdb_url");
 $imdb_url2      = $pvp->preferences->get("imdb_url2");
+$imdb_lang      = $pvp->preferences->get("imdb_lang");
 $imdbtx         = $pvp->preferences->imdb_tx_get();
 foreach ($imdbtx as $var=>$val) {
   ${$var} = $val;
@@ -569,6 +569,17 @@ $select .= "</SELECT>";
 $t->set_var("item_input",$select);
 $t->parse("item","itemblock",TRUE);
 
+#--[ IMDB language ]--
+$t->set_var("item_name",lang("imdb_lang"));
+$t->set_var("item_comment",lang("imdb_lang_comment"));
+$imdblangs = $pvp->preferences->get("imdb_lang");
+if ( $imdbapi_gen < 1 ) {
+  $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='imdb_lang' VALUE='$imdblangs' DISABLED>");
+} else {
+  $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='imdb_lang' VALUE='$imdblangs'>");
+}
+$t->parse("item","itemblock",TRUE);
+
 #--[ MoviePilot Site ]--
 $t->set_var("item_name",lang("pilot_url"));
 $t->set_var("item_comment",lang("pilot_url_comment"));
@@ -601,7 +612,7 @@ $t->parse("item","itemblock",TRUE);
 if ($admin) {
   $t->set_var("item_name",lang("pilot_apikey"));
   $t->set_var("item_comment",lang("pilot_apikey_comment"));
-  if ( $imdbapi_gen < 1 ) {
+  if ( $imdbapi_gen < 2 ) {
     $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey' DISABLED>");
   } else {
     $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey'>");

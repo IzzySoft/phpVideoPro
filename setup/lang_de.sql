@@ -233,6 +233,8 @@ INSERT INTO pvp_lang VALUES ('imdb_cache_expire_comment','de','Wenn der MDB Cach
 INSERT INTO pvp_lang VALUES ('imdb_cache_use','de','Daten aus dem MDB Cache bei Abfragen nutzen?','');
 INSERT INTO pvp_lang VALUES ('imdb_cache_use_comment','de','Während obige Option das <b><i>Speichern</i></b> der Daten kontrolliert, lässt sich hier einstellen, ob diese auch bei erneuten Abfragen benutzt werden sollen. Sind <b><i>beide</i></b> Optionen aktiviert werden bereits im Cache vorhandene Daten nicht erneut von der MDB Site abgerufen.','');
 INSERT INTO pvp_lang VALUES ('imdb_image_files','de','MDB Bilddateien','');
+INSERT INTO pvp_lang VALUES ('imdb_lang','de','IMDB Spracheinstellungen','');
+INSERT INTO pvp_lang VALUES ('imdb_lang_comment','de','Überschreiben der IMDBPHP Default Sprachen. Dies sollte eine Komma-separierte Liste von ISO-Sprachkürzeln sein, z. B. <code>de-DE,de,en-US,en</code>. Leer lassen, wenn die in der IMDBPHP Konfigurationsdatei festgelegten Einstellungen verwendet werden sollen.','');
 INSERT INTO pvp_lang VALUES ('imdb_movie_id','de','IMDB Film ID','');
 INSERT INTO pvp_lang VALUES ('imdb_search_empty_result','de','Sorry - phpVideoPro konnte keinen entsprechenden Eintrag in der MDB finden.<BR>Vielleicht hilft ein erneuter Versuch mit anderen Suchbegriffen?','');
 INSERT INTO pvp_lang VALUES ('imdb_title_search','de','Filmsuche mit der MDB API','');

@@ -1,16 +1,14 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
  # Maintain the (DB-stored) user preferences                                 #
  #############################################################################
-
- /* $Id$ */
 
  /** Maintain the (DB-stored) user's preferences
   * @package Api
@@ -22,7 +20,7 @@
  class preferences {
   var $admin, $colors, $filter, $lang, $template,
       $display_limit, $date_format, $page_length;
-  
+
   ############################################################################
   /** Constructor: reads all values from DB
    * @constructor preferences
@@ -32,7 +30,7 @@
     $pnames = array ("lang","template","display_limit","date_format",
               "page_length","default_movie_colorid","default_movie_onlabel",
               "default_movie_toneid","printer_id","imdb_url","imdb_url2",
-              "pilot_url", "pilot_fallback", "mdb_use",
+              "imdb_lang","pilot_url", "pilot_fallback", "mdb_use",
               "imdb_tx_title","imdb_tx_year","imdb_tx_pg","imdb_tx_length",
               "imdb_tx_cat","imdb_tx_director","imdb_tx_actor","imdb_tx_comments",
               "imdb_tx_country","imdb_txwin_autoclose","imdb_tx_music",
@@ -95,17 +93,17 @@
             $pref = $db->get_preferences($name,$pvp->auth->user_id);
           if (isset($pref) && strlen($pref)) {
             if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-	  } else {
+          } else {
            if (isset($this->$name)) $pref = $this->$name;
            else $pref = "";
           }
-	}
+        }
       } else {
         if (isset($pvp->auth->user_id))
-	  $pref = $db->get_preferences($name,$pvp->auth->user_id);
+          $pref = $db->get_preferences($name,$pvp->auth->user_id);
         if (isset($pref) && strlen($pref)) {
           if ($name=="lang") $pref = substr($pref,0,2); # Work around Konqueror Cookie bug
-	} else { $pref = $this->$name; }
+        } else { $pref = $this->$name; }
       }
     }
     if ($pref==="" && $fallback!=="") return $fallback;

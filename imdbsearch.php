@@ -14,7 +14,7 @@
 function config_dirs(&$inst) {
   GLOBAL $pvp,$base_path,$base_url,$db;
   /* disabled: cache is now configured via IMDBPHP's own config
-   * (we need to remove the corresponding parts from PVP; maybe keep
+   * (we need to remove the corresponding parts from PVP; only keep
    * store/usecache to override)
   $cachedir = $db->get_config("imdb_cache_dir");
   if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
@@ -133,6 +133,7 @@ if ($imdbapi_gen<1) {
   display_error( lang("imdbapi_disabled") );
   exit;
 }
+$imdb_lang = $pvp->preferences->get("imdb_lang");
 
 #===============================================================[ VulCheck ]===
 $vuls = array();
@@ -196,7 +197,7 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
 #==================================================[ Get IMDB ID for movie ]===
   require_once($pvp->config->imdb_api_path . '/bootstrap.php');
   $iconfig = new \Imdb\Config();
-//  $iconfig->language = 'de-DE,de,en';
+  if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;
   $search = new \Imdb\TitleSearch($iconfig);
   config_imdb($search);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
@@ -247,7 +248,7 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   if ( ($mdb_use==1 || $mdb_use==3) && $imdbapi_gen>0 ) {
     require_once($pvp->config->imdb_api_path . '/bootstrap.php');
     $iconfig = new \Imdb\Config();
-//    $iconfig->language = 'de-DE,de,en';
+    if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;
     $movie = new \Imdb\Title($movieid,$config); // !*!
     config_imdb($movie);
     $imdbsite = $pvp->preferences->get("imdb_url2");

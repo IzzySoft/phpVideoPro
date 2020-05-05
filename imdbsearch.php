@@ -64,43 +64,6 @@ function get_data(&$movie) {
   return $data;
 }
 
-function merge_data(&$data1,$data2) {
-  if ($data1->title != $data2->title) $data1->akas[] = array("title"=>$data2->title,"year"=>$data1->year,"country"=>"","comment"=>"");
-  foreach ($data2->akas as $aka) if ( !in_array($aka,$data1->akas) ) $data1->akas[] = $aka;
-  foreach ($data2->country as $country) if ( !in_array($country,$data1->country) ) $data1->country[] = $country;
-  if ( empty($data1->year) ) $data1->year = $data2->year;
-  // $data->mpaa does not need merge, since only available from IMDB
-  if ( empty($data1->runtime) ) $data1->runtime = $data2->runtime;
-  foreach ($data2->genres as $genre) if ( !in_array($genre,$data1->genres) ) $data1->genres[] = $genre;
-  foreach ($data2->director as $dir) {
-    $found = FALSE;
-    foreach ($data1->director as $dir1) {
-      if ( empty($dir['imdb']) ) {
-        if ( $dir['name']==$dir1['name'] ) { $found = TRUE; break; }
-      } else {
-        if ( $dir['imdb'] == $dir1['imdb'] ) { $found = TRUE; break; }
-      }
-    }
-    if ( !$found ) $data1->director[] = $dir;
-  }
-  foreach ($data2->cast as $cast) {
-    $found = FALSE;
-    foreach ($data1->cast as $cast1) {
-      if ( empty($cast['imdb']) ) {
-        if ( $cast['name'] == $cast1['name'] ) { $found = TRUE; break; }
-      } else {
-        if ( $cast['imdb'] == $cast1['imdb'] ) { $found = TRUE; break; }
-      }
-    }
-    if ( !$found ) $data1->cast[] = $cast;
-  }
-  if ( empty($data1->rating) )  $data1->rating = $data2->rating;
-  if ( empty($data1->photo) )   $data1->photo = $data2->photo;
-  if ( empty($data1->plotoutline) ) $data1->plotoutline = $data2->plotoutline;
-  foreach ($data2->plot as $plot) if ( !in_array($plot,$data1->plot) ) $data1->plot[] = $plot;
-  if ( empty($data1->tagline) ) $data1->tagline = $data2->tagline;
-}
-
 #==========================================================[ General setup ]===
 $page_id = "imdbsearch";
 $nomenue = 1;
@@ -228,7 +191,6 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
     $movie = new \Imdb\Title($movieid,$iconfig);
     $data = get_data($movie);
   }
-  if ( $mdb_use==3 ) merge_data($data,$data1);
   $t->set_var("mid",$movieid);
   $hiddenvals = "";
   #-=[ Title incl. Also Known As ]=-

@@ -222,11 +222,10 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
     $iconfig = new \Imdb\Config();
     if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;
     config_imdb($iconfig);
-    $url = explode("/",$imdbsite);
     $imdbsite = $pvp->preferences->get("imdb_url2");
+    $url = explode("/",$imdbsite);
     $iconfig->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
-    $movie = new \Imdb\Title($movieid,$config);
-    config_imdb($movie); // does not accept cache settings otherwise?
+    $movie = new \Imdb\Title($movieid,$iconfig);
     $data = get_data($movie);
   }
   if ( $mdb_use==3 ) merge_data($data,$data1);

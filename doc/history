@@ -4,6 +4,9 @@ History for phpVideoPro
 v0.9.10
 -------------------
 - removing code for MoviePilot support (they closed their API long ago)
+- re-enabling settings for cachedir and -expiry (the latter only applies
+  if the former is set, so it only purges PVP's own cache and not IMDBPHP's
+  global one)
 
 v0.9.9 (04.05.2020)
 -------------------

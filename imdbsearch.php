@@ -13,16 +13,19 @@
 #===============================================[ IMDB class configuration ]===
 function config_dirs(&$inst) {
   GLOBAL $pvp,$base_path,$base_url,$db;
-  /* disabled: cache is now configured via IMDBPHP's own config
-   * (we need to remove the corresponding parts from PVP; only keep
-   * store/usecache to override)
-  $cachedir = $db->get_config("imdb_cache_dir");
-  if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
-  if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
-  if (strrpos($cachedir,"/")!=strlen($cachedir)-1) $cachedir .= "/";
-  $inst->cachedir = $cachedir;
-  $inst->cache_expire = $db->get_config("imdb_cache_expire");
-  */
+  /* cache is configured (globally) via IMDBPHP's own config. So we only apply
+   * our own expiry rules if we also use our own cache location.
+   */
+  $cachedir = trim($db->get_config("imdb_cache_dir"));
+  if ( !empty($cachedir) ) {
+    if ($pvp->config->os_slash == "\\") $cachedir = str_replace("\\","/",$cachedir);
+    if (strpos($cachedir,"/")!==0) $cachedir = $base_path.$cachedir;
+    if (strrpos($cachedir,"/")!=strlen($cachedir)-1) $cachedir .= "/";
+    if ( is_dir($cachedir) && is_writable($cachedir) ) { // only override settings if we use our own
+      $inst->cachedir = $cachedir;
+      $inst->cache_expire = $db->get_config("imdb_cache_expire");
+    }
+  }
   $inst->storecache = $db->get_config("imdb_cache_enable");
   $inst->usecache = $db->get_config("imdb_cache_use");
   $inst->photodir = $pvp->config->imdb_photopath;
@@ -174,8 +177,8 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
   require_once($pvp->config->imdb_api_path . '/bootstrap.php');
   $iconfig = new \Imdb\Config();
   if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;
+  config_imdb($iconfig);
   $search = new \Imdb\TitleSearch($iconfig);
-  config_imdb($search);
   if ($_REQUEST["epsearch"]) $search->search_episodes(TRUE);
   $results = $search->search($_REQUEST["name"]);
   $open = FALSE;
@@ -218,11 +221,12 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
     require_once($pvp->config->imdb_api_path . '/bootstrap.php');
     $iconfig = new \Imdb\Config();
     if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;
-    $movie = new \Imdb\Title($movieid,$config); // !*!
-    config_imdb($movie);
-    $imdbsite = $pvp->preferences->get("imdb_url2");
+    config_imdb($iconfig);
     $url = explode("/",$imdbsite);
-    $movie->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
+    $imdbsite = $pvp->preferences->get("imdb_url2");
+    $iconfig->imdbsite = $url[count($url)-2]; // IMDB parse is fixed to English
+    $movie = new \Imdb\Title($movieid,$config);
+    config_imdb($movie); // does not accept cache settings otherwise?
     $data = get_data($movie);
   }
   if ( $mdb_use==3 ) merge_data($data,$data1);
@@ -446,10 +450,12 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
    }
    if (dmf.music_chk.checked) {
      name = dmf.music.value;
-     omf.composer_name.value  = name_split(dmf.music.value);
-     omf.composer_fname.value = fname_split(dmf.music.value);
-     eval('omf.composer_imdbid.value = dmf.music_mid_' + dmf.music.selectedIndex + '.value');
-     if (dmf.music.value != '') omf.music_list.checked=1;
+     if (dmf.music.value != '') {
+       omf.composer_name.value  = name_split(dmf.music.value);
+       omf.composer_fname.value = fname_split(dmf.music.value);
+       eval('omf.composer_imdbid.value = dmf.music_mid_' + dmf.music.selectedIndex + '.value');
+       omf.music_list.checked=1;
+     }
    }
    if (dmf.actor_chk.checked) {
      k = 1;

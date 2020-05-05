@@ -142,8 +142,6 @@ if (!isset($pvpinstall)) {
   $pvp->config->user_backup_store    = $db->get_config("user_backup_store");
   $pvp->config->user_backup_restore  = $db->get_config("user_backup_restore");
   $pvp->config->max_user_backups     = $db->get_config("max_user_backups");
-  if ($pvp->preferences->get('pilot_fallback') == 'NO_ACCESS') define('PILOT_IMDBFALLBACK',FALSE);
-  else define('PILOT_IMDBFALLBACK',TRUE);
 }
 
 ?>

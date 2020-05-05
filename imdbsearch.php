@@ -37,30 +37,9 @@ function config_imdb(&$inst) {
   config_dirs($inst);
 }
 
-function config_pilot(&$inst) {
-  GLOBAL $pvp, $db;
-  $pilotsite = $pvp->preferences->get("pilot_url");
-  $pilotfill = $pvp->preferences->get("pilot_fallback");
-  $url  = explode("/",$pilotsite);
-  $inst->pilotsite = $url[count($url)-2];
-  config_dirs($inst);
-  $inst->set_pilot_imdbfill(constant($pilotfill));
-  $pilot_apikey = $db->get_config("pilot_apikey");
-  if ( !empty($pilot_apikey) ) $inst->pilot_apikey = $pilot_apikey;
-}
-
 function match_genre(&$genre,$class) {
   static $imdb = array('Sci-Fi'=>'sf');
-  static $pilot = array(
-    'Science Fiction-Film' => 'sf',
-    'Actionfilm' => 'action',
-    'Abenteuerfilm' => 'adventure'
-  );
-  if (substr($class,0,5)=='pilot') {
-    if (in_array($genre,array_keys($pilot))) $genre = $pilot[$genre];
-  } else {
-    if (in_array($genre,array_keys($imdb))) $genre = $imdb[$genre];
-  }
+  if (in_array($genre,array_keys($imdb))) $genre = $imdb[$genre];
 }
 
 function get_data(&$movie) {
@@ -183,9 +162,6 @@ $t->set_var("listtitle",lang("imdb_title_search"));
 $t->set_var("formtarget",$_SERVER["PHP_SELF"]);
 
 #==========================================================[ IMDBAPI setup ]===
-$pilot_fallback = $pvp->preferences->get('pilot_fallback');
-if ($pilot_fallback == 'NO_ACCESS') define('PILOT_IMDBFALLBACK','');
-else define('PILOT_IMDBFALLBACK','1');
 $imdb_tx_prefs = $pvp->preferences->imdb_tx_get();
 $autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 if (empty($autoclose)) $autoclose = 0;
@@ -236,16 +212,9 @@ if (!empty($_REQUEST["name"]) && !empty($_REQUEST["nsubmit"])) {
 
 } elseif (!empty($_REQUEST["mid"])) {
 #================================================[ Get movie data from MDB ]===
-# $mdb_use: 1 = IMDB, 2 = MoviePilot, 3 = both
+# $mdb_use: 0 = None, 1 = IMDB (in the past also: 2 = MoviePilot, 3 = both)
   $movieid = $_REQUEST["mid"];
-  if ( ($mdb_use==2 || $mdb_use==3) && $imdbapi_gen>1 ) {
-    require_once("pilot.class.php");
-    $movie = new pilot($movieid);
-    config_pilot($movie);
-    if ( $mdb_use==2 ) $data = get_data($movie);
-    else $data1 = get_data($movie);
-  }
-  if ( ($mdb_use==1 || $mdb_use==3) && $imdbapi_gen>0 ) {
+  if ( $mdb_use==1 && $imdbapi_gen>0 ) {
     require_once($pvp->config->imdb_api_path . '/bootstrap.php');
     $iconfig = new \Imdb\Config();
     if ( !empty($imdb_lang) ) $iconfig->language = $imdb_lang;

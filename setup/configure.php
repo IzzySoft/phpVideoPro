@@ -46,8 +46,6 @@ if ( isset($update) ) {
   $pvp->preferences->set("imdb_lang",$_POST["imdb_lang"]);
   if (!isset($_POST["imdb_txwin_autoclose"])) $_POST["imdb_txwin_autoclose"] = 0;
   $pvp->preferences->set("imdb_txwin_autoclose",$_POST["imdb_txwin_autoclose"]);
-  $pvp->preferences->set("pilot_url",$_POST["pilot_url"]);
-  $pvp->preferences->set("pilot_fallback",$_POST["pilot_fallback"]);
   $pvp->preferences->set("mdb_use",$_POST["mdb_use"]);
   $pvp->preferences->set("page_length",$_POST["cpage_length"]);
   $pvp->preferences->set("display_limit",$_POST["cdisplay_limit"]);
@@ -72,12 +70,6 @@ if ( isset($update) ) {
       if (isset(${$mtype})) {
         if (isset($rw_media)) { $rw_media .= "," .$id; } else { $rw_media = $id; }
       }
-    }
-    if ( !empty($_POST["pilot_apikey"]) && ( strlen($_POST["pilot_apikey"])!=30 || preg_match('|[^a-f0-9]|i',$_POST["pilot_apikey"]) ) ) {
-      $pvp->common->display_error( lang('invalid_pilot_apikey') );
-      exit;
-    } else {
-      $db->set_config("pilot_apikey",$_POST["pilot_apikey"]);
     }
     if (!isset($_POST["http_cache_enable"])) $_POST["http_cache_enable"] = 0;
     $db->set_config("http_cache_enable",$_POST["http_cache_enable"]);
@@ -165,9 +157,6 @@ $imdbtx         = $pvp->preferences->imdb_tx_get();
 foreach ($imdbtx as $var=>$val) {
   ${$var} = $val;
 }
-$pilot_url       = $pvp->preferences->get("pilot_url");
-$pilot_fallback  = $pvp->preferences->get("pilot_fallback");
-$pilot_apikey    = $db->get_config("pilot_apikey");
 $mdb_use         = $pvp->preferences->get("mdb_use");
 $imdb_txwin_autoclose = $pvp->preferences->get("imdb_txwin_autoclose");
 $imdb_cache_enable = $db->get_config("imdb_cache_enable");
@@ -580,56 +569,12 @@ if ( $imdbapi_gen < 1 ) {
 }
 $t->parse("item","itemblock",TRUE);
 
-#--[ MoviePilot Site ]--
-$t->set_var("item_name",lang("pilot_url"));
-$t->set_var("item_comment",lang("pilot_url_comment"));
-$select  = "<SELECT NAME='pilot_url'$mpdis>";
-$imdburls = $db->get_options("pilot_url");
-for ($i=0;$i<count($imdburls["pilot_url"]);++$i) {
-  $select .= "<OPTION VALUE=\"" . $imdburls["pilot_url"][$i] . "\"";
-  if ($imdburls["pilot_url"][$i] == $pilot_url) $select .= " SELECTED";
-  $select .= ">" . $imdburls["pilot_url"][$i] . "</OPTION>";
-}
-$select .= "</SELECT>";
-$t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
-
-#--[ MoviePilot Fallback ]--
-$t->set_var("item_name",lang("pilot_fallback"));
-$t->set_var("item_comment",lang("pilot_fallback_comment"));
-$select  = "<SELECT NAME='pilot_fallback'$mpdis>";
-$opts = $db->get_options("pilot_fallback");
-for ($i=0;$i<count($opts['pilot_fallback']);++$i) {
-  $select .= "<OPTION VALUE='".$opts['pilot_fallback'][$i]."'";
-  if ($opts['pilot_fallback'][$i]==$pilot_fallback) $select .= ' SELECTED';
-  $select .= '>' .$opts['pilot_fallback'][$i]. '</OPTION>';
-}
-$select .= "</SELECT>";
-$t->set_var("item_input",$select);
-$t->parse("item","itemblock",TRUE);
-
-#--[ API Key ]--
-if ($admin) {
-  $t->set_var("item_name",lang("pilot_apikey"));
-  $t->set_var("item_comment",lang("pilot_apikey_comment"));
-  if ( $imdbapi_gen < 2 ) {
-    $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey' DISABLED>");
-  } else {
-    $t->set_var("item_input","<INPUT SIZE='30' MAXLENGTH='30' NAME='pilot_apikey' VALUE='$pilot_apikey'>");
-  }
-  $t->parse("item","itemblock",TRUE);
-}
-
 #--[ MDB to use ]--
 $t->set_var("item_name",lang("mdb_use"));
 $t->set_var("item_comment",lang("mdb_use_comment"));
 $select = "<SELECT NAME='mdb_use'>";
 $opts = array(lang('none'));
 if ($imdbapi_gen > 0) $opts[] = 'IMDB';
-if ($imdbapi_gen > 1) {
-  $opts[] = 'MoviePilot';
-  $opts[] = 'IMDB + MoviePilot';
-}
 for ($i=0;$i<count($opts);++$i) {
   $select .= "<OPTION VALUE='$i'";
   if ($i==$mdb_use) $select .= ' SELECTED';

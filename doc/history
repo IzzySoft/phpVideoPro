@@ -1,6 +1,10 @@
 History for phpVideoPro
 =======================
 
+v0.9.10
+-------------------
+- removing code for MoviePilot support (they closed their API long ago)
+
 v0.9.9 (04.05.2020)
 -------------------
 * PHP7 dropped the old mysql interface; updated db class to mysqli

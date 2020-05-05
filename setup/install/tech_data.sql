@@ -14,16 +14,6 @@ INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_music');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_actor');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_comments');
 INSERT INTO pvp_options (name,value) VALUES ('imdb_tx','imdb_tx_rating');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','https://www.moviepilot.de/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','https://es.moviepilot.com/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','https://fr.moviepilot.com/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','https://pl.moviepilot.com/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_url','https://uk.moviepilot.com/');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','NO_ACCESS');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','BASIC_ACCESS');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','MEDIUM_ACCESS');
-INSERT INTO pvp_options (name,value) VALUES ('pilot_fallback','FULL_ACCESS');
-INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');
 
 #
 # Data for pvp_users
@@ -112,7 +102,6 @@ INSERT INTO pvp_config (name,value) VALUES ('site','MySite');
 INSERT INTO pvp_config (name,value) VALUES ('enable_cookies','1');
 INSERT INTO pvp_config (name,value) VALUES ('expire_cookies','0');
 INSERT INTO pvp_config (name,value) VALUES ('session_purgetime','0');
-INSERT INTO pvp_config (name,value) VALUES ('pilot_apikey','');
 INSERT INTO pvp_config (name,value) VALUES ('http_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_enable','0');
 INSERT INTO pvp_config (name,value) VALUES ('imdb_cache_use','0');
@@ -148,8 +137,6 @@ INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_music','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_actor','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_tx_comments','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('imdb_txwin_autoclose','1');
-INSERT INTO pvp_preferences (name,value) VALUES ('pilot_url','https://uk.moviepilot.com/');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_pstemplate_id','1');
 INSERT INTO pvp_preferences (name,value) VALUES ('default_editor','plain');
-INSERT INTO pvp_preferences (name,value) VALUES ('pilot_fallback','NO_ACCESS');
 INSERT INTO pvp_preferences (name,value) VALUES ('mdb_use','0');

@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -15,8 +15,8 @@
  #========================================================[ initial setup ]==
  $page_id = "admin_pstemplates";
  include("../inc/includes.inc");
- $info_url = "http://projects.izzysoft.de/progs/phpvideopro/inc/pspacks.txt";
- $preview_base = "http://projects.izzysoft.de/progs/phpvideopro/images";
+ $info_url = "https://www.izzysoft.de/ftp/net/div/izzysoft/pspacks/pspacks.txt";
+ $preview_base = "https://www.izzysoft.de/ftp/net/div/izzysoft/pspacks";
 
  #-------------------------------------------------[ Register global vars ]---
  if (isset($_GET["add"]) && !preg_match("/[^\d]/",$_GET["add"])) $add = $_GET["add"]; else $add = FALSE;

@@ -11,5 +11,8 @@ DELETE FROM pvp_lang WHERE message_id LIKE 'pilot%';
 DELETE FROM pvp_lang WHERE message_id LIKE 'mdbapi_v1_only%';
 DELETE FROM pvp_lang WHERE message_id='invalid_pilot_apikey';
 
+# PSLabelPacks
+UPDATE pvp_pspacks SET creator=replace(creator,'http://projects.izzysoft.de/?topic=progs;subject=phpvideopro','https://github.com/IzzySoft/phpVideoPro');
+
 # version update
 #UPDATE pvp_config SET value='0.9.10' WHERE name='version';

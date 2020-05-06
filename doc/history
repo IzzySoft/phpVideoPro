@@ -8,6 +8,7 @@ v0.9.10
   if the former is set, so it only purges PVP's own cache and not IMDBPHP's
   global one)
 - updated (English and German) help pages to reflect the latest changes
+- PSLabels: fix update link(s)
 
 v0.9.9 (04.05.2020)
 -------------------

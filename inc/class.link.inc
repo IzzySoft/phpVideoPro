@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # phpVideoPro                              (c) 2001-2010 by Itzchak Rehberg #
+ # phpVideoPro                              (c) 2001-2020 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
- # http://www.izzysoft.de/                                                   #
+ # https://www.izzysoft.de/                                                  #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -10,13 +10,11 @@
  # Link related stuff: highlighting, linking targets etc.                    #
  #############################################################################
 
- /* $Id$ */
-
  /** Link to Internet Movie DataBase (IMDB)
   * @package Api
   * @class link
   * @author Izzy (izzysoft AT qumran DOT org)
-  * @copyright (c) 2001-2009 by Itzchak Rehberg and IzzySoft
+  * @copyright (c) 2001-2020 by Itzchak Rehberg
   */
  /** Base URL of the IMDB
   * @class link
@@ -116,11 +114,11 @@
       $imdb = $this->imdb . "name/nm${mid}/";
       return $imdb;
     } elseif (strlen(trim($name))) {
-      $imdb = $this->imdb . "Nsearch?name=";
+      $imdb = $this->imdb . "search/name?name=";
       if (strlen(trim($fname))) {
         $imdb .= urlencode($fname) . "+";
       }
-      $imdb .= urlencode($name) . "&type=substring&occupation=$occupation";
+      $imdb .= urlencode($name) . "&realm=name&type=substring&occupation=$occupation";
       return $imdb;
     } else { return ""; }
   } // end function ImdbPerson
@@ -153,7 +151,7 @@
       if (is_numeric($title) && strlen($title)==7) {
         $imdb = $this->imdb . "title/tt" .$title. "/";
       } else {
-        $imdb = $this->imdb . "Tsearch?title=" . urlencode($title);
+        $imdb = $this->imdb . "find?q=" . urlencode($title);
       }
       return $imdb;
     } else { return ""; }

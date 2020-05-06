@@ -1,18 +1,13 @@
-<? /* Movie Search Page */
- ?>
-<? /* $Id$ */ ?>
+# /* Movie Search Page */
 
 [title]
 *intro#
 
 [text]
-If you ever searched for a specific movie in your database (you had to use
-the <A HREF="{PHP_SELF}?topic=set_filter">filter settings</A> for this up to
-v0.4.4 for this), you may already have gone bananas on this task... That's why
-I finally made this additional page. It works similiar to the above mentioned
-filters, with one big difference: the "filters" here are applied only once for
-your actual search, while the others are saved permanently (or until your
-cookie expired).
+Movie Search works similiar to <A HREF="{PHP_SELF}?topic=set_filter">filter
+settings</A> – with one big difference: the "filters" here are applied only
+once for your actual search, while the others are saved permanently (or until
+your cookie expired).
 
 [text]
 In fact, when you run this search the criteria you entered are evaluated

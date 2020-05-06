@@ -179,93 +179,48 @@ member) by clicking on its title (or name) button when viewing the movies entry.
 Since the movie title for the same movie differs in different languages, and you
 probably will not always have the "original" name of the movie in the title
 but the one corresponding to the language version, you may quite often need to
-search the IMDB manually. By selecting a better matching IMDB site here, chances
-increase for a hit on the first click: if you e.g. have the German movie name
-in the title in most cases, you should select the German site of the IMDB here
-to reach this goal.<br>
-Unfortunately, not all countries have their own IMDB site yet. The ones I know
-are available as options. If there are other sites available <i>you</i> know of,
-just drop me a note and I will add them asap!
+search the IMDB manually. In the past, IMDB provided multiple, language-specific
+sites; by selecting a better matching IMDB site here, chances increased for a hit
+on the first click: if you e.g. had the German movie name in the title in most
+cases, you should have selected the German site of the IMDB here to reach this goal.
+[text]
+Those language-specific sites have been shut down. Instead, IMDBPHP now lets you
+specify the preferred language(s) – see <i>*imdb_lang#</i> below.
 
 [text]
-<b>*imdb_url2#:</b> As nice as the fact of having localized IMDB sites is: Along
+<b>*imdb_url2#:</b> As nice as the fact of having localized IMDB sites was: Along
 with the big advantage of being able to search for the movie title in the
-countries language, there is a rub in it. All they translated (for now) is the
-users interface - while the content seems to be exactly the same throughout all
-IMDB instances. So if we would go to retrieve the details from the localized
+countries language, there was a rub in it. All they translated was the users
+interface - while the content seemed to be exactly the same throughout all IMDB
+instances. So if we would have gone to retrieve the details from the localized
 IMDB instance, our parser had to be aware of all language variants for the
 tokens we need to identify - without us being rewarded with language specific
 information for this effort. Hence, once we got the ID for the movie in question,
-phpVideoPro switches to an English site to retrieve the details.
+phpVideoPro switched to an English site to retrieve the details.
 [text]
-This means of course, that you should be sure to select an <b><i>English</i></b>
-site here - whether that is located in the UK or US, I leave up to you.
+With the localized sites gone, so is this need. The option was left in case of
+future changes.
 
 [text]
-<b>*pilot_url#:</b> The second generation of the <I>IMDBPHP API</I> also offers
-access to movie data available at the <A HREF="https://www.moviepilot.com/"
-TARGET="_blank">MoviePilot</A> sites. Like <A HREF="https://www.imdb.com/"
-TARGET="_blank">IMDB</A>, this site holds a lot of details for many movies -
-though its database is far not (yet) as complete. But the two most outstanding
-differences are: <I>MoviePilot</I> has a stable interface (and even encourages
-developers to use it), plus all content is protected by the
-<A HREF="https://en.wikipedia.org/wiki/Creative_Commons" TARGET="_blank">Creative
-Commons</A> license (and thus are free to use - for details, please follow the
-Link).
-
-[text]
-Concerning the content, <I>MoviePilot</I> supports a clutch of languages. As of
-today, these are five: English, French, German, Portuguese, and Spanish. The
-language is clearly determinable by its URL.
-
-[text]
-<b>*pilot_fallback#:</b> For <I>MoviePilot</I>, <I>IMDBPHP2</I> supports a kind
-of "fallback mode" for missing content - reloading it from the <I>IMDB</I> sites.
-If and to what amount this should happen, can be configured at this place.
-
-[text]
-<I>NO_ACCESS</I> clearly means to disable this feature at all - so you are
-completely on the safe side concerning retrieved content (only data from
-<I>MoviePilot</I> will be retrieved). Stepwise you can increase the amount of
-data added from the <I>IMDB</I>: <I>BASIC_ACCESS</I> only adds innocuous
-information (such as parental guide age), while <I>FULL_ACCESS</I> tries to
-get as much as possible.
-
-[text]
-<b>*pilot_apikey#:</b> To use the Moviepilot API, you need to have a valid key.
-This can be either specified within the config files of IMDBPHP, or you can do
-so here. If specified in both places, the one specified here takes precedence.
-
-[text]
-That key is free of charge, and you can request it writing a mail to
-<A HREF='mailto:api@moviepilot.de'>api@moviepilot.de</A>. For those of you with
-any suspect: The idea behind it is not collecting user data, but preventing apps
-going nuts to block the server.
+<b>*imdb_lang#:</b> Instead of chosing a localized site (see above), you can now
+specify your language preferences. A native English speaker might e.g. use
+<code>en-UK,en-US,en</code> here – a Portuguese speaker rather something like
+<code>pt-BR,pt,en-US,en</code>. IMDBPHP passes that to the IMDB site, which then
+collects the information correspondingly in the given order.
 
 [text]
 <b>*mdb_use#:</b> Here you define which sources you want to use. You can
-decide for none, one, or even a combination of the available sources.
-
-[text]
-So you may ask: What is the difference between above described "fallback" and
-combining the sources? Easy: With the fallback, we can only add to information
-we already have - so if there was no data available at <I>MoviePilot</I>, the
-fallback would have nothing to complement. Combining the sites, however, in
-this case leaves you at least with the <I>IMDB</I> data.
-
-[text]
-Moreover: If your native language is e.g. Portuguese, you may be that lucky to
-obtain all technical data from the <I>IMDB</I>, with the added plus of a
-Portuguese plot outline - configuring the <I>*imdb_url#</I> to an English
-site, and the <I>*pilot_url#</I> to the Portuguese one.
+decide for none, or IMDB. In the past there also was MoviePilot, and you were
+even able to combine sources – but they shut their API down years ago; so all
+that’s left now is a simple on/off switch. This might change again in the future.
 
 [text]
 <b>*imdb_tx#:</b> These are only the <b><i>Defaults</i></b> for the setting of
 the checkboxes on the <A HREF="{PHP_SELF}?topic=imdbsearch">MDB details</A>
 page. Which data are really transfered, you still can decide there by
 en/disabling the checkboxes manually.
- 
-[text] 
+
+[text]
 <b>*imdb_txwin_autoclose#:</b> This option relates to the MDB window which can
 be opened on the <A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A> form. In
 it, we query the MDB for information on the movie we are just editing, and
@@ -293,6 +248,9 @@ the cache, (s)he may want to automatically have old files purged (i.e. deleted)
 from the cache. This option lets you select how many days after its retrieval a
 cache file will be automatically removed. The actual removal then will take
 place on the next query sent by the MDB lookup.
+[text]
+This setting only applies if you defined a phpVideoPro specific
+<i>*imdb_cache_dir#</i> (see below).
 
 [text]
 <b>*imdb_cache_dir#:</b> This is the directory phpVideoPro goes to store the
@@ -308,6 +266,9 @@ permissions to the webserver only, which would look like this:<br>
 <code>chown wwwrun.www <i>DirectoryName</i><br>chmod 0700 <i>DirectoryName</i></code><br>
 Of course you need to replace the user (wwwrun), group (www), and directory
 name (DirectoryName) dummies of the example by their real values.
+[text]
+You can leave this empty – in which case the settings (cache directory and
+expiry) are left to IMDBPHP and what you’ve configured there.
 
 [text]
 <b>*imdb_cache_use#:</b> How the MDB caching in phpVideoPro works, we already

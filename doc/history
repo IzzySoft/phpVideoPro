@@ -7,6 +7,7 @@ v0.9.10
 - re-enabling settings for cachedir and -expiry (the latter only applies
   if the former is set, so it only purges PVP's own cache and not IMDBPHP's
   global one)
+- updated (English and German) help pages to reflect the latest changes
 
 v0.9.9 (04.05.2020)
 -------------------

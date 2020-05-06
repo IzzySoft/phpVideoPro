@@ -6,10 +6,10 @@
 
 [text]
 Nicht zufrieden mit den vorhandenen Übersetzungen? Sind sie unvollständig? Oder
-fehlen sie gar allesamt? Hier ist nun endlich der richtige Platz, um diesem
-Problem relativ bequem bei zu kommen. phpVideoPro führt einfach durch die
-notwendigen Schritte - und zum Schluss gipfelt das ganze in einer Sprachdatei
-für phpVideoPro, die dann bitte an mich zu schicken ist :-)
+fehlen sie gar allesamt? Hier ist der richtige Platz, um diesem Problem relativ
+bequem bei zu kommen. phpVideoPro führt einfach durch die notwendigen Schritte
+– und zum Schluss gipfelt das ganze in einer Sprachdatei für phpVideoPro, die
+dann bitte an mich zu schicken ist :-)
 
 [title]
 *sel_target_lang#

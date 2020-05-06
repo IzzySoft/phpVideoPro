@@ -205,97 +205,45 @@ im Betrachtungsmodus eines Filmeintrages auf den Button des Titels oder des
 Crew-Mitglieds geklickt wird. Während die Namen der Crewmitglieder sich für
 gewöhnlich nicht ändern, kann der Filmtitel bei synchronisierten Fassungen
 durchaus vom "Original-Titel" abweichen - was sodann eine manuelle Suche auf
-der IMDB Site erforderlich macht. Eine höhere Trefferwahrscheinlichkeit lässt
-sich daher erreichen, wenn hier eine Site ausgewählt wird, die mit der
-häufigsten Sprachversion der in phpVideoPro gespeicherten Filmtitel überein
-stimmt - für Deutschland wäre dies die deutsche IMDB Site.
-[text]
-Leider gibt es noch nicht für alle Sprachen eine eigene IMDB Site. Die mir
-bekannten Sites sind bereits als Optionen verfügbar - wenn jemand weitere Sites
-kennt, bitte ich um eine kurze Notiz, damit ich sie ebenfalls einpflegen kann!
+der IMDB Site erforderlich macht. Um eine höhere Trefferwahrscheinlichkeit zu
+erreichen, bot sich in der Vergangenheit die Auswahl einer lokalisierten IMDB
+Site an, die mit der häufigsten Sprachversion der in phpVideoPro gespeicherten
+Filmtitel überein stimmte - für Deutschland wäre dies die deutsche IMDB Site.
+Mittlerweile hat IMDB jedoch die lokalisierten Sites abgeschaltet, so dass
+diese Auswahl aktuell nicht mehr nötig ist; es steht auch nur noch eine einzige
+IMDB Site zur Verfügung.
 
 [text]
-<b>*imdb_url2#:</b> So schön die Tatsache ist, dass es "lokalisierte" IMDB Sites
-u.a. auch für den deutschsprachigen Raum gibt, haben diese doch neben dem
-großen Vorteil, dass hier auch nach dem landessprachlichen Filmtitel gesucht
-werden kann, einen großen Haken: Das einzige, was hier "übersetzt" wurde, ist
-(bislang) die Oberfläche. Der Inhalt ist ansonsten überall identisch. Wollten
-wir jetzt also alle lokalisierten Sites unterstützen, müssten wir beim Parsen
-der Seiten sämtliche verfügbaren Sprachen berücksichtigen - ohne dass wir für
-diesen Aufwand auch mit landessprachlichen Informationen belohnt würden. Daher
-wechselt phpVideoPro, sobald der Film eindeutig identifiziert ist, zu einer der
-Englischen Instanzen der IMDB, um die Details von dort zu beziehen.
+<b>*imdb_url2#:</b> In der Praxis zeigte sich, dass bei den "lokalisierten" IMDB
+Sites neben den Filmtiteln leider nur die gesamte Oberfläche "übersetzt" wurde.
+Der Inhalt war ansonsten überall identisch. Sollten jetzt also alle lokalisierten
+Sites unterstützt werden, müssten beim Parsen der Seiten sämtliche verfügbaren
+Sprachen berücksichtigt werden - ohne dass wir für diesen Aufwand auch mit
+landessprachlichen Informationen belohnt würden. Daher wechselte phpVideoPro,
+sobald der Film eindeutig identifiziert ist, zu einer der Englischen Instanzen
+der IMDB, um die Details von dort zu beziehen.
 [text]
-Es ist also zwingend notwendig, an dieser Stelle eine <b><i>Englische</i></b>
-Site auszuwählen.
+Es war also zwingend notwendig, an dieser Stelle eine <b><i>Englische</i></b>
+Site auszuwählen. Aktuell gibt es nur eine einzige Site, so dass sich die Auswahl
+erübrigt.
 
 [text]
-<b>*pilot_url#:</b> Die zweite Generation der <I>IMDBPHP API</I> ermöglicht nun
-auch Zugriffe auf die Daten bei <A HREF="https://www.moviepilot.de/"
-TARGET="_blank">MoviePilot</A>. Wie auch <A HREF="https://www.imdb.de/"
-TARGET="_blank">IMDB</A>, bietet diese Site eine Reihe von Informationen zu vielen
-Filmen - auch wenn die Datenbank hier noch im Aufbau befindlich ist, und daher vom
-Umfang her noch nicht mit der <I>IMDB</I> mithalten kann. Die zwei bedeutendsten
-Unterschiede sind jedoch, dass <I>MoviePilot</I> zum einen eine stabile
-Schnittstelle anbietet (und Entwickler ermutigt, diese auch zu benutzen) - und
-dass die Inhalte der <A HREF="https://de.wikipedia.org/wiki/Creative_Commons"
-TARGET="_blank">Creative Commons</A> Lizenz unterliegen (also frei verwendet
-werden können - Details bitte dem Link entnehmen).
-
-[text]
-Inhaltlich unterstützt <I>MoviePilot</I> eine Reihe von Sprachen, gegenwärtig
-sind dies fünf: Englisch, Deutsch, Französisch, Spanisch, und Portugiesich. Die
-Sprache der Inhalte läßt sich leicht an den zur Auswahl stehenden URLs erkennen.
-
-[text]
-<b>*pilot_fallback#:</b> Für <I>MoviePilot</I> unterstützt <I>IMDBPHP2</I> eine
-Art "Fallback-Modus" für fehlende Details, um diese bei Bedarf aus der
-<I>IMDB</I> nachzuladen. Ob und in welchem Umfang dies geschehen soll, lässt
-sich hier festlegen:
-
-[text]
-Der Modus <I>NO_ACCESS</I> schaltet das "Fallback" komplett ab - womit man
-inhaltlich 100% auf der sicheren Seite ist (es werden nur Inhalte von
-MoviePilot bezogen). Staffelweise lassen sich mehr Details von der IMDB
-ergänzen: <I>BASIC_ACCESS</I> bezieht nur "unverfängliche" Informationen, wie
-z.B. eine etwaige Altersbeschränkung - während <I>FULL_ACCESS</I> möglichst
-alle fehlenden Informationen ergänzt.
-
-[text]
-<b>*pilot_apikey#:</b> Die Nutzung der Moviepilot API setzt einen gültigen
-API-Key voraus. Dieser kann in der Konfigurationsdatei von <I>IMDBPHP</I> oder
-aber hier in <i>phpVideoPro</i> hinterlegt werden. Wurde er an beiden Stellen
-konfiguriert, hat die letztere Angabe Vorrang.
-
-[text]
-Der Key ist völlig kostenlos, und kann per Mail an
-<A HREF='mailto:api@moviepilot.de'>api@moviepilot.de</A> geordert werden. Wer
-jetzt gleich an Datenkraken und Vorratsspeicherung denkt, sei beruhigt: Das ist
-keinesfalls der Gedanke hinter diesem Prinzip. Es geht vielmehr darum, etwa
-Amok-laufende Applikationen daran zu hindern, die <I>Moviepilot</I> Server
-lahm zu legen.
+<b>*imdb_lang#:</b> Was früher über sprachspezifische IMDB Sites umgesetzt wurde,
+läuft heute über Spracheinstellungen. Daher lassen sich an dieser Stelle die
+bevorzugten Sprachen einstellen; für Deutsch empfiehlt sich <code>de-DE,de,en</code>
+(oder auch <code>de-AT,de-DE,de,en</code> und analog). Diese Sprachen werden der
+Reihe nach abgearbeitet. Im ersten Beispiel bedeutet dies: Finden sich für
+<code>de-DE</code> Inhalte, werden diese verwendet – und anschließend mit
+<code>de</code> sowie <code>en</code> fortgefahren; nach der letzten angegebenen
+Sprache ist Schluss, und die gesammelten Informationen werden "ausgeliefert".
 
 [text]
 <b>*mdb_use#:</b>
 Mit dieser Einstellung wird festgelegt, welche Informationsquellen genutzt
-werden sollen. Man kann sich also auf eine Site beschränken - oder auch beide
-Quellen kombinieren.
-
-[text]
-Damit stellt sich natürlich die Frage: Was ist der Unterschied zwischen o.g.
-"Fallback-Modus" bezüglich <I>Moviepilot</I>, und der Kombination mit <I>IMDB</I>
-hier? Ganz einfach: Der "Fallback" ergänzt nur fehlende Informationen zu einem
-Film, dessen allgemeine Daten jedoch auf <I>MoviePilot</I> vorhanden sind. Wird
-der fragliche Film bei <I>MoviePilot</I> gar nicht gefunden, wird auch nichts
-ergänzt. Bei einer Kombination beider Sites hat man in diesem Falle noch immer
-die Daten von der <I>IMDB</I>.
-
-[text]
-Eine Kombination macht auch dann Sinn, wenn man mehrsprachige Informationen
-wünscht: Man kann dann z.B. Informationen der englischen <I>IMDB</I>-Site (also
-auf Englisch) mit Informationen der deutschen <I>MoviePilot</I> Seite kombinieren.
-Auf diese Weise erhält man die kompletten technischen Daten (von der <I>IMDB</I>),
-und zusätzlich zur englischen Beschreibung auch gleich noch die deutsche.
+werden sollen. Man kann sich also auf eine Site beschränken - oder auch mehrere
+Quellen kombinieren. Da derzeit nur eine einzige Quelle verfügbar ist (die in
+der Vergangenheit verfügbare MoviePilot API wurde eingestellt), ist dies aktuell
+lediglich ein Ein/Aus Schalter.
 
 [text]
 <b>*imdb_tx#:</b> Dies ist lediglich eine Voreinstellung für die Checkboxen
@@ -326,7 +274,7 @@ wurden, und dann den Code der IMDB Klassen entsprechend anpassen. Für den
 täglichen Umgang mit phpVideoPro bringt dies kaum Vorteile, da der Anwender die
 aus der MDB bezogenen Daten ja in die eigene Datenbank kopiert, und den selben
 Film kaum ein zweites Mal abrufen wird. Wie geschrieben: Es sei denn, es handelt
-sich um eine "größere Installation"...
+sich um eine "größere Installation"…
 
 [text]
 <b>*imdb_cache_expire#:</b> Ist der MDB Cache aktiviert (siehe oben unter
@@ -336,6 +284,11 @@ zunimmt. Daher lässt sich mit dieser Option festlegen, nach welchem Zeitraum
 eine so angelegte Cache-Datei automatisch wieder vom System entfernt (d.h.
 gelöscht) wird. Die Prüfung (und ggf. Löschung) findet dann jeweils beim
 nächsten LookUp statt.
+
+[text]
+Diese Einstellung hat nur Auswirkungen, wenn unter <i>*imdb_cache_dir#</i> ein
+Verzeichnis angegeben wurde (also phpVideoPro ein eigenes Cache-Verzeichnis
+verwendet).
 
 [text]
 <b>*imdb_cache_dir#:</b> In diesem Verzeichnis werden die MDB-Daten bei
@@ -352,11 +305,15 @@ und gibt nur diesem die entsprechenden Rechte. Das könnte z.B. so aussehen:<br>
 <code>chown wwwrun.www <i>Verzeichnisname</i><br>chmod 0700 <i>Verzeichnisname</i></code>
 
 [text]
+Im Normalfall kann dieses Feld einfach leer gelassen werden, damit der in der
+IMDBPHP Konfiguration spezifizierte Cache (mit-) verwendet wird.
+
+[text]
 <b>*imdb_cache_use#:</b> Die Funktion des MDB Cache in phpVideoPro wurde bereits
 weiter oben (unter <i>*imdb_cache_enable#</i>) beschrieben. Dort ging es
 allerdings nur um das <b><i>Speichern</i></b> der Cachedaten. Wird zusätzlich
 die Funktion <i>*imdb_cache_use#</i> aktiviert, wird der Cache auch bei LookUps
-verwendet - d.h., wenn für einen Film bereits alle Daten im Cache abgelegt sind,
+verwendet - d. h., wenn für einen Film bereits alle Daten im Cache abgelegt sind,
 wird die MDB für diesen nicht mehr kontaktiert. Stattdessen werden die
 entsprechenden Daten dem Cache entnommen.
 

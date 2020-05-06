@@ -1,19 +1,13 @@
-<? /* Movie Search Page */ ?>
-<? /* $Id$ */ ?>
+# /* Movie Search Page */
 
 [title]
 *intro#
 
 [text]
-Wer schon einmal in seiner phpVideoPro Datenbank nach einem bestimmten Film
-gesucht hat (und dafür bis einschließlich v0.4.4 lediglich die
-<A HREF="{PHP_SELF}?topic=set_filter">Filter-Einstellungen</A> zur Verfügung
-hatte, wird sicher bereits das eine oder andere Mal fast wahnsinnig geworden
-sein. Um dem für die Zukunft vorzubeugen, gibt es seit v0.4.5 nun dieses
-Formular. Es funktioniert ähnlich dem oben erwähnten für die Filter, mit einem
-wesentlichen Unterschied: die "Filter" hier gelten nur für die aktuelle Suche,
-während sie "dort" permanent (oder bis das Cookie expiriert) gespeichert
-werden.
+Die Filmsuche gleicht den <A HREF="{PHP_SELF}?topic=set_filter">Filter-Einstellungen</A>
+– mit einem wesentlichen Unterschied: die "Filter" hier gelten nur für die
+aktuelle Suche, während sie "dort" permanent (oder bis das Cookie expiriert)
+gespeichert werden.
 
 [text]
 Tatsächlich werden zusätzlich zu den hier eingegebenen Kriterien auch noch die
@@ -27,17 +21,17 @@ spezielle Suche dann über dieses Formular hier erfolgt.
 Suchkriterien und "Treffer"
 
 [text]
-Die Eingabe hier folgt den gleichen Regeln wie bei den nun bereits mehrfach
-angesprochenen Filtern: Mehrfachauswahlen in Feldern wie z.B. bei
-"*mediatype#", werden mit "ODER" verknüpft; d.h. eine Auswahl von DVD und
-VCD schließt beide Medientypen mit ein. Mehrere Felder werden mit "UND"
-verbunden: eine Auswahl von z.B. "DVD" als Medientyp und "*cat_action#" als
-Kategorie wählt ausschließlich die DVDs aus, die auch dieser Kategorie zugeordnet
-sind. Das gilt auch für Felder, welche einen Minimum und ein Maximum erlauben,
-wie dies bei "*length#" und "*fsk#" der Fall ist: sind beide Werte angegeben,
-werden auch beide ausgewertet. Nicht selektierte Felder hingegen werden auch
-nicht ausgewertet - bleibt also z.B. der Titel leer, werden alle Titel ausgewählt,
-welche den übrigen Kriterien entsprechen.
+Auch die Eingabe folgt den gleichen Regeln wie bei den bereits  angesprochenen
+Filtern: Mehrfachauswahlen in Feldern wie z.B. bei "*mediatype#", werden mit
+"ODER" verknüpft; d.h. eine Auswahl von DVD und VCD schließt beide Medientypen
+mit ein. Mehrere Felder werden mit "UND" verbunden: eine Auswahl von z.B. "DVD"
+als Medientyp und "*cat_action#" als Kategorie wählt ausschließlich die DVDs
+aus, die auch dieser Kategorie zugeordnet sind. Das gilt auch für Felder,
+welche einen Minimum und ein Maximum erlauben, wie dies bei "*length#" und
+"*fsk#" der Fall ist: sind beide Werte angegeben, werden auch beide
+ausgewertet. Nicht selektierte Felder hingegen werden auch nicht ausgewertet -
+bleibt also z.B. der Titel leer, werden alle Titel ausgewählt, welche den
+übrigen Kriterien entsprechen.
 
 [text]
 Noch ein Wort zu den Text-Feldern "*comments#", Namen und "*title#": hier

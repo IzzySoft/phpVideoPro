@@ -1,5 +1,5 @@
-<? /* dupe checks */ ?>
-<? /* $Id$ */ ?>
+# /* dupe checks */
+# /* $Id$ */
 
 [title]
 *intro#
@@ -35,7 +35,7 @@ about these? For obvious reasons, it is not enough to check the name and,
 maybe, the length of the movie - since movies are often cut differently, this
 may mean nothing. So we use some other indicators. This is not a 100% guarantee,
 but we come quit close to what we look for. So for phpVideoPro, when using
-"*dupes_strict", a movie is not considered a duplicate, if one of the following
+"*dupes_strict#", a movie is not considered a duplicate, if one of the following
 criteria is met:
 
 [text]

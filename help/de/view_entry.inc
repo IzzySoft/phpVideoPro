@@ -7,10 +7,10 @@ Einleitung
 [text]
 In diesem Formular werden alle verfügbaren Informationen zum ausgewählten
 Datensatz angezeigt. Normalerweise sollte dies keiner Erklärung bedürfen, da
-der Anwender diese Informationen zumeist selbst erfaßt hat und somit ihre
+der Anwender diese Informationen zumeist selbst erfasst hat und somit ihre
 Bedeutung kennen sollte (ist dies nicht der Fall, hilft ein Blick auf
 die Hilfeseite für den Menüpunkt "<A HREF="{PHP_SELF}?topic=add_entry">*add_entry#</A>"),
-aber...
+aber…
 
 [title]
 Durchstöbern der Sammlung
@@ -44,16 +44,16 @@ gebraucht, wenn gerade ein Medientyp neu als "(wieder)beschreibbar" deklariert
 wurde, der vorher nur "lesbar" war. In diesem Fall muss ggf. für alle betroffenen
 Medien auf diese Weise die Länge erfasst werden.
 [text]
-Weitere gewünschte Änderungen könnten den Disk-Typ (für VCDs und DVDs) bzw. die
-Regional-Codes (für DVDs) betreffen. Hierzu ist die Möglichkeit analog zu obigem
-auch wieder hinter Buttons versteckt - hinter welchen, hängt von den bisher zum
-Medium erfassten Daten ab. Wurde noch kein Disk-Typ gesetzt, erreicht man die
-entsprechende Seite über die Zähler-Buttons (die dann anschließend für dieses
-Medium nicht mehr auftauchen - machen ja eigentlich auch keinen Sinn für alles
-andere als Video-Kassetten), andernfalls über den Button des gesetzten Disk-Typs.
-Für Regional-Codes ist die Seite hinter dem RegionCode Button verborgen, wobei
-in diesem Fall auch der Disk-Typ gleich mit gesetzt wird - sofern das nicht
-bereits geschehen ist.
+Weitere gewünschte Änderungen könnten den Disk-Typ (für VCDs, DVDs und BDs)
+bzw. die Regional-Codes (für DVDs/BDs) betreffen. Hierzu ist die Möglichkeit
+analog zu obigem auch wieder hinter Buttons versteckt - hinter welchen, hängt
+von den bisher zum Medium erfassten Daten ab. Wurde noch kein Disk-Typ gesetzt,
+erreicht man die entsprechende Seite über die Zähler-Buttons (die dann
+anschließend für dieses Medium nicht mehr auftauchen - machen ja eigentlich
+auch keinen Sinn für alles andere als Video-Kassetten), andernfalls über den
+Button des gesetzten Disk-Typs. Für Regional-Codes ist die Seite hinter dem
+RegionCode Button verborgen, wobei in diesem Fall auch der Disk-Typ gleich mit
+gesetzt wird - sofern das nicht bereits geschehen ist.
 
 [title]
 IMDB Informationen
@@ -66,7 +66,7 @@ des entsprechenden Namens bzw. Vornamens (beide Buttons sind mit der gleichen
 Funktion belegt) dann auch ein neues Fenster, in welchem die Informationen
 über Name, Vorname und "Rolle" (also Schauspieler, Regisseur bzw. Komponist)
 an die "Internet Movie DataBase" (kurz: IMDB) weitergereicht wird. Sind diese
-Informationen eindeutig (d.h. sie identifizieren genau eine Person in der
+Informationen eindeutig (d. h. sie identifizieren genau eine Person in der
 IMDB), erscheint sogleich die gewünschte Seite mit biografischen und
 filmografischen Daten. Andernfalls werden von der IMDB Site nähere Informationen
 abgefragt (im Normalfall heißt dies: Anzeige einer Liste möglicher Namen, in
@@ -74,7 +74,7 @@ der man sodann auf den richtigen klicken muß).
 [text]
 Da es sich bei der IMDB um einen eigenständigen Service (bzw. ein eigenständiges
 Produkt) handelt, hat phpVideoPro keinerlei Einfluß auf die dort verfügbaren
-Informationen. D.h., wir sind weder für diese Informationen verantwortlich,
+Informationen. D. h., wir sind weder für diese Informationen verantwortlich,
 noch werden wir sie in irgendeiner Weise verändern :-) Wir dachten uns lediglich,
 es wäre nett, diese auf Mausklick mit verfügbar zu haben.
 

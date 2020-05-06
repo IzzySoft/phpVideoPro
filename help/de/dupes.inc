@@ -1,5 +1,5 @@
-<? /* dupe checks */ ?>
-<? /* $Id$ */ ?>
+# /* dupe checks */
+# /* $Id$ */
 
 [title]
 *intro#
@@ -39,7 +39,7 @@ oft auf verschiedene Längen geschnitten wird (und das nicht nur von den
 Sendern, die mehr Werbung unterbringen wollen). Es müssen andere Kriterien
 her - und phpVideoPro nutzt sie. Auch wenn das noch keine Garantie gegen
 "Fehlerkennungen" darstellt, klappt es in der Regel recht gut. Bei der Suche
-mit "*dupes_strict# wird ein Film as mögliches Duplikat ausgeschlossen, wenn
+mit "*dupes_strict#" wird ein Film as mögliches Duplikat ausgeschlossen, wenn
 eines der folgenden Kriterien zutrifft:
 
 [text]

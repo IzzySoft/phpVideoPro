@@ -1,11 +1,11 @@
-<? /* list of labels */ ?>
-<? /* $Id$ */ ?>
+# /* list of labels */
+# /* $Id$ */
 
 [title]
 Druck von Etiketten
 
 [text]
-Hier läßt sich eine Liste von Etiketten erstellen. Die Anzahl der Etiketten
+Hier lässt sich eine Liste von Etiketten erstellen. Die Anzahl der Etiketten
 auf der Ergebnisseite hängt von der Anzahl der ausgefüllten, nicht der vorhandenen
 Zeilen ab (wenn also nur zwei Zeilen ausgefüllt wurden, gibt es auch nur zwei
 Etiketten - und nicht etwa zwei ausgefüllte und drei leere :)

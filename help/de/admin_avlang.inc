@@ -1,12 +1,12 @@
-<? /* $Id$ */ ?>
+# /* $Id$ */
 
 [title]
 *intro#
 
 [text]
-Viele Filme sind in den verschiedensten Sprachen verfügbar - sowohl was die
+Viele Filme sind in den verschiedensten Sprachen verfügbar – sowohl was die
 Synchronisation der gesprochenen Sprache, als auch was die Untertitel betrifft.
-Und speziell mit DVDs, kann ein Film über mehrere Spuren für beides verfügen.
+Und speziell mit DVDs/BDs, kann ein Film über mehrere Spuren für beides verfügen.
 phpVideoPro hält für Tonspuren und Untertitel je ein Feld bereit, um diese
 Informationen zu verwalten.
 
@@ -16,12 +16,12 @@ Problem: Wie gehen wir mit den vielen Sprachen um? Mehr als hundert davon
 stehen zur Verfügung - alle aufzuführen, würde in einer langen und unhandlichen
 Liste resultieren! Doch unter normalen Umständen, und selbst mit einer größeren
 Filmsammlung, ist die Anzahl der tatsächlich verwendeten Sprachen wesentlich
-geringer: undgefähr 10 verschiedene Sprachen für Audio und vielleicht 20 für
+geringer: ungefähr 10 verschiedene Sprachen für Audio und vielleicht 20 für
 Untertitel finden tatsächlich Verwendung. Wir können die Liste also
 einschränken, so dass sie (halbwegs) handlich bleibt.
 
 [text]
-Dennoch läßt sich die Frage, welche Sprachen denn nun verwendet werden, nicht
+Dennoch lässt sich die Frage, welche Sprachen denn nun verwendet werden, nicht
 allgemeingültig beantworten: Die Antwort hängt nicht zuletzt vom Anwender ab,
 wo er wohnt, welche Sprachen er spricht bzw. bei Kauf/Aufnahme von Filmen
 bevorzugt, usw.. Also bleibt die Auswahl wieder einmal dem Anwender (bzw. in
@@ -43,7 +43,7 @@ einigen Informationen dazu aufgelistet. Was heißen die Felder im einzelnen?
 </ul>
 Das Ikon in der letzten Spalte dient zum Editieren der ausgewählten Sprache
 hinsichtlich ihrer Verfügbarkeit für Tonspuren und Untertitel. Ein "Klick"
-darauf führt zum...
+darauf führt zum…
 
 [title]
 Bearbeitungs-Formular

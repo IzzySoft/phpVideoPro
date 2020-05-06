@@ -5,12 +5,13 @@
 *intro#
 
 [text]
-Seit phpVideoPro v0.5.1, existiert dieser Menüpunkt für jeden konfigurierten
-Medientyp separat. Dieser Schritt war nötig, um den verschiedenen Features
-Rechnung zu tragen, die jeweils nur für einige der Medientypen verfügbar sind
-(wie z.B. Regionalcodes für DVDs, LongPlay für Kassetten etc.), und die Felder
-für Features, die vom gerade bearbeiteten Medium nicht unterstützt werden,
-auch gar nicht erst einzublenden.
+In diesem Menüpunkt existiert für jeden konfigurierten Medientyp ein separat er
+Eintrag. Dieser Schritt ist nötig, um den verschiedenen Features Rechnung zu
+tragen, die jeweils nur für einige der Medientypen verfügbar sind (wie z. B.
+Regionalcodes für DVDs/Blu-rays, LongPlay für Kassetten etc.), und die Felder
+für Features, die vom gerade bearbeiteten Medium nicht unterstützt werden, auch
+gar nicht erst einzublenden.
+
 [text]
 Über diese Menüpunkte läßt sich nun ein neuer Eintrag in die Datenbank einfügen.
 Die meisten Felder dieses Formulars erklären sich selbst, und so soll an dieser
@@ -50,7 +51,7 @@ einen Film auf dem jeweiligen Medium meint. RVT 68-1 wäre somit also Film Numme
 1 auf dem selbst bespielten Videoband Nummer 68, 68-2 der zweite u.s.w..
 Natürlich kann theoretisch jeder hier sein eigenes Schema hinterlegen - nur
 wird phpVideoPro dann nicht unbedingt so reagieren, wie man es vielleicht
-erwartet :-) Wichtig ist dieses Modell z.B. bei der Ermittlung von freien
+erwartet :-) Wichtig ist dieses Modell z. B. bei der Ermittlung von freien
 Bandstellen über den Menüpunkt <i><A HREF="{PHP_SELF}?topic=taperest_absolute">*taperest_absolute#</A></i>
 (bzw. <i>*taperest_filtered#</i>), da dieses auf der MediaNummer aufbaut. Unnötig
 daher zu erwähnen, daß diese Nummern eindeutig sein müssen - es ist nicht
@@ -68,10 +69,10 @@ interessant, welche noch nicht über eine Indexfunktion verfügen (sie sind auch
 nur für Kassetten verfügbar): diese können hier die jeweiligen Zählerstände bei
 Beginn bzw. Ende der Aufzeichnung eintragen. Da das Format der Eintragungen in
 diesen Feldern jedoch nicht festgelegt ist (mit Ausnahme der Einschränkung auf
-maximal 10 Zeichen), kann es auch anderweitig benutzt werden (z.B. können auch
+maximal 10 Zeichen), kann es auch anderweitig benutzt werden (z. B. können auch
 die jeweiligen Zeiten von Rekordern mit Echtzeitzählwerk eingetragen werden).
 [text]
-Für alle anderen Medien (DVD/VCD) kann an dieser Stelle der *disk_type#
+Für alle anderen Medien (BD/DVD/VCD) kann an dieser Stelle der *disk_type#
 eingetragen werden. Details dazu finden sich auf
 <A HREF="{PHP_SELF}?topic=disktype_change">dieser Seite</A>.
 
@@ -87,14 +88,15 @@ unterdrückt.
 *region_code#
 
 [text]
-RegionalCodes sind ein DVD-spezifisches "Feature" (auf das wir auch liebend
-gern verzichten würden), daher taucht dieser Punkt auch nur für DVDs auf (es
+RegionalCodes sind ein BD/DVD-spezifisches "Feature" (auf das wir auch liebend
+gern verzichten würden), daher taucht dieser Punkt auch nur für BDs/DVDs auf (es
 sei denn, jemand hat dieses "Feature" auch für einen anderen Medien-Typen
 freigeschaltet - siehe <i><a href="{PHP_SELF}?topic=admin_disktypes">*admin_disktypes#</a></i>).
 Ist der Regionalcode der bearbeiteten DVD unbekannt, sollte hier einfach
 keinerlei Auswahl getroffen werden: bei der Anzeige des Datensatzes erscheint
 in diesem Fall der Hinweis "unbekannt". Für RegionCode-freie DVDs ist lediglich
-die "0" auszuwählen, und für alle anderen die entsprechende(n) Checkbox(en).
+die "0" auszuwählen, und für alle anderen die entsprechende(n) Checkbox(en). Bei
+BDs entsprechen die RegionalCodes 1, 2, 3 … den Codes A, B, C …
 
 [title]
 *commercials#
@@ -148,21 +150,20 @@ Filmes auf. Unabhängig davon werden jedoch bei Suchen bzw. bei gesetzten
 Etwas Achtsamkeit ist bei der Eingabe dieser Daten angebracht: das erste Feld
 sollte den Namen, und das zweite den Vornamen enthalten. Auch hier kann
 natürlich wieder jeder seinem Gusto frönen - was aber ggf. einige Funktionen
-von phpVideoPro beeinflußt. Auf der
-<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro"
-TARGET="_blank">Demo-Site</A> habe ich bereits einige Einträge gesehen, die
-sowohl im Namen als auch im Vornamen vollständige Namen (also Vor- und Nachname)
-enthielten. Sucht man nun aber nach einem bestimmten Darsteller, treten
-entsprechende Schwierigkeiten auf, wie sich unschwer bei der Erstellung eines
-<A HREF="{PHP_SELF}?topic=filter">Filters</A> feststellen lassen wird.
+von phpVideoPro beeinflußt. Auf der ehemaligen Demo-Site habe ich bereits
+einige Einträge gesehen, die sowohl im Namen als auch im Vornamen vollständige
+Namen (also Vor- und Nachname) enthielten. Sucht man nun aber nach einem
+bestimmten Darsteller, treten entsprechende Schwierigkeiten auf, wie sich
+unschwer bei der Erstellung eines <A HREF="{PHP_SELF}?topic=filter">Filters</A>
+feststellen lassen wird.
 
 [text]
 Zusätzlich gibt es zu jedem Namen eine Checkbox "*in_list#", die wiederum mit
 einem netten Feature verbunden ist: Bei der Anzeige von Personenlisten, wie
-z.B. der <A HREF="{PHP_SELF}?topic=actors">Schauspielerliste</A>, werden nur
+z. B. der <A HREF="{PHP_SELF}?topic=actors">Schauspielerliste</A>, werden nur
 die Einträge berücksichtigt, die hier ein "Häkchen" erhalten haben. Auf diese
 Weise läßt sich die Anzeige eines Schauspielers für einen bestimmten Film
-unterdrücken (wenn es einem z.B. peinlich ist, daß Sascha Hehn auch in einem
+unterdrücken (wenn es einem z. B. peinlich ist, daß Sascha Hehn auch in einem
 70ger Jahre P*rn* der eigenen Sammlung mitgespielt hat, und nicht nur in der
 Schwarzwaldklinik :)
 

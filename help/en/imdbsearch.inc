@@ -1,5 +1,5 @@
-<? /* Search IMDB and transfer results to edit screen */ ?>
-<? /* $Id$ */ ?>
+# /* Search IMDB and transfer results to edit screen */
+# /* $Id$ */
 
 [title]
 *intro#
@@ -27,7 +27,7 @@ the IMDB).
 [text]
 In most cases you will be much faster if you know the IMDB ID of the movie.
 Enter this in the second field given in this form, and press the associated
-button - this will definitively skip the list of movies, and directly lead you
+button – this will definitively skip the list of movies, and directly lead you
 to the <A HREF="#details">details</A> page.
 
 [text]
@@ -41,13 +41,13 @@ Movies found
 
 [text]
 If we had some luck, our movie was found. If we had much luck, we just found
-the correct movie - but there may also be a list of movies found, in case there
+the correct movie – but there may also be a list of movies found, in case there
 is more than one movie with the given name. If you are in doubt, you may click
 on some of the IMDB buttons of this screen, which will again open a new window
 with the movies page on the IMDB site, so you can check out.
 
 [text]
-If you've got the right movie, just click on its name. This will bring you to
+If you’ve got the right movie, just click on its name. This will bring you to
 the next screen with the details we could retrieve from the IMDB. Again, some
 patience may be needed - since we have to query the IMDB one more time.
 
@@ -55,7 +55,7 @@ patience may be needed - since we have to query the IMDB one more time.
 Movie details
 
 [text]
-If you got here, you've probably been lucky enough to find the information you
+If you got here, you’ve obviously been lucky enough to find the information you
 were looking for. Now you can select what information you want to use in your
 database. You can in/exclude details by (de)activating the associated checkboxes
 (how these are set by default, you can define via the
@@ -69,17 +69,17 @@ presented by the IMDB - so in the title drop-down list, these are added
 
 [text]
 Depending on the country you are living in, the "<b><i>PG</i></b>"
-("<i>Parental Guide</i>" -- meaning the minimum age of the audience to watch
+("<i>Parental Guide</i>" – meaning the minimum age of the audience to watch
 this movie) may be different. In addition to that, some countries use the same
 "ratings" but mean different things: e.g. the rating "PG" can mean everything
 between 6 and 12 years, depending on the rating authority. Since someone
 visiting your phpVideoPro site does not necessarily know what local authority
 to apply to <i>your</i> values, phpVideoPro only supports <i>numeric values</i>
--- which also makes it possible to search for PG ranges, without depending on
+– which also makes it possible to search for PG ranges, without depending on
 the country stuff. So if you live in a country using non-numeric PG values, you
 may be able to find out a suitable value by comparing the numeric values given
-by other countries' authorities, and by using some common sense. I hope I do
-not need any legal disclaimer here -- I am not responsible for any data
+by other countries’ authorities, and by using some common sense. I hope I do
+not need any legal disclaimer here – I am not responsible for any data
 entered. When in doubt, please consult your local authority :-)
 
 [text]
@@ -89,10 +89,10 @@ can edit that here as well.
 
 [text]
 As for the <b><i>categories</i></b>, phpVideoPro tries to find the matching
-values from your DB. This may not always be successful - so use the select boxes
+values from your DB. This may not always be successful – so use the select boxes
 to correct these values if needed. Same applies to the <b><i>director</i></b>:
 Sometimes there is more than one director given, but phpVideoPro only handles
-one of them - you may have to select the one to use (or select the empty entry
+one of them – you may have to select the one to use (or select the empty entry
 if you do not want to use that information at all).
 
 [text]

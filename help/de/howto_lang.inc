@@ -5,14 +5,13 @@
 Wie erstelle ich eine Sprachdatei für meine Muttersprache?
 
 [text]
-Dies ist leichter, als mancher denken mag (seit v0.4.6 sogar sehr einfach, dank
-des neuen Editors für Übersetzungen) - es sind nur wenige Schritte nötig:
+Dies ist leichter, als mancher denken mag – es sind nur wenige Schritte nötig:
 [text]
 <OL>
  <LI>Zunächst ist ein LogIn als Administrator erforderlich.</LI>
  <LI>Nun ist im Menü der Punkt "*admin# -&gt; *admin_translations#"
-     auszuwählen...</LI>
- <LI>...und hier die gewünschte Zielsprache. Ein "Klick" auf "*submit#" führt
+     auszuwählen…</LI>
+ <LI>…und hier die gewünschte Zielsprache. Ein "Klick" auf "*submit#" führt
      dann direkt zur Bearbeitung der Übersetzungen.</LI>
  <LI>Sofern auf einer Seite Änderungen erfolgt sind, müssen diese (pro Seite)
      mittels des "*update#" Buttons gespeichert werden.</LI>
@@ -27,7 +26,7 @@ So, und jetzt würde ich mich freuen, eine Kopie dieser Datei zu erhalten, um si
 in zukünftigen Versionen von phpVideoPro verwenden zu können!
 
 [title]
-Die vorhandenen Übersetzungen für meine Sprache gefallen mir nicht...
+Die vorhandenen Übersetzungen für meine Sprache gefallen mir nicht…
 
 [text]
 Kein Problem. Siehe oben - gleiche Prozedur :-)

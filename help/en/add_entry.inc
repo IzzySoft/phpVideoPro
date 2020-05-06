@@ -5,12 +5,12 @@
 *intro#
 
 [text]
-Starting with phpVideoPro v0.5.1, this menu item exists for each configured
-media type separately. This was necessary in order to support the different
-features supported by some of them, as e.g. *longplay# only for Tapes, or
-region codes only for DVDs, and suppressing input fields for features not
-supported by the given medium. And that's furthermore the reason, that not
-all described fields are available for all media.
+This menu contains separate items for each configured media type. This is
+necessary in order to support the different features supported by some of them,
+as e.g. *longplay# only for Tapes, or region codes only for BDs/DVDs, and
+suppressing input fields for features not supported by the given medium. And
+that’s furthermore the reason, that not all described fields are available for
+all media.
 [text]
 Using these menu items, you can insert a new entry into your video database.
 Most fields in this form are self-explaining; but there are a few that require
@@ -36,13 +36,13 @@ While the *mediatype# is now already set by the selected menu item (see
 "*intro#" above), we still need to set the *medianr#. This is already partly
 done by the box prompting you for the mediums number before reaching this
 screen. So the only thing still needed is the part number (since each disk or
-tape may contain more than one movie). Since v0.5.1, phpVideoPro already guesses
-the right part number by checking the database for the latest one given and
-assuming, this one will be the next (as is the suggestion concerning the
-tape/disk number in the mentioned prompt). In both cases, you are given the
-possibility to correct this for the presumably rare cases you need to do so.
-The "*last_entry#" button tells you the highest given part number for the
-selected medium (or nothing if you just created an entry for a new tape/disk).
+tape may contain more than one movie). phpVideoPro already guesses the right
+part number by checking the database for the latest one given and assuming,
+this one will be the next (as is the suggestion concerning the tape/disk number
+in the mentioned prompt). In both cases, you are given the possibility to
+correct this for the presumably rare cases you need to do so. The
+"*last_entry#" button tells you the highest given part number for the selected
+medium (or nothing if you just created an entry for a new tape/disk).
 [text]
 At this place allow me some words on the concept for the media numbers in
 phpVideoPro: Its first part stands for the physical media, e.g. tape or disk.
@@ -61,11 +61,11 @@ store or commercial video tape library, but for private collections only :)
 The counter fields are mostly of interest for those of you having video
 recorders without an index function (and are only displayed for tapes): you can
 enter the counters from the beginning respective ending of your recording here.
-Since the only format restriction is a length of 10 characters, it doesn't
+Since the only format restriction is a length of 10 characters, it doesn’t
 matter if you enter plain numeric counter values, or even time codes here -
 depending on how your recorder displays the time.
 [text]
-For all other media (VCD/DVD), you can select the *disk_type# instead. Details
+For all other media (VCD/DVD/BD), you can select the *disk_type# instead. Details
 on this are to be found <A HREF="{PHP_SELF}?topic=disktype_change">here</A>.
 
 [title]
@@ -79,11 +79,11 @@ this medium.
 *region_code#
 
 [text]
-Regional Codes are somehow specific to DVDs, so these checkboxes are only
-available for DVDs. If you don't know what region code your DVD is limited to,
+Regional Codes are somehow specific to DVDs/BDs, so these checkboxes are only
+available for DVDs. If you don’t know what region code your DVD is limited to,
 just check nothing here (it will then display "unknown" when you view this
 entry later). For region-free DVDs, check the "0" only. For all others, check
-the appropriate box(es).
+the appropriate box(es). For BDs, codes 1..n correspond to A..x.
 
 [title]
 *commercials#
@@ -92,7 +92,7 @@ the appropriate box(es).
 Even if this field should be self explaining, some words on the values to
 chose: you mark here wether the recording is interrupted by "commercial blocks"
 ("*yes#") or not ("*no#"), or if you cut those blocks off manually ("*cut_off#").
-If you can't remember, you have even the possibility to state your unsureness
+If you can’t remember, you have even the possibility to state your unsureness
 here by chosing "*unknown#".
 
 [title]
@@ -110,8 +110,8 @@ preferences :) into account.
 
 [text]
 Here you can enter the available language tracks for audio (i.e. what language
-is <i>spoken</i> in the movie) and subtitles. Especially with DVDs, there can
-be multiple tracks available - so we allow to enter multiple tracks here.
+is <i>spoken</i> in the movie) and subtitles. Especially with BDs/DVDs, there can
+be multiple tracks available – so we allow to enter multiple tracks here.
 
 [text]
 Since the number of available languages worldwide is not that small, but we
@@ -135,23 +135,22 @@ will be taken into account.
 Be careful to fill in the information into the right fields here: the first is
 always for the family name, the second for the first name. Names of staff
 members are not stored together with the movie data, but in a separate table.
-With the movie data, there's only a reference stored - so if you later go to
-list some entries for a specific person, you may run into trouble: on the
-<A HREF="http://projects.izzysoft.de/?topic=progs;subject=phpvideopro"
-TARGET="_blank">demo site</A>, I already saw entries keeping both name parts
-in one field, just to store two persons into one entry. Of course you
-<i>can</i> do so - but it's not the way it is intended. You will e.g. encounter
-problems in this case, when setting filters: you won't be able to filter for one
-of the two persons entered, but just for both of them at the same time in the
-same combination. Just to mention one example.
+With the movie data, there’s only a reference stored - so if you later go to
+list some entries for a specific person, you may run into trouble: on the old
+demo site, I saw entries keeping both name parts in one field, just to store
+two persons into one entry. Of course you <i>can</i> do so – but it’s not the
+way it is intended. You will e.g. encounter problems in this case, when setting
+filters: you won’t be able to filter for one of the two persons entered, but
+just for both of them at the same time in the same combination. Just to mention
+one example.
 
 [text]
-Additionally, there's a checkbox attached to each name, titled "In List". This,
+Additionally, there’s a checkbox attached to each name, titled "In List". This,
 too, refers to a nice feature: there will be the possibility to list up,
 e.g., all actors together with the title of the movies they played a role in.
 By marking this checkbox, you can decide if this movie shall be displayed for
-this actor. If, for example, your favorite actor now plays very serious roles -
-but did play in some se* movies before which you just recorded for, humm, let's
+this actor. If, for example, your favorite actor now plays very serious roles –
+but did play in some pr*n movies before which you just recorded for, humm, let’s
 say "interest", but nobody but you shall now (when reading your printed tape
 lists), you just uncheck the box here and (s)he will not appear together with
 this films title in the actors list.
